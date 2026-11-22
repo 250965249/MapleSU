@@ -26,7 +26,11 @@
     },
     {
       "name": "知秋",
-      "github": "947409161"
+      "github": "947409161",
+      "acknowledgedIn": [
+        "README.md",
+        "CREDITS.md"
+      ]
     },
     {
       "name": "7kimimasy",
