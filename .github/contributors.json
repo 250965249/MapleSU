@@ -34,7 +34,11 @@
     },
     {
       "name": "7kimimasy",
-      "github": "hartgerinktarcila-design"
+      "github": "hartgerinktarcila-design",
+      "acknowledgedIn": [
+        "README.md",
+        "CREDITS.md"
+      ]
     }
   ],
   "source": "CREDITS.md",
