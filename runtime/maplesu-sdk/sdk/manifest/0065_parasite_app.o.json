@@ -1,0 +1,31 @@
+{
+  "idx": 65,
+  "name": "parasite_app.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/parasite/parasite_app.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 4,
+    "recovered": 4,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "0b40391e887b77057b51b3257951c0de4365302af92c3575b026cbaf7bfe3a9d",
+    "bytes": 24756
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "T 39/39, U 27/27 both directions empty; a full llvm-nm diff over ALL symbol kinds (data/local included) is also empty. Byte size 24480 vs 24756 (-1.1%) is expected for -Oz/ThinLTO per PROTOCOL 8.6."
+  },
+  "notes": ""
+}

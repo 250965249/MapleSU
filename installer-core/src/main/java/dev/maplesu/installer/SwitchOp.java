@@ -1,0 +1,8 @@
+package dev.maplesu.installer;
+
+/** Journal operations, fixed by 02-switch-contract §3.3. */
+public enum SwitchOp {
+    PREPARED, INTENT, DONE, FAIL, SKIP, ROLLBACK_INTENT, ROLLBACK_DONE,
+    MOVE_INTENT, MOVE_DONE, MOVE_BACK, MATERIALIZE_INTENT, MATERIALIZE_DONE,
+    COMMIT_INTENT, REBOOT_PENDING, VERIFIED, RECOVERY_REQUIRED
+}

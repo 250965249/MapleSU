@@ -1,0 +1,36 @@
+{
+  "functionBoundary": "next distinct exact symbol from target kallsyms",
+  "deviceEvidence": false,
+  "functions": [
+    {
+      "target": "android12-5.10-9465fbb7",
+      "imagePath": "native-inputs\\kernels\\android12-5.10-9465fbb7\\Image",
+      "imageSha256": "9465fbb7871eddc4d4115174e5e378caa7526123b9af989fab3f906b1ffea33b",
+      "symbolPath": "native-inputs\\kernels\\android12-5.10-9465fbb7\\symbols.tsv",
+      "symbolSha256": "b20da52c3497b6bcb69d2591967b39206ad06dc15cd05ed952658d370ff8a4d8",
+      "name": "prctl_get_seccomp",
+      "imageOffset": 3127736,
+      "sizeBytes": 20,
+      "nextSymbol": "prctl_set_seccomp",
+      "sha256": "d17439265edfb9797891516cf23972711e25be9cc4ffc9a1e3218a22aa8254fc",
+      "bytesHex": "3f2303d5084138d5004988b9bf2303d5c0035fd6",
+      "expectedOffset": 2120,
+      "widthBytes": 4
+    },
+    {
+      "target": "android15-6.6-346d51ea",
+      "imagePath": "native-inputs\\kernels\\android15-6.6-346d51ea\\Image",
+      "imageSha256": "346d51ea1f63413ffa5d99c5c426806291af3573f0a1d66a7621c388e835880e",
+      "symbolPath": "native-inputs\\kernels\\android15-6.6-346d51ea\\symbols.tsv",
+      "symbolSha256": "138ab9f070c6f4c81627938117290f7aec9c7fab4f11edbf38854fd612cd2288",
+      "name": "prctl_get_seccomp",
+      "imageOffset": 2000188,
+      "sizeBytes": 16,
+      "nextSymbol": "__arm64_sys_seccomp",
+      "sha256": "8b0b34b2d44f8af03984ab58a9936b8e5758878bf2b486e6d1715855b2b0d0d5",
+      "bytesHex": "084138d500e988b9c0035fd6d9342bb0",
+      "expectedOffset": 2280,
+      "widthBytes": 4
+    }
+  ]
+}

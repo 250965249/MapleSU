@@ -1,0 +1,134 @@
+--- upstream/service/src/main/java/com/topjohnwu/superuser/internal/RootServiceManager.java
++++ src/main/java/com/topjohnwu/superuser/internal/RootServiceManager.java
+@@ -54,9 +54,7 @@
+ import java.io.InputStream;
+ import java.io.OutputStream;
+ import java.nio.charset.StandardCharsets;
+-import java.util.ArrayList;
+ import java.util.Iterator;
+-import java.util.List;
+ import java.util.Locale;
+ import java.util.Map;
+ import java.util.concurrent.Executor;
+@@ -140,7 +138,7 @@
+ 
+     private int flags = 0;
+ 
+-    private final List<BindTask> pendingTasks = new ArrayList<>();
++    private final RootServiceRouting<ServiceConnection> routing = new RootServiceRouting<>();
+     private final Map<ServiceKey, RemoteServiceRecord> services = new ArrayMap<>();
+     private final Map<ServiceConnection, ConnectionRecord> connections = new ArrayMap<>();
+ 
+@@ -181,11 +179,13 @@
+                 Utils.pump(in, out);
+             }
+ 
+-            String env = "";
++            // Process-instance routing only; this UUID is not an authorization credential.
++            String env = CMDLINE_START_SERVICE.equals(action)
++                    ? RootServiceRouting.ORIGIN_ENV + "=" + routing.origin() + " " : "";
+             String params = "";
+ 
+             if (Utils.vLog()) {
+-                env = LOGGING_ENV + "=1 ";
++                env += LOGGING_ENV + "=1 ";
+             }
+ 
+             // Only support debugging on SDK >= 27
+@@ -284,7 +284,7 @@
+     public Shell.Task createBindTask(Intent intent, Executor executor, ServiceConnection conn) {
+         ServiceKey key = bindInternal(intent, executor, conn);
+         if (key != null) {
+-            pendingTasks.add(() -> bindInternal(intent, executor, conn) == null);
++            routing.add(key.isDaemon(), conn, () -> bindInternal(intent, executor, conn) == null);
+             int mask = key.isDaemon() ? DAEMON_EN_ROUTE : REMOTE_EN_ROUTE;
+             if ((flags & mask) == 0) {
+                 flags |= mask;
+@@ -298,6 +298,7 @@
+     public void unbind(@NonNull ServiceConnection conn) {
+         enforceMainThread();
+ 
++        routing.cancel(conn);
+         ConnectionRecord r = connections.remove(conn);
+         if (r != null) {
+             RemoteServiceRecord s = r.getService();
+@@ -386,10 +387,12 @@
+     private class RemoteProcess extends BinderHolder {
+ 
+         final IRootServiceManager mgr;
++        final IBinder identity;
+ 
+         RemoteProcess(IRootServiceManager s) throws RemoteException {
+             super(s.asBinder());
+             mgr = s;
++            identity = s.asBinder();
+         }
+ 
+         @Override
+@@ -441,32 +444,35 @@
+             if (binder == null)
+                 return;
+ 
++            boolean daemon = intent.getBooleanExtra(INTENT_DAEMON_KEY, false);
++            if (!routing.matchesOrigin(daemon, intent.getStringExtra(RootServiceRouting.ORIGIN_EXTRA)))
++                return;
++            int mask = daemon ? DAEMON_EN_ROUTE : REMOTE_EN_ROUTE;
++            if (!routing.hasPending(daemon)) {
++                // A cancelled launch may still reply. Do not become its lifecycle owner.
++                flags &= ~mask;
++                return;
++            }
++            RemoteProcess current = daemon ? mDaemon : mRemote;
++            if (current != null && current.identity.equals(binder)) {
++                flags &= ~mask;
++                routing.runPending(daemon);
++                return;
++            }
+             IRootServiceManager mgr = IRootServiceManager.Stub.asInterface(binder);
+             try {
+                 mgr.connect(m.getBinder());
+                 RemoteProcess p = new RemoteProcess(mgr);
+-                if (intent.getBooleanExtra(INTENT_DAEMON_KEY, false)) {
+-                    mDaemon = p;
+-                    flags &= ~DAEMON_EN_ROUTE;
+-                } else {
+-                    mRemote = p;
+-                    flags &= ~REMOTE_EN_ROUTE;
+-                }
+-                for (int i = pendingTasks.size() - 1; i >= 0; --i) {
+-                    if (pendingTasks.get(i).run()) {
+-                        pendingTasks.remove(i);
+-                    }
+-                }
++                if (daemon) mDaemon = p;
++                else mRemote = p;
++                flags &= ~mask;
++                routing.runPending(daemon);
+             } catch (RemoteException e) {
+                 Utils.err(TAG, e);
+             }
+         }
+     }
+ 
+-    private interface BindTask {
+-        boolean run();
+-    }
+-
+     private interface Predicate {
+         boolean eval(RemoteServiceRecord s);
+     }
+--- upstream/service/src/main/java/com/topjohnwu/superuser/internal/RootServiceServer.java
++++ src/main/java/com/topjohnwu/superuser/internal/RootServiceServer.java
+@@ -148,6 +148,12 @@
+         uid = getCallingUid() == 0 ? uid : getCallingUid();
+         Utils.log(TAG, "broadcast to uid=" + uid);
+         Intent intent = RootServiceManager.getBroadcastIntent(this, isDaemon);
++        // RootServerMain loads this class in the same process, preserving launch environment.
++        // This value routes a startup reply; Binder UID remains the actual caller identity.
++        if (!isDaemon) {
++            intent.putExtra(RootServiceRouting.ORIGIN_EXTRA,
++                    System.getenv(RootServiceRouting.ORIGIN_ENV));
++        }
+         if (Build.VERSION.SDK_INT >= 24) {
+             UserHandle h = UserHandle.getUserHandleForUid(uid);
+             Utils.context.sendBroadcastAsUser(intent, h);

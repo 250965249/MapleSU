@@ -1,0 +1,46 @@
+{
+  "idx": 4,
+  "name": "dentry.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/dentry.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 215,
+    "recovered": 215,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "0483a4d458780de836dd55f644bbe1239d9fd9af546e5fa9cbe187ddd300d47e",
+    "bytes": 133948
+  },
+  "evidence": [
+    "notes/work/AGENT112/proof/004/EQUIVALENCE.md",
+    "notes/work/AGENT112/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": [],
+    "equivalence": {
+      "functions": "215/215",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "215/215",
+      "bag_min": 0.9552,
+      "bag_mean": 0.9997,
+      "seq_mean": 0.9979
+    },
+    "note": "Measured against the frozen archive with the final green build (build/r5/out, member gate PASS 260/260). Two-way gate: T 5/5, U 77/77, raw diff empty, baseline consumed 0. verify_equiv: status=equivalent, functions 215/215, missing=0, extra=0, call_target_match=215/215, bag_min=0.9552, bag_mean=0.9997, seq_mean=0.9979. Source shape recovered: private_skroot_paths.h get_system_file_dir_path() destroys the directory-name temporary at the end of the snprintf full expression and constructs the returned string afterwards, matching the frozen inlined body; member now equivalent (inventory 215/215, call sets 215/215, bag_min 0.9552)."
+  },
+  "notes": ""
+}

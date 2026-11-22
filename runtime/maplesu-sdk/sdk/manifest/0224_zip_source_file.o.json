@@ -1,0 +1,28 @@
+{
+  "idx": 224,
+  "name": "zip_source_file.o",
+  "group": "libzip",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/libzip/1.0.1/lib/zip_source_file.c"
+  ],
+  "flagsProfile": "vendor-c-elf",
+  "status": "complete",
+  "recovery": {
+    "functions": 0,
+    "recovered": 0,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "32631a07aa9a79e097ecf8498fa1f6c7113e9352f2b99369c22f872b23f6d420",
+    "bytes": 1872
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "import-set exact; rebuilt bytes identical"
+  },
+  "notes": "source=vendored; version=1.0.1; equivalence=symbol-set (export T exact: True)",
+  "evidence": []
+}

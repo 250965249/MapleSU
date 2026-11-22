@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_install_type_title">选择模块类型</string>
+    <string name="module_install_type_hint">请选择这个模块的安装方式，确认后开始安装。</string>
+    <string name="module_install_type_maplesu_summary">按 MapleSU 原生模块安装。</string>
+    <string name="module_install_type_ksu_summary">按 KernelSU 模块格式安装。</string>
+</resources>

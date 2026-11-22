@@ -1,0 +1,303 @@
+{
+  "schema": "maplesu-libzstd-compressed-fixtures/1",
+  "pythonModule": "compression.zstd",
+  "libzstdVersion": "1.5.7",
+  "productionJavaUsed": false,
+  "generatorSha256": "1fb581034db35207922b0836b45629551abfabed4f4d45ac2703c33ee6718bd6",
+  "files": {
+    "kernel.raw": {
+      "bytes": 131101,
+      "sha256": "e2c203f3c8ce05690d75a2e463a688dd01c018d7a5955968aadf8d4b3c26901f"
+    },
+    "kernel-1.zst": {
+      "bytes": 116129,
+      "sha256": "e32ada24a0b183e2025650b05c6b12dfeb10a5be1edcf8ccff15a3dc4a122ea1",
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 116081,
+          "literalsType": 2
+        },
+        {
+          "type": 0,
+          "encodedSize": 29,
+          "literalsType": null
+        }
+      ]
+    },
+    "kernel-3.zst": {
+      "bytes": 100900,
+      "sha256": "fdba4b0d4fd514aa54829bc4fd02acf8c952efd1de1607704fff05c218b85eae",
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 100852,
+          "literalsType": 0
+        },
+        {
+          "type": 0,
+          "encodedSize": 29,
+          "literalsType": null
+        }
+      ]
+    },
+    "kernel-19.zst": {
+      "bytes": 95021,
+      "sha256": "99535c603d23bd954cb7e19c8cd3107f5796f7baa834eb2ab49b25b37f280762",
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 47667,
+          "literalsType": 2
+        },
+        {
+          "type": 2,
+          "encodedSize": 47303,
+          "literalsType": 0
+        },
+        {
+          "type": 0,
+          "encodedSize": 29,
+          "literalsType": null
+        }
+      ]
+    },
+    "kernel-unknown.zst": {
+      "bytes": 100897,
+      "sha256": "a68765cbea62479dd9e31b88792218c2ab76a1a57d4bf067b1d142670b9356db",
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 100852,
+          "literalsType": 0
+        },
+        {
+          "type": 0,
+          "encodedSize": 29,
+          "literalsType": null
+        }
+      ]
+    },
+    "kernel-window27.zst": {
+      "bytes": 100897,
+      "sha256": "d1ecad967eb2d457168f31f99b7164bfc49c48af13c455c8ad90a63e06c5c2b7",
+      "declaredWindowBytes": 134217728,
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 100852,
+          "literalsType": 0
+        },
+        {
+          "type": 0,
+          "encodedSize": 29,
+          "literalsType": null
+        }
+      ]
+    },
+    "first.zst": {
+      "bytes": 748,
+      "sha256": "936cbaaa7083615217257a59e5bef7d627794d7b11e0392e718f7f95cb250580",
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 734,
+          "literalsType": 0
+        }
+      ]
+    },
+    "second.zst": {
+      "bytes": 99717,
+      "sha256": "92a5933c00d24355d989305d35b7ab861611667ae1f064fa2e79380cdea6968b",
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 99701,
+          "literalsType": 0
+        }
+      ]
+    },
+    "kernel-concat.zst": {
+      "bytes": 100476,
+      "sha256": "431b34d80a97faade25ea204ca8bcaf8a0786a993880593ec70e54f23778cc08",
+      "frames": 2,
+      "skippable": true
+    },
+    "multi.raw": {
+      "bytes": 1311010,
+      "sha256": "a0db41ffe8a527e5a0b27c83f5bd95807d75bbaeed00f95d65633f2ce90e9d5f"
+    },
+    "multi.zst": {
+      "bytes": 308652,
+      "sha256": "bfab9aca215958fe74100bc99594c21efa813c2b2cd1c5214815a73705099388",
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 96563,
+          "literalsType": 0
+        },
+        {
+          "type": 2,
+          "encodedSize": 68838,
+          "literalsType": 2
+        },
+        {
+          "type": 2,
+          "encodedSize": 72,
+          "literalsType": 0
+        },
+        {
+          "type": 2,
+          "encodedSize": 17,
+          "literalsType": 0
+        },
+        {
+          "type": 2,
+          "encodedSize": 70364,
+          "literalsType": 2
+        },
+        {
+          "type": 2,
+          "encodedSize": 105,
+          "literalsType": 3
+        },
+        {
+          "type": 2,
+          "encodedSize": 10,
+          "literalsType": 0
+        },
+        {
+          "type": 2,
+          "encodedSize": 72462,
+          "literalsType": 2
+        },
+        {
+          "type": 2,
+          "encodedSize": 158,
+          "literalsType": 3
+        },
+        {
+          "type": 2,
+          "encodedSize": 9,
+          "literalsType": 0
+        },
+        {
+          "type": 2,
+          "encodedSize": 8,
+          "literalsType": 0
+        }
+      ]
+    },
+    "multi-unknown.zst": {
+      "bytes": 299715,
+      "sha256": "7bb6201ac0d90c9741bee5774ce169f16954523b9ecabb214470bc051edfbabe",
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 47667,
+          "literalsType": 2
+        },
+        {
+          "type": 2,
+          "encodedSize": 47303,
+          "literalsType": 0
+        },
+        {
+          "type": 2,
+          "encodedSize": 68514,
+          "literalsType": 2
+        },
+        {
+          "type": 2,
+          "encodedSize": 44,
+          "literalsType": 3
+        },
+        {
+          "type": 2,
+          "encodedSize": 13,
+          "literalsType": 0
+        },
+        {
+          "type": 2,
+          "encodedSize": 67491,
+          "literalsType": 2
+        },
+        {
+          "type": 2,
+          "encodedSize": 88,
+          "literalsType": 3
+        },
+        {
+          "type": 2,
+          "encodedSize": 10,
+          "literalsType": 0
+        },
+        {
+          "type": 2,
+          "encodedSize": 68386,
+          "literalsType": 2
+        },
+        {
+          "type": 2,
+          "encodedSize": 136,
+          "literalsType": 3
+        },
+        {
+          "type": 2,
+          "encodedSize": 10,
+          "literalsType": 0
+        },
+        {
+          "type": 2,
+          "encodedSize": 7,
+          "literalsType": 0
+        }
+      ]
+    },
+    "text.raw": {
+      "bytes": 438010,
+      "sha256": "dc6507f286c648faeddb03bb83e49391d5351e853a1883963d97be77d44a53a5"
+    },
+    "text.zst": {
+      "bytes": 5105,
+      "sha256": "1a7a9198fe75bedee6c5bf2e4b286948746a8379421b6d5b972aa2b10353e4a8",
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 3578,
+          "literalsType": 2
+        },
+        {
+          "type": 2,
+          "encodedSize": 1484,
+          "literalsType": 3
+        },
+        {
+          "type": 2,
+          "encodedSize": 9,
+          "literalsType": 0
+        },
+        {
+          "type": 2,
+          "encodedSize": 9,
+          "literalsType": 0
+        }
+      ]
+    },
+    "rle-literals.raw": {
+      "bytes": 10,
+      "sha256": "1d65bf29403e4fb1767522a107c827b8884d16640cf0e3b18c4c1dd107e0d49d"
+    },
+    "rle-literals.zst": {
+      "bytes": 16,
+      "sha256": "4e1626bfcdeac7af5830d0b5eb54de0ae2a47899a786e7b28595090703fa6320",
+      "blocks": [
+        {
+          "type": 2,
+          "encodedSize": 3,
+          "literalsType": 1
+        }
+      ]
+    }
+  }
+}

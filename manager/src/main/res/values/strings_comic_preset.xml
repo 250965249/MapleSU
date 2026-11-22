@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_d_comic_intro">Enable Comic preset</string>
+    <string name="ui_d_comic_intro_summary">MapleSU style with falling leaves, a large status card, and a floating glass navigation bar. Turn off for a compact card and a standard navigation bar.</string>
+    <string name="ui_d_comic_plain_style_summary">Miuix with a compact status card and standard navigation, without falling leaves, blur, or liquid glass.</string>
+    <string name="ui_d_home_large_card">Large home status card</string>
+    <string name="ui_d_home_large_card_summary">Use the square MapleSU card. Turn off for a compact card; both layouts support custom images.</string>
+    <string name="ui_d_comic_preset">Apply MapleSU Comic preset</string>
+    <string name="ui_d_comic_preset_summary">Apply the large card, built-in artwork, falling leaves, blur, and floating glass navigation bar.</string>
+    <string name="ui_d_comic_confirm">Apply the Comic preset? This restores the large status card and built-in artwork, and enables falling leaves, blur, the floating navigation bar, and liquid glass. You can adjust each option separately afterward. Your selected wallpaper and saved custom image are kept.</string>
+    <string name="ui_d_decoration_check">Default checkmark; tap to choose an image</string>
+    <string name="ui_d_decoration_comic">Comic artwork; tap to choose an image</string>
+    <string name="ui_d_status_reset">Restore default status card</string>
+    <string name="ui_d_status_reset_summary">Use the green checkmark and reset image framing. Keep the current card size.</string>
+    <string name="ui_d_images_translucent_summary">Turn on to show your custom wallpaper through the interface.</string>
+</resources>

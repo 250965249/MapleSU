@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="normal_hidden_entry_summary">保存恢复链接后，卸载管理器并进入隐身</string>
+    <string name="normal_hidden_body">保存链接后确认，管理器将卸载，配对数据保留。</string>
+    <string name="normal_hidden_copy">复制</string>
+    <string name="normal_hidden_preparing">正在准备恢复链接…</string>
+    <string name="normal_hidden_save_hint">请先复制或打开恢复链接，将它保存到之后能找到的位置，再确认已保存。</string>
+    <string name="normal_hidden_save">我已保存恢复链接</string>
+    <string name="normal_hidden_saved">恢复链接已保存</string>
+    <string name="normal_hidden_confirm">开启隐身</string>
+    <string name="normal_hidden_activating">正在开启隐身…</string>
+    <string name="normal_hidden_retry">重新准备恢复链接</string>
+    <string name="normal_hidden_prepare_failed">恢复链接还未就绪，请重试后再开启隐身。</string>
+    <string name="normal_hidden_activate_failed">隐身未完成，请检查连接并重新准备恢复链接后重试。</string>
+    <string name="normal_hidden_copy_failed">链接未复制成功，请再次复制或在浏览器打开。</string>
+    <string name="normal_hidden_open_failed">浏览器未打开，请复制恢复链接并保存。</string>
+    <string name="normal_hidden_done_title">隐身已开启</string>
+    <string name="normal_hidden_done_body">管理器已卸载，配对数据已保留。请通过已保存的恢复链接管理 MapleSU 或还原管理器。</string>
+    <string name="normal_hidden_done">完成</string>
+    <string name="normal_hidden_webui_checking">正在读取网页管理器状态…</string>
+    <string name="normal_hidden_webui_running">网页管理器正在运行</string>
+    <string name="normal_hidden_webui_stopped">网页管理器已关闭</string>
+    <string name="normal_hidden_webui_unknown">尚未确认网页管理器状态</string>
+    <string name="normal_hidden_webui_stop">关闭网页管理器</string>
+    <string name="normal_hidden_webui_stop_title">关闭网页管理器？</string>
+    <string name="normal_hidden_webui_stop_body">关闭后，恢复链接将暂时停用。配对数据、恢复备份和隐身状态会保留。需要使用时，请重新准备恢复链接。</string>
+    <string name="normal_hidden_webui_stop_confirm">关闭</string>
+    <string name="normal_hidden_webui_stopping">正在关闭网页管理器…</string>
+    <string name="normal_hidden_webui_stopped_hint">重新准备并保存恢复链接后，可继续开启隐身。</string>
+    <string name="normal_hidden_webui_stop_failed">网页管理器还未确认关闭，请重试。</string>
+    <string name="normal_hidden_setup_title">网页管理器</string>
+    <string name="normal_hidden_setup_body">选择 WebUI 端口。</string>
+    <string name="normal_hidden_prepare">启动隐藏</string>
+    <string name="normal_hidden_saved_confirm">确认</string>
+    <string name="normal_hidden_link_title">保存恢复链接</string>
+</resources>

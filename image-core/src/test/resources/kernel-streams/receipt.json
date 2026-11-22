@@ -1,0 +1,117 @@
+{
+  "schema": "maplesu-independent-kernel-streams/1",
+  "image": "sha256:272ada1e61c525116032246df2a790d1ccec1804b7a9e0b09203c5e650dcb78e",
+  "network": "none",
+  "pull": "never",
+  "generatorSha256": "9c456dc5857d7a8d9c6e7368f9ba932d716caa0b6fc1357daa27ec7ee078a598",
+  "versions": {
+    "xz": "xz (XZ Utils) 5.6.4\nliblzma 5.6.4",
+    "liblz4": "1.10.0"
+  },
+  "files": {
+    "arm64.raw": {
+      "bytes": 131101,
+      "sha256": "e2c203f3c8ce05690d75a2e463a688dd01c018d7a5955968aadf8d4b3c26901f"
+    },
+    "arm64-0.xz": {
+      "bytes": 94052,
+      "sha256": "bac2a4f792bf70cc7ca269d9cfa4742b2849f8021e47ee2ec4d3c5d36403d8bd",
+      "filters": [
+        "arm64",
+        "lzma2"
+      ],
+      "startOffset": 0
+    },
+    "arm64-4096.xz": {
+      "bytes": 94124,
+      "sha256": "d3e1f3bde1028453a0b9413ffa1178209c764ca76cccd29ff2971397d970c092",
+      "filters": [
+        "arm64",
+        "lzma2"
+      ],
+      "startOffset": 4096
+    },
+    "arm64-4294967292.xz": {
+      "bytes": 94096,
+      "sha256": "d0c46564e70e9198fc307dec4cabf3714c7b09e4a98868eac9b4bcfac5ef6b9a",
+      "filters": [
+        "arm64",
+        "lzma2"
+      ],
+      "startOffset": 4294967292
+    },
+    "arm64-blocks.xz": {
+      "bytes": 117048,
+      "sha256": "b3a69b4e4fe299cdb7bc855e498def85541718f10853944b00eab5443f1df6db",
+      "filters": [
+        "arm64",
+        "lzma2"
+      ],
+      "blocks": true
+    },
+    "delta.xz": {
+      "bytes": 131116,
+      "sha256": "79684cfdc1f8f63731dbc1decf35cf73c0856a334117f1698a3ca6de0baf613e",
+      "filters": [
+        "delta:256",
+        "lzma2"
+      ]
+    },
+    "arm64-delta.xz": {
+      "bytes": 131064,
+      "sha256": "445a37861aebf25230d0034d7fd8535b3007712775f433e0d36399569913623e",
+      "filters": [
+        "arm64",
+        "delta:4",
+        "lzma2"
+      ]
+    },
+    "four-filters.xz": {
+      "bytes": 131172,
+      "sha256": "b0e0a48080358619cb0c2db6e6c91ba3b0313063c15434ec94e3e6663e78dcaa",
+      "filters": [
+        "delta:256",
+        "arm64",
+        "delta:4",
+        "lzma2"
+      ]
+    },
+    "arm64-crc64.xz": {
+      "bytes": 94056,
+      "sha256": "dde0eb28e5bde8a808744da584d3eba9af8bea574193f6911041465cd359ada7",
+      "filters": [
+        "arm64",
+        "lzma2"
+      ],
+      "check": "crc64"
+    },
+    "arm64-sha256.xz": {
+      "bytes": 94080,
+      "sha256": "47e0d308b2e115fd055a0c57765687a9bf0ba695aaa4521cd4a9a35a49e599f9",
+      "filters": [
+        "arm64",
+        "lzma2"
+      ],
+      "check": "sha256"
+    },
+    "plain-blocks.xz": {
+      "bytes": 116840,
+      "sha256": "d006182be3db520409e1fff9b0f3cbb0fac490fcac3d01c6a2890ee44542bdc4",
+      "blocks": true
+    },
+    "concat.xz": {
+      "bytes": 92376,
+      "sha256": "ca738bbb6f165df5d2f05140671670b258c79cb79c8967570303197a6b325b01",
+      "streams": 2,
+      "padding": 8
+    },
+    "concat.lz4": {
+      "bytes": 119934,
+      "sha256": "b58fdaec53601e24c6529e665d5c4a100abf74dff7098e29b85c0d0c27745289",
+      "streams": 2,
+      "skippable": true
+    }
+  },
+  "oracle": "liblzma via xz + Python lzma; liblz4 frame encode/decode",
+  "productionJavaUsed": false
+}

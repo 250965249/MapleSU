@@ -1,0 +1,19 @@
+{
+  "magisk": {
+    "repository": "https://github.com/topjohnwu/Magisk.git",
+    "commit": "e8a58776f1d7bdf852072ad0baa6eceb9a1e4aac",
+    "license": "GPL-3.0"
+  },
+  "selinux": {
+    "repository": "https://github.com/topjohnwu/selinux.git",
+    "commit": "be1b39a657fee7faacfae548b75cb53302043a01",
+    "component": "libsepol, without CIL",
+    "license": "LGPL-2.1-or-later; see retained LICENSE and file headers"
+  },
+  "sha256": {
+    "magisk/sepolicy.cpp": "177ad09aaf6cf2cf7ca5984f4585be626a1508d0318c8151444e8596bc3c0264",
+    "magisk/policy.hpp": "6b2743f507a129588111bcf8ffea96348fcc864aa8af0dac84e7492ed02a88f1",
+    "magisk/LICENSE": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
+    "libsepol-LICENSE": "3a872bea527c9329f6aee2182de19bc40c5d030f1e08296e45d4bc3218946cd4"
+  }
+}

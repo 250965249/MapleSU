@@ -1,0 +1,97 @@
+{
+  "idx": 63,
+  "name": "maplesu_module_install_callback.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/module/callback.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 2,
+    "recovered": 2,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "043868eb7a83a67d44aa8edfac7a873426d895e543b979eda5ee792aacb60e71",
+    "bytes": 118316
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "tMissing": [],
+      "tExtra": [],
+      "uMissing": [],
+      "uExtra": []
+    },
+    "adjusted": {
+      "uMissing": [],
+      "uExtra": []
+    },
+    "allowancesConsumed": 0,
+    "definedTextCount": 207,
+    "undefinedCount": 120,
+    "deterministicRepeat": true,
+    "note": "PROTOCOL section 5 strict T/t/W/w gate passed both ways; raw U gate passed both ways, no baseline allowances consumed. Repeated compile byte-identical.",
+    "equivalence": {
+      "tool": "runtime/upstream-pro/sdk/tools/verify_equiv.py",
+      "reference": "freeze-maplesu-pro-5.2.0-su-uid-isolation-20261114-20261114",
+      "proof_archive": "build/a109/out/libkernel_module_kit_static.a",
+      "status": "equivalent",
+      "functions": "187/187",
+      "missing": [],
+      "extra": [],
+      "call_targets": "187/187",
+      "seq_mean": 0.9957,
+      "bag_mean": 0.9997,
+      "bag_min": 0.9727,
+      "threshold": 0.95,
+      "bar_met": true
+    }
+  },
+  "notes": "verify_equiv: equivalent (inventory, call-target set and bag_min all at the bar). 51/62/63 skeleton recovered: explicit-assignment fork_base_info ctor (call memset + tail reset, not __builtin_memset), helper chain get_kernel_file_dir_name -> get_system_file_dir_name -> get_system_file_dir_path -> get_module_list_dir_path, per-TU env_path_util::detail::trim_trailing_slashes, and destructor-before-return-value ordering in the snprintf path helpers.",
+  "privateHeaders": [
+    "src/maplesu/compat/module_callback_legacy_abi.h",
+    "src/maplesu/module/process_context.h",
+    "include/maplesu_storage_private.h",
+    "src/maplesu/compat/module_callback_exports_legacy_abi.h"
+  ],
+  "maplesuNativeModuleBatchR18": {
+    "status": "source-implemented-pending-combined-build-abi-and-consumer-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/internal-ownership-r18-review/PLAN.md",
+    "legacyBoundary": "fixed external exports, layout, callbacks and persistent bytes retained",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "moduleCallbackStorageContext20261118": {
+    "status": "source-implemented-pending-final-affected-validation",
+    "sourceSha256": {
+      "src/maplesu/module/callback.cpp": "76dfb8f0ff682951373b3863439606afd8e05de9d18376bd86c82062ee7d5bf7"
+    },
+    "privateHeaderSha256": {
+      "include/maplesu_storage_private.h": "8425426e4c16c04e4be333324f39d260fbb760a45552041cac5536c2a07df85e"
+    },
+    "scope": "Existing storage scope for callback paths; exact external ABI/Key argument retained; scoped log/handle/TLS cleanup.",
+    "formalAssetsPromoted": false,
+    "deviceTested": false
+  },
+  "binaryAbiCompatibility20261120": {
+    "scope": "Frozen binary callback symbols alias the single current implementation; internal MapleSU names retained",
+    "oldSymbols": [
+      "_ZN10skroot_env8features8callback24invoke_module_on_installERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEERS8_",
+      "_ZN10skroot_env8features8callback26invoke_module_on_uninstallERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE"
+    ],
+    "validation": ".tmp/main-sdk-callback-abi-20261120/green/EXECUTION.json",
+    "oldConsumerLinkExitCode": 0,
+    "sameFinalAddresses": true,
+    "rawGateUnchanged": true,
+    "deviceAccepted": false
+  }
+}

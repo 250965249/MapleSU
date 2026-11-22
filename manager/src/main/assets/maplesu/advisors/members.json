@@ -1,0 +1,69 @@
+{
+  "members": [
+    {
+      "id": "mapleautumn",
+      "name": "MapleAutumn",
+      "group": "author",
+      "tags": ["UI", "Kotlin"],
+      "signature": "『时光流转，愿你能与珍爱之人再度重逢』🍁"
+    },
+    {
+      "id": "wanfeng",
+      "name": "晚风",
+      "group": "thanks",
+      "beta": true,
+      "role": "幕后支持者 · 共同开发者",
+      "role_en": "Behind-the-scenes supporter · Co-developer",
+      "github": "bywanfeng"
+    },
+    {
+      "id": "xiaojiu",
+      "name": "小酒",
+      "group": "thanks",
+      "beta": true,
+      "role": "幕后支持者 · 共同开发者",
+      "role_en": "Behind-the-scenes supporter · Co-developer",
+      "telegram": "qingyu177"
+    },
+    {
+      "id": "zuozuoyu",
+      "name": "佐佐鱼",
+      "group": "thanks",
+      "beta": true,
+      "role": "为越狱思路提供相关贡献 · 提供橘子7提权相关实现",
+      "role_en": "Contributed to the jailbreak approach · Provided the 橘子7 privilege-escalation implementation",
+      "tags": ["C++"],
+      "github": "Yutou04-sa",
+      "telegram": "Yutou04",
+      "signature": "如果有事通过🤖 @yutou_004_bot 联系我，私聊拉黑"
+    },
+    {
+      "id": "7kimimasy",
+      "name": "7kimimasy",
+      "group": "thanks",
+      "beta": true,
+      "role": "为 MapleSU 内测与宣发提供贡献",
+      "role_en": "Contributed to MapleSU's beta testing and promotion",
+      "tags": ["Kotlin"],
+      "github": "hartgerinktarcila-design",
+      "telegram": "kmimasy"
+    },
+    {"id": "jianhua114514", "name": "jianhua114514", "group": "beta", "telegram": "jianhua114514"},
+    {"id": "lindong", "name": "临冬诗意渐渐", "group": "beta"},
+    {"id": "shao", "name": "邵", "group": "beta", "telegram": "llopjky"},
+    {"id": "linleyu", "name": "LinLeyu", "group": "beta", "telegram": "linleyu_0v0"},
+    {"id": "canghai", "name": "沧海", "group": "beta", "telegram": "chgyh666", "signature": "国一火泰斗火洛杉矶最强的火"},
+    {"id": "qingmingnbi", "name": "qingmingnbi", "group": "beta", "telegram": "qingmingnbi"},
+    {"id": "naiba", "name": "奶霸", "group": "beta"},
+    {"id": "guaiwo", "name": "怪我怜悯一生", "group": "beta", "telegram": "hexciphc"},
+    {"id": "mune", "name": "木讷", "group": "beta", "telegram": "lzhabc"},
+    {"id": "limy", "name": "LiMy", "group": "beta", "telegram": "Lveuot", "signature": "手握日月摘星辰，世间无我这般人"},
+    {"id": "haohao", "name": "好好", "group": "beta"},
+    {"id": "suyucifeng", "name": "簌雨辞风", "group": "beta"},
+    {"id": "xiaofeng", "name": "小冯", "group": "beta", "telegram": "SukiUltra"},
+    {"id": "qianmo", "name": "浅陌", "group": "beta"},
+    {"id": "suancaiyu", "name": "酸菜鱼", "group": "beta", "telegram": "SuancaiyuPro"},
+    {"id": "66um1", "name": "66uM1", "group": "beta", "telegram": "Czh0106"},
+    {"id": "yiwendamao", "name": "疑问大猫", "group": "beta"}
+  ]
+}

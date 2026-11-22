@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flash_restore_pre_install_message">Restore the boot images from immediately before this installation. This returns the previous working environment; it is not a factory-image restore. Your original-image backups will be kept.</string>
+    <string name="flash_restore_pre_install">Restore pre-install state</string>
+</resources>

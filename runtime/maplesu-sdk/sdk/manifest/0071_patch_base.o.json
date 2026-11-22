@@ -1,0 +1,45 @@
+{
+  "idx": 71,
+  "name": "patch_base.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/ord071/patch_base.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 99,
+    "recovered": 99,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "ee82dfc63a82626c9aca24c3b43039d5c5dd9ce1bbe6018b80c3651a35c61ea6",
+    "bytes": 65408
+  },
+  "evidence": [
+    "notes/work/AGENT112/proof/071/EQUIVALENCE.md",
+    "notes/work/AGENT112/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": [],
+    "equivalence": {
+      "functions": "99/99",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "99/99",
+      "bag_min": 0.9744,
+      "bag_mean": 0.9996,
+      "seq_mean": 0.9982
+    },
+    "note": "Measured against the frozen archive with the final green build (build/r5/out, member gate PASS 260/260). Two-way gate: T 11/11, U 45/45, raw diff empty, baseline consumed 0. verify_equiv: status=equivalent, functions 99/99, missing=0, extra=0, call_target_match=99/99, bag_min=0.9744, bag_mean=0.9996, seq_mean=0.9982. Fixed: printf_kernel_mem keeps its historical Emj signature but its second parameter has a default argument, so patch_kernel_before_hook/after_hook call it with the kernel address only and no byte-count computation is emitted in the caller (frozen IR shows the same shape after dead-argument elimination). Member now equivalent: inventory 99/99, call sets 99/99, bag_min 0.9744."
+  },
+  "notes": ""
+}

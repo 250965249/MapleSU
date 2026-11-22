@@ -1,0 +1,1324 @@
+{
+ "schema": "maplesu.kernel-profile/1",
+ "revision": 1,
+ "profile_id": "6.6.89-android15-g7e1f3c0",
+ "status": "delivery",
+ "notes": [
+  "One profile = one kernel build (uname string + kernel sha256 + boot geometry + patch sites).",
+  "Records are applied to the pristine kernel extracted from base_image at boot_geometry.kernel_offset.",
+  "Every record's orig must be present in the pristine kernel before anything is written (fail closed).",
+  "New kernel (e.g. 6.6.66): run image-core/tools/derive_sites.py, confirm the 12 candidates,",
+  "then add a profile with the same field set; validation is image-core/tools/build_flash_kernel.py --check."
+ ],
+ "kernel_version": {
+  "uname": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+  "version_probe": "Linux version ",
+  "kernel_sha256": "346d51ea1f63413ffa5d99c5c426806291af3573f0a1d66a7621c388e835880e",
+  "kernel_sha256_prefix": "346d51ea",
+  "kernel_size": 36661760,
+  "probe_key": "8eORURvE0cAkp3mlIzCuUsEJrr4OfbjKfT6RvkjeIP6aKm6r",
+  "probe_key_length": 48
+ },
+ "boot_geometry": {
+  "magic": "ANDROID!",
+  "header_version": 4,
+  "header_size": 1584,
+  "header_sha256": "94687ecf1c9dae2eb12aef33646227ccb51f2212d25d66632334a4a3a017b5be",
+  "page_size": 4096,
+  "kernel_offset": 4096,
+  "kernel_size": 36661760,
+  "kernel_compression": "none",
+  "ramdisk_offset": 36667392,
+  "ramdisk_size": 0,
+  "second_offset": 36667392,
+  "second_size": 0,
+  "os_version": 0,
+  "signature_size": 0,
+  "total_size": 100663296
+ },
+ "base_image": {
+  "reference_path": ".analysis/ace6-20261025/magiskboot-reference/unchanged-repacked.img",
+  "boot_sha256": "c07fd486b563c370d2294f580be02fb5b24feaf4966932d3111d6a61b219f243",
+  "boot_size": 100663296,
+  "kernel_sha256": "346d51ea1f63413ffa5d99c5c426806291af3573f0a1d66a7621c388e835880e"
+ },
+ "sites": [
+  {
+   "slot": 0,
+   "symbol": "die",
+   "offset": 135876,
+   "length": 212,
+   "orig_sha256": "9320d65fecf25cc23728fdbcc79480579bad8f2c20754427d2f8480a3a1ab3f3",
+   "original_bytes_sha256_prefix": "9320d65fecf25cc2",
+   "record_ids": [
+    "die",
+    "die_c2"
+   ],
+   "function_size": 776,
+   "anchor_strings": [
+    "%s: Fatal exception in interrupt",
+    "%s: Fatal exception"
+   ],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 136164
+    },
+    "instructions": 20,
+    "words": [
+     "d503233f",
+     "d10003ff",
+     "a90003fd",
+     "a90003f8",
+     "a90003f6",
+     "a90003f4",
+     "910003fd",
+     "d5384108",
+     "aa0003f3",
+     "90000000",
+     "91000000",
+     "f9400108",
+     "aa0203f6",
+     "aa0103f5",
+     "f80003a8",
+     "94000000",
+     "aa0003f4",
+     "94000000",
+     "94000000",
+     "52800020"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "9f00001f",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "ffc003ff",
+     "fc000000",
+     "ffffffff",
+     "fc000000",
+     "fc000000",
+     "ffffffff"
+    ]
+   }
+  },
+  {
+   "slot": 1,
+   "symbol": "arm64_notify_die",
+   "offset": 137140,
+   "length": 52,
+   "orig_sha256": "3e162151c8eb06cdd009cbf8011e570ad7061a3cae5241d62a8f1136616b3431",
+   "original_bytes_sha256_prefix": "3e162151c8eb06cd",
+   "record_ids": [
+    "arm64_notify_die"
+   ],
+   "function_size": 176,
+   "anchor_strings": [],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 137428
+    },
+    "instructions": 20,
+    "words": [
+     "d503233f",
+     "a98003fd",
+     "f90003f5",
+     "a90003f4",
+     "910003fd",
+     "39400028",
+     "72000d1f",
+     "aa0003e8",
+     "54000000",
+     "aa0803e0",
+     "aa0503e2",
+     "94000000",
+     "14000000",
+     "d5384109",
+     "f940012a",
+     "5287d60b",
+     "aa0403f3",
+     "2a0303f4",
+     "2a0203f5",
+     "8b00014a"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "ff00001f",
+     "ffffffff",
+     "ffffffff",
+     "fc000000",
+     "fc000000",
+     "ffffffff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffc003ff"
+    ]
+   }
+  },
+  {
+   "slot": 2,
+   "symbol": "free_initmem",
+   "offset": 232480,
+   "length": 58,
+   "orig_sha256": "08283291be29546858850df46b1c76711548fe8380356d0566651def93a137dc",
+   "original_bytes_sha256_prefix": "08283291be295468",
+   "record_ids": [
+    "free_initmem"
+   ],
+   "function_size": 116,
+   "anchor_strings": [
+    "unused kernel"
+   ],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 232896
+    },
+    "instructions": 20,
+    "words": [
+     "d503233f",
+     "a98003fd",
+     "a90003f4",
+     "910003fd",
+     "90000008",
+     "90000009",
+     "90000013",
+     "91000273",
+     "f9400108",
+     "f9400129",
+     "90000014",
+     "91000294",
+     "90000003",
+     "91000063",
+     "8b000128",
+     "52801982",
+     "cb000269",
+     "cb000288",
+     "b2596120",
+     "b2596101"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "9f00001f",
+     "9f00001f",
+     "9f00001f",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "9f00001f",
+     "ffc003ff",
+     "9f00001f",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff"
+    ]
+   }
+  },
+  {
+   "slot": 3,
+   "symbol": "report_cfi_failure",
+   "offset": 2852092,
+   "length": 8,
+   "orig_sha256": "cb76cf07cf50f4687f6471e93d2a05ca26c33fdda97d1b17601dd6b074563848",
+   "original_bytes_sha256_prefix": "cb76cf07cf50f468",
+   "record_ids": [
+    "report_cfi_failure"
+   ],
+   "function_size": 68,
+   "anchor_strings": [],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 2841144
+    },
+    "instructions": 16,
+    "words": [
+     "d503233f",
+     "a98003fd",
+     "910003fd",
+     "b5000002",
+     "90000000",
+     "91000000",
+     "94000000",
+     "14000000",
+     "f9400042",
+     "90000000",
+     "91000000",
+     "94000000",
+     "52800040",
+     "a8c003fd",
+     "d50323bf",
+     "d65f03c0"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffffffff",
+     "ff00001f",
+     "9f00001f",
+     "ffc003ff",
+     "fc000000",
+     "fc000000",
+     "ffc003ff",
+     "9f00001f",
+     "ffc003ff",
+     "fc000000",
+     "ffffffff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff"
+    ]
+   }
+  },
+  {
+   "slot": 4,
+   "symbol": "free_reserved_area",
+   "offset": 3583624,
+   "length": 8,
+   "orig_sha256": "b1aa0cbdb237837ffd242b0331fd8442cce21ae169321273a1e8fa9c4be8064c",
+   "original_bytes_sha256_prefix": "b1aa0cbdb237837f",
+   "record_ids": [
+    "free_reserved_area"
+   ],
+   "function_size": 552,
+   "anchor_strings": [
+    "initrd",
+    "unused kernel"
+   ],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 3560984
+    },
+    "instructions": 20,
+    "words": [
+     "d503233f",
+     "d10003ff",
+     "a90003fd",
+     "a90003fc",
+     "a90003fa",
+     "a90003f8",
+     "a90003f6",
+     "a90003f4",
+     "910003fd",
+     "91000008",
+     "9274cc3a",
+     "9274cd19",
+     "eb1a033f",
+     "54000002",
+     "d378df3b",
+     "2a0203f6",
+     "aa1f03f5",
+     "aa1f03f8",
+     "aa1f03f3",
+     "52800034"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ff00001f",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff"
+    ]
+   }
+  },
+  {
+   "slot": 5,
+   "symbol": "do_execveat_common",
+   "offset": 4061188,
+   "length": 4,
+   "orig_sha256": "f42188d81718c4fb96428ed4d432fc815af923c9786e982c05344cc30fa371ac",
+   "original_bytes_sha256_prefix": "f42188d81718c4fb",
+   "record_ids": [
+    "do_execveat_common"
+   ],
+   "function_size": 708,
+   "anchor_strings": [],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 4027468
+    },
+    "instructions": 20,
+    "words": [
+     "d503233f",
+     "d10003ff",
+     "a90003fd",
+     "a90003fc",
+     "a90003fa",
+     "a90003f8",
+     "a90003f6",
+     "a90003f4",
+     "910003fd",
+     "aa0103f3",
+     "b13ffc3f",
+     "54000003",
+     "2a1303fb",
+     "14000000",
+     "d538411c",
+     "b9400388",
+     "2a0603f5",
+     "aa0503f9",
+     "aa0403fa",
+     "aa0303f7"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "ff00001f",
+     "ffffffff",
+     "fc000000",
+     "ffffffff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff"
+    ]
+   }
+  },
+  {
+   "slot": 6,
+   "symbol": "avc_denied+0x28",
+   "offset": 6522328,
+   "length": 4,
+   "orig_sha256": "110f46b5b35c069160560c6ad6786f647dd44e8760a52a46fc22dbbcd7630b91",
+   "original_bytes_sha256_prefix": "110f46b5b35c0691",
+   "record_ids": [
+    "avc_denied"
+   ],
+   "function_size": 128,
+   "anchor_strings": [],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 6481744
+    },
+    "instructions": 20,
+    "words": [
+     "d65f03c0",
+     "d503233f",
+     "d10003ff",
+     "a90003fd",
+     "910003fd",
+     "b94000e7",
+     "b90003e6",
+     "52800020",
+     "2a0303e1",
+     "2a0403e2",
+     "2a0503e3",
+     "2a0903e4",
+     "2a0803e5",
+     "2a0a03e6",
+     "f90003ff",
+     "94000000",
+     "2a1f03e0",
+     "a94003fd",
+     "910003ff",
+     "d50323bf"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ffc003ff",
+     "fc000000",
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff"
+    ]
+   }
+  },
+  {
+   "slot": 7,
+   "symbol": "__drm_puts_coredump",
+   "offset": 9423536,
+   "length": 88,
+   "orig_sha256": "cfd4728e688f9cde5f7e411746e1f2d3d48ac8cdb87d312926114706e4a8ae96",
+   "original_bytes_sha256_prefix": "cfd4728e688f9cde",
+   "record_ids": [
+    "cave_a_puts"
+   ],
+   "function_size": 220,
+   "anchor_strings": [],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 9372388
+    },
+    "instructions": 20,
+    "words": [
+     "d503233f",
+     "a98003fd",
+     "a90003f8",
+     "a90003f6",
+     "a90003f4",
+     "910003fd",
+     "f9400015",
+     "f94002b6",
+     "b4000016",
+     "f94002b8",
+     "f94002b7",
+     "aa0103e0",
+     "aa0103f3",
+     "94000000",
+     "eb170308",
+     "5400000a",
+     "8b000009",
+     "eb17013f",
+     "5400000d",
+     "8b000108"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ff00001f",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "fc000000",
+     "ffffffff",
+     "ff00001f",
+     "ffc003ff",
+     "ffffffff",
+     "ff00001f",
+     "ffc003ff"
+    ]
+   }
+  },
+  {
+   "slot": 8,
+   "symbol": "__drm_printfn_coredump",
+   "offset": 9423756,
+   "length": 88,
+   "orig_sha256": "094fdb9096a73c38c00871c0abf1c06fd8e7b37cf7205dbc87fe80a762dd7fc4",
+   "original_bytes_sha256_prefix": "094fdb9096a73c38",
+   "record_ids": [
+    "cave_b_printfn",
+    "cave_b_reply",
+    "cave_b_post"
+   ],
+   "function_size": 256,
+   "anchor_strings": [
+    "%pV"
+   ],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 9372608
+    },
+    "instructions": 20,
+    "words": [
+     "d503233f",
+     "a98003fd",
+     "a90003f6",
+     "a90003f4",
+     "910003fd",
+     "f9400015",
+     "f94002a8",
+     "b4000008",
+     "aa0103f3",
+     "aa0003f4",
+     "90000002",
+     "91000042",
+     "aa1f03e0",
+     "aa1f03e1",
+     "aa1303e3",
+     "94000000",
+     "f94002a9",
+     "93407c16",
+     "f94002aa",
+     "8b000128"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ff00001f",
+     "ffffffff",
+     "ffffffff",
+     "9f00001f",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "fc000000",
+     "ffc003ff",
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff"
+    ]
+   }
+  },
+  {
+   "slot": 9,
+   "symbol": "drm_dev_printk",
+   "offset": 9424764,
+   "length": 108,
+   "orig_sha256": "d3a8d010c9d4cf0dba427c2e3149f75e885f412e696773713bf26cf1366eb796",
+   "original_bytes_sha256_prefix": "d3a8d010c9d4cf0d",
+   "record_ids": [
+    "cave_c_avc_island"
+   ],
+   "function_size": 180,
+   "anchor_strings": [
+    "%s[drm:%ps] %pV",
+    "[drm:%ps] %pV"
+   ],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 9373616
+    },
+    "instructions": 20,
+    "words": [
+     "d503233f",
+     "d10003ff",
+     "a90003fd",
+     "910003fd",
+     "a90003e3",
+     "d5384108",
+     "910003e9",
+     "f9400108",
+     "a90003e5",
+     "91000129",
+     "f90003e7",
+     "f80003a8",
+     "910003a8",
+     "a90003e8",
+     "128004e8",
+     "a90003ff",
+     "910003e8",
+     "a90003a2",
+     "d50320ff",
+     "b5000000"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffffffff",
+     "ff00001f"
+    ]
+   }
+  },
+  {
+   "slot": 10,
+   "symbol": "__dev_printk",
+   "offset": 9637816,
+   "length": 84,
+   "orig_sha256": "f472ebd0dc356cd46101ad92e3fdfe484e3a66d12e0f858504795ce7f9f31e8b",
+   "original_bytes_sha256_prefix": "f472ebd0dc356cd4",
+   "record_ids": [
+    "cave_d_dev_printk"
+   ],
+   "function_size": 144,
+   "anchor_strings": [
+    "%s(NULL device *): %pV",
+    "%s %s: %pV"
+   ],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 9586552
+    },
+    "instructions": 20,
+    "words": [
+     "d503233f",
+     "a98003fd",
+     "910003fd",
+     "aa0203e5",
+     "aa0003e8",
+     "b5000001",
+     "90000000",
+     "91000000",
+     "aa0803e1",
+     "aa0503e2",
+     "94000000",
+     "14000000",
+     "39400109",
+     "f9400028",
+     "51000120",
+     "b5000008",
+     "f9400028",
+     "b5000008",
+     "f9400028",
+     "b5000008"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "ffffffff",
+     "ff00001f",
+     "9f00001f",
+     "ffc003ff",
+     "ffffffff",
+     "ffffffff",
+     "fc000000",
+     "fc000000",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ff00001f",
+     "ffc003ff",
+     "ff00001f",
+     "ffc003ff",
+     "ff00001f"
+    ]
+   }
+  },
+  {
+   "slot": 11,
+   "symbol": "panic",
+   "offset": 17101596,
+   "length": 48,
+   "orig_sha256": "63ce73dc81ea9d96814f3104bd6bc3845fd680b8a2860084940905d803a15b0d",
+   "original_bytes_sha256_prefix": "63ce73dc81ea9d96",
+   "record_ids": [
+    "panic_key"
+   ],
+   "function_size": 876,
+   "anchor_strings": [
+    "Kernel panic - not syncing"
+   ],
+   "signature": {
+    "learned_from": {
+     "kernel": "6.6.66 pristine vendor kernel (36387328 B)",
+     "kernel_sha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+     "kernel_sha256_prefix": "ddd760da",
+     "offset": 17018848
+    },
+    "instructions": 20,
+    "words": [
+     "d503233f",
+     "d10003ff",
+     "a90003fd",
+     "f90003f9",
+     "a90003f8",
+     "a90003f6",
+     "a90003f4",
+     "910003fd",
+     "90000009",
+     "aa0003f3",
+     "90000008",
+     "b940012a",
+     "a90003e1",
+     "a90003e3",
+     "a90003e5",
+     "f90003e7",
+     "3400000a",
+     "b900013f",
+     "a90003bf",
+     "39400115"
+    ],
+    "masks": [
+     "ffffffff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "9f00001f",
+     "ffffffff",
+     "9f00001f",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff",
+     "ff00001f",
+     "ffc003ff",
+     "ffc003ff",
+     "ffc003ff"
+    ]
+   }
+  }
+ ],
+ "caves": {
+  "A": {
+   "offset": 9423536,
+   "length": 88,
+   "host": "__drm_puts_coredump",
+   "function_size": 220,
+   "record_ids": [
+    "cave_a_puts"
+   ],
+   "note": "vendor island: kern_path constructor / exec hijack enter"
+  },
+  "B": {
+   "offset": 9423756,
+   "length": 88,
+   "host": "__drm_printfn_coredump",
+   "function_size": 256,
+   "record_ids": [
+    "cave_b_printfn",
+    "cave_b_reply",
+    "cave_b_post"
+   ],
+   "note": "vendor island + MapleSU reply/post islands; usable tail reaches 0x8FCC8C"
+  },
+  "C": {
+   "offset": 9424764,
+   "length": 108,
+   "host": "drm_dev_printk",
+   "function_size": 180,
+   "record_ids": [
+    "cave_c_avc_island"
+   ],
+   "note": "AVC suppression island, entered from avc_denied+0x28; the ssid gate sits at +0x5C"
+  },
+  "D": {
+   "offset": 9637816,
+   "length": 84,
+   "host": "__dev_printk",
+   "function_size": 144,
+   "record_ids": [
+    "cave_d_dev_printk"
+   ],
+   "note": "vendor island carrying the /app_process64 literal"
+  },
+  "C1": {
+   "offset": 9423844,
+   "length": 16,
+   "host": "__drm_printfn_coredump",
+   "role": "reply island ('3'), entered by bl from the vendor island",
+   "record_ids": [
+    "cave_b_reply"
+   ]
+  },
+  "C1_post": {
+   "offset": 9423860,
+   "length": 20,
+   "host": "__drm_printfn_coredump",
+   "role": "post-blr restore / cred write",
+   "record_ids": [
+    "cave_b_post"
+   ]
+  },
+  "C2": {
+   "offset": 136088,
+   "length": 16,
+   "host": "die",
+   "role": "module_alloc size==0 guard branch target",
+   "record_ids": [
+    "die_c2"
+   ]
+  }
+ },
+ "append": {
+  "offset": 284048,
+  "length": 54,
+  "layout": [
+   {
+    "rel": 0,
+    "width": 4,
+    "type": "u32",
+    "name": "self_offset",
+    "value": 284048
+   },
+   {
+    "rel": 4,
+    "width": 4,
+    "type": "u32",
+    "name": "kallsyms_lookup_name",
+    "value": 1795424
+   },
+   {
+    "rel": 8,
+    "width": 28,
+    "type": "char[28]",
+    "name": "init_path",
+    "value": "/data/8eORURvE0cAkp3ml/init"
+   },
+   {
+    "rel": 36,
+    "width": 4,
+    "type": "u32",
+    "name": "do_execveat_common",
+    "value": 4061188
+   },
+   {
+    "rel": 40,
+    "width": 4,
+    "type": "u32",
+    "name": "const_0xE7280001",
+    "value": 3878158337,
+    "confidence": "unknown-semantics carried verbatim"
+   },
+   {
+    "rel": 44,
+    "width": 4,
+    "type": "u32",
+    "name": "const_0x000B0062",
+    "value": 720994,
+    "confidence": "unknown-semantics carried verbatim"
+   },
+   {
+    "rel": 48,
+    "width": 4,
+    "type": "u32",
+    "name": "filldir64",
+    "value": 4130092
+   },
+   {
+    "rel": 52,
+    "width": 2,
+    "type": "i16",
+    "name": "task_struct.seccomp",
+    "value": 2280
+   }
+  ],
+  "forms": {
+   "8": {
+    "orig": "c0035fd64e81c210",
+    "repl": "9055040060651b00",
+    "note": "k7 short package (8 B); leaves task_struct.seccomp unread"
+   },
+   "54": {
+    "orig": "c0035fd64e81c210c0035fd60145d0b53f2303d5fd7bbda9f65701a9f44f02a9fd030091e81201d0160d40f9560200b4f30301aa5400",
+    "repl": "9055040060651b002f646174612f38654f52555276453063416b70336d6c2f696e69740004f83d00010028e762000b002c053f00e808",
+    "note": "54 B envelope: self/kallsyms/path/do_execve/2x const/filldir64/seccomp"
+   }
+  },
+  "replacement": "9055040060651b002f646174612f38654f52555276453063416b70336d6c2f696e69740004f83d00010028e762000b002c053f00e808"
+ },
+ "record_order": [
+  "die",
+  "die_c2",
+  "arm64_notify_die",
+  "free_initmem",
+  "report_cfi_failure",
+  "free_reserved_area",
+  "do_execveat_common",
+  "avc_denied",
+  "cave_a_puts",
+  "cave_b_printfn",
+  "cave_b_reply",
+  "cave_b_post",
+  "cave_c_avc_island",
+  "cave_d_dev_printk",
+  "panic_key",
+  "append"
+ ],
+ "records": {
+  "die": {
+   "offset": 135876,
+   "orig": "3f2303d5ff4302d1fd7b05a9f85f06a9f65707a9f44f08a9fd430191084138d5f30300aa001701b000b00491081143f9f60302aaf50301aaa8831ff8eb154194f40300aa223302947da404942000805271a01b94081701b040aa009000ac3e91093141b9e10313aae20316aa23050011033101b9d4b8409420008052e10313aae20315aae30316aae4031f2a650180522503039428009052f603002a1f00086be0000054d7950594e00315aa58e0ff97a82244391f0d007221040054e0031f2a55a01b94e000805221008052c632029449330294",
+   "repl": "cbff81923f000beb42060054104138d5111244f92b0040f90c0000100d089cd24d20a0f28c010d8b0d0080d26e696d388f696d38df010f6b61040054ad050091bfc100f14bffff546c010d8b8e0140398f494039ef010e0b8f4900398c0500918e4940394effff356c094139604144f89fc50071800100549fc90071a00100549fcd0071a00100549fd1007180010054f17fbfa910000014c2390094f17fc1a8070000146e0d41390e000039046f23140000403902000014056e2314200a00f9040000142d1a40b94d0000350b3f241408010014"
+  },
+  "die_c2": {
+   "offset": 136088,
+   "orig": "084138d5081140b91f3d1872c10f0054",
+   "repl": "604d40b940000034b1390094efffff17"
+  },
+  "arm64_notify_die": {
+   "offset": 137140,
+   "orig": "3f2303d5fd7bbda9f50b00f9f44f02a9fd030091282044391f0d0072e80300aaa0000054e00308aae20305aab9feff9718000014",
+   "repl": "fd7bc1a8e61fc1a8e417c1a8e20fc1a8e007c1a810f80e143f2303d5e007bfa9e20fbfa9e417bfa9e61fbfa9fd7bbfa9b8feff17"
+  },
+  "free_initmem": {
+   "offset": 232480,
+   "orig": "3f2303d5fd7bbea9f44f01a9fd03009168b1009069b1009053e5009073020091081d45f929c144f9d405019094020091c3ad00b0637439912801",
+   "repl": "c0035fd6248c030060651b002f646174612f38654f52555276453063416b70336d6c2f696e69740004f83d00010028e762000b002c053f00e808"
+  },
+  "report_cfi_failure": {
+   "offset": 2852092,
+   "orig": "3f2303d5fd7bbfa9",
+   "repl": "200080d2c0035fd6"
+  },
+  "free_reserved_area": {
+   "offset": 3583624,
+   "orig": "3f2303d5ffc301d1",
+   "repl": "e0031f2ac0035fd6"
+  },
+  "do_execveat_common": {
+   "offset": 4061188,
+   "orig": "3f2303d5",
+   "repl": "f207f117"
+  },
+  "avc_denied": {
+   "offset": 6522328,
+   "orig": "c0035fd6",
+   "repl": "72120b14"
+  },
+  "cave_a_puts": {
+   "offset": 9423536,
+   "orig": "3f2303d5fd7bbca9f85f01a9f65702a9f44f03a9fd030091150840f9b60a40f9160500b4b80e40f9b70640f9e00301aaf30301aaa39a1c94080317eb4a0200540900188b3f0117ebad0300540801008ba90240f91f0116eb",
+   "repl": "c0035fd60c0000100d2f98d26deebff2edffdff2edfffff28c010d8beb33bfa9000082d2e4cbdc97eb33c1a8eb33bfa9e20300aae0030caa21008052c49beb97eb33c1a8800000358d1540386d150038cdffff352c93dc17"
+  },
+  "cave_b_printfn": {
+   "offset": 9423756,
+   "orig": "3f2303d5fd7bbda9f65701a9f44f02a9fd030091150840f9a80a40f9680600b4f30301aaf40300aa026500b042442291e0031faae1031faae30313aab41f1d94a90e40f9167c4093aa0640f92801168b1f010aeb49020054",
+   "repl": "c0035fd631420091eb47bfa9604144f8615140b9e007bfa96101dd97e007c1a80202dd97eb47c1a80c0000941f7508d59f3b03d5df3f03d540013fd60b000014e07fbfa91f2003d5e401dd97e07fc1a8a324e297f592dc17"
+  },
+  "cave_b_reply": {
+   "offset": 9423844,
+   "orig": "29010aeb4b020054a10a40f93f0016eb",
+   "repl": "615140b96a4144f8ea07bfa9c0035fd6"
+  },
+  "cave_b_post": {
+   "offset": 9423860,
+   "orig": "e9010054aa0240f90a0100b44001098b026500b0",
+   "repl": "e007c1a8f5ffff171f2003d51f2003d51f2003d5"
+  },
+  "cave_c_avc_island": {
+   "offset": 9424764,
+   "orig": "3f2303d5ffc301d1fd7b06a9fd830191e31300a9084138d5e9030091081143f9e51b01a929a10091e71300f9a8831ff8a8430091e8a702a9e8048012ffa303a9e8a30091a2a33ea9ff2003d5e00000b5006b00f000780691a36300d1e2031eaaab491d9409000014e80300aa",
+   "repl": "c0035fd62e003bd5ce4d50d3ce0900910024ce9a0020ce9a207a0bd59f3b03d50692dc170b4138d56c1144f98d1940b9cd010035eecf04b26c1944f99f010eeb200100542ecd8d522e8dae729f010e6bc10000546dd160398d0000353f28007142000054e0031f2ac0035fd6"
+  },
+  "cave_d_dev_printk": {
+   "offset": 9637816,
+   "orig": "3f2303d5fd7bbfa9fd030091e50302aae80300aae10000b5e06100d0004c1591e10308aae20305aaaa791c941500001409054039284440f920c10051480100b5284040f9080100b5289841f9c80000b543630090",
+   "repl": "c0035fd60cc260399fa5017121020054050000142f6170705f70726f63657373363400008affff10ec030baaef030aaaee154038ce0000348d154038ad000034bf010e6b4f118f9afaffff17ac2eff17ebc1db17"
+  },
+  "panic_key": {
+   "offset": 17101596,
+   "orig": "3f2303d5ff4303d1fd7b08a9f94b00f9f85f0aa9f6570ba9f44f0ca9fd03029169850090f30300aaa89500902ac942b9",
+   "repl": "38654f52555276453063416b70336d6c497a43755573454a7272344f66626a4b66543652766b6a65495036614b6d3672"
+  },
+  "append": {
+   "offset": 284048,
+   "orig": "c0035fd64e81c210",
+   "repl": "9055040060651b00"
+  }
+ },
+ "variants": {
+  "k7": {
+   "status": "delivery",
+   "summary": "vendor 12 sites + 4 MapleSU islands (C2, C1, cave_post, 8 B append package)",
+   "base": "k7"
+  },
+  "k15": {
+   "status": "build-proven",
+   "summary": "k7 with the append package widened from 8 B to the 54 B envelope",
+   "base": "k7",
+   "overrides": {
+    "append": {
+     "form": "54"
+    }
+   }
+  },
+  "k17b": {
+   "status": "device-proven",
+   "summary": "k7 with the exec-hijack island entry disabled (cave A first 8 B rewritten to b 0x10518B8)",
+   "base": "k7",
+   "overrides": {
+    "cave_a_puts": {
+     "repl": "c0035fd64093dc170d2f98d26deebff2edffdff2edfffff28c010d8beb33bfa9000082d2e4cbdc97eb33c1a8eb33bfa9e20300aae0030caa21008052c49beb97eb33c1a8800000358d1540386d150038cdffff352c93dc17"
+    }
+   }
+  },
+  "k18": {
+   "status": "build-proven",
+   "summary": "k7 with the init path swapped to /data/local/tmp/hprobe (probe payload)",
+   "base": "k7",
+   "extra": [
+    {
+     "id": "hprobe_path",
+     "offset": 232492,
+     "orig": "fd03009168b1009069b1009053e5009073020091081d45f929c144f9",
+     "repl": "2f646174612f6c6f63616c2f746d702f6870726f6265000000000000",
+     "role": "aux",
+     "note": "28 B init path slot: /data/local/tmp/hprobe"
+    }
+   ]
+  },
+  "k20": {
+   "status": "device-proven",
+   "summary": "k7 + two NOPs over the AVC ssid gate at 0x8FCFD8 (relaxes SELinux, debug)",
+   "base": "k7",
+   "extra": [
+    {
+     "id": "avc_gate_nop8",
+     "offset": 9424856,
+     "orig": "e2031eaaab491d94",
+     "repl": "1f2003d51f2003d5",
+     "role": "aux",
+     "note": "cmp w1,#0xa / b.hs -> nop;nop"
+    }
+   ]
+  },
+  "k21": {
+   "status": "device-proven",
+   "summary": "k15 (54 B envelope) + k20's two NOPs",
+   "base": "k7",
+   "overrides": {
+    "append": {
+     "form": "54"
+    }
+   },
+   "extra": [
+    {
+     "id": "avc_gate_nop8",
+     "offset": 9424856,
+     "orig": "e2031eaaab491d94",
+     "repl": "1f2003d51f2003d5",
+     "role": "aux",
+     "note": "cmp w1,#0xa / b.hs -> nop;nop"
+    }
+   ]
+  },
+  "k22": {
+   "status": "device-proven(debug-only)",
+   "summary": "k21 + 4 B: 0xF0F0 sentinel compare replaced by unconditional b 0x8FCFE0 (any euid==0 bypasses avc_denied)",
+   "base": "k7",
+   "overrides": {
+    "append": {
+     "form": "54"
+    }
+   },
+   "extra": [
+    {
+     "id": "avc_gate_nop8",
+     "offset": 9424856,
+     "orig": "e2031eaaab491d94",
+     "repl": "1f2003d51f2003d5",
+     "role": "aux",
+     "note": "cmp w1,#0xa / b.hs -> nop;nop"
+    },
+    {
+     "id": "avc_sentinel_b4",
+     "offset": 9424816,
+     "orig": "e8a702a9",
+     "repl": "0c000014",
+     "role": "aux",
+     "note": "k22: unconditional b 0x8FCFE0 replaces the 0xF0F0 sentinel compare -> any euid==0 bypasses avc_denied (debug-only)"
+    }
+   ]
+  },
+  "k23": {
+   "status": "candidate",
+   "summary": "k21 + 16 B: drop the 0xF0F0 sentinel path but keep the comm==\"init\" check (euid==0 && comm==init only)",
+   "base": "k7",
+   "overrides": {
+    "append": {
+     "form": "54"
+    }
+   },
+   "extra": [
+    {
+     "id": "avc_gate_nop8",
+     "offset": 9424856,
+     "orig": "e2031eaaab491d94",
+     "repl": "1f2003d51f2003d5",
+     "role": "aux",
+     "note": "cmp w1,#0xa / b.hs -> nop;nop"
+    },
+    {
+     "id": "avc_sentinel_skip16",
+     "offset": 9424816,
+     "orig": "e8a702a9e8048012ffa303a9e8a30091",
+     "repl": "6c1944f91f2003d51f2003d51f2003d5",
+     "role": "aux",
+     "note": "k23 candidate: re-load comm into x12, skip the 0xF0F0 sentinel compare, keep the comm==\"init\" check -> allow only euid==0 && comm==init"
+    }
+   ]
+  }
+ },
+ "avc_gate_variants": {
+  "k21": {
+   "offset": 9424856,
+   "length": 8,
+   "orig": "e2031eaaab491d94",
+   "repl": "1f2003d51f2003d5",
+   "semantics": "tsid<10 gate removed; euid==0 && (sentinel || comm==init) -> allow every AVC denial",
+   "channel": "debug-only",
+   "artifact": {
+    "kernel_sha256": "34463151eb2fc3915f9ae018f029cfd5be9571e298dda42a1ff163d01fadded5",
+    "kernel_size": 36661760,
+    "boot_sha256": "6c7a451d0f6675d358ac0bcca7979a83fb30051d30d301a22ecec8d6da9ff5c2",
+    "boot_size": 100663296
+   }
+  },
+  "k22": {
+   "offset": 9424816,
+   "length": 4,
+   "orig": "e8a702a9",
+   "repl": "0c000014",
+   "semantics": "sentinel compare -> unconditional b allow; any euid==0 bypasses avc_denied (root-wide)",
+   "channel": "debug-only",
+   "artifact": {
+    "kernel_sha256": "287fbdd08c14bf62488e624d60fd5c5fd4de783712fd17673dd1e7c8c5c00f80",
+    "kernel_size": 36661760,
+    "boot_sha256": "47aa147acbe3edf8e58ce60d334ad4c4b26cad26b5cb93aa6acb59a67fdd5f59",
+    "boot_size": 100663296
+   }
+  },
+  "k23": {
+   "offset": 9424816,
+   "length": 16,
+   "orig": "e8a702a9e8048012ffa303a9e8a30091",
+   "repl": "6c1944f91f2003d51f2003d51f2003d5",
+   "semantics": "load comm, skip sentinel, keep comm==\"init\" test; only euid==0 && comm==init is allowed",
+   "channel": "candidate (offsets not device-verified)",
+   "artifact": null
+  }
+ },
+ "validation": {
+  "record_digest_alg": "sha256 over 'offset|orig|repl' lines of a variant, in emit order",
+  "expected_artifacts": {
+   "k7": {
+    "kernel_sha256": "27f584186f514851aa77d2114ce7918d446929a25ee2cf496a3a404983c9a5e3",
+    "kernel_size": 36661760,
+    "boot_sha256": "45956fab0ce2288fd9ec1f3145da96b5537105434c5f9e93acb79b8bf206358f",
+    "boot_size": 100663296
+   },
+   "k15": {
+    "kernel_sha256": "04efff63a481b769871bb83c20f9ab0ba8e74c17740ad172f0f0ed7488d0ab45",
+    "kernel_size": 36661760,
+    "boot_sha256": "6a44a9f6f9299a37dca6ea6fd85be2ea6a37666aa5398c58b2b29e7335af307c",
+    "boot_size": 100663296
+   },
+   "k17b": {
+    "kernel_sha256": "17ff081c8073d405e346820a7d4f277408c6b79a19ff046c5d0d59dd2c762465",
+    "kernel_size": 36661760,
+    "boot_sha256": "a9d53c78c06d1612168462e92ea9d147f7d71192edb5cf9d966e700a3cf8dc1a",
+    "boot_size": 100663296
+   },
+   "k18": {
+    "kernel_sha256": "e4f9a952ecfe8448144e7a3f1e8eb7058d7b639a6929be296457babe9be6888b",
+    "kernel_size": 36661760,
+    "boot_sha256": "5812f1b690f2e1483f0b84d2af6e215e79bf95521df700b17854f8ea4665910c",
+    "boot_size": 100663296
+   },
+   "k20": {
+    "kernel_sha256": "6c2bd3b6915bcb9310195bdb8a1007823b640fbd8e68ed17bcb84ed26b257341",
+    "kernel_size": 36661760,
+    "boot_sha256": "92834de76efbf3a671251356db27f66987338c7b11fe5f432a6ce2755bc7e13f",
+    "boot_size": 100663296
+   },
+   "k21": {
+    "kernel_sha256": "34463151eb2fc3915f9ae018f029cfd5be9571e298dda42a1ff163d01fadded5",
+    "kernel_size": 36661760,
+    "boot_sha256": "6c7a451d0f6675d358ac0bcca7979a83fb30051d30d301a22ecec8d6da9ff5c2",
+    "boot_size": 100663296
+   },
+   "k22": {
+    "kernel_sha256": "287fbdd08c14bf62488e624d60fd5c5fd4de783712fd17673dd1e7c8c5c00f80",
+    "kernel_size": 36661760,
+    "boot_sha256": "47aa147acbe3edf8e58ce60d334ad4c4b26cad26b5cb93aa6acb59a67fdd5f59",
+    "boot_size": 100663296
+   }
+  },
+  "self_checks": {
+   "sites": 12,
+   "cave_blocks": 4,
+   "variance_policy": "fail closed on any orig mismatch, any site outside the declared ranges, or any size/sha drift"
+  }
+ }
+}

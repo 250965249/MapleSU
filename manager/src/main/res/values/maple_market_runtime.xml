@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="maple_market_runtime_changelog_failed">Release notes could not be loaded. Try again later.</string>
+    <string name="maple_market_runtime_mode_required">Use MapleSU Ultra to install this module.</string>
+    <string name="maple_market_runtime_invalid_source">Enter an HTTPS catalog address and its trusted public key.</string>
+    <string name="maple_market_runtime_signature_failed">Catalog signature verification failed. Check the source and public key.</string>
+    <string name="maple_market_runtime_package_failed">The downloaded package did not pass verification. Please download it again.</string>
+    <string name="maple_market_runtime_load_failed">The module source did not respond. Check your connection and try again.</string>
+</resources>

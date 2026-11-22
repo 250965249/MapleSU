@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_install_type_title">Choose module type</string>
+    <string name="module_install_type_hint">Choose how to install this module, then tap Install.</string>
+    <string name="module_install_type_maplesu_summary">Install as a MapleSU native module.</string>
+    <string name="module_install_type_ksu_summary">Install using the KernelSU module format.</string>
+</resources>

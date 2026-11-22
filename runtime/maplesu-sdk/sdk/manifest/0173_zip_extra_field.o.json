@@ -1,0 +1,28 @@
+{
+  "idx": 173,
+  "name": "zip_extra_field.o",
+  "group": "libzip",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/libzip/1.0.1/lib/zip_extra_field.c"
+  ],
+  "flagsProfile": "vendor-c-elf",
+  "status": "complete",
+  "recovery": {
+    "functions": 0,
+    "recovered": 0,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "ebbe83e4e67dba1aa0d39f24ad2df97d29c54d6d3403b0618a57aceaf3d0cafe",
+    "bytes": 9552
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "import-set exact; rebuilt bytes identical"
+  },
+  "notes": "source=vendored; version=1.0.1; equivalence=symbol-set (export T exact: True)",
+  "evidence": []
+}

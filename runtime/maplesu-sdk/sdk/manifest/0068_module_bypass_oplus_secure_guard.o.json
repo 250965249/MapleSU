@@ -1,0 +1,128 @@
+{
+  "idx": 68,
+  "name": "module_bypass_oplus_secure_guard.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/bypass/module_bypass_oplus_secure_guard.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 19,
+    "recovered": 19,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "486da9a6fe84eca52b87bf097e0d43045d7e76a3323c07df8d6719fc9eb9169c",
+    "bytes": 130848
+  },
+  "evidence": [
+    "notes/work/AGENT115/STATUS.md",
+    "notes/work/AGENT115/proof/0068/built.a",
+    "notes/work/AGENT115/proof/0068/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "符号闸门 PASS（实测）：T 4/4、U 110/110，原始双向差集为空，基线消耗 0。行为等价实测未达 0.95 档：函数清单 184/184、missing 0、extra 0、call 164/184、bag_min 0.0、bag_mean 0.8839。构建配方 stages=2（见 recipe 字段）。",
+    "measured": {
+      "origT": 4,
+      "newT": 4,
+      "missingT": 0,
+      "extraT": 0,
+      "origU": 110,
+      "newU": 110,
+      "missingU": 0,
+      "extraU": 0,
+      "origWeak": 153,
+      "newWeak": 153,
+      "origLocal": 94,
+      "newLocal": 94,
+      "newObjectBytes": 130984,
+      "newObjectSha256": "a5a35ad94458b56e9858cc983ae55077d4173ce0c4503ce83b330b7f706e52a5",
+      "strongT": 4,
+      "strongU": 110,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "strongUMissing": 0,
+      "strongUExtra": 0,
+      "definedKinds": {
+        "V": 19,
+        "r": 42,
+        "t": 46,
+        "W": 134,
+        "b": 3,
+        "T": 4,
+        "d": 3
+      },
+      "baselineConsumed": [],
+      "recipeStages": 2,
+      "verifyEquivRefFunctions": 184,
+      "verifyEquivNewFunctions": 184,
+      "verifyEquivMatched": 184,
+      "verifyEquivMissing": 0,
+      "verifyEquivExtra": 0,
+      "verifyEquivCallTargetMatch": 164,
+      "verifyEquivBagMin": 0.0,
+      "verifyEquivBagMean": 0.8839,
+      "verifyEquivSeqMean": 0.8954,
+      "verifyEquivRefFunctionsMissingNames": [],
+      "verifyEquivExtraNames": []
+    }
+  },
+  "notes": "EQUIVALENCE(measured, verify_equiv 0.95): fn 184/184 missing 0 extra 0 call_target_match 164/184 bag_min 0.0 bag_mean 0.8839 seq_mean 0.8954; recipe stages=2",
+  "recipe": {
+    "stages": 2,
+    "description": "compile the TU to optimized IR (-emit-llvm -Oz), then compile that IR to ELF with the same flags; the frozen ELF member carries this second optimization pass",
+    "stage1": "clang++ <profile flags> -emit-llvm -c <src> -o tu.bc",
+    "stage2": "clang++ <profile flags> -c tu.bc -o member.o",
+    "expressible_in_build_py": true,
+    "persist_proof": "notes/work/AGENT115/persist.py"
+  },
+  "blockedBy": [
+    "verify_equiv call target 164/184：函数指令布局未逐条对齐（分支目标偏移随体积差漂移）",
+    "verify_equiv bag_min 0.0 < 0.95：OUTLINED_FUNCTION 片段切分/栈槽基址残余"
+  ],
+  "p7RemainingOwnerConsumers20261121": {
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/bypass/module_bypass_oplus_secure_guard.cpp",
+        "sha256": "999d0e02047eeeb5737e75a4d6c10379a8e1019b55c9d89f2f3bc89b5580a314"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_status_query_private.h",
+        "sha256": "ea92df53ddf97164c8e4ee864f1d1108db2bfa2309d9e74836307f3d0d1bba8f"
+      }
+    ],
+    "contract": "Consume existing authenticated request context; null Owner accepted, explicit invalid Key never falls back; actual worker scopes/close and first failures retained; legacy public ABI preserved.",
+    "publicAbiChanged": false,
+    "evidenceDirectory": ".tmp/p7-development-20261121/keyless/validation",
+    "deviceValidated": false,
+    "formalAssetsPromoted": false,
+    "historicRawGateUnchanged": true
+  },
+  "privateHeaders": [
+    "include/maplesu_status_query_private.h"
+  ],
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/bypass/module_bypass_oplus_secure_guard.cpp",
+        "sha256": "999d0e02047eeeb5737e75a4d6c10379a8e1019b55c9d89f2f3bc89b5580a314"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  }
+}

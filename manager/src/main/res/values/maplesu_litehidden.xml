@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Ultra 隐藏模式（最终形态：设置项 → 独立隐藏设置页）。
+  Copy rules: hint under the button ≤15 chars; no "drill/test", level, advanced,
+  fake-uninstall or trace wording anywhere.
+-->
+<resources>
+    <string name="lite_hidden_title">Stealth and hosting</string>
+    <string name="lite_hidden_status_off">Off</string>
+    <string name="lite_hidden_status_on">On</string>
+    <string name="lite_hidden_status_unknown">Unknown (read failed)</string>
+    <string name="lite_hidden_retry_state">Read state again</string>
+    <string name="lite_hidden_enable_button">Turn on hide mode</string>
+    <string name="lite_hidden_button_hint">All management moves to the WebUI after enabling.</string>
+    <string name="lite_hidden_webui_link">WebUI link</string>
+    <string name="lite_hidden_webui_port">WebUI port</string>
+    <string name="lite_hidden_port_invalid">Port must be 1024–65535</string>
+    <string name="lite_hidden_confirm_title">Turn on hide mode?</string>
+    <string name="lite_hidden_confirm_body">Management will be hosted in the selected app. Save the WebUI link first.</string>
+    <string name="lite_hidden_confirm_cancel">Cancel</string>
+    <string name="lite_hidden_confirm_enable">Turn on</string>
+    <string name="lite_hidden_copy_link">Copy recovery link</string>
+    <string name="lite_hidden_link_copied">Link copied</string>
+    <string name="lite_hidden_no_link">No recovery link yet</string>
+    <string name="lite_hidden_enabled">Hide mode enabled</string>
+    <string name="lite_hidden_failed">Failed: %1$s</string>
+
+    <!-- failure reasons -->
+    <string name="lite_hidden_reason_backend_unavailable">Backend not ready</string>
+    <string name="lite_hidden_reason_root_unavailable">Root unavailable</string>
+    <string name="lite_hidden_reason_webui">Web service not running</string>
+    <string name="lite_hidden_reason_port">Port in use</string>
+    <string name="lite_hidden_reason_recovery">No recovery channel</string>
+    <string name="lite_hidden_reason_port_invalid">Invalid port</string>
+    <string name="lite_hidden_reason_verify">State verification failed</string>
+    <string name="lite_hidden_reason_recovery_not_ready">Independent recovery is not ready</string>
+    <string name="lite_hidden_reason_manager_removal">Manager removal did not complete</string>
+    <string name="lite_hidden_reason_unknown">Unknown error</string>
+
+    <!-- failure reasons: host -->
+    <string name="lite_hidden_reason_host">No host selected</string>
+    <string name="lite_hidden_reason_host_invalid">Host unavailable</string>
+    <string name="lite_hidden_reason_host_scan">Could not read apps</string>
+    <string name="lite_hidden_reason_host_so">Native library rewrite failed</string>
+    <string name="lite_hidden_reason_host_backup">Could not back up the host native library</string>
+    <string name="lite_hidden_reason_deactivate">Unhost failed</string>
+
+    <!-- host picker -->
+    <string name="host_picker_title">Choose host app</string>
+    <string name="host_picker_subtitle">Launch carrier for the management entry</string>
+    <string name="host_picker_risk">Rewrites the app native library, reversible</string>
+    <string name="host_picker_loading">Reading apps</string>
+    <string name="host_picker_empty">No eligible app</string>
+    <string name="host_picker_cancel">Cancel</string>
+    <string name="host_picker_next">Next</string>
+    <string name="host_picker_retry">Retry</string>
+    <string name="host_picker_confirm_host">Host app</string>
+    <string name="host_picker_confirm_port">WebUI port</string>
+    <string name="host_picker_running">Enabling</string>
+
+    <!-- unhost -->
+    <string name="lite_hidden_deactivate">Remove host</string>
+    <string name="lite_hidden_deactivate_title">Remove host?</string>
+    <string name="lite_hidden_deactivate_body">Restores the host native library and revokes auth</string>
+    <string name="lite_hidden_deactivate_confirm">Remove</string>
+    <string name="lite_hidden_deactivate_running">Removing</string>
+    <string name="lite_hidden_deactivate_ok">Host removed</string>
+    <string name="lite_hidden_deactivate_step_so">Restore library</string>
+    <string name="lite_hidden_deactivate_step_su">Revoke auth</string>
+    <string name="lite_hidden_deactivate_step_daemon">Stop service</string>
+
+    <!-- activation steps -->
+    <string name="lite_hidden_step_precheck">Check host</string>
+    <string name="lite_hidden_step_host_so">Rewrite library</string>
+    <string name="lite_hidden_step_webui_start">Start web service</string>
+    <string name="lite_hidden_step_webui_ping">Verify web service</string>
+    <string name="lite_hidden_step_hide_state">Write state</string>
+    <string name="lite_hidden_step_final_verify">Final verification</string>
+    <string name="lite_hidden_step_manager_removal">Remove manager</string>
+
+    <!-- P0：Ultra 已安装但后台 root 获取失败（固定句） -->
+    <string name="home_lite_root_failure">MapleSU_Ultra failed to start!</string>
+</resources>

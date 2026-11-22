@@ -1,0 +1,3 @@
+# ELF inspection used by native SDK and policy backend identity checks.
+pyelftools==0.32
+unicorn==2.1.4

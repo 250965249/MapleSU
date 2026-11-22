@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="installer_task_title">继续完成安装</string>
+    <string name="installer_task_loading">正在读取安装进度…</string>
+    <string name="installer_task_restored_restart">已恢复安装前状态，重启后生效</string>
+    <string name="installer_task_stock_restored_restart">已还原原厂镜像，重启后生效</string>
+    <string name="installer_task_restarting">正在重启设备…</string>
+    <string name="installer_task_prepared">镜像已准备，等待确认写入</string>
+    <string name="installer_task_continue_message">继续此任务已准备的安装？原始镜像已保留供还原使用。</string>
+    <string name="installer_task_continue">继续安装</string>
+    <string name="installer_task_reboot_failed">重启请求失败，请手动重启设备以完成操作。</string>
+    <string name="installer_task_observation_failed">任务状态读取失败，点击重试</string>
+    <string name="installer_task_verified">重启验证通过，MapleSU Root 正常</string>
+    <string name="installer_task_runtime_failed">已确认安装镜像，MapleSU Root 尚待确认</string>
+    <string name="installer_task_recovery">安装已中断，可恢复安装前状态</string>
+    <string name="installer_task_restart">镜像写入校验完成，需要重启</string>
+    <string name="installer_task_working">安装正在执行</string>
+    <string name="installer_task_review">查看安装进度与可用操作</string>
+    <string name="installer_task_recovery_message">可使用本次安装前保留的镜像恢复之前的工作环境。</string>
+    <string name="installer_task_refresh">刷新状态</string>
+    <string name="installer_patch_interrupted">镜像处理已中断，请返回后重新选择镜像。</string>
+    <string name="installer_task_discard">取消本次安装</string>
+    <string name="installer_task_cancelled">已放弃未写入任务，可以重新开始安装</string>
+</resources>

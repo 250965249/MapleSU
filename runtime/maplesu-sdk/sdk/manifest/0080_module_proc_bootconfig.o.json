@@ -1,0 +1,114 @@
+{
+  "idx": 80,
+  "name": "module_proc_bootconfig.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module/module_proc_bootconfig.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 5,
+    "recovered": 5,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "bab87329e13139b71da42db0c874016e4e5ad6d276528099ad0b348502bbb312",
+    "bytes": 83072
+  },
+  "evidence": [
+    "build/out/libkernel_module_kit_static.a@80 (module_proc_bootconfig.o)",
+    "build/report/member-gate.json (idx 80 PASS: raw T/U diffs empty, baseline_consumed [])",
+    "notes/work/AGENT115/STATUS.md",
+    "notes/work/AGENT115/proof/0080/built.a",
+    "notes/work/AGENT115/proof/0080/equiv.json",
+    "notes/work/BOOT/STATUS.md",
+    "notes/work/BOOT/proof/0080/approx.json",
+    "notes/work/BOOT/proof/0080/built.a"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "tSetSize": 2,
+    "uSetSize": 74,
+    "measured": {
+      "origStrongT": 2,
+      "newStrongT": 2,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "origU": 74,
+      "newU": 74,
+      "uMissing": 0,
+      "uExtra": 0,
+      "weakDefined": {
+        "original": 77,
+        "rebuilt": 77
+      },
+      "weakObject": {
+        "original": 17,
+        "rebuilt": 17
+      },
+      "localObjects": {
+        "original": 3,
+        "rebuilt": 3
+      },
+      "localOutlinerFragments": {
+        "original": 21,
+        "rebuilt": 12
+      },
+      "verifyEquivRefFunctions": 100,
+      "verifyEquivNewFunctions": 92,
+      "verifyEquivMatched": 92,
+      "verifyEquivMissing": 8,
+      "verifyEquivExtra": 0,
+      "verifyEquivCallTargetMatch": 85,
+      "verifyEquivBagMin": 0.0,
+      "verifyEquivBagMean": 0.9117,
+      "verifyEquivSeqMean": 0.9135,
+      "strongT": 2,
+      "strongU": 74,
+      "strongUMissing": 0,
+      "strongUExtra": 0,
+      "definedKinds": {
+        "V": 17,
+        "r": 18,
+        "t": 13,
+        "W": 77,
+        "b": 3,
+        "T": 2,
+        "d": 1
+      },
+      "newObjectBytes": 82848,
+      "newObjectSha256": "75059392dfd8143b973d5d8b7494515b1b5df5571029485ce7f9a27bf7bdec67",
+      "baselineConsumed": [],
+      "recipeStages": 1,
+      "verifyEquivRefFunctionsMissingNames": [
+        "OUTLINED_FUNCTION_9",
+        "OUTLINED_FUNCTION_10",
+        "OUTLINED_FUNCTION_11",
+        "OUTLINED_FUNCTION_12",
+        "OUTLINED_FUNCTION_13",
+        "OUTLINED_FUNCTION_14",
+        "OUTLINED_FUNCTION_15",
+        "OUTLINED_FUNCTION_16"
+      ],
+      "verifyEquivExtraNames": []
+    },
+    "note": "符号闸门 PASS（实测）：T 2/2、U 74/74，原始双向差集为空，基线消耗 0。行为等价实测未达 0.95 档：函数清单 92/100、missing 8、extra 0、call 85/92、bag_min 0.0、bag_mean 0.9117。构建配方 stages=1（见 recipe 字段）。"
+  },
+  "notes": "从零恢复：源码 + 私有只读段探测头 + manifest。符号面已闭合（T/U 原始双向差集空、基线 0）；行为等价 bag_min 未达 0.95，如实登记 partial，不冒称达标。init 12 个导出/内部函数均已落地。 | EQUIVALENCE(measured, verify_equiv 0.95): fn 92/100 missing 8 extra 0 call_target_match 85/92 bag_min 0.0 bag_mean 0.9117 seq_mean 0.9135; recipe stages=1",
+  "blockedBy": [
+    "verify_equiv 函数清单不一致：missing 8、extra 0（残余名字见 selfCheck.measured）",
+    "verify_equiv call target 85/92：函数指令布局未逐条对齐（分支目标偏移随体积差漂移）",
+    "verify_equiv bag_min 0.0 < 0.95：OUTLINED_FUNCTION 片段切分/栈槽基址残余"
+  ]
+}

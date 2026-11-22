@@ -1,0 +1,152 @@
+{
+  "idx": 89,
+  "name": "module_selinux.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module/module_selinux.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 24,
+    "recovered": 24,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "5a0dd305736faa8c4f870ee79df143a5a24d6812a3e692cf8f35f7bf4bf3451b",
+    "bytes": 235952
+  },
+  "evidence": [
+    "notes/work/AGENT115/STATUS.md",
+    "notes/work/AGENT115/proof/0089/built.a",
+    "notes/work/AGENT115/proof/0089/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "符号闸门 PASS（实测）：T 2/2、U 160/160，原始双向差集为空，基线消耗 0。行为等价实测未达 0.95 档：函数清单 327/331、missing 4、extra 2、call 305/327、bag_min 0.0、bag_mean 0.9329。构建配方 stages=1（见 recipe 字段）。",
+    "measured": {
+      "strongT": 2,
+      "strongU": 160,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "strongUMissing": 0,
+      "strongUExtra": 0,
+      "definedKinds": {
+        "V": 28,
+        "r": 115,
+        "t": 61,
+        "W": 266,
+        "b": 5,
+        "T": 2,
+        "d": 2
+      },
+      "newObjectBytes": 239224,
+      "newObjectSha256": "db236d7eef3ccd2c81dceac86c5f25e3253212d21dfcb5ec1e1e3ac82ce8c87c",
+      "baselineConsumed": [],
+      "recipeStages": 1,
+      "verifyEquivRefFunctions": 331,
+      "verifyEquivNewFunctions": 329,
+      "verifyEquivMatched": 327,
+      "verifyEquivMissing": 4,
+      "verifyEquivExtra": 2,
+      "verifyEquivCallTargetMatch": 305,
+      "verifyEquivBagMin": 0.0,
+      "verifyEquivBagMean": 0.9329,
+      "verifyEquivSeqMean": 0.941,
+      "verifyEquivRefFunctionsMissingNames": [
+        "OUTLINED_FUNCTION_31",
+        "OUTLINED_FUNCTION_32",
+        "OUTLINED_FUNCTION_33",
+        "OUTLINED_FUNCTION_34"
+      ],
+      "verifyEquivExtraNames": [
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN12_GLOBAL__N_136get_selinux_kernel_status_page_kaddrERmE3$_0NS_9allocatorIS5_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSB_3GpXEEEENS_22__allocator_destructorINS6_ISH_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrIN12_GLOBAL__N_120MyAsmJitErrorHandlerENS_14default_deleteIS2_EEED2B7v170000Ev"
+      ]
+    }
+  },
+  "notes": "EQUIVALENCE(measured, verify_equiv 0.95): fn 327/331 missing 4 extra 2 call_target_match 305/327 bag_min 0.0 bag_mean 0.9329 seq_mean 0.941; recipe stages=1",
+  "blockedBy": [
+    "verify_equiv 函数清单不一致：missing 4、extra 2（残余名字见 selfCheck.measured）",
+    "verify_equiv call target 305/327：函数指令布局未逐条对齐（分支目标偏移随体积差漂移）",
+    "verify_equiv bag_min 0.0 < 0.95：OUTLINED_FUNCTION 片段切分/栈槽基址残余"
+  ],
+  "p5BusinessSharedBool20261119": {
+    "scope": "Owner business shared-bool dependency lifecycle; original callback instructions and Legacy overloads retained",
+    "source": "src/module/module_selinux.cpp",
+    "sourceSha256": "94d19e8a77b61886f2e3962c336aedc557e2078311a2b14d16addcdebafa879f",
+    "privateHeader": "include/private_module_selinux.h",
+    "privateHeaderSha256": "a210043cf7ccba28cc202c39150bdc8b2d1e5cff73f24b680c1bcc94bbd6a2d4",
+    "implemented": [
+      "Typed create(false), two explicit publication dependencies and creator-reference release",
+      "Separate private Owner receipt preserves legacy v2 key/bytes; typed STORE authenticates live authority",
+      "No raw shared-object free or automatic retry of uncertain release; cleanup preserves original receipt"
+    ],
+    "validation": "Not compiled or tested in this source-only batch; historical checks above apply only to their recorded sources",
+    "productionWritten": false,
+    "formalAssetsPromoted": false,
+    "deviceEvidence": false,
+    "completeP5": false,
+    "bootRuntimeQualified": false
+  },
+  "p5DevelopmentClosure20261119": {
+    "scope": "Current production P5 sources and focused compilation/regressions; formal SDK and target execution remain separate",
+    "requirements": [
+      "HOOK-01",
+      "HOOK-02",
+      "HOOK-03",
+      "RELOC-01"
+    ],
+    "inputs": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/module_selinux.cpp",
+        "sha256": "803c8cf25716afffd3a2481756f4b98707345f98b98ae12fa5b637a675dcb765"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_hook_private.h",
+        "sha256": "2636d9f3f98d6ffa40542179a1f1cd488cb4fb2f8a1f34a7c7190882f93b838c"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_hook_publication.h",
+        "sha256": "0a4510fc9b294fcedb737cd53abb88c36b62f2ca4d147705100feaa265a92ce3"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/legacy_hook_publication.h",
+        "sha256": "8003a8db4635363e2d04704e065fe3ea4d0d53de7b88fc579166fb20f8811215"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_hook_codegen.h",
+        "sha256": "ca3bbaf752c13a0315f627e673461c94fe560130defb4001d17f5fa331dd3363"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_publication_gate.h",
+        "sha256": "783e4b7a72384c48b96e5a134fe3ca070ed1ef5a10cc1865a1d2a5b3c0b55d8f"
+      }
+    ],
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/P5-DEVELOPMENT-CLOSEOUT-20261119.md",
+    "formalRelease": false,
+    "deviceValidated": false
+  },
+  "privateHeaders": [
+    "src/maplesu/compat/module_selinux_exports_legacy_abi.h"
+  ],
+  "legacyBinaryExports": {
+    "status": "source-compiled-current-and-frozen-callers-linked",
+    "compatibilityHeader": "src/maplesu/compat/module_selinux_exports_legacy_abi.h",
+    "symbolAliases": 1,
+    "validation": ".tmp/main-sdk-legacy-selinux-r3-20261120/VALIDATION.json",
+    "textAndUndefinedSetUnchanged": true,
+    "rawGatePassed": false,
+    "deviceTested": false
+  }
+}

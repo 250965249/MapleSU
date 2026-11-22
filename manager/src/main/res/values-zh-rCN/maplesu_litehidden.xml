@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ultra 隐藏模式（设置项 → 独立页）。文案短小、中性。 -->
+<resources>
+    <string name="lite_hidden_title">隐身与寄生</string>
+    <string name="lite_hidden_status_off">未开启</string>
+    <string name="lite_hidden_status_on">已开启</string>
+    <string name="lite_hidden_status_unknown">状态未知（读取失败）</string>
+    <string name="lite_hidden_retry_state">重新读取状态</string>
+    <string name="lite_hidden_enable_button">开启隐藏模式</string>
+    <string name="lite_hidden_button_hint">开启后所有管理将寄生至 WebUI</string>
+    <string name="lite_hidden_webui_link">WebUI 链接</string>
+    <string name="lite_hidden_webui_port">WebUI 端口</string>
+    <string name="lite_hidden_port_invalid">端口需在 1024–65535</string>
+    <string name="lite_hidden_confirm_title">开启隐藏？</string>
+    <string name="lite_hidden_confirm_body">将寄生至所选应用，请保存 WebUI 链接</string>
+    <string name="lite_hidden_confirm_cancel">取消</string>
+    <string name="lite_hidden_confirm_enable">开启</string>
+    <string name="lite_hidden_copy_link">复制恢复链接</string>
+    <string name="lite_hidden_link_copied">链接已复制</string>
+    <string name="lite_hidden_no_link">暂无恢复链接</string>
+    <string name="lite_hidden_enabled">已开启隐藏模式</string>
+    <string name="lite_hidden_failed">开启失败：%1$s</string>
+
+    <!-- 失败原因（短句） -->
+    <string name="lite_hidden_reason_backend_unavailable">后端未就绪</string>
+    <string name="lite_hidden_reason_root_unavailable">Root 不可用</string>
+    <string name="lite_hidden_reason_webui">网页服务未启动</string>
+    <string name="lite_hidden_reason_port">端口被占用</string>
+    <string name="lite_hidden_reason_recovery">缺少恢复通道</string>
+    <string name="lite_hidden_reason_port_invalid">端口无效</string>
+    <string name="lite_hidden_reason_verify">状态校验失败</string>
+    <string name="lite_hidden_reason_recovery_not_ready">独立恢复未就绪</string>
+    <string name="lite_hidden_reason_manager_removal">管理器移除未完成</string>
+    <string name="lite_hidden_reason_unknown">未知错误</string>
+
+    <!-- 失败原因：宿主（短句） -->
+    <string name="lite_hidden_reason_host">未选择宿主</string>
+    <string name="lite_hidden_reason_host_invalid">宿主不可用</string>
+    <string name="lite_hidden_reason_host_scan">读取应用失败</string>
+    <string name="lite_hidden_reason_host_so">改写原生库失败</string>
+    <string name="lite_hidden_reason_host_backup">宿主原生库备份失败</string>
+    <string name="lite_hidden_reason_deactivate">解除寄生失败</string>
+
+    <!-- 选择寄生应用（独立页/对话框） -->
+    <string name="host_picker_title">选择寄生应用</string>
+    <string name="host_picker_subtitle">作为管理入口的启动载体</string>
+    <string name="host_picker_risk">会修改该应用原生库，可解除</string>
+    <string name="host_picker_loading">正在读取应用</string>
+    <string name="host_picker_empty">没有可用应用</string>
+    <string name="host_picker_cancel">取消</string>
+    <string name="host_picker_next">下一步</string>
+    <string name="host_picker_retry">重试</string>
+    <string name="host_picker_confirm_host">宿主应用</string>
+    <string name="host_picker_confirm_port">WebUI 端口</string>
+    <string name="host_picker_running">正在开启</string>
+
+    <!-- 解除寄生 -->
+    <string name="lite_hidden_deactivate">解除寄生</string>
+    <string name="lite_hidden_deactivate_title">解除寄生？</string>
+    <string name="lite_hidden_deactivate_body">将恢复宿主原生库并撤销授权</string>
+    <string name="lite_hidden_deactivate_confirm">解除</string>
+    <string name="lite_hidden_deactivate_running">正在解除</string>
+    <string name="lite_hidden_deactivate_ok">已解除寄生</string>
+    <string name="lite_hidden_deactivate_step_so">恢复原生库</string>
+    <string name="lite_hidden_deactivate_step_su">撤销授权</string>
+    <string name="lite_hidden_deactivate_step_daemon">停止服务</string>
+
+    <!-- 激活事务步骤 -->
+    <string name="lite_hidden_step_precheck">预检宿主</string>
+    <string name="lite_hidden_step_host_so">改写原生库</string>
+    <string name="lite_hidden_step_webui_start">启动网页服务</string>
+    <string name="lite_hidden_step_webui_ping">校验网页服务</string>
+    <string name="lite_hidden_step_hide_state">写入状态</string>
+    <string name="lite_hidden_step_final_verify">最终校验</string>
+    <string name="lite_hidden_step_manager_removal">移除管理器</string>
+
+    <!-- P0：Ultra 已安装但后台 root 获取失败（固定句） -->
+    <string name="home_lite_root_failure">MapleSU_Ultra模式启动失败！</string>
+</resources>

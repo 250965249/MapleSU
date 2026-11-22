@@ -1,0 +1,31 @@
+{
+  "idx": 22,
+  "name": "kstat.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/kstat.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "09da47bf1027bde581314c9184eb41ecce7b4fb6ea6930325768ce74c2a4e372",
+    "bytes": 125696
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Two-way symbol gate clean: T 1/1 exported resolvers, U 70/70 imports, raw diff empty both ways, no allowance consumed. Rebuilt in the frozen member's container with the member's flagsProfile."
+  },
+  "notes": ""
+}

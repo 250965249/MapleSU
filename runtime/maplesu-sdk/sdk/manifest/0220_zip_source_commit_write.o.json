@@ -1,0 +1,28 @@
+{
+  "idx": 220,
+  "name": "zip_source_commit_write.o",
+  "group": "libzip",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/libzip/1.0.1/lib/zip_source_commit_write.c"
+  ],
+  "flagsProfile": "vendor-c-elf",
+  "status": "complete",
+  "recovery": {
+    "functions": 0,
+    "recovered": 0,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "4288f50bc57c236cfbe99ce66afd5da7b221de06edd423883b8b42af37dc4af2",
+    "bytes": 1616
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "import-set exact; rebuilt bytes identical"
+  },
+  "notes": "source=vendored; version=1.0.1; equivalence=symbol-set (export T exact: True)",
+  "evidence": []
+}

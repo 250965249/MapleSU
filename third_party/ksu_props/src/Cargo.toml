@@ -1,0 +1,12 @@
+[workspace]
+members = [
+    "crates/prop-rs",
+    "crates/prop-rs-android",
+    "tools/sysprop",
+    "tools/resetprop",
+    "tools/hostutils",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.2.0"

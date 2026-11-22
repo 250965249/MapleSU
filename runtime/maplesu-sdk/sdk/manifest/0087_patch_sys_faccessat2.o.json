@@ -1,0 +1,71 @@
+{
+  "idx": 87,
+  "name": "patch_sys_faccessat2.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/patch_sys_faccessat2.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 33,
+    "recovered": 33,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "e61b052fc72d5a4105b96a3fdccc6d5a5b7f7b8a2790d6f029a6fd41742465f4",
+    "bytes": 26068
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "tMissing": 0,
+      "tExtra": 0,
+      "uMissing": 0,
+      "uExtra": 0
+    },
+    "adjusted": {
+      "tMissing": 0,
+      "tExtra": 0,
+      "uMissing": 0,
+      "uExtra": 0
+    },
+    "note": "T 44/44、U 30/30，双向差集实测为空。编译命令：clang++ --target=aarch64-linux-android21 -std=c++20 -Oz -fPIC -ffunction-sections -fdata-sections -fno-rtti -fexceptions -fvisibility=hidden -DNDEBUG -D_FORTIFY_SOURCE=2 -flto=thin -I runtime/upstream-pro/include -I sdk/include -c src/patch/patch_sys_faccessat2.cpp。两点实测结论：(1) 必须 -fexceptions（否则 U 多 abort、T 少 ZTI/ZTS 与 __clang_call_terminate）；(2) 必须 -D_FORTIFY_SOURCE=2（U 才有 __strlen_chk）。"
+  },
+  "notes": "",
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/patch/patch_sys_faccessat2.cpp",
+        "sha256": "229ee45fe4b8c2ba6899f9faa57fcfab60e8d0d4b1c806e71434d364b631ae11"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/patch/patch_sys_faccessat.cpp",
+        "sha256": "2ebf207fe238b66c77b1d233c730268bb89dfeb55967bbd9c37c052052daeda2"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_uid_lifetime_private.h",
+        "sha256": "4a0a57152133d84b654f4238fc786f7d28fb8485e1965d846622e6a5fa000826"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/default_module/module_su_redirect/patch_base.h",
+        "sha256": "627a0e1328c52a92ceb26caedbdbcdc0073a0c1009a28e4301bc351a886c0ae0"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/core01/patch_base_su_redirect.h",
+        "sha256": "15a0ded57d388057d7b8c5eb2842f1b9b7dcb74293a8cb4816c337b86e0d97bb"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  }
+}

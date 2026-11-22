@@ -1,0 +1,30 @@
+{
+  "idx": 108,
+  "name": "func.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/core/func.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "fdb1d03ee13420fc0de68b450e411fdef056c6fed9a74bd91e1bf5f1adfff24c",
+    "bytes": 14844
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-__memset_chk"
+    ],
+    "note": "import-set residual __memset_chk [libc-fortify-wrapper]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (1 missing / 0 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

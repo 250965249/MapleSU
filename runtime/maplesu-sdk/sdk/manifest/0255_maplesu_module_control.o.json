@@ -1,0 +1,79 @@
+{
+  "idx": 255,
+  "name": "maplesu_module_control.o",
+  "group": "maplesu",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/maplesu_module_control.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-Iinclude/maplesu",
+    "-std=c++17",
+    "-frtti",
+    "-U_FORTIFY_SOURCE",
+    "-fvisibility=default",
+    "-fno-visibility-inlines-hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 10,
+    "recovered": 10,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "114d66a9cd4e0a3e03d44d743342c90bc21f475ce47491e0c430a5b43794b96f",
+    "bytes": 37248
+  },
+  "evidence": [
+    "notes/work/PKG-D/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "PASS, both directions empty, raw (native ELF member: zero-tolerance rule, no baseline subtraction). Built with the manifest profile plus -std=c++17 -frtti -U_FORTIFY_SOURCE (the shipped member carries no fortify wrappers, so the reference build had FORTIFY disabled for this member). Measured: T 6/6, U 48/48, W 24/24, all four diffs empty; every text symbol has the same size as the shipped member; all sections byte-equal except the string/symbol tables (source file name is 8 characters longer). Command: py notes/work/PKG-D/check.py 255; log: notes/work/PKG-D/selfcheck.log.",
+    "frozenVsBuilt": {
+      "frozen": {
+        "bytes": 37248,
+        "sha256": "114d66a9cd4e0a3e03d44d743342c90bc21f475ce47491e0c430a5b43794b96f"
+      },
+      "builtFromSdkSource": {
+        "bytes": 37256,
+        "sha256": "8286355c73913e23074d47d49bfdd644b1eacc8f0b5e60df688fd67008b54bab"
+      },
+      "differingSections": [
+        ".strtab (+8 B)",
+        ".symtab (STT_FILE name offsets only)"
+      ]
+    }
+  },
+  "notes": "Module control state machine: per-module boot enable flag in .maplesu-state with atomic temp+rename publication, helper gate identity check, fork-based authenticated worker for read/mutate, list variant, and the exported capability probe.",
+  "blockedBy": [],
+  "privateHeaders": [
+    "src/maplesu/compat/module_control_exports_legacy_abi.h"
+  ],
+  "legacyBinaryExports": {
+    "status": "source-compiled-selected-old-consumers-linked",
+    "compatibilityHeader": "src/maplesu/compat/module_control_exports_legacy_abi.h",
+    "compatibilityHeaderSha256": "2d467cc96b560d854672c1db460bfbc8ee82721fd835b21412122e58c9cad23a",
+    "sourceSha256": "e80cb0b58449440e67c5ee840e9be737d65495d2b8ec7699e4a2200ccf31f8b7",
+    "objectSha256": "8678c55eab9c23be1d6b16a9d14c58567ceb8ecc8f5057888ec23dc3e70ba8dc",
+    "restoredStrongSymbols": [
+      "_ZN7maplesu19get_module_controlsEPKcRKNSt6__ndk16vectorIN10skroot_env13module_recordENS2_9allocatorIS5_EEEE"
+    ],
+    "currentStrongRetained": 6,
+    "undefinedImportsUnchanged": true,
+    "remainingFrozenStrongSymbols": [],
+    "memberCompileExit": 0,
+    "strictSelectedLegacyCallerLinkExit": 0,
+    "validation": ".tmp/main-sdk-legacy-status-control-20261120/NARROW-RESULTS.json",
+    "compileCommands": ".tmp/main-sdk-legacy-status-control-20261120/COMPILE-LINK-COMMANDS.json",
+    "inputVerification": ".tmp/main-sdk-legacy-status-control-20261120/metadata/INPUT-CHECK.json",
+    "scope": "Only 1 restored entry names were checked by the selected legacy caller. Prior selfCheck statistics are historical; this is no full gate or behavior-equivalence result.",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "nativeExecution": false,
+    "rawGateStatus": "not-rerun-by-metadata-closeout"
+  }
+}

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  External root migration copy. Keys align with MigrationFamilyKeys / MigrationBlockerKeys /
+  MigrationStageKeys; kept in a dedicated file.
+-->
+<resources>
+    <string name="migration_entry_title">Migrate to this kernel manager (recommended)</string>
+    <string name="migration_entry_summary">Another root manager was detected. A backup comes first, then MapleSU takes over this device.</string>
+    <string name="migration_entry_action">Review migration</string>
+    <string name="migration_entry_install_note">A backup comes first. Supported modules and grants move with you, and the device reboots when done.</string>
+    <string name="migration_page_title">Migrate to MapleSU</string>
+    <string name="migration_target_lite" translatable="false">MapleSU_Ultra</string>
+    <string name="migration_target_ksu">MapleSU_Normal</string>
+    <string name="migration_recommended">Recommended</string>
+    <string name="migration_target_unavailable">This mode is not supported on this device yet</string>
+    <string name="migration_confirm_title">Confirm migration</string>
+    <string name="migration_confirm_body">Images, data and grants are backed up first, then the target mode is written and the device reboots. Do not power off. If something fails it restores itself automatically; if that is not possible, manual recovery is needed.</string>
+    <string name="migration_start">Start migration</string>
+    <string name="migration_confirm_start">Confirm and start</string>
+    <string name="migration_cancel">Cancel</string>
+    <string name="migration_abort">Cancel migration</string>
+    <string name="migration_back">Back</string>
+    <string name="migration_refresh">Check again</string>
+    <string name="migration_unavailable">Migration is unavailable right now. Try again later.</string>
+    <string name="migration_ready">Ready to migrate</string>
+    <string name="migration_no_root">The current root manager has not granted access</string>
+    <string name="migration_detected_with_version">%1$s · %2$s</string>
+
+    <!-- detection -->
+    <string name="migration_section_detected">Current root manager</string>
+    <string name="migration_section_target">Target mode</string>
+    <string name="migration_section_backup">Backup</string>
+    <string name="migration_section_progress">Migration progress</string>
+    <string name="migration_section_modules">Modules</string>
+    <string name="migration_section_auth">Superuser grants</string>
+    <string name="migration_section_blockers">Cannot migrate right now</string>
+    <string name="migration_patched">Modified partitions: %1$s</string>
+    <string name="migration_restore">Partitions to restore: %1$s</string>
+    <string name="migration_stock_backups">Usable stock backups: %1$d / %2$d</string>
+    <string name="migration_keep_manager">The previous manager is kept for now. You can uninstall it after migrating.</string>
+    <string name="migration_best_effort">This manager was not fully recognised. Migration restores what it can and lists anything left over.</string>
+    <string name="migration_backup_not_started">A backup runs first. Nothing is written until it passes.</string>
+    <string name="migration_backup_summary">%1$d items backed up, %2$s in total</string>
+    <string name="migration_backup_verified">Backup verified</string>
+    <string name="migration_backup_incomplete">Backup is incomplete</string>
+
+    <!-- results -->
+    <string name="migration_result_verified">Migration complete</string>
+    <string name="migration_result_failed">Migration did not finish</string>
+    <string name="migration_result_rolled_back">Migration did not finish. The device is back to its previous state.</string>
+    <string name="migration_result_recovery">Migration did not finish and needs manual recovery</string>
+    <string name="migration_failed_rolled_back">The device is back to its previous state. You can retry later.</string>
+    <string name="migration_failed_generic">This migration did not finish. Retry later or view diagnostics.</string>
+    <string name="migration_failed_recovery">Automatic restore did not finish. View recovery options or diagnostics.</string>
+    <string name="migration_module_none">No modules to migrate</string>
+    <string name="migration_module_restored">Restored</string>
+    <string name="migration_module_imported">Imported</string>
+    <string name="migration_module_disabled">Restored, disabled for now</string>
+    <string name="migration_module_unsupported">Not supported by the target mode</string>
+    <string name="migration_module_failed">Import failed</string>
+    <string name="migration_module_line">%1$s: %2$s</string>
+    <string name="migration_auth_counts">%1$d imported, %2$d applied, %3$d to confirm, %4$d expired</string>
+    <string name="migration_residual_warning">Some changes could not be restored. They are listed below.</string>
+    <string name="migration_pending_reboot">The device will reboot shortly to finish the migration.</string>
+    <string name="migration_open_diagnosis">View diagnostics</string>
+    <string name="migration_open_recovery">View recovery options</string>
+    <string name="migration_dismiss">Done</string>
+    <string name="migration_step_of">Step %1$d of %2$d</string>
+
+    <!-- stages -->
+    <string name="migration_stage_idle">Waiting to start</string>
+    <string name="migration_stage_detecting">Checking the current root manager…</string>
+    <string name="migration_stage_detected">Check complete</string>
+    <string name="migration_stage_confirming">Waiting for confirmation</string>
+    <string name="migration_stage_backing_up">Back up images, data and grants</string>
+    <string name="migration_stage_restoring">Restore original partitions</string>
+    <string name="migration_stage_writing">Write the target mode</string>
+    <string name="migration_stage_deploying">Deploy modules and grants</string>
+    <string name="migration_stage_pending_reboot">Waiting for reboot</string>
+    <string name="migration_stage_verifying">Confirm the result</string>
+    <string name="migration_stage_completed">Migration complete</string>
+    <string name="migration_stage_failed">Migration did not finish</string>
+    <string name="migration_stage_rolled_back">Back to the previous state</string>
+    <string name="migration_stage_recovery">Manual recovery needed</string>
+    <string name="migration_stage_unavailable">Migration is unavailable</string>
+
+    <!-- families -->
+    <string name="migration_family_ksu">KernelSU</string>
+    <string name="migration_family_maplesu">KernelSU (7K)</string>
+    <string name="migration_family_magisk">Magisk</string>
+    <string name="migration_family_apatch">APatch</string>
+    <string name="migration_family_unknown">Unrecognised root manager</string>
+
+    <!-- blockers -->
+    <string name="migration_blocker_no_root">The current root manager has not granted access</string>
+    <string name="migration_blocker_no_space">Not enough storage. Free up space and retry.</string>
+    <string name="migration_blocker_pending">An install or switch has not finished. Complete it first.</string>
+    <string name="migration_blocker_layout">This device\'s partition layout is not supported yet</string>
+    <string name="migration_blocker_candidate">The target image cannot be generated for this device yet</string>
+    <string name="migration_blocker_clean_image">This target needs a stock image. Prepare one first.</string>
+    <string name="migration_blocker_own_manager">MapleSU already manages this device. Switch the work mode instead.</string>
+    <string name="migration_blocker_unknown">Migration is unavailable right now. Try again later.</string>
+
+    <!-- stage keys (MigrationStageKeys) -->
+    <string name="migration_phase_m0">Preparing</string>
+    <string name="migration_phase_m1">Backing up images, data and grants</string>
+    <string name="migration_phase_m2">Verifying the backup</string>
+    <string name="migration_phase_m3">Planning partitions</string>
+    <string name="migration_phase_m4">Restoring partitions and writing the target</string>
+    <string name="migration_phase_m5">Deploying modules and data</string>
+    <string name="migration_phase_m6">Migrating modules and grants</string>
+    <string name="migration_phase_m7">Finishing, preparing to reboot</string>
+    <string name="migration_phase_m8">Waiting for reboot</string>
+    <string name="migration_phase_m9">Confirming the result</string>
+</resources>

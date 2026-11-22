@@ -1,0 +1,57 @@
+{
+  "idx": 86,
+  "name": "patch_sys_faccessat.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/patch_sys_faccessat.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 88,
+    "recovered": 88,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "5b0ccdf149b631565e8ae77d2de5ec6f9d1a00def7c2081561c78dbb8b0e7f1d",
+    "bytes": 56444
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawTDiffCount": 0,
+    "rawUDiffCount": 0,
+    "note": "T/W 集与 U 集双向差集均实测为空（comm 四路全空）。"
+  },
+  "notes": "",
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/patch/patch_sys_faccessat.cpp",
+        "sha256": "2ebf207fe238b66c77b1d233c730268bb89dfeb55967bbd9c37c052052daeda2"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_uid_lifetime_private.h",
+        "sha256": "4a0a57152133d84b654f4238fc786f7d28fb8485e1965d846622e6a5fa000826"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/default_module/module_su_redirect/patch_base.h",
+        "sha256": "627a0e1328c52a92ceb26caedbdbcdc0073a0c1009a28e4301bc351a886c0ae0"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/core01/patch_base_su_redirect.h",
+        "sha256": "15a0ded57d388057d7b8c5eb2842f1b9b7dcb74293a8cb4816c337b86e0d97bb"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  }
+}

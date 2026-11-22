@@ -1,0 +1,74 @@
+* text=auto
+*.kt text eol=lf
+*.kts text eol=lf
+*.java text eol=lf
+*.aidl text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+*.md text eol=lf
+*.xml text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.svg text eol=lf
+gradlew text eol=lf
+*.bat text eol=crlf
+*.png binary
+*.jpg binary
+*.webp binary
+*.jar binary
+
+.private/ export-ignore
+work/ export-ignore
+evidence/ export-ignore
+.research/ export-ignore
+.analysis/ export-ignore
+.handoff/ export-ignore
+samples/ export-ignore
+SKRoot_Reference/ export-ignore
+Credit_Reference/ export-ignore
+runtime/ultra/reference/ export-ignore
+maplesu-theme-market/ export-ignore
+maplesu-module-market/ export-ignore
+docs/development/ export-ignore
+docs/dual-mode/ export-ignore
+docs/research/ export-ignore
+docs/opensource/ export-ignore
+zygisk/ export-ignore
+third_party/rezygisk/ export-ignore
+tools/package_development.py export-ignore
+tools/package_teesimulator_bundle.py export-ignore
+tools/tests/check-codec-interop.py export-ignore
+tools/tests/check_runtime_device.py export-ignore
+tools/tests/check_shared_boot_rebuild.py export-ignore
+tools/tests/test_development_package.py export-ignore
+tools/tests/test_device_boot_observation.py export-ignore
+tools/tests/test_installer_evidence.py export-ignore
+tools/tests/test_installer_service_evidence.py export-ignore
+tools/tests/test_jailbreak_source_inventory.py export-ignore
+tools/tests/test_repack_boot_v4.py export-ignore
+tools/tests/test_runtime_evidence.py export-ignore
+tools/tests/test_runtime_provenance.py export-ignore
+tools/tests/test_validation_results.py export-ignore
+tools/verify_development_package.py export-ignore
+tools/verify_dual_mode.py export-ignore
+tools/verify_packages.py export-ignore
+* -text
+jailbreak-providers/ghostlock/extractor-native/vendor/payload-extract/** eol=lf
+runtime/pro/reference/ export-ignore
+.tmp/ export-ignore
+tools/acceptance-pro-module.ps1 export-ignore
+tools/tests/check_skroot_module_samples.py export-ignore
+tools/tests/check_skroot_patch_equivalence.py export-ignore
+tools/tests/test_export_pro_contract.py export-ignore
+tools/tests/test_pro_build_inputs.py export-ignore
+tools/tests/test_pro_integration_snapshot.py export-ignore
+tools/tests/test_pro_ref_source_trees.py export-ignore
+tools/tests/test_pro_reference_pairing.py export-ignore
+tools/tests/test_pro_sdk_inventory.py export-ignore
+tools/tests/test_pro_sdk_providers.py export-ignore
+tools/tests/test_pro_source_availability.py export-ignore
+tools/tests/test_skroot_patch_equivalence.py export-ignore
+tools/tests/test_skroot_pro_inspection.py export-ignore
+tools/tests/test_verify_pro_sdk_505.py export-ignore

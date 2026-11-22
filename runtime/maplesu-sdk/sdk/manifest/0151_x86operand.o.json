@@ -1,0 +1,28 @@
+{
+  "idx": 151,
+  "name": "x86operand.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/x86/x86operand.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 0,
+    "recovered": 0,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "c6598254f66b693307e6cb16b26d98c7089745c6098c554cd06585ec7438718c",
+    "bytes": 2188
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "import-set exact"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)",
+  "evidence": []
+}

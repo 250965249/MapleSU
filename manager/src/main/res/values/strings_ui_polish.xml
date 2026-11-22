@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_polish_link_prepare">Prepare recovery link</string>
+    <string name="ui_polish_link_preparing">Preparing your recovery entry…</string>
+    <string name="ui_polish_link_not_prepared">Prepare and save a recovery link before hiding the manager</string>
+    <string name="ui_polish_link_ready">Recovery entry is ready</string>
+    <string name="ui_polish_link_failed">Recovery entry is not ready. Check your environment and try again.</string>
+    <string name="ui_polish_link_open">Open WebUI</string>
+    <string name="ui_polish_link_open_failed">No browser is available. Copy the link and open it manually.</string>
+    <string name="ui_polish_link_save_hint">Copy this link somewhere you can find it after the manager is hidden</string>
+    <string name="ui_polish_link_saved">Recovery link copied. Keep it somewhere secure.</string>
+    <string name="ui_polish_link_actual_port">Using the available recovery service on port %1$s</string>
+    <string name="ui_polish_diagnostics_show">Show technical details</string>
+    <string name="ui_polish_diagnostics_hide">Hide technical details</string>
+    <string name="ui_polish_uninstall_not_ready">Full uninstall is not available for this build. Restore a backed-up boot image instead.</string>
+    <string name="ui_polish_images_busy">Saving your selection…</string>
+    <string name="ui_polish_images_loading">Reading your custom images…</string>
+    <string name="ui_polish_setting_failed">This setting was not applied. Your previous value has been kept.</string>
+    <string name="ui_polish_hidden_reading">Reading hidden mode status…</string>
+</resources>

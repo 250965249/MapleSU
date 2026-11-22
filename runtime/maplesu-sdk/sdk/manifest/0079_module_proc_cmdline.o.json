@@ -1,0 +1,110 @@
+{
+  "idx": 79,
+  "name": "module_proc_cmdline.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module/module_proc_cmdline.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 14,
+    "recovered": 14,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "757e7090b0c448ec472639ded7b0f6fbcbb7c5191c278f3aa55c23fe4b4b5ce6",
+    "bytes": 180136
+  },
+  "evidence": [
+    "notes/work/AGENT115/STATUS.md",
+    "notes/work/AGENT115/proof/0079/built.a",
+    "notes/work/AGENT115/proof/0079/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "tSetSize": 2,
+    "uSetSize": 89,
+    "raw": {
+      "flags": "clang++ --target=aarch64-linux-android21 -std=c++20 -Oz -fPIC -ffunction-sections -fdata-sections -fno-rtti -DNDEBUG -fexceptions -fvisibility=hidden -D_FORTIFY_SOURCE=2 -Wall -Wextra -I ../../include -I include -c src/module/module_proc_cmdline.cpp -o new.o",
+      "newObjectSha256": "593252db31635644d63eb3e8bf48dfb25d00bf96c515a6633b961d69fef6768b",
+      "newObjectBytes": 192312,
+      "tMissing": 0,
+      "tExtra": 0,
+      "uMissing": 0,
+      "uExtra": 0,
+      "weakDefined": {
+        "original": 211,
+        "rebuilt": 209
+      },
+      "weakObject": {
+        "original": 16,
+        "rebuilt": 16
+      },
+      "localDefined": {
+        "original": 46,
+        "rebuilt": 44
+      },
+      "explain": "门禁口径 = llvm-nm -P --defined-only --extern-only 的强定义(T,D,B,R,A,S,G,C) + --undefined-only 的 kind U。T 集 2/2、U 集 89/89 双向为空集对空集 = PASS。W/V/t 均不计入门禁：冻结成员 21 个 OUTLINED_FUNCTION_0..20 是 AArch64 machine outliner 的**局部**符号（kind t），重编只得 19 个同族符号，属编译器内部产物、不影响 ABI；SymbolLookupSilentGuard 的 per-build 哈希后缀不同（冻结 …_c67c0e4f…，当前头 …_8dfccc5c…）只改变一个 weak 内联类名，符号集零差异（同类现象见 manifest/0069 的 note）。"
+    },
+    "note": "符号闸门 PASS（实测）：T 2/2、U 89/89，原始双向差集为空，基线消耗 0。行为等价实测未达 0.95 档：函数清单 254/259、missing 5、extra 3、call 242/254、bag_min 0.0、bag_mean 0.9615。构建配方 stages=1（见 recipe 字段）。",
+    "measured": {
+      "strongT": 2,
+      "strongU": 89,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "strongUMissing": 0,
+      "strongUExtra": 0,
+      "definedKinds": {
+        "V": 16,
+        "r": 56,
+        "t": 44,
+        "W": 211,
+        "b": 3,
+        "T": 2,
+        "d": 3
+      },
+      "newObjectBytes": 181088,
+      "newObjectSha256": "1b2f22460986886654f525eeb1d9d6694e632fba6ae2a5b062490a604d984467",
+      "baselineConsumed": [],
+      "recipeStages": 1,
+      "verifyEquivRefFunctions": 259,
+      "verifyEquivNewFunctions": 257,
+      "verifyEquivMatched": 254,
+      "verifyEquivMissing": 5,
+      "verifyEquivExtra": 3,
+      "verifyEquivCallTargetMatch": 242,
+      "verifyEquivBagMin": 0.0,
+      "verifyEquivBagMean": 0.9615,
+      "verifyEquivSeqMean": 0.9652,
+      "verifyEquivRefFunctionsMissingNames": [
+        "OUTLINED_FUNCTION_16",
+        "OUTLINED_FUNCTION_17",
+        "OUTLINED_FUNCTION_18",
+        "OUTLINED_FUNCTION_19",
+        "OUTLINED_FUNCTION_20"
+      ],
+      "verifyEquivExtraNames": [
+        "_ZNSt6__ndk110unique_ptrIN12_GLOBAL__N_120MyAsmJitErrorHandlerENS_14default_deleteIS2_EEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN12_GLOBAL__N_113acquire_kpathERKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEERNS3_12scoped_kpathEE3$_0NS7_ISE_EEF7KModErrPN6asmjit5v1_163a649AssemblerEEEENS_22__allocator_destructorINS7_ISN_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN12_GLOBAL__N_112scoped_kpath5resetEvEUlPN6asmjit5v1_163a649AssemblerEE_NS_9allocatorISA_EEF7KModErrS9_EEENS_22__allocator_destructorINSB_ISF_EEEEED2B7v170000Ev"
+      ]
+    }
+  },
+  "notes": "EQUIVALENCE(measured, verify_equiv 0.95): fn 254/259 missing 5 extra 3 call_target_match 242/254 bag_min 0.0 bag_mean 0.9615 seq_mean 0.9652; recipe stages=1",
+  "blockedBy": [
+    "verify_equiv 函数清单不一致：missing 5、extra 3（残余名字见 selfCheck.measured）",
+    "verify_equiv call target 242/254：函数指令布局未逐条对齐（分支目标偏移随体积差漂移）",
+    "verify_equiv bag_min 0.0 < 0.95：OUTLINED_FUNCTION 片段切分/栈槽基址残余"
+  ]
+}

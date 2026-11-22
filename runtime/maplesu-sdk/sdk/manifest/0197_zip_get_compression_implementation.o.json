@@ -1,0 +1,28 @@
+{
+  "idx": 197,
+  "name": "zip_get_compression_implementation.o",
+  "group": "libzip",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/libzip/1.0.1/lib/zip_get_compression_implementation.c"
+  ],
+  "flagsProfile": "vendor-c-elf",
+  "status": "complete",
+  "recovery": {
+    "functions": 0,
+    "recovered": 0,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "4add0e9f3140d6c6dd2195aaa89b4c6eeb6f918189e68f4288385fc0f24adeb1",
+    "bytes": 1408
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "import-set exact; rebuilt bytes identical"
+  },
+  "notes": "source=vendored; version=1.0.1; equivalence=symbol-set (export T exact: True)",
+  "evidence": []
+}

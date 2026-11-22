@@ -1,0 +1,131 @@
+{
+  "idx": 26,
+  "name": "module_base_kernel_symbol_kaddr.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module_base/module_base_kernel_symbol_kaddr.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 279,
+    "recovered": 279,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "c32e465a2a6fcef41b6926bae5543a9a476e9d133fc332f596d70944ee01a2ac",
+    "bytes": 195724
+  },
+  "evidence": [
+    "notes/work/AGENT112/proof/026/EQUIVALENCE.md",
+    "notes/work/AGENT112/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": [],
+    "equivalence": {
+      "functions": "279/279",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "279/279",
+      "bag_min": 0.9422,
+      "bag_mean": 0.9994,
+      "seq_mean": 0.9953
+    },
+    "note": "Measured against the frozen archive with the final green build (build/r5/out, member gate PASS 260/260). Two-way gate: T 4/4, U 125/125, raw diff empty, baseline consumed 0. verify_equiv: status=equivalent, functions 279/279, missing=0, extra=0, call_target_match=279/279, bag_min=0.9422, bag_mean=0.9994, seq_mean=0.9953. NOT AT BAR: bag_min 0.9422 < 0.95. Fixed: string_view(name) replaces explicit strlen+length (frozen uses the builtin, not __strlen_chk); final check structure moved inside the is_ok arm. Inventory and call sets now identical (279/279). Residual bag_min 0.9422 only in __find_proc_kallsyms: the frozen r487747e IR merges four extra cleanup blocks (two ifstream destructor copies, one basic_string, one vector<KallsymsItem>) that the r487747d pipeline splits differently; all other 278 functions are >= 0.95."
+  },
+  "notes": "",
+  "ownerConsumerBatchR02": {
+    "date": "2026-11-17",
+    "scope": "Explicit owner v3 QUERY/ECHO64/READ and ordinary metadata/cache consumers only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 2622,
+        "sha256": "6940ed9c1716bc30f5332784c9522552a4949880426aeae8066265fade99e77d"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_identity.h",
+        "bytes": 1737,
+        "sha256": "24bc18c9c6ef6ab3144408efb99f0baad1b3c90be599d4ed17a7976288e137ae"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read_metadata.h",
+        "bytes": 4004,
+        "sha256": "da7652fa340f004251d13636c799981da373065412f559664d7a77671bfed11f"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/module_base_kernel_symbol_kaddr.cpp",
+        "bytes": 21108,
+        "sha256": "115d3687f2b735dc90542804d4b4706f86b5425942ed0542bd317927f458aed6"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r02/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r02/validation/FINAL-SUMMARY.json",
+    "producerIntegrated": false,
+    "kernelOwnerModuleBuilt": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "ordinaryThreadIdentityBatchR03": {
+    "dateUtc": "2026-11-17",
+    "scope": "R03 current-thread capability reads and unique calling-thread auth identity; source-only candidate provenance",
+    "inputs": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/module_base_kernel_symbol_kaddr.cpp",
+        "bytes": 21108,
+        "sha256": "115d3687f2b735dc90542804d4b4706f86b5425942ed0542bd317927f458aed6"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 2793,
+        "sha256": "27128b422fdf28418217d7ef3c394ed695c3fc455252c8988cc2115672c8e352"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_identity.h",
+        "bytes": 1861,
+        "sha256": "a37b106e34e2c688225e365fab5ea5e38adea8d0abb979e6f03f62674e7752a5"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r03/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r03/validation/FINAL-SUMMARY.json",
+    "validationScope": "Actual m023 and m000 host seams only; shared inline identity tested with actual m023. Other member sources inherit R02 and are not rerun/rebuilt by R03.",
+    "producerIntegrated": false,
+    "androidTuValidatedByThisBatch": false,
+    "composedMemberBuilt": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "ownerManagementBatchR04": {
+    "dateUtc": "2026-11-18",
+    "scope": "R04 same owner-v3 gateway management, complete receipt and typed credentials; isolated candidate only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/module_base_kernel_symbol_kaddr.cpp",
+        "bytes": 21922,
+        "sha256": "14d664d3ed2c906c2dfb77dc6471b92fc39cfadfdb29caa33b351997d65d2468"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 3452,
+        "sha256": "9e1e039f644b4b85002a82ed23d00f819300f4e6c6c4a84028fa55e7f55a11a2"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r04/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r04/validation/FINAL-SUMMARY.json",
+    "validationScope": "Only final named actual TUs and explicit seams count; adding this record does not assert each member was rebuilt or run.",
+    "producerSelectionIntegrated": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  }
+}

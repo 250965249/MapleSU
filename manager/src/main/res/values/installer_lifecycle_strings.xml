@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="installer_task_title">Finish installation</string>
+    <string name="installer_task_loading">Reading installation progress…</string>
+    <string name="installer_task_restored_restart">Pre-install state restored; restart to apply</string>
+    <string name="installer_task_stock_restored_restart">Original images restored; restart to apply</string>
+    <string name="installer_task_restarting">Restarting the device…</string>
+    <string name="installer_task_prepared">Image prepared; awaiting confirmation</string>
+    <string name="installer_task_continue_message">Continue the prepared installation for this task? The original image is retained for restoration.</string>
+    <string name="installer_task_continue">Continue installation</string>
+    <string name="installer_task_reboot_failed">Restart request failed. Restart the device manually to finish.</string>
+    <string name="installer_task_observation_failed">Task observation failed; tap to retry</string>
+    <string name="installer_task_verified">Restart verified; MapleSU root is working</string>
+    <string name="installer_task_runtime_failed">Installed image verified; MapleSU root needs review</string>
+    <string name="installer_task_recovery">Installation interrupted; restore the previous state</string>
+    <string name="installer_task_restart">Image verified; restart required</string>
+    <string name="installer_task_working">Installation is running</string>
+    <string name="installer_task_review">Review installation progress and available actions</string>
+    <string name="installer_task_recovery_message">Use the images saved before this installation to restore the previous working environment.</string>
+    <string name="installer_task_refresh">Refresh status</string>
+    <string name="installer_patch_interrupted">Image processing was interrupted. Return and select the image again.</string>
+    <string name="installer_task_discard">Cancel this installation</string>
+    <string name="installer_task_cancelled">Unflashed task discarded; a new installation can start</string>
+</resources>

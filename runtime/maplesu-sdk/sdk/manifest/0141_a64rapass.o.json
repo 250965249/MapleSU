@@ -1,0 +1,30 @@
+{
+  "idx": 141,
+  "name": "a64rapass.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/arm/a64rapass.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "29cf304f8a5aff70f673936c7e58214459bf6cdce0a3caa46a51725f49ccb49d",
+    "bytes": 68156
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-__memcpy_chk"
+    ],
+    "note": "import-set residual __memcpy_chk [libc-fortify-wrapper]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (1 missing / 0 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

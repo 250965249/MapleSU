@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#FF3267C0</color>
+    <color name="ic_launcher_foreground">#FF1E110D</color>
+    <color name="ic_splash_background">#FF774F6F</color>
+    <!-- 闪屏与窗口底色：与首屏 Scaffold 背景一致（Miuix colorScheme.surface）。 -->
+    <color name="maple_window_background">#FFF7F7F7</color>
+</resources>

@@ -1,0 +1,50 @@
+{
+  "idx": 34,
+  "name": "module_base_cpu_icache_sync.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/icache_sync/module_base_cpu_icache_sync.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [],
+  "status": "complete",
+  "recovery": {
+    "functions": 2,
+    "recovered": 2,
+    "unrecovered": [],
+    "scope": "Owned linked entrypoints: maple_icache_execute_once and kernel_module::icache_invalidate_all_cpus. Historical 66-function compiler inventory is retained in previous evidence, not presented as a source API count."
+  },
+  "original": {
+    "sha256": "712d0d0fd023e18274e72ed36bf36f8dc8a872216a0130e7606030834599a78a",
+    "bytes": 68592
+  },
+  "evidence": [
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p1/ICACHE-SOURCE.md",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/icache-cpp/source-validation.json",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/icache-cpp/fixed-host/results.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "removed __errno",
+      "removed __sF",
+      "removed fprintf",
+      "removed strerror"
+    ],
+    "sameBytes": false,
+    "gate": "Strong definitions match 2/2; strict frozen U comparison intentionally reports four removed dead diagnostic imports. No gate exception added in this change.",
+    "bytes": 54816,
+    "sha256": "48a232b0e3fec1909491690e45fd45e292305dad6338373e003c070531828086",
+    "sourceValidation": {
+      "baselineCompositionMatchesFormalAndR8": true,
+      "hostPolicyAndExceptionCases": "32/32",
+      "hostGeneratorCases": "4/4",
+      "wrongImmNegativeControlGeneratorCases": "0/4",
+      "device": "not performed",
+      "fullArchive": "parent-owned unified build pending"
+    }
+  },
+  "notes": "Production input is now the single readable C++ TU src/icache_sync/module_base_cpu_icache_sync.cpp. The previous m034.generator.ll and icache_candidate.cpp remain comparison references only and are absent from production sources/compose. Corrected the unused C++ candidate IC operand: the original IR stores 936 (IALLU); its 4 is an OperandSignature type field, not the immediate. The existing public aarch64_asm_ic_iallu helper preserves IC IALLU, followed by DSB ISH and ISB SY. Existing local icache_policy.h controls affinity save/online traversal/bind/current verification/execute/final restore; no policy changes. Both linked definitions retain hidden visibility and signed i64 error ABI. The unused local set_thread_cpu diagnostic helper was removed, so __errno/__sF/fprintf/strerror imports are deliberately absent. Default source profile and actual public headers/private adapter were compiled and recorded; policy include resolves to src/icache_sync/icache_policy.h rather than sdk/include duplicate. Historical archive identity remains original; this is semantic source migration, not a byte-equivalence claim."
+}

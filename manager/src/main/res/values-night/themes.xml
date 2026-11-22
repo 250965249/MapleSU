@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.KernelSU" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowBackground">@color/maple_window_background</item>
+    </style>
+
+    <style name="Theme.KernelSU.Starting" parent="Theme.SplashScreen">
+        <!-- 与首屏 Scaffold 背景同色（Miuix 深色 colorScheme.surface），闪屏退出时不闪白/闪灰。 -->
+        <item name="windowSplashScreenBackground">@color/maple_window_background</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/maplesu_splash_brand</item>
+        <item name="postSplashScreenTheme">@style/Theme.KernelSU</item>
+    </style>
+
+    <style name="Theme.KernelSU.WebUI" parent="Theme.KernelSU" />
+
+</resources>

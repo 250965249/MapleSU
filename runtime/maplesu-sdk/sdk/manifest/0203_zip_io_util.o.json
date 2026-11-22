@@ -1,0 +1,28 @@
+{
+  "idx": 203,
+  "name": "zip_io_util.o",
+  "group": "libzip",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/libzip/1.0.1/lib/zip_io_util.c"
+  ],
+  "flagsProfile": "vendor-c-elf",
+  "status": "complete",
+  "recovery": {
+    "functions": 0,
+    "recovered": 0,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "e80c87fdec7f6e19d052bb03000601689af2e2fe7b0a654ddc0ddd72bac66c89",
+    "bytes": 3800
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "import-set exact; rebuilt bytes identical"
+  },
+  "notes": "source=vendored; version=1.0.1; equivalence=symbol-set (export T exact: True)",
+  "evidence": []
+}

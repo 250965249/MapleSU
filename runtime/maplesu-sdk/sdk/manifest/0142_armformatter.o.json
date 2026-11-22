@@ -1,0 +1,28 @@
+{
+  "idx": 142,
+  "name": "armformatter.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/arm/armformatter.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 0,
+    "recovered": 0,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "354826996e5cbd0fc38772000888d4f3056ec46f66e94260996bab9086c2caa9",
+    "bytes": 14988
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "import-set exact"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)",
+  "evidence": []
+}

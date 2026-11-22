@@ -1,0 +1,102 @@
+{
+  "idx": 88,
+  "name": "su_allowlist.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module/su_allowlist.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 183,
+    "recovered": 165,
+    "unrecovered": [
+      "_ZNSt6__ndk1plB7v170000IcNS_11char_traitsIcEENS_9allocatorIcEEEENS_12basic_stringIT_T0_T1_EERKS9_PKS6_",
+      "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEEC1ERKNS_12basic_stringIcS2_NS_9allocatorIcEEEEj",
+      "_ZNSt6__ndk1lsB7v170000INS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_c",
+      "_ZNSt6__ndk1lsB7v170000IcNS_11char_traitsIcEENS_9allocatorIcEEEERNS_13basic_ostreamIT_T0_EES9_RKNS_12basic_stringIS6_S7_T1_EE",
+      "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEED1Ev",
+      "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEEC1EPKcj",
+      "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEE5closeEv",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEEC2B7v170000EPNS_15basic_streambufIcS2_EE",
+      "_ZTv0_n24_NSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED1Ev",
+      "_ZTv0_n24_NSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED0Ev",
+      "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEED0Ev",
+      "_ZTv0_n24_NSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEED1Ev",
+      "_ZTv0_n24_NSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEED0Ev",
+      "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEED2Ev",
+      "_ZNSt6__ndk124__put_character_sequenceB7v170000IcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_PKS4_m",
+      "_ZNSt6__ndk116__pad_and_outputB7v170000IcNS_11char_traitsIcEEEENS_19ostreambuf_iteratorIT_T0_EES6_PKS4_S8_S8_RNS_8ios_baseES4_",
+      "_ZNKSt6__ndk19basic_iosIcNS_11char_traitsIcEEE4fillB7v170000Ev",
+      "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6__initEmc"
+    ]
+  },
+  "original": {
+    "sha256": "b60f13b38f955d7cce171048f515031efc19cd76774548dd64ffa08556da30ee",
+    "bytes": 129076
+  },
+  "evidence": [
+    "notes/work/AGENT112/STATUS.md",
+    "notes/work/AGENT112/proof/088/EQUIVALENCE.md",
+    "notes/work/AGENT116/STATUS.md",
+    "notes/work/AGENT116/final-EQUIVALENCE.md",
+    "notes/work/AGENT116/proof/088/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6__initEmc",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE5flushEv",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryC1ERS3_",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED0Ev",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED1Ev",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED2Ev",
+      "_ZNSt6__ndk18ios_base33__set_badbit_and_consider_rethrowEv",
+      "_ZTv0_n24_NSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED0Ev",
+      "_ZTv0_n24_NSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED1Ev",
+      "chmod",
+      "remove",
+      "rename",
+      "sync"
+    ],
+    "rawUMissing": [],
+    "baselineConsumed": 14,
+    "equivalence": {
+      "functions": "165/183",
+      "missing": [
+        "_ZNSt6__ndk1plB7v170000IcNS_11char_traitsIcEENS_9allocatorIcEEEENS_12basic_stringIT_T0_T1_EERKS9_PKS6_",
+        "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEEC1ERKNS_12basic_stringIcS2_NS_9allocatorIcEEEEj",
+        "_ZNSt6__ndk1lsB7v170000INS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_c",
+        "_ZNSt6__ndk1lsB7v170000IcNS_11char_traitsIcEENS_9allocatorIcEEEERNS_13basic_ostreamIT_T0_EES9_RKNS_12basic_stringIS6_S7_T1_EE",
+        "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEED1Ev",
+        "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEEC1EPKcj",
+        "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEE5closeEv",
+        "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEEC2B7v170000EPNS_15basic_streambufIcS2_EE",
+        "_ZTv0_n24_NSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED1Ev",
+        "_ZTv0_n24_NSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED0Ev",
+        "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEED0Ev",
+        "_ZTv0_n24_NSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEED1Ev",
+        "_ZTv0_n24_NSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEED0Ev",
+        "_ZNSt6__ndk114basic_ofstreamIcNS_11char_traitsIcEEED2Ev",
+        "_ZNSt6__ndk124__put_character_sequenceB7v170000IcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_PKS4_m",
+        "_ZNSt6__ndk116__pad_and_outputB7v170000IcNS_11char_traitsIcEEEENS_19ostreambuf_iteratorIT_T0_EES6_PKS4_S8_S8_RNS_8ios_baseES4_",
+        "_ZNKSt6__ndk19basic_iosIcNS_11char_traitsIcEEE4fillB7v170000Ev",
+        "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6__initEmc"
+      ],
+      "extra": [],
+      "call_target_match": "164/165",
+      "bag_min": 0.5,
+      "bag_mean": 0.9935,
+      "seq_mean": 0.9939
+    },
+    "note": "MEASURED on the official archive produced by build.py --all: functions 165/183 (missing 18, extra 0); call-target sets equal 164/165; bag_min 0.5, bag_mean 0.9935, seq_mean 0.9939. NOT AT BAR: raw symbol diff is not empty; baseline symbol entries consumed (14); function inventory 165/183; call-target sets 164/165; bag_min 0.5 < 0.95. Archive: build/ag116b/out/libkernel_module_kit_static.a sha256=8f6a6361ef69d50d09fde21258315fcf5ec39f91fe9696649746d1f9de667f40.",
+    "adjustedDiff": []
+  },
+  "notes": "SU allowlist file storage; new epoch creates/hardens/publishes the file through the private allowlist + DAC helpers. U differs only by the reference's retained old file-I/O declarations/COMDATs (baseline-class candidates)."
+}

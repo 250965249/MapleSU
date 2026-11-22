@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/tiann/KernelSU",
+  "commit": "730f644615969cfd4a84b45d7f62a667b7b95a50",
+  "files": [
+    {
+      "path": "kernel/feature/selinux_hide.c",
+      "sha256": "3534b82880a75edf9b55522cbee22677a5b576de9c053ef36c9dd595e319c7b0",
+      "localSha256": "8e2be540c494bacb2e4f0e772f7206c2aa7097750ebc5913f5d70fe975172be8",
+      "lfNormalizedMatches": false
+    },
+    {
+      "path": "kernel/selinux/sepolicy.c",
+      "sha256": "9a3bf0845a012273f9331c8f812857d97412aeb8e3159b268eb2ac28498b9927",
+      "localSha256": "bdb21a7e054a4b6e1e3b4a5db46c036ff0fdf6846a1a23348934160931ed2102",
+      "lfNormalizedMatches": false
+    },
+    {
+      "path": "kernel/selinux/rules.c",
+      "sha256": "c368437ce6d0f3d93a10ee46b107adec1dfcefeb022468c751179bc5e92aca5d",
+      "localSha256": "7e371370296351055783ce24f5ea0138af3fa98e800d6dcd93a640ba9d941076",
+      "lfNormalizedMatches": false
+    }
+  ],
+  "license": "GPL-3.0-only",
+  "localAdaptations": [
+    "Use the official fixed commit parser and single-copy MLS restoration rather than the older workspace reference",
+    "Use KSU original-type shortcut only for the captured live table/generation; independent Ultra reloads fall back to name lookups",
+    "Allocate an independent policy/SID table and no live policy map alias; retain boot-lifetime objects",
+    "Use the complete KSU AV fallback to support native helpers inlined or specialized by the kernel compiler",
+    "Keep SID -ESTALE retries to four attempts; return the live error without spinning indefinitely",
+    "Preserve captured baseline access/status counters rather than forcing stock values",
+    "Keep KCFI/PAC/BTI/SCS/stack protection from target Kbuild; use relocatable ELF instead of legacy LTO/CFI bitcode",
+    "Optional masked-AV audit callback follows KSU nullable-handler semantics; runtime loader wiring remains pending"
+  ]
+}

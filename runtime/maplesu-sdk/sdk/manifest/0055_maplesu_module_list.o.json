@@ -1,0 +1,213 @@
+{
+  "idx": 55,
+  "name": "maplesu_module_list.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "COMPOSED",
+  "sources": [
+    "src/maplesu/module/list.cpp",
+    "src/maplesu/module/state.cpp",
+    "src/maplesu/install/bootstrap_state.cpp",
+    "src/maplesu/install/executable_publish.cpp"
+  ],
+  "privateHeaders": [
+    "src/maplesu/compat/module_list_exports_legacy_abi.h",
+    "src/maplesu/compat/module_list_legacy_abi.h",
+    "src/maplesu/module/state.h",
+    "src/maplesu/module/types.h",
+    "src/maplesu/module/operations.h",
+    "src/maplesu/compat/module_carrier_conversion.h",
+    "include/maplesu_storage_private.h",
+    "include/maplesu_storage_worker_private.h",
+    "include/maplesu_request_private.h",
+    "src/maplesu/compat/install_state_exports_legacy_abi.h"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 0,
+    "recovered": 0,
+    "unrecovered": [],
+    "scope": "not a historical reconstruction count; previous counts preserved in notes/MODULE-STATE-HISTORY.json",
+    "sourceComplete": true
+  },
+  "original": {
+    "sha256": "56adf62c098f601986ea16cf49ed69ccbc5d8724243a0eb3571c882a8554581e",
+    "bytes": 172784
+  },
+  "evidence": [
+    "notes/MODULE-STATE-INTEGRATION.md",
+    "notes/MODULE-STATE-SYMBOL-DELTA.json",
+    "tools/tests/module_state/README.md",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/module-state-integration-r1/RESULTS.json",
+    "notes/MODULE-DESC-BOUNDS-INTEGRATION.md",
+    "notes/MODULE-DESC-BOUNDS-SYMBOL-DELTA.json",
+    "tools/tests/module_desc_bounds/README.md",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/module-desc-bounds-fix-r1/RECEIPT.json",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/p6/P6-STATE-NORMAL.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/MEMBER-055.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/HOST-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/GREEN-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/APPLY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n04l/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n04l/REGRESSION.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n04l/NDK-current.json"
+  ],
+  "selfCheck": {
+    "tDiff": [
+      "+_ZN7maplesu12module_state3addENS0_4ListERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE",
+      "+_ZN7maplesu12module_state4pathENS0_4ListE",
+      "+_ZN7maplesu12module_state4readENS0_4ListERNSt6__ndk16vectorINS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEENS7_IS9_EEEE",
+      "+_ZN7maplesu12module_state4saveENS0_4ListERKNSt6__ndk16vectorINS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEENS7_IS9_EEEE",
+      "+_ZN7maplesu12module_state6removeENS0_4ListERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE"
+    ],
+    "uDiff": [
+      "+_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6__initEmc",
+      "+_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc",
+      "+_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6insertEmPKc",
+      "+_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryC1ERS3_",
+      "+_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev",
+      "+_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED0Ev",
+      "+_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED1Ev",
+      "+_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED2Ev",
+      "+_ZNSt6__ndk18ios_base33__set_badbit_and_consider_rethrowEv",
+      "+_ZTv0_n24_NSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED0Ev",
+      "+_ZTv0_n24_NSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED1Ev",
+      "+chmod",
+      "+setxattr"
+    ],
+    "note": "Intentional source refactor: Key16 state-store unification and close-error propagation. Full source present; 190 real-consumer host assertions, actual NDK compose and five consumer links pass. No frozen byte/behavior equivalence claimed. Raw per-symbol causes: notes/MODULE-STATE-SYMBOL-DELTA.json. Status partial denotes full helper/APK/device acceptance pending, not missing source. No allow/default-gate changes. Persistent-description read now limits copy to capacity minus one and explicitly terminates; 22 real-source fortify/ASan boundary cases pass (old source 12 failures), raw strong T/U unchanged from shared-state integration. New full helper/APK/device acceptance remains pending."
+  },
+  "notes": "MapleSU owns the unique five-state implementation; no local state copies or migration/dual-read fallback remain in these consumers. Both members are fully maintainable source. partial tracks unperformed production helper/APK and device STATE07 acceptance. Historical recovery/selfCheck/equivalence claims are retained only in notes/MODULE-STATE-HISTORY.json. Current symbol deltas are raw and intentional; default reference gate has not been relaxed.",
+  "recipe": {
+    "stages": 1,
+    "description": "compile all declared source TUs directly to ELF, then compose with existing build.py ld.lld -r branch",
+    "stage1": "clang++ <profile+extra flags> -c <each src> -o <each tu>.o",
+    "partialLink": "ld.lld -r -o <member>.o <list>.o <module_state>.o <bootstrap_state>.o",
+    "expressible_in_build_py": true,
+    "persist_proof": "notes/MODULE-STATE-INTEGRATION.md"
+  },
+  "producer": {
+    "tool": "clang++, then ld.lld -r",
+    "profile": "core-oz-elf-fexceptions",
+    "container": "elf",
+    "kind": "COMPOSED"
+  },
+  "p6Acceptance": {
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/p6/P6-STATE-NORMAL.md",
+    "status": "implemented-pending-device-validation",
+    "hostAssertions": 207,
+    "stateConcurrency": {
+      "processes": 24,
+      "processIds": 96,
+      "threads": 12,
+      "totalIds": 144
+    },
+    "validated": "short state-only RMW flock; atomic rename preserves previous published state after I/O/label failure; symlink/read errors preserved; callback/fork outside state lock; real uninstall delete errors; 5 unique global hidden state functions and actual NDK compose/partial link",
+    "symbolDeltaScope": "evidence/state-normal/state-symbol-delta.json compares preceding P6 partial link only; historical selfCheck deltas above remain unchanged",
+    "concurrentLifecycle": "per-module nonblocking worker-owned POSIX occupancy implemented; 45 lifecycle assertions and actual loader/callback receipts in P6-LIFECYCLE.md. Existing shared module-control global long lock still blocks end-to-end acceptance; exact source proposal not applied by P6",
+    "deviceTested": false,
+    "formalDeliveryUpdated": false
+  },
+  "moduleListReadAcceptance": {
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/ux-performance/sdk-module-list/DELIVERY.json",
+    "status": "implemented-pending-device-validation",
+    "sourceSha256": "ddbc489c13a2479f0fcca614945e2bf79849c160eb99cba0708d8772d6fcc987",
+    "completeChainAssertions": 211,
+    "stateRegressionAssertions": 207,
+    "descriptionBoundaryCases": 22,
+    "ndkCompose": "idx55 before/after; eight strong T and five unique hidden state functions; T/U/W/D/B delta empty",
+    "scope": "Positive child/wait and frame/error publication; request-local paths and bounded override reads. Full ELF/parser and external frame unchanged. Formal SDK/helper/APK and device timing remain unverified.",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "nativeListOwnershipAcceptance": {
+    "status": "source-migrated-pending-formal-and-device",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n04l/DELIVERY.json",
+    "scope": "Unique TU-private MapleSU list implementation; public packed align1 carrier and canonical fork ABI kept at explicit compatibility boundary; old hidden list/C exports retained; placement-new directory contract preserved.",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "maplesuNativeModuleBatchR18": {
+    "status": "source-implemented-pending-combined-build-abi-and-consumer-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/internal-ownership-r18-review/PLAN.md",
+    "legacyBoundary": "fixed external exports, layout, callbacks and persistent bytes retained",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "maplesuNativeCarriersR21": {
+    "status": "source-frozen-validation-pending",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/native-carriers-r21/IMPLEMENTATION.md",
+    "scope": "MapleSU native descriptor, record and version in metadata/ZIP/list/install/API; legacy ABI and raw frames retained at explicit compatibility edges",
+    "sourceBeforeSha256": "b48a2bbd891a310e550f5c9f5b3466e01e1eb738e38a4bb5b0548ac4cd5daf04",
+    "sourceAfterSha256": "e4b3372a9746cfacc18f17ab3eabc5af9e29f2166dac40f6a0ca7a05290b9c85",
+    "testsExecuted": false,
+    "ndkExecuted": false,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "compatibilityContracts": [
+      "The native and legacy unsafe list entrances append records; safe list replaces the caller output only after complete frames and exact child success. Failure preserves the existing caller list.",
+      "Native record is 9236 bytes/align4; the legacy public Android record remains 9236 bytes/align1 and is converted by byte offsets without binding a misaligned descriptor reference."
+    ]
+  },
+  "moduleInstallCompletion20261118": {
+    "status": "source-implemented-pending-single-owner-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/typed-state-chain-20261118/module-install-completion/ASSESSMENT.md",
+    "sourceSha256": {
+      "src/maplesu/module/install.cpp": "05b719a5ffbb4e8470f144332a7d167356924c98b4a02712339dc32cc30caae9",
+      "src/maplesu/module/api.cpp": "2724df6459677e47a9ca24eedf640753b48b5c0c57a8ae9b3e204c0c38a4a4ad",
+      "src/maplesu/module/list.cpp": "5870a3c616bf552354d8eac59f7ee490a70fd25e1fac9cbb4471759bc1c0b9a3",
+      "src/maplesu/module/runtime.cpp": "1c1310d009c052d8e10dc47f26727567faa8e78853d3c1fb04e4c465d281c915",
+      "src/maplesu/module/operations.h": "8f0443fe2ae52f6656b23270d02c6d9015f505a2f91785f29673330210cfb6fb",
+      "src/maplesu/module/state.h": "b7dac049ff54e171a784c6d6b0c8e2da6eac2c48604cae5f5482a32b106261ad",
+      "src/maplesu/module/state.cpp": "d498f95298b111b5622ba82f36028a3187a4d4a2268bffa370bbf7cbb7f66ea8",
+      "include/maplesu_module_install_private.h": "99ed7457fdf79634dc647efcf249e089d4d3e7726fea08d1990f7cb2b69256f7",
+      "src/maplesu/compat/module_runtime_legacy_abi.h": "eecbd7d7fba011ba85a2ac315b2a9382bfd6e4f5b7fa77405ab04284ee5591c0",
+      "src/maplesu/module/callback.cpp": "76dfb8f0ff682951373b3863439606afd8e05de9d18376bd86c82062ee7d5bf7"
+    },
+    "scope": "Per-ID durable install/rollback, exact callback/worker receipts, context paths and boot recovery isolation; committed startup diagnostics remain separate. Public module ABI and original SDK codes retained.",
+    "testsRun": false,
+    "ndkRun": false,
+    "formalAssetsPromoted": false,
+    "deviceTested": false,
+    "optionalStartupMode": "Missing/unreadable install.mode selects committed next-boot activation, not installation rejection.",
+    "storagePaths": "Use current authenticated worker StorageContext; no new worker factory is claimed.",
+    "validation": "Affected source/runtime results are recorded separately under dedicated-regression/module-lifecycle-20261118; no formal SDK or device claim."
+  },
+  "ownerDeploymentWorker20261119": {
+    "status": "source-implemented-validation-pending",
+    "namespaceCommand": 27,
+    "newPublicAbi": false,
+    "workerSessionOwned": true,
+    "moduleIdFromCallerOrArchive": true,
+    "legacyKeyAbiPreserved": true,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false
+  },
+  "legacyBinaryExports20261120": {
+    "status": "implemented-actual-ndk-and-strict-link-verified",
+    "compatibility": "Exact frozen binary exports alias the existing MapleSU function; no duplicate implementation or error projection.",
+    "source": "runtime/maplesu-sdk/sdk/src/maplesu/module/list.cpp",
+    "aliasHeader": "src/maplesu/compat/module_list_exports_legacy_abi.h",
+    "exports": [
+      {
+        "legacy": "_ZN10skroot_env20safe_get_all_modulesERNSt6__ndk16vectorINS_13module_recordENS0_9allocatorIS2_EEEE",
+        "target": "_ZN7maplesu3sdk20safe_get_all_modulesERNSt6__ndk16vectorINS0_13module_recordENS1_9allocatorIS3_EEEE"
+      },
+      {
+        "legacy": "_ZN10skroot_env22unsafe_get_all_modulesERNSt6__ndk16vectorINS_13module_recordENS0_9allocatorIS2_EEEE",
+        "target": "_ZN7maplesu3sdk22unsafe_get_all_modulesERNSt6__ndk16vectorINS0_13module_recordENS1_9allocatorIS3_EEEE"
+      }
+    ],
+    "validation": ".tmp/legacy-module-ops-abi-20261120/green-linked-addresses/EXECUTION.json",
+    "rawMemberGateChanged": false,
+    "formalPromotion": false,
+    "deviceValidated": false
+  }
+}

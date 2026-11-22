@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_install_pending_title">安装结果待确认</string>
+    <string name="module_install_pending_message">安装结果尚未确定，当前状态保持待确认。</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ultra_module_policy_load">Load module SELinux policies</string>
+    <string name="ultra_module_policy_load_summary">Support modules that need SELinux policy changes for hooks or injection; these changes may be detected</string>
+    <string name="ultra_module_policy_hide">Hide module SELinux policy changes (experimental)</string>
+    <string name="ultra_module_policy_hide_summary">Try to hide module SELinux policy changes globally. Experimental behavior may still affect the environment</string>
+    <string name="ultra_module_policy_reboot">Changes take effect globally after reboot</string>
+    <string name="ultra_module_policy_session_pending">Policy controls are not prepared in the current temporary session. No boot update is required.</string>
+    <string name="ultra_module_policy_hook_hide_unavailable">The current temporary backend has no module-policy hiding interface. Ordinary policy loading remains available.</string>
+    <string name="ultra_module_policy_hook_applied">Applied to subsequent module-policy transactions without reboot. Previously loaded policies are unchanged.</string>
+    <string name="ultra_module_policy_pending">Pending reboot — the current boot keeps its existing policy mode</string>
+    <string name="ultra_module_policy_unavailable">Policy backend update required. Loading preferences can be saved now and applied after updating the environment and rebooting</string>
+    <string name="ultra_module_policy_read_failed">Policy settings could not be read; no state was changed</string>
+    <string name="ultra_module_policy_hide_unavailable">Update the environment and reboot to enable the current policy backend</string>
+    <string name="ultra_module_policy_hide_try">Compatibility is unverified. Confirm the risks to try enabling</string>
+    <string name="ultra_module_policy_hide_fallback">Policy hiding failed; ordinary module loading is active. Export diagnostics for details.</string>
+    <string name="ultra_module_policy_hide_failed">Policy initialization did not complete this boot. Disable the experimental setting and export diagnostics</string>
+    <string name="ultra_module_policy_risk_title">Try policy hiding</string>
+    <string name="ultra_module_policy_risk_message">This kernel has not passed full compatibility validation. Continuing tries the implementation for the same kernel series and may cause a Panic, automatic restart, or boot failure. “Enable anyway” saves the setting for the next boot. Required runtime checks remain active and diagnostics are included in exported logs. If the attempt fails, disable this setting and reboot to recover.</string>
+    <string name="ultra_module_policy_risk_confirm">Enable anyway</string>
+    <string name="ultra_module_policy_notice_title">This module needs SELinux policies</string>
+    <string name="ultra_module_policy_notice">%1$s includes SELinux policies. Loading is disabled or not yet effective for this boot, so features that depend on these policies may not work. Allowing policy changes can expand module permissions, affect system stability and make environment changes detectable. To allow them, enable “Load module SELinux policies” in Settings and confirm it has taken effect. Confirming this notice only closes it; it does not enable policy loading.</string>
+    <string name="ultra_module_policy_notice_suppress">Do not remind me again</string>
+</resources>

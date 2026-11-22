@@ -1,0 +1,31 @@
+{
+  "idx": 15,
+  "name": "block_device.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/block_device.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 2,
+    "recovered": 2,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "2a045480129288559031b22fa135a9eb54b866e42ed0e80a078be38fa5f08ac1",
+    "bytes": 232516
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Two-way symbol gate clean: T 2/2 exported resolvers, U 130/130 imports, raw diff empty both ways, no allowance consumed. Rebuilt in the frozen member's container with the member's flagsProfile."
+  },
+  "notes": ""
+}

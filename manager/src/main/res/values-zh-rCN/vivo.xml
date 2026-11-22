@@ -1,0 +1,10 @@
+<resources>
+    <string name="install_vivo_boot_title">继续选择 boot？</string>
+    <string name="install_vivo_boot_warning">Normal 需要在实际启动的 ramdisk 中加载模块。本设备建议使用 init_boot；如果启动 ramdisk 位于 init_boot，只修补 boot 可能启动后仍显示未安装。确认后仍可选择 boot。Ultra 使用 boot 内核，不受此限制。</string>
+    <string name="install_vivo_title">vivo / iQOO 兼容支持</string>
+    <string name="install_vivo_file_summary">Normal 在 ramdisk 早期加载 vr 过滤器；Ultra 在 boot 内核过滤，无需配套镜像。可额外选择 vendor_boot 冷移除 vr/vklp，选择后需同时刷入其输出。</string>
+    <string name="install_vivo_direct_summary">按所选目标安装启动过滤器。Ultra 修补 boot，Normal 修补包含启动 ramdisk 的镜像。</string>
+    <string name="install_vivo_select_image">选择 %1$s.img</string>
+    <string name="install_vivo_image_needed">可选：本固件原厂镜像，用于冷移除 vr/vklp</string>
+    <string name="install_vivo_inputs_required">启动过滤已包含在主镜像中；vendor_boot 为可选冷移除镜像。</string>
+</resources>

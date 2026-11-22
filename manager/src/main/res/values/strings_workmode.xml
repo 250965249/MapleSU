@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Dual work mode UI strings. Prefix work_mode_ for the mode UI.
+  The product names appear only in the work_mode_lite / work_mode_ksu keys; everything else uses placeholders.
+  Internal identifiers (WorkMode.LITE/KSU, prefs keys, /data/adb paths, storage keys "A"/"B") are unchanged.
+-->
+<resources>
+    <!-- ══ Work mode entry ══ -->
+    <string name="work_mode">Work mode</string>
+    <string name="work_mode_entry_summary">Current: %1$s</string>
+    <string name="work_mode_lite" translatable="false">MapleSU_Ultra</string>
+    <string name="work_mode_ksu">MapleSU_Normal</string>
+    <string name="work_mode_open">View work mode</string>
+    <string name="work_mode_settings_row_summary">View the current mode or switch to the other one</string>
+    <string name="work_mode_install_entry_summary">View or switch the current work mode</string>
+    <string name="work_mode_current_mode">Current work mode: %1$s</string>
+    <string name="work_mode_recheck">Check again</string>
+    <string name="work_mode_retry">Retry</string>
+    <string name="work_mode_open_install">Go to install</string>
+    <string name="work_mode_reboot_now">Reboot</string>
+    <string name="work_mode_save_log">Save log</string>
+    <string name="work_mode_back">Back</string>
+    <string name="work_mode_pending_banner">The last switch has not finished. Tap to view it.</string>
+    <string name="work_mode_journal_missing">This switch record is not available right now</string>
+    <string name="work_mode_masked_summary">Work mode information is not shown right now</string>
+    <string name="work_mode_not_available">There is no other mode to switch to right now</string>
+    <string name="work_mode_switch_backend_missing">The switch service is unavailable. Try again later.</string>
+    <string name="work_mode_analyzing">Confirming the current mode…</string>
+
+    <!-- ══ Mode state ══ -->
+    <string name="work_mode_state_a_active_title">Stealth-first mode is running</string>
+    <string name="work_mode_state_a_active_summary">This device is working in stealth-first mode.</string>
+    <string name="work_mode_state_b_active_title">Compatibility mode is running</string>
+    <string name="work_mode_state_b_active_summary">This device is working in compatibility mode.</string>
+    <string name="work_mode_state_b_kernel_only_title">This mode needs repair</string>
+    <string name="work_mode_state_b_kernel_only_summary">Some components are missing. Repair them before switching.</string>
+    <string name="work_mode_state_a_unbound_title">This mode is unavailable right now</string>
+    <string name="work_mode_state_a_unbound_summary">It is installed but cannot be reached. Reinstall to restore it.</string>
+    <string name="work_mode_state_foreign_title">Another root manager was detected</string>
+    <string name="work_mode_state_foreign_summary">Migrate to MapleSU to keep using this device.</string>
+    <string name="work_mode_state_none_title">Not installed yet</string>
+    <string name="work_mode_state_none_summary">Choose a work mode after installing.</string>
+    <string name="work_mode_state_indeterminate_title">Cannot confirm yet</string>
+    <string name="work_mode_state_indeterminate_summary">Grant root and check again, or reboot and retry.</string>
+
+    <!-- ══ Switch confirm / progress / result ══ -->
+    <string name="work_mode_switch_to">Switch to %1$s</string>
+    <string name="work_mode_confirm_title">Switch work mode</string>
+    <string name="work_mode_confirm_body">Your data is kept. A reboot is needed afterwards. Do not power off during the switch.</string>
+    <string name="work_mode_confirm_switch">Switch</string>
+    <string name="work_mode_cancel">Cancel</string>
+    <string name="work_mode_blocker_title">Cannot switch right now</string>
+    <string name="work_mode_warning_title">Please note</string>
+    <string name="work_mode_backup_summary">Backed up: %1$d modules · %2$d grants · %3$d files</string>
+    <string name="work_mode_switch_running">Switching. Do not power off.</string>
+    <string name="work_mode_switch_done_reboot">Switch complete</string>
+    <string name="work_mode_switch_failed">The switch did not finish: %1$s</string>
+    <string name="work_mode_switch_rolled_back">Restored to %1$s</string>
+    <string name="work_mode_switch_needs_manual">The switch could not restore itself: %1$s</string>
+    <string name="work_mode_switch_stage">Step %1$d of %2$d</string>
+    <string name="work_mode_switch_page_title">Switch work mode</string>
+    <string name="work_mode_switch_attaching">Reading the switch progress…</string>
+    <string name="work_mode_switch_observe_missing">The switch progress cannot be read. It may have finished already.</string>
+
+    <!-- ══ Gate notices ══ -->
+    <string name="work_mode_blocked_undetermined">The current mode is not confirmed yet. Try again later.</string>
+
+    <!-- ══ Switch entry and blockers ══ -->
+    <string name="work_mode_switch_button">Switch work mode</string>
+    <string name="work_mode_switch_current_lite">Current: Ultra</string>
+    <string name="work_mode_switch_current_ksu">Current: Normal</string>
+    <string name="work_mode_switch_not_ready">The switch cannot start right now</string>
+    <string name="work_mode_switch_failed_short">The switch did not finish</string>
+    <string name="work_mode_switch_recovery_required">The switch could not restore itself. Follow the steps on the recovery page.</string>
+    <string name="work_mode_reboot_apply">Reboot</string>
+    <string name="work_mode_reboot_marker_saved">All set. Reboot your device to finish the switch.</string>
+    <string name="work_mode_open_progress">View progress</string>
+    <string name="work_mode_open_recovery">View recovery options</string>
+    <string name="work_mode_abort">Cancel switch</string>
+    <string name="work_mode_rollback">Restore previous state</string>
+    <string name="work_mode_switch_log_pending">Export diagnostics from the recovery or diagnostics page.</string>
+    <string name="work_mode_blocker_stealth">The work mode cannot be switched right now.</string>
+    <string name="work_mode_blocker_hidden">The work mode cannot be switched right now.</string>
+    <string name="work_mode_blocker_not_installed">MapleSU is not installed yet. Install it first.</string>
+    <string name="work_mode_blocker_foreign">Another root manager was detected. Migrate to MapleSU first.</string>
+    <string name="work_mode_blocker_a_unbound">The current mode is unavailable. Reinstall it first.</string>
+    <string name="work_mode_blocker_b_kernel_only">Some components of the current mode are missing. Repair them first.</string>
+    <string name="work_mode_blocker_same_mode">There is no other mode to switch to right now.</string>
+    <string name="work_mode_blocker_pending_switch">The last switch has not finished. Complete or recover it first.</string>
+    <string name="work_mode_blocker_backend">The switch service is unavailable. Try again later.</string>
+    <string name="work_mode_blocker_baseline">The stock boot image could not be confirmed. Prepare a stock image matching your system version, then retry.</string>
+    <string name="work_mode_blocker_generic">The mode cannot be switched right now. Try again later.</string>
+    <string name="work_mode_blocker_pending_install">An installation has not finished. Complete it before switching.</string>
+    <string name="work_mode_blocker_w19">Restore files needed for the switch are incomplete, so this mode cannot be left yet.</string>
+    <string name="work_mode_failure_export">Current-mode settings or superuser data could not be exported. No partition was written. Retry or view diagnostics.</string>
+    <string name="work_mode_blocker_battery">Battery is too low. Charge above 20% or plug in.</string>
+    <string name="work_mode_blocker_space">Not enough storage. Free up space and retry.</string>
+    <string name="work_mode_blocker_selinux">The system security policy is in an unexpected state, so switching is unavailable.</string>
+    <string name="work_mode_blocker_pro_env_suspend">The current environment is running, so a direct switch is not supported yet.</string>
+    <string name="work_mode_blocker_pro_env_restore">Restore files for the target environment are not ready yet.</string>
+    <string name="work_mode_blocker_pro_env_unknown">The environment state cannot be confirmed. Try again later.</string>
+    <string name="work_mode_blocker_ultra_env_suspend">The current environment is running, so a direct switch is not supported yet.</string>
+    <string name="work_mode_blocker_ultra_env_restore">Restore files for the target environment are not ready yet.</string>
+    <string name="work_mode_blocker_ultra_env_unknown">The environment state cannot be confirmed. Try again later.</string>
+    <string name="work_mode_blocker_backend_blocked">The pre-switch check did not pass. Try again later.</string>
+
+    <!-- ══ Settings feature cards ══ -->
+    <string name="work_mode_stealth_title">Stealth</string>
+    <string name="work_mode_stealth_summary">Hide root traces. Turn off to restore the UI.</string>
+    <string name="work_mode_stealth_unavailable">Stealth cannot be read, or is not supported on this system.</string>
+    <string name="work_mode_applock_title">App lock</string>
+    <string name="work_mode_applock_unavailable">App lock is not enabled on this system.</string>
+    <string name="work_mode_webadmin_title">Web manager</string>
+    <string name="work_mode_webadmin_summary">Manage this device from a browser.</string>
+    <string name="work_mode_webadmin_unavailable">The web manager is not supported on this system.</string>
+    <string name="work_mode_webadmin_copy">Copy access link</string>
+    <string name="work_mode_webadmin_open">Open in browser</string>
+    <string name="work_mode_webadmin_copied">Access link copied</string>
+    <string name="work_mode_webadmin_copy_failed">Copy failed</string>
+    <string name="work_mode_webadmin_failed">The web manager is unavailable right now.</string>
+    <string name="work_mode_superuser_unresolved">The current mode is not confirmed yet, so the superuser list is unavailable.</string>
+    <string name="work_mode_superuser_unavailable">The superuser list is unavailable in the current mode.</string>
+
+    <!-- ══ Settings status rows ══ -->
+    <!-- "On" is only allowed for an explicit ON; UNKNOWN must use settings_status_unknown. -->
+    <string name="settings_status_on">On</string>
+    <string name="settings_status_off">Off</string>
+    <string name="settings_status_unknown">Unknown (read failed)</string>
+    <string name="settings_kernel_mode">Kernel mode</string>
+    <string name="settings_kernel_mode_lkm">LKM (loadable module)</string>
+    <string name="settings_kernel_mode_builtin">Built-in kernel</string>
+
+    <!-- ══ Install page: target mode ══ -->
+    <string name="install_target_mode">Target work mode</string>
+    <!-- One line saying how this install is performed; product names live only in work_mode_lite / work_mode_ksu. -->
+    <string name="install_target_mode_ultra_summary">Stealth mode · Patch the boot kernel</string>
+    <string name="install_target_mode_normal_summary">Compatibility mode · Install with KernelSU</string>
+    <string name="install_target_mode_current">Target: %1$s</string>
+    <string name="install_target_mode_locked">Cannot be changed while an install or switch is running</string>
+    <string name="install_target_kernel_loading">Reading kernel information…</string>
+    <!-- Plain reason and next step only; machine codes go to the log. -->
+    <string name="install_target_blocker_normal_requires_image">This mode needs a boot image file. Use \"Select a file and patch\" instead.</string>
+    <string name="install_target_blocker_normal_download">Downloaded images cannot be used for this mode. Use \"Select a file and patch\" instead.</string>
+    <string name="install_target_blocker_kmi_unparseable">This device\'s kernel version cannot be identified, so this mode cannot be installed.</string>
+    <string name="install_target_blocker_kmi_not_in_matrix">This mode does not support this device\'s kernel yet. Choose the other mode.</string>
+    <string name="install_target_blocker_kmi_artifact_missing">This version of MapleSU has no build for this device\'s kernel. Update it, or choose the other mode.</string>
+    <string name="install_target_blocker_kmi_mismatch">The kernel and platform information differ. Check that this kernel is intended for this device.</string>
+</resources>

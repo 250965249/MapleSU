@@ -1,0 +1,35 @@
+{
+  "idx": 20,
+  "name": "pte_fn_t.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/pte_fn_t.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "b15e4fd76df6419314ee383db9b04781f69db2ffb678c94eaa544ed92dfb0fc4",
+    "bytes": 148664
+  },
+  "evidence": [
+    "notes/work/LAST14-A/proof/020/EQUIVALENCE.md",
+    "notes/work/LAST14-A/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "note": "Two-way raw symbol gate: T 1/1, U 73/73, raw diff empty both ways; zero gate-symbol-baseline entries consumed. verify_equiv: status=equivalent, functions 222/222, missing=0, extra=0, call_target_match=222, bag_min=0.9842, bag_mean=0.9999."
+  },
+  "notes": ""
+}

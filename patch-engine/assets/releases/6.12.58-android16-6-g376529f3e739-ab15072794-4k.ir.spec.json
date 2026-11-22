@@ -1,0 +1,70 @@
+{
+  "spec": "patch-engine/assets/releases/6.12.58-android16-6-g376529f3e739-ab15072794-4k.ir.spec",
+  "specSha256": "ec9e44addc4cab93cea30283814a81f5a49b833b27465504f2450d9336f6cf24",
+  "release": "6.12.58-android16-6-g376529f3e739-ab15072794-4k",
+  "image": ".analysis\\ultra-boot-analysis-2026-10-30\\out\\Oneplus_Ace6_Plus_6.12\\kernel.bin",
+  "imageSha256": "6679e3fbc59c802e22e35c4ef87eefe5c0e7d0e79e37e294ef58324d457e50fb",
+  "imageBytes": 41232896,
+  "cave": {
+    "offset": 19512392,
+    "va": "0xffffffc08129bc48",
+    "stubBytes": 60,
+    "notes": [
+      "save raw LR (we branch before paciasp)",
+      "w9 = magic uid",
+      "compare ruid against the magic value",
+      "not ours -> original prologue",
+      "x0 = &init_task",
+      "+ offset inside the page",
+      "prepare_kernel_cred(&init_task)",
+      "allocation failed -> silent no-op",
+      "commit_creds(new)",
+      ".Lok: w0 = 0",
+      "restore LR",
+      "return",
+      ".Lorig: restore LR",
+      "replay the instruction we overwrote",
+      "continue at entry+4"
+    ]
+  },
+  "printk": {
+    "name": "_printk",
+    "offset": 792400,
+    "fallback": false
+  },
+  "symbols": {
+    "avc_denied": 1489140,
+    "__sys_setresuid": 4672968,
+    "aarch64_insn_patch_text": 19308640,
+    "vectors": 69632,
+    "init_task": 38984384,
+    "init_cred": 39073840,
+    "prepare_kernel_cred": 4753040,
+    "commit_creds": 2920552,
+    "_etext": 19529728
+  },
+  "blocks": [
+    {
+      "id": "P1",
+      "offset": 1489168,
+      "orig": "80018012",
+      "patched": "00008052",
+      "note": "avc_denied: -EACCES -> 0 (every SELinux denial becomes allow)"
+    },
+    {
+      "id": "P3",
+      "offset": 4672968,
+      "orig": "3f2303d5",
+      "patched": "a09b3814",
+      "note": "__sys_setresuid: entry hook -> magic-uid stub in the .text cave"
+    },
+    {
+      "id": "P3c",
+      "offset": 19512392,
+      "orig": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "patched": "fe0f1ff8a9d59b521f00096b21010054809400d000002b918cb2c797400000b400b5c097e0031f2afe0741f8c0035fd6fe0741f83f2303d55364c717",
+      "note": "code cave: magic-uid check + commit_creds(prepare_kernel_cred(&init_task)))"
+    }
+  ],
+  "verifiedAgainstReference": null
+}

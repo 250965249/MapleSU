@@ -1,0 +1,53 @@
+{
+  "idx": 42,
+  "name": "module_web_ui_server.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module/module_web_ui_server.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 6,
+    "recovered": 6,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "5cc092a29fb3ca7ed4f29cd0cfdd481ed65f73eb00c231939898c01c578a240b",
+    "bytes": 92532
+  },
+  "evidence": [
+    "runtime/upstream-pro/sdk/notes/work/UIMP/STATUS.md#idx-42"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "强导出 T 6/6、强未定义 U 81/81，双向差集为空，未消耗工具链基线。行为等价复验（tools/verify_equiv.py）：函数清单 152/152 全等（missing=0 extra=0）、逐函数 call target 集合 152/152 全等、seq_mean=0.9983、bag_mean=0.9996、bag_min=0.9701（>=0.95），判定 equivalent。补齐的路径：单例服务器守卫 → WebUI 根目录/自定义 handler 前置校验 → 根 key 与模块 id32 发布 → 性能核绑定 → 监听端口与 handler 记录 → 启动前回调 → CivetServer 选项表（监听端口/文档根/索引文件/关闭目录列表/线程数）→ CivetServer 创建 → 创建后回调与根路径 handler 注册；另有读取最近监听端口与退出前动作两个查询入口。",
+    "measured": {
+      "origStrongT": 6,
+      "newStrongT": 6,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "origU": 81,
+      "newU": 81,
+      "uMissing": 0,
+      "uExtra": 0,
+      "verifyEquivRefFunctions": 152,
+      "verifyEquivNewFunctions": 152,
+      "verifyEquivMatched": 152,
+      "verifyEquivMissing": 0,
+      "verifyEquivExtra": 0,
+      "verifyEquivCallTargetMatch": 152,
+      "verifyEquivSeqMean": 0.9983,
+      "verifyEquivBagMean": 0.9996,
+      "verifyEquivBagMin": 0.9701,
+      "verifyEquivStatus": "equivalent"
+    }
+  },
+  "notes": "WebUI 服务器启动/查询三入口；CivetServer 选项表与回调结构按参考成员行为构造，性能核绑定使用 sysfs 频率中位数以上核心的掩码。"
+}

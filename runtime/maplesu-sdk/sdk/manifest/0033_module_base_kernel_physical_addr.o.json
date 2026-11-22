@@ -1,0 +1,35 @@
+{
+  "idx": 33,
+  "name": "module_base_kernel_physical_addr.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module_base/module_base_kernel_physical_addr.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 6,
+    "recovered": 6,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "087ba682ea081ec0cbc14d2ab443d67e8c439e0759eac86d81a9793ecf7e7334",
+    "bytes": 208240
+  },
+  "evidence": [
+    "notes/work/LAST14-A/proof/033/EQUIVALENCE.md",
+    "notes/work/LAST14-A/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "note": "Two-way raw symbol gate: T 6/6, U 76/76, raw diff empty both ways; zero gate-symbol-baseline entries consumed. verify_equiv: status=equivalent, functions 344/344, missing=0, extra=0, call_target_match=344, bag_min=0.9483, bag_mean=0.9997. DECLARED: the 0.95 bag_min target is NOT met (measured 0.9483); the member is reported as the delivery comparator sees it, with every function present, every call-target set identical, and the raw symbol gate empty."
+  },
+  "notes": ""
+}

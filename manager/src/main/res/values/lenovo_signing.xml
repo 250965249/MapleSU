@@ -1,0 +1,17 @@
+<resources>
+    <string name="install_advanced_title">Advanced options</string>
+    <string name="install_advanced_expand">Expand</string>
+    <string name="install_advanced_collapse">Collapse</string>
+    <string name="install_lenovo_title">Lenovo locked-device image signing</string>
+    <string name="install_lenovo_summary">Enable Lenovo AVB signing for locked devices. Signs Boot so compatible Lenovo devices can install images directly. Enable only for compatible Lenovo devices.</string>
+    <string name="install_lenovo_confirm_title">Enable Lenovo image signing?</string>
+    <string name="install_lenovo_aosp">Newer Lenovo locked-device image signing (AOSP)</string>
+    <string name="install_lenovo_aosp_hint">Leave unchecked for older versions. AOSP four-image signing applies to boot only; init_boot always uses non-chained signing.</string>
+    <string name="install_lenovo_legacy">Legacy Lenovo AVB signing</string>
+    <string name="install_lenovo_boot_target">Signs after all patches: chained for boot, non-chained for init_boot. Tap to configure newer AOSP signing.</string>
+    <string name="install_lenovo_select_image">Select %1$s image</string>
+    <string name="install_lenovo_image_needed">Required · use images from the same firmware as boot</string>
+    <string name="install_lenovo_images_required">Select all required signing images before continuing.</string>
+    <string name="install_lenovo_auto_images">Read companion partitions automatically</string>
+    <string name="install_lenovo_auto_images_summary">Uses the current slot. Signs after all patches, verifies the complete image set and writes it with rollback backups.</string>
+</resources>

@@ -1,0 +1,103 @@
+{
+  "buildId": "2e7820bef1e83d455a5cc8bb9d41d5dbfe5b538e",
+  "pageSize": 4096,
+  "hooks": [
+    {
+      "name": "sel_write_context",
+      "first16": "3f2303d5ff4301d15e8600f8fd7b02a9"
+    },
+    {
+      "name": "sel_write_access",
+      "first16": "3f2303d5ff8301d15e8600f8fd7b03a9"
+    },
+    {
+      "name": "selinux_setprocattr",
+      "first16": "3f2303d5ff8301d15e8600f8fd7b01a9"
+    },
+    {
+      "name": "sel_open_handle_status",
+      "first16": "3f2303d55e8600f8fd7bbea9f30b00f9"
+    },
+    {
+      "name": "sel_read_handle_status",
+      "first16": "3f2303d55e8600f8fd7bbca9f70b00f9"
+    },
+    {
+      "name": "sel_mmap_handle_status",
+      "first16": "3f2303d55e8600f8fd7bbfa9fd030091"
+    },
+    {
+      "name": "sk_filter_trim_cap",
+      "first16": "3f2303d5ff4301d15e8600f8fd7b01a9"
+    },
+    {
+      "name": "commit_creds",
+      "first16": "3f2303d55e8600f8fd7bbda9f65701a9"
+    },
+    {
+      "name": "__skb_try_recv_datagram",
+      "first16": "3f2303d5ff0302d15e8600f8fd7b02a9"
+    }
+  ],
+  "dynamicScs": false,
+  "cacheFunction": "caches_clean_inval_pou",
+  "alternativesReturnsStatus": false,
+  "nativeCodeAbi": [
+    {
+      "name": "caches_clean_inval_pou",
+      "first16": "5f2403d51f2003d51f2003d5e20300aa",
+      "runtimeFirst16": [
+        "5f2403d51f2003d51f2003d5e20300aa",
+        "5f2403d59f3a03d50f000014e20300aa"
+      ]
+    },
+    {
+      "name": "memcpy",
+      "first16": "5f2403d52400028b0500028b5f0002f1",
+      "runtimeFirst16": [
+        "5f2403d52400028b0500028b5f0002f1"
+      ]
+    },
+    {
+      "name": "memset",
+      "first16": "5f2403d5e80300aa271c0012e720072a",
+      "runtimeFirst16": [
+        "5f2403d5e80300aa271c0012e720072a"
+      ]
+    },
+    {
+      "name": "strlen",
+      "first16": "5f2403d5040c4092e8c300b29f0000f1",
+      "runtimeFirst16": [
+        "5f2403d5040c4092e8c300b29f0000f1"
+      ]
+    },
+    {
+      "name": "strcmp",
+      "first16": "3f2303d508004039290040391f01096b",
+      "runtimeFirst16": [
+        "3f2303d508004039290040391f01096b"
+      ]
+    }
+  ],
+  "requiredLoaderSymbols": [
+    "sel_write_context",
+    "sel_write_access",
+    "selinux_setprocattr",
+    "sel_open_handle_status",
+    "sel_read_handle_status",
+    "sel_mmap_handle_status",
+    "sk_filter_trim_cap",
+    "commit_creds",
+    "__skb_try_recv_datagram",
+    "set_memory_nx",
+    "set_memory_rw",
+    "set_memory_ro",
+    "set_memory_x",
+    "caches_clean_inval_pou",
+    "apply_alternatives_module"
+  ],
+  "release": "5.15.202-android13-5.15.202_r00-dirty",
+  "configSha256": "8f3becf5d860fa01d1fa2248ed3a2a7c9952eeb6267bb3aa97fd6b8811af0516",
+  "scope": "Exact image identity and hook bytes, not OEM image family or runtime capability acceptance"
+}

@@ -1,0 +1,31 @@
+{
+  "idx": 11,
+  "name": "inode_operations.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/inode_operations.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 8,
+    "recovered": 8,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "8902daac516b6ed53f54434a7dad9f2a1ed5d367608a915a4f42059bb9743cbc",
+    "bytes": 190804
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Two-way symbol gate clean: T 8/8 exported resolvers, U 83/83 imports, raw diff empty both ways, no allowance consumed. Rebuilt in the frozen member's container with the member's flagsProfile."
+  },
+  "notes": ""
+}

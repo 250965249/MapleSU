@@ -1,0 +1,121 @@
+{
+  "idx": 54,
+  "name": "maplesu_module_elf_meta.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/module/metadata.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-flto=thin",
+    "-fvisibility=hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 101,
+    "recovered": 101,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "3a2997799fffee1583b0c3c3eed1b42cd382f1f0aae0613749f1c2996633f99a",
+    "bytes": 64804
+  },
+  "evidence": [
+    "notes/work/AGENT112/proof/054/EQUIVALENCE.md",
+    "notes/work/AGENT112/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": [],
+    "equivalence": {
+      "functions": "101/101",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "101/101",
+      "bag_min": 0.9563,
+      "bag_mean": 0.9996,
+      "seq_mean": 0.9953
+    },
+    "note": "Measured against the frozen archive with the final green build (build/r5/out, member gate PASS 260/260). Two-way gate: T 5/5, U 46/46, raw diff empty, baseline consumed 0. verify_equiv: status=equivalent, functions 101/101, missing=0, extra=0, call_target_match=101/101, bag_min=0.9563, bag_mean=0.9996, seq_mean=0.9953. Fixed: cached bytes.size() in deserialize_module_descs, single cached end iterator in find_tagged_value, and runtime_reverse_to_string builds the string with an explicit N-1 length (frozen calls basic_string::__init). Member now equivalent: inventory 101/101, call sets 101/101, bag_min 0.9563."
+  },
+  "notes": "",
+  "p7NativeModuleMetadata": {
+    "status": "implemented-pending-device-validation",
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03a/HANDOFF.md",
+    "scope": "One MapleSU implementation; frozen legacy module ABI and raw descriptor wire boundary retained",
+    "sourceBeforeSha256": "acefaa948e05032feb8cf3495a2ccd57968b44c537188846b1999a968abb470d",
+    "sourceAfterSha256": "36e1121dfca846be162b95e008f5f2d57f7fa3ce8205940fd6ae860581fd13e9",
+    "compatHeaderSha256": "d76e426e62a42383009a4c3075074b8866c34aed99c0719afb658054df179896",
+    "hostContractAssertionsEach": 84,
+    "publicConsumerAssertionsEach": 72,
+    "completeBehaviorUnchanged": true,
+    "androidLayoutUnchanged": true,
+    "strongExports": 5,
+    "bitcodeUndefined": 46,
+    "elfUndefined": 42,
+    "externalSymbolsAndElfVisibilityUnchanged": true,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "privateHeaders": [
+    "src/maplesu/compat/module_metadata_abi.h",
+    "src/maplesu/module/path_contract.h",
+    "src/maplesu/module/types.h",
+    "src/maplesu/module/operations.h",
+    "src/maplesu/compat/module_carrier_conversion.h",
+    "include/maplesu_storage_private.h",
+    "src/maplesu/compat/module_metadata_exports_legacy_abi.h"
+  ],
+  "maplesuModuleWriterR19": {
+    "status": "source-implemented-pending-combined-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/module-writer-r19/IMPLEMENTATION.md",
+    "scope": "single-component IDs, effective relative archive names, fd-anchored writer and delete; legacy module ABI retained",
+    "sourceBeforeSha256": "36e1121dfca846be162b95e008f5f2d57f7fa3ce8205940fd6ae860581fd13e9",
+    "sourceAfterSha256": "fdb71532577b413d37b8dd97e7a2f0b30a5863672516cc5d32030a77f5a5239c",
+    "privateHeaderSha256": "3c919f8b6c36200141bcebd0f5d5248b4c4d4f6c99e5ee27250889ebc71f73b2",
+    "testsExecuted": false,
+    "ndkExecuted": false,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "maplesuNativeCarriersR21": {
+    "status": "source-frozen-validation-pending",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/native-carriers-r21/IMPLEMENTATION.md",
+    "scope": "MapleSU native descriptor, record and version in metadata/ZIP/list/install/API; legacy ABI and raw frames retained at explicit compatibility edges",
+    "sourceBeforeSha256": "fdb71532577b413d37b8dd97e7a2f0b30a5863672516cc5d32030a77f5a5239c",
+    "sourceAfterSha256": "7680d5307ad25e88afb31ac3c999595d94a66d52082ecc1250bafb446433492d",
+    "testsExecuted": false,
+    "ndkExecuted": false,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "compatibilityContracts": [
+      "The legacy metadata wrapper imports the caller descriptor, calls the sole native parser once, and copies partial writes back on both success and failure. Untouched fixed-array bytes and descriptor padding survive.",
+      "Legacy serialize/deserialize keep complete raw descriptor bytes, including padding, and the 9232-byte frame stride."
+    ]
+  },
+  "ownerDeploymentWorker20261119": {
+    "status": "source-implemented-validation-pending",
+    "namespaceCommand": 27,
+    "newPublicAbi": false,
+    "workerSessionOwned": true,
+    "moduleIdFromCallerOrArchive": true,
+    "legacyKeyAbiPreserved": true,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false
+  },
+  "legacyBinaryExports": {
+    "status": "source-compiled-old-and-new-consumers-linked",
+    "compatibilityHeader": "src/maplesu/compat/module_metadata_exports_legacy_abi.h",
+    "symbolAliases": 5,
+    "scope": "Exact frozen skroot_env binary names alias the sole maintained maplesu::sdk function bodies; current 9232-byte descriptor ABI and partial writes preserved",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "validation": ".tmp/main-sdk-legacy-modules-20261120/VALIDATION.json",
+    "rawGatePassed": false
+  }
+}

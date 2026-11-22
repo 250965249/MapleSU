@@ -1,0 +1,34 @@
+{
+  "idx": 96,
+  "name": "builder.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/core/builder.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "53660590ea0f4c43c67937cc0e81cba7c5eb4451fdc850f456e646dd315c448b",
+    "bytes": 57400
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-__memcpy_chk",
+      "-__memmove_chk",
+      "-__memset_chk",
+      "-__strlen_chk",
+      "+strlen"
+    ],
+    "note": "import-set residual __memcpy_chk, __memmove_chk, __memset_chk, __strlen_chk, strlen [libc-fortify-wrapper]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (4 missing / 1 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (0 missing / 1 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

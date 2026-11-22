@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_maplesu_not_supported">MapleSU 目前僅接受 KernelSU 格式的模組 ZIP，暫不支援 MapleSU 原生模組。</string>
+</resources>

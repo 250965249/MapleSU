@@ -1,0 +1,31 @@
+{
+  "idx": 3,
+  "name": "vm_area_struct.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/vm_area_struct.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 4,
+    "recovered": 4,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "8d637d32cdcc8e02ea562c7c45baad789474eb053789ce25016bef9c33dadfcf",
+    "bytes": 203484
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Two-way symbol gate clean: T 4/4 exported resolvers, U 125/125 imports, raw diff empty both ways, no allowance consumed. Rebuilt in the frozen member's container with the member's flagsProfile."
+  },
+  "notes": ""
+}

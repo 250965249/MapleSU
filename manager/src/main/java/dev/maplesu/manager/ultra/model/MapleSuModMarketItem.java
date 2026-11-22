@@ -1,0 +1,127 @@
+package dev.maplesu.manager.ultra.model;
+
+public class MapleSuModMarketItem {
+    private String chnName;
+    private String engName;
+    private String desc;
+    private String ver;
+    private String id32;
+    private String author;
+    private String updateDate;
+    private String sourceUrl;
+    private String downloadUrl;
+    private String changelogUrl;
+    private String downloadChnAlert;
+    private String downloadEngAlert;
+
+    public String getChnName() {
+        return chnName;
+    }
+
+    public void setChnName(String chnName) {
+        this.chnName = chnName;
+    }
+
+    public String getEngName() {
+        return engName;
+    }
+
+    public void setEngName(String engName) {
+        this.engName = engName;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getVer() {
+        return ver;
+    }
+
+    public void setVer(String ver) {
+        this.ver = ver;
+    }
+
+    public String getId32() {
+        return id32;
+    }
+
+    public void setId32(String uuid) {
+        this.id32 = uuid;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public void setSourceUrl(String sourceUrl) {
+        this.sourceUrl = sourceUrl;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
+    }
+
+    public String getChangelogUrl() {
+        return changelogUrl;
+    }
+
+    public void setChangelogUrl(String changelogUrl) {
+        this.changelogUrl = changelogUrl;
+    }
+
+    public String getDownloadChnAlert() {
+        return downloadChnAlert;
+    }
+
+    public void setDownloadChnAlert(String downloadChnAlert) {
+        this.downloadChnAlert = downloadChnAlert;
+    }
+
+    public String getDownloadEngAlert() {
+        return downloadEngAlert;
+    }
+
+    public void setDownloadEngAlert(String downloadEngAlert) {
+        this.downloadEngAlert = downloadEngAlert;
+    }
+
+    public MapleSuModMarketItem(String chnName, String engName, String desc, String ver, String id32, String author, String updateDate, String sourceUrl, String downloadUrl, String changelogUrl, String downloadChnAlert, String downloadEngAlert) {
+        this.chnName = chnName;
+        this.engName = engName;
+        this.desc = desc;
+        this.ver = ver;
+        this.id32 = id32;
+        this.author = author;
+        this.updateDate = updateDate;
+        this.sourceUrl = sourceUrl;
+        this.downloadUrl = downloadUrl;
+        this.changelogUrl = changelogUrl;
+        this.downloadChnAlert = downloadChnAlert;
+        this.downloadEngAlert = downloadEngAlert;
+    }
+}

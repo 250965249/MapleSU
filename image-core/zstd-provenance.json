@@ -1,0 +1,60 @@
+{
+  "repository": "mbobiosio/unzstd",
+  "commit": "8d93c306e8a988b1c7f57fe13e3e2ec3dfa24e9c",
+  "license": "Apache-2.0",
+  "derivedFrom": "airlift/aircompressor",
+  "scope": "Huffman/FSE compressed-block decoder only",
+  "sources": [
+    {
+      "upstream": "BitInputStream.java",
+      "vendored": "image-core/src/main/java/dev/maplesu/image/zstd/BitInputStream.java",
+      "upstreamSha256": "219e664e42ec7e4a814631b881f2a1ba1249c21046d4cab29efef684035928e4"
+    },
+    {
+      "upstream": "Constants.java",
+      "vendored": "image-core/src/main/java/dev/maplesu/image/zstd/Constants.java",
+      "upstreamSha256": "ea46999b5d71e696e1e0ad5a1479b86e7e0ea5b3c6b6391b6a7d0f3c886c7d66"
+    },
+    {
+      "upstream": "FiniteStateEntropy.java",
+      "vendored": "image-core/src/main/java/dev/maplesu/image/zstd/FiniteStateEntropy.java",
+      "upstreamSha256": "769dfa2c638cefc3c9880bf776cff82df41b56c8b40a1a829775ba67b92e230b"
+    },
+    {
+      "upstream": "FseTableReader.java",
+      "vendored": "image-core/src/main/java/dev/maplesu/image/zstd/FseTableReader.java",
+      "upstreamSha256": "d271860839580725e5347627c3e1844e7c31684f3879730364f2d327d4966781"
+    },
+    {
+      "upstream": "Huffman.java",
+      "vendored": "image-core/src/main/java/dev/maplesu/image/zstd/Huffman.java",
+      "upstreamSha256": "cb2495642a57e65fb67541cdce6096971ede1d18bdfaffa52d2db6f23db37120"
+    },
+    {
+      "upstream": "MalformedInputException.java",
+      "vendored": "image-core/src/main/java/dev/maplesu/image/zstd/MalformedInputException.java",
+      "upstreamSha256": "4af0295c8bce16295c5691e42132bb6f8de1c910308836a2c2b5d919a8c0bbe4"
+    },
+    {
+      "upstream": "Util.java",
+      "vendored": "image-core/src/main/java/dev/maplesu/image/zstd/Util.java",
+      "upstreamSha256": "aee4a9b6e079285cb13719553a3572f1f536b2cf1af49d6be3fd86b59af300fb"
+    },
+    {
+      "upstream": "ZstdFrameDecompressor.java",
+      "vendored": "image-core/src/main/java/dev/maplesu/image/zstd/ZstdBlockDecoder.java",
+      "upstreamSha256": "b400bc24ea544195df3397778199b43723f23d10b558c43b284f40c17e91ddc9"
+    },
+    {
+      "upstream": "SafeAccess.java",
+      "vendored": "image-core/src/main/java/dev/maplesu/image/zstd/SafeAccess.java",
+      "upstreamSha256": "79b23342ba777a5fe2a4ec86eef8ff20aa225d9d269f2fea20ae44f413c6abaa"
+    }
+  ],
+  "modifications": [
+    "decoder-only package relocation and explicit block-level entry point",
+    "native-free portable little-endian byte-array memory access",
+    "declared-window match-distance checks with 128 MiB upper bound",
+    "fresh state per frame, shared entropy state within a frame"
+  ]
+}

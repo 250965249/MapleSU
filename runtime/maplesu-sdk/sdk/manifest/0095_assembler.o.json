@@ -1,0 +1,31 @@
+{
+  "idx": 95,
+  "name": "assembler.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/core/assembler.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "73488515ac8487ead7691a611bea546f727ea54df7c9490248e6e152fa70f6c4",
+    "bytes": 31964
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-__memcpy_chk",
+      "-__memset_chk"
+    ],
+    "note": "import-set residual __memcpy_chk, __memset_chk [libc-fortify-wrapper]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (2 missing / 0 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

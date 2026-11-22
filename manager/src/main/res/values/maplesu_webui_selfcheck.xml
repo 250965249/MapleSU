@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- WebUI 自检（内部验证入口；短文案） -->
+<resources>
+    <string name="webui_selfcheck_title">WebUI self-check</string>
+    <string name="webui_selfcheck_mode">Mode</string>
+    <string name="webui_selfcheck_root_backend">Root backend</string>
+    <string name="webui_selfcheck_start">Start WebUI</string>
+    <string name="webui_selfcheck_result">Result</string>
+    <string name="webui_selfcheck_link">WebUI link</string>
+    <string name="webui_selfcheck_check_status">Check status</string>
+    <string name="webui_selfcheck_boot">Boot evidence</string>
+    <string name="webui_selfcheck_dry_run">Restore dry-run</string>
+    <string name="webui_selfcheck_backup">Build backup</string>
+    <string name="webui_selfcheck_no_link">No link yet</string>
+    <string name="webui_selfcheck_link_copied">Link copied</string>
+</resources>

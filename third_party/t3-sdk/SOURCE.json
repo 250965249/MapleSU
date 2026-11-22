@@ -1,0 +1,46 @@
+{
+  "component": "T3 Verify SDK",
+  "publisher": "barichan / T3 验证",
+  "primaryDistribution": {
+    "file": "T3SDK_Java.zip",
+    "sha256": "daff80b513a109c75b54097948b9b2f41a46c56fdb8cf8f471a8185898ae96bd",
+    "sourceEntry": "T3SDK_Java/t3sdk/T3Verify.java",
+    "retainedSource": "upstream/T3Verify.java"
+  },
+  "comparisonArtifact": {
+    "coordinates": "com.t3yanzheng:t3-verify-sdk:1.0.1",
+    "sourceUrl": "https://repo.maven.apache.org/maven2/com/t3yanzheng/t3-verify-sdk/1.0.1/t3-verify-sdk-1.0.1-sources.jar",
+    "sha256": "cae3d6adfe511496484e4e43f027e8bfdfaf3903d66fef40875278c958a6e098",
+    "declaredLicense": "MIT",
+    "licenseRecord": "upstream/maven/pom.xml"
+  },
+  "compiledSource": "src/main/java/t3sdk/T3Verify.java",
+  "localChanges": "maplesu.patch",
+  "upstreamComparison": "upstream/maven-comparison.patch",
+  "files": {
+    "maplesu.patch": {
+      "bytes": 13861,
+      "sha256": "de92b089833f4f76944fbc52743b0d49fd671a985f4991c33e08773e0ebab49a"
+    },
+    "upstream/maven-comparison.patch": {
+      "bytes": 3957,
+      "sha256": "4dc326bce9935666315efd187b0b2a39d2b665123e9f1fd5af125afb526518f5"
+    },
+    "upstream/T3Verify.java": {
+      "bytes": 44703,
+      "sha256": "df25f88d662c4a986f129b55bcb2403d66295a081fe6df5bfabccf5ce120152f"
+    },
+    "upstream/maven/pom.xml": {
+      "bytes": 4263,
+      "sha256": "ad59530cdf90fbbf6c06b40382372d9a100bd9d6a9569dfe9777a3451b7c108a"
+    },
+    "upstream/maven/T3Verify.java": {
+      "bytes": 44713,
+      "sha256": "44c44136c6d895c59ec209df3e4c3d56b13e57053694a17327bae94dc326e1b2"
+    },
+    "src/main/java/t3sdk/T3Verify.java": {
+      "bytes": 48121,
+      "sha256": "2f000c080d77a866f7e4b6ffcfbd90e4b3fa47b6418e9a8eed9763a83e68621c"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "maplesu-pro-sdk-assets/1",
+  "freeze_snapshot": "freeze-maplesu-pro-5.2.0-su-uid-isolation-20261114-20261114",
+  "archive_sha256": "49df399288a2fc08d38c7c20e0632fbb21525fb05723a3443cb14fabd350b1e9",
+  "assets": [
+    {
+      "asset": "assets/su.bin",
+      "member": "skroot_unsafe_su_install.o",
+      "symbol": "skroot_env::su_data",
+      "size": 741912,
+      "bytes": 741912,
+      "sha256": "7c6b48a392608252a03e2addcb21acc2bdd43afa981042ef102e0e95816569ed",
+      "license": "proprietary"
+    },
+    {
+      "asset": "assets/resetprop_file.bin",
+      "member": "skroot_unsafe_resetprop_install.o",
+      "symbol": "skroot_env::resetprop_file_data",
+      "size": 400568,
+      "bytes": 400568,
+      "sha256": "70558e6d6199fa5a961b7bafeb8f96d8157cc63810db8df2a3cded1881763697",
+      "license": "GPL-3.0 (Magisk)"
+    },
+    {
+      "asset": "assets/webui_loader.bin",
+      "member": "skroot_unsafe_webui_loader_install.o",
+      "symbol": "skroot_env::webui_loader_data",
+      "size": 766320,
+      "bytes": 766320,
+      "sha256": "9f6557d3e09a223ff82d2adb10b6f865afe5fd3aa71cc3f0d856c7c22ed39cd8",
+      "license": "proprietary"
+    },
+    {
+      "asset": "assets/autorun_bootstrap.bin",
+      "member": "skroot_autorun_bootstrap_install.o",
+      "symbol": "skroot_env::autorun_bootstrap_file_data",
+      "size": 1351120,
+      "bytes": 1351120,
+      "sha256": "6d270d39bc65165c2dec54e8f6923b2a405325c5ffe63c958ce35e138bff7c31",
+      "license": "proprietary"
+    }
+  ]
+}

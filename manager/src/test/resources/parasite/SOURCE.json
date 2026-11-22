@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "owner": "MapleSU contributors",
+  "license": "GPL-3.0-or-later",
+  "purpose": "Synthetic JNI host and fixed DT_NEEDED golden pair; unit-test data only.",
+  "source": {
+    "path": "native/t2host.cpp",
+    "sha256": "e330c3d27b38ad7437a3d2e57ee84dbe590c1c4b3566ccf4cea9b058181613ce"
+  },
+  "toolchain": {
+    "ndk": "26.1.10909125",
+    "target": "aarch64-linux-android29",
+    "flags": [
+      "-shared",
+      "-fPIC",
+      "-O2",
+      "-static-libstdc++",
+      "-Wl,-z,noexecstack",
+      "-llog"
+    ]
+  },
+  "fixtures": {
+    "libt2host.orig.so.bin": {
+      "sha256": "2c1a26cccdd96275c78027a90b1d0ce27f3addc26c8970880c53db9d12e738b9",
+      "size": 5840
+    },
+    "libt2host.patched.so.bin": {
+      "sha256": "fe1be25deba3305a5a3d1795cc3440bc3557dce52ed111f7b2101640bf9fcb26",
+      "size": 16984
+    }
+  },
+  "transformation": {
+    "implementation": "manager/src/main/java/dev/maplesu/manager/litehidden/HiddenElf.kt",
+    "change": "Add one DT_NEEDED entry for libmsspike.so; golden output is fixed and compared byte for byte."
+  },
+  "verification": {
+    "originalRebuiltFromIncludedSource": true,
+    "originalSha256": "2c1a26cccdd96275c78027a90b1d0ce27f3addc26c8970880c53db9d12e738b9"
+  }
+}

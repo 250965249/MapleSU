@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "baselineArchiveSha256": "f7ab0885cb80170e118ab3ab3b1bc6f9bdf20d5ba1d9484fc7712e53a9db76ab",
+  "previousInputManifestSha256": "47ebd49bd5057752f3c3a5ce66a6c9156a73c16bb7b6f4928e9d890101bda97f",
+  "sources": {
+    "runtime/pro/authorization/su_allowlist_writer.cpp": "73e90322838b22ee9248236009324e32d100508102f405d78db6aa94d93613bb",
+    "runtime/pro/authorization/su_auth_transaction.cpp": "009042afd5a819483fe3b619cc74c1a17a2a7cc8ae44fb29b24a1fd31b593d8e",
+    "runtime/pro/authorization/su_exec_context.cpp": "1af0fe4be238e094701e54da6fc4be27353e9c6cbb72f03e80e72bbad7b77819",
+    "scripts/repair-pro-su-authorization.py": "3627117571059bd096e8f21588a014457fb8828a1e98e3618a522ced9be87efe",
+    "scripts/test-pro-su-authorization.py": "0ef067e0a87bb294ade77fe86f67de76367f3874fb80a7877a86598a050810ed",
+    "runtime/tests/pro_su_allowlist_test.cpp": "121dcdd464ee9dc6c12d53b469f27d0494d19dc56b15f340262f725287b42a3d",
+    "manager/src/main/java/dev/maplesu/manager/runtime/pro/ProIdentityBroker.kt": "ac518258cb531058a4dac904435b4bc33d83d18aa920632d347b990a3e0e5a73",
+    "manager/src/main/java/dev/maplesu/manager/runtime/pro/ProBootAuthorizationRestore.kt": "84a0c36255ffe10df0dacc759489caf4f6fe7a4ea772b8e866ce650ef8b07b5d",
+    "manager/src/main/java/dev/maplesu/manager/runtime/pro/ProEnvironmentInstaller.kt": "96167c1913558c187455b7d247afdcee7f7afaa43bd21495841c13d15e646fc4",
+    "manager/src/main/java/dev/maplesu/manager/installer/InstallerPartitionService.kt": "c02d72bd6f5aa40eceb42d6f926a57ede17a225763bff469f119a339420318a0"
+  },
+  "ndkVersion": "26.1.10909125"
+}

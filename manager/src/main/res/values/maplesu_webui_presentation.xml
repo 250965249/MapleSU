@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="webui_loading">Opening module…</string>
+    <string name="webui_retry_description">The module page did not respond. Try again in a moment.</string>
+    <string name="webui_reopen_description">The page closed unexpectedly. Close it and open it again from Modules.</string>
+    <string name="webui_back">Back</string>
+</resources>

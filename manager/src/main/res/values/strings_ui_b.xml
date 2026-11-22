@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Group B: work mode sheet, progress, recovery and diagnostics. -->
+<resources>
+    <!-- ══ Entry row and sheet ══ -->
+    <string name="work_mode_target_row_title">Choose target mode</string>
+    <string name="work_mode_target_none">Not selected</string>
+    <string name="work_mode_lite_tagline">Ultimate stealth mode</string>
+    <string name="work_mode_ksu_tagline">Compatibility mode</string>
+    <string name="work_mode_tag_current">Current</string>
+    <string name="work_mode_tag_recommended">Recommended</string>
+    <string name="work_mode_cta_current">Current mode</string>
+    <string name="work_mode_cta_select">Select</string>
+    <string name="work_mode_cta_switching">Switching…</string>
+    <string name="work_mode_target_install_note">Applies to this installation only. The current work mode stays the same.</string>
+    <string name="work_mode_target_migration_note">The device works in this mode after migrating.</string>
+    <string name="work_mode_intro_action">About this mode</string>
+    <string name="work_mode_intro_title">%1$s · %2$s</string>
+    <string name="work_mode_intro_ok">Got it</string>
+
+    <!-- ══ Mode introduction ══ -->
+    <string name="work_mode_intro_lite_impl">How it works: patches the kernel to provide SU. With no modules installed: 0 visible SELinux policy changes, 0 mounts and SELinux globally Enforcing, eliminating side-channel signatures from policy changes and mounts at the kernel level.</string>
+    <string name="work_mode_intro_lite_modules">Modules: supports all MapleSU modules and a subset of KernelSU modules that require no injection.</string>
+    <string name="work_mode_intro_lite_fit">Best for: geeks and users who care about a clean environment.</string>
+    <string name="work_mode_intro_ksu_impl">How it works: built on KernelSU, with high compatibility.</string>
+    <string name="work_mode_intro_ksu_modules">Modules: integrates with the KSU module ecosystem; Ultra native modules run in Ultra mode.</string>
+    <string name="work_mode_intro_ksu_fit">Best for: tinkerers.</string>
+
+    <!-- ══ Plain failure reasons ══ -->
+    <string name="work_mode_failure_write">Something went wrong while writing the system partition.</string>
+    <string name="work_mode_failure_produce">Something went wrong while building the target image.</string>
+    <string name="work_mode_failure_snapshot">Something went wrong while backing up your data.</string>
+    <string name="work_mode_failure_move">Something went wrong while moving modules and settings.</string>
+    <string name="work_mode_failure_verify">The check after reboot did not pass.</string>
+    <string name="work_mode_failure_root">The required permission is not available right now.</string>
+    <string name="work_mode_failure_generic">The switch did not finish. Try again later.</string>
+
+    <!-- ══ Switch progress ══ -->
+    <string name="work_mode_step_prepare">Prepare the switch</string>
+    <string name="work_mode_step_backup">Back up current data</string>
+    <string name="work_mode_step_build">Build the target image</string>
+    <string name="work_mode_step_write">Write the system partition</string>
+    <string name="work_mode_step_restore">Restore data and modules</string>
+    <string name="work_mode_step_reboot">Waiting for reboot</string>
+    <string name="work_mode_step_verify">Confirm the result</string>
+    <string name="work_mode_step_generic">Working…</string>
+    <string name="work_mode_headline_running_to">Switching to %1$s</string>
+    <string name="work_mode_headline_running_hint">Do not power off or leave the app.</string>
+    <string name="work_mode_headline_rolling_back">Restoring the previous state</string>
+    <string name="work_mode_headline_verifying">Confirming the result</string>
+    <string name="work_mode_headline_reboot_hint">%1$s takes effect after a reboot.</string>
+    <string name="work_mode_headline_reboot_hint_generic">The new work mode takes effect after a reboot.</string>
+    <string name="work_mode_headline_done">Switch successful</string>
+    <string name="work_mode_headline_done_hint">%1$s is now running.</string>
+    <string name="work_mode_headline_rolled_back">Previous state restored</string>
+    <string name="work_mode_headline_rolled_back_hint">The switch did not finish. The device stays in its original mode.</string>
+    <string name="work_mode_headline_failed_hint">Retry later, or view diagnostics.</string>
+    <string name="work_mode_headline_missing_hint">The switch may have finished already. Go back and check again.</string>
+    <string name="work_mode_open_diagnosis">View diagnostics</string>
+    <string name="install_partition_default">%1$s (default)</string>
+
+    <!-- ══ Recovery ══ -->
+    <string name="recovery_title">Recovery</string>
+    <string name="recovery_loading">Reading the switch record…</string>
+    <string name="recovery_unavailable">The switch record cannot be read, so no recovery action is available. Export diagnostics to get help.</string>
+    <string name="recovery_action_none">No recovery needed</string>
+    <string name="recovery_action_in_progress">An operation is running</string>
+    <string name="recovery_action_resume_reboot">A reboot is needed</string>
+    <string name="recovery_action_auto_verify">The result needs confirming</string>
+    <string name="recovery_action_auto_rollback">The previous state can be restored</string>
+    <string name="recovery_action_external">External tools are needed</string>
+    <string name="recovery_action_forbidden">Automatic recovery is unavailable</string>
+    <string name="recovery_reasons">Why</string>
+    <string name="recovery_next_step">Next step</string>
+    <string name="recovery_next_none">Nothing to do.</string>
+    <string name="recovery_next_wait">Wait for the running operation to finish.</string>
+    <string name="recovery_next_reboot">Reboot the device to continue the switch.</string>
+    <string name="recovery_next_verify">Confirm the result of the switch.</string>
+    <string name="recovery_next_rollback">Restore the previous mode. The backup is kept.</string>
+    <string name="recovery_next_import_baseline">Import a stock image matching your system version, then retry.</string>
+    <string name="recovery_next_diagnosis">Open diagnostics and export them.</string>
+    <string name="recovery_external_hint">This device cannot restore itself. Flash the boot images exported before the switch with an external tool. This page does not write any partition.</string>
+    <string name="recovery_diagnostic_only">The device state cannot be confirmed. Only diagnostics are available.</string>
+    <string name="recovery_reboot">Reboot</string>
+    <string name="recovery_verify">Confirm the result</string>
+    <string name="recovery_rollback">Restore previous state</string>
+    <string name="recovery_import_baseline">Import stock image</string>
+    <string name="recovery_export_diagnostics">Export diagnostics</string>
+    <string name="recovery_open_diagnosis">View diagnostics</string>
+    <string name="recovery_refresh">Refresh</string>
+    <string name="recovery_baseline_ok">Stock image backup is available</string>
+    <string name="recovery_baseline_missing">No stock image backup yet</string>
+    <string name="recovery_baseline_import">A stock image must be imported</string>
+    <string name="recovery_baseline_stale">The stock image backup does not match this system version</string>
+    <string name="recovery_baseline_corrupt">The stock image backup is damaged</string>
+
+    <string name="recovery_reason_none">No interrupted switch was found.</string>
+    <string name="recovery_reason_active">A switch is still running. Do not start anything else.</string>
+    <string name="recovery_reason_rolling_back">The previous state is being restored. Wait for it to finish.</string>
+    <string name="recovery_reason_reboot">The switch has been written and needs a reboot.</string>
+    <string name="recovery_reason_reboot_observed">The device has rebooted. The result can be confirmed.</string>
+    <string name="recovery_reason_reboot_missing">No reboot has been detected yet.</string>
+    <string name="recovery_reason_reboot_limit">The reboot attempt limit was reached.</string>
+    <string name="recovery_reason_verify">The last boot still needs confirming.</string>
+    <string name="recovery_reason_verified">The last switch finished.</string>
+    <string name="recovery_reason_rolled_back">The last switch was restored to the previous state.</string>
+    <string name="recovery_reason_failed_pre_write">The last switch stopped before writing anything. The device was not changed.</string>
+    <string name="recovery_reason_cancelled">The last switch was cancelled before writing.</string>
+    <string name="recovery_reason_required">The last switch did not finish and needs recovery.</string>
+    <string name="recovery_reason_rollback_available">The device has what it needs to restore the previous state.</string>
+    <string name="recovery_reason_verify_failed_twice">Boot confirmation failed repeatedly, so automatic retry has stopped.</string>
+    <string name="recovery_reason_baseline_ok">A stock image backup is available.</string>
+    <string name="recovery_reason_baseline_missing">There is no stock image backup yet.</string>
+    <string name="recovery_reason_baseline_stale">The stock image backup does not match this system version.</string>
+    <string name="recovery_reason_baseline_corrupt">The stock image backup is damaged.</string>
+    <string name="recovery_reason_baseline_import">A confirmed stock image must be imported first.</string>
+    <string name="recovery_reason_no_root">Root access is not available right now.</string>
+    <string name="recovery_reason_device_changed">The system version or boot slot changed after the switch.</string>
+    <string name="recovery_reason_journal_corrupt">The switch record is damaged.</string>
+    <string name="recovery_reason_journal_missing">The switch has not finished, but its record is missing.</string>
+    <string name="recovery_reason_unknown">The state of this switch could not be recognised.</string>
+    <string name="recovery_reason_migration">A migration has not finished, so other actions are unavailable.</string>
+    <string name="recovery_reason_invalid">The switch record is incomplete.</string>
+    <string name="recovery_reason_generic">An unrecognised situation occurred.</string>
+
+    <!-- ══ Diagnostics ══ -->
+    <string name="diagnosis_title">Diagnostics</string>
+    <string name="diagnosis_loading">Reading…</string>
+    <string name="diagnosis_summary_no_switch">There is no recent switch record.</string>
+    <string name="diagnosis_summary_pending">A switch has not finished.</string>
+    <string name="diagnosis_summary_finished">The most recent switch has finished.</string>
+    <string name="diagnosis_unavailable">Diagnostic data could not be read. Refresh to retry; technical details include the reason.</string>
+    <string name="diagnosis_hint">Exported diagnostics can be shared when asking for help.</string>
+    <string name="diagnosis_no_secrets">Diagnostics never include credentials or keys.</string>
+    <string name="diagnosis_export">Export diagnostics</string>
+    <string name="diagnosis_exporting">Exporting…</string>
+    <string name="diagnosis_export_done">Exported to: %1$s</string>
+    <string name="diagnosis_export_failed">Export failed. Try again later.</string>
+    <string name="diagnosis_refresh">Refresh</string>
+    <string name="diagnosis_technical_info">Technical info</string>
+    <string name="diagnosis_expand">Expand</string>
+    <string name="diagnosis_collapse">Collapse</string>
+    <string name="migration_modules_summary">Migrated %1$d modules; %2$d are unsupported by the target; %3$d failed to import.</string>
+    <string name="migration_manual_recovery_hint">Restore the saved boot images with a flashing tool supported by your device. The migration recovery guide is not connected in this version.</string>
+    <string name="recovery_actions_unavailable">This recovery action is not connected in the current version. Review diagnostics first instead of starting another switch.</string>
+    <string name="diagnosis_summary_unknown">The switch record is incomplete and needs further review.</string>
+    <string name="diagnosis_operation_failed">The operation did not finish. Try again.</string>
+    <string name="diagnosis_export_ready">Diagnostics file is ready</string>
+    <string name="diagnosis_export_partial_hint">The file includes the information currently readable. Some switch records may be missing if device permissions are limited.</string>
+    <string name="diagnosis_share">Share diagnostics file</string>
+    <string name="diagnosis_share_failed">Sharing did not finish. Try again later.</string>
+    <string name="work_mode_reboot_manual_hint">Preparation is complete. Restart the device from the system power menu to apply the new mode.</string>
+    <string name="work_mode_ready_reboot">Ready to restart</string>
+    <string name="work_mode_reboot_instructions">How to restart</string>
+</resources>

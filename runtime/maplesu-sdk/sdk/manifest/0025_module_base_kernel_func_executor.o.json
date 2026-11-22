@@ -1,0 +1,153 @@
+{
+  "idx": 25,
+  "name": "module_base_kernel_func_executor.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "COMPOSED",
+  "sources": [
+    "src/module_base/module_base_kernel_func_executor.cpp",
+    "src/module_base/executor_restore.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-mllvm",
+    "-enable-machine-outliner",
+    "-fno-function-sections",
+    "-fno-data-sections",
+    "-fvisibility-inlines-hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 9,
+    "recovered": 9,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "1c9a5b9a8ff0433dc17b75defccd90187652e566e5bab106653bcfbd432ff5be",
+    "bytes": 60288
+  },
+  "evidence": [
+    "notes/work/AGENT110/STATUS.md",
+    "notes/work/AGENT110/proof/025/equiv.json",
+    "notes/work/AGENT110/proof/025/gate.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Frozen visibility shape: -fvisibility-inlines-hidden added next to the existing -fvisibility=hidden; measured call-target 62/70 (was 50/70 at r6), bag_mean 0.8288, inventory 70/75 (missing OUTLINED_FUNCTION_16..20). Residual is outliner/source-shape; no source rewrite this round.",
+    "measured": {
+      "baselineConsumed": [],
+      "refFunctions": 75,
+      "newFunctions": 70,
+      "matched": 70,
+      "missingCount": 5,
+      "extraCount": 0,
+      "callTargetMatch": 50,
+      "seqMean": 0.8498,
+      "bagMean": 0.8288,
+      "bagMin": 0.0,
+      "gateStatus": "PASS",
+      "gateBaselineConsumed": [],
+      "verifyEquivCommand": "py tools/verify_equiv.py --reference <freeze>/archive/libkernel_module_kit_static.a --built notes/work/AGENT110/proof/025/built.a --members 25",
+      "verifyEquivStatus": "diverges",
+      "equivalenceBarMet": false
+    }
+  },
+  "notes": "",
+  "ownerManagementBatchR04": {
+    "dateUtc": "2026-11-18",
+    "scope": "R04 same owner-v3 gateway management, complete receipt and typed credentials; isolated candidate only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/module_base_kernel_func_executor.cpp",
+        "bytes": 14990,
+        "sha256": "fab6af1f386258a7be51f812388265cba4034ffd5dbf64001ad772ab18098626"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/executor_restore.cpp",
+        "bytes": 5804,
+        "sha256": "fd69acc7f9c5c312adbb9664d4350b90db08147232c2ba4f3cb78b19c2068c0f"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 3452,
+        "sha256": "9e1e039f644b4b85002a82ed23d00f819300f4e6c6c4a84028fa55e7f55a11a2"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/private_module_base_kernel_func_executor.h",
+        "bytes": 2028,
+        "sha256": "ecc890c4fac6aca3e255f851597d13b1619eb57aad01dc5dcbc5b0b435c74545"
+      },
+      {
+        "path": "runtime/pro/authorization/execution_frame.h",
+        "bytes": 3350,
+        "sha256": "c01cadbfb6c30a973345a3f81446496fa4cefeb4cbcc38dd381347b762059d71"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r04/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r04/validation/FINAL-SUMMARY.json",
+    "validationScope": "Only final named actual TUs and explicit seams count; adding this record does not assert each member was rebuilt or run.",
+    "producerSelectionIntegrated": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "p3StageClosureBatchR08": {
+    "dateUtc": "2026-11-18",
+    "scope": "P3 same-gateway text/reserve/publication/shared-bool lifetime, negotiated metadata and complete legacy receipt boundary; frozen source only",
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r08/CONTRACT.md",
+    "rwByteLengthPreserved": true,
+    "roXRequiresFullFourByteInstructions": true,
+    "validationScope": "Only named affected validation receipts prove their frozen inputs; source freeze is not a composed member/archive/target/device result.",
+    "interfaceRevision": "R08-member24-shared-bool",
+    "sharedBoolCreatorAndPublicationRefsSeparated": true,
+    "publicSignaturesChanged": false,
+    "globalErrorEnumChanged": false,
+    "canonicalBuildSelectionChanged": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true,
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/module_base_kernel_func_executor.cpp",
+        "bytes": 15339,
+        "sha256": "918a8234f5293d198ab70d67a2b3f7f6b05f07fc12674bf387d508f3a4115a7e"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/executor_restore.cpp",
+        "bytes": 5804,
+        "sha256": "fd69acc7f9c5c312adbb9664d4350b90db08147232c2ba4f3cb78b19c2068c0f"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/module_base_kernel_request.h",
+        "bytes": 4138,
+        "sha256": "fbb5cf1f3d946b31b1214f0111ccb691e2fbc55383ac8e5c5148fb9f6f36a21e"
+      }
+    ],
+    "originalApiIds": [
+      "CALL-0506",
+      "CALL-0377"
+    ],
+    "privateInlineDependenciesRequireSameGenerationRebuild": true
+  },
+  "p3p4RuntimeAndTypedStorageR09": {
+    "dateUtc": "2026-11-18",
+    "scope": "Current isolated sources; original build selection retained",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/module_base_kernel_func_executor.cpp",
+        "bytes": 16165,
+        "sha256": "a3569260506a4f0ccd3c55ce37984ed38fd74aa39cc8b72bc2ee1f5ffbd0a133"
+      }
+    ],
+    "privateAbiChanged": true,
+    "publicSignaturesChanged": false,
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r09/CONTRACT.md",
+    "formalBuildSelected": false,
+    "targetValidated": false,
+    "deviceValidated": false,
+    "historicalEvidenceRetainsItsOriginalInputScope": true
+  }
+}

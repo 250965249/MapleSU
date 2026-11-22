@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application>
+        <activity android:name="androidx.activity.ComponentActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize" tools:node="merge" />
+        <!-- Presentation tests do not bootstrap root; avoid the installed manager's fixed authority. -->
+        <provider android:name="dev.maplesu.manager.soter.SoterTargetProvider"
+            tools:node="remove" />
+    </application>
+</manifest>

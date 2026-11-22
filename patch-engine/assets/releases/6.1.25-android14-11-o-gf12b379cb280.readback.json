@@ -1,0 +1,167 @@
+{
+  "assets": {
+    "ir2Spec": "6.1.25-android14-11-o-gf12b379cb280.ir2.spec",
+    "ir2SpecSha256": "5f059e3577d08928e1402420bb0f397d59f2f98b84adace8bb2238d64869954f",
+    "irSpec": "6.1.25-android14-11-o-gf12b379cb280.ir.spec",
+    "irSpecJson": "6.1.25-android14-11-o-gf12b379cb280.ir.spec.json",
+    "irSpecSha256": "f30f77585a4adae21d979a6a90f4ddd38f1fd7381d74d8ca644f6091035e76f2",
+    "kernelSymbolOffset": "6.1.25-android14-11-o-gf12b379cb280.KernelSymbolOffset.json",
+    "readback": "6.1.25-android14-11-o-gf12b379cb280.readback.json"
+  },
+  "blocks": [
+    {
+      "id": "P1",
+      "note": "avc_denied: -EACCES -> 0 (every SELinux denial becomes allow)",
+      "offset": 251716,
+      "orig": "80018012",
+      "patched": "00008052"
+    },
+    {
+      "id": "R-filldir.entry",
+      "note": "filldir64: entry -> R-filldir stub (replays the overwritten word)",
+      "offset": 1024956,
+      "orig": "3f2303d5",
+      "patched": "87c93b14"
+    },
+    {
+      "id": "R-audit.entry",
+      "note": "audit_log_start: entry -> R-audit stub",
+      "offset": 1907960,
+      "orig": "3f2303d5",
+      "patched": "456b3814"
+    },
+    {
+      "id": "R-execve.entry",
+      "note": "do_execveat_common: entry -> R-execve stub (replays the overwritten word)",
+      "offset": 4876576,
+      "orig": "3f2303d5",
+      "patched": "21182d14"
+    },
+    {
+      "id": "P3",
+      "note": "__sys_setresuid: entry hook -> magic-uid stub in the .text cave",
+      "offset": 5504992,
+      "orig": "3f2303d5",
+      "patched": "62b22a14"
+    },
+    {
+      "id": "P3c",
+      "note": "code cave: magic-uid check + commit_creds(prepare_kernel_cred(&init_task)))",
+      "offset": 16697704,
+      "orig": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "patched": "fe0f1ff8a9d59b521f00096b21010054807900d000003e913131cf97400000b48b30cf97e0031f2afe0741f8c0035fd6fe0741f83f2303d5914dd517"
+    },
+    {
+      "id": "R-execve.stub",
+      "note": "cave stub: magic-uid gate, then resume do_execveat_common+4",
+      "offset": 16697764,
+      "orig": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "patched": "094138d5291d44f92a0540b9abd59b525f010b6bc1000054807900d000003e912031cf97400000b47a30cf973f2303d5d4e7d217"
+    },
+    {
+      "id": "R-filldir.stub",
+      "note": "cave stub: 8-byte name gate -> return 1, else resume filldir64+4",
+      "offset": 16697816,
+      "orig": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "patched": "5f20007141010054290040f9aa298cd20a8eadf2aa0cc9f22a8decf23f010a6b6100005420008052c0035fd63f2303d56e36c417"
+    },
+    {
+      "id": "R-audit.stub",
+      "note": "cave stub: x0 = NULL; ret",
+      "offset": 16697868,
+      "orig": "0000000000000000",
+      "patched": "e0031f2ac0035fd6"
+    }
+  ],
+  "engine": {
+    "changedBytes": 463,
+    "edits": 18,
+    "error": null,
+    "ok": true,
+    "plan": "PATCH_PLAN_OK edits=18 credentialInitialized=false flashableCandidate=false",
+    "replay": "PLAN_REPLAY_OK changedBytes=463",
+    "returncode": 0
+  },
+  "flashableCandidate": false,
+  "image_bytes": 34494976,
+  "image_sha256": "71c55accaab6932e073f46ed1877923c5edd165f7236813ee33aab92c7d3bc46",
+  "note": "dry-run + engine plan only; nothing here was flashed or booted",
+  "reference": null,
+  "release": "6.1.25-android14-11-o-gf12b379cb280",
+  "rules": [
+    {
+      "blocks": [
+        "R-execve.entry",
+        "R-execve.stub"
+      ],
+      "detail": "do_execveat_common entry hooked, uid gate + commit_creds(prepare_kernel_cred(&init_task)) in the cave",
+      "meta": {
+        "abi": "int (0/-errno) preserved: the stub always resumes the real function",
+        "cave": 16697764,
+        "cred_offset": 2104,
+        "cred_uid_offset": 4,
+        "site": 4876576,
+        "stubBytes": 52,
+        "symbol": "do_execveat_common"
+      },
+      "rule": "R-execve",
+      "status": "applied"
+    },
+    {
+      "blocks": [
+        "R-filldir.entry",
+        "R-filldir.stub"
+      ],
+      "detail": "filldir64 6.1.25: name gate on b'MapleHid', skip value 1 (bool return)",
+      "meta": {
+        "abi": "bool 1",
+        "abiVersionGate": ">=6.1.0",
+        "cave": 16697816,
+        "hiddenName": "MapleHid",
+        "site": 1024956,
+        "stubBytes": 52,
+        "symbol": "filldir64"
+      },
+      "rule": "R-filldir",
+      "status": "applied"
+    },
+    {
+      "blocks": [
+        "R-audit.entry",
+        "R-audit.stub"
+      ],
+      "detail": "audit_log_start returns NULL (callers treat NULL as auditing disabled)",
+      "meta": {
+        "cave": 16697868,
+        "site": 1907960,
+        "stubBytes": 8,
+        "symbol": "audit_log_start"
+      },
+      "rule": "R-audit",
+      "status": "applied"
+    },
+    {
+      "blocks": [],
+      "detail": "KCFI image (no __cfi_check symbol); 3 `brk #0x8222` trap sites live in the callees, so a hot patch that keeps every call target intact needs no CFI hook",
+      "meta": {
+        "kcfiTraps": 3,
+        "variant": "kcfi"
+      },
+      "rule": "R-cfi",
+      "status": "not_applicable"
+    }
+  ],
+  "schemaVersion": 1,
+  "structOffsets": {
+    "cred": 2104,
+    "cred_uid": 4,
+    "seccomp": 2304
+  },
+  "uidMinOffset": 4,
+  "verification": {
+    "blocks": 9,
+    "caveProblems": [],
+    "ok": true,
+    "problems": []
+  }
+}

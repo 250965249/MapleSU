@@ -1,0 +1,56 @@
+{
+  "idx": 30,
+  "name": "module_base_kernel_string_ops.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module_base/module_base_kernel_string_ops.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 46,
+    "recovered": 46,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "30ea38f9cca93a4f2db0d2c7157dd2f027aa17033ac3e067ebad6d373404b926",
+    "bytes": 154632
+  },
+  "evidence": [
+    "runtime/upstream-pro/sdk/notes/work/BN-T/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "全量闭合：强导出 T 40/40、强未定义 U 57/57，双向差集均为空（llvm-nm -P 口径，member_gate 的 T/U 集定义）；容器布局 bitcode 双向一致。本次把剩余 33 个未转写导出补齐：27 个汇编生成器（kstrlen/kstrnlen/kstrncmp/kstrncpy/kstrcat/kstrncat/kstrstr/kstrchr/kstrrchr/kmemcmp/kmemcpy/kmemmem/kmemchr/kmemrchr/kstartswith 及其常量重载）按参考成员逐条行为转写，另 2 个外部调用版本（kstrlen(uint64_t,uint64_t&)、kstrnlen(uint64_t,uint64_t,uint64_t&)）走 aarch64_asm_ctx/execute_kernel_asm 内核执行路径，因此 U 面补齐了 26 个内核执行/CodeHolder/StringLogger/iostream 导入，extraU=0。附加校验：把参考成员与重建成员的 41 个 string_ops 函数的 asmjit 指令发射序列（操作名 + 条件分支条件码，按出现顺序）逐函数比对，41/41 完全一致，差异数 0；说明发送给内核的代码序列与参考实现相同，差异仅在临时寄存器编号与标签编号。编译命令即 manifest flagsProfile=core-oz-bitcode-fexceptions（-Oz -flto=thin -fexceptions -fno-rtti -D_FORTIFY_SOURCE=2 -fvisibility=hidden）。 行为等价复验（tools/verify_equiv.py，参考归档 vs 重建归档）：函数清单 196/196 全等（missing=0 extra=0）、逐函数 call target 集合 196/196 全等、seq_mean=0.9992、bag_mean=0.9997、bag_min=0.9724（>=0.95），判定 equivalent；仅 3 个函数操作码多重集有极小幅差异（kmemcpy 0.9724 / kmemchr 0.9791 / kstrncmp 0.9811，均为寄存器复用与循环骨架的等价写法差异）。",
+    "measured": {
+      "origStrongT": 40,
+      "newStrongT": 40,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "origU": 57,
+      "newU": 57,
+      "uMissing": 0,
+      "uExtra": 0,
+      "asmjitOpSequenceFunctionsCompared": 41,
+      "asmjitOpSequenceDiffFunctions": 0,
+      "verifyEquivRefFunctions": 196,
+      "verifyEquivNewFunctions": 196,
+      "verifyEquivMatched": 196,
+      "verifyEquivMissing": 0,
+      "verifyEquivExtra": 0,
+      "verifyEquivCallTargetMatch": 196,
+      "verifyEquivSeqMean": 0.9992,
+      "verifyEquivBagMean": 0.9997,
+      "verifyEquivBagMin": 0.9724,
+      "verifyEquivStatus": "equivalent"
+    }
+  },
+  "notes": ""
+}

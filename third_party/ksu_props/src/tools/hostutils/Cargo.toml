@@ -1,0 +1,15 @@
+[package]
+name = "hostutils"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "deployer"
+path = "src/deployer.rs"
+
+[[bin]]
+name = "resetprop-tester"
+path = "src/resetprop-tester.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }

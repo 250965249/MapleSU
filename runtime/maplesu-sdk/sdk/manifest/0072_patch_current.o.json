@@ -1,0 +1,70 @@
+{
+  "idx": 72,
+  "name": "patch_current.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/patch_current.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 7,
+    "recovered": 7,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "0cc403d3f556717a36a69c639e6a32056a838e56662d99f60f5260556bc8736c",
+    "bytes": 81968
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "tMissing": [],
+      "tExtra": [],
+      "uMissing": [],
+      "uExtra": []
+    },
+    "adjusted": {
+      "tMissing": [],
+      "tExtra": [],
+      "uMissing": [],
+      "uExtra": []
+    },
+    "allowancesConsumed": {
+      "uMissing": [],
+      "uExtra": []
+    },
+    "note": "Measured header 4243c0de. Compare all T/t/W/w by PROTOCOL section 5, including local and weak text. U baseline applies only to bitcode, native ELF has zero allowance. See stored symbol lists and exact compile argv; no symbol-forcing anchors."
+  },
+  "notes": "",
+  "ownerManagementBatchR04": {
+    "dateUtc": "2026-11-18",
+    "scope": "R04 same owner-v3 gateway management, complete receipt and typed credentials; isolated candidate only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/patch/patch_current.cpp",
+        "bytes": 7199,
+        "sha256": "29cec3b0ac1d5319d18ef1699e4f63035b7338004a02a7f75fb7bdcb6806d3db"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 3452,
+        "sha256": "9e1e039f644b4b85002a82ed23d00f819300f4e6c6c4a84028fa55e7f55a11a2"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r04/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r04/validation/FINAL-SUMMARY.json",
+    "validationScope": "Only final named actual TUs and explicit seams count; adding this record does not assert each member was rebuilt or run.",
+    "producerSelectionIntegrated": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_polish_link_prepare">准备恢复链接</string>
+    <string name="ui_polish_link_preparing">正在准备恢复入口…</string>
+    <string name="ui_polish_link_not_prepared">隐藏管理器前，请先准备并保存恢复链接</string>
+    <string name="ui_polish_link_ready">恢复入口已就绪</string>
+    <string name="ui_polish_link_failed">恢复入口尚未就绪，请检查工作环境后重试</string>
+    <string name="ui_polish_link_open">打开 WebUI</string>
+    <string name="ui_polish_link_open_failed">请复制链接，在浏览器中手动打开</string>
+    <string name="ui_polish_link_save_hint">请复制并妥善保存，隐藏后可通过此链接管理</string>
+    <string name="ui_polish_link_saved">恢复链接已复制，请妥善保存</string>
+    <string name="ui_polish_link_actual_port">正在使用恢复服务的实际端口：%1$s</string>
+    <string name="ui_polish_diagnostics_show">查看技术详情</string>
+    <string name="ui_polish_diagnostics_hide">收起技术详情</string>
+    <string name="ui_polish_uninstall_not_ready">当前构建暂未接入完整卸载；可恢复已备份的启动镜像</string>
+    <string name="ui_polish_images_busy">正在保存所选内容…</string>
+    <string name="ui_polish_images_loading">正在读取个性化图片…</string>
+    <string name="ui_polish_setting_failed">设置未生效，已保留原来的选项</string>
+    <string name="ui_polish_hidden_reading">正在读取隐藏状态…</string>
+</resources>

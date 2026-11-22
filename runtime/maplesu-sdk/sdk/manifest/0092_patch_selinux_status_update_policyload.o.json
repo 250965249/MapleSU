@@ -1,0 +1,88 @@
+{
+  "idx": 92,
+  "name": "patch_selinux_status_update_policyload.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/patch_selinux_status_update_policyload.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-flto=thin",
+    "-fvisibility=hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 5,
+    "recovered": 5,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "f952b5ffa50b066d6e469981d83650bf55a28c81a728d1805e5dc8af4034722f",
+    "bytes": 44432
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "PROTOCOL section 5, all four comm diffs empty: orig.T(TtWw)=68 / new.T=68, orig.U=57 / new.U=57; gate tier-2 (member_gate.py: strong defined extern only, weak excluded) T 5/5 empty both ways, U 57/57 empty both ways, verdict PASS. Weak set also equal (58/58). Raw commands and pasted output in notes/work/GAP-92/STATUS.md section 3; machine check: notes/work/GAP-92/STATUS.md section 4."
+  },
+  "notes": "",
+  "p5BusinessSharedBool20261119": {
+    "scope": "Owner business shared-bool dependency lifecycle; original callback instructions and Legacy overloads retained",
+    "source": "src/patch/patch_selinux_status_update_policyload.cpp",
+    "sourceSha256": "c4ea010e85c8a7969809fa9e3697e47275bdb6e9453daadb28fe57381a3e78a1",
+    "privateHeader": "include/private_module_selinux.h",
+    "privateHeaderSha256": "a210043cf7ccba28cc202c39150bdc8b2d1e5cff73f24b680c1bcc94bbd6a2d4",
+    "implemented": [
+      "Private hidden typed overload supplies exact shared object to the unique owned installer",
+      "Original overloads and class layout retained; generated callback instruction body unchanged"
+    ],
+    "validation": "Not compiled or tested in this source-only batch; historical checks above apply only to their recorded sources",
+    "productionWritten": false,
+    "formalAssetsPromoted": false,
+    "deviceEvidence": false,
+    "completeP5": false,
+    "bootRuntimeQualified": false
+  },
+  "p5DevelopmentClosure20261119": {
+    "scope": "Current production P5 sources and focused compilation/regressions; formal SDK and target execution remain separate",
+    "requirements": [
+      "HOOK-01",
+      "HOOK-02",
+      "HOOK-03",
+      "RELOC-01"
+    ],
+    "inputs": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/patch/patch_selinux_status_update_policyload.cpp",
+        "sha256": "a4eab0db64e1dd4c73b5bf21c43685755cee4afc9ca4e756b2695cfe85f7a0a7"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_hook_private.h",
+        "sha256": "2636d9f3f98d6ffa40542179a1f1cd488cb4fb2f8a1f34a7c7190882f93b838c"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_hook_publication.h",
+        "sha256": "0a4510fc9b294fcedb737cd53abb88c36b62f2ca4d147705100feaa265a92ce3"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/legacy_hook_publication.h",
+        "sha256": "8003a8db4635363e2d04704e065fe3ea4d0d53de7b88fc579166fb20f8811215"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_hook_codegen.h",
+        "sha256": "ca3bbaf752c13a0315f627e673461c94fe560130defb4001d17f5fa331dd3363"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_publication_gate.h",
+        "sha256": "783e4b7a72384c48b96e5a134fe3ca070ed1ef5a10cc1865a1d2a5b3c0b55d8f"
+      }
+    ],
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/P5-DEVELOPMENT-CLOSEOUT-20261119.md",
+    "formalRelease": false,
+    "deviceValidated": false
+  }
+}

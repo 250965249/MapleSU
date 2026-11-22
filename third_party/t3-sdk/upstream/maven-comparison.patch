@@ -1,0 +1,52 @@
+--- a/maven-1.0.1/T3Verify.java
++++ b/user-zip/T3Verify.java
+@@ -1,4 +1,4 @@
+-package com.t3yanzheng.sdk;
++package t3sdk;
+ 
+ /**
+  * T3验证SDK - Java版本
+@@ -62,8 +62,8 @@
+     private String onlineUserCode;
+     private String cloudDocCode;
+     private String appSignCode;
++    private String getVariableByQqCode;
+     private String qqHeartbeatCode;
+-    private String getVariableByQqCode;
+     private String getUserCoreByQqCode;
+     private String modifyUserCoreByQqCode;
+     private String unbindQqCode;
+@@ -407,8 +407,8 @@
+     public void setOnlineUserCode(String code) { this.onlineUserCode = code; }
+     public void setCloudDocCode(String code) { this.cloudDocCode = code; }
+     public void setAppSignCode(String code) { this.appSignCode = code; }
++    public void setGetVariableByQqCode(String code) { this.getVariableByQqCode = code; }
+     public void setQqHeartbeatCode(String code) { this.qqHeartbeatCode = code; }
+-    public void setGetVariableByQqCode(String code) { this.getVariableByQqCode = code; }
+     public void setGetUserCoreByQqCode(String code) { this.getUserCoreByQqCode = code; }
+     public void setModifyUserCoreByQqCode(String code) { this.modifyUserCoreByQqCode = code; }
+     public void setUnbindQqCode(String code) { this.unbindQqCode = code; }
+@@ -684,17 +684,20 @@
+ 
+     public T3Result bindQQ(String user, String pass, String openid, String accessToken) { return simpleRequest(bindQQCode, "绑定QQ", map("user", user, "pass", pass, "openid", openid, "access_token", accessToken)); }
+     public T3Result qqHeartbeat(String openid, String accessToken, String statecode) { return simpleRequest(qqHeartbeatCode, "QQ心跳", map("openid", openid, "access_token", accessToken, "statecode", statecode)); }
++    public T3Result modifyUserCoreByQq(String openid, String accessToken, String core) { return simpleRequest(modifyUserCoreByQqCode, "QQ修改核心数据", map("openid", openid, "access_token", accessToken, "core", core)); }
++    public T3Result unbindQq(String user, String pass) { return simpleRequest(unbindQqCode, "解绑QQ", map("user", user, "pass", pass)); }
++    public T3Result heartbeatAny(String statecode) { return simpleRequest(heartbeatAnyCode, "统一心跳", map("statecode", statecode)); }
++
+     public T3VariableResult getVariableByQq(String openid, String accessToken, String valueid, String valuename) {
+         T3Result r = simpleRequest(getVariableByQqCode, "QQ获取变量", map("openid", openid, "access_token", accessToken, "valueid", valueid, "valuename", valuename));
+         return r.success ? T3VariableResult.ok(r.msg) : T3VariableResult.fail(r.error);
+     }
++
+     public T3CoreResult getUserCoreByQq(String openid, String accessToken) {
+         T3Result r = simpleRequest(getUserCoreByQqCode, "QQ获取核心数据", map("openid", openid, "access_token", accessToken));
+         return r.success ? T3CoreResult.ok(r.msg) : T3CoreResult.fail(r.error);
+     }
+-    public T3Result modifyUserCoreByQq(String openid, String accessToken, String core) { return simpleRequest(modifyUserCoreByQqCode, "QQ修改核心数据", map("openid", openid, "access_token", accessToken, "core", core)); }
+-    public T3Result unbindQq(String user, String pass) { return simpleRequest(unbindQqCode, "解绑QQ", map("user", user, "pass", pass)); }
+-    public T3Result heartbeatAny(String statecode) { return simpleRequest(heartbeatAnyCode, "统一心跳", map("statecode", statecode)); }
++
+     public T3Result changePassword(String user, String oldpass, String newpass) { return simpleRequest(changePasswordCode, "修改密码", map("user", user, "oldpass", oldpass, "newpass", newpass)); }
+     public T3Result userCancel(String user, String pass) { return simpleRequest(userCancelCode, "用户注销", map("user", user, "pass", pass)); }
+     public T3Result recharge(String user, String card) { return simpleRequest(rechargeCode, "用户充值", map("user", user, "card", card)); }

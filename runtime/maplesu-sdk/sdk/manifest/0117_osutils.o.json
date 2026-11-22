@@ -1,0 +1,32 @@
+{
+  "idx": 117,
+  "name": "osutils.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/core/osutils.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "8c95ca38878fb1e8079acedb2ec7cd7677dc7e6f8a98ba38b2d2a043e6f86a02",
+    "bytes": 5380
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-__open_2",
+      "-__read_chk",
+      "+open64"
+    ],
+    "note": "import-set residual __open_2, __read_chk, open64 [libc-fortify-wrapper+libc-lfs-redirect]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (2 missing / 1 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

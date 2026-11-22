@@ -1,0 +1,32 @@
+{
+  "idx": 100,
+  "name": "constpool.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/core/constpool.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "808f5be9a733c8ac44f699211e48d0c489515779f7624ecbbdc7fc969fd83d40",
+    "bytes": 14748
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-__gxx_personality_v0",
+      "-__memcpy_chk",
+      "-__memset_chk"
+    ],
+    "note": "import-set residual __gxx_personality_v0, __memcpy_chk, __memset_chk [cxxabi-runtime+libc-fortify-wrapper]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (3 missing / 0 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

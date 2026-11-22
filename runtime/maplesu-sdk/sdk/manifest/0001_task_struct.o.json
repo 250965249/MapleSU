@@ -1,0 +1,193 @@
+{
+  "idx": 1,
+  "name": "task_struct.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "COMPOSED",
+  "sources": [
+    "src/kernel_offsets/task_struct.cpp",
+    "src/kernel_offsets/task_comm_scan.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 18,
+    "recovered": 18,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "63a23ef7380e662ab26323cbca5e5fa2532bf5e6ec8b446313f67948ffdbdb69",
+    "bytes": 354760
+  },
+  "evidence": [
+    "notes/work/AGENT115/STATUS.md",
+    "notes/work/AGENT115/proof/0001/built.a",
+    "notes/work/AGENT115/proof/0001/equiv.json",
+    "notes/work/PKG-A/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "_ZN6asmjit5v1_1610DebugUtils15assertionFailedEPKciS3_",
+      "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC1ERKS5_",
+      "memcpy",
+      "strncmp"
+    ],
+    "counts": {
+      "refT": 18,
+      "newT": 18,
+      "refU": 111,
+      "newU": 107,
+      "refW": 298,
+      "newW": 291
+    },
+    "raw_u_missing": [
+      "_ZN6asmjit5v1_1610DebugUtils15assertionFailedEPKciS3_",
+      "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC1ERKS5_",
+      "memcpy",
+      "strncmp"
+    ],
+    "command": "extract member with llvm-ar p; compile the three TUs with flagsProfile core-oz-elf-fexceptions + extraFlags; compose with ld.lld -r; llvm-nm -P --defined-only/--undefined-only sets compared both ways",
+    "note": "符号闸门 PASS（实测）：T 18/18、U 111/111，原始双向差集为空，基线消耗 0。行为等价实测未达 0.95 档：函数清单 355/417、missing 62、extra 13、call 318/355、bag_min 0.0、bag_mean 0.9262。构建配方 stages=1（见 recipe 字段）。",
+    "measured": {
+      "strongT": 18,
+      "strongU": 111,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "strongUMissing": 4,
+      "strongUExtra": 0,
+      "definedKinds": {
+        "V": 20,
+        "r": 95,
+        "t": 96,
+        "b": 17,
+        "W": 271,
+        "T": 18,
+        "d": 11
+      },
+      "newObjectBytes": 328848,
+      "newObjectSha256": "e3375532997a9ca161ef78cd44ffdf3aa30d0b454e4e208ba3e437883cb290f1",
+      "baselineConsumed": [],
+      "recipeStages": 1,
+      "verifyEquivRefFunctions": 417,
+      "verifyEquivNewFunctions": 368,
+      "verifyEquivMatched": 355,
+      "verifyEquivMissing": 62,
+      "verifyEquivExtra": 13,
+      "verifyEquivCallTargetMatch": 318,
+      "verifyEquivBagMin": 0.0,
+      "verifyEquivBagMean": 0.9262,
+      "verifyEquivSeqMean": 0.9331,
+      "verifyEquivRefFunctionsMissingNames": [
+        "_ZNSt6__ndk110__function6__funcIZZN13kernel_module28get_task_struct_state_offsetERjENK3$_0clEvEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE_NS_9allocatorISC_EEF7KModErrS9_SB_EED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZZN13kernel_module28get_task_struct_state_offsetERjENK3$_0clEvEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE_NS_9allocatorISC_EEF7KModErrS9_SB_EE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZZN13kernel_module28get_task_struct_state_offsetERjENK3$_0clEvEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE_NS_9allocatorISC_EEF7KModErrS9_SB_EE7__cloneEPNS0_6__baseISG_EE",
+        "_ZNSt6__ndk110__function6__funcIZZN13kernel_module28get_task_struct_state_offsetERjENK3$_0clEvEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE_NS_9allocatorISC_EEF7KModErrS9_SB_EE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZZN13kernel_module28get_task_struct_state_offsetERjENK3$_0clEvEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE_NS_9allocatorISC_EEF7KModErrS9_SB_EE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZZN13kernel_module28get_task_struct_state_offsetERjENK3$_0clEvEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE_NS_9allocatorISC_EEF7KModErrS9_SB_EEclEOS9_SB_",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module29get_task_struct_ptrace_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module29get_task_struct_ptrace_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module29get_task_struct_ptrace_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEPNS0_6__baseISF_EE",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module29get_task_struct_ptrace_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module29get_task_struct_ptrace_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module29get_task_struct_ptrace_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEEclEOSC_SE_",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module25get_task_struct_mm_offsetERjE3$_1NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module25get_task_struct_mm_offsetERjE3$_1NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module25get_task_struct_mm_offsetERjE3$_1NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEPNS0_6__baseISF_EE",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module25get_task_struct_mm_offsetERjE3$_1NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module25get_task_struct_mm_offsetERjE3$_1NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module25get_task_struct_mm_offsetERjE3$_1NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEEclEOSC_SE_",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module26get_task_struct_pid_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module26get_task_struct_pid_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module26get_task_struct_pid_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEPNS0_6__baseISF_EE",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module26get_task_struct_pid_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module26get_task_struct_pid_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module26get_task_struct_pid_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEEclEOSC_SE_",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module34get_task_struct_real_parent_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module34get_task_struct_real_parent_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module34get_task_struct_real_parent_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEPNS0_6__baseISF_EE",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module34get_task_struct_real_parent_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module34get_task_struct_real_parent_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module34get_task_struct_real_parent_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEEclEOSC_SE_",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module27get_task_struct_comm_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module27get_task_struct_comm_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module27get_task_struct_comm_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEPNS0_6__baseISF_EE",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module27get_task_struct_comm_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module27get_task_struct_comm_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module27get_task_struct_comm_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEEclEOSC_SE_",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module28get_task_struct_tasks_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module28get_task_struct_tasks_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module28get_task_struct_tasks_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEPNS0_6__baseISF_EE",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module28get_task_struct_tasks_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module28get_task_struct_tasks_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module28get_task_struct_tasks_offsetERjE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEEclEOSC_SE_",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module24set_current_process_nameEPKcE3$_0NS_9allocatorIS5_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSB_3GpXEEED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module24set_current_process_nameEPKcE3$_0NS_9allocatorIS5_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSB_3GpXEEE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN13kernel_module24set_current_process_nameEPKcE3$_0NS_9allocatorIS5_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSB_3GpXEEE7__cloneEPNS0_6__baseISG_EE",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module24set_current_process_nameEPKcE3$_0NS_9allocatorIS5_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSB_3GpXEEE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module24set_current_process_nameEPKcE3$_0NS_9allocatorIS5_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSB_3GpXEEE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN13kernel_module24set_current_process_nameEPKcE3$_0NS_9allocatorIS5_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSB_3GpXEEEclEOSD_SF_",
+        "OUTLINED_FUNCTION_23",
+        "OUTLINED_FUNCTION_24",
+        "OUTLINED_FUNCTION_25",
+        "_ZNSt6__ndk18functionIF7KModErrPN6asmjit5v1_163a649AssemblerERNS4_3GpXEEED2Ev",
+        "_ZN12random_utils30generate_unique_non_zero_bytesEm",
+        "_ZN12random_utils6detail10mt19937_32Ev",
+        "_ZNK6asmjit5v1_1610ZoneVectorIPNS0_7SectionEEixEm",
+        "$x.1",
+        "$x.2",
+        "$x.3",
+        "_ZN12_GLOBAL__N_116init_aarch64_asmEv",
+        "_ZN12_GLOBAL__N_120aarch64_asm_to_bytesEPKN6asmjit5v1_163a649AssemblerE",
+        "_ZN17maplesu_task_comm4scanIZN13kernel_module27get_task_struct_comm_offsetERjE3$_0EE7KModErrmRA16_KhS2_T_",
+        "_ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE20__throw_length_errorB7v170000Ev"
+      ],
+      "verifyEquivExtraNames": [
+        "_ZN12_GLOBAL__N_122shellcode_current_taskERm",
+        "_ZNSt6__ndk110__function6__funcIZN12_GLOBAL__N_122shellcode_current_taskERmE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN12_GLOBAL__N_122shellcode_current_taskERmE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN12_GLOBAL__N_122shellcode_current_taskERmE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7__cloneEPNS0_6__baseISF_EE",
+        "_ZNSt6__ndk110__function6__funcIZN12_GLOBAL__N_122shellcode_current_taskERmE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN12_GLOBAL__N_122shellcode_current_taskERmE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN12_GLOBAL__N_122shellcode_current_taskERmE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEEclEOSC_SE_",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN12_GLOBAL__N_122shellcode_current_taskERmE3$_0NS_9allocatorIS5_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSB_3GpXEEEENS_22__allocator_destructorINS6_ISH_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZZN13kernel_module29is_CONFIG_THREAD_INFO_IN_TASKEvENK3$_0clEvEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE_NS_9allocatorISC_EEF7KModErrS9_SB_EEENS_22__allocator_destructorINSD_ISH_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZZN13kernel_module34is_CURRENT_FROM_SP_EL0_THREAD_INFOEvENK3$_0clEvEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE_NS_9allocatorISC_EEF7KModErrS9_SB_EEENS_22__allocator_destructorINSD_ISH_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZZN13kernel_module34is_CURRENT_FROM_SP_EL0_THREAD_INFOEvENK3$_0clEvEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EEENS_22__allocator_destructorINSD_ISH_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN13kernel_module26get_task_struct_stack_sizeERjE3$_0NS_9allocatorIS5_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSB_3GpXEEEENS_22__allocator_destructorINS6_ISH_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN13kernel_module25get_task_struct_mm_offsetERjE3$_0NS_9allocatorIS5_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSB_3GpXEEEENS_22__allocator_destructorINS6_ISH_EEEEED2B7v170000Ev"
+      ]
+    }
+  },
+  "notes": "MapleSU source refactor 2026-11-16: current member has two translation units (getters, comm scan); the positional real_cred guess algorithm is retired; its hidden C ABI is retained as a checked adapter to the independent BTF/accessor getter (2026-11-16 compatibility continuation). Historical equivalence/selfCheck below describes the retained three-TU freeze comparison, not this new source generation. All 18 strong definitions rebuilt; U gap limited to the 4 reference-construction artifacts listed in selfCheck. | EQUIVALENCE(measured, verify_equiv 0.95): fn 355/417 missing 62 extra 13 call_target_match 318/355 bag_min 0.0 bag_mean 0.9262 seq_mean 0.9331; recipe stages=1",
+  "blockedBy": [
+    "verify_equiv 函数清单不一致：missing 62、extra 13（残余名字见 selfCheck.measured）",
+    "verify_equiv call target 318/355：函数指令布局未逐条对齐（分支目标偏移随体积差漂移）",
+    "verify_equiv bag_min 0.0 < 0.95：OUTLINED_FUNCTION 片段切分/栈槽基址残余"
+  ],
+  "authenticatedCurrentTaskName20261119": {
+    "sourceSnapshot": {
+      "path": "runtime/maplesu-sdk/sdk/src/kernel_offsets/task_struct.cpp",
+      "bytes": 38033,
+      "sha256": "12501bec8c9e6652f360ad5971868fa318d420bcdfae15b24f98498eb5c0cb3f"
+    },
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/helper-fixed-initialization-20261119/CONTRACT.md",
+    "status": "source-implemented-awaiting-focused-validation",
+    "legacyWireUnchanged": true,
+    "helperArbitraryMemoryAllowed": false,
+    "productionWritten": false,
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false
+  },
+  "privateHeaders": [
+    "include/maplesu_request_private.h"
+  ]
+}

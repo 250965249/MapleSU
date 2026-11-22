@@ -1,0 +1,60 @@
+{
+  "idx": 43,
+  "name": "aarch64_simulate_insn.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/aarch64/aarch64_simulate_insn.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 3,
+    "recovered": 3,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "5b0fb70ff25712f2f32ff72cc8ef5d9eb280b87aac82adbc0a34fe667a962c31",
+    "bytes": 54376
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "orig.T=78 new.T=78, orig.U=55 new.U=55; both diffs empty (PASS, U raw already empty). The emitted b.cond instId constants of the reconstruction match the pristine IR exactly (diff of every _emitI immediate: empty). Remaining IR-body differences are only the order of function/type declarations; the branch constant table and the emitter call sequence are identical."
+  },
+  "notes": "三个函数逐块转写：可单步->embed；B.cond->每 case 直接 a->b(cc,label)（ARM 条件码 0..13 -> asmjit kEQ..kLE，0xE/0xF -> kAL）；CBZ/CBNZ/TBZ/TBNZ（0x34..0x37 组，sf=bit31，bit24=op，TBZ 位号=b5:b40）；ADR/ADRP（imm21 符号扩展，ADRP 页相对）；B/BL（BL 先 mov x30=emit_at+4）；BR/BLR/RET 原样 embed；LDR/LDRSW literal（先 mov 出字面量地址再用自身为基址）。PC 回填由 kernel_module 内部 static instruction_pointer_set 完成：用 a->offset() 求当前发射位置，pc-(insn_kaddr+off) 作为 B 偏移。依赖的 aarch64_insn_is_steppable 属于 aarch64_decode_insn.o（U 引用）。",
+  "p5StageClose20261118": {
+    "dateUtc": "2026-11-18",
+    "status": "implemented-awaiting-concentrated-validation",
+    "requirements": [
+      "RELOC-01",
+      "HOOK-03"
+    ],
+    "sourceSelection": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p5-stage-close-20261118/relocation/SOURCE-SELECTION.json",
+    "assessment": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p5-stage-close-20261118/relocation/ASSESSMENT.md",
+    "productionIntegrated": false,
+    "newCompileOrTestsRun": false,
+    "formalAssetsPromoted": false,
+    "deviceRun": false,
+    "historicalFieldsScope": "All pre-existing recovery/original/selfCheck/notes fields are preserved as historical reconstruction metadata; no prior 818/584/26 evidence is inherited by this candidate.",
+    "remaining": [
+      "Actual emitted-code and affected compilation validation of this candidate",
+      "Hardware PAC/BTI/CFI, including BLR-to-BR branch-type behavior for non-IP0/IP1 targets; no hardware qualification inherited",
+      "Synchronous-fault context and SMP behavior",
+      "Same-generation archive/helper/backend/APK selection and device acceptance"
+    ],
+    "sourcePath": "runtime/upstream-pro/sdk/src/aarch64/aarch64_simulate_insn.cpp",
+    "sourceSha256": "bab6ff3bf15bf76d8ffd6b8b4baf8cc8e86650344d9eb16b2ee1d6d3dce9a433",
+    "changes": [
+      "BLR x0-x29 writes original PC+4 then branches without trampoline LR",
+      "Checked full-width PC targets and emitted AsmJit error propagation",
+      "Unified near/far W/X/LDRSW/ZR/S/D/Q/PRFM literals",
+      "Reserved SIMD literal/UDF/exception and unsupported authenticated/link-x30 forms fail before publication"
+    ]
+  }
+}

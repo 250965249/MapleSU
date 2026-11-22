@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "appVersion": "5.2.1",
+  "versionCode": 50201,
+  "sdkVersion": "5.2.0",
+  "sdkBuildId": "maplesu-ultra-source-7af6f0d42a440ac7",
+  "generatedUtc": "2026-11-22T16:05:39.096837+00:00",
+  "archive": {
+    "path": "runtime/maplesu-sdk/lib/arm64-v8a/libkernel_module_kit_static.a",
+    "size": 20353684,
+    "sha256": "7af6f0d42a440ac7616d555ab788d90f728dc0fc89df46e7976c5634cf3749e4"
+  },
+  "helper": {
+    "sha256": "7bb87568ae7a259394feae39d7ffb37541b8c799ee23feb0813a2dc6ff95fc44",
+    "size": 1812496,
+    "normalizedSha256": "1cc43e9ee38812cf4e27c045be4304a79522f719b8a26b4c1e7dc4739da6f1f9",
+    "buildId": "d6f0cf15821f76d8c206c13947acf975be9d7b45",
+    "keySlotOffset": 142696,
+    "path": "runtime/maplesu-sdk/helper/autorun_bootstrap"
+  },
+  "bootstrap": {
+    "sha256": "7bb87568ae7a259394feae39d7ffb37541b8c799ee23feb0813a2dc6ff95fc44",
+    "size": 1812496,
+    "normalizedSha256": "1cc43e9ee38812cf4e27c045be4304a79522f719b8a26b4c1e7dc4739da6f1f9",
+    "buildId": "d6f0cf15821f76d8c206c13947acf975be9d7b45",
+    "keySlotOffset": 142696,
+    "path": "runtime/maplesu-sdk/helper/autorun_bootstrap"
+  },
+  "environmentPolicyBoot": {
+    "backend": {
+      "sha256": "4728060da7028ab28d8e1faa11932eff195760a27784ad756d8660f5c4ab2263",
+      "size": 4188216,
+      "buildId": "f6a7ffd3197a1fab99652c78a7ff89d802dd4ad7",
+      "fileName": "libmaplesu_policy_boot.4728060da7028ab28d8e1faa11932eff195760a27784ad756d8660f5c4ab2263.so",
+      "noteOffset": 776,
+      "noteHex": "040000001400000003000000474e5500f6a7ffd3197a1fab99652c78a7ff89d802dd4ad7",
+      "path": "runtime/maplesu-sdk/backend/libmaplesu_policy_boot.4728060da7028ab28d8e1faa11932eff195760a27784ad756d8660f5c4ab2263.so"
+    },
+    "entryHelperSha256": "7bb87568ae7a259394feae39d7ffb37541b8c799ee23feb0813a2dc6ff95fc44",
+    "delivery": {
+      "bundleManifest": {
+        "path": "runtime/maplesu-sdk/backend/policy-bundles.json",
+        "size": 42619,
+        "sha256": "a1d9a4c0eea729ad0896af469e111899c22025a35dd06b2f0a0ab088035a33b0"
+      }
+    }
+  },
+  "distribution": {
+    "schemaVersion": 1,
+    "producerReleaseSha256": "813fb7d5a28e0031f4644804a0fcdaad99c4341d8432b4df6dfbe1e980740c02",
+    "sourceManifest": {
+      "path": "runtime/maplesu-sdk/SDK-SOURCES.json",
+      "size": 262614,
+      "sha256": "17039567877f1e3cc6cfadb92bfc549be430e224c90e24f67baf6c7e1467a54d"
+    },
+    "sourceFiles": 1110,
+    "toolchainSources": [
+      {
+        "path": "scripts/build-ultra-policy-entry.py",
+        "size": 10232,
+        "sha256": "d168e546e24cdbb22607da85208b533dba5d01727d91c9b4cd7edbfbfa4ba024"
+      },
+      {
+        "path": "scripts/build-ultra-policy-bundles.py",
+        "size": 7995,
+        "sha256": "45af988bdc28d8e9970d71b56d9adc81a77c248d88e233ab251fa9156bcc15df"
+      },
+      {
+        "path": "scripts/build-ultra-policy-compatibility.py",
+        "size": 10220,
+        "sha256": "9630d256fa576e4c7aef4c3d5183200ac8c5b1a33896d307996cfa3f9967f04d"
+      },
+      {
+        "path": "scripts/build-ultra-policy-config-declarations.py",
+        "size": 1128,
+        "sha256": "5c3093144276e03d609014650a64e83139773385d1e9c40e73dca6f581fc4546"
+      },
+      {
+        "path": "scripts/build-ultra-policy-config-equivalence.py",
+        "size": 7387,
+        "sha256": "9855da8d30f8173a1dea8ba84052a74524d6f3b6656ee8a5033d238146ee950a"
+      },
+      {
+        "path": "scripts/policy_backend_identity.py",
+        "size": 2251,
+        "sha256": "f66a5cf85169d738920d0c9def8006d265a62952a47292e1e588b028a0fc1d6c"
+      },
+      {
+        "path": "scripts/policy_config_declarations.py",
+        "size": 4161,
+        "sha256": "632ff9c1a755b5c317c292b3b85b3a97d806a226ff452f7e8c97940c144836bb"
+      },
+      {
+        "path": "scripts/rebind-ultra-policy-backend.py",
+        "size": 11292,
+        "sha256": "b242bb9ac8cd1a6d67bf82e31129b5147a603996159e10ac5a6dee03c8173382"
+      },
+      {
+        "path": "scripts/repair-ultra-boot-lifecycle.py",
+        "size": 12924,
+        "sha256": "ed2384e28881d85ea47875b6ceac5a6bcdd26292a4af22ca982110c28d9e3392"
+      },
+      {
+        "path": "scripts/repair-ultra-environment-state.py",
+        "size": 9576,
+        "sha256": "16fa72929fced0e2540ff71890abbc5e16b457f822cfae970e95eb97871ede57"
+      },
+      {
+        "path": "scripts/repair-ultra-environment-upgrade.py",
+        "size": 9767,
+        "sha256": "cf5e1fb977be655321363b10f77b2b20903917cf79a9d7ed9ebff1defeabba95"
+      },
+      {
+        "path": "scripts/repair-ultra-request-context.py",
+        "size": 16061,
+        "sha256": "6bc78b10f82bea84c1b4ecf74a44af27557d53ca72da5e37e53095f014bccd14"
+      },
+      {
+        "path": "scripts/repair-ultra-request-reply.py",
+        "size": 11884,
+        "sha256": "b405b978a9509ad0034e99f65c831bf5387572cb9fa370153e8c705a892f46e3"
+      }
+    ]
+  }
+}

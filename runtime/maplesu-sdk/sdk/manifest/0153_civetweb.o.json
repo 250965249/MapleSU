@@ -1,0 +1,28 @@
+{
+  "idx": 153,
+  "name": "civetweb.o",
+  "group": "civetweb",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/civetweb/1.16/src/civetweb.c"
+  ],
+  "flagsProfile": "vendor-c-elf",
+  "status": "complete",
+  "recovery": {
+    "functions": 0,
+    "recovered": 0,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "d8c47183632d0ed61fc4bb3c894049a4e20c9a81112a1c8738f52d0dfe806b3f",
+    "bytes": 245000
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "import-set exact; rebuilt bytes identical"
+  },
+  "notes": "source=vendored; version=1.16; equivalence=symbol-set (export T exact: True)",
+  "evidence": []
+}

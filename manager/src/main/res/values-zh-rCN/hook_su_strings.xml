@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hook_su_channel">Hook 超级用户会话</string>
+    <string name="hook_su_running">越狱模式运行中 · 超级用户服务可用</string>
+</resources>

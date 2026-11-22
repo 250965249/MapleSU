@@ -1,0 +1,32 @@
+{
+  "idx": 154,
+  "name": "CivetServer.o",
+  "group": "civetweb",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/civetweb/1.16/src/CivetServer.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "ae457ad8935297b4ffe0b320d65b36ed87119016f5059cd08636becaab616ebd",
+    "bytes": 88508
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE21__grow_by_and_replaceEmmmmmmPKc",
+      "-__memset_chk",
+      "-__strlen_chk"
+    ],
+    "note": "import-set residual _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE21__grow_by_and_replaceEmmmmmmPKc, __memset_chk, __strlen_chk [libc-fortify-wrapper+libcxx-template]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (3 missing / 0 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

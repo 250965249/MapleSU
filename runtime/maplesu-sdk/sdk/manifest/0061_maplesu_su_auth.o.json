@@ -1,0 +1,114 @@
+{
+  "idx": 61,
+  "name": "maplesu_su_auth.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu_core/maplesu_su_auth.cpp"
+  ],
+  "privateHeaders": [
+    "src/maplesu/compat/su_auth_legacy_abi.h"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 6,
+    "recovered": 6,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "bb722633a99e141180a1b3785784edf1191529be99482f8bc5f42517fa051b39",
+    "bytes": 47124
+  },
+  "evidence": [
+    "runtime/upstream-pro/sdk/notes/work/UIMP/STATUS.md#idx-61",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/su-receipts-red.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/su-receipts-green.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/su-ndk-compile.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/native-compile.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/WRITER-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/ACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/NDK-COMPILE.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/MEMBER-COMPILE.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/HANDOFF.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/MEMBER-061.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/HOST-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/GREEN-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/APPLY.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "P7 E2 2026-11-15: one explicit authorization result preserves primary and ordered recovery codes; m061 carries a 176-byte versioned body on the existing u64-prefixed pipe and m046 reads an exact bounded size. Actual writer/action/transaction/fork/pipe host tests and Android per-TU/manifest-profile member outputs are recorded under r7-e2. Old strong exports and scalar branch priority/-21001 are retained. Shared JNI/Manager consumption, formal SDK/APK, Android runtime and devices remain pending. Existing equivalence/function recovery statistics below are HISTORICAL and do not validate the new detail fields or changed pipe body.\nHISTORICAL: P7 2026-11-15: actual isolated source validates fork/pipe, child completion, complete authorization records and earliest errors; host fixture 20/20, actual NDK TU and manifest-profile thin-bitcode compilation. Historical equivalence statistics below describe the previous reconstruction only, not the changed receipt/error semantics, a new release or device acceptance.\nHISTORICAL: 强导出 T 4/4、强未定义 U 44/44，双向差集为空，未消耗工具链基线。行为等价复验（tools/verify_equiv.py）：函数清单 67/67 全等（missing=0 extra=0）、逐函数 call target 集合 67/67 全等、seq_mean=0.9909、bag_mean=0.9979、bag_min=0.9529（>=0.95），判定 equivalent。本条记录的是四条授权通路（查询/新增/移除/清空）的完整实现：fork 子进程经 pipe 取回允许列表、记录数组与字节视图互转、父进程回收子进程后按顺序回调。",
+    "measured": {
+      "origStrongT": 4,
+      "newStrongT": 4,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "origU": 44,
+      "newU": 44,
+      "uMissing": 0,
+      "uExtra": 0,
+      "verifyEquivRefFunctions": 67,
+      "verifyEquivNewFunctions": 67,
+      "verifyEquivMatched": 67,
+      "verifyEquivMissing": 0,
+      "verifyEquivExtra": 0,
+      "verifyEquivCallTargetMatch": 67,
+      "verifyEquivSeqMean": 0.9909,
+      "verifyEquivBagMean": 0.9979,
+      "verifyEquivBagMin": 0.9529,
+      "verifyEquivStatus": "equivalent"
+    }
+  },
+  "notes": "四条对外的 su 授权通路（get_su_auth_list_with_cb / add / remove / clear）共用一套 fork+pipe 交换与记录数组传输；allowlist 回调用线程局部记录指针按值拷贝每个 256 字节记录。",
+  "maplesuRefactor": {
+    "batch": "P7-E2-A-B",
+    "status": "implemented-host-verified-device-pending",
+    "resultVersion": 1,
+    "bodyBytes": 176,
+    "existingTransferPrefixBytes": 8,
+    "recoveryCapacity": 6,
+    "sharedConsumerPending": true,
+    "formalArtifactPending": true,
+    "deviceAcceptance": false,
+    "detailsHeader": "src/module/su_redirect_tu/su_auth_result_private.h",
+    "fixedReaderHeader": "src/skroot_core/fixed_transfer_io.h",
+    "evidence": [
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/PRECHECK.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/NDK-COMPILE.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/MEMBER-COMPILE.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/DELIVERY.json"
+    ]
+  },
+  "p7UidIndex20261121": {
+    "status": "sdk-private-no-image-exports-focused-verified",
+    "nativeProvider": null,
+    "newNativeExports": [],
+    "legacyControlAndArrayAbiUnchanged": true,
+    "uidComparison": "full u32 UID; SDK-private two-slot immutable hash indexes; unregistered plain-list compatibility scan is not constant-time",
+    "lifetime": "index prepared and read back before release-publishing its slot/control; actual native RCU readers; slot removal then second grace before index/table free",
+    "resultPhase43": "WriterIndexPrepare; decoder accepts additive phase",
+    "affectedSdkMembers": [
+      81,
+      82
+    ],
+    "unchangedConsumerClosureMembers": [
+      83,
+      84,
+      85,
+      86,
+      87
+    ],
+    "formalAssetsPromoted": false,
+    "deviceAcceptance": false,
+    "implementationCarrier": "Existing Legacy SDK raw kernel allocations and inline Hook payload; no claim/bridge or Image update required for this index",
+    "currentTargetRcu": "Existing __rcu_read_lock/__rcu_read_unlock/synchronize_rcu pair; 6.6.89 PREEMPT_RCU target; other RCU configurations not claimed"
+  }
+}

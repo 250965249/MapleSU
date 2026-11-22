@@ -1,0 +1,107 @@
+{
+  "idx": 59,
+  "name": "maplesu_log.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/runtime_log.cpp"
+  ],
+  "privateHeaders": [
+    "src/maplesu/compat/runtime_log_legacy.h"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-flto=thin"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 4,
+    "recovered": 4,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "49f3582877b6f6e244229a627efbe64d4c866131837dbe63e483610422c67941",
+    "bytes": 90012
+  },
+  "evidence": [
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/MEMBER-059.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/HOST-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/GREEN-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/APPLY.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "HISTORICAL (before the 2026-11-19 compatibility adapters; current raw gate pending): GATE(强导出 T + 强 U，member_gate.py 口径): T 4/4 missing 0 extra 0；U 105/105。4 个强导出（read_skroot_log_cb / set_skroot_log_enabled / is_skroot_log_enabled / clear_skroot_log）T 4/4、U 105/105 全对齐。fork 子进程 + 两条管道 + 错误码/字符串顺序、.safe_flag==3 才附崩溃日志、.enable 标志文件的 kernel SELinux 标签（21 字节含 NUL）均按 IR 还原。set_skroot_log_enabled 子进程三条失败出口的具体错误码在 IR 里被合并成单条 phi，源码按 module_err_def.h 就近取 CREATE_EMPTY_FILE/SET_FILE_SELINUX 并标注【推断】。"
+  },
+  "notes": "2026-11-19 source-only compatibility addition: restore the four frozen skroot_env log entry points as direct forwards to the single MapleSU runtime-log implementation. Frozen legacy header/runtime-call evidence is retained in the source-selection successor; current raw gate, compiler, tests, formal package and device validation remain pending.",
+  "p7RuntimeLog": {
+    "status": "implemented-pending-device-validation",
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-d/HANDOFF.md",
+    "scope": "MapleSU-owned single log implementation; frozen four legacy entries; null callback rejected after Key validation and before setter/fork",
+    "runtimeLogAssertions": 32,
+    "operationReceiptAssertions": 71,
+    "strongExportsUnchanged": true,
+    "undefinedAdded": [],
+    "undefinedRemoved": [],
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "p6OperationReceipts": {
+    "status": "implemented-pending-device-validation",
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/p6/remaining/R6-A-OPERATION-RECEIPTS.md",
+    "hostAssertions": 71,
+    "redFailures": 37,
+    "greenFailures": 0,
+    "strongExportsUnchanged": true,
+    "undefinedAdded": [
+      "__errno"
+    ],
+    "scope": "fork pid guard; own-child EINTR/exit validation; first SDK/transport failure preserved; log bool failure=false and delete error propagated",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "p7RuntimeLogResultsR19": {
+    "status": "source-implemented-pending-central-validation",
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/runtime-log-r19-implementation/DELIVERY.md",
+    "scope": "explicit-close stream failure; exists error distinguished from absent; all original child sends retained in order with failure exit; parent first error preserved",
+    "legacyContract": "four external entries, scalar codes, frame order and permissions preserved by source change; actual ABI pending",
+    "sharedQueryReceipt": "legacy bool and shared JNI OK projection remain pending separate integration",
+    "validationExecuted": false,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "runtimeLogOwnerWorker20261119": {
+    "status": "source-implemented-validation-pending",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/typed-state-chain-20261118/runtime-log-owner-worker/REPORT.md",
+    "sourceSha256": "f3d29571b8e66b97a35b314904262d5c479dcdabdd2d85208bcf3cd1006cb68f",
+    "scope": "Read, toggle, structured query and clear use the real child WorkerScope and authenticated kernel deployment directory. Owner neither reads nor stores Key input; Legacy retains its input window and path layout.",
+    "workerSourceFreeze": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/typed-state-chain-20261118/module-worker-namespace/revision3/SOURCE-FREEZE.json",
+    "privateHeaderBindings": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_storage_private.h",
+        "sha256": "43ae1b4b46e8798fe3a898ccc8ee90aea61a0596cebef46a69a2de008fbf8148"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_storage_worker_private.h",
+        "sha256": "cb6cc409776f91c0d598ce212f39670f0e52d824c3a8f7830e925d4cdcb43fe8"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_private.h",
+        "sha256": "abd6bddd1be90463fae80e6ca983b5f31580520138d064c24cff803aec4099e6"
+      }
+    ],
+    "lifetime": "Child storage scope and owned session finish before response frames and _exit; parent exceptional frame receive closes/reaps exact child before rethrow.",
+    "legacyContract": "Four external signatures, internal hidden query, original scalar errors and pipe frames, optional crash log append, flag format/mode/label and existing successful-toggle sync retained by source.",
+    "strongExportsValidated": false,
+    "undefinedImportsValidated": false,
+    "testsRun": false,
+    "compilerRun": false,
+    "formalAssetsPromoted": false,
+    "deviceTested": false,
+    "notPartOf": "currently running frozen29-path concentrated verification"
+  }
+}

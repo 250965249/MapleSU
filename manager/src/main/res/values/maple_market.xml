@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="maple_market_title">MapleSU Market</string>
+    <string name="maple_market_intro">Modules for your MapleSU environment</string>
+    <string name="maple_market_search">Search modules, authors, or descriptions</string>
+    <string name="maple_market_empty">No modules yet</string>
+    <string name="maple_market_no_results">No matching modules</string>
+    <string name="maple_market_refresh">Refresh</string>
+    <string name="maple_market_retry">Try again</string>
+    <string name="maple_market_source">Module source</string>
+    <string name="maple_market_official">Official source</string>
+    <string name="maple_market_custom">Custom source</string>
+    <string name="maple_market_source_hint">Use the official source, or add a module manifest you trust.</string>
+    <string name="maple_market_manifest_url">Manifest URL</string>
+    <string name="maple_market_trusted_key">Trusted public key</string>
+    <string name="maple_market_restore_official">Use official source</string>
+    <string name="maple_market_save_source">Save source</string>
+    <string name="maple_market_cached">Showing saved modules. Refresh to check for updates.</string>
+    <string name="maple_market_details">Details</string>
+    <string name="maple_market_changelog">Changelog</string>
+    <string name="maple_market_no_changelog">No changelog available</string>
+    <string name="maple_market_download">Download and install</string>
+    <string name="maple_market_update">Download and update</string>
+    <string name="maple_market_reinstall">Reinstall</string>
+    <string name="maple_market_update_available">Update available</string>
+    <string name="maple_market_ultra_native">Ultra native module</string>
+    <string name="maple_market_ksu_compatible">KSU compatible module</string>
+    <string name="maple_market_open_project">Module project</string>
+    <string name="maple_market_open_manifest">View manifest</string>
+    <string name="maple_market_confirming_environment">Checking the current environment…</string>
+    <string name="maple_market_downloading">Downloading…</string>
+    <string name="maple_market_download_busy">Another module is downloading</string>
+    <string name="maple_market_download_notice">Before downloading</string>
+    <string name="maple_market_incompatible">This module does not support the current environment</string>
+    <string name="maple_market_from_repository">Download from MapleSU module repository</string>
+    <string name="maple_market_local_file">Choose local file</string>
+    <string name="maple_market_close_menu">Close install menu</string>
+</resources>

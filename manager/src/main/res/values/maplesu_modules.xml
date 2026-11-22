@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Other locales use the English fallback until this prompt is translated. -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="module_maplesu_not_supported">MapleSU currently supports KernelSU-format module ZIPs only. MapleSU native modules are not supported.</string>
+    <!-- T10：冷启动等待运行环境接线（不是失败，绝不与 module_load_failed 混用）。 -->
+    <string name="module_environment_pending">Confirming the runtime environment…</string>
+</resources>

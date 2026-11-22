@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_d_comic_intro">启用 Comic 模式预设</string>
+    <string name="ui_d_comic_intro_summary">使用 MapleSU 风格，启用枫叶飘落、大状态卡与悬浮玻璃底栏；关闭后使用紧凑卡片与普通底栏。</string>
+    <string name="ui_d_comic_plain_style_summary">Miuix · 紧凑状态卡与普通底栏，关闭枫叶飘落、模糊和液态玻璃。</string>
+    <string name="ui_d_home_large_card">启用首页大卡片模式</string>
+    <string name="ui_d_home_large_card_summary">开启使用 MapleSU 方形大卡片，关闭使用紧凑卡片；两种布局均支持自定义图片。</string>
+    <string name="ui_d_comic_preset">启用 MapleSU Comic 预设</string>
+    <string name="ui_d_comic_preset_summary">一键应用大卡片、内置插画、枫叶飘落、模糊与悬浮玻璃底栏。</string>
+    <string name="ui_d_comic_confirm">确认启用 Comic 预设？将恢复首页大卡片与内置插画，并开启枫叶飘落、模糊、悬浮底栏和液态玻璃。之后仍可单独调整各项设置。已选壁纸与保存的自定义卡图会保留。</string>
+    <string name="ui_d_decoration_check">默认绿色对勾，点按选择图片</string>
+    <string name="ui_d_decoration_comic">Comic 内置插画，点按选择图片</string>
+    <string name="ui_d_status_reset">还原默认状态卡</string>
+    <string name="ui_d_status_reset_summary">恢复绿色对勾并重置图片取景，保留当前卡片大小。</string>
+    <string name="ui_d_images_translucent_summary">开启后透出自定义壁纸。</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_maplesu_not_supported">MapleSU 当前仅接受 KernelSU 格式的模块 ZIP，暂不支持 MapleSU 原生模块。</string>
+    <!-- T10：冷启动等待运行环境接线（不是失败）。 -->
+    <string name="module_environment_pending">正在确认运行环境…</string>
+</resources>

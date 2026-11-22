@@ -1,0 +1,31 @@
+{
+  "idx": 120,
+  "name": "rastack.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/core/rastack.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "08371f5c314872ef0065e98ecb06f5f7198fd42045612577a69254882cdb3f45",
+    "bytes": 10588
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-__gxx_personality_v0",
+      "-__memcpy_chk"
+    ],
+    "note": "import-set residual __gxx_personality_v0, __memcpy_chk [cxxabi-runtime+libc-fortify-wrapper]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (2 missing / 0 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

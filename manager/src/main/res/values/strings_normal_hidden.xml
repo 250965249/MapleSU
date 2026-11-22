@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="normal_hidden_entry_summary">Save a recovery link before removing the manager</string>
+    <string name="normal_hidden_body">Save the link before confirming. The manager will be uninstalled; pairing data is kept.</string>
+    <string name="normal_hidden_copy">Copy</string>
+    <string name="normal_hidden_preparing">Preparing recovery link…</string>
+    <string name="normal_hidden_save_hint">Copy or open the recovery link, save it somewhere you can find later, then confirm below.</string>
+    <string name="normal_hidden_save">I have saved the recovery link</string>
+    <string name="normal_hidden_saved">Recovery link saved</string>
+    <string name="normal_hidden_confirm">Enable stealth</string>
+    <string name="normal_hidden_activating">Enabling stealth…</string>
+    <string name="normal_hidden_retry">Prepare recovery link again</string>
+    <string name="normal_hidden_prepare_failed">The recovery link is not ready. Try again before enabling stealth.</string>
+    <string name="normal_hidden_activate_failed">Stealth did not finish. Check the connection and prepare a recovery link to try again.</string>
+    <string name="normal_hidden_copy_failed">The link was not copied. Try copying it again or open it in your browser.</string>
+    <string name="normal_hidden_open_failed">The browser did not open. Copy the recovery link instead.</string>
+    <string name="normal_hidden_done_title">Stealth enabled</string>
+    <string name="normal_hidden_done_body">The manager is uninstalled and its pairing data is kept. Use your saved recovery link to manage MapleSU or restore the manager.</string>
+    <string name="normal_hidden_done">Done</string>
+    <string name="normal_hidden_webui_checking">Checking the WebUI status…</string>
+    <string name="normal_hidden_webui_running">WebUI is running</string>
+    <string name="normal_hidden_webui_stopped">WebUI is closed</string>
+    <string name="normal_hidden_webui_unknown">WebUI status has not been confirmed</string>
+    <string name="normal_hidden_webui_stop">Close WebUI</string>
+    <string name="normal_hidden_webui_stop_title">Close the WebUI?</string>
+    <string name="normal_hidden_webui_stop_body">Your recovery link will be paused. Pairing data, recovery backups and stealth state will be kept. Prepare the recovery link again when you need it.</string>
+    <string name="normal_hidden_webui_stop_confirm">Close</string>
+    <string name="normal_hidden_webui_stopping">Closing WebUI…</string>
+    <string name="normal_hidden_webui_stopped_hint">Prepare and save the recovery link again to continue enabling stealth.</string>
+    <string name="normal_hidden_webui_stop_failed">The WebUI has not been confirmed closed. Please try again.</string>
+    <string name="normal_hidden_setup_title">Web manager</string>
+    <string name="normal_hidden_setup_body">Choose a port to start WebUI and prepare your recovery link.</string>
+    <string name="normal_hidden_prepare">Start hiding</string>
+    <string name="normal_hidden_saved_confirm">Confirm</string>
+    <string name="normal_hidden_link_title">Save your recovery link</string>
+</resources>

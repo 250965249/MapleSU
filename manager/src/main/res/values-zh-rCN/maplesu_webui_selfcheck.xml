@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- WebUI 自检（内部验证入口；短文案） -->
+<resources>
+    <string name="webui_selfcheck_title">WebUI 自检</string>
+    <string name="webui_selfcheck_mode">模式</string>
+    <string name="webui_selfcheck_root_backend">根通道</string>
+    <string name="webui_selfcheck_start">启动 WebUI</string>
+    <string name="webui_selfcheck_result">结果</string>
+    <string name="webui_selfcheck_link">WebUI 链接</string>
+    <string name="webui_selfcheck_check_status">检查状态</string>
+    <string name="webui_selfcheck_boot">记录重启验证</string>
+    <string name="webui_selfcheck_dry_run">恢复演练</string>
+    <string name="webui_selfcheck_backup">生成恢复备份</string>
+    <string name="webui_selfcheck_no_link">暂无链接</string>
+    <string name="webui_selfcheck_link_copied">链接已复制</string>
+</resources>

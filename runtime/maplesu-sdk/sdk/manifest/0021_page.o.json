@@ -1,0 +1,35 @@
+{
+  "idx": 21,
+  "name": "page.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/page.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "b44594f712f590c570ebbad3a5dd64a421429b67c62f212f91e29d55ac1fad44",
+    "bytes": 25484
+  },
+  "evidence": [
+    "notes/work/LAST14-A/proof/021/EQUIVALENCE.md",
+    "notes/work/LAST14-A/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "note": "Two-way raw symbol gate: T 1/1, U 30/30, raw diff empty both ways; zero gate-symbol-baseline entries consumed. verify_equiv: status=equivalent, functions 31/31, missing=0, extra=0, call_target_match=31, bag_min=1.0, bag_mean=1.0."
+  },
+  "notes": "get_struct_page_size reuses calibrate_vmemmap_dynamic()'s second out-parameter (sizeof(struct page)) and caches it; the vmemmap base itself is discarded."
+}

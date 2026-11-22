@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Client library: no components, no permissions, no queries.
+    The integrating application owns every manifest entry it needs.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" />

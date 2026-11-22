@@ -1,0 +1,54 @@
+{
+  "idx": 259,
+  "name": "maplesu_private_allowlist.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/maplesu_private_allowlist.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-std=c++17",
+    "-frtti",
+    "-fno-function-sections",
+    "-fno-data-sections",
+    "-fvisibility=default",
+    "-fno-visibility-inlines-hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 2,
+    "recovered": 2,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "e2f65eb8a75c474c9439a411671646124343c20d220b7a54d07fb67bd6726d24",
+    "bytes": 7240
+  },
+  "evidence": [
+    "notes/work/PKG-D/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "PASS, both directions empty, raw (native ELF member: zero-tolerance rule, no baseline subtraction). Measured: T 1/1, U 22/22, W 6/6; every text symbol has the same size and all code/data/relocation/exception-table sections are byte-equal to the shipped member; only the file/symbol name tables differ (the SDK translation unit carries the wrapper's file name). The shipped member uses whole-TU sections and keeps RTTI enabled, so -frtti and -fno-function/data-sections are recorded. Command: py notes/work/PKG-D/check.py 259; log: notes/work/PKG-D/selfcheck.log.",
+    "frozenVsBuilt": {
+      "frozen": {
+        "bytes": 7240,
+        "sha256": "e2f65eb8a75c474c9439a411671646124343c20d220b7a54d07fb67bd6726d24"
+      },
+      "builtFromSdkSource": {
+        "bytes": 7248,
+        "sha256": "9ba3c1522dfd3be279f24bbe915d05a3b769d1a0de286687851509c7ae2b9821"
+      },
+      "differingSections": [
+        ".strtab (+8 B: wrapper file name)",
+        ".symtab (STT_FILE name offsets only)"
+      ]
+    }
+  },
+  "notes": "Allow-list persistence helper: secure temporary inode, truncate + line-by-line write + fsync + rename publication, directory sync, and cleanup of the temporary inode when the transaction fails.",
+  "blockedBy": []
+}

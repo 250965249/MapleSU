@@ -1,0 +1,36 @@
+{
+  "name": "su",
+  "asset": "su.bin",
+  "member": "maplesu_unsafe_su_install.o",
+  "symbol": "su_data",
+  "origin": "runtime/maplesu-sdk/sdk/src/payload/su/README.md",
+  "language": "c++",
+  "link_sdk": true,
+  "sources": [
+    "src/main.cpp",
+    "src/root_grant.cpp",
+    "../../../../../ultra/bridge/sdk_syscall.S"
+  ],
+  "include_dirs": [
+    "src",
+    "../common"
+  ],
+  "defines": [],
+  "cflags": [
+    "-std=c++17",
+    "-fno-rtti",
+    "-fno-exceptions"
+  ],
+  "ldflags": [
+    "-static-libstdc++",
+    "-Wl,--wrap=syscall",
+    "-Wl,--gc-sections"
+  ],
+  "libs": ["z", "log", "dl"],
+  "feature_token": "ae40aa59c886d2c8762e849e9fa798155cd438a5faa748706084c6da3ca9add72a02c0128f6d56ba4a077a7bbd6ca8b6fa93b8c32e1ba5c2203e6e4c3cc24064",
+  "reference": {
+    "bytes": 741912,
+    "sha256": "7c6b48a392608252a03e2addcb21acc2bdd43afa981042ef102e0e95816569ed",
+    "origin": "frozen archive member skroot_unsafe_su_install.o .data (skroot_env::su_data), extracted into sdk/assets/su.bin"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "idx": 69,
+  "name": "module_bypass_oplus_inte.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/bypass/module_bypass_oplus_inte.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 3,
+    "recovered": 3,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "d68a782524670cb73f177174fb0cbaeb3bd0f70f9bacc7a5cd5f8273f6d702b7",
+    "bytes": 81096
+  },
+  "evidence": [
+    "notes/work/AGENT115/STATUS.md",
+    "notes/work/AGENT115/proof/0069/built.a",
+    "notes/work/AGENT115/proof/0069/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "符号闸门 PASS（实测）：T 2/2、U 64/64，原始双向差集为空，基线消耗 0。行为等价实测未达 0.95 档：函数清单 100/100、missing 0、extra 0、call 98/100、bag_min 0.0、bag_mean 0.9792。构建配方 stages=2（见 recipe 字段）。",
+    "measured": {
+      "strongT": 2,
+      "strongU": 64,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "strongUMissing": 0,
+      "strongUExtra": 0,
+      "definedKinds": {
+        "V": 13,
+        "r": 25,
+        "t": 12,
+        "W": 86,
+        "b": 3,
+        "T": 2,
+        "d": 2
+      },
+      "newObjectBytes": 81072,
+      "newObjectSha256": "af0ad70c61226a049e8e07f2ed9b9c68b8aa79fcafdcbdff62d5cead8d7799a5",
+      "baselineConsumed": [],
+      "recipeStages": 2,
+      "verifyEquivRefFunctions": 100,
+      "verifyEquivNewFunctions": 100,
+      "verifyEquivMatched": 100,
+      "verifyEquivMissing": 0,
+      "verifyEquivExtra": 0,
+      "verifyEquivCallTargetMatch": 98,
+      "verifyEquivBagMin": 0.0,
+      "verifyEquivBagMean": 0.9792,
+      "verifyEquivSeqMean": 0.9767,
+      "verifyEquivRefFunctionsMissingNames": [],
+      "verifyEquivExtraNames": []
+    }
+  },
+  "notes": "EQUIVALENCE(measured, verify_equiv 0.95): fn 100/100 missing 0 extra 0 call_target_match 98/100 bag_min 0.0 bag_mean 0.9792 seq_mean 0.9767; recipe stages=2",
+  "recipe": {
+    "stages": 2,
+    "description": "compile the TU to optimized IR (-emit-llvm -Oz), then compile that IR to ELF with the same flags; the frozen ELF member carries this second optimization pass",
+    "stage1": "clang++ <profile flags> -emit-llvm -c <src> -o tu.bc",
+    "stage2": "clang++ <profile flags> -c tu.bc -o member.o",
+    "expressible_in_build_py": true,
+    "persist_proof": "notes/work/AGENT115/persist.py"
+  },
+  "blockedBy": [
+    "verify_equiv call target 98/100：函数指令布局未逐条对齐（分支目标偏移随体积差漂移）",
+    "verify_equiv bag_min 0.0 < 0.95：OUTLINED_FUNCTION 片段切分/栈槽基址残余"
+  ]
+}

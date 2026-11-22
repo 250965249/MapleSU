@@ -1,0 +1,44 @@
+{
+  "idx": 90,
+  "name": "patch_base.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/idx090/patch_base.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "b106200a0ff2f0b4555b51302dcbfbdb657e2ef507cb7d22fe5fb1da60ee3ca6",
+    "bytes": 33312
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "tMissing": 0,
+      "tExtra": 0,
+      "uMissing": 0,
+      "uExtra": 0
+    },
+    "adjusted": {
+      "tMissing": 0,
+      "tExtra": 0,
+      "uMissing": 0,
+      "uExtra": 0
+    },
+    "note": "全符号集双向差集为空，而不只是 strong T/U：llvm-nm -P 全量比对 defined 289/289（13 strong T = ctor/copy/dtor 各 2 个别名 + get_fake_su_path + get_cred_atomic_usage_size + 3 个 emit_* + 2 个 hook 安装器；250 W + 17 d + 9 t 包含 IdleRegPool/RegProtectGuard/StackBufGuard/export_symbol/aarch64_asm_helper 的实例化）、undefined 76/76，两个方向都没有缺失或多出。布局文件头 4243c0de（bitcode）。另：三个 emit_* 的 asmjit 调用序列与冻结 IR 逐一相同（见 evidence 最后一项）。"
+  },
+  "notes": "",
+  "blockedBy": []
+}

@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "memberOrdinal": 73,
+  "memberName": "patch_avc_denied.o",
+  "format": "LLVM bitcode",
+  "sha256": "c1cf14599a22813c64fd4b0b7b57db8aa68365042b5d293086e819cd6aec9d9d",
+  "bytes": 593776,
+  "sourceArchive": "runtime/upstream-pro/maintenance/baseline/libkernel_module_kit_static.a",
+  "sourceArchiveSha256": "215cdd0c928f46f282b11a7be18e604eed2c96a668783071b82a2f2329148272",
+  "frozenArchiveSha256": "49df399288a2fc08d38c7c20e0632fbb21525fb05723a3443cb14fabd350b1e9",
+  "frozenMemberIdentical": true,
+  "reason": "The C++ reconstruction has incomplete serial/root-key installation-eligibility emitters. Select the original complete SKP implementation instead.",
+  "sourceRecoveryComplete": false,
+  "deviceValidated": false
+}

@@ -1,0 +1,1098 @@
+[
+  {
+    "name": "selinux_state",
+    "size": 0,
+    "fields": [
+      {
+        "name": "policy",
+        "bit_offset": 576,
+        "bit_size": 64
+      },
+      {
+        "name": "policy_mutex",
+        "bit_offset": 640,
+        "bit_size": 384
+      },
+      {
+        "name": "status_lock",
+        "bit_offset": 192,
+        "bit_size": 384
+      }
+    ]
+  },
+  {
+    "name": "selinux_policy",
+    "size": 632,
+    "fields": [
+      {
+        "name": "sidtab",
+        "bit_offset": 0,
+        "bit_size": 64
+      },
+      {
+        "name": "policydb",
+        "bit_offset": 64,
+        "bit_size": 4800
+      },
+      {
+        "name": "latest_granting",
+        "bit_offset": 4992,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "policy_file",
+    "size": 16,
+    "fields": [
+      {
+        "name": "data",
+        "bit_offset": 0,
+        "bit_size": 64
+      },
+      {
+        "name": "len",
+        "bit_offset": 64,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "policydb",
+    "size": 600,
+    "fields": [
+      {
+        "name": "symtab",
+        "bit_offset": 128,
+        "bit_size": 1536
+      },
+      {
+        "name": "sym_val_to_name",
+        "bit_offset": 1664,
+        "bit_size": 512
+      },
+      {
+        "name": "len",
+        "bit_offset": 4608,
+        "bit_size": 64
+      },
+      {
+        "name": "class_val_to_struct",
+        "bit_offset": 2176,
+        "bit_size": 64
+      },
+      {
+        "name": "type_val_to_struct",
+        "bit_offset": 2368,
+        "bit_size": 64
+      },
+      {
+        "name": "role_val_to_struct",
+        "bit_offset": 2240,
+        "bit_size": 64
+      },
+      {
+        "name": "type_attr_map_array",
+        "bit_offset": 4288,
+        "bit_size": 64
+      },
+      {
+        "name": "permissive_map",
+        "bit_offset": 4480,
+        "bit_size": 128
+      },
+      {
+        "name": "te_avtab",
+        "bit_offset": 2432,
+        "bit_size": 192
+      },
+      {
+        "name": "te_cond_avtab",
+        "bit_offset": 3136,
+        "bit_size": 192
+      },
+      {
+        "name": "process_class",
+        "bit_offset": 4720,
+        "bit_size": 16
+      },
+      {
+        "name": "process_trans_perms",
+        "bit_offset": 4736,
+        "bit_size": 32
+      },
+      {
+        "name": "role_allow",
+        "bit_offset": 3456,
+        "bit_size": 64
+      },
+      {
+        "name": "allow_unknown",
+        "bit_offset": 4705,
+        "bit_size": 1
+      },
+      {
+        "name": "android_netlink_route",
+        "bit_offset": 32,
+        "bit_size": 32
+      },
+      {
+        "name": "android_netlink_getneigh",
+        "bit_offset": 64,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "sidtab",
+    "size": 7208,
+    "fields": []
+  },
+  {
+    "name": "sidtab_entry",
+    "size": 0,
+    "fields": [
+      {
+        "name": "context",
+        "bit_offset": 64,
+        "bit_size": 576
+      }
+    ]
+  },
+  {
+    "name": "hashtab",
+    "size": 16,
+    "fields": [
+      {
+        "name": "htable",
+        "bit_offset": 0,
+        "bit_size": 64
+      },
+      {
+        "name": "size",
+        "bit_offset": 64,
+        "bit_size": 32
+      },
+      {
+        "name": "nel",
+        "bit_offset": 96,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "context",
+    "size": 72,
+    "fields": [
+      {
+        "name": "user",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "role",
+        "bit_offset": 32,
+        "bit_size": 32
+      },
+      {
+        "name": "type",
+        "bit_offset": 64,
+        "bit_size": 32
+      },
+      {
+        "name": "len",
+        "bit_offset": 96,
+        "bit_size": 32
+      },
+      {
+        "name": "range",
+        "bit_offset": 128,
+        "bit_size": 384
+      },
+      {
+        "name": "str",
+        "bit_offset": 512,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "mls_range",
+    "size": 48,
+    "fields": [
+      {
+        "name": "level",
+        "bit_offset": 0,
+        "bit_size": 384
+      }
+    ]
+  },
+  {
+    "name": "mls_level",
+    "size": 24,
+    "fields": [
+      {
+        "name": "sens",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "cat",
+        "bit_offset": 64,
+        "bit_size": 128
+      }
+    ]
+  },
+  {
+    "name": "ebitmap",
+    "size": 16,
+    "fields": [
+      {
+        "name": "node",
+        "bit_offset": 0,
+        "bit_size": 64
+      },
+      {
+        "name": "highbit",
+        "bit_offset": 64,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "ebitmap_node",
+    "size": 64,
+    "fields": [
+      {
+        "name": "next",
+        "bit_offset": 0,
+        "bit_size": 64
+      },
+      {
+        "name": "maps",
+        "bit_offset": 64,
+        "bit_size": 384
+      },
+      {
+        "name": "startbit",
+        "bit_offset": 448,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "symtab",
+    "size": 24,
+    "fields": [
+      {
+        "name": "table",
+        "bit_offset": 0,
+        "bit_size": 128
+      },
+      {
+        "name": "nprim",
+        "bit_offset": 128,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "role_datum",
+    "size": 40,
+    "fields": [
+      {
+        "name": "value",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "bounds",
+        "bit_offset": 32,
+        "bit_size": 32
+      },
+      {
+        "name": "dominates",
+        "bit_offset": 64,
+        "bit_size": 128
+      },
+      {
+        "name": "types",
+        "bit_offset": 192,
+        "bit_size": 128
+      }
+    ]
+  },
+  {
+    "name": "user_datum",
+    "size": 96,
+    "fields": [
+      {
+        "name": "value",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "bounds",
+        "bit_offset": 32,
+        "bit_size": 32
+      },
+      {
+        "name": "roles",
+        "bit_offset": 64,
+        "bit_size": 128
+      },
+      {
+        "name": "range",
+        "bit_offset": 192,
+        "bit_size": 384
+      },
+      {
+        "name": "dfltlevel",
+        "bit_offset": 576,
+        "bit_size": 192
+      }
+    ]
+  },
+  {
+    "name": "type_datum",
+    "size": 12,
+    "fields": [
+      {
+        "name": "value",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "bounds",
+        "bit_offset": 32,
+        "bit_size": 32
+      },
+      {
+        "name": "primary",
+        "bit_offset": 64,
+        "bit_size": 8
+      },
+      {
+        "name": "attribute",
+        "bit_offset": 72,
+        "bit_size": 8
+      }
+    ]
+  },
+  {
+    "name": "class_datum",
+    "size": 72,
+    "fields": [
+      {
+        "name": "value",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "comkey",
+        "bit_offset": 64,
+        "bit_size": 64
+      },
+      {
+        "name": "comdatum",
+        "bit_offset": 128,
+        "bit_size": 64
+      },
+      {
+        "name": "permissions",
+        "bit_offset": 192,
+        "bit_size": 192
+      },
+      {
+        "name": "constraints",
+        "bit_offset": 384,
+        "bit_size": 64
+      },
+      {
+        "name": "validatetrans",
+        "bit_offset": 448,
+        "bit_size": 64
+      },
+      {
+        "name": "default_user",
+        "bit_offset": 512,
+        "bit_size": 8
+      },
+      {
+        "name": "default_role",
+        "bit_offset": 520,
+        "bit_size": 8
+      },
+      {
+        "name": "default_type",
+        "bit_offset": 528,
+        "bit_size": 8
+      },
+      {
+        "name": "default_range",
+        "bit_offset": 536,
+        "bit_size": 8
+      }
+    ]
+  },
+  {
+    "name": "constraint_node",
+    "size": 24,
+    "fields": [
+      {
+        "name": "permissions",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "expr",
+        "bit_offset": 64,
+        "bit_size": 64
+      },
+      {
+        "name": "next",
+        "bit_offset": 128,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "constraint_expr",
+    "size": 48,
+    "fields": [
+      {
+        "name": "expr_type",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "attr",
+        "bit_offset": 32,
+        "bit_size": 32
+      },
+      {
+        "name": "op",
+        "bit_offset": 64,
+        "bit_size": 32
+      },
+      {
+        "name": "names",
+        "bit_offset": 128,
+        "bit_size": 128
+      },
+      {
+        "name": "type_names",
+        "bit_offset": 256,
+        "bit_size": 64
+      },
+      {
+        "name": "next",
+        "bit_offset": 320,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "role_allow",
+    "size": 16,
+    "fields": [
+      {
+        "name": "role",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "new_role",
+        "bit_offset": 32,
+        "bit_size": 32
+      },
+      {
+        "name": "next",
+        "bit_offset": 64,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "avtab",
+    "size": 24,
+    "fields": [
+      {
+        "name": "htable",
+        "bit_offset": 0,
+        "bit_size": 64
+      },
+      {
+        "name": "nel",
+        "bit_offset": 64,
+        "bit_size": 32
+      },
+      {
+        "name": "nslot",
+        "bit_offset": 96,
+        "bit_size": 32
+      },
+      {
+        "name": "mask",
+        "bit_offset": 128,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "avtab_key",
+    "size": 8,
+    "fields": [
+      {
+        "name": "source_type",
+        "bit_offset": 0,
+        "bit_size": 16
+      },
+      {
+        "name": "target_type",
+        "bit_offset": 16,
+        "bit_size": 16
+      },
+      {
+        "name": "target_class",
+        "bit_offset": 32,
+        "bit_size": 16
+      },
+      {
+        "name": "specified",
+        "bit_offset": 48,
+        "bit_size": 16
+      }
+    ]
+  },
+  {
+    "name": "avtab_node",
+    "size": 24,
+    "fields": [
+      {
+        "name": "key",
+        "bit_offset": 0,
+        "bit_size": 64
+      },
+      {
+        "name": "datum",
+        "bit_offset": 64,
+        "bit_size": 64
+      },
+      {
+        "name": "next",
+        "bit_offset": 128,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "avtab_datum",
+    "size": 8,
+    "fields": [
+      {
+        "name": "u",
+        "bit_offset": 0,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "avtab_extended_perms",
+    "size": 36,
+    "fields": [
+      {
+        "name": "specified",
+        "bit_offset": 0,
+        "bit_size": 8
+      },
+      {
+        "name": "driver",
+        "bit_offset": 8,
+        "bit_size": 8
+      },
+      {
+        "name": "perms",
+        "bit_offset": 32,
+        "bit_size": 256
+      }
+    ]
+  },
+  {
+    "name": "extended_perms",
+    "size": 36,
+    "fields": [
+      {
+        "name": "len",
+        "bit_offset": 0,
+        "bit_size": 16
+      },
+      {
+        "name": "drivers",
+        "bit_offset": 32,
+        "bit_size": 256
+      }
+    ]
+  },
+  {
+    "name": "extended_perms_data",
+    "size": 32,
+    "fields": [
+      {
+        "name": "p",
+        "bit_offset": 0,
+        "bit_size": 256
+      }
+    ]
+  },
+  {
+    "name": "av_decision",
+    "size": 20,
+    "fields": [
+      {
+        "name": "allowed",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "auditallow",
+        "bit_offset": 32,
+        "bit_size": 32
+      },
+      {
+        "name": "auditdeny",
+        "bit_offset": 64,
+        "bit_size": 32
+      },
+      {
+        "name": "seqno",
+        "bit_offset": 96,
+        "bit_size": 32
+      },
+      {
+        "name": "flags",
+        "bit_offset": 128,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "mutex",
+    "size": 48,
+    "fields": [
+      {
+        "name": "owner",
+        "bit_offset": 0,
+        "bit_size": 64
+      },
+      {
+        "name": "wait_lock",
+        "bit_offset": 64,
+        "bit_size": 32
+      },
+      {
+        "name": "osq",
+        "bit_offset": 96,
+        "bit_size": 32
+      },
+      {
+        "name": "wait_list",
+        "bit_offset": 128,
+        "bit_size": 128
+      },
+      {
+        "name": "android_oem_data1",
+        "bit_offset": 256,
+        "bit_size": 128
+      }
+    ]
+  },
+  {
+    "name": "ratelimit_state",
+    "size": 40,
+    "fields": [
+      {
+        "name": "lock",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "interval",
+        "bit_offset": 32,
+        "bit_size": 32
+      },
+      {
+        "name": "burst",
+        "bit_offset": 64,
+        "bit_size": 32
+      },
+      {
+        "name": "printed",
+        "bit_offset": 96,
+        "bit_size": 32
+      },
+      {
+        "name": "missed",
+        "bit_offset": 128,
+        "bit_size": 32
+      },
+      {
+        "name": "begin",
+        "bit_offset": 192,
+        "bit_size": 64
+      },
+      {
+        "name": "flags",
+        "bit_offset": 256,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "lsm_blob_sizes",
+    "size": 0,
+    "fields": [
+      {
+        "name": "lbs_cred",
+        "bit_offset": 0,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "selinux_kernel_status",
+    "size": 20,
+    "fields": [
+      {
+        "name": "version",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "sequence",
+        "bit_offset": 32,
+        "bit_size": 32
+      },
+      {
+        "name": "enforcing",
+        "bit_offset": 64,
+        "bit_size": 32
+      },
+      {
+        "name": "policyload",
+        "bit_offset": 96,
+        "bit_size": 32
+      },
+      {
+        "name": "deny_unknown",
+        "bit_offset": 128,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "page",
+    "size": 64,
+    "fields": [
+      {
+        "name": "flags",
+        "bit_offset": 0,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "task_struct",
+    "size": 0,
+    "fields": [
+      {
+        "name": "thread_info",
+        "bit_offset": 0,
+        "bit_size": 384
+      },
+      {
+        "name": "ptrace",
+        "bit_offset": 576,
+        "bit_size": 32
+      },
+      {
+        "name": "parent",
+        "bit_offset": 12672,
+        "bit_size": 64
+      },
+      {
+        "name": "real_cred",
+        "bit_offset": 16576,
+        "bit_size": 64
+      },
+      {
+        "name": "cred",
+        "bit_offset": 16640,
+        "bit_size": 64
+      },
+      {
+        "name": "stack_canary",
+        "bit_offset": 12544,
+        "bit_size": 64
+      },
+      {
+        "name": "mm",
+        "bit_offset": 11520,
+        "bit_size": 64
+      },
+      {
+        "name": "signal",
+        "bit_offset": 17344,
+        "bit_size": 64
+      },
+      {
+        "name": "thread_node",
+        "bit_offset": 14016,
+        "bit_size": 128
+      },
+      {
+        "name": "rcu_read_lock_nesting",
+        "bit_offset": 9632,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "signal_struct",
+    "size": 0,
+    "fields": [
+      {
+        "name": "thread_head",
+        "bit_offset": 128,
+        "bit_size": 128
+      }
+    ]
+  },
+  {
+    "name": "thread_info",
+    "size": 0,
+    "fields": [
+      {
+        "name": "preempt_count",
+        "bit_offset": 128,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "cred",
+    "size": 0,
+    "fields": [
+      {
+        "name": "uid",
+        "bit_offset": 64,
+        "bit_size": 32
+      },
+      {
+        "name": "security",
+        "bit_offset": 1024,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "file",
+    "size": 0,
+    "fields": [
+      {
+        "name": "private_data",
+        "bit_offset": 1728,
+        "bit_size": 64
+      },
+      {
+        "name": "f_op",
+        "bit_offset": 1536,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "vm_area_struct",
+    "size": 0,
+    "fields": [
+      {
+        "name": "vm_start",
+        "bit_offset": 0,
+        "bit_size": 64
+      },
+      {
+        "name": "vm_end",
+        "bit_offset": 64,
+        "bit_size": 64
+      },
+      {
+        "name": "vm_pgoff",
+        "bit_offset": 960,
+        "bit_size": 64
+      },
+      {
+        "name": "vm_flags",
+        "bit_offset": 256,
+        "bit_size": 64
+      },
+      {
+        "name": "vm_page_prot",
+        "bit_offset": 192,
+        "bit_size": 64
+      },
+      {
+        "name": "vm_file",
+        "bit_offset": 1024,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "mm_struct",
+    "size": 0,
+    "fields": [
+      {
+        "name": "mmap_lock",
+        "bit_offset": 1152,
+        "bit_size": 512
+      },
+      {
+        "name": "mm_lock_seq",
+        "bit_offset": 1792,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "callback_head",
+    "size": 16,
+    "fields": [
+      {
+        "name": "next",
+        "bit_offset": 0,
+        "bit_size": 64
+      },
+      {
+        "name": "func",
+        "bit_offset": 64,
+        "bit_size": 64
+      }
+    ]
+  },
+  {
+    "name": "sock",
+    "size": 0,
+    "fields": [
+      {
+        "name": "__sk_common",
+        "bit_offset": 0,
+        "bit_size": 1088
+      },
+      {
+        "name": "sk_protocol",
+        "bit_offset": 4256,
+        "bit_size": 16
+      },
+      {
+        "name": "sk_uid",
+        "bit_offset": 4608,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "sock_common",
+    "size": 0,
+    "fields": [
+      {
+        "name": "skc_family",
+        "bit_offset": 128,
+        "bit_size": 16
+      }
+    ]
+  },
+  {
+    "name": "sk_buff",
+    "size": 0,
+    "fields": [
+      {
+        "name": "data",
+        "bit_offset": 1728,
+        "bit_size": 64
+      },
+      {
+        "name": "len",
+        "bit_offset": 896,
+        "bit_size": 32
+      },
+      {
+        "name": "cb",
+        "bit_offset": 320,
+        "bit_size": 384
+      },
+      {
+        "name": "data_len",
+        "bit_offset": 928,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "netlink_skb_parms",
+    "size": 0,
+    "fields": [
+      {
+        "name": "portid",
+        "bit_offset": 96,
+        "bit_size": 32
+      },
+      {
+        "name": "dst_group",
+        "bit_offset": 128,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "nlmsghdr",
+    "size": 16,
+    "fields": [
+      {
+        "name": "nlmsg_len",
+        "bit_offset": 0,
+        "bit_size": 32
+      },
+      {
+        "name": "nlmsg_type",
+        "bit_offset": 32,
+        "bit_size": 16
+      },
+      {
+        "name": "nlmsg_flags",
+        "bit_offset": 48,
+        "bit_size": 16
+      },
+      {
+        "name": "nlmsg_seq",
+        "bit_offset": 64,
+        "bit_size": 32
+      },
+      {
+        "name": "nlmsg_pid",
+        "bit_offset": 96,
+        "bit_size": 32
+      }
+    ]
+  },
+  {
+    "name": "task_security_struct",
+    "size": 0,
+    "fields": [
+      {
+        "name": "sid",
+        "bit_offset": 32,
+        "bit_size": 32
+      }
+    ]
+  }
+]

@@ -1,0 +1,82 @@
+{
+  "idx": 257,
+  "name": "maplesu_environment_state.o",
+  "group": "maplesu",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/maplesu_environment_state.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-Iinclude/maplesu",
+    "-std=c++17",
+    "-frtti",
+    "-U_FORTIFY_SOURCE",
+    "-fvisibility=default",
+    "-fno-visibility-inlines-hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 5,
+    "recovered": 5,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "5c12d6f60811dbaa38df604879077539357e1a407320195cefd58ad212d4a434",
+    "bytes": 16072
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "PASS, both directions empty, raw (native ELF member: the parent's zero-tolerance rule applies and is met without any baseline subtraction). Command: py notes/work/MAPLESU/tools/selfcheck.py (same flags/include/cwd as tools/build_offsets_batch.py:132-139; symbol sets read exactly as PROTOCOL 5 specifies). T 20/20, U 29/29, all four diffs empty. Full log: notes/work/MAPLESU/selfcheck.log.",
+    "frozenVsBuilt": {
+      "frozen": {
+        "bytes": 16072,
+        "sha256": "5c12d6f60811dbaa38df604879077539357e1a407320195cefd58ad212d4a434"
+      },
+      "builtFromSdkSource": {
+        "bytes": 16080,
+        "sha256": "bc17b621aa8d6d8436a8933d19c40ab1952d13a018be6874772c18753c5b02fc"
+      },
+      "differingSections": [
+        ".strtab (+8 B)",
+        ".symtab (STT_FILE name offsets only)"
+      ]
+    },
+    "buildNote": "reference member resolves plain open/read, so this unit disables the distro FORTIFY redirection to match the reference build recipe"
+  },
+  "notes": "",
+  "p7StorageContextR49": {
+    "dateUtc": "2026-11-18",
+    "scope": "m257 empty locator remains Unknown",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/pro/boot/environment_state.cpp",
+        "sha256": "dcfd7f8bcd731d038471a2c8ba5e669590a9ac13727bd3fb2417926f48179d6f"
+      }
+    ],
+    "requiredPrivateHeader": "runtime/upstream-pro/sdk/include/maplesu_storage_private.h",
+    "requiredProvider": "runtime/upstream-pro/sdk/src/module_base/module_base_disk_storage.cpp",
+    "canonicalSourceSelectionChanged": false,
+    "validationStatus": "source-only-not-compiled-or-tested",
+    "formalAssetsPromoted": false,
+    "deviceValidated": false
+  },
+  "privateHeaders": [
+    "include/maplesu_storage_worker_private.h",
+    "include/maplesu_storage_private.h",
+    "include/maplesu_request_private.h"
+  ],
+  "ownerNamespaceQuery20261119": {
+    "status": "source-implemented-validation-pending",
+    "namespaceCommand": 27,
+    "realWorkerScope": true,
+    "legacyInputsPreserved": true,
+    "newInstallReadinessMarker": false,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false,
+    "repositoryImplementation": "runtime/ultra/boot/environment_state.cpp"
+  }
+}

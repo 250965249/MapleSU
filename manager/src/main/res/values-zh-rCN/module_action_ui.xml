@@ -1,0 +1,8 @@
+<resources>
+    <string name="module_action_back">返回</string>
+    <string name="module_action_wait">模块操作正在进行，请等待结束后返回。</string>
+    <string name="module_action_failed_message">模块操作未成功完成，请查看上方输出。</string>
+    <string name="module_action_interrupted">上次操作会话已结束，请确认模块状态后再重新运行。</string>
+    <string name="module_action_restored_complete">上次操作已结束，输出仅保留在当次会话中。</string>
+    <string name="module_action_log_saved">日志已保存至 %1$s</string>
+</resources>

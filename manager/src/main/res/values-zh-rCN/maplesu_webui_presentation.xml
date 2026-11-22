@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="webui_loading">正在打开模块…</string>
+    <string name="webui_retry_description">模块页面暂时没有响应，请稍后重试。</string>
+    <string name="webui_reopen_description">页面意外关闭，请返回模块列表后重新打开。</string>
+    <string name="webui_back">返回</string>
+</resources>

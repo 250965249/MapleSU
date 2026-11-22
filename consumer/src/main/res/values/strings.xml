@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MapleSU Consumer</string>
+    <string name="log_ready">Ready. The buttons below talk to the installed MapleSU Manager over its public Binder entry.</string>
+    <string name="action_connect">Connect</string>
+    <string name="action_id">id -u</string>
+    <string name="action_exit">exit 37</string>
+    <string name="action_pty">PTY resize</string>
+</resources>

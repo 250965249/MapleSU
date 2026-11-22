@@ -1,0 +1,51 @@
+{
+  "idx": 9,
+  "name": "proc_ops.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/proc_ops.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 251,
+    "recovered": 251,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "e34a42cfafed8fac4ccbee26eafe3b7c3fd9d94407930965051e1315638f254d",
+    "bytes": 163436
+  },
+  "evidence": [
+    "notes/work/AGENT112/STATUS.md",
+    "notes/work/AGENT112/proof/009/EQUIVALENCE.md",
+    "notes/work/AGENT116/STATUS.md",
+    "notes/work/AGENT116/final-EQUIVALENCE.md",
+    "notes/work/AGENT116/proof/009/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": 0,
+    "equivalence": {
+      "functions": "251/251",
+      "missing": [],
+      "extra": [
+        "\"_ZNSt6__ndk110unique_ptrINS_10__function6__baseIF7KModErrPN6asmjit5v1_163a649AssemblerERNS6_3GpXEEEENS_22__allocator_destructorINS_9allocatorINS1_6__funcIZN13kernel_module20get_proc_ops_offsetsERNSG_16proc_ops_offsetsEE3$_0NSE_ISJ_EESB_EEEEEEED2B7v170000Ev\""
+      ],
+      "call_target_match": "250/251",
+      "bag_min": 0.8815,
+      "bag_mean": 0.9993,
+      "seq_mean": 0.9954
+    },
+    "note": "MEASURED on the official archive produced by build.py --all: functions 251/251 (missing 0, extra 1); call-target sets equal 250/251; bag_min 0.8815, bag_mean 0.9993, seq_mean 0.9954. NOT AT BAR: function inventory 251/251; call-target sets 250/251; bag_min 0.8815 < 0.95. Archive: build/ag116b/out/libkernel_module_kit_static.a sha256=8f6a6361ef69d50d09fde21258315fcf5ec39f91fe9696649746d1f9de667f40.",
+    "adjustedDiff": []
+  },
+  "notes": ""
+}

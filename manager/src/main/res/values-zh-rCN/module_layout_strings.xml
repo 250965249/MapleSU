@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_card_running">运行中</string>
+    <string name="module_card_not_running">未运行</string>
+    <string name="module_card_abnormal">模块运行异常</string>
+    <string name="module_card_unknown">模块状态待确认</string>
+    <string name="module_card_processing">正在处理…</string>
+    <string name="module_card_unsupported_summary">当前环境不支持：%1$s</string>
+    <string name="module_card_restart_required">重启后生效</string>
+    <string name="module_card_properties_failed">%1$d 项属性未生效</string>
+    <string name="module_card_artwork">卡面</string>
+</resources>

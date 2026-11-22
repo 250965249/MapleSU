@@ -1,0 +1,168 @@
+{
+  "idx": 82,
+  "name": "patch_base.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/idx082/patch_base.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 259,
+    "recovered": 259,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "300d59bd14a1d6cd9336daab9e1fa9c0b6844b62fac0c730f3b9b111d57b962f",
+    "bytes": 166508
+  },
+  "evidence": [
+    "notes/work/AGENT112/STATUS.md",
+    "notes/work/AGENT112/proof/082/EQUIVALENCE.md",
+    "notes/work/AGENT116/STATUS.md",
+    "notes/work/AGENT116/final-EQUIVALENCE.md",
+    "notes/work/AGENT116/proof/082/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": 0,
+    "equivalence": {
+      "functions": "259/259",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "259/259",
+      "bag_min": 0.9744,
+      "bag_mean": 0.9999,
+      "seq_mean": 0.9991
+    },
+    "note": "MEASURED on the official archive produced by build.py --all: functions 259/259 (missing 0, extra 0); call-target sets equal 259/259; bag_min 0.9744, bag_mean 0.9999, seq_mean 0.9991. Archive: build/ag116b/out/libkernel_module_kit_static.a sha256=8f6a6361ef69d50d09fde21258315fcf5ec39f91fe9696649746d1f9de667f40.",
+    "adjustedDiff": []
+  },
+  "notes": "",
+  "maplesuRefactor": {
+    "batch": "SU-COMPLETE-20261118-01a1ef6d",
+    "status": "implemented-source-validation-pending",
+    "selectedSource": "src/patch/idx082/patch_base.cpp",
+    "sourceSha256": "c77ea89b312d3d76ed3c91cc0bc1e438b3dc2e8f6ab80bf7f63ad8e0d0ad6de6",
+    "behavior": [
+      "Null current/cred yields no SU redirect",
+      "Legacy UID reader limited to 4096 words including terminator",
+      "Zero-length user copy rejected before memory access",
+      "copy_from_user residual checked before reading destination"
+    ],
+    "historicalEquivalenceOnly": true,
+    "typedInstallationProfileConsumerComplete": false,
+    "latestSuModeGate": {
+      "sourceSha256": "c77ea89b312d3d76ed3c91cc0bc1e438b3dc2e8f6ab80bf7f63ad8e0d0ad6de6",
+      "behavior": "One auth-state snapshot permits the bounded UID-table emitter only for authenticated LegacyKey; Manager/helper and unusable modes emit deny before current/cred/table reads. Per-app execution remains the HOST native-gate path, not this legacy emitter.",
+      "hostNativeGateCaller": "manager_su_runtime_factory.c:msu_su_runtime_before -> msu_su_read_current / msu_su_apply_current_detailed",
+      "factoryReaderBindingRequired": false,
+      "factoryReaderBindingPublished": false
+    },
+    "formalArtifactPending": true,
+    "deviceAcceptance": false
+  },
+  "p7Compat20261121": {
+    "sourceDependencies": [
+      {
+        "path": "src/patch/idx082/patch_base.cpp",
+        "sha256": "2e8cde5d2a4685a2e41fb51e8a40a5c2d71b500d7d568ab55613240eada27f21"
+      },
+      {
+        "path": "include/private_module_su_patch.h",
+        "sha256": "ec74e57c8f091f70499f7c1265fe848af15e89c2a89c1da316294f1a8db74c99"
+      }
+    ],
+    "behavior": [
+      "Scoped per-thread SU group stages payloads before first publication",
+      "Failure retires already published handles in reverse order through P5 lifecycle; real cleanup failures logged and no success coercion",
+      "Private batch exposes proven reader retirement separately from its primary error; missing-handle errors inspect actual publication receipt; uncertain/failed rollback does not free UID state"
+    ],
+    "historicalEquivalenceOnly": true,
+    "validationRoot": ".tmp/p7-development-20261121/compat",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  },
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/patch/idx082/patch_base.cpp",
+        "sha256": "62af70e4858d02f6e00f1c699f536bddd53f014bc1eb5b6cfe9e7788a227b48c"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/private_module_su_patch.h",
+        "sha256": "ec74e57c8f091f70499f7c1265fe848af15e89c2a89c1da316294f1a8db74c99"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_uid_lifetime_private.h",
+        "sha256": "8ca77a5bfbbaf0d45a3988e20cb9be3255638ed57e50b8687116f59347b7b471"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/default_module/module_su_redirect/patch_base.h",
+        "sha256": "627a0e1328c52a92ceb26caedbdbcdc0073a0c1009a28e4301bc351a886c0ae0"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/core01/patch_base_su_redirect.h",
+        "sha256": "15a0ded57d388057d7b8c5eb2842f1b9b7dcb74293a8cb4816c337b86e0d97bb"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  },
+  "p7UidIndex20261121": {
+    "status": "sdk-private-no-image-exports-focused-verified",
+    "nativeProvider": null,
+    "newNativeExports": [],
+    "legacyControlAndArrayAbiUnchanged": true,
+    "uidComparison": "full u32 UID; SDK-private two-slot immutable hash indexes; unregistered plain-list compatibility scan is not constant-time",
+    "lifetime": "index prepared and read back before release-publishing its slot/control; actual native RCU readers; slot removal then second grace before index/table free",
+    "resultPhase43": "WriterIndexPrepare; decoder accepts additive phase",
+    "affectedSdkMembers": [
+      81,
+      82
+    ],
+    "unchangedConsumerClosureMembers": [
+      83,
+      84,
+      85,
+      86,
+      87
+    ],
+    "formalAssetsPromoted": false,
+    "deviceAcceptance": false,
+    "implementationCarrier": "Existing Legacy SDK raw kernel allocations and inline Hook payload; no claim/bridge or Image update required for this index",
+    "currentTargetRcu": "Existing __rcu_read_lock/__rcu_read_unlock/synchronize_rcu pair; 6.6.89 PREEMPT_RCU target; other RCU configurations not claimed"
+  },
+  "privateHeaders": [
+    "src/module/su_redirect_tu/su_uid_lifetime_private.h",
+    "src/module/su_redirect_tu/su_uid_index_private.h"
+  ],
+  "noImageUidIndex20261121": {
+    "sourceDependencies": [
+      {
+        "path": "src/module/su_redirect_tu/su_uid_lifetime_private.h",
+        "sha256": "8ca77a5bfbbaf0d45a3988e20cb9be3255638ed57e50b8687116f59347b7b471"
+      },
+      {
+        "path": "src/module/su_redirect_tu/su_uid_index_private.h",
+        "sha256": "cc2b34d4ecbeac575836c56eecf11be2f419ebad5fe1dd8a411de26da1219541"
+      },
+      {
+        "path": "src/patch/idx082/patch_base.cpp",
+        "sha256": "62af70e4858d02f6e00f1c699f536bddd53f014bc1eb5b6cfe9e7788a227b48c"
+      }
+    ],
+    "validationRoot": ".tmp/main-rootpanic-resume-20261121/panic/no-image",
+    "newSystemVisibleInterface": false,
+    "deviceAcceptance": false
+  }
+}

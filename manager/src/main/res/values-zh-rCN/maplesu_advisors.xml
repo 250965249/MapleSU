@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 「关于 MapleSU」里的用户顾问计划卡片 · 简体中文。与 values/maplesu_advisors.xml 键一一对应。 -->
+<resources>
+    <string name="advisors_language">zh</string>
+    <string name="advisors_title">MapleSU 用户顾问计划</string>
+    <string name="advisors_summary">%1$d 位成员 · 点按展开</string>
+    <string name="advisors_hint">拖动浏览 · 双指缩放 · 点按头像查看介绍</string>
+    <string name="advisors_back">全部成员</string>
+    <string name="advisors_author">作者</string>
+    <string name="advisors_thanks">特别致谢</string>
+    <string name="advisors_beta">内测用户</string>
+    <string name="advisors_beta_thanks">感谢你在内测期间作出的宝贵贡献。</string>
+    <string name="advisors_view">查看介绍</string>
+    <string name="advisors_open_link">打开链接</string>
+    <string name="advisors_expanded">已展开</string>
+    <string name="advisors_collapsed">已收起</string>
+</resources>

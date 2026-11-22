@@ -1,0 +1,192 @@
+{
+  "assets": {
+    "ir2Spec": "5.10.226-android12-9-o-gb4f7990ee2d5.ir2.spec",
+    "ir2SpecSha256": "39df90e78dcd0b120906db13bc54316bf2ac209c261c7998c72c0cf82b0db147",
+    "irSpec": "5.10.226-android12-9-o-gb4f7990ee2d5.ir.spec",
+    "irSpecJson": "5.10.226-android12-9-o-gb4f7990ee2d5.ir.spec.json",
+    "irSpecSha256": "60fc8ac15fac4306fbd4a0a3fa1b59bedbf1a444d19700e6e43df0ca610dcc72",
+    "kernelSymbolOffset": "5.10.226-android12-9-o-gb4f7990ee2d5.KernelSymbolOffset.json",
+    "readback": "5.10.226-android12-9-o-gb4f7990ee2d5.readback.json"
+  },
+  "blocks": [
+    {
+      "id": "R-cfi.cfi_check",
+      "note": "__cfi_check: keeps the bti pad, next word -> ret (CFI v1 bypass)",
+      "offset": 139264,
+      "orig": "5f2403d5285d81d2",
+      "patched": "5f2403d5c0035fd6"
+    },
+    {
+      "id": "P3",
+      "note": "__sys_setresuid: entry hook -> magic-uid stub in the .text cave",
+      "offset": 1438072,
+      "orig": "3f2303d5",
+      "patched": "b4306314"
+    },
+    {
+      "id": "R-audit.entry",
+      "note": "audit_log_start: entry -> R-audit stub",
+      "offset": 2994240,
+      "orig": "3f2303d5",
+      "patched": "2b415d14"
+    },
+    {
+      "id": "R-cfi.cfi_slowpath",
+      "note": "__cfi_slowpath: paciasp pad -> bti jc; ret (CFI v1 bypass)",
+      "offset": 3997692,
+      "orig": "3f2303d55e8600f8",
+      "patched": "df2403d5c0035fd6"
+    },
+    {
+      "id": "R-cfi.cfi_check_fail",
+      "note": "__cfi_check_fail: paciasp pad -> bti jc; ret (CFI v1 bypass)",
+      "offset": 3999200,
+      "orig": "3f2303d55e8600f8",
+      "patched": "df2403d5c0035fd6"
+    },
+    {
+      "id": "R-execve.entry",
+      "note": "do_execveat_common: entry -> R-execve stub (replays the overwritten word)",
+      "offset": 5717372,
+      "orig": "3f2303d5",
+      "patched": "c2dd5214"
+    },
+    {
+      "id": "R-filldir.entry",
+      "note": "filldir64: entry -> R-filldir stub (replays the overwritten word)",
+      "offset": 5830532,
+      "orig": "3f2303d5",
+      "patched": "4d6f5214"
+    },
+    {
+      "id": "P1",
+      "note": "avc_denied: -EACCES -> 0 (every SELinux denial becomes allow)",
+      "offset": 9393960,
+      "orig": "80018012",
+      "patched": "00008052"
+    },
+    {
+      "id": "P3c",
+      "note": "code cave: magic-uid check + commit_creds(prepare_kernel_cred(&init_task)))",
+      "offset": 27440200,
+      "orig": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "patched": "fe0f1ff8a9d59b521f00096b21010054806c00b00000009184699d97400000b41f679d97e0031f2afe0741f8c0035fd6fe0741f83f2303d53fcf9c17"
+    },
+    {
+      "id": "R-execve.stub",
+      "note": "cave stub: magic-uid gate, then resume do_execveat_common+4",
+      "offset": 27440260,
+      "orig": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "patched": "094138d529c143f92a0540b9abd59b525f010b6bc1000054806c00b00000009173699d97400000b40e679d973f2303d53322ad17"
+    },
+    {
+      "id": "R-filldir.stub",
+      "note": "cave stub: 8-byte name gate -> return 0, else resume filldir64+4",
+      "offset": 27440312,
+      "orig": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "patched": "5f20007141010054290040f9aa298cd20a8eadf2aa0cc9f22a8decf23f010a6b6100005400008052c0035fd63f2303d5a890ad17"
+    },
+    {
+      "id": "R-audit.stub",
+      "note": "cave stub: x0 = NULL; ret",
+      "offset": 27440364,
+      "orig": "0000000000000000",
+      "patched": "e0031f2ac0035fd6"
+    }
+  ],
+  "engine": {
+    "changedBytes": 445,
+    "edits": 18,
+    "error": null,
+    "ok": true,
+    "plan": "PATCH_PLAN_OK edits=18 credentialInitialized=false flashableCandidate=false",
+    "replay": "PLAN_REPLAY_OK changedBytes=445",
+    "returncode": 0
+  },
+  "flashableCandidate": false,
+  "image_bytes": 48045172,
+  "image_sha256": "9465fbb7871eddc4d4115174e5e378caa7526123b9af989fab3f906b1ffea33b",
+  "note": "dry-run + engine plan only; nothing here was flashed or booted",
+  "reference": null,
+  "release": "5.10.226-android12-9-o-gb4f7990ee2d5",
+  "rules": [
+    {
+      "blocks": [
+        "R-execve.entry",
+        "R-execve.stub"
+      ],
+      "detail": "do_execveat_common entry hooked, uid gate + commit_creds(prepare_kernel_cred(&init_task)) in the cave",
+      "meta": {
+        "abi": "int (0/-errno) preserved: the stub always resumes the real function",
+        "cave": 27440260,
+        "cred_offset": 1920,
+        "cred_uid_offset": 4,
+        "site": 5717372,
+        "stubBytes": 52,
+        "symbol": "do_execveat_common"
+      },
+      "rule": "R-execve",
+      "status": "applied"
+    },
+    {
+      "blocks": [
+        "R-filldir.entry",
+        "R-filldir.stub"
+      ],
+      "detail": "filldir64 5.10.226: name gate on b'MapleHid', skip value 0 (int return)",
+      "meta": {
+        "abi": "int 0",
+        "abiVersionGate": "<6.1.0",
+        "cave": 27440312,
+        "hiddenName": "MapleHid",
+        "site": 5830532,
+        "stubBytes": 52,
+        "symbol": "filldir64"
+      },
+      "rule": "R-filldir",
+      "status": "applied"
+    },
+    {
+      "blocks": [
+        "R-audit.entry",
+        "R-audit.stub"
+      ],
+      "detail": "audit_log_start returns NULL (callers treat NULL as auditing disabled)",
+      "meta": {
+        "cave": 27440364,
+        "site": 2994240,
+        "stubBytes": 8,
+        "symbol": "audit_log_start"
+      },
+      "rule": "R-audit",
+      "status": "applied"
+    },
+    {
+      "blocks": [
+        "R-cfi.cfi_check",
+        "R-cfi.cfi_check_fail",
+        "R-cfi.cfi_slowpath"
+      ],
+      "detail": "CFI v1: 3 check entry point(s) neutralised, landing pads preserved",
+      "meta": {
+        "kcfiTraps": 0,
+        "variant": "cfi-v1"
+      },
+      "rule": "R-cfi",
+      "status": "applied"
+    }
+  ],
+  "schemaVersion": 1,
+  "structOffsets": {
+    "cred": 1920,
+    "cred_uid": 4,
+    "seccomp": 2120
+  },
+  "uidMinOffset": 4,
+  "verification": {
+    "blocks": 12,
+    "caveProblems": [],
+    "ok": true,
+    "problems": []
+  }
+}

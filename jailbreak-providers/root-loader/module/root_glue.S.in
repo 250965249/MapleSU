@@ -1,0 +1,96 @@
+/*
+ * Loader-facing glue for maplesu_root.ko.
+ *
+ * The module is built on a host with only the Android NDK, so there is no kbuild and
+ * no `*.mod.c` from modpost: the five things the loader insists on are emitted here
+ * by hand, with the sizes taken from this kernel's BTF and cross-checked by a vendor
+ * module that the device already loads.
+ *
+ * Same contract as the IR module, with one deliberate difference that *is* the exit
+ * pointer: this_module.exit stays `.quad cleanup_module` because the module is
+ * resident and `cleanup_module` is the only in-kernel restore point that
+ * delete_module() can reach. Emitting `.quad cleanup_module` is only safe while the C
+ * side defines it; a NULL exit would load, but it would strand the saved SELinux value
+ * if the helper died mid-handover.
+ *
+ * The `.modinfo` section below is the source of truth for the module tags. It used to
+ * be a generated side-car (`root_modinfo.s`), which meant a .ko built from *this* file
+ * alone had no `vermagic=` and the kernel answered -ENOEXEC without printing anything
+ * (CONFIG_MODULE_FORCE_LOAD is off). Keeping it here means the loader-visible tags
+ * travel with the struct they describe, and there is exactly one `.modinfo` section:
+ * the loader rejects a module with two ("Only one .modinfo section must exist.").
+ *
+ * This file has exactly one substitution token, and it is the vermagic string in
+ * `.modinfo` below: build_root_module.py replaces it with the contract's exact
+ * vermagic (the image's own) and refuses to emit a file in which a token survived.
+ * Everything else is copied verbatim, because every byte here describes a fixed
+ * offset and a silent substitution would be worse than a failed build.
+ */
+
+	/*
+	 * ---- struct module: the size and the three offsets come from this image's BTF ----
+	 *
+	 * They are not the same across kernel families (measured: 0x600 on 6.6, 0x640 on
+	 * 5.15, 0x440 on 6.1), so the layout is expressed relative to the section start and
+	 * the four numbers are substituted from the contract. A hand-written literal here
+	 * would put init_module at the wrong offset on any other family - a module that
+	 * loads and then calls into the middle of nothing.
+	 */
+	.section .gnu.linkonce.this_module,"aw",@progbits
+	.balign 64
+__this_module:
+	/* +0x000 state / list / list_lock / name[] region: only name matters */
+	.zero	@NAME_OFF@
+	.asciz	"maplesu_root"
+	/* fill to init. `.` is this section's own offset, so no intermediate literal. */
+	.zero	@INIT_OFF@ - (. - __this_module)
+	.quad	init_module			/* init */
+	.zero	@EXIT_OFF@ - (. - __this_module)
+	.quad	cleanup_module			/* exit: restore point on delete_module */
+	.zero	@SIZE@ - (. - __this_module)
+
+	/*
+	 * ---- .modinfo: what modpost would have generated ----
+	 *
+	 * Every tag here is load-bearing:
+	 *   license=GPL     register_kprobe/unregister_kprobe are EXPORT_SYMBOL_GPL, so a
+	 *                   non-GPL module cannot resolve them ("Unknown symbol");
+	 *   vermagic=...    check_modinfo() compares it; with CONFIG_MODULE_FORCE_LOAD off
+	 *                   a mismatch is -ENOEXEC and this image prints nothing;
+	 *   name=...        the module's own name (must equal this_module.name);
+	 *   depends=        empty is legal and is what a module with no module deps ships;
+	 *   description=... human-readable, asserted against the builder's constant.
+	 */
+	.section .modinfo,"a",@progbits
+	.balign	1
+	.asciz	"license=GPL"
+	.asciz	"description=MapleSU resident root channel"
+	.asciz	"name=maplesu_root"
+	.asciz	"depends="
+	.asciz	"vermagic=@ROOT_VERMAGIC@"
+
+	/* ---- the four sections arm64's module finalizer requires ---- */
+	.section .plt,"ax",@progbits
+	.balign 1
+	.byte 0
+	.section .init.plt,"ax",@progbits
+	.balign 1
+	.byte 0
+	.section .text.ftrace_trampoline,"ax",@progbits
+	.balign 1
+	.byte 0
+
+	/*
+	 * ---- struct modversion_info[1], deliberately EMPTY-NAMED ----
+	 *
+	 * The presence of the section is what matters: v6.6 check_version() returns 1
+	 * with a one-time warning ("no symbol version for <name>") whenever the section
+	 * exists, so no CRC has to match and no `module_layout` is pinned. The vendor
+	 * module on this device ships a zero-length __versions for the same reason.
+	 */
+	.section __versions,"a",@progbits
+	.balign 8
+	.quad 0
+	.zero 56
+
+	.section .note.GNU-stack,"",@progbits

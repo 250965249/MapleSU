@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/abcz316/SKRoot-linuxKernelRoot",
+  "commit": "388732b35fe0a6e77c097bf7b1c6b4869a0b3297",
+  "path": "Lite_version/src/testRoot/kernel_root_kit",
+  "scope": "Two public Lite userspace compilation units and their header closure. No embedded payload, prebuilt archive, application injection implementation, module loader, or Pro core.",
+  "files": [
+    {
+      "path": "include/____DO_NOT_EDIT____/private_api_runtime_helper.h",
+      "size": 3398,
+      "sha256": "f675022fe04fb168c0da48752850489fbf4db3fcf9ebf783fdbb21fbec1d9852"
+    },
+    {
+      "path": "include/rootkit_command.h",
+      "size": 816,
+      "sha256": "cbde1a01200e225eed0aed3622ad30b151248919d1e1f3a51fe40437670e8f8f"
+    },
+    {
+      "path": "include/rootkit_err_def.h",
+      "size": 3777,
+      "sha256": "601260d2e2abfb5d756dc92c169616f08c4e3f3cf4914e69bf8ffd2a8edfba45"
+    },
+    {
+      "path": "include/rootkit_exec_process.h",
+      "size": 803,
+      "sha256": "922229481ae4371cea376efecd20daa08892d3ac34b89a4720f2163a2c3c0b0b"
+    },
+    {
+      "path": "include/rootkit_parasite_app.h",
+      "size": 1944,
+      "sha256": "7d1dd4f1cd614e14d34df8115f20693c736496a09f877e61975e0a54aabbd9da"
+    },
+    {
+      "path": "include/rootkit_parasite_app_dynlib_status.h",
+      "size": 137,
+      "sha256": "6ee3715ec0873f3263033ea16becad2964f45d416f0e045a22acc981ea3a0559"
+    },
+    {
+      "path": "include/rootkit_process64_inject.h",
+      "size": 1197,
+      "sha256": "825bce723e6ffa945852ff626e9c6620f3a3aed3d461bf8c22881805b462408f"
+    },
+    {
+      "path": "include/rootkit_process_cmdline_utils.h",
+      "size": 2602,
+      "sha256": "b3dcd0ed64ba31a6bf9ff83132ebe7777c99a983452fab338f8342c09c3d816a"
+    },
+    {
+      "path": "include/rootkit_su_install.h",
+      "size": 942,
+      "sha256": "54f141061f5c785bf622b46190b897424600966cd1db164ddbf4736e67c3b957"
+    },
+    {
+      "path": "include/rootkit_test.h",
+      "size": 571,
+      "sha256": "f69ed926c2bba4d7adf1e598af93beaeb09c39a52a295b740a87dddfe0aac0d8"
+    },
+    {
+      "path": "include/rootkit_umbrella.h",
+      "size": 278,
+      "sha256": "75cc3dcad84608266a568988f8ddc223d8b173ecb9ebe8a796999358211c18b0"
+    },
+    {
+      "path": "src/jni/common/cgroup_v1_tasks_self.h",
+      "size": 4817,
+      "sha256": "8dbb89b4f0ed5928caf6e13134d4d8a753ff5ef8cb8ef8f9ad06b652ac72879b"
+    },
+    {
+      "path": "src/jni/common/cgroup_v2_self.h",
+      "size": 2001,
+      "sha256": "685677f0e0ccaba6c2d3252f74cb72811bd5f6b60b215c09f82b5b4027ebefb0"
+    },
+    {
+      "path": "src/jni/common/ns_utils.h",
+      "size": 429,
+      "sha256": "5b420d65ef0157cd58ff1e962d1f689b20e76de3b1d9ff6d6e0d14b34b6a2c63"
+    },
+    {
+      "path": "src/jni/common/selinux_procattr_util.h",
+      "size": 2578,
+      "sha256": "c34a82459e942e40261c337c27d03ef8daa15edbae06a8107f27c0a436a15d62"
+    },
+    {
+      "path": "src/jni/rootkit_command.cpp",
+      "size": 2381,
+      "sha256": "1395c9c37d369e3b7709af8cf7eb2b33abd2441c14d3e46f40aab60285a9358b"
+    },
+    {
+      "path": "src/jni/rootkit_fork_helper.cpp",
+      "size": 9048,
+      "sha256": "2291b55b60a41edfb639831fb60e219433c579a3a00e04bfb1631b7ce74a341e"
+    },
+    {
+      "path": "src/jni/rootkit_fork_helper.h",
+      "size": 3311,
+      "sha256": "bf5f8def107c04cb367dc7df53bafb2b1e3d857f99bb5c1b9044f4fa1ca57d7d"
+    }
+  ],
+  "compileUnits": [
+    "src/jni/rootkit_command.cpp",
+    "src/jni/rootkit_fork_helper.cpp"
+  ]
+}

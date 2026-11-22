@@ -1,0 +1,8 @@
+# Payload assets are content-addressed release artefacts of the Pro SDK build.
+#
+# The repository-wide rule `*.bin` (/.gitignore:93) exists to keep stray build
+# output out of history; these four files are the opposite of stray: every one of
+# them is pinned by sha256 in ASSETS.json / ASSETS.sha256 and re-derivable from
+# the frozen archive with one command. Re-include them here, locally, so the
+# global rule is not weakened for the rest of the tree.
+!*.bin

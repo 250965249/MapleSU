@@ -1,0 +1,272 @@
+--- a/T3Verify.java
++++ b/T3Verify.java
+@@ -8,6 +8,7 @@
+  */
+ 
+ import java.io.*;
++import java.math.BigDecimal;
+ import java.math.BigInteger;
+ import java.net.HttpURLConnection;
+ import java.net.NetworkInterface;
+@@ -290,51 +291,105 @@
+         } catch (Exception e) { throw new RuntimeException("MD5计算失败", e); }
+     }
+ 
++    @SuppressWarnings("unchecked")
+     private static Map<String, Object> parseJson(String json) {
+-        Map<String, Object> map = new LinkedHashMap<>();
+-        json = json.trim();
+-        if (json.startsWith("{")) json = json.substring(1);
+-        if (json.endsWith("}")) json = json.substring(0, json.length() - 1);
+-        int i = 0;
+-        while (i < json.length()) {
+-            while (i < json.length() && Character.isWhitespace(json.charAt(i))) i++;
+-            if (i >= json.length()) break;
+-            if (json.charAt(i) != '"') { i++; continue; }
+-            int keyStart = ++i;
+-            while (i < json.length() && json.charAt(i) != '"') i++;
+-            String key = json.substring(keyStart, i); i++;
+-            while (i < json.length() && json.charAt(i) != ':') i++; i++;
+-            while (i < json.length() && Character.isWhitespace(json.charAt(i))) i++;
+-            if (i >= json.length()) break;
+-            char c = json.charAt(i);
+-            if (c == '"') {
+-                int vs = ++i;
+-                StringBuilder sb = new StringBuilder();
+-                while (i < json.length() && json.charAt(i) != '"') {
+-                    if (json.charAt(i) == '\\' && i + 1 < json.length()) {
+-                        i++; char esc = json.charAt(i);
+-                        if (esc == '"') sb.append('"'); else if (esc == '\\') sb.append('\\');
+-                        else if (esc == 'n') sb.append('\n'); else if (esc == 't') sb.append('\t');
+-                        else if (esc == 'r') sb.append('\r'); else if (esc == '/') sb.append('/');
+-                        else if (esc == 'u' && i + 4 < json.length()) { sb.append((char)Integer.parseInt(json.substring(i+1,i+5),16)); i+=4; }
+-                        else sb.append(esc);
+-                    } else sb.append(json.charAt(i));
+-                    i++;
++        JsonReader reader = new JsonReader(json);
++        Object value = reader.value(0);
++        reader.whitespace();
++        if (reader.position != json.length() || !(value instanceof Map)) throw reader.invalid();
++        return (Map<String, Object>)value;
++    }
++
++    /** Strict JSON syntax avoids accepting a truncated or partially decoded success response. */
++    private static class JsonReader {
++        private final String text;
++        private int position;
++        JsonReader(String text) { this.text = text; }
++        private IllegalArgumentException invalid() { return new IllegalArgumentException("响应不是有效的JSON格式"); }
++        private void whitespace() {
++            while (position < text.length() && " \t\r\n".indexOf(text.charAt(position)) >= 0) position++;
++        }
++        private boolean take(char c) {
++            if (position < text.length() && text.charAt(position) == c) { position++; return true; }
++            return false;
++        }
++        private void require(char c) { if (!take(c)) throw invalid(); }
++        private boolean digit() { return position < text.length() && text.charAt(position) >= '0' && text.charAt(position) <= '9'; }
++        private Object value(int depth) {
++            whitespace();
++            if (depth > 64 || position == text.length()) throw invalid();
++            char c = text.charAt(position);
++            if (c == '"') return string();
++            if (take('{')) {
++                Map<String, Object> result = new LinkedHashMap<>();
++                whitespace(); if (take('}')) return result;
++                do {
++                    whitespace(); String key = string(); whitespace(); require(':');
++                    if (result.containsKey(key)) throw invalid();
++                    result.put(key, value(depth + 1)); whitespace();
++                    if (take('}')) return result;
++                    require(',');
++                } while (true);
++            }
++            if (take('[')) {
++                List<Object> result = new ArrayList<>();
++                whitespace(); if (take(']')) return result;
++                do {
++                    result.add(value(depth + 1)); whitespace();
++                    if (take(']')) return result;
++                    require(',');
++                } while (true);
++            }
++            for (String literal : new String[]{"true", "false", "null"}) {
++                if (text.startsWith(literal, position)) {
++                    position += literal.length();
++                    return "null".equals(literal) ? null : Boolean.valueOf(literal);
+                 }
+-                map.put(key, sb.toString()); i++;
+-            } else if (c == '-' || Character.isDigit(c)) {
+-                int vs = i; boolean isFloat = false;
+-                while (i < json.length() && (Character.isDigit(json.charAt(i)) || json.charAt(i) == '-' || json.charAt(i) == '.')) {
+-                    if (json.charAt(i) == '.') isFloat = true; i++;
++            }
++            int start = position;
++            take('-');
++            if (!take('0')) {
++                if (!digit()) throw invalid();
++                while (digit()) position++;
++            }
++            if (take('.')) {
++                if (!digit()) throw invalid();
++                while (digit()) position++;
++            }
++            if (take('e') || take('E')) {
++                if (!take('+')) take('-');
++                if (!digit()) throw invalid();
++                while (digit()) position++;
++            }
++            try { return new BigDecimal(text.substring(start, position)); }
++            catch (NumberFormatException e) { throw invalid(); }
++        }
++        private String string() {
++            require('"'); StringBuilder result = new StringBuilder();
++            while (position < text.length()) {
++                char c = text.charAt(position++);
++                if (c == '"') return result.toString();
++                if (c < 0x20) throw invalid();
++                if (c != '\\') { result.append(c); continue; }
++                if (position == text.length()) throw invalid();
++                char escape = text.charAt(position++);
++                switch (escape) {
++                    case '"': case '\\': case '/': result.append(escape); break;
++                    case 'b': result.append('\b'); break;
++                    case 'f': result.append('\f'); break;
++                    case 'n': result.append('\n'); break;
++                    case 'r': result.append('\r'); break;
++                    case 't': result.append('\t'); break;
++                    case 'u':
++                        if (position + 4 > text.length()) throw invalid();
++                        String hex = text.substring(position, position + 4);
++                        if (!hex.matches("[0-9a-fA-F]{4}")) throw invalid();
++                        result.append((char)Integer.parseInt(hex, 16)); position += 4; break;
++                    default: throw invalid();
+                 }
+-                String numStr = json.substring(vs, i);
+-                map.put(key, isFloat ? (Object)Double.parseDouble(numStr) : (Object)Long.parseLong(numStr));
+-            } else if (c == 't' || c == 'f') { map.put(key, c == 't'); i += (c == 't' ? 4 : 5); }
+-            else if (c == 'n') { map.put(key, null); i += 4; }
+-            while (i < json.length() && json.charAt(i) != ',' && json.charAt(i) != '}') i++;
+-            if (i < json.length() && json.charAt(i) == ',') i++;
+-        }
+-        return map;
++            }
++            throw invalid();
++        }
+     }
+ 
+     private static String getStr(Map<String, Object> m, String k) {
+@@ -342,7 +397,13 @@
+     }
+ 
+     private static int getCode(Map<String, Object> m) {
+-        Object v = m.get("code"); return v instanceof Number ? ((Number)v).intValue() : -1;
++        Object v = m.get("code");
++        if (v instanceof BigDecimal) {
++            try { return ((BigDecimal)v).intValueExact(); }
++            catch (ArithmeticException e) { return -1; }
++        }
++        try { return v instanceof String ? Integer.parseInt((String)v) : -1; }
++        catch (NumberFormatException e) { return -1; }
+     }
+ 
+     public static String getMachineCode() {
+@@ -363,6 +424,12 @@
+     // ============================================================
+     // 初始化
+     // ============================================================
++
++    /** Plain JSON/form mode for applications with encryption and signatures disabled. */
++    public void initPlain(String noticeCode) {
++        this.noticeCode = noticeCode;
++        this.appkey = ""; this.encodeType = "plain";
++    }
+ 
+     public void init(String loginCode, String noticeCode, String versionCode,
+                      String heartbeatCode, String appkey, String base64Charset) {
+@@ -418,16 +485,18 @@
+     // 内部方法
+     // ============================================================
+ 
+-    private void checkInit() { if (appkey == null) throw new IllegalStateException("未初始化，请先调用 init() 或 initRsa() 方法"); }
++    private void checkInit() { if (appkey == null) throw new IllegalStateException("未初始化，请先调用 init()、initRsa() 或 initPlain() 方法"); }
+     private void checkCode(String code, String name) { if (code == null || code.isEmpty()) throw new IllegalStateException("未设置 " + name + " 调用码"); }
+     private String buildUrl(String code) { return serverUrl.endsWith("/") ? serverUrl + code : serverUrl + "/" + code; }
+ 
+     private String encodeValue(String value) {
++        if ("plain".equals(encodeType)) return value;
+         try { return "base64".equals(encodeType) ? encoder.encodeToHex(value) : rsaCrypto.encryptToHex(value); }
+         catch (Exception e) { throw new RuntimeException("编码失败: " + e.getMessage(), e); }
+     }
+ 
+     private String decodeResponse(String responseText) {
++        if ("plain".equals(encodeType)) return responseText;
+         try { return "base64".equals(encodeType) ? encoder.decode(responseText) : rsaCrypto.decryptFromBase64(responseText); }
+         catch (Exception e) { throw new RuntimeException("响应解码失败: " + e.getMessage(), e); }
+     }
+@@ -440,7 +509,7 @@
+             if (!first) sStr.append("&"); sStr.append(e.getKey()).append("=").append(encoded.get(e.getKey())); first = false;
+         }
+         sStr.append("&").append(appkey);
+-        encoded.put("s", encodeValue(md5(sStr.toString())));
++        if (!"plain".equals(encodeType)) encoded.put("s", encodeValue(md5(sStr.toString())));
+         StringBuilder postData = new StringBuilder(); first = true;
+         for (Map.Entry<String, String> e : encoded.entrySet()) {
+             if (!first) postData.append("&");
+@@ -451,7 +520,8 @@
+         return new String[]{postData.toString(), sStr.toString()};
+     }
+ 
+-    private String httpPostOnce(String urlStr, String postData) throws IOException {
++    protected String httpPostOnce(String urlStr, String postData) throws IOException {
++        checkInterrupted();
+         HttpURLConnection conn = null;
+         try {
+             conn = (HttpURLConnection) new URL(urlStr).openConnection();
+@@ -463,13 +533,28 @@
+             if (status == 408 || status >= 500) throw new IOException("HTTP " + status);
+             InputStream stream = status >= 400 ? conn.getErrorStream() : conn.getInputStream();
+             if (stream == null) throw new IOException("响应为空");
+-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+-            StringBuilder response = new StringBuilder(); String line;
+-            while ((line = reader.readLine()) != null) response.append(line);
+-            reader.close();
++            return readResponse(stream);
++        } finally { if (conn != null) conn.disconnect(); }
++    }
++
++    protected String readResponse(InputStream stream) throws IOException {
++        try (Reader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
++            StringBuilder response = new StringBuilder();
++            char[] buffer = new char[4096]; int count;
++            while (true) {
++                checkInterrupted();
++                count = reader.read(buffer);
++                if (count == -1) break;
++                if (response.length() + count > 256 * 1024) throw new IOException("响应超过256 Ki字符");
++                response.append(buffer, 0, count);
++            }
+             if (response.length() == 0) throw new IOException("响应为空");
+             return response.toString();
+-        } finally { if (conn != null) conn.disconnect(); }
++        }
++    }
++
++    private static void checkInterrupted() throws InterruptedIOException {
++        if (Thread.currentThread().isInterrupted()) throw new InterruptedIOException("请求已取消");
+     }
+ 
+     private String httpPost(String urlStr, String postData) throws IOException {
+@@ -478,9 +563,12 @@
+         List<String> candidates = new ArrayList<>(); candidates.add(serverUrl);
+         for (String value : serverUrls) if (!value.equals(serverUrl)) candidates.add(value);
+         for (String base : candidates) {
++            checkInterrupted();
+             try {
+                 String body = httpPostOnce(base.replaceAll("/+$", "") + "/" + path.replaceAll("^/+", ""), postData);
+                 serverUrl = base; return body;
++            } catch (InterruptedIOException e) {
++                if (Thread.currentThread().isInterrupted()) throw e;
+             } catch (IOException ignored) { }
+         }
+         throw new IOException(ALL_SERVERS_UNAVAILABLE);

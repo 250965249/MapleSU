@@ -1,0 +1,40 @@
+{
+  "idx": 64,
+  "name": "parasite_patch_elf.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/parasite/parasite_patch_elf.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 70,
+    "recovered": 70,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "a8777b3270ac4132fc72c17dde893eb24994624131ad93735b212e48c08000d6",
+    "bytes": 416504
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Ported from the upstream open source of this module; rebuilt with the member profile plus -fvisibility=hidden (the shipped member has hidden visibility on every entry). Measured: strong-T 3/3, strong-U 92/92, both two-way diffs empty; the complete defined surface (575 names and kinds) and the complete undefined surface (92) are identical to the shipped member, including the local static-initialiser symbol. Byte size 410080 vs 416504 (-1.6%) follows from the newer patch level of the shipped build's compiler; layout magic is 4243c0de.",
+    "tMissingStrong": [],
+    "tExtraStrong": [],
+    "uMissingStrong": [],
+    "uExtraStrong": [],
+    "tMissingAllKinds": 0,
+    "tExtraAllKinds": 0,
+    "uMissingAllKinds": 0,
+    "uExtraAllKinds": 0
+  },
+  "notes": "Full port of the upstream open-source implementation; private header rootkit_parasite_elf_def.h added alongside it."
+}

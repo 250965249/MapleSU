@@ -1,0 +1,10 @@
+<resources>
+    <string name="install_vivo_boot_title">Continue with boot?</string>
+    <string name="install_vivo_boot_warning">Normal loads its module from the active startup ramdisk. Use init_boot on this device. If init_boot supplies the ramdisk, patching boot alone may leave Normal uninstalled. Confirm to choose boot anyway. Ultra uses the boot kernel.</string>
+    <string name="install_vivo_title">vivo / iQOO compatibility</string>
+    <string name="install_vivo_file_summary">Normal filters modules during early ramdisk startup. Ultra filters in the boot kernel and needs one image. Optionally select vendor_boot to remove vr/vklp; flash its output too when selected.</string>
+    <string name="install_vivo_direct_summary">Installs the startup filter in the selected target. Ultra patches boot; Normal patches the image containing the startup ramdisk.</string>
+    <string name="install_vivo_select_image">Select %1$s.img</string>
+    <string name="install_vivo_image_needed">Optional matching stock image for vr/vklp removal</string>
+    <string name="install_vivo_inputs_required">The primary image includes the startup filter. A vendor_boot image is optional for removal.</string>
+</resources>

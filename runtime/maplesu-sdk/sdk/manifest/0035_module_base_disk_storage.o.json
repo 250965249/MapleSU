@@ -1,0 +1,179 @@
+{
+  "idx": 35,
+  "name": "module_base_disk_storage.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module_base/module_base_disk_storage.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 22,
+    "recovered": 22,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "c6e19ab2e3208a75adbb0ecfb5e3d589a36526a120ceb3c52e89ca2d85e8bb35",
+    "bytes": 91128
+  },
+  "evidence": [
+    "notes/work/AGENT110/STATUS.md",
+    "notes/work/AGENT110/proof/035/equiv.json",
+    "notes/work/AGENT110/proof/035/gate.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "chmod"
+    ],
+    "note": "Strong T 22/22, strong U 92/93: the only undefined-symbol difference is the frozen bitcode's own unreferenced `chmod` declaration (0 call sites in the frozen member; class reference-declared-unused in notes/gate-symbol-baseline.json, scoped to this member) and is consumed as baseline. It cannot be produced by a clean rebuild without adding dead code, so 1 baseline entry remains consumed. Behavioral equivalence (tools/verify_equiv.py): inventory 169/169, missing=0 extra=0, call-target sets 169/169 identical, bag_mean=0.9975, seq_mean=0.9925, but bag_min=0.8333 < 0.95, so this package's equivalence bar is NOT met. Shape recovered this round: write_bool_disk_storage takes the address of its bool parameter directly (no uint8_t temp, which removed the frozen IR's missing lifetime markers); write_string_disk_storage has no null argument guard (the frozen body calls strlen directly); read_bool copies the blob with memcpy instead of an element compare; __write_disk_blob scopes the std::ofstream so it is destroyed before the SELinux label step; read_blob passes nullptr when the blob is empty; and the shared file_utils::set_file_selinux_access_mode helper lost its null guard (frozen header shape). Residuals: read_blob_disk_storage_with_cb 0.8333 (frozen body has a second EH landing pad around the callback invoke that our clean build cannot reproduce from any source shape tried), get_key_file_path 0.8593 (frozen computes key_dir through operator+ on the root-key prefix and has no id32 null check), __write_disk_blob 0.9281.",
+    "measured": {
+      "origStrongT": 22,
+      "newStrongT": 22,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "origU": 93,
+      "newU": 92,
+      "uMissing": 1,
+      "uExtra": 0,
+      "baselineConsumed": [
+        "chmod"
+      ],
+      "refFunctions": 169,
+      "newFunctions": 169,
+      "matched": 169,
+      "missingCount": 0,
+      "extraCount": 0,
+      "callTargetMatch": 169,
+      "seqMean": 0.9925,
+      "bagMean": 0.9975,
+      "bagMin": 0.8333,
+      "gateStatus": "PASS",
+      "gateBaselineConsumed": [
+        "chmod"
+      ],
+      "verifyEquivCommand": "py tools/verify_equiv.py --reference <freeze>/archive/libkernel_module_kit_static.a --built notes/work/AGENT110/proof/035/built.a --members 35",
+      "verifyEquivStatus": "equivalent-at-default-threshold",
+      "equivalenceBarMet": false,
+      "residualFunctions": [
+        {
+          "function": "kernel_module::read_blob_disk_storage_with_cb",
+          "bag": 0.8333,
+          "reason": "frozen IR has an extra cleanup landing pad for the callback invoke; no source shape reproduced it"
+        },
+        {
+          "function": "kernel_module::get_key_file_path",
+          "bag": 0.8593,
+          "reason": "frozen builds key_dir with operator+(substr, first_char) and skips the id32 null check"
+        },
+        {
+          "function": "kernel_module::__write_disk_blob",
+          "bag": 0.9281,
+          "reason": "remaining differences in the SELinux/store tail"
+        }
+      ]
+    }
+  },
+  "notes": "Disk storage helpers; new epoch routes file permission hardening through maplesu_private_chmod. U differs only by the reference's own unreferenced chmod declaration (baseline-class candidate).",
+  "blockedBy": [],
+  "developmentRefactor": {
+    "schema": "maplesu-r49-storage-context-source-appendix/1",
+    "date": "2026-11-18",
+    "scope": "m035 private worker locator and centralized legacy storage context; 22 public read/write entrypoints and legacy layouts retained",
+    "implementationPlacement": "existing src/module_base/module_base_disk_storage.cpp only; two private headers are include dependencies, not new translation units",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/module_base_disk_storage.cpp",
+        "sourcePath": "D:/Maple_Workflow/MapleSU/docs/dual-mode/impl/_work/2026-11-15-p5-p7/trust02-mainline-20261116/storage-context-r49/candidate/runtime/upstream-pro/sdk/src/module_base/module_base_disk_storage.cpp",
+        "sha256": "5dbfeef74052e16dc0029786bbd73cf58fa99b32afad1023c3d5449423e3b2c2",
+        "bytes": 13314
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_storage_private.h",
+        "sourcePath": "D:/Maple_Workflow/MapleSU/docs/dual-mode/impl/_work/2026-11-15-p5-p7/trust02-mainline-20261116/storage-context-r49/candidate/runtime/upstream-pro/sdk/include/maplesu_storage_private.h",
+        "sha256": "2dba80138fc3c70c4ef7dc7209acea0391c07f4a04e9b58f2d4b918c36d6688c",
+        "bytes": 1656
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/maplesu/compat/storage_legacy.h",
+        "sourcePath": "D:/Maple_Workflow/MapleSU/docs/dual-mode/impl/_work/2026-11-15-p5-p7/trust02-mainline-20261116/storage-context-r49/candidate/runtime/upstream-pro/sdk/src/maplesu/compat/storage_legacy.h",
+        "sha256": "142976d3d70ea47cb454d6972c7cd5c5b77908e242cb424da872d0e1824701a5",
+        "bytes": 1399
+      }
+    ],
+    "canonicalSelectionUnchanged": true,
+    "keyReadBoundary": "src/maplesu/compat/storage_legacy.h only, and only while Legacy mode is selected",
+    "ownerLocator": "explicit same-worker StorageScope; auth_state/PID/actualUID/RequestOwnerBinding checked; never grants authority",
+    "closeLifecycleLimit": "scope must end before owner_close; current R04 has no local close-generation token",
+    "validationStatus": "source-only-not-compiled-or-tested",
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false
+  },
+  "storageLifetimeRefactor": {
+    "schema": "maplesu-r50-storage-lifetime-source-appendix/2",
+    "revision": 2,
+    "date": "2026-11-18",
+    "scope": "private StorageScope holds only the R06 opaque management-session token; locator remains paths only",
+    "implementationPlacement": "existing src/module_base/module_base_disk_storage.cpp only; no new object or public API",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/module_base_disk_storage.cpp",
+        "sourcePath": "D:/Maple_Workflow/MapleSU/docs/dual-mode/impl/_work/2026-11-15-p5-p7/trust02-mainline-20261116/storage-lifetime-r50/revision2/candidate/runtime/upstream-pro/sdk/src/module_base/module_base_disk_storage.cpp",
+        "sha256": "3a14db4d18c505d0189aa4b0c01edc1ca4d2c9bf92f58dc607aa843e56c16ca3",
+        "bytes": 13217
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_storage_private.h",
+        "sourcePath": "D:/Maple_Workflow/MapleSU/docs/dual-mode/impl/_work/2026-11-15-p5-p7/trust02-mainline-20261116/storage-lifetime-r50/revision2/candidate/runtime/upstream-pro/sdk/include/maplesu_storage_private.h",
+        "sha256": "8425426e4c16c04e4be333324f39d260fbb760a45552041cac5536c2a07df85e",
+        "bytes": 1592
+      }
+    ],
+    "requiredR06Selection": [
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "sha256": "959fec109c4923ae40f124fa45a3cf011766980358945cc63de64f716d3d21fe"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "sha256": "b7077ffae1d47197352e85721df57c1535ccb3895654ccad44cd261d1b3c4292"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/manifest/0023_module_base_kernel_request.o.json",
+        "sha256": "4793c496e62d54e8d6988b23440eac72569e9de5c40ab3c22e48e66b8d54304d"
+      }
+    ],
+    "r49PreimageManifestSha256": "c86d912565f509c290c5a73da5490ef1d19042ab9a45c99ce4f28e3605de433b",
+    "firstR50PreimageManifestSha256": "6d188d44e94b937262d4d0bd0f487048d425c45097dd1e44617f77f6609e3390",
+    "privateAbiChange": "hidden StorageScope constructor now takes locator/module_id32 only; caller RequestOwnerBinding parameter and field removed; no product callers existed at assessment",
+    "publicStorageAbiUnchanged": true,
+    "canonicalSelectionUnchanged": true,
+    "legacyTokenCallsAdded": 0,
+    "localLifetime": "capture current management token, match before publication and around Owner context copy; clear own token and match outer before restore",
+    "qualification": "local continuity only; real gateway enforces asynchronous kernel epoch/exec/mm/active-credential revocation; no locator publisher or authority added",
+    "supersedesR49CloseLifecycleLimitOnly": true,
+    "validationStatus": "source-only-not-compiled-or-tested",
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false
+  },
+  "privateHeaders": [
+    "include/maplesu_storage_private.h",
+    "include/maplesu_request_private.h",
+    "src/maplesu/module/path_contract.h"
+  ],
+  "ownerDeploymentWorker20261119": {
+    "status": "source-implemented-validation-pending",
+    "namespaceCommand": 27,
+    "newPublicAbi": false,
+    "workerSessionOwned": true,
+    "moduleIdFromCallerOrArchive": true,
+    "legacyKeyAbiPreserved": true,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false
+  }
+}

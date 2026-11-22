@@ -1,0 +1,82 @@
+--- canonical/skroot_installer.cpp
++++ candidate-v2.cpp
+@@ -105,6 +105,13 @@
+ // ---- helper-allowlist 环境状态助手（实现在 maplesu_environment_state.o） ----
+ extern "C" uint32_t maplesu_environment_state();
+ extern "C" pid_t maplesu_wait_environment_child(pid_t child, int* status);
++extern "C" long maplesu_installer_launch_error(int stage, const char* helper);
++extern "C" int maplesu_installer_exec(const char*, char* const[], char* const[]);
++extern "C" pid_t maplesu_installer_wait_child(pid_t, int*, const char*);
++extern "C" long maplesu_installer_result_open(int, int[2]);
++extern "C" long maplesu_installer_result_parent(pid_t, int, int[2]);
++extern "C" void maplesu_installer_result_worker(int[2]);
++extern "C" int maplesu_installer_result_complete(int[2], const char*, int);
+ 
+ // 语义 = 分别原地构造 <kernel_file_dir>/init 与 <kernel_file_dir>/skroot.sdk.ver
+ extern "C" __attribute__((visibility("hidden"))) void maplesu_environment_paths(
+@@ -338,7 +345,7 @@
+         ::_exit(127);
+     }
+     argv[argc] = nullptr;
+-    ::execve(argv[0], argv, environ);
++    maplesu_installer_exec(argv[0], argv, environ);
+     ::free(argv);
+     ::free(buffer);
+     ::_exit(127);
+@@ -507,8 +514,17 @@
+         ::sync();
+ 
+         // ---- 分离出重启 / 热装载子进程，让安装调用本身尽快返回 ----
++        int result_pipe[2] = {-1, -1};
++        const int mode_value = static_cast<int>(mode);
++        const auto pipe_error = maplesu_installer_result_open(mode_value, result_pipe);
++        if (pipe_error != 0) child_exit(static_cast<KModErr>(pipe_error));
+         const pid_t detached_pid = ::fork();
++        if (detached_pid < 0) {
++            (void)maplesu_installer_launch_error(1, nullptr);
++            child_exit(static_cast<KModErr>(maplesu_installer_result_parent(detached_pid, mode_value, result_pipe)));
++        }
+         if (detached_pid == 0) {
++            maplesu_installer_result_worker(result_pipe);
+             if (mode == InstallMode::Boot) {
+                 // Boot 模式：等待写入落盘后重启，让新内核/环境生效。
+                 (void)::sleep(3);
+@@ -520,9 +536,16 @@
+                 if (exec_pid == 0) {
+                     exec_bootstrap_command(bootstrap_path.c_str());  // 不返回
+                 }
+-                if (exec_pid > 0) {
+-                    int exec_status = 0;
+-                    (void)::waitpid(exec_pid, &exec_status, 0);
++                if (exec_pid < 0) {
++                    (void)maplesu_installer_launch_error(2, bootstrap_path.c_str());
++                    (void)maplesu_installer_result_complete(result_pipe, bootstrap_path.c_str(), 0);
++                    ::_exit(127);
++                }
++                int exec_status = 0;
++                const bool launched = maplesu_installer_wait_child(exec_pid, &exec_status, bootstrap_path.c_str()) == exec_pid &&
++                    exec_status == 0;
++                if (!maplesu_installer_result_complete(result_pipe, bootstrap_path.c_str(), launched)) {
++                    ::_exit(127);
+                 }
+                 // 非 CVE 模式需要显式重启 zygote64；CVE 模式由漏洞路径自行完成。
+                 if (config.exploit == ExploitMethod::None ||
+@@ -534,14 +557,15 @@
+             ::_exit(0);
+         }
+ 
+-        // 原 fork 子进程：安装已成功，回传 OK。
+-        child_exit(KModErr::OK);
++        // HotLoad only reports the worker's validated result; Boot retains asynchronous reboot.
++        child_exit(static_cast<KModErr>(maplesu_installer_result_parent(detached_pid, mode_value, result_pipe)));
+     }
+ 
+     // ---- 父进程：收子进程错误码并回收子进程 ----
+     if (!read_errcode_from_child(pipe, err)) err = KModErr::ERR_READ_CHILD_ERRCODE;
+     int child_status = 0;
+-    (void)::waitpid(pipe.child_pid(), &child_status, 0);
++    const pid_t waited = maplesu_wait_environment_child(pipe.child_pid(), &child_status);
++    if (waited != pipe.child_pid() || child_status != 0) return static_cast<KModErr>(-21002);
+     return err;
+ }
+ 

@@ -1,0 +1,186 @@
+/* MapleSU Ultra 网页管理器 · 适配自 7kimisu webadmin（GPL-3.0-or-later）。
+   许可原文见 a/licenses/KernelSU-GPL-3.0.txt；改动见
+   docs/development/lite-webadmin-frontend-adaptation.md。 */
+/* ══════════════════════════════════════════════════════════════════
+   7kimisu 网页管理器 — 配色（主题）
+   ──────────────────────────────────────────────────────────────────
+   每个主题只是给下面这组 CSS 变量换一套值，组件样式一律不写死颜色。
+
+   第三方配色来源与许可（原文见 /licenses/，随 APK 一起分发）：
+     · Catppuccin  Mocha / Latte  —— MIT  © 2021 Catppuccin
+     · Nord                        —— MIT  © 2016-present Sven Greb
+     · Dracula（+ Alucard 浅色）   —— MIT  © 2023 Dracula Theme
+   MapleSU 深色 / 浅色 取自 App 的 Miuix 主题（miuix-ui 0.9.4 默认配色），
+   保持与管理器本体一致；其余配色只换这组变量。
+
+   用法：<html data-theme="mocha" data-scheme="dark">
+        data-theme: auto | 7k | mocha | latte | nord | dracula
+        data-scheme: dark | light   （auto 时由脚本按系统偏好设置）
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. MapleSU 深色（默认，Miuix darkColorScheme）──
+   --bg=surface  --card=surfaceContainer  --accent=primary  --line=dividerLine */
+:root,
+[data-theme="7k"][data-scheme="dark"] {
+  --bg:        #000000;
+  --bg-soft:   #161616;
+  --card:      #242424;
+  --card-2:    #2d2d2d;
+  --card-3:    #434343;
+  --line:      #393939;
+  --line-soft: rgba(255, 255, 255, .06);
+  --fg:        #f2f2f2;
+  --fg-dim:    rgba(255, 255, 255, .8);
+  --fg-mute:   rgba(255, 255, 255, .5);
+  --accent:    #277af7;
+  --accent-fg: #ffffff;
+  --ok:        #36d167;
+  --warn:      #ffb020;
+  --bad:       #f12522;
+  --info:      #4788ff;
+  --on-strong: #ffffff;
+  --shadow:    0 4px 20px rgba(0, 0, 0, .2);
+  /* Miuix 专属 */
+  --title-small: #787e96;
+  --field:       #242424;
+  --switch-off:  #505050;
+  --dim:         rgba(0, 0, 0, .6);
+  --status-bg:   #1a3825;
+  --accent-soft: #2b3b54;
+  --on-accent-soft: #4788ff;
+  --pill:        rgba(255, 255, 255, .1);
+  --spec:        rgba(255, 255, 255, .16);
+}
+
+/* ── 2. MapleSU 浅色（Miuix lightColorScheme）── */
+[data-theme="7k"][data-scheme="light"] {
+  --bg:        #f7f7f7;
+  --bg-soft:   #f0f0f0;
+  --card:      #ffffff;
+  --card-2:    #f0f0f0;
+  --card-3:    #e6e6e6;
+  --line:      #e0e0e0;
+  --line-soft: rgba(0, 0, 0, .06);
+  --fg:        #000000;
+  --fg-dim:    rgba(0, 0, 0, .8);
+  --fg-mute:   rgba(0, 0, 0, .6);
+  --accent:    #3482ff;
+  --accent-fg: #ffffff;
+  --ok:        #1a9e5c;
+  --warn:      #b26a00;
+  --bad:       #e94634;
+  --info:      #3482ff;
+  --on-strong: #ffffff;
+  --shadow:    0 4px 20px rgba(0, 0, 0, .1);
+  --title-small: #8c93b0;
+  --field:       #e8e8e8;
+  --switch-off:  #e6e6e6;
+  --dim:         rgba(0, 0, 0, .3);
+  --status-bg:   #dffae4;
+  --accent-soft: #eaf2ff;
+  --on-accent-soft: #3482ff;
+  --pill:        rgba(0, 0, 0, .1);
+  --spec:        rgba(255, 255, 255, .7);
+}
+
+/* ── 3. Catppuccin Mocha（MIT）── */
+[data-theme="mocha"] {
+  --bg:        #1e1e2e;   /* base      */
+  --bg-soft:   #181825;   /* mantle    */
+  --card:      #252537;
+  --card-2:    #313244;   /* surface0  */
+  --card-3:    #3b3b52;
+  --line:      #45475a;   /* surface1  */
+  --line-soft: rgba(205, 214, 244, .08);
+  --fg:        #cdd6f4;   /* text      */
+  --fg-dim:    #bac2de;   /* subtext1  */
+  --fg-mute:   #7f849c;   /* overlay1  */
+  --accent:    #cba6f7;   /* mauve     */
+  --accent-fg: #1e1e2e;
+  --ok:        #a6e3a1;   /* green     */
+  --warn:      #f9e2af;   /* yellow    */
+  --bad:       #f38ba8;   /* red       */
+  --info:      #89b4fa;   /* blue      */
+  --on-strong: #1e1e2e;
+  --shadow:    0 10px 30px rgba(17, 17, 27, .5);
+}
+
+/* ── 4. Catppuccin Latte（MIT，浅色）── */
+[data-theme="latte"] {
+  --bg:        #eff1f5;   /* base     */
+  --bg-soft:   #e6e9ef;   /* mantle   */
+  --card:      #ffffff;
+  --card-2:    #e6e9ef;
+  --card-3:    #dce0e8;   /* crust    */
+  --line:      #ccd0da;   /* surface0 */
+  --line-soft: rgba(76, 79, 105, .08);
+  --fg:        #4c4f69;   /* text     */
+  --fg-dim:    #5c5f77;   /* subtext1 */
+  --fg-mute:   #8c8fa1;   /* overlay1 */
+  --accent:    #8839ef;   /* mauve    */
+  --accent-fg: #ffffff;
+  --ok:        #40a02b;   /* green    */
+  --warn:      #df8e1d;   /* yellow   */
+  --bad:       #d20f39;   /* red      */
+  --info:      #1e66f5;   /* blue     */
+  --on-strong: #ffffff;
+  --shadow:    0 10px 26px rgba(76, 79, 105, .14);
+}
+
+/* ── 5. Nord（MIT）── */
+[data-theme="nord"] {
+  --bg:        #2e3440;   /* nord0 */
+  --bg-soft:   #292e39;
+  --card:      #3b4252;   /* nord1 */
+  --card-2:    #434c5e;   /* nord2 */
+  --card-3:    #4c566a;   /* nord3 */
+  --line:      #4c566a;   /* nord3 */
+  --line-soft: rgba(216, 222, 233, .08);
+  --fg:        #eceff4;   /* nord6 */
+  --fg-dim:    #d8dee9;   /* nord4 */
+  --fg-mute:   #8f9bab;
+  --accent:    #88c0d0;   /* nord8 */
+  --accent-fg: #2e3440;
+  --ok:        #a3be8c;   /* nord14 */
+  --warn:      #ebcb8b;   /* nord13 */
+  --bad:       #bf616a;   /* nord11 */
+  --info:      #81a1c1;   /* nord9  */
+  --on-strong: #2e3440;
+  --shadow:    0 10px 30px rgba(20, 24, 31, .5);
+}
+
+/* ── 6. Dracula（MIT）── */
+[data-theme="dracula"] {
+  --bg:        #282a36;
+  --bg-soft:   #21222c;
+  --card:      #2f313f;
+  --card-2:    #383a4a;
+  --card-3:    #44475a;   /* current line */
+  --line:      #44475a;
+  --line-soft: rgba(248, 248, 242, .08);
+  --fg:        #f8f8f2;
+  --fg-dim:    #d7d7d2;
+  --fg-mute:   #6272a4;   /* comment */
+  --accent:    #bd93f9;   /* purple  */
+  --accent-fg: #282a36;
+  --ok:        #50fa7b;   /* green   */
+  --warn:      #f1fa8c;   /* yellow  */
+  --bad:       #ff5555;   /* red     */
+  --info:      #8be9fd;   /* cyan    */
+  --on-strong: #282a36;
+  --shadow:    0 10px 30px rgba(15, 16, 22, .5);
+}
+
+/* Material keeps the same semantic state and offers its own tonal surfaces. */
+[data-style="material"][data-theme="7k"][data-scheme="light"] {
+  --bg: #faf8ff; --bg-soft: #f0edf7; --card: #f0edf7; --card-2: #e8e3f0; --card-3: #e0dbea;
+  --line: #d6d0df; --line-soft: #e4deeb; --fg: #201e26; --fg-dim: #5e5969; --fg-mute: #696475;
+  --accent: #64528b; --accent-fg: #ffffff; --accent-soft: #e9ddff; --on-accent-soft: #302047;
+  --status-bg: #e9e5f0; --field: #e8e3f0; --pill: #e0d5ef; --switch-off: #d6d0df;
+}
+[data-style="material"][data-theme="7k"][data-scheme="dark"] {
+  --bg: #141218; --bg-soft: #24212b; --card: #24212b; --card-2: #302c38; --card-3: #3b3544;
+  --line: #494351; --line-soft: #3c3646; --fg: #e9e1f1; --fg-dim: #c9c1d3; --fg-mute: #b1a9bd;
+  --accent: #cfb9ff; --accent-fg: #352452; --accent-soft: #493763; --on-accent-soft: #e9ddff;
+  --status-bg: #302c38; --field: #302c38; --pill: #493763; --switch-off: #494351;
+}

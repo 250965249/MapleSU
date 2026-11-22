@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 外部 Root 迁移文案 · 简体中文。与 values/maplesu_migration.xml 键一一对应。 -->
+<resources>
+    <string name="migration_entry_title">迁移到本内核管理器（推荐）</string>
+    <string name="migration_entry_summary">检测到其他 Root 管理器。迁移前会先备份，之后由 MapleSU 接管这台设备。</string>
+    <string name="migration_entry_action">查看迁移方案</string>
+    <string name="migration_entry_install_note">迁移前会先备份，支持的模块和授权会一并迁移，完成后设备会重启。</string>
+    <string name="migration_page_title">迁移到 MapleSU</string>
+    <string name="migration_target_lite" translatable="false">MapleSU_Ultra</string>
+    <string name="migration_target_ksu">MapleSU_Normal</string>
+    <string name="migration_recommended">推荐</string>
+    <string name="migration_target_unavailable">这台设备暂时不支持这个模式</string>
+    <string name="migration_confirm_title">确认迁移</string>
+    <string name="migration_confirm_body">迁移时会先备份镜像、数据与授权，再写入目标模式并重启。过程中请勿关机。如果中途失败会自动恢复；无法恢复时需要手动处理。</string>
+    <string name="migration_start">开始迁移</string>
+    <string name="migration_confirm_start">确认并开始</string>
+    <string name="migration_cancel">取消</string>
+    <string name="migration_abort">取消迁移</string>
+    <string name="migration_back">返回</string>
+    <string name="migration_refresh">重新检查</string>
+    <string name="migration_unavailable">暂时无法迁移，请稍后再试</string>
+    <string name="migration_ready">可以开始迁移</string>
+    <string name="migration_no_root">当前的 Root 管理器没有授予权限</string>
+    <string name="migration_detected_with_version">%1$s · %2$s</string>
+
+    <!-- 检测结果 -->
+    <string name="migration_section_detected">当前的 Root 管理器</string>
+    <string name="migration_section_target">目标模式</string>
+    <string name="migration_section_backup">备份</string>
+    <string name="migration_section_progress">迁移进度</string>
+    <string name="migration_section_modules">模块</string>
+    <string name="migration_section_auth">超级用户授权</string>
+    <string name="migration_section_blockers">暂时无法迁移</string>
+    <string name="migration_patched">已修改的分区：%1$s</string>
+    <string name="migration_restore">将还原的分区：%1$s</string>
+    <string name="migration_stock_backups">可用的原厂备份：%1$d / %2$d</string>
+    <string name="migration_keep_manager">原来的管理器会先保留，迁移成功后可以自行卸载。</string>
+    <string name="migration_best_effort">没有完全识别这个管理器。迁移会尽量还原它的改动，无法还原的部分会列在结果里。</string>
+    <string name="migration_backup_not_started">开始迁移时会先完成备份，备份通过前不会写入任何内容。</string>
+    <string name="migration_backup_summary">已备份 %1$d 项，共 %2$s</string>
+    <string name="migration_backup_verified">备份已校验完成</string>
+    <string name="migration_backup_incomplete">备份还不完整</string>
+
+    <!-- 结果 -->
+    <string name="migration_result_verified">迁移完成</string>
+    <string name="migration_result_failed">迁移没有完成</string>
+    <string name="migration_result_rolled_back">迁移没有完成，已恢复到迁移前的状态</string>
+    <string name="migration_result_recovery">迁移没有完成，需要手动恢复</string>
+    <string name="migration_failed_rolled_back">已恢复到迁移前的状态，可以稍后重试。</string>
+    <string name="migration_failed_generic">这次迁移没有完成，可以稍后重试或查看诊断信息。</string>
+    <string name="migration_failed_recovery">没能自动恢复，请查看恢复方案或诊断信息。</string>
+    <string name="migration_module_none">没有需要迁移的模块</string>
+    <string name="migration_module_restored">已恢复</string>
+    <string name="migration_module_imported">已导入</string>
+    <string name="migration_module_disabled">已恢复，暂时停用</string>
+    <string name="migration_module_unsupported">目标模式不支持</string>
+    <string name="migration_module_failed">导入失败</string>
+    <string name="migration_module_line">%1$s：%2$s</string>
+    <string name="migration_auth_counts">已导入 %1$d 项，已生效 %2$d 项，待确认 %3$d 项，已失效 %4$d 项</string>
+    <string name="migration_residual_warning">有一些改动没能还原，已列在下方。</string>
+    <string name="migration_pending_reboot">设备即将自动重启，完成最后的迁移。</string>
+    <string name="migration_open_diagnosis">查看诊断信息</string>
+    <string name="migration_open_recovery">查看恢复方案</string>
+    <string name="migration_dismiss">完成</string>
+    <string name="migration_step_of">第 %1$d 步，共 %2$d 步</string>
+
+    <!-- 阶段 -->
+    <string name="migration_stage_idle">等待开始</string>
+    <string name="migration_stage_detecting">正在检查当前的 Root 管理器…</string>
+    <string name="migration_stage_detected">检查完成</string>
+    <string name="migration_stage_confirming">等待确认</string>
+    <string name="migration_stage_backing_up">备份镜像、数据与授权</string>
+    <string name="migration_stage_restoring">还原原来的分区</string>
+    <string name="migration_stage_writing">写入目标模式</string>
+    <string name="migration_stage_deploying">部署模块与授权</string>
+    <string name="migration_stage_pending_reboot">等待重启</string>
+    <string name="migration_stage_verifying">确认迁移结果</string>
+    <string name="migration_stage_completed">迁移完成</string>
+    <string name="migration_stage_failed">迁移没有完成</string>
+    <string name="migration_stage_rolled_back">已恢复到迁移前的状态</string>
+    <string name="migration_stage_recovery">需要手动恢复</string>
+    <string name="migration_stage_unavailable">暂时无法迁移</string>
+
+    <!-- families -->
+    <string name="migration_family_ksu">KernelSU</string>
+    <string name="migration_family_maplesu">KernelSU（7K）</string>
+    <string name="migration_family_magisk">Magisk</string>
+    <string name="migration_family_apatch">APatch</string>
+    <string name="migration_family_unknown">未识别的 Root 管理器</string>
+
+    <!-- blockers -->
+    <string name="migration_blocker_no_root">当前的 Root 管理器还没有授予权限</string>
+    <string name="migration_blocker_no_space">存储空间不足，请清理后再试</string>
+    <string name="migration_blocker_pending">有尚未完成的安装或切换，请先完成</string>
+    <string name="migration_blocker_layout">这台设备的分区布局暂不支持</string>
+    <string name="migration_blocker_candidate">暂时无法为这台设备生成目标镜像</string>
+    <string name="migration_blocker_clean_image">这个目标模式需要原厂镜像，请先准备好</string>
+    <string name="migration_blocker_own_manager">MapleSU 已在管理这台设备，请直接切换工作模式</string>
+    <string name="migration_blocker_unknown">暂时无法迁移，请稍后再试</string>
+
+    <!-- 阶段键（MigrationStageKeys） -->
+    <string name="migration_phase_m0">准备中</string>
+    <string name="migration_phase_m1">备份镜像、数据与授权</string>
+    <string name="migration_phase_m2">校验备份</string>
+    <string name="migration_phase_m3">规划分区</string>
+    <string name="migration_phase_m4">还原分区并写入目标模式</string>
+    <string name="migration_phase_m5">部署模块与数据</string>
+    <string name="migration_phase_m6">迁移模块与授权</string>
+    <string name="migration_phase_m7">收尾，准备重启</string>
+    <string name="migration_phase_m8">等待重启</string>
+    <string name="migration_phase_m9">确认迁移结果</string>
+</resources>

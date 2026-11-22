@@ -1,0 +1,318 @@
+{
+  "idx": 53,
+  "name": "maplesu_installer.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "COMPOSED",
+  "sources": [
+    "src/maplesu/install/lifecycle.cpp",
+    "src/maplesu/compat/installer_legacy.cpp",
+    "src/maplesu/install/launch_guard.c",
+    "src/maplesu/install/result_channel.c"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-U_FORTIFY_SOURCE"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 59,
+    "recovered": 59,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "1521791a303d618ff9d6fc62fd85e44b55e87588a8d2c990b7fc95c1e73ce211",
+    "bytes": 158192
+  },
+  "evidence": [
+    "notes/work/AGENT113/STATUS.md",
+    "notes/work/AGENT113/out/final/built.a",
+    "notes/work/AGENT113/final-equiv.json",
+    "notes/work/AGENT113/final-gate.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/MEMBER-053.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/HOST-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/GREEN-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/APPLY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/hotload-result-implementation/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/boot-uninstall-result-implementation/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/install-commit-result-implementation/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/install-lifecycle-r18-implementation/DELIVERY.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "符号闸门 PASS（实测）：T 14/14、U 144/144，原始双向差集为空（缺 0 / 多 0 / 缺 0 / 多 0），基线消耗 0。行为等价实测未达 0.95 档：函数清单 181/186、missing 5、extra 2、call 158/181、bag_min 0.0、bag_mean 0.8891。构建配方 stages=1（见 recipe 字段；两阶段实测冻结对象确为 IR→ELF 两遍优化产物，逐函数字节一致 135/181）。",
+    "command": "py gate.py <manifest 0053>：llvm-ar p 冻结成员 -> 三份源分别编译后 ld.lld -r 组合 -> llvm-nm 强 T/U 双向比较",
+    "equivalence": {
+      "tool": "runtime/upstream-pro/sdk/tools/verify_equiv.py",
+      "reference": "libkernel_module_kit_static.a",
+      "proof_archive": "notes/work/AGENT113/out/final/built.a",
+      "status": "diverges",
+      "recipe_stages": 1,
+      "functions": "181/186",
+      "missing": [
+        "_ZL8snprintfPcU17pass_object_size1mPKcz",
+        "OUTLINED_FUNCTION_25",
+        "OUTLINED_FUNCTION_26",
+        "OUTLINED_FUNCTION_27",
+        "OUTLINED_FUNCTION_28"
+      ],
+      "extra": [
+        "_ZZN10skroot_env26install_skroot_environmentEPKcNS_11InstallModeERKNS_13InstallConfigEENK3$_0clE7KModErr",
+        "_ZN12_GLOBAL__N_111format_textEPcmPKcz"
+      ],
+      "call_targets": "158/181",
+      "seq_mean": 0.9016,
+      "bag_mean": 0.8891,
+      "bag_min": 0.0,
+      "threshold": 0.95,
+      "bar_met": false,
+      "byte_identical_functions": "135/181",
+      "residual": "named functions whose bodies still differ (与冻结的源码形态差，非桩/死代码)；OUTLINED_FUNCTION 片段编号随体形漂移，bag_min 因此为 0"
+    },
+    "measured": {
+      "origT": 14,
+      "newT": 14,
+      "missingT": 0,
+      "extraT": 0,
+      "origU": 144,
+      "newU": 144,
+      "missingU": 0,
+      "extraU": 0,
+      "origWeak": 151,
+      "newWeak": 150,
+      "origLocal": 90,
+      "newLocal": 89,
+      "newObjectBytes": 154128,
+      "definedKinds": {
+        "V": 21,
+        "r": 44,
+        "t": 42,
+        "U": 144,
+        "W": 129,
+        "T": 14,
+        "b": 3
+      },
+      "baselineConsumed": [],
+      "recipeStages": 1,
+      "verifyEquivRefFunctions": 186,
+      "verifyEquivNewFunctions": 183,
+      "verifyEquivMatched": 181,
+      "verifyEquivMissing": 5,
+      "verifyEquivExtra": 2,
+      "verifyEquivCallTargetMatch": 158,
+      "verifyEquivBagMin": 0.0,
+      "verifyEquivBagMean": 0.8891,
+      "verifyEquivSeqMean": 0.9016,
+      "verifyEquivRefFunctionsMissingNames": [
+        "_ZL8snprintfPcU17pass_object_size1mPKcz",
+        "OUTLINED_FUNCTION_25",
+        "OUTLINED_FUNCTION_26",
+        "OUTLINED_FUNCTION_27",
+        "OUTLINED_FUNCTION_28"
+      ],
+      "verifyEquivExtraNames": [
+        "_ZZN10skroot_env26install_skroot_environmentEPKcNS_11InstallModeERKNS_13InstallConfigEENK3$_0clE7KModErr",
+        "_ZN12_GLOBAL__N_111format_textEPcmPKcz"
+      ],
+      "byteIdenticalFunctions": 135,
+      "byteComparableFunctions": 181,
+      "frozenTextBytes": 5448,
+      "rebuiltTextBytes": 7392
+    }
+  },
+  "notes": "安装/卸载环境控制流 + helper 启动结果通道。HotLoad 由守护子进程校验 .boot_session.completed 与 .safe_flag=2 后经 CLOEXEC 管道回传定长结果；Boot 模式保留异步重启路径。\nverify_equiv: diverges - function inventory 181/186 (missing _ZL8snprintfPcU17pass_object_size1mPKcz + OUTLINED_FUNCTION_25..28; extra anonymous-namespace format_text + install lambda) and the ELF call-target criterion fails. Recovered shape this round: -fno-function-sections/-fno-data-sections (frozen .text aggregates non-comdat functions). Residual hunks in notes/work/AGENT109/residual/0053_skroot_installer.md; blocked by the frozen-object codegen revision (see notes/work/AGENT109/RESIDUAL.md). | EQUIVALENCE(measured, verify_equiv 0.95): fn 181/186 missing 5 extra 2 call_target_match 158/181 bag_min 0.0 bag_mean 0.8891 seq_mean 0.9016; recipe stages=1; byte-identical functions 135/181; frozen .text 0x1548 vs rebuilt 0x1ce0; bar_met=false",
+  "blockedBy": [],
+  "recipe": {
+    "stages": 1,
+    "description": "single pass: compile the TU straight to ELF; measured better than stages=2 for this member (two-stage changes fewer/inventory the same but call-target and bag_mean are not better)",
+    "stage1": "clang++ <profile+extra flags> -c <src> -o <member>.o",
+    "expressible_in_build_py": true,
+    "persist_proof": "notes/work/AGENT113/STATUS.md"
+  },
+  "headers": [
+    "src/maplesu/install/lifecycle.h",
+    "src/maplesu/install/core.h",
+    "src/maplesu/install/bootstrap_install.h",
+    "src/maplesu/compat/installer_legacy.h",
+    "src/maplesu/compat/fork_legacy_abi.h"
+  ],
+  "p7StorageContextR49": {
+    "dateUtc": "2026-11-18",
+    "scope": "m053 environment directory consumers",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/maplesu/install/environment.h",
+        "sha256": "7ea56dac1e306f10ab4deb001e14d7a3e9e5436f9fab4c7f8e3ac41391eb22b5"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/maplesu/install/lifecycle.cpp",
+        "sha256": "b91fd512516196e2ec73c9a6479d39d2886914b81afa3a4af45d930a05afdc6d"
+      }
+    ],
+    "requiredPrivateHeader": "runtime/upstream-pro/sdk/include/maplesu_storage_private.h",
+    "requiredProvider": "runtime/upstream-pro/sdk/src/module_base/module_base_disk_storage.cpp",
+    "canonicalSourceSelectionChanged": false,
+    "validationStatus": "source-only-not-compiled-or-tested",
+    "formalAssetsPromoted": false,
+    "deviceValidated": false
+  },
+  "privateHeaders": [
+    "include/maplesu_storage_worker_private.h",
+    "include/maplesu_storage_private.h",
+    "include/maplesu_request_private.h",
+    "src/maplesu/compat/install_installer_exports_legacy_abi.h"
+  ],
+  "ownerNamespaceQuery20261119": {
+    "status": "source-implemented-validation-pending",
+    "namespaceCommand": 27,
+    "realWorkerScope": true,
+    "legacyInputsPreserved": true,
+    "newInstallReadinessMarker": false,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false
+  },
+  "sourceBootstrapDependencyClosure20261119": {
+    "status": "source-candidate-not-compiled-or-tested",
+    "reason": "The source-built helper consumes runtime module recovery from the 256-member bootstrap archive; payload-independent state providers must not be excluded with the embedded helper installer.",
+    "stateProvider": "src/maplesu/install/bootstrap_state.cpp",
+    "stateProviderMember": "maplesu_installer.o",
+    "movedExistingSymbols": [
+      "maplesu::sdk::unsafe_reset_autorun_bootstrap_safe_flag()",
+      "maplesu::sdk::unsafe_reset_autorun_bootstrap_duplicate_boot_session_flag()",
+      "maplesu_installed_helper_path"
+    ],
+    "preserved": [
+      "existing exported names and hidden visibility",
+      "current authenticated storage path",
+      "real root acquisition before reset",
+      "existing state-file suffixes",
+      "real create/truncate and SELinux labeling",
+      "original error propagation",
+      "real payload publication and version commitment"
+    ],
+    "priorMeasuredSelfChecks": "Historical evidence only; current member T/U deltas, helper link and device validation are pending.",
+    "baselineChanged": false,
+    "allowlistChanged": false,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false,
+    "sections": "Restore the selected profile function/data sections so unused install_environment is removed by the real helper --gc-sections link; no installer or runtime operation is stubbed."
+  },
+  "p3p4InstallationHelperRootStatus20261119": {
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/installation_state.h",
+        "bytes": 20904,
+        "sha256": "cdc79c8535633ddb245ca3e9ee439a9b28b56c79f2d9acca09a6a818a5137e88"
+      }
+    ],
+    "canonicalRecipeChanged": false,
+    "publicSignaturesChanged": false,
+    "privateAbiRequiresSameHeaderConsumers": true,
+    "compiled": false,
+    "tested": false,
+    "targetQualified": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "coreInstallationRevision2_20261119": {
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/lifecycle.cpp",
+        "bytes": 25523,
+        "sha256": "0bf2f6d309205902a9c723b963ef29508504d8916e15696e11c28c5802393b7a"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/bootstrap_state.cpp",
+        "bytes": 2159,
+        "sha256": "57f90d952f2d1c6aac08f6cc57f26c25fe630a25b9406357ba3345875815d8b1"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/compat/installer_legacy.h",
+        "bytes": 7013,
+        "sha256": "35f3e11842b9d376b0c36ef4bbd20c8a6a1f049e5a5c6f3c0baabc205b65b76c"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/CONTRACT.md",
+    "preserveHistoricalSnapshotSections": true,
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false,
+    "productionWritten": false,
+    "canonicalSourcesChange": "m053 includes current mainline bootstrap_state.cpp to retain moved providers"
+  },
+  "mainCoreRuntimeSuccessorIntegration20261119": {
+    "sourceOwnerRevision": {
+      "path": "D:/Maple_Workflow/MapleSU/.tmp/p3-p4-owner-20261117/installation-channel-20261119/revision2/SOURCE-SELECTION.json",
+      "bytes": 30841,
+      "sha256": "d14dbc69e8bbc722c52f37658bdaee13de6732e8d95de7e38896a43087c1c6c0"
+    },
+    "historicalSnapshotSectionsRetained": true,
+    "actualLifecycle": {
+      "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/lifecycle.cpp",
+      "bytes": 24398,
+      "sha256": "c825a6a9ec6c4192af75bd1d1a576c69fc362b7eae41d51b79251fba1e41c235"
+    },
+    "canonicalSources": [
+      "src/maplesu/install/lifecycle.cpp",
+      "src/maplesu/compat/installer_legacy.cpp",
+      "src/maplesu/install/launch_guard.c",
+      "src/maplesu/install/result_channel.c"
+    ],
+    "sharedProviderMember": "maplesu_module_list.o",
+    "sharedProviderSource": "src/maplesu/install/bootstrap_state.cpp",
+    "reason": "Preserve MAIN archive dependency split and moved environment-state/path providers; core installation mutations remain in m053.",
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false
+  },
+  "ownerInstallationSource20261119": {
+    "status": "source-candidate-awaiting-affected-validation",
+    "preserveHistoricalSnapshotSections": true,
+    "canonicalSources": [
+      "src/maplesu/install/lifecycle.cpp",
+      "src/maplesu/compat/installer_legacy.cpp",
+      "src/maplesu/install/launch_guard.c",
+      "src/maplesu/install/result_channel.c"
+    ],
+    "stateProviderMember": "maplesu_module_list.o",
+    "stateProviderManifest": "0055_maplesu_module_list.o.json",
+    "stateProviderSource": "src/maplesu/install/bootstrap_state.cpp",
+    "reason": "Retain current MAIN m055 dependency split; revision2 five-TU source list is historical and is not selected twice.",
+    "productionWritten": false,
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false,
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/lifecycle.cpp",
+        "bytes": 29041,
+        "sha256": "10f1485259d0f45a156c1d71e1fafc07c3528fd8e4fed07250c51d8587ff767d"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_storage_worker_private.h",
+        "bytes": 3906,
+        "sha256": "fe072f6a10e19ab694dc9a2d42fa8eafab6af289c27e025e49f3dec7012f1fad"
+      }
+    ],
+    "sourceContract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/owner-installation-20261119/CONTRACT.md",
+    "publicSignaturesChanged": false,
+    "formalAssetsPromoted": false
+  },
+  "legacyBinaryExports": {
+    "status": "source-compiled-old-and-new-consumers-linked",
+    "compatibilityHeader": "src/maplesu/compat/install_installer_exports_legacy_abi.h",
+    "symbolAliases": 3,
+    "scope": "Exact frozen skroot_env binary names alias the sole maintained maplesu::sdk function bodies; existing install behavior and error propagation preserved",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "validation": ".tmp/main-sdk-installer-abi-20261120/linked-abi-review-effective-m048/EXECUTION.json",
+    "rawGatePassed": false
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "idx": 85,
+  "name": "patch_sys_statx.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "COMPOSED",
+  "sources": [
+    "src/patch/patch_sys_statx.cpp",
+    "src/patch/stat_uid_path.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "status": "partial",
+  "recovery": {
+    "functions": 248,
+    "recovered": 248,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "fd0053413fa6631f01c708a5bb3e4162c5767d822bbf5cec71241ab4c88b33cd",
+    "bytes": 248784
+  },
+  "evidence": [
+    "notes/work/AGENT112/proof/085/EQUIVALENCE.md",
+    "notes/work/AGENT112/STATUS.md"
+  ],
+  "compose": [
+    {
+      "step": "compile-body",
+      "tool": "clang++",
+      "cwd": "<repo root>",
+      "input": "src/patch/patch_sys_statx.cpp",
+      "output": "runtime/maplesu-sdk/sdk/build/obj/compose-m085/tu1.o",
+      "argv": [
+        "--target=aarch64-linux-android21",
+        "-std=c++20",
+        "-Oz",
+        "-fPIC",
+        "-fvisibility=hidden",
+        "-fexceptions",
+        "-fno-rtti",
+        "-D_FORTIFY_SOURCE=2",
+        "-DNDEBUG",
+        "-Wno-return-type-c-linkage",
+        "-I",
+        "runtime/maplesu-sdk/include",
+        "-I",
+        "runtime/maplesu-sdk/sdk/include",
+        "-Dmaplesu_stat_uid_template=maplesu_stat_uid_template_85",
+        "-Dmaplesu_emit_uid_stat_copy=maplesu_emit_uid_stat_copy_85",
+        "-c",
+        "src/patch/patch_sys_statx.cpp",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m085/tu1.o"
+      ]
+    },
+    {
+      "step": "compile-uid-path",
+      "tool": "clang++",
+      "cwd": "<repo root>",
+      "input": "src/patch/stat_uid_path.cpp",
+      "output": "runtime/maplesu-sdk/sdk/build/obj/compose-m085/tu2.o",
+      "argv": [
+        "--target=aarch64-linux-android21",
+        "-std=c++17",
+        "-Oz",
+        "-fPIC",
+        "-fvisibility=hidden",
+        "-fexceptions",
+        "-fno-rtti",
+        "-Wno-return-type-c-linkage",
+        "-I",
+        "runtime/maplesu-sdk/include",
+        "-Dmaplesu_stat_uid_template=maplesu_stat_uid_template_85",
+        "-Dmaplesu_emit_uid_stat_copy=maplesu_emit_uid_stat_copy_85",
+        "-c",
+        "src/patch/stat_uid_path.cpp",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m085/tu2.o"
+      ]
+    },
+    {
+      "step": "partial-link",
+      "tool": "ld.lld",
+      "cwd": "<repo root>",
+      "argv": [
+        "-r",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m085/tu1.o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m085/tu2.o",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/m0085/patch_sys_statx.o"
+      ],
+      "output": "runtime/maplesu-sdk/sdk/build/obj/m0085/patch_sys_statx.o"
+    }
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": [],
+    "equivalence": {
+      "functions": "248/248",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "247/248",
+      "bag_min": 0.997,
+      "bag_mean": 1.0,
+      "seq_mean": 0.9996
+    },
+    "note": "Measured against the frozen archive with the final green build (build/r5/out, member gate PASS 260/260). Two-way gate: T 7/7, U 86/86, raw diff empty, baseline consumed 0. verify_equiv: status=diverges, functions 248/248, missing=0, extra=0, call_target_match=247/248, bag_min=0.997, bag_mean=1.0, seq_mean=0.9996. NOT AT BAR: call-target sets equal in 247/248 functions. Same as idx 84: inventory 248/248, bag_min 0.9970 >= 0.95, only the local branch-label addresses of patch_sys_statx differ (one extra cbnz in the exception-cleanup tail, r487747e vs r487747d); all external call targets are identical."
+  },
+  "notes": "COMPOSED（2 个 TU，`ld.lld -r` 合成）：`src/patch/patch_sys_statx.cpp` 是成员主体，由 `src/patch/patch_sys_stat_access.h` 提供的共享主体宏展开，实现 statx(dfd, filename, flags, mask, statxbuf) 的 before-hook 生成器 PatchSysStatx（ctor/dtor/patch_sys_statx 与全部发射逻辑，结果缓冲参数为 x4、参数帧槽位 +32）；`src/patch/stat_uid_path.cpp` 提供 `maplesu_stat_uid_template_85` / `maplesu_emit_uid_stat_copy_85` 两个导出，两个成员共用该 TU，用 -D 改名区分。主体 TU 的编译参数按冻结成员的导入集复现：C++20 / -DNDEBUG / -D_FORTIFY_SOURCE=2 / -fexceptions / -fno-rtti / -fvisibility=hidden（本 TU 需要 __strlen_chk，且不能带入 asmjit 调试断言）。",
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/patch/patch_sys_statx.cpp",
+        "sha256": "728df038aa7ea4c9fbf076f0a0a32312e2ff1123d0bba5a7b893e08a5d1535d0"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/patch/patch_sys_stat_access.h",
+        "sha256": "0584142a6eef165371558a195bbd652f80d789e4b5b219d48e45d3cc09abd744"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/patch/stat_uid_path.cpp",
+        "sha256": "39e6a85855976d4540cb31a324c76cb342196caea4b88bd939dcff99f86b9bed"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_uid_lifetime_private.h",
+        "sha256": "4a0a57152133d84b654f4238fc786f7d28fb8485e1965d846622e6a5fa000826"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/default_module/module_su_redirect/patch_base.h",
+        "sha256": "627a0e1328c52a92ceb26caedbdbcdc0073a0c1009a28e4301bc351a886c0ae0"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/core01/patch_base_su_redirect.h",
+        "sha256": "15a0ded57d388057d7b8c5eb2842f1b9b7dcb74293a8cb4816c337b86e0d97bb"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  }
+}

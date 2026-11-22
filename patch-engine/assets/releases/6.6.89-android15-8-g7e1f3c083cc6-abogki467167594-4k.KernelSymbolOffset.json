@@ -1,0 +1,156 @@
+{
+  "image": "kernel.bin",
+  "image_bytes": 36661760,
+  "image_sha256": "346d51ea1f63413ffa5d99c5c426806291af3573f0a1d66a7621c388e835880e",
+  "kallsyms": {
+    "num_symbols": 102232,
+    "relative_base": "0xffffffc080000000",
+    "symbols_in_image": 102232
+  },
+  "missing": [
+    "__do_execve_file",
+    "do_execve_common",
+    "do_execveat",
+    "do_execve",
+    "sys_getuid",
+    "__cfi_check",
+    "__cfi_check_fail",
+    "__cfi_slowpath",
+    "__cfi_slowpath_diag",
+    "__ubsan_handle_cfi_check_fail",
+    "__ubsan_handle_cfi_check_fail_abort",
+    "kti_randomize_init",
+    "hkip_check_uid_root",
+    "hkip_check_gid_root",
+    "hkip_check_xid_root",
+    "printk"
+  ],
+  "release": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+  "schemaVersion": 1,
+  "source": {
+    "symbolFormat": "offset<TAB>type<TAB>name",
+    "symbols": "symbols.tsv"
+  },
+  "symbols": {
+    "__arm64_sys_getuid": {
+      "offset": 837020,
+      "size": 36
+    },
+    "__drm_printfn_coredump": {
+      "offset": 9423756,
+      "size": 256
+    },
+    "__drm_puts_coredump": {
+      "offset": 9423536,
+      "size": 220
+    },
+    "_etext": {
+      "offset": 17367040,
+      "size": 9
+    },
+    "_printk": {
+      "offset": 17102472,
+      "size": 128
+    },
+    "_stext": {
+      "offset": 65536,
+      "size": 4
+    },
+    "_text": {
+      "offset": 0,
+      "size": 65536
+    },
+    "aarch64_insn_patch_text": {
+      "offset": 17203696,
+      "size": 120
+    },
+    "audit_log_start": {
+      "offset": 1915904,
+      "size": 996
+    },
+    "avc_denied": {
+      "offset": 6522288,
+      "size": 128
+    },
+    "commit_creds": {
+      "offset": 929552,
+      "size": 776
+    },
+    "compat_filldir": {
+      "offset": 4132000,
+      "size": 1208
+    },
+    "die": {
+      "offset": 135876,
+      "size": 776
+    },
+    "do_execveat_common": {
+      "offset": 4061188,
+      "size": 708
+    },
+    "filldir64": {
+      "offset": 4130092,
+      "size": 1168
+    },
+    "init_cred": {
+      "offset": 34736712,
+      "size": 184
+    },
+    "init_task": {
+      "offset": 34662272,
+      "size": 4800
+    },
+    "kallsyms_lookup_name": {
+      "offset": 1795424,
+      "size": 204
+    },
+    "prctl_get_seccomp": {
+      "offset": 2000188,
+      "size": 16
+    },
+    "prepare_kernel_cred": {
+      "offset": 930844,
+      "size": 828
+    },
+    "report_cfi_failure": {
+      "offset": 2852092,
+      "size": 68
+    },
+    "vectors": {
+      "offset": 67584,
+      "size": 2048
+    },
+    "vprintk": {
+      "offset": 1364948,
+      "size": 284
+    }
+  },
+  "task_struct": {
+    "cred_offset": 2080,
+    "cred_uid_offset": 8,
+    "seccomp_offset": 2280
+  },
+  "task_struct_evidence": {
+    "cred_anchor": "ldr x8, [x8, #0x820]",
+    "cred_uid_rule": "first candidate after cred_offset inside [8, 0x20]",
+    "getuid": {
+      "anchor": "mrs x8, sp_el0 @0xcc59c",
+      "disassembly": [
+        "0xcc59c mrs x8, sp_el0",
+        "0xcc5a0 adrp x9, #0x211f000",
+        "0xcc5a4 ldr x8, [x8, #0x820]",
+        "0xcc5a8 ldr w9, [x9, #0xab0]",
+        "0xcc5ac ldr w8, [x8, #8]",
+        "0xcc5b0 cmn w8, #1",
+        "0xcc5b4 csel w0, w9, w8, eq",
+        "0xcc5b8 ret ",
+        "0xcc5bc adrp x25, #0x56765000"
+      ],
+      "name": "__arm64_sys_getuid",
+      "offset": 837020,
+      "span": 36
+    },
+    "seccomp_anchor": "ldrsw x0, [x8, #0x8e8]",
+    "uid_min_offset": 8
+  }
+}

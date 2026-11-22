@@ -1,0 +1,22 @@
+# Generated artifacts for the Ultra SDK source restoration.
+# Everything here is reproducible from the frozen snapshot with:
+#   py runtime/maplesu-sdk/sdk/build.py --all
+#   py runtime/maplesu-sdk/sdk/tools/normalize_manifest.py
+# so it must not be committed.
+
+# build outputs (also covered by the repository-root **/build/ rule)
+build/
+
+# verification / recon intermediates (member dumps, disassembly, IR copies)
+out/
+
+# per-batch scratch material: decompiled IR copies, self-check scratch trees
+notes/work/*/_scratch/
+notes/work/*/_ir/
+notes/work/*/_tools/
+notes/work/*/_work/
+notes/work/*/_ir_dump/
+
+# python bytecode
+__pycache__/
+*.pyc

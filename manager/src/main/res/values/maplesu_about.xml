@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 「关于 MapleSU」小窗。与 values-zh-rCN/maplesu_about.xml 键一一对应。 -->
+<resources>
+    <string name="about_maple_title">About MapleSU</string>
+    <string name="about_join_telegram">Join Telegram channel</string>
+    <string name="about_view_advisors">View MapleSU user advisors</string>
+    <string name="about_maple_entry_summary">Developers, open-source credits and license</string>
+    <string name="about_maple_overview">Overview: an Android root manager with two work modes you can switch between.</string>
+    <!-- Hide work-mode details when the manager is hidden. -->
+    <string name="about_maple_overview_plain">Overview: an Android root manager.</string>
+    <string name="about_maple_ultra_point_kernel">Patches the kernel for SU authorization, with the kernel implementation maintained by MapleSU.</string>
+    <string name="about_maple_ultra_point_selinux">With no modules installed: 0 visible SELinux policy changes, 0 mounts and SELinux globally Enforcing.</string>
+    <string name="about_maple_ultra_point_side_channel">Eliminates side-channel signatures from policy changes and mounts at the kernel level.</string>
+    <string name="about_maple_normal">Built on KernelSU, with integration into the KSU module ecosystem.</string>
+    <string name="about_maple_developers">Developer: MapleAutumn.</string>
+    <string name="about_maple_community">Official channel · Updates and announcements</string>
+    <string name="about_maple_credits">Thanks:</string>
+    <string name="about_maple_credit_7kimisu">the direct base of the manager, with original credits and licensing retained.</string>
+    <string name="about_maple_credit_finasu">the main reference for UI design and interaction.</string>
+    <string name="about_maple_credit_kernelsu">the primary implementation source and module ecosystem for Normal mode.</string>
+    <string name="about_maple_credit_kernelpatch">open-source work on kernel patching.</string>
+    <string name="about_maple_credit_sdk">reference for Ultra module adaptation and SU internals.</string>
+    <string name="about_maple_special_thanks">Special thanks: 小酒, 晚风, 有希, 佐佐鱼, 知秋.</string>
+</resources>

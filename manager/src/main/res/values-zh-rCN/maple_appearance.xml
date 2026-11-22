@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appearance_intro_title">选择你的 MapleSU</string>
+    <string name="appearance_intro_subtitle">两种风格，同样得心应手。</string>
+    <string name="appearance_intro_miuix">Miuix · 温润的层次与悬浮导航，伴随枫叶轻轻飘落。</string>
+    <string name="appearance_intro_material">Material · 简洁的布局与清晰的层次，让操作回归直觉。</string>
+    <string name="appearance_intro_start">开始使用</string>
+    <string name="appearance_intro_later">稍后也可在「设置 · 外观」中调整。</string>
+    <string name="appearance_intro_preview_ready">自在掌控</string>
+    <string name="appearance_intro_preview_detail">让每一次使用，都更合心意</string>
+    <string name="appearance_intro_preview_device">一目了然</string>
+</resources>

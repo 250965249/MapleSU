@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_editing_discard_title">放弃未保存的修改？</string>
+    <string name="ui_editing_discard_content">模板还有未保存的修改。若要保留，请先保存再离开。</string>
+    <string name="ui_editing_discard">放弃修改</string>
+    <string name="ui_editing_keep">继续编辑</string>
+    <string name="ui_editing_delete_content">确定删除模板“%1$s”？删除后不可恢复。</string>
+    <string name="ui_editing_delete_failed">模板暂未删除，请重试。</string>
+    <string name="ui_editing_wait">正在保存修改，请稍候。</string>
+    <string name="ui_editing_saving_authorization">正在保存授权…</string>
+</resources>

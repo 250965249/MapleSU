@@ -1,0 +1,31 @@
+{
+  "idx": 17,
+  "name": "address_space.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/address_space.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 2,
+    "recovered": 2,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "e57948a3cb985127f95089b452eba6c1780c817cb30287bd8d696d2c391b9f50",
+    "bytes": 220100
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Two-way symbol gate clean: T 2/2 exported resolvers, U 137/137 imports, raw diff empty both ways, no allowance consumed. Rebuilt in the frozen member's container with the member's flagsProfile."
+  },
+  "notes": ""
+}

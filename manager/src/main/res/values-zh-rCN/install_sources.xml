@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="install_keep_modules_title">是否保留原有模块？</string>
+    <string name="install_keep_modules_body">可能会影响MapleSU_Ultra无痕效果且因模块而修改策略</string>
+    <string name="install_keep_modules_no">否</string>
+    <string name="install_modules_cleaning">正在卸载原有模块…</string>
+    <string name="install_modules_cleanup_failed">模块清理尚未完成，请重试后再继续安装。</string>
+    <string name="install_direct">直接安装</string>
+    <string name="install_migrate_to_manager">迁移到本管理器</string>
+    <string name="install_read_current_partition">读取当前 %1$s 分区</string>
+    <string name="install_read_current_partition_summary">读取所选分区，再按目标工作模式修补。</string>
+    <string name="install_current_partition_title">使用当前 %1$s 分区？</string>
+    <string name="install_current_partition_conflict">读取当前 %1$s 并按目标模式安装。建议先还原原厂映像；保留原有补丁或服务可能产生冲突，后续切换模式或还原时也可能需要原厂镜像。</string>
+    <string name="install_direct_continue">直接继续</string>
+    <string name="install_file_conflict_title">安装所选镜像？</string>
+    <string name="install_file_conflict">按目标工作模式修补所选镜像。保留原管理器的补丁或服务可能产生冲突；建议还原原厂映像后安装。</string>
+    <string name="install_restore_original_image">自动还原原内核管理器镜像</string>
+    <string name="install_restore_original_image_summary">找到匹配备份时，自动还原后修补；没有可用备份时修补当前分区。</string>
+    <string name="install_original_manager">原管理器</string>
+    <string name="install_original_manager_auto">自动识别</string>
+    <string name="install_stock_backup_unavailable_title">直接安装？</string>
+    <string name="install_stock_backup_unavailable">未找到与当前设备匹配的原厂映像备份。</string>
+    <string name="install_stock_backup_ambiguous">存在多个备份来源，暂时未确认应使用哪份。可以返回选择原管理器。</string>
+    <string name="install_stock_backup_mismatch">备份与当前分区不匹配。可以返回选择其他原管理器。</string>
+    <string name="install_stock_backup_current_continue">仍可直接读取当前分区安装，但原有补丁或服务可能产生冲突；后续切换工作模式或还原时，可能需要对应固件的原厂镜像。</string>
+    <string name="install_stock_backup_file_continue">仍可修补所选镜像并继续安装，但原有补丁或服务可能产生冲突；后续切换工作模式或还原时，可能需要对应固件的原厂镜像。</string>
+    <string name="install_source_connecting">正在获取安装权限…</string>
+    <string name="install_source_connecting_hint">请允许 Root 请求，以读取所选分区。</string>
+    <string name="install_source_root_required">需要 Root 权限</string>
+    <string name="install_source_retry_hint">请在当前管理器中允许 MapleSU，然后再次点击分区来源重试。也可以选择镜像文件。</string>
+    <string name="install_source_checking_backup">正在读取所选镜像…</string>
+    <string name="install_source_reading_image_hint">正在读取镜像格式和目标分区。</string>
+    <string name="install_source_check_failed">启动镜像准备失败</string>
+    <string name="install_source_check_retry">请再次点击「下一步」重试，已选择的镜像会保留。</string>
+    <string name="install_source_connecting_service">正在读取当前安装信息…</string>
+    <string name="install_ultra_install_update">安装 / 更新</string>
+    <string name="install_source_connecting_service_hint">正在识别所选启动分区。</string>
+    <string name="install_source_service_unavailable">分区访问失败</string>
+    <string name="install_source_service_retry">请再次选择分区重试。若持续失败，请在设置中导出日志。</string>
+    <string name="install_source_partition_retry">请再次点击分区来源重试。</string>
+    <string name="install_originals_saved">原始映像已永久保存：%1$s</string>
+    <string name="install_rollback_saved">安装前回滚副本：%1$s</string>
+    <string name="install_stock_restoring">还原原厂映像并写入所选分区…</string>
+</resources>

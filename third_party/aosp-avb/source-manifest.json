@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://android.googlesource.com/platform/external/avb",
+  "commit": "c5066a96caa7bf4150c0a8cc8cc14ab81733fdc7",
+  "scope": "Development reference only; no reference binary or tool source in APK/JAR.",
+  "sourceRebuiltForReferenceRun": false,
+  "hashNote": "Git clean-filter identity verified. gitBlobSha256 covers canonical Git bytes; workingFileSha256 covers the actual local file, including checkout line endings.",
+  "files": [
+    {
+      "path": "LICENSE",
+      "gitObjectId": "7d1e37bdeee92beb95a6a146ea1a5f3591c24e84",
+      "gitBlobSha256": "7b64210dc457e50fdcdf49c44d3efa19d78d6f49aa141862592ac31b700c19d2",
+      "workingFileSha256": "fe780e53cb18e599a28e83031da6b724e2ccfa27ace4b0df2913e65190919daf"
+    },
+    {
+      "path": "avbtool.py",
+      "gitObjectId": "3625c2740fc618196ca29e13be20432032024cb2",
+      "gitBlobSha256": "5698656733ef5077d62ee30395b5ad34295a0f170fb1ba570026c760ead83782",
+      "workingFileSha256": "f509f719dc896457cbf68d6d2bb38d54cdf16e146e691b8e8ad240054846b7be"
+    },
+    {
+      "path": "README.md",
+      "gitObjectId": "85ba60f0e70147340a1211a90bfe07aabf032943",
+      "gitBlobSha256": "30ce886c966a53a27011df378f5ee44ff690d2f9584f3921e6a02a7000de3fe8",
+      "workingFileSha256": "9b54890f9a5f0ed39022ea5a9eed4be8a2b0218a91960713f9453da9e42d25d2"
+    }
+  ],
+  "license": "Per-file; avbtool.py MIT, repository LICENSE records MIT/Apache-2.0/BSD."
+}

@@ -1,0 +1,144 @@
+{
+  "idx": 62,
+  "name": "maplesu_module_webui_loader.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/webui/module_loader.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-flto=thin",
+    "-fvisibility=hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 4,
+    "recovered": 4,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "3fdb2ccfb0ec7f751fe8de3ff9ca8c82b4a1c8f0425636ec2adb1e27ad50c51c",
+    "bytes": 84168
+  },
+  "evidence": [
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/webui/loader/LOADER-IMPLEMENTATION.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/MEMBER-062.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/HOST-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/GREEN-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/APPLY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n09a/DELIVERY.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "TtWw": {
+        "orig": 135,
+        "new": 135,
+        "missing": [],
+        "extra": []
+      },
+      "T_strong": {
+        "orig": 1,
+        "new": 1,
+        "missing": [],
+        "extra": []
+      },
+      "U": {
+        "orig": 103,
+        "new": 103,
+        "missing": [],
+        "extra": []
+      },
+      "W_weak_defined": {
+        "orig": 129,
+        "new": 129,
+        "missing": [],
+        "extra": []
+      },
+      "t_local": {
+        "orig": 5,
+        "new": 5,
+        "missing": [],
+        "extra": []
+      }
+    },
+    "baselineConsumed": [],
+    "note": "PROTOCOL section 5 includes T/t/W/w: both comm directions empty for the TtWw set (135 vs 135) and for the U set (103 vs 103). Zero gate-symbol-baseline entries consumed: the pinned NDK 26.1 clang 17.0.2 build 10552028 reproduces the reference compiler's (build 11349228) import set byte-for-byte here, including __strlen_chk / __memmove_chk / vsnprintf / __cxa_* / __gxx_personality_v0. Define-name sets are identical (126 names, symmetric set diff empty); the only IR deltas are definition order, metadata numbering and one duplicated exception-cleanup block (see STATUS.md).",
+    "equivalence": {
+      "tool": "runtime/upstream-pro/sdk/tools/verify_equiv.py",
+      "reference": "freeze-maplesu-pro-5.2.0-su-uid-isolation-20261114-20261114",
+      "proof_archive": "build/a109/out/libkernel_module_kit_static.a",
+      "status": "equivalent",
+      "functions": "126/126",
+      "missing": [],
+      "extra": [],
+      "call_targets": "126/126",
+      "seq_mean": 0.9955,
+      "bag_mean": 0.9997,
+      "bag_min": 0.9657,
+      "threshold": 0.95,
+      "bar_met": true
+    }
+  },
+  "notes": "verify_equiv: equivalent (inventory, call-target set and bag_min all at the bar). 51/62/63 skeleton recovered: explicit-assignment fork_base_info ctor (call memset + tail reset, not __builtin_memset), helper chain get_kernel_file_dir_name -> get_system_file_dir_name -> get_system_file_dir_path -> get_module_list_dir_path, per-TU env_path_util::detail::trim_trailing_slashes, and destructor-before-return-value ordering in the snprintf path helpers.",
+  "p6WebuiRefactor": {
+    "date": "2026-11-15",
+    "status": "implemented-host-verified-device-pending",
+    "changes": [
+      "versioned bounded startup receipt after exec and server outcome",
+      "authoritative module port and Manager private module directory",
+      "failure cleanup and asynchronous successful-child reaping",
+      "private Manager mode suppresses automatic browser; legacy browser mode retained"
+    ],
+    "historicalSelfCheck": "recovery and selfCheck describe historical reconstruction only; current behavior intentionally differs",
+    "delivery": "isolated source and narrow outputs only; not integrated SDK or payload/APK",
+    "focusedHostResult": "24/24 full-source Linux ASan/UBSan contracts; baseline 18/24 failures",
+    "narrowNdkReceipt": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/webui/loader/ndk-build.json"
+  },
+  "maplesuWebuiOwnership": {
+    "date": "2026-11-15",
+    "status": "已实现待设备验证",
+    "implementation": "src/maplesu/webui/module_loader.cpp",
+    "compatibility": "src/maplesu/compat/webui_legacy_abi.h",
+    "scope": "Unique MapleSU implementation; existing legacy SDK/module/launch/receipt behavior retained; formal integration and device pending"
+  },
+  "privateHeaders": [
+    "src/maplesu/module/types.h",
+    "src/maplesu/module/operations.h",
+    "src/maplesu/compat/webui_legacy_abi.h",
+    "src/maplesu/compat/fork_legacy_abi.h",
+    "src/maplesu/compat/module_webui_exports_legacy_abi.h",
+    "src/maplesu/module/path_contract.h",
+    "src/maplesu_core/module_webui_host.h",
+    "include/maplesu_storage_worker_private.h",
+    "src/payload/webui_loader/src/startup_receipt.h"
+  ],
+  "nativeModuleCarrierMigration": {
+    "date": "2026-11-16",
+    "status": "implemented-validation-pending",
+    "evidence": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/native-runtime-carrier-r21/DELIVERY.json",
+    "scope": "Native module carriers and parser/list calls; existing module ABI, runtime/launch and error behavior retained. Formal integration and device acceptance pending.",
+    "includeDependencyFix": {
+      "date": "2026-11-16",
+      "status": "implemented-validation-pending",
+      "evidence": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/native-runtime-carrier-r21/include-fix-r1/DELIVERY.json",
+      "scope": "Use the narrow legacy WebUI export boundary instead of module-author runtime helpers; native metadata and the three legacy weak entries are retained."
+    }
+  },
+  "p6WebuiOwnerIntegration": {
+    "date": "2026-11-19",
+    "status": "candidate-validation-in-progress",
+    "changes": [
+      "Authenticated WorkerScope obtains actual deployment directory and retires its owned session before exec",
+      "Owner directory handoff and startup appendix share the existing bounded startup deadline",
+      "Private Manager entry returns actual directory; public Legacy and skroot ABI keep browser behavior"
+    ],
+    "payloadPairing": "Requires rebuilding src/payload/webui_loader together with member62; old payload rejects Owner argc10 without replay",
+    "deviceVerified": false
+  }
+}

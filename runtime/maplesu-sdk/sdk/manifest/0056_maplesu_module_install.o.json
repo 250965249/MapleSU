@@ -1,0 +1,256 @@
+{
+  "idx": 56,
+  "name": "maplesu_module_install.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/module/install.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-mllvm",
+    "-enable-machine-outliner",
+    "-Ithird_party/libzip/1.0.1/lib",
+    "-Ithird_party/libzip/1.0.1/config",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 0,
+    "recovered": 0,
+    "unrecovered": [],
+    "scope": "not a historical reconstruction count; previous counts preserved in notes/MODULE-STATE-HISTORY.json",
+    "sourceComplete": true
+  },
+  "original": {
+    "sha256": "ef9c6c548f90a3cedc1d617570d71b609f258631ac980d16ae57075cd9035698",
+    "bytes": 187032
+  },
+  "evidence": [
+    "notes/MODULE-STATE-INTEGRATION.md",
+    "notes/MODULE-STATE-SYMBOL-DELTA.json",
+    "tools/tests/module_state/README.md",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/module-state-integration-r1/RESULTS.json",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/p6/P6-STATE-NORMAL.md",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/p6/P6-LIFECYCLE.md",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/p6/remaining/r6-b/IMPLEMENTATION.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/MEMBER-056.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/HOST-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/GREEN-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/APPLY.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6resizeEmc",
+      "-_ZNSt6__ndk113basic_istreamIcNS_11char_traitsIcEEE6sentryC1ERS3_b",
+      "-_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEE4syncEv",
+      "-_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEE5imbueERKNS_6localeE",
+      "-_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEE6setbufEPcl",
+      "+_ZN7maplesu12module_state3addENS0_4ListERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE",
+      "+_ZN7maplesu12module_state4readENS0_4ListERNSt6__ndk16vectorINS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEENS7_IS9_EEEE",
+      "+_ZN7maplesu12module_state6removeENS0_4ListERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE"
+    ],
+    "note": "Intentional source refactor: Key16 state-store unification and close-error propagation. Full source present; 190 real-consumer host assertions, actual NDK compose and five consumer links pass. No frozen byte/behavior equivalence claimed. Raw per-symbol causes: notes/MODULE-STATE-SYMBOL-DELTA.json. Status partial denotes full helper/APK/device acceptance pending, not missing source. No allow/default-gate changes."
+  },
+  "notes": "MapleSU owns the unique five-state implementation; no local state copies or migration/dual-read fallback remain in these consumers. Both members are fully maintainable source. partial tracks unperformed production helper/APK and device STATE07 acceptance. Historical recovery/selfCheck/equivalence claims are retained only in notes/MODULE-STATE-HISTORY.json. Current symbol deltas are raw and intentional; default reference gate has not been relaxed.",
+  "p6Acceptance": {
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/p6/P6-STATE-NORMAL.md",
+    "status": "implemented-pending-device-validation",
+    "hostAssertions": 207,
+    "stateConcurrency": {
+      "processes": 24,
+      "processIds": 96,
+      "threads": 12,
+      "totalIds": 144
+    },
+    "validated": "short state-only RMW flock; atomic rename preserves previous published state after I/O/label failure; symlink/read errors preserved; callback/fork outside state lock; real uninstall delete errors; 5 unique global hidden state functions and actual NDK compose/partial link",
+    "symbolDeltaScope": "evidence/state-normal/state-symbol-delta.json compares preceding P6 partial link only; historical selfCheck deltas above remain unchanged",
+    "concurrentLifecycle": "per-module nonblocking worker-owned POSIX occupancy implemented; 45 lifecycle assertions and actual loader/callback receipts in P6-LIFECYCLE.md. Existing shared module-control global long lock still blocks end-to-end acceptance; exact source proposal not applied by P6",
+    "deviceTested": false,
+    "formalDeliveryUpdated": false
+  },
+  "recipe": {
+    "stages": 2,
+    "description": "retain existing two-stage source-to-optimised-IR then IR-to-ELF pipeline; state storage now calls the shared m055 implementation",
+    "stage1": "clang++ <profile+extra flags> -emit-llvm -c <src> -o tu.bc",
+    "stage2": "clang++ <profile+extra flags> -c tu.bc -o <member>.o",
+    "expressible_in_build_py": true,
+    "persist_proof": "notes/MODULE-STATE-INTEGRATION.md"
+  },
+  "privateHeaders": [
+    "src/maplesu/compat/module_install_exports_legacy_abi.h",
+    "src/maplesu/compat/module_install_legacy_abi.h",
+    "src/maplesu/module/state.h",
+    "src/maplesu/module/lifecycle.h",
+    "src/maplesu/module/path_contract.h",
+    "src/maplesu/module/types.h",
+    "src/maplesu/module/operations.h",
+    "include/maplesu_module_install_private.h",
+    "include/maplesu_storage_private.h",
+    "include/maplesu_storage_worker_private.h",
+    "include/maplesu_request_private.h"
+  ],
+  "producer": {
+    "tool": "clang++",
+    "profile": "core-oz-elf-fexceptions",
+    "container": "elf",
+    "kind": "SINGLE"
+  },
+  "p6Lifecycle": {
+    "status": "implemented-pending-device-validation",
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/p6/P6-LIFECYCLE.md",
+    "hostLifecycleAssertions": 45,
+    "actualLoaderCallbackAssertions": 14,
+    "rawBusy": -20154,
+    "rawRepeatMissingElf": -19932,
+    "sharedIntegration": "blocked until exact module-control proposal is integrated; key setter/fork request isolation and state-toggle/lifecycle interaction remain separate",
+    "symbolDelta": "evidence/state-normal/lifecycle-symbol-delta.json",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "p6OperationReceipts": {
+    "status": "implemented-pending-device-validation",
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/p6/remaining/R6-A-OPERATION-RECEIPTS.md",
+    "hostAssertions": 71,
+    "redFailures": 37,
+    "greenFailures": 0,
+    "strongExportsUnchanged": true,
+    "undefinedAdded": [],
+    "scope": "fork pid guard; own-child EINTR/exit validation; first SDK/transport failure preserved; log bool failure=false and delete error propagated",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "p6RuntimeLifecycle": {
+    "status": "source-implemented-pending-integrated-delivery-and-device-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p6/remaining/r6-b/IMPLEMENTATION.md",
+    "scope": "one private nonblocking per-ID ModuleMutation path shared by install, uninstall and actual runtime workers; authoritative parse, pending consumption, synchronous entry and state publication remain inside ownership; immediate hotload starts after install ownership release",
+    "busy": "raw -20154 preserves existing states and pending work without authoritative parse or module entry",
+    "abnormalRepair": "a separate worker re-acquires the same owner and publishes only when candidate image and all three state-file identities still match the failed generation",
+    "sharedControl": "existing global module-control flock retained; same-parameter 45-assertion real-control before/after fixtures have 12 failures each; boundary-only 45/45 is not integrated acceptance",
+    "pending": [
+      "daemon/kernel callback completion and release contract",
+      "whole Key16 tree deletion and lock-inode replacement integration",
+      "source-to-final archive/helper/backend/APK pairing",
+      "Android effects and device validation"
+    ],
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "hostAssertions": {
+      "realConsumers": 34,
+      "crossOperations": 14,
+      "faultsAndGeneration": 52,
+      "hotload": 7,
+      "legacyRuntime": 50
+    },
+    "ndk": "actual NDK26.1 aarch64; runtime strong T5 and installer strong T3 unchanged; actual parser/list/state/fork partial link passes; raw undefined deltas in report"
+  },
+  "maplesuNativeModuleBatchR18": {
+    "status": "source-implemented-pending-combined-build-abi-and-consumer-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/internal-ownership-r18-review/PLAN.md",
+    "legacyBoundary": "fixed external exports, layout, callbacks and persistent bytes retained",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "maplesuModuleWriterR19": {
+    "status": "source-implemented-pending-combined-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/module-writer-r19/IMPLEMENTATION.md",
+    "scope": "single-component IDs, effective relative archive names, fd-anchored writer and delete; legacy module ABI retained",
+    "sourceBeforeSha256": "a44052ac90566ccf207c1b5b32d838388d3a5a5a1ac7f908a82eecd7cdcfb7cb",
+    "sourceAfterSha256": "3defa77b072d4e9146944b3ee693816cb6ddcf380a985ff147d830d0260738ef",
+    "privateHeaderSha256": "3c919f8b6c36200141bcebd0f5d5248b4c4d4f6c99e5ee27250889ebc71f73b2",
+    "testsExecuted": false,
+    "ndkExecuted": false,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "maplesuNativeCarriersR21": {
+    "status": "source-frozen-validation-pending",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/native-carriers-r21/IMPLEMENTATION.md",
+    "scope": "MapleSU native descriptor, record and version in metadata/ZIP/list/install/API; legacy ABI and raw frames retained at explicit compatibility edges",
+    "sourceBeforeSha256": "3defa77b072d4e9146944b3ee693816cb6ddcf380a985ff147d830d0260738ef",
+    "sourceAfterSha256": "38f75dd8d1acf9dd831e8e7183d643d31ccc7b6093e1538ac9359205677f0d58",
+    "testsExecuted": false,
+    "ndkExecuted": false,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "compatibilityContracts": [
+      "The native install flow uses Descriptor and SdkVersion; callbacks, run-once, worker ownership, reason lifetime, errors and persistent module state keep existing behavior.",
+      "The external skroot_env::features::callback::invoke_module_on_uninstall call remains the watchdog wrapping boundary. Its real NDK relocation remains pending verification."
+    ]
+  },
+  "moduleFirstInstallCommitBarrier20261118": {
+    "status": "source-implemented-pending-combined-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/typed-state-chain-20261118/module-first-install-commit-barrier/ASSESSMENT.md",
+    "source": "src/maplesu/module/install.cpp",
+    "sourceBeforeSha256": "56c09434fb61d5604d0f33efadd6bc8fa3581d8fc034140d01ea7ca2d15b9063",
+    "sourceSha256": "53732fdad521758c872cc2e56f934b6f6c70eeb84c16c0e0030cf99c0f4fcd2a",
+    "requiredPredecessor": "module-uninstall-boot-recovery",
+    "scope": "Persist existing private PendingRemoval before extracting a first install with no existing image; retire it after all install commit steps and before immediate hotload. Existing-image updates retain their prior non-destructive behavior.",
+    "testsRun": false,
+    "publicModuleAbiChanged": false,
+    "formalAssetsPromoted": false,
+    "deviceTested": false
+  },
+  "moduleInstallCompletion20261118": {
+    "status": "source-implemented-pending-single-owner-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/typed-state-chain-20261118/module-install-completion/ASSESSMENT.md",
+    "sourceSha256": {
+      "src/maplesu/module/install.cpp": "05b719a5ffbb4e8470f144332a7d167356924c98b4a02712339dc32cc30caae9",
+      "src/maplesu/module/api.cpp": "2724df6459677e47a9ca24eedf640753b48b5c0c57a8ae9b3e204c0c38a4a4ad",
+      "src/maplesu/module/list.cpp": "5870a3c616bf552354d8eac59f7ee490a70fd25e1fac9cbb4471759bc1c0b9a3",
+      "src/maplesu/module/runtime.cpp": "1c1310d009c052d8e10dc47f26727567faa8e78853d3c1fb04e4c465d281c915",
+      "src/maplesu/module/operations.h": "8f0443fe2ae52f6656b23270d02c6d9015f505a2f91785f29673330210cfb6fb",
+      "src/maplesu/module/state.h": "b7dac049ff54e171a784c6d6b0c8e2da6eac2c48604cae5f5482a32b106261ad",
+      "src/maplesu/module/state.cpp": "d498f95298b111b5622ba82f36028a3187a4d4a2268bffa370bbf7cbb7f66ea8",
+      "include/maplesu_module_install_private.h": "99ed7457fdf79634dc647efcf249e089d4d3e7726fea08d1990f7cb2b69256f7",
+      "src/maplesu/compat/module_runtime_legacy_abi.h": "eecbd7d7fba011ba85a2ac315b2a9382bfd6e4f5b7fa77405ab04284ee5591c0",
+      "src/maplesu/module/callback.cpp": "76dfb8f0ff682951373b3863439606afd8e05de9d18376bd86c82062ee7d5bf7"
+    },
+    "scope": "Per-ID durable install/rollback, exact callback/worker receipts, context paths and boot recovery isolation; committed startup diagnostics remain separate. Public module ABI and original SDK codes retained.",
+    "testsRun": false,
+    "ndkRun": false,
+    "formalAssetsPromoted": false,
+    "deviceTested": false,
+    "optionalStartupMode": "Missing/unreadable install.mode selects committed next-boot activation, not installation rejection.",
+    "storagePaths": "Use current authenticated worker StorageContext; no new worker factory is claimed.",
+    "validation": "Affected source/runtime results are recorded separately under dedicated-regression/module-lifecycle-20261118; no formal SDK or device claim."
+  },
+  "ownerDeploymentWorker20261119": {
+    "status": "source-implemented-validation-pending",
+    "namespaceCommand": 27,
+    "newPublicAbi": false,
+    "workerSessionOwned": true,
+    "moduleIdFromCallerOrArchive": true,
+    "legacyKeyAbiPreserved": true,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false
+  },
+  "legacyBinaryExports20261120": {
+    "status": "implemented-actual-ndk-and-strict-link-verified",
+    "compatibility": "Exact frozen binary exports alias the existing MapleSU function; no duplicate implementation or error projection.",
+    "source": "runtime/maplesu-sdk/sdk/src/maplesu/module/install.cpp",
+    "aliasHeader": "src/maplesu/compat/module_install_exports_legacy_abi.h",
+    "exports": [
+      {
+        "legacy": "_ZN10skroot_env19safe_install_moduleEPKcbRNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE",
+        "target": "_ZN7maplesu3sdk19safe_install_moduleEPKcbRNSt6__ndk112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEE"
+      },
+      {
+        "legacy": "_ZN10skroot_env21safe_uninstall_moduleEPKc",
+        "target": "_ZN7maplesu3sdk21safe_uninstall_moduleEPKc"
+      },
+      {
+        "legacy": "_ZN10skroot_env23unsafe_uninstall_moduleEPKcb",
+        "target": "_ZN7maplesu3sdk23unsafe_uninstall_moduleEPKcb"
+      }
+    ],
+    "validation": ".tmp/legacy-module-ops-abi-20261120/green-linked-addresses/EXECUTION.json",
+    "rawMemberGateChanged": false,
+    "formalPromotion": false,
+    "deviceValidated": false
+  }
+}

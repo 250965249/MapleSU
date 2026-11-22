@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/tiann/KernelSU",
+  "commit": "528bafc5696196f3a9500cee2e7e18497421cd32",
+  "source_path": "userspace/ksud/bin/aarch64/busybox",
+  "path": "third_party/busybox/aarch64/busybox",
+  "sha256": "4d60ab3f5a59ebb2ca863f2f514e6924401b581e9b64f602665c008177626651",
+  "bytes": 1710600,
+  "license_status": "Corresponding source and full build configuration remain unverified; acquisition does not clear the redistribution release condition."
+}

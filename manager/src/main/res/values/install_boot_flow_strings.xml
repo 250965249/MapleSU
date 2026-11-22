@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  四步流程（选 Ultra → 选 boot → 选内核版本 → 修补成功）的全部文案。
+
+  用户口径（2026-11-01）：前端只看得到这四步，不要开发者的等级徽标 / 统计数字 / 备选变体 /
+  事务记录卡片。所以这里只有：步骤标题、一句"修不了"的原因、一句结果、两个动作。
+  失败仍然有明确错误码（`install_boot_error_code`）与可读原因 —— 不假成功。
+-->
+<resources>
+    <!-- 步骤标题 -->
+    <string name="install_step_ultra">① Choose Ultra mode</string>
+    <string name="install_step_ultra_summary">Full Ultra boot: the Ultra kernel is patched into boot.img</string>
+    <string name="install_step_boot">Boot image</string>
+    <string name="install_step_kernel">Kernel version</string>
+    <string name="install_kernel_series">%1$s kernel series</string>
+
+    <!-- 步骤 ① 目标工作模式 + 目标分区（Normal 可选 init_boot / boot，Ultra 固定） -->
+    <string name="install_step_target_mode">Target mode</string>
+    <string name="install_step_partition">Target image</string>
+    <string name="install_partition_fixed">Fixed for this mode: %1$s</string>
+    <string name="install_target_normal_ready">Patch %1$s · KernelSU %2$s</string>
+    <string name="install_target_information">Installation details</string>
+    <string name="install_kernel_pairing_required_title">MapleSU pairing required</string>
+    <string name="install_kernel_pairing_required">Pair MapleSU first, then reopen this installation page.</string>
+    <string name="install_kernel_image_unreadable">Select a complete stock boot image again.</string>
+    <string name="install_kernel_unavailable_hint">Select a stock boot image for this device, or update MapleSU and try again.</string>
+    <string name="install_kernel_boot_image_hint">Please confirm you selected a boot image, rather than init_boot.</string>
+
+    <!-- 直装：从当前设备分区读源镜像（不需要用户先选文件） -->
+    <string name="install_partition_extract_start">- Reading the current %1$s partition with root…</string>
+    <string name="install_partition_extract_done">- Read %1$s (%2$d bytes, sha256 %3$s)</string>
+    <string name="install_partition_extract_failed">Could not read the current partition with root. Nothing was patched or written (%1$s). Use \"Select a file and patch\" with a stock image instead.</string>
+    <string name="install_target_blocker_partition_fixed">%1$s always targets its own partition; choose another mode if you want to patch a different one.</string>
+    <string name="install_target_blocker_partition_unsupported">This partition is not supported. Supported partitions: %1$s.</string>
+
+    <!-- 步骤 ③：只列能被我们修补的那个版本 -->
+    <string name="install_step_kernel_waiting">Choose a boot image first.</string>
+    <string name="install_step_kernel_selected">Patchable</string>
+    <string name="install_step_kernel_unavailable">This kernel cannot be patched yet</string>
+
+    <!-- 可修补 / 修不了的原因（一码一文案） -->
+    <string name="install_boot_support_site_coverage">Refused: the patch sites of this kernel do not all match the reference build (%1$s). The code bodies were compiled for another kernel, so no image was produced.</string>
+    <string name="install_boot_credential_required">Preparing the installation identity failed. Retry patching. Existing pairing and original images are unchanged.</string>
+    <string name="install_boot_support_asset_invalid">The patch set for this kernel is unusable (%1$s)</string>
+    <!-- Selected files are exported, independently of the running kernel. -->
+    <string name="install_boot_release_mismatch">The device runs %1$s but this image comes from %2$s. The patched image is saved to Download; the current partitions stay unchanged.</string>
+    <string name="install_boot_error_code">Code: %1$s</string>
+
+    <!-- 步骤 ④：修补中 / 修补成功 / 修补失败 -->
+    <string name="install_step4_patching">Patching</string>
+    <string name="install_step4_success">Patch succeeded</string>
+    <string name="install_step4_failed">Patch failed</string>
+    <string name="install_boot_stage_patching">Patching the image…</string>
+    <string name="install_boot_stage_writing">Writing the boot partition…</string>
+    <string name="install_boot_stage_awaiting_reboot">Written; a restart is required</string>
+    <string name="install_boot_outcome_written">The patched Ultra boot was written to the boot partition.</string>
+    <string name="install_boot_outcome_saved_only">Only the patched boot image was produced; nothing was written to a partition.</string>
+    <string name="install_boot_outcome_already_patched">This boot image already carries the Ultra kernel.</string>
+    <string name="install_boot_outcome_restored">The write failed; the original image was restored.</string>
+    <string name="install_boot_outcome_recovery_required">The write failed and the rollback failed too; recovery is required.</string>
+    <string name="install_boot_generated_notice">This patch set was generated on this device and has never been booted here.</string>
+
+    <!-- 步骤 ④ 的两个动作（交付物的用法） -->
+    <string name="install_boot_action_save">Save boot</string>
+    <string name="install_boot_action_flash">Flash</string>
+    <string name="install_boot_save_done">Saved to %1$s</string>
+    <string name="install_boot_save_failed">Could not save the boot image (%1$s)</string>
+
+    <!-- 修补日志（只在日志行里出现；结果页不展示） -->
+    <string name="install_boot_generate_notice">No patch set ships for %1$s; generating one on this device (not booted yet)</string>
+    <string name="install_boot_generate_failed">Could not generate a patch set for this kernel (%1$s)</string>
+    <string name="install_boot_saved_no_root">No access to the boot partition; the patched image was saved only.</string>
+    <string name="install_boot_saved_no_transaction">This entry cannot write a partition directly; the patched image was saved only.</string>
+    <string name="install_boot_saved_release_mismatch">This image targets kernel %1$s but the running kernel is %2$s; the patched image was saved only.</string>
+</resources>

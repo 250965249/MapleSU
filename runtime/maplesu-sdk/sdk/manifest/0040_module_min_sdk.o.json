@@ -1,0 +1,32 @@
+{
+  "idx": 40,
+  "name": "module_min_sdk.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module/module_min_sdk.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-flto=thin"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "71f16ce1a01ae5d634fbf211cfea6c94924bd706b2a0afe6d18d599ed6500a26",
+    "bytes": 25272
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "GATE(强导出 T + 强 U，member_gate.py 口径): T 1/1 missing 0 extra 0；U 28/28。-D_FORTIFY_SOURCE=2 是实测必需项：缺它时 clang 会把零初始化 webui flag 的 strlen 折掉（不产生 __strlen_chk），从而丢掉 skroot_web_ui_enable_flag 与 __strlen_chk 两个符号。-flto=thin 也是必需项：参考成员是 ThinLTO 产物，缺它会少 materialize 部分 libc++ weak 定义与 std::length_error::what/_ZNSt12length_errorD0Ev 两个 U。"
+  },
+  "notes": "-D_FORTIFY_SOURCE=2 是实测必需项：缺它时 clang 会把零初始化 webui flag 的 strlen 折掉（不产生 __strlen_chk），从而丢掉 skroot_web_ui_enable_flag 与 __strlen_chk 两个符号。-flto=thin 也是必需项：参考成员是 ThinLTO 产物，缺它会少 materialize 部分 libc++ weak 定义与 std::length_error::what/_ZNSt12length_errorD0Ev 两个 U。"
+}

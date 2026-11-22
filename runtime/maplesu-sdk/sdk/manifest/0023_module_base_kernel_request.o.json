@@ -1,0 +1,642 @@
+{
+  "idx": 23,
+  "name": "module_base_kernel_request.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "COMPOSED",
+  "sources": [
+    "src/kernel_request/module_base_kernel_request.cpp",
+    "../../ultra/authorization/request_context.cpp",
+    "../../ultra/authorization/kernel_read.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-DMAPLESU_KERNEL_READ_CANONICAL",
+    "-fno-function-sections",
+    "-fno-data-sections",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 12,
+    "recovered": 12,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "7216cfd8920a33f62b6e288f624903a12659b75829863c9102ed4e4862ba2dd8",
+    "bytes": 98352
+  },
+  "evidence": [
+    "notes/work/AGENT110/STATUS.md",
+    "notes/work/AGENT110/proof/023/equiv.json",
+    "notes/work/AGENT110/proof/023/gate.json",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/kernel-request-key-regression-r1/RECEIPT.json",
+    "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/kernel-request-receipt-regression-r1/RECEIPT.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/REQUEST-READ-B1-INTEGRATION.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/REQUEST-READ-CLIENT-REVIEW.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/APPEND-PUBLICATION-BOUNDS.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/ROOT-KEY-PARSER-BOUNDS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Restored both formal m023 predicates: Key length 16..1023, and allocation NO_BOOT only when both saved IDs remain unchanged. Actual production source plus real identity: red 79 checks/7 failures, green 79/0; NDK three-TU member T/W/U sets unchanged against r8. Includes full-width reply, one/both ID changes, absent/zero reply priority, guard restoration, prepare/key failures and execution sentinels. Corrected whole delivery/device acceptance pending. Earlier structural/key-only claims retained in notes/HISTORY-KERNEL-REQUEST-{KEY,RECEIPT}.json."
+  },
+  "notes": "Maintainable source; recovery coverage status is separate from whole-SDK/device acceptance. r8 actual Root failed because successful saved-ID allocation replies were rejected as NO_BOOT. P3-A adds private QUERY/ECHO64 independent responses through the same authenticated envelope. Legacy public APIs retain their existing receipts; original/recovery/selfCheck describe the prior restoration baseline, not equivalence of this refactored member. New-source behavior and NDK build receipts are recorded under docs/dual-mode/impl/_work/2026-11-15-p3. No new pairing, retry, alternate channel or error suppression. P3-B1 additionally wires READ and canonical descriptor consumers in development source. developmentRefactor records the three declared member TUs and the exact frozen client/host/Android-syntax scopes; it does not assert a new composed member, full archive, helper/backend/payload/APK or device acceptance. The retained original/recovery/selfCheck remain historical restoration evidence and formal r9 identities remain unchanged.",
+  "developmentRefactor": {
+    "schema": "maplesu-sdk-development-refactor/1",
+    "date": "2026-11-15",
+    "scope": "P3-B1 development source only; declared member TUs, not a complete dependency closure",
+    "change": "P3-B1 QUERY/ECHO64/READ client and canonical kernel_read descriptor consumer; existing public executor remains legacy.",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "sha256": "104b62a7cea2d10ec4a17afa82331961795bc7dd40c152d4d6522a1872c0da8b"
+      },
+      {
+        "path": "runtime/pro/authorization/request_context.cpp",
+        "sha256": "ac81d355ac2dfd77dedc54870a7c38ae8b88243488d4870a6b34303e248f5c55"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read.cpp",
+        "sha256": "6afba67061fff995fccffaeb85df03de84146fa571025101d26262afd3d43a64"
+      }
+    ],
+    "validation": [
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/REQUEST-READ-CLIENT-REVIEW.md",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/request-read-r1/CLIENT-VALIDATION-R3.json",
+        "scope": "Frozen client r3: READ 8427, legacy 79, v2 9741 checks, ASan/UBSan; actual request TU plus identity test source. Protocol-header snapshot predates the 54B constant; this is historical client evidence, not a complete current member build."
+      },
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/APPEND-PUBLICATION-BOUNDS.md",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/RECEIPT.json",
+        "scope": "Current frozen client and canonical-read TUs participate in the five-TU host/A64 cold chain, 91/0, 14 transports; canonical read is one of four Android syntax TUs. request_context.cpp is a declared member TU and frozen input, without a new composed-member build claim."
+      },
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/ROOT-KEY-PARSER-BOUNDS.md",
+        "scope": "Final original-tree parser source participates in actual read/m024/m041 metadata host regression: 2307/0, 16 threads and 1600 lookups. Plain host compilation, without ASan/UBSan; captured request I/O and compile-only legacy assembler, simulated pid changes, no emitter/device/fork execution. m073 is not executed by this suite.",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/root-key-parser-bounds-r1/metadata/receipt.json",
+        "receiptSha256": "450d2e9189c323d4d0a717135e6d41bdff33592ea89548596e5ef249860cc9fe"
+      },
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/REQUEST-ARGUMENT-BOUNDS-RESULT.md",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/request-argument-bounds-r1/PUBLICATION.json",
+        "receiptSha256": "3436c7b72cd76cfc29928bd90a6b5bd5923ce9ff9a301440df967eab4f111264",
+        "sourceSnapshot": [
+          {
+            "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+            "sha256": "9a3decbbaf18e1e16778d3073101fcd005d1aba12b8833130e3fc177f818088c"
+          }
+        ],
+        "scope": "2026-11-16 existing request argument bounds only: legacy 240/0, v2 9741/0, READ 8427/0, ASan/UBSan; Android21 actual request TU -c. Declared member contains other TUs and was not rebuilt as a composed member; no SDK/helper/payload/backend/APK or device promotion. Private-header tested snapshot predates later comment-only clarification. Historical restoration fields and prior sourceSnapshot retain their original scope.",
+        "independentReview": {
+          "path": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/request-argument-bounds-r1/PRIMARY-REVIEW.json",
+          "sha256": "c6d823b2d80ec5a83cc3a1a13e4e862f7ab700a34fd35fe91e75abd4b11a8ded"
+        }
+      }
+    ],
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalFields": "original/recovery/selfCheck/status are preserved as historical restoration metadata; current source validation is scoped by the named frozen evidence",
+    "sharedValidationInputs": [
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "sha256": "f457430ab12757fcc729fd3f4289753ee10c95d7166f8ca09f8b0fb2c643d219",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read_metadata.h",
+        "sha256": "aa49a2c66a704f8c85668851739671a612cf790adefacba17640f37364ab1eeb",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "sha256": "1b93fa56fc3a9cc6929ff4ad29b4b0e5f8042b4f0cd5a235359c34e6f53aacf0",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      }
+    ]
+  },
+  "ordinaryConsumerBatch20261117": {
+    "date": "2026-11-17",
+    "scope": "P3/P4 isolated ordinary consumers only; no composed member, Android TU, archive or device claim",
+    "inputs": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 18487,
+        "sha256": "48d0b5040af03b03248eef15bdbfbf9b2c6ebac83f5560b09a43b2a5904e4675"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read.cpp",
+        "bytes": 12220,
+        "sha256": "3df56f6e32f9d7854bd58844f88b52e2c8c21eedb996651f789d87a429be77a2"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_identity.h",
+        "bytes": 1195,
+        "sha256": "1b82769394c4981d695e73de4bbc8735d50a0eb4f673b93c500c712876c5c73d"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 1367,
+        "sha256": "a12bc7acbe8f44823a394a6c30c474f2e88432b419ffe3059737489df6007da1"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/validation/FINAL-SUMMARY.json",
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "originalRestorationFieldsRetained": true
+  },
+  "ownerConsumerBatchR02": {
+    "date": "2026-11-17",
+    "scope": "Explicit owner v3 QUERY/ECHO64/READ and ordinary metadata/cache consumers only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "bytes": 10189,
+        "sha256": "275e131e3749519962cbd935d3eb1cc75cf35a40e7fcb0032791efae44672605"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read_metadata.h",
+        "bytes": 4004,
+        "sha256": "da7652fa340f004251d13636c799981da373065412f559664d7a77671bfed11f"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 2622,
+        "sha256": "6940ed9c1716bc30f5332784c9522552a4949880426aeae8066265fade99e77d"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_identity.h",
+        "bytes": 1737,
+        "sha256": "24bc18c9c6ef6ab3144408efb99f0baad1b3c90be599d4ed17a7976288e137ae"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 29991,
+        "sha256": "131cf1461ec5b7b8e5491d2469c682df397292da7848c6b9896f39027de848ae"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read.cpp",
+        "bytes": 15235,
+        "sha256": "fe978001b0447ac20233331e40221745722a7b179fff85fe1fb32ff0d8f6fc8e"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r02/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r02/validation/FINAL-SUMMARY.json",
+    "producerIntegrated": false,
+    "kernelOwnerModuleBuilt": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "ordinaryThreadIdentityBatchR03": {
+    "dateUtc": "2026-11-17",
+    "scope": "R03 current-thread capability reads and unique calling-thread auth identity; source-only candidate provenance",
+    "inputs": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 30650,
+        "sha256": "53dd4493b99d4e4adf9213b9be6ba535beba7fa36aac654b46363429a669498a"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 2793,
+        "sha256": "27128b422fdf28418217d7ef3c394ed695c3fc455252c8988cc2115672c8e352"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_identity.h",
+        "bytes": 1861,
+        "sha256": "a37b106e34e2c688225e365fab5ea5e38adea8d0abb979e6f03f62674e7752a5"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read.cpp",
+        "bytes": 15235,
+        "sha256": "fe978001b0447ac20233331e40221745722a7b179fff85fe1fb32ff0d8f6fc8e"
+      },
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "bytes": 10189,
+        "sha256": "275e131e3749519962cbd935d3eb1cc75cf35a40e7fcb0032791efae44672605"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r03/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r03/validation/FINAL-SUMMARY.json",
+    "validationScope": "Actual m023 and m000 host seams only; shared inline identity tested with actual m023. Other member sources inherit R02 and are not rerun/rebuilt by R03.",
+    "producerIntegrated": false,
+    "androidTuValidatedByThisBatch": false,
+    "composedMemberBuilt": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "ownerManagementBatchR04": {
+    "dateUtc": "2026-11-18",
+    "scope": "R04 same owner-v3 gateway management, complete receipt and typed credentials; isolated candidate only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 44878,
+        "sha256": "acbc06cb669376a25db0fe3a44c842382beab3abd89631ed0f1c71ed1f0c1a8c"
+      },
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "bytes": 14083,
+        "sha256": "998719237d46244d9f9bb8c8f0a4662092b19e9851f6da929e9bfc7828508512"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 3452,
+        "sha256": "9e1e039f644b4b85002a82ed23d00f819300f4e6c6c4a84028fa55e7f55a11a2"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r04/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r04/validation/FINAL-SUMMARY.json",
+    "validationScope": "Only final named actual TUs and explicit seams count; adding this record does not assert each member was rebuilt or run.",
+    "producerSelectionIntegrated": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "ownerManagementBoundaryR05": {
+    "dateUtc": "2026-11-18",
+    "scope": "Two narrow actual SDK boundary fixes; same R04 protocol",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 45138,
+        "sha256": "9832ec1e8d003f60f2a9de6ff535a54b21e76706697bfd948206bf6d52ae5e46"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r05/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r05/FINAL-SUMMARY.json",
+    "validationScope": "Named new host cases and actual Android raw TUs only; no full SDK archive or device proof",
+    "productionWritten": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "ownerLifetimeTokenR06": {
+    "dateUtc": "2026-11-18",
+    "scope": "Private local management-session lifetime witness; no protocol/authority/Key ABI change",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 46198,
+        "sha256": "b7077ffae1d47197352e85721df57c1535ccb3895654ccad44cd261d1b3c4292"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 4276,
+        "sha256": "959fec109c4923ae40f124fa45a3cf011766980358945cc63de64f716d3d21fe"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r06/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r06/FINAL-SUMMARY.json",
+    "validationScope": "Only named new token host case and actual m023 raw Android TUs; not archive or device proof",
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "p3StageClosureBatchR08": {
+    "dateUtc": "2026-11-18",
+    "scope": "P3 same-gateway text/reserve/publication/shared-bool lifetime, negotiated metadata and complete legacy receipt boundary; frozen source only",
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r08/CONTRACT.md",
+    "rwByteLengthPreserved": true,
+    "roXRequiresFullFourByteInstructions": true,
+    "validationScope": "Only named affected validation receipts prove their frozen inputs; source freeze is not a composed member/archive/target/device result.",
+    "interfaceRevision": "R08-member24-shared-bool",
+    "sharedBoolCreatorAndPublicationRefsSeparated": true,
+    "publicSignaturesChanged": false,
+    "globalErrorEnumChanged": false,
+    "canonicalBuildSelectionChanged": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true,
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 63987,
+        "sha256": "bd36cc65bf2685a877cdbfb91bc6964ec43d2607942ebe38d50647e0111059f6"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/module_base_kernel_request.h",
+        "bytes": 4138,
+        "sha256": "fbb5cf1f3d946b31b1214f0111ccb691e2fbc55383ac8e5c5148fb9f6f36a21e"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 6336,
+        "sha256": "c3bda6ce0f0dd8aec1035d6906e9d3310ae23d97033dee4737b511ec7bac2b5e"
+      },
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "bytes": 20784,
+        "sha256": "f960981f204f3dd48803bc01b14223cd4ce685aaf126370e1fcbc87418c82b4d"
+      }
+    ],
+    "originalApiIds": [],
+    "privateInlineDependenciesRequireSameGenerationRebuild": true
+  },
+  "p3CleanupReceiptScopeR08Revision3": {
+    "dateUtc": "2026-11-18",
+    "scope": "P5 failure cleanup preserves original TLS diagnostic receipt and errno; existing m023 implements private noncopyable CleanupReceiptScope out-of-line. Session, identity and authority changes are never restored.",
+    "privateHeader": {
+      "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+      "sha256": "9d44ffe079b9247dcb358c5f232b76c7b43303f90bf8e03fe225682eb782a7ce"
+    },
+    "implementation": {
+      "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+      "sha256": "11c561fadb4d3cc952d097f7a8757f99e3a3a12328220415c2957cf4e98d2a83"
+    },
+    "publicApiChanged": false,
+    "wireChanged": false,
+    "sourceOnlyNotStageAcceptance": true
+  },
+  "p3p4RuntimeAndTypedStorageR09": {
+    "dateUtc": "2026-11-18",
+    "scope": "Current isolated sources; original build selection retained",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 74969,
+        "sha256": "9656ef672074606e45d655fddf51d824c3e871bfed9942cf0648a1bdc13193a6"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 8708,
+        "sha256": "ad5dd367eb806b7c442ed4009fb1eaf88fee36d0414d1fc5cfe1bdd41263ef80"
+      },
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "bytes": 24635,
+        "sha256": "70c2da089e10572a4e6163556d6c2d5bd5b4d7fa01e76b3089b8762474ba7030"
+      }
+    ],
+    "privateAbiChanged": true,
+    "publicSignaturesChanged": false,
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r09/CONTRACT.md",
+    "formalBuildSelected": false,
+    "targetValidated": false,
+    "deviceValidated": false,
+    "historicalEvidenceRetainsItsOriginalInputScope": true
+  },
+  "p3p4NativeProcattrR10": {
+    "dateUtc": "2026-11-18",
+    "scope": "Current isolated sources; canonical build recipe retained",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 77968,
+        "sha256": "7e2cf687ad00da05dc070454aa1f8362945c2ef5f49effe0a83901e594cad928"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 9042,
+        "sha256": "8adaaf19644dc534c91c9da0b99f9fd951332a543bef0ec90b7c35dd25389445"
+      },
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "bytes": 26424,
+        "sha256": "ba6f1562a0eef39b83f2feb5ff2198bc110d1bbabb223cff8c030a0045743b1c"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r10/CONTRACT.md",
+    "privateRequestSymbolAdded": true,
+    "rootTransitionLayoutChanged": false,
+    "publicSignaturesChanged": false,
+    "formalBuildSelected": false,
+    "targetValidated": false,
+    "deviceValidated": false,
+    "historicalEvidenceRetainsItsOriginalInputScope": true
+  },
+  "p3Closeout20261118": {
+    "dateUtc": "2026-11-18",
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/p3-closeout-20261118/SOURCE-CLOSEOUT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "sha256": "820ae00e355a0ada9973a323b8a51b1c71a27785a9a15ca96e7259a720d5963e"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_private.h",
+        "sha256": "c5bebce763867d8b5873aad46ff94f3dc30e62ee88ae43f0b3e5f2165ea0ff7f"
+      }
+    ],
+    "change": "Command-shaped error receipts, completed facts after identity failure, fork-scoped receipt cleanup, same-Key legacy allocation cleanup and native protected byte-write consumer",
+    "privateCleanupScopeLayoutChanged": true,
+    "unchangedConsumersRequireSameSourceComposition": [
+      "m025",
+      "m029"
+    ],
+    "canonicalRecipeChanged": false,
+    "publicRequestReplyLayoutChanged": false,
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "p3p4CurrentTaskState20261118": {
+    "dateUtc": "2026-11-18",
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/task-state-20261118/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 90190,
+        "sha256": "a0c709d1c10b2c3ea3c023f0cdb412fe9d49734b956ee2c80b386f53ca5fa9ba"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_private.h",
+        "bytes": 9594,
+        "sha256": "bc6e0c60c30df056d32e0d99997ab95c41ca2e553d3ad753d7b1adbc3717789b"
+      },
+      {
+        "path": "runtime/ultra/authorization/request_protocol.h",
+        "bytes": 27370,
+        "sha256": "25234dd6bf0835496c984af76402e45a86281a5fc194965014d1c2e1a4613577"
+      }
+    ],
+    "canonicalRecipeChanged": false,
+    "privateRootTransitionLayoutChanged": true,
+    "publicSignaturesChanged": false,
+    "compiled": false,
+    "tested": false,
+    "targetValidated": false,
+    "deviceValidated": false,
+    "historicalEvidenceRetainsItsOriginalScope": true,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "coreLifecycle20261118": {
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/core-lifecycle-20261118/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 91188,
+        "sha256": "91fb0a470ea4ca520aa07f761234853b031b4cb26f568d2d7140a0a2920372f5"
+      },
+      {
+        "path": "runtime/ultra/authorization/request_protocol.h",
+        "bytes": 28178,
+        "sha256": "b4f52130e7bfc5f5659356fd2f74cff1bb41b709c498be69c7751f12345cbcc6"
+      }
+    ],
+    "change": "Typed UID pending/quarantine and completed commit/unpublish facts after reader finish errors; original errno retained",
+    "canonicalRecipeChanged": false,
+    "publicApiChanged": false,
+    "compiled": false,
+    "tested": false,
+    "targetQualified": false,
+    "deviceValidated": false
+  },
+  "authenticatedDeployment20261119": {
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/deployment-channel-20261119/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 92827,
+        "sha256": "5f271f127d0269bc8918e9ed5eca1459a51fffb50e96090d1c1b91c10993d689"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_private.h",
+        "bytes": 10179,
+        "sha256": "abd6bddd1be90463fae80e6ca983b5f31580520138d064c24cff803aec4099e6"
+      },
+      {
+        "path": "runtime/ultra/authorization/request_protocol.h",
+        "bytes": 30121,
+        "sha256": "2ebf562a9ea816de9c1a8546d14223d300c0e4a44759dbdac87964f78bfd0476"
+      }
+    ],
+    "command": 27,
+    "wireBytes": 24,
+    "existingQueryViewsUnchanged": true,
+    "canonicalRecipeChanged": false,
+    "publicApiChanged": false,
+    "privateTypedGetterAdded": true,
+    "compiled": false,
+    "tested": false,
+    "targetQualified": false,
+    "deviceValidated": false,
+    "namespaceIsNotInstallVendorRootOrReadyAuthority": true
+  },
+  "earlyHelperSession20261119": {
+    "dateUtc": "2026-11-19",
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/EARLY-HELPER-CONTACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 106939,
+        "sha256": "6b18cc962a70d4eb485a4eb10e18ffd93df14a84dc8865d0fdfd19230121e91c"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_private.h",
+        "bytes": 13061,
+        "sha256": "409c3c620a5dab15fb1e49b3a340862b7583163a725409d01d3669b48deeaf14"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_identity.h",
+        "bytes": 1925,
+        "sha256": "88e5d68e33729343cbd0e69014363b1301516a3747d8c18a8b6faf6fab216ff5"
+      }
+    ],
+    "change": "Same-R02 native helper OPEN metadata80, explicit role-preserving identity generation, restricted current-task management and warm ECHO without Manager QUERY or Key fallback",
+    "canonicalRecipeChanged": false,
+    "publicApiChanged": false,
+    "privateTypedConsumerAdded": true,
+    "compiled": false,
+    "tested": false,
+    "targetQualified": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "suRuntimeReadonly20261119": {
+    "dateUtc": "2026-11-19",
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 111176,
+        "sha256": "d42f27a7d14da07aca6710c66c7b0dfff99e278439660768c446113008405f67"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_private.h",
+        "bytes": 13577,
+        "sha256": "4025fa4f3bda491061a243efa94f572d39089bcf7b99d8ff917d6bcc86fd525a"
+      }
+    ],
+    "command": 30,
+    "wireBytes": 104,
+    "provider": "msu_su_runtime_status_get",
+    "getter": "kernel_module::maplesu_request_owner_su_runtime",
+    "change": "Same-R02 authenticated Manager/helper readonly native factory diagnostics; negative completed status remains an error; no legacy hook installation or registry exposure",
+    "canonicalRecipeChanged": false,
+    "publicApiChanged": false,
+    "privateTypedConsumerAdded": true,
+    "existingQueryViewsUnchanged": true,
+    "compiled": false,
+    "tested": false,
+    "targetQualified": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "p3p4InstallationHelperRootStatus20261119": {
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 111176,
+        "sha256": "d42f27a7d14da07aca6710c66c7b0dfff99e278439660768c446113008405f67"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_private.h",
+        "bytes": 13577,
+        "sha256": "4025fa4f3bda491061a243efa94f572d39089bcf7b99d8ff917d6bcc86fd525a"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_identity.h",
+        "bytes": 1925,
+        "sha256": "88e5d68e33729343cbd0e69014363b1301516a3747d8c18a8b6faf6fab216ff5"
+      },
+      {
+        "path": "runtime/ultra/authorization/request_protocol.h",
+        "bytes": 41262,
+        "sha256": "1945ff3f645dcb44c262aea6961af127c68a4dc935c305251416bfde562b0c54"
+      }
+    ],
+    "canonicalRecipeChanged": false,
+    "publicSignaturesChanged": false,
+    "privateAbiRequiresSameHeaderConsumers": true,
+    "compiled": false,
+    "tested": false,
+    "targetQualified": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "coreInstallationRevision2_20261119": {
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/kernel_request/module_base_kernel_request.cpp",
+        "bytes": 111415,
+        "sha256": "5a417edf0edbaf4f1742d08febefd48e7fbce8ee65fc8fb30a92c8f46fe00ea0"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/CONTRACT.md",
+    "preserveHistoricalSnapshotSections": true,
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false,
+    "productionWritten": false,
+    "canonicalSourcesChange": "none"
+  }
+}

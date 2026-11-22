@@ -1,0 +1,107 @@
+{
+  "idx": 49,
+  "name": "maplesu_unsafe_resetprop_install.o",
+  "group": "maplesu",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-fno-function-sections",
+    "-fno-data-sections",
+    "-Wno-unused-command-line-argument"
+  ],
+  "sources": [
+    "src/maplesu/install/resetprop_install.cpp"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 43,
+    "recovered": 43,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "8dbb9c7e025563be4e8492465025cc100c42419d927ef8f31e1ebfa6b1649e11",
+    "bytes": 439768
+  },
+  "evidence": [
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/STATUS.md",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/EQUIVALENCE.md",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/gate.json",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/equivalence-report.json",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/EQUIVALENCE.md",
+    "runtime/upstream-pro/sdk/build/p1-installer-4950/report.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p1/IR-EXIT-PLAN.md"
+  ],
+  "notes": "实际构建输入已切换为可维护 C++；生成头必须由 build.py 以 MAPLESU_PAYLOAD_ASSETS=1 和候选 assets-gen 路径接入，负载与生成头 hash 在 payload_inputs 记录。原 IR 保留为历史行为参照；C++ 与 IR 的同一 fixture 已核对返回码、调用顺序、完整文件字节、mode/xattr 和失败状态，设备验收仍待完成。",
+  "historicalIrSelfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "冻结构建输入已复原并落盘：本成员是单编译单元，构建输入是 runtime/pro/upgrade/sdk-m049.bc 经 scripts/repair-pro-environment-upgrade.py 的发布补丁（把旧的写文件流替换为可执行发布调用面）后的安装器代码；build.py 正式阶段（compile/pack）产物与冻结成员逐字节相同。清单 sources[] 是构建输入；src/skroot/skroot_unsafe_resetprop_install.cpp 是可读 C++ 转写，只作文档，不参与构建。profile 叠加 -fno-function-sections/-fno-data-sections 与冻结配方 clang --target=aarch64-linux-android21 -Oz -fPIC -c <输入> 等价。",
+    "gate": "PASS: T 1/1, U 41/41, weak 52/52, local 19/19, raw diffs empty, same_bytes=true, zero gate-symbol-baseline entries consumed",
+    "bytes": 439768,
+    "sha256": "8dbb9c7e025563be4e8492465025cc100c42419d927ef8f31e1ebfa6b1649e11",
+    "verifyEquiv": {
+      "status": "equivalent",
+      "functions": "43/43",
+      "missing": 0,
+      "extra": 0,
+      "callTargetMatch": "43/43",
+      "seqMean": 1.0,
+      "bagMean": 1.0,
+      "bagMin": 1.0
+    },
+    "proof": [
+      "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/gate.json",
+      "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/equivalence-report.json",
+      "runtime/upstream-pro/sdk/notes/work/AGENT107/EQUIVALENCE.md"
+    ]
+  },
+  "historicalIrRecovery": {
+    "functions": 43,
+    "recovered": 43,
+    "unrecovered": []
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "C++ installer migrated after recorded host differential acceptance. Frozen IR byte equivalence is historical evidence only; current symbol/layout gate and device acceptance are separate checks.",
+    "proof": [
+      "runtime/upstream-pro/sdk/build/p1-installer-4950/report.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p1/IR-EXIT-PLAN.md"
+    ]
+  },
+  "sourceMigration": {
+    "from": "src/skroot/skroot_unsafe_resetprop_install_patched.ll",
+    "to": "src/skroot/skroot_unsafe_resetprop_install.cpp",
+    "acceptance": "host-behaviour-equivalent",
+    "deviceAcceptance": "pending",
+    "report": "runtime/upstream-pro/sdk/build/p1-installer-4950/report.json",
+    "cases": 5
+  },
+  "p7NativeResetpropInstaller": {
+    "status": "implemented-pending-integration-and-device-validation",
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n06a/HANDOFF.md",
+    "sourceBeforeSha256": "44666d7dd36b7951579161ffb23184c5cc6e7435761856cbbb95dd5a09fbddce",
+    "sourceAfterSha256": "7e7b2ab45ea3ab8b1c42f2b9822b20fc3b8bef83e380f7c87135c94cf092dba8",
+    "actualPayloadBytes": 278344,
+    "actualPayloadSha256": "295aa2a5b9b1d922e25adc9581fdfedd6b20c0dac3ac67cb8062cb1ea787ce70",
+    "hostScenariosEach": 5,
+    "externalSymbolsAndVisibilityUnchanged": true,
+    "sharedBuildSelectionCandidateRequired": true,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "privateHeaders": [
+    "src/maplesu/compat/install_resetprop_exports_legacy_abi.h"
+  ],
+  "legacyBinaryExports": {
+    "status": "source-compiled-old-and-new-consumers-linked",
+    "compatibilityHeader": "src/maplesu/compat/install_resetprop_exports_legacy_abi.h",
+    "symbolAliases": 1,
+    "scope": "Exact frozen skroot_env binary names alias the sole maintained maplesu::sdk function bodies; existing install behavior and error propagation preserved",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "validation": ".tmp/main-sdk-installer-abi-20261120/linked-abi-review-effective-m048/EXECUTION.json",
+    "rawGatePassed": false
+  }
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="webui_control_title">网页管理器</string>
+    <string name="webui_control_checking">正在检查运行状态…</string>
+    <string name="webui_control_running">WebUI 正在运行</string>
+    <string name="webui_control_stopped">WebUI 已关闭</string>
+    <string name="webui_control_unknown">暂未读取到 WebUI 状态</string>
+    <string name="webui_control_stop">关闭 WebUI</string>
+    <string name="webui_control_stopping">正在关闭…</string>
+    <string name="webui_control_retry">重新检查</string>
+    <string name="webui_control_restart_hint">需要再次使用时，点击上方“准备恢复链接”即可开启。</string>
+    <string name="webui_control_confirm_title">关闭网页管理器？</string>
+    <string name="webui_control_confirm_body">当前网页连接将断开，已保存的链接暂时不可访问。隐藏与寄生状态、模块和授权均保留；再次准备恢复链接即可重新开启。</string>
+    <string name="webui_control_stop_failed">关闭尚未完成，请重新检查后重试。</string>
+</resources>

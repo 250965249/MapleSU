@@ -1,0 +1,171 @@
+{
+  "idx": 45,
+  "name": "maplesu_test.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu_core/maplesu_test.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 44,
+    "recovered": 44,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "484586c2afcc30dc255479a8d78f9fc4849be610985dbe88e84e18a1e99695a3",
+    "bytes": 221000
+  },
+  "evidence": [
+    "notes/work/AGENT115/STATUS.md",
+    "notes/work/AGENT115/proof/0045/built.a",
+    "notes/work/AGENT115/proof/0045/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "符号闸门 PASS（实测）：T 9/9、U 196/196，原始双向差集为空，基线消耗 0。行为等价实测未达 0.95 档：函数清单 322/322、missing 0、extra 5、call 293/322、bag_min 0.0、bag_mean 0.8645。构建配方 stages=1（见 recipe 字段）。",
+    "measured": {
+      "strongT": 9,
+      "strongU": 196,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "strongUMissing": 0,
+      "strongUExtra": 0,
+      "definedKinds": {
+        "V": 35,
+        "r": 65,
+        "t": 94,
+        "W": 224,
+        "T": 9,
+        "b": 3,
+        "d": 4
+      },
+      "newObjectBytes": 222344,
+      "newObjectSha256": "2874d0a46e0e82e2ce9f9c39ddc3b5b80b345eeb46edcec2566a5836de3a8c02",
+      "baselineConsumed": [],
+      "recipeStages": 1,
+      "verifyEquivRefFunctions": 322,
+      "verifyEquivNewFunctions": 327,
+      "verifyEquivMatched": 322,
+      "verifyEquivMissing": 0,
+      "verifyEquivExtra": 5,
+      "verifyEquivCallTargetMatch": 293,
+      "verifyEquivBagMin": 0.0,
+      "verifyEquivBagMean": 0.8645,
+      "verifyEquivSeqMean": 0.8796,
+      "verifyEquivRefFunctionsMissingNames": [],
+      "verifyEquivExtraNames": [
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN10skroot_envL19unsafe_test_channelEvE3$_0NS_9allocatorIS4_EEF7KModErrPN6asmjit5v1_163a649AssemblerERNSA_3GpXEEEENS_22__allocator_destructorINS5_ISG_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrIN12_GLOBAL__N_120MyAsmJitErrorHandlerENS_14default_deleteIS2_EEED2B7v170000Ev",
+        "OUTLINED_FUNCTION_66",
+        "OUTLINED_FUNCTION_67",
+        "OUTLINED_FUNCTION_68"
+      ]
+    }
+  },
+  "notes": "EQUIVALENCE(measured, verify_equiv 0.95): fn 322/322 missing 0 extra 5 call_target_match 293/322 bag_min 0.0 bag_mean 0.8645 seq_mean 0.8796; recipe stages=1",
+  "blockedBy": [
+    "verify_equiv 函数清单不一致：missing 0、extra 5（残余名字见 selfCheck.measured）",
+    "verify_equiv call target 293/322：函数指令布局未逐条对齐（分支目标偏移随体积差漂移）",
+    "verify_equiv bag_min 0.0 < 0.95：OUTLINED_FUNCTION 片段切分/栈槽基址残余"
+  ],
+  "privateHeaders": [
+    "src/maplesu/compat/runtime_config_exports_legacy_abi.h",
+    "include/maplesu_status_query_private.h"
+  ],
+  "legacyBinaryExports": {
+    "status": "source-compiled-all-eight-frozen-old-entries-linked",
+    "compatibilityHeader": "src/maplesu/compat/runtime_config_exports_legacy_abi.h",
+    "compatibilityHeaderSha256": "fc7d38161cad6aabd0303ed7f4d76f24c70a5038a8fff0fb9d91e22920375a5a",
+    "sourceSha256": "0ddb844991dad508acb5e2b9239df2e2fe1b48bab39cdb3b813acbcb35b0fabe",
+    "objectSha256": "d7881f14b5629dadaebac96728c924892f4123bf65c975d89b962c2bcbdd5c1a",
+    "restoredStrongSymbols": [
+      "_ZN10skroot_env16restart_zygote64EPKc",
+      "_ZN10skroot_env22get_root_status_reportEPKc",
+      "_ZN10skroot_env22is_adb_forced_disabledEPKc",
+      "_ZN10skroot_env23set_adb_forced_disabledEPKcb",
+      "_ZN10skroot_env26test_skroot_basics_with_cbEPKcNS_9BasicItemEPFvS1_E",
+      "_ZN10skroot_env28is_boot_fail_protect_enabledEPKc",
+      "_ZN10skroot_env29set_boot_fail_protect_enabledEPKcb",
+      "_ZN10skroot_env34test_skroot_deafult_module_with_cbEPKcNS_17DeafultModuleNameEPFvS1_E"
+    ],
+    "currentStrongRetained": 10,
+    "undefinedImportsUnchanged": true,
+    "remainingFrozenStrongSymbols": [],
+    "memberCompileExit": 0,
+    "strictSelectedLegacyCallerLinkExit": 0,
+    "validation": ".tmp/main-sdk-idx45-remaining-abi-20261120/VALIDATION.json",
+    "compileCommands": ".tmp/main-sdk-idx45-remaining-abi-20261120/COMMANDS.json",
+    "inputVerification": ".tmp/main-sdk-idx45-remaining-abi-20261120/PRECOMPILE-INPUTS.json",
+    "scope": "All eight frozen old entry names are strong T in the current SDK object and are referenced by the strictly linked legacy caller. Existing function bodies, all 15 prior strong definitions and imports are unchanged. This is no full gate or runtime behavior-equivalence result.",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "nativeExecution": false,
+    "rawGateStatus": "not-run-by-this-member-abi-batch",
+    "newlyRestoredStrongSymbols": [
+      "_ZN10skroot_env16restart_zygote64EPKc",
+      "_ZN10skroot_env26test_skroot_basics_with_cbEPKcNS_9BasicItemEPFvS1_E",
+      "_ZN10skroot_env34test_skroot_deafult_module_with_cbEPKcNS_17DeafultModuleNameEPFvS1_E"
+    ],
+    "previousStrongRetained": 15,
+    "currentTotalStrong": 18,
+    "strictSelectedLegacyCallerLinkBeforeExit": 1,
+    "previousPartialValidation": ".tmp/main-sdk-legacy-status-control-20261120/NARROW-RESULTS.json",
+    "previousPartialInputVerification": ".tmp/main-sdk-legacy-status-control-20261120/metadata/INPUT-CHECK.json",
+    "compilerDependenciesUnchanged": true,
+    "compilerDependencyCount": 121,
+    "linkedVisibilityQualification": "All eight are strong T in the SDK object. Existing hidden visibility localizes them to t in the linked shared caller; strict --no-undefined link succeeds."
+  },
+  "p7RemainingOwnerConsumers20261121": {
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu_core/maplesu_test.cpp",
+        "sha256": "3f2d30613b44e977e82b6c2bafa3727af3775737fe2458ff037290905e5cd80b"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/gap45/maplesu_test_private.h",
+        "sha256": "6497049222ba4c2c297efc7a97cfdd869e7735f313441a41abd35bb60f002296"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_status_query_private.h",
+        "sha256": "ea92df53ddf97164c8e4ee864f1d1108db2bfa2309d9e74836307f3d0d1bba8f"
+      }
+    ],
+    "contract": "Consume existing authenticated request context; null Owner accepted, explicit invalid Key never falls back; actual worker scopes/close and first failures retained; legacy public ABI preserved.",
+    "publicAbiChanged": false,
+    "evidenceDirectory": ".tmp/p7-development-20261121/keyless/validation",
+    "deviceValidated": false,
+    "formalAssetsPromoted": false,
+    "historicRawGateUnchanged": true
+  },
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu_core/maplesu_test.cpp",
+        "sha256": "3f2d30613b44e977e82b6c2bafa3727af3775737fe2458ff037290905e5cd80b"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_status_query_private.h",
+        "sha256": "ea92df53ddf97164c8e4ee864f1d1108db2bfa2309d9e74836307f3d0d1bba8f"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/gap45/maplesu_test_private.h",
+        "sha256": "6497049222ba4c2c297efc7a97cfdd869e7735f313441a41abd35bb60f002296"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  }
+}

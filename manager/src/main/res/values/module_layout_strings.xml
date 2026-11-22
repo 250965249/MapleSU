@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_card_running">Running</string>
+    <string name="module_card_not_running">Not running</string>
+    <string name="module_card_abnormal">Module needs attention</string>
+    <string name="module_card_unknown">Module status unknown</string>
+    <string name="module_card_processing">Processing…</string>
+    <string name="module_card_unsupported_summary">Unavailable here: %1$s</string>
+    <string name="module_card_restart_required">Restart to apply changes</string>
+    <string name="module_card_properties_failed">%1$d properties were not applied</string>
+    <string name="module_card_artwork">Card artwork</string>
+</resources>

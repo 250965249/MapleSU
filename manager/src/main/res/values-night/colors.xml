@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 闪屏与窗口底色：与首屏 Scaffold 背景一致（Miuix colorScheme.surface）。 -->
+    <color name="maple_window_background">#FF000000</color>
+</resources>

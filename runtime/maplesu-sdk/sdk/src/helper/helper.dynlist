@@ -1,0 +1,9 @@
+/* Dynamic symbol surface of the first-party boot helper.
+ *
+ * Only the two privileged primitives are exported to the paired policy
+ * backend; every other symbol stays out of the dynamic table.
+ */
+{
+  maplesu_helper_su_write;
+  maplesu_helper_su_exec;
+};

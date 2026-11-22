@@ -1,0 +1,35 @@
+{
+  "baselineArchiveSha256": "4e3f119ed9f1285eb3fc8e05b9b30476dacc7d903c44e920c9cd554008e8762e",
+  "baselineBuildId": "maplesu-pro-5.1.0-environment-identity-r12-20261107",
+  "inputs": [
+    {
+      "ordinal": 48,
+      "path": "runtime/pro/upgrade/sdk-m048.bc",
+      "sha256": "28b10f62f8837e1d28ca0e92fa7a60bb8cc928ad25960e576cf9f1d78c0d84d6",
+      "baselineMemberName": "skroot_unsafe_su_install.o",
+      "baselineMemberSha256": "81166cde24c93f68336f24dd459cbfa42ca9a7d650c3e9a6aff17d691f36843a"
+    },
+    {
+      "ordinal": 49,
+      "path": "runtime/pro/upgrade/sdk-m049.bc",
+      "sha256": "4694875eca977ee268d07f4879af11169e7b38799423dd9fc23d344c107e4d5f",
+      "baselineMemberName": "skroot_unsafe_resetprop_install.o",
+      "baselineMemberSha256": "c94be905e31509e434a8b772857f59fdbfb71cbf1c2c9285f681611ff121dc5d"
+    },
+    {
+      "ordinal": 50,
+      "path": "runtime/pro/upgrade/sdk-m050.bc",
+      "sha256": "5743db31ae09dfe84086313154752ca80e0a679c705f78a46b259ee6a6775c50",
+      "baselineMemberName": "skroot_unsafe_webui_loader_install.o",
+      "baselineMemberSha256": "0e96c984a18c14395bb96cc3e6f6ffcea7d3403ba70867ec179227aa4c5ea225"
+    },
+    {
+      "ordinal": 52,
+      "path": "runtime/pro/upgrade/sdk-m052.bc",
+      "sha256": "342b920914ad62f700398482f8bfd403344e54cf36f032a77c51d0c1e306d3c2",
+      "baselineMemberName": "skroot_autorun_bootstrap_install.o",
+      "baselineMemberSha256": "8890d91ad5b3a3fab160dc34706bcf1988faac51fa132f5e9018c8759c70f926"
+    }
+  ],
+  "provenance": "Recovered installer IR reconciled with r12. Native baseline allocation sections and symbol/relocation contracts must match before patching; embedded executables stay byte-identical."
+}

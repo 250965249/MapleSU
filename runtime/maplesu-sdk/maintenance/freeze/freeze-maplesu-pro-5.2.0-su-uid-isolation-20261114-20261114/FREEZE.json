@@ -1,0 +1,12 @@
+{
+  "snapshotId": "freeze-maplesu-pro-5.2.0-su-uid-isolation-20261114-20261114",
+  "sdkBuildId": "maplesu-pro-5.2.0-su-uid-isolation-20261114",
+  "archiveSha256": "49df399288a2fc08d38c7c20e0632fbb21525fb05723a3443cb14fabd350b1e9",
+  "archiveBytes": 18920256,
+  "members": 260,
+  "helperSha256": "6d270d39bc65165c2dec54e8f6923b2a405325c5ffe63c958ce35e138bff7c31",
+  "backendSha256": "004aaa7b7d71dd49785cbd7061d113077a8fd87c23dc41ea7423a55335521333",
+  "frozenAtUtc": "2026-11-14T16:12:34+00:00",
+  "files": 163,
+  "note": "fixed 5.2.0 build input; archive member order preserved"
+}

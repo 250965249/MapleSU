@@ -1,0 +1,31 @@
+{
+  "idx": 27,
+  "name": "module_base_kernel_symbol_lookup_printf.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module_base/module_base_kernel_symbol_lookup_printf.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 2,
+    "recovered": 2,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "0f43732c3fbfd38932df0c81a1c0e9067dd641325b4112dce9081d84e54bb627",
+    "bytes": 3000
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "orig.T=2 new.T=2, orig.U=0 new.U=0; both diffs empty (PASS). llvm-dis output of the reconstruction is identical to the pristine IR line for line except (a) target triple spelled aarch64-unknown-linux-android21 vs aarch64-none-linux-android21, (b) !llvm.ident Android build number 10552028 vs 11349228 (both clang 17.0.2 r487747e), (c) the module hash/path line - i.e. the pristine member was built with a marginally newer NDK build of the same clang."
+  },
+  "notes": ""
+}

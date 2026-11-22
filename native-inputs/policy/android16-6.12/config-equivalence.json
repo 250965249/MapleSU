@@ -1,0 +1,104 @@
+{
+  "profiles": [
+    {
+      "config": {
+        "CONFIG_HAVE_FUNCTION_GRAPH_FREGS": "n"
+      },
+      "payload": "equivalent-policy-view-bc1417b0185d.so",
+      "header": "config-equivalent-bc1417b0185d.h",
+      "layout": "equivalent-layout-bc1417b0185d.json",
+      "sourceSha256": {
+        "abi_anchors.c": "a1aecd767c169f6441a5f23347bfa5aa8aee8349fe881464fdf03802a35b4180",
+        "ksu_av.c": "23a6025a79c83db7acd6003d0435edebcae5f9f4bff981d9f75015dc5e6e89cf",
+        "ksu_context.c": "3a0f0ba43dbc7bd486dadd876edc15adc8a1a4c311cf7d51d65421d2d12ac4a7",
+        "ksu_queries.c": "60a1576d465951f175c116571f2c62d08437668bccf38382f0ae244dcb2cbefe",
+        "ksu_setprocattr.c": "287adf21b7677840ef9a11a1867e9e8c4ecdbd37362ec75931810f04756c5b18",
+        "ksu_sid.c": "c57ba0f8d2d0699582cd583f818383f088195c0bf974839387ed13924d3b9c60",
+        "policy_cred_status.c": "1276eaf932d830e6e31bdce00f8cf4e1ffc7b8972da5256c112e0823daba14ec",
+        "policy_dynamic_layout.c": "37cc2945c40ee9ec3b01a7c12fa2729ff3b48fe926e65309a111c2f36bda6118",
+        "policy_notifications.c": "e02a356da9f064d21ca8b7c32b64d5e626958f70fc67c2d2ddd9f519f4512765",
+        "policy_reload.c": "7f299b76d418db437a3f8b521d1d097ce21dec9c074f7894d9bd0762ca5f6269",
+        "policy_status.c": "8cc3f85d9ecfe868f70cf43c30f70bd325b2199207deb6ed81997fec42dddfd7",
+        "policy_view.c": "14cb247ff380489a8a0bd4ae81e8409fe1e2598a4b5005076dc6523e6fd8e05e",
+        "compiled-layout.h": "c699940ccca9aa33fe3c0082afb51ecccc2a73e3a9faa48d9de4bc10fb8aabf6",
+        "config-equivalent-bc1417b0185d.h": "4e037c80f1f14bc967afed67b12b56f73179be13582a0c08b1db677bdbab8fbb",
+        "equivalent-layout-bc1417b0185d.h": "c699940ccca9aa33fe3c0082afb51ecccc2a73e3a9faa48d9de4bc10fb8aabf6",
+        "policy_dynamic_layout.h": "aed4ba16bdce008926365d2b30eff5bc251feddc321f46c3ffff8adcf27d4e4d",
+        "policy_layout_slots.h": "3897bf816066543f497ae0154ceb1e188c8dee3e2eed536781763e3389e8e0a8",
+        "policy_view.h": "de23d2bbaaf08eaa706cf0c4bfccf1335283bff1f9545bc263c700737194e539",
+        "policy_view_internal.h": "531d92503af8928660206a917c38df32776a44d3f55c9e71308b7f6200a65c7f",
+        "policy_entry.S": "56008a08847f2eaf1122f119d2c3821154b0b62617a9947008bf5fa2babbd8f2",
+        "Makefile": "e369c524c9d56e87ba76f2e023ba31d512b2ac0d8e893ff712d7453c112de2b2"
+      }
+    },
+    {
+      "config": {
+        "CONFIG_ARCH_HAS_UACCESS_FLUSHCACHE": "n"
+      },
+      "payload": "equivalent-policy-view-6c93e767aec8.so",
+      "header": "config-equivalent-6c93e767aec8.h",
+      "layout": "equivalent-layout-6c93e767aec8.json",
+      "sourceSha256": {
+        "abi_anchors.c": "a1aecd767c169f6441a5f23347bfa5aa8aee8349fe881464fdf03802a35b4180",
+        "ksu_av.c": "23a6025a79c83db7acd6003d0435edebcae5f9f4bff981d9f75015dc5e6e89cf",
+        "ksu_context.c": "3a0f0ba43dbc7bd486dadd876edc15adc8a1a4c311cf7d51d65421d2d12ac4a7",
+        "ksu_queries.c": "60a1576d465951f175c116571f2c62d08437668bccf38382f0ae244dcb2cbefe",
+        "ksu_setprocattr.c": "287adf21b7677840ef9a11a1867e9e8c4ecdbd37362ec75931810f04756c5b18",
+        "ksu_sid.c": "c57ba0f8d2d0699582cd583f818383f088195c0bf974839387ed13924d3b9c60",
+        "policy_cred_status.c": "1276eaf932d830e6e31bdce00f8cf4e1ffc7b8972da5256c112e0823daba14ec",
+        "policy_dynamic_layout.c": "37cc2945c40ee9ec3b01a7c12fa2729ff3b48fe926e65309a111c2f36bda6118",
+        "policy_notifications.c": "e02a356da9f064d21ca8b7c32b64d5e626958f70fc67c2d2ddd9f519f4512765",
+        "policy_reload.c": "7f299b76d418db437a3f8b521d1d097ce21dec9c074f7894d9bd0762ca5f6269",
+        "policy_status.c": "8cc3f85d9ecfe868f70cf43c30f70bd325b2199207deb6ed81997fec42dddfd7",
+        "policy_view.c": "14cb247ff380489a8a0bd4ae81e8409fe1e2598a4b5005076dc6523e6fd8e05e",
+        "compiled-layout.h": "c699940ccca9aa33fe3c0082afb51ecccc2a73e3a9faa48d9de4bc10fb8aabf6",
+        "config-equivalent-6c93e767aec8.h": "10692bc29166a3abf6279cc9c3fcc3924eec6cac455c8ecef82964b4e412f48e",
+        "config-equivalent-bc1417b0185d.h": "4e037c80f1f14bc967afed67b12b56f73179be13582a0c08b1db677bdbab8fbb",
+        "equivalent-layout-6c93e767aec8.h": "c699940ccca9aa33fe3c0082afb51ecccc2a73e3a9faa48d9de4bc10fb8aabf6",
+        "equivalent-layout-bc1417b0185d.h": "c699940ccca9aa33fe3c0082afb51ecccc2a73e3a9faa48d9de4bc10fb8aabf6",
+        "policy_dynamic_layout.h": "aed4ba16bdce008926365d2b30eff5bc251feddc321f46c3ffff8adcf27d4e4d",
+        "policy_layout_slots.h": "3897bf816066543f497ae0154ceb1e188c8dee3e2eed536781763e3389e8e0a8",
+        "policy_view.h": "de23d2bbaaf08eaa706cf0c4bfccf1335283bff1f9545bc263c700737194e539",
+        "policy_view_internal.h": "531d92503af8928660206a917c38df32776a44d3f55c9e71308b7f6200a65c7f",
+        "policy_entry.S": "56008a08847f2eaf1122f119d2c3821154b0b62617a9947008bf5fa2babbd8f2",
+        "Makefile": "e369c524c9d56e87ba76f2e023ba31d512b2ac0d8e893ff712d7453c112de2b2"
+      }
+    },
+    {
+      "config": {
+        "CONFIG_ARCH_HAS_UACCESS_FLUSHCACHE": "n",
+        "CONFIG_HAVE_FUNCTION_GRAPH_FREGS": "n"
+      },
+      "payload": "equivalent-policy-view-081e76d8fe53.so",
+      "header": "config-equivalent-081e76d8fe53.h",
+      "layout": "equivalent-layout-081e76d8fe53.json",
+      "sourceSha256": {
+        "abi_anchors.c": "a1aecd767c169f6441a5f23347bfa5aa8aee8349fe881464fdf03802a35b4180",
+        "ksu_av.c": "23a6025a79c83db7acd6003d0435edebcae5f9f4bff981d9f75015dc5e6e89cf",
+        "ksu_context.c": "3a0f0ba43dbc7bd486dadd876edc15adc8a1a4c311cf7d51d65421d2d12ac4a7",
+        "ksu_queries.c": "60a1576d465951f175c116571f2c62d08437668bccf38382f0ae244dcb2cbefe",
+        "ksu_setprocattr.c": "287adf21b7677840ef9a11a1867e9e8c4ecdbd37362ec75931810f04756c5b18",
+        "ksu_sid.c": "c57ba0f8d2d0699582cd583f818383f088195c0bf974839387ed13924d3b9c60",
+        "policy_cred_status.c": "1276eaf932d830e6e31bdce00f8cf4e1ffc7b8972da5256c112e0823daba14ec",
+        "policy_dynamic_layout.c": "37cc2945c40ee9ec3b01a7c12fa2729ff3b48fe926e65309a111c2f36bda6118",
+        "policy_notifications.c": "e02a356da9f064d21ca8b7c32b64d5e626958f70fc67c2d2ddd9f519f4512765",
+        "policy_reload.c": "7f299b76d418db437a3f8b521d1d097ce21dec9c074f7894d9bd0762ca5f6269",
+        "policy_status.c": "8cc3f85d9ecfe868f70cf43c30f70bd325b2199207deb6ed81997fec42dddfd7",
+        "policy_view.c": "14cb247ff380489a8a0bd4ae81e8409fe1e2598a4b5005076dc6523e6fd8e05e",
+        "compiled-layout.h": "c699940ccca9aa33fe3c0082afb51ecccc2a73e3a9faa48d9de4bc10fb8aabf6",
+        "config-equivalent-081e76d8fe53.h": "dab9e057df1479ad48a4b9174e5f9681cab0336bd89a425e5b4af0be4eaca189",
+        "config-equivalent-6c93e767aec8.h": "10692bc29166a3abf6279cc9c3fcc3924eec6cac455c8ecef82964b4e412f48e",
+        "config-equivalent-bc1417b0185d.h": "4e037c80f1f14bc967afed67b12b56f73179be13582a0c08b1db677bdbab8fbb",
+        "equivalent-layout-081e76d8fe53.h": "c699940ccca9aa33fe3c0082afb51ecccc2a73e3a9faa48d9de4bc10fb8aabf6",
+        "equivalent-layout-6c93e767aec8.h": "c699940ccca9aa33fe3c0082afb51ecccc2a73e3a9faa48d9de4bc10fb8aabf6",
+        "equivalent-layout-bc1417b0185d.h": "c699940ccca9aa33fe3c0082afb51ecccc2a73e3a9faa48d9de4bc10fb8aabf6",
+        "policy_dynamic_layout.h": "aed4ba16bdce008926365d2b30eff5bc251feddc321f46c3ffff8adcf27d4e4d",
+        "policy_layout_slots.h": "3897bf816066543f497ae0154ceb1e188c8dee3e2eed536781763e3389e8e0a8",
+        "policy_view.h": "de23d2bbaaf08eaa706cf0c4bfccf1335283bff1f9545bc263c700737194e539",
+        "policy_view_internal.h": "531d92503af8928660206a917c38df32776a44d3f55c9e71308b7f6200a65c7f",
+        "policy_entry.S": "56008a08847f2eaf1122f119d2c3821154b0b62617a9947008bf5fa2babbd8f2",
+        "Makefile": "e369c524c9d56e87ba76f2e023ba31d512b2ac0d8e893ff712d7453c112de2b2"
+      }
+    }
+  ]
+}

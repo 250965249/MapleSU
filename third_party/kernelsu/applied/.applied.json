@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "third_party/kernelsu/scripts/apply_patches.py@1",
+  "order": [
+    "0001-manager-identity.patch",
+    "0002-uapi-v7.patch",
+    "0003-stealth.patch",
+    "0004-app-lock.patch",
+    "0005-manager-generation-gate.patch",
+    "0006-webadmin.patch",
+    "0007-boot-patch-safety.patch",
+    "0008-restore-user-data.patch",
+    "0009-install-staging-label.patch",
+    "0010-manager-jni-facade.patch",
+    "0011-webadmin-api-surface.patch",
+    "0012-boot-patch-safety-wiring.patch",
+    "0013-restore-user-data-wiring.patch",
+    "0014-manager-package-triple-check.patch",
+    "0015-normal-recovery.patch",
+    "0016-ksud-build-identity.patch",
+    "0018-vivo-vr-compatibility.patch",
+    "0019-maplesu-93260-symbol-input.patch",
+    "0020-jailbreak-selinux-session.patch",
+    "0021-maplesu-manager-namespace.patch",
+    "0022-boot-copy-rebuild.patch",
+    "0023-boot-backup-optional.patch",
+    "0024-boot-empty-origin-restore.patch",
+    "0025-target-kernel-kmi.patch"
+  ],
+  "aggregateSha256": "abe46d6c8f86d11e9bd844af68241f2af184aff5d75fe6eb22d7950fd20cfb4c",
+  "seriesSha256": "467f4bc2768a67857d2bf26a0c42ff7c66b395768f802d4e2959317de488a6fa",
+  "appliedAt": "2026-11-17T13:33:40Z",
+  "uapiVersion": 7,
+  "uapiSyncTargets": [
+    "kernel/include/uapi",
+    "manager/app/src/main/cpp/uapi"
+  ],
+  "treeSha256": "bd6d70685ec7cef4bf9ad91b11b7fb7e5ef08bd6ef1c7a82a07beb22188a8c81",
+  "fileCount": 839
+}

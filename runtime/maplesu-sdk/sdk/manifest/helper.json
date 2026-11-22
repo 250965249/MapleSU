@@ -1,0 +1,246 @@
+{
+  "name": "helper/autorun_bootstrap",
+  "kind": "BUILT-FROM-SOURCE",
+  "status": "partial",
+  "maturity": "source-candidate-unvalidated-device",
+  "acceptanceReport": "docs/dual-mode/impl/_work/2026-11-15-p1/P1-INTEGRATION-ACCEPTANCE-R9.md",
+  "productionRole": "P1 r9 admitted a source-built helper at runtime/maplesu-sdk/helper/autorun_bootstrap. The current source selection includes later changes; its integrated archive/helper/backend/APK and device acceptance remain pending. This metadata does not replace the r9 delivery identity.",
+  "layout": "elf",
+  "note": "不是归档成员；tools/build_helper.py 按 src/helper/manifest.json 的 sources 与 repoSources 编译并链接为 PIE，不参与 ar idx 编号",
+  "sourceRoot": "src/helper",
+  "manifest": "src/helper/manifest.json",
+  "buildTool": "tools/build_helper.py",
+  "buildStage": "build.py --all (source payloads are the default): source SDK core/backend, helper in payloads stage, generated installer headers, final archive pairing, then runtime assets",
+  "out": "build/out/helper/autorun_bootstrap",
+  "sourceOut": "build/out/source/helper/autorun_bootstrap",
+  "buildReport": "build/report/helper-build.json",
+  "selectionAuthority": "src/helper/manifest.json; sources are SDK-relative and repoSources are repository-relative",
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "sources": [
+    "src/helper/helper_text.cpp",
+    "src/helper/helper_session.cpp",
+    "src/helper/helper_policy.cpp",
+    "src/helper/bootstrap_runtime.cpp",
+    "src/maplesu/module/runtime.cpp",
+    "src/helper/helper_boot.cpp",
+    "src/helper/helper_platform_android.cpp"
+  ],
+  "repoSources": [
+    "runtime/ultra/boot/su-isolation/helper_su_backend.cpp",
+    "runtime/ultra/policy/environment_loader.c",
+    "runtime/ultra/identity/environment_start.c",
+    "runtime/ultra/modules/helper_module_gate.c",
+    "runtime/ultra/boot/bootstrap_finish.c"
+  ],
+  "linkInputs": "build.py passes its source bootstrap SDK archive and paired backend identity to tools/build_helper.py; the complete archive is checked by final_archive_stability before publication",
+  "exportedSymbols": [
+    "maplesu_helper_su_exec",
+    "maplesu_helper_su_write"
+  ],
+  "neededLibraries": [
+    "libc.so",
+    "libdl.so",
+    "liblog.so",
+    "libm.so",
+    "libz.so"
+  ],
+  "byteIdentityWithVendor": false,
+  "vendorReference": {
+    "path": "assets/autorun_bootstrap.bin",
+    "bytes": 1351120,
+    "sha256": "6d270d39bc65165c2dec54e8f6923b2a405325c5ffe63c958ce35e138bff7c31",
+    "role": "historical comparison image from assets/ASSETS.json; only explicit --reference-payloads selects reference bytes instead of the default source build"
+  },
+  "installerPayloadAsset": {
+    "note": "默认源码构建把 sourceOut 的同一份 helper 经 tools/build_payloads.py 发布为资产，再生成 m052 安装器使用的头；assets 阶段复制同一资产为 out，不另建另一份运行时 helper。字节身份由本轮构建报告记录。",
+    "path": "build/out/assets/autorun_bootstrap.bin",
+    "manifest": "build/out/assets/PAYLOADS.json",
+    "headerGenerator": "tools/gen_payload_headers.py",
+    "memberManifest": "manifest/0052_maplesu_autorun_bootstrap_install.o.json",
+    "memberSource": "src/maplesu/install/bootstrap_install.cpp",
+    "referencePath": "assets/autorun_bootstrap.bin"
+  },
+  "contract": "notes/HELPER.md",
+  "tests": [
+    "tests/run_helper_test.py",
+    "tests/verify_helper_contract.py"
+  ],
+  "evidence": [
+    "notes/work/HELPER/STATUS.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p1/HELPER-SOURCE-GAPS.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p1/P1-INTEGRATION-ACCEPTANCE-R9.md"
+  ],
+  "historicalEvidenceNote": "p5P7InitializationEvidence below is an isolated historical snapshot. Its source paths, SHA values, counts and pending statements retain their original scope; they are not current source selection or acceptance of later overlays. The current recipe is selected by src/helper/manifest.json and actual build receipts, while the official delivery identity is ../SDK-RELEASE.json.",
+  "p5P7InitializationEvidence": {
+    "schemaVersion": 1,
+    "status": "source-implemented-host-verified-device-pending",
+    "sourceDelivery": {
+      "path": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/ux-performance/initialization-reliability/implementation-r1/DELIVERY.json",
+      "sha256": "d8a91e090fa23a1a139a7df976a49d7a312cd39fd227dc23b9d3f82f090fa676",
+      "bytes": 314716
+    },
+    "actualBuildSelection": {
+      "path": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/ux-performance/initialization-reliability/implementation-r1/BUILD-SELECTION.json",
+      "sha256": "603932f2c5e26fcdb5ed235bb6539ecc671d588a0ac27be94562c1d6cfc42519",
+      "bytes": 34013
+    },
+    "buildManifest": {
+      "path": "src/helper/manifest.json",
+      "sha256": "f8f3a015df1e09bbde78a9f31c739dd273711fb4590635ab99e50ca2c83da87f",
+      "flagsProfile": "core-oz-elf-fexceptions"
+    },
+    "actualBuildTool": {
+      "path": "tools/build_helper.py",
+      "sha256": "d91667439bb5d083533009a7aa50c3b21d58b31a125e49b1654b6c53adcacf0e"
+    },
+    "actualTranslationUnits": [
+      "runtime/upstream-pro/sdk/src/helper/helper_text.cpp",
+      "runtime/upstream-pro/sdk/src/helper/helper_session.cpp",
+      "runtime/upstream-pro/sdk/src/helper/helper_policy.cpp",
+      "runtime/upstream-pro/sdk/src/helper/bootstrap_runtime.cpp",
+      "runtime/upstream-pro/sdk/src/skroot_core/module_runtime.cpp",
+      "runtime/upstream-pro/sdk/src/helper/helper_boot.cpp",
+      "runtime/upstream-pro/sdk/src/helper/helper_platform_android.cpp",
+      "runtime/pro/boot/su-isolation/helper_su_backend.cpp",
+      "runtime/pro/policy/environment_loader.c",
+      "runtime/pro/identity/environment_start.c",
+      "runtime/pro/modules/helper_module_gate.c",
+      "runtime/pro/boot/bootstrap_finish.c"
+    ],
+    "validation": {
+      "realChainAssertionsPerRun": 210,
+      "realChainRuns": 2,
+      "focusedChecks": {
+        "session": 21,
+        "boot": 13,
+        "bootstrap": 63,
+        "originalTargetCases": 25
+      },
+      "androidCompiledTranslationUnits": 12
+    },
+    "bootEventOrderFollowup": {
+      "path": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/ux-performance/boot-event-order/DELIVERY.json",
+      "sha256": "9a449450e338e4ffa852d3d0358db8acffcb1da299b8e672978d5abe8c3456a7",
+      "bytes": 4567
+    },
+    "historicalMemberRecipeRetained": true,
+    "helperExecutableLinked": false,
+    "sdkArchiveBuilt": false,
+    "apkBuilt": false,
+    "deviceTested": false,
+    "pending": [
+      "shared source integration and complete paired helper/SDK/backend/APK build",
+      "actual init events and no-Manager Android cold boot",
+      "real policy/module effects and device acceptance"
+    ]
+  },
+  "privateHeaders": [
+    "src/maplesu/module/operations.h",
+    "include/maplesu_storage_private.h",
+    "src/maplesu/module/runtime.h",
+    "include/maplesu_storage_worker_private.h",
+    "include/maplesu_request_private.h"
+  ],
+  "moduleInstallCompletion20261118": {
+    "status": "source-implemented-pending-single-owner-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/typed-state-chain-20261118/module-install-completion/ASSESSMENT.md",
+    "sourceSha256": {
+      "src/maplesu/module/install.cpp": "05b719a5ffbb4e8470f144332a7d167356924c98b4a02712339dc32cc30caae9",
+      "src/maplesu/module/api.cpp": "2724df6459677e47a9ca24eedf640753b48b5c0c57a8ae9b3e204c0c38a4a4ad",
+      "src/maplesu/module/list.cpp": "5870a3c616bf552354d8eac59f7ee490a70fd25e1fac9cbb4471759bc1c0b9a3",
+      "src/maplesu/module/runtime.cpp": "1c1310d009c052d8e10dc47f26727567faa8e78853d3c1fb04e4c465d281c915",
+      "src/maplesu/module/operations.h": "8f0443fe2ae52f6656b23270d02c6d9015f505a2f91785f29673330210cfb6fb",
+      "src/maplesu/module/state.h": "b7dac049ff54e171a784c6d6b0c8e2da6eac2c48604cae5f5482a32b106261ad",
+      "src/maplesu/module/state.cpp": "d498f95298b111b5622ba82f36028a3187a4d4a2268bffa370bbf7cbb7f66ea8",
+      "include/maplesu_module_install_private.h": "99ed7457fdf79634dc647efcf249e089d4d3e7726fea08d1990f7cb2b69256f7",
+      "src/maplesu/compat/module_runtime_legacy_abi.h": "eecbd7d7fba011ba85a2ac315b2a9382bfd6e4f5b7fa77405ab04284ee5591c0",
+      "src/maplesu/module/callback.cpp": "76dfb8f0ff682951373b3863439606afd8e05de9d18376bd86c82062ee7d5bf7"
+    },
+    "scope": "Per-ID durable install/rollback, exact callback/worker receipts, context paths and boot recovery isolation; committed startup diagnostics remain separate. Public module ABI and original SDK codes retained.",
+    "testsRun": false,
+    "ndkRun": false,
+    "formalAssetsPromoted": false,
+    "deviceTested": false,
+    "optionalStartupMode": "Missing/unreadable install.mode selects committed next-boot activation, not installation rejection.",
+    "storagePaths": "Use current authenticated worker StorageContext; no new worker factory is claimed.",
+    "validation": "Affected source/runtime results are recorded separately under dedicated-regression/module-lifecycle-20261118; no formal SDK or device claim."
+  },
+  "bootOriginalTargetHandoff20261118": {
+    "status": "source-implemented-pending-affected-validation",
+    "source": {
+      "source": "src/helper/helper_boot.cpp",
+      "beforeSha256": "39bac9d527cfbe0e76b3e22888853cc468b12adf35f5453dcc5051750f8e6511",
+      "sha256": "8023043cc5a21c08fe66dd6f4bd80e73188fe4a2c0f4737aff0ba5af01ee8fd3"
+    },
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/typed-state-chain-20261118/boot-original-target-handoff/ASSESSMENT.md",
+    "scope": "Reuse original target argv/env passthrough after known intercepted-target locate/lock/worker failure; release helper resources first. Direct helper commands and boot event return semantics unchanged.",
+    "testsRun": false,
+    "formalAssetsPromoted": false,
+    "deviceTested": false
+  },
+  "bootFailureClassification20261119": {
+    "status": "source-implemented-pending-affected-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/typed-state-chain-20261118/boot-failure-classification/ASSESSMENT.md",
+    "sourceSha256": {
+      "src/maplesu/module/runtime.cpp": "e36f528d1aa69a7ed290326fe5587bb88c7f8be0cc6c142f0b166538b08f981c",
+      "src/maplesu/module/runtime.h": "f4bd00ac445e7f5442037486116f06d1adc64025498a4adc3b3d9a2bd147a7a4",
+      "src/helper/bootstrap_runtime.cpp": "85b84cbcce1228b4cc9d99ce8747f9c9fed8d74a943d0409262ac7a0cdcd6343"
+    },
+    "scope": "Private batch result separates first chronological error from first global bootstrap error; confirmed per-ID recovery/state diagnostics retain U/error without writing global protection. Shared setup and unreadable global lists retain real failure. Old run_batch KModErr signature and result order remain.",
+    "privateWorkerReceipt": "Existing worker pipe appends one signed64 bootstrap error; reader/writer are the same helper translation unit, not a public module wire.",
+    "capability": "Existing U/nonzero error is persisted after successful basic session; original capability_result still returns environment-nonready. No C/complete result for isolated diagnostic.",
+    "unclassifiedLockFailure": "ModuleMutation non-Busy errors remain conservatively global because shared-directory and per-ID lock causes are not distinguished by that existing API.",
+    "testsRun": false,
+    "formalAssetsPromoted": false,
+    "deviceTested": false
+  },
+  "helperReceiptDirectorySync20261119": {
+    "status": "source-implemented-pending-affected-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/typed-state-chain-20261118/helper-receipt-directory-sync/ASSESSMENT.md",
+    "sourceSha256": {
+      "src/helper/helper_session.cpp": "eacc8f9ef0463d173caa59036b50a9556e690214b751e7d50cb84e4664138ae2"
+    },
+    "scope": "After successful receipt rename synchronize already-open parent directory before successful publication; preserve original failure/close semantics and published target on sync failure. Work and capability receipts use same source. No extra query or process.",
+    "testsRun": false,
+    "formalAssetsPromoted": false,
+    "deviceTested": false
+  },
+  "ownerDeploymentWorker20261119": {
+    "status": "source-implemented-validation-pending",
+    "namespaceCommand": 27,
+    "newPublicAbi": false,
+    "workerSessionOwned": true,
+    "moduleIdFromCallerOrArchive": true,
+    "legacyKeyAbiPreserved": true,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false
+  },
+  "p6BootLifecycleIntegration20261120": {
+    "status": "source-host-verified-device-pending",
+    "sourceSha256": {
+      "src/helper/helper_boot.cpp": "956149ade7ca76c9a0d541d36bb7b4c4c28059f450909641d035446301fa5200",
+      "src/helper/helper_session.cpp": "8587d1af55620dd8fa93990639d040c3b6f954f4bc7a5e5f5ebbf8c7168fff13",
+      "include/maplesu_storage_worker_private.h": "fe072f6a10e19ab694dc9a2d42fa8eafab6af289c27e025e49f3dec7012f1fad"
+    },
+    "testRunner": "tools/tests/p6_boot/run.py",
+    "scope": "Fork-owned WorkerScope, EarlyHelper storage lookup, checked lock/session close, nonblocking receipt reads and real short-read failures.",
+    "hostReceiptChecks": 75,
+    "hostWorkerAssertions": 33,
+    "ndkTranslationUnits": 2,
+    "kernelFactoryQualified": false,
+    "noManagerBootQualified": false,
+    "formalAssetsPromoted": false,
+    "deviceTested": false
+  },
+  "p6SingleWorkerClose20261120": {
+    "sourceSha256": {
+      "src/helper/bootstrap_runtime.cpp": "d5b355f40d03413f279961329e21420d016bdfc7a02a6fbe8283effbc69b4541"
+    },
+    "testRunner": "tools/tests/p6_boot/run_single_close.py",
+    "hostCausalGroups": 7,
+    "ndkTranslationUnits": 1,
+    "scope": "Single-module worker close result is checked before successful return; original loader/callback failures retain their diagnostics.",
+    "formalAssetsPromoted": false,
+    "deviceTested": false
+  }
+}

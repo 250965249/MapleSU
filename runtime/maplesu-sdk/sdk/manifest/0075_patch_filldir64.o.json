@@ -1,0 +1,31 @@
+{
+  "idx": 75,
+  "name": "patch_filldir64.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/patch_filldir64.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 8,
+    "recovered": 8,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "57f2baabde29fc638a5bd295e9dd6bdfdb6ee6fb0185631b9f39b832d81258e2",
+    "bytes": 56828
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "T 83/83, U 62/62 both directions empty; a full llvm-nm diff over ALL symbol kinds (including local statics, the anon-namespace helpers and the comdat groups) is also empty. Function-level IR check (out/core-02/irdiff.py): 69/73 functions have a byte-identical call/invoke sequence; the 4 exceptions are the two header-inline functions (init_aarch64_asm, MyAsmJitErrorHandler::handleError) and two basic-string instantiations whose SSA names merely shift - same call counts (29/29, 6/6, 2/2) and the same 113-call sequence in patch_filldir64 (113 vs 113)."
+  },
+  "notes": "7/7 functions recovered. patch_filldir64() emits a multi-candidate filter payload: for each candidate name it first compares w2 (filldir64's namlen argument) against name.size(), then byte-compares the incoming name pointer x1 against an inlined C-string copy at x11, and on a match sets x0 to 0 (kernel < 6.1.0) or 1 and closes the hook body with arm64_before_hook_end(a,false); every mismatch branches to a label bound right after the payload, so the next candidate's check follows. After the loop arm64_before_hook_end(a,true) is emitted for the pass-through case and the assembled bytes are installed via PatchBase::patch_kernel_before_hook(m_filldir64_kaddr, a). The class is 24 bytes (PatchBase 16 + u64 target kaddr), pinned by static_assert; its PatchBase base is the class shared with ordinal 71 via sdk/include/default_modules_module_root_patch_base.h, because the factory object has PatchBase's copy-ctor/dtor as undefined externals. All asm helpers used here (aarch64_asm_set_x_cstr_ptr, aarch64_asm_adr_x, aarch64_asm_to_bytes, init_aarch64_asm) are header anon-namespace code from aarch64_asm_helper.h, which is exactly why the factory symbol set contains _ZN12_GLOBAL__N_1* entries.\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (1 missing / 0 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols."
+}

@@ -1,0 +1,8 @@
+<resources>
+    <string name="module_action_back">Back</string>
+    <string name="module_action_wait">The module action is running. Return when it finishes.</string>
+    <string name="module_action_failed_message">The module action did not finish successfully. Check the output above.</string>
+    <string name="module_action_interrupted">The previous action session ended. Check the module state before running it again.</string>
+    <string name="module_action_restored_complete">The previous action has finished. Its output was kept only for that session.</string>
+    <string name="module_action_log_saved">Log saved to %1$s</string>
+</resources>

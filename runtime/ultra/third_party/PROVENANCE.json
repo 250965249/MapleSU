@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-10-27T17:09:33.934545+00:00",
+  "kind": "compiled_third_party",
+  "statement": "Byte-identical third-party files that the product bridge compiles. cJSON is the JSON writer used by the reference bridge; the three headers provide SELinux/seccomp status, OPPO/OnePlus detection and URL encoding. Unmodified upstream bytes.",
+  "files": [
+    {
+      "target": "runtime/pro/third_party/cJSON/cJSON.cpp",
+      "source": ".analysis/pro-integration-development-20261027/sdk-link-proof/ready-import/native/manager-bridge/cJSON.cpp",
+      "sha256": "604bab7bd7904ea967b8a36734e2780fabbe505aba5744aa9eb2498a90fd5898",
+      "bytes": 81413
+    },
+    {
+      "target": "runtime/pro/third_party/cJSON/cJSON.h",
+      "source": ".analysis/pro-integration-development-20261027/sdk-link-proof/ready-import/native/manager-bridge/cJSON.h",
+      "sha256": "46afab47f56c51429bf7162433ca2b73ed8c30d56daa5fb44cae0e9cdfebf850",
+      "bytes": 16493
+    },
+    {
+      "target": "runtime/pro/third_party/include/oplusDeviceDetect.h",
+      "source": ".analysis/pro-integration-development-20261027/sdk-link-proof/ready-import/native/manager-bridge/oplusDeviceDetect.h",
+      "sha256": "cbbf63010dc1dcc9f815d23dadf04565d98fe9fe31fc216905703f401915732b",
+      "bytes": 3722
+    },
+    {
+      "target": "runtime/pro/third_party/include/sysNodeHelper.h",
+      "source": ".analysis/pro-integration-development-20261027/sdk-link-proof/ready-import/native/manager-bridge/sysNodeHelper.h",
+      "sha256": "0409605e28d9d4a63d0a9995557998db94f92a7dcf06d93e5a633605708ed6b4",
+      "bytes": 1448
+    },
+    {
+      "target": "runtime/pro/third_party/include/urlEncodeUtils.h",
+      "source": ".analysis/pro-integration-development-20261027/sdk-link-proof/ready-import/native/manager-bridge/urlEncodeUtils.h",
+      "sha256": "b7cc1e2bae4ab957be285220543097554677fc8b1551f221bb3c4753fb102baa",
+      "bytes": 1705
+    }
+  ]
+}

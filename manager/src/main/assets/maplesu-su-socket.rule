@@ -1,0 +1,5 @@
+# Only the MapleSU request transport; authorization stays in the daemon.
+type maplesu_su_socket { mlstrustedsubject mlstrustedobject }
+allow shell self process setsockcreate
+allow shell maplesu_su_socket unix_stream_socket { create bind listen accept read write getattr getopt setopt shutdown }
+allow appdomain maplesu_su_socket unix_stream_socket { connectto read write getattr getopt }

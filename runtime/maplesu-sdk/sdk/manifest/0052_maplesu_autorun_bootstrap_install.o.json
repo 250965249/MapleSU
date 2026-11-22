@@ -1,0 +1,310 @@
+{
+  "idx": 52,
+  "name": "maplesu_autorun_bootstrap_install.o",
+  "group": "maplesu",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-fno-function-sections",
+    "-fno-data-sections",
+    "-Wno-unused-command-line-argument"
+  ],
+  "sources": [
+    "src/maplesu/install/bootstrap_install.cpp"
+  ],
+  "status": "partial",
+  "original": {
+    "sha256": "0c886040e4acd37e2c96bb4ecba842e92cd2db9bb00f9e57645c03b6abb72fca",
+    "bytes": 1458976
+  },
+  "evidence": [
+    "notes/work/AGENT103/STATUS.md",
+    "notes/work/AGENT103/EQUIVALENCE-052.md",
+    "notes/work/P1-M052-CPP-SWITCH/EVIDENCE-SUMMARY.json",
+    "notes/work/P1-M052-CPP-SWITCH/RAW-U-REVIEW.json",
+    "notes/work/P1-M052-CPP-SWITCH/LANDED-HOST-REPORT.json",
+    "notes/work/P1-M052-CPP-SWITCH/LANDED-MANIFEST-VALIDATION.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n06e/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n06f/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n06g/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/vivo-ultra-install-review/bootstrap-publication-implementation/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/installation-reliability-review/bootstrap-state-review/implementation/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/install-commit-result-implementation/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/install-lifecycle-r18-implementation/DELIVERY.json"
+  ],
+  "notes": "The source producer now selects maintainable C++; compile profile/extraFlags are retained. The official SDK archive/release is not switched by this manifest change. Historical IR byte/function self-check stays in historicalIr* only. Selected helper input must use generated headers from actual selected assets. Current changes restore hidden visibility and report stream/empty-file close failures. Token-boundary expectations are explicit current-C++ repairs, not IR equivalence. status partial is retained; no current semantic recovery function count is invented.",
+  "historicalIrSelfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "冻结成员的实际生成口径已复原：安装发布 TU 的冻结构建输入是 vendor 纪元 bitcode 经发布补丁（patch_stream + keep_bootstrap_until_publish + 内嵌 helper 负载 1351120 B）得到的 IR；本成员把该 IR 作为 TU，用 core-oz-elf-fexceptions profile 叠加 -fno-function-sections/-fno-data-sections 编译，等价于冻结配方 clang --target=aarch64-linux-android21 -Oz -fPIC -c <ir>。实测（build.py 正式产物）：对象 1458976 B、sha256=0c886040e4acd37e2c96bb4ecba842e92cd2db9bb00f9e57645c03b6abb72fca，与冻结成员逐字节相同（member_gate same_bytes=true）；符号闸门 T 4/4、U 107/107，weak 135/135、local 60/60，raw diffs 双向全空，baseline_consumed=[]；verify_equiv status=equivalent：函数清单 136/136（missing 0 / extra 0），逐函数 call-target 136/136 全等，seq_mean=1.0、bag_mean=1.0、bag_min=1.0。另行实测第一方 C++ 转写（src/skroot/skroot_autorun_bootstrap_install.cpp，保留为可读实现）：T 4/4、U 107/67（missing 40，extra 0）、verify_equiv 函数 62/136（missing 74）、call 53、bag_min 0.05 —— 说明仅凭 C++ 重构无法复现该纪元的发布/日志机器码，故本成员按冻结构建输入编译。",
+    "gate": "PASS: T 4/4, U 107/107, weak 135/135, local 60/60, raw diffs empty, same_bytes=true, zero gate-symbol-baseline entries consumed",
+    "bytes": 1458976,
+    "sha256": "0c886040e4acd37e2c96bb4ecba842e92cd2db9bb00f9e57645c03b6abb72fca",
+    "verifyEquiv": {
+      "status": "equivalent",
+      "functions": "136/136",
+      "missing": 0,
+      "extra": 0,
+      "callTargetMatch": "136/136",
+      "seqMean": 1.0,
+      "bagMean": 1.0,
+      "bagMin": 1.0
+    },
+    "proof": [
+      "notes/work/AGENT103/gate.json",
+      "notes/work/AGENT103/equivalence-report.json",
+      "notes/work/AGENT103/EQUIVALENCE-052.md"
+    ]
+  },
+  "historicalIrRecovery": {
+    "functions": 136,
+    "recovered": 136,
+    "unrecovered": []
+  },
+  "recovery": {},
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "_ZNKSt6__ndk119__shared_weak_count13__get_deleterERKSt9type_info",
+      "_ZNKSt6__ndk14__fs10filesystem4path10__filenameEv",
+      "_ZNKSt6__ndk14__fs10filesystem4path16__root_directoryEv",
+      "_ZNKSt6__ndk18ios_base6getlocEv",
+      "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6__initEmc",
+      "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6resizeEmc",
+      "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7reserveEm",
+      "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE9__grow_byEmmmmmm",
+      "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_",
+      "_ZNSt6__ndk113basic_istreamIcNS_11char_traitsIcEEED0Ev",
+      "_ZNSt6__ndk113basic_istreamIcNS_11char_traitsIcEEED1Ev",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE5writeEPKcl",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryC1ERS3_",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev",
+      "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEElsEj",
+      "_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED0Ev",
+      "_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED1Ev",
+      "_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev",
+      "_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEE4syncEv",
+      "_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEE5imbueERKNS_6localeE",
+      "_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEE6setbufEPcl",
+      "_ZNSt6__ndk119__shared_weak_count14__release_weakEv",
+      "_ZNSt6__ndk119__shared_weak_countD2Ev",
+      "_ZNSt6__ndk15ctypeIcE2idE",
+      "_ZNSt6__ndk18ios_base33__set_badbit_and_consider_rethrowEv",
+      "_ZNSt6__ndk19to_stringEj",
+      "_ZThn16_NSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED0Ev",
+      "_ZThn16_NSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED1Ev",
+      "_ZTv0_n24_NSt6__ndk113basic_istreamIcNS_11char_traitsIcEEED0Ev",
+      "_ZTv0_n24_NSt6__ndk113basic_istreamIcNS_11char_traitsIcEEED1Ev",
+      "_ZTv0_n24_NSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED0Ev",
+      "_ZTv0_n24_NSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED1Ev",
+      "__aarch64_ldadd8_acq_rel",
+      "__cxa_rethrow",
+      "__strncpy_chk",
+      "strncpy",
+      "vsnprintf"
+    ],
+    "note": "C++ source producer is selected in this member manifest; the official SDK archive/release has not switched. Four strong exported symbol names/binding/type/visibility match the frozen ELF in the measured pre-landing C shadow object; bytes and internal function graph differ. Raw U is frozen107 vs C++78: missing33, extra4. Default strict member_gate remains FAIL; only the explicit per-member review file accepts these recorded differences. Historical host evidence is 19 preserved current-C++ scenarios +5 explicit I/O corrections +3 synthetic token boundaries, before/candidate=54 runs. The persisted current-only runner is separately executed against the landed D source. These are host/native-object facts, not IR or Android runtime equivalence. Whole-archive consumer/package and device acceptance remain pending.",
+    "rawDiffs": {
+      "t_missing": [],
+      "t_extra": [],
+      "u_missing": [
+        "_ZNKSt6__ndk119__shared_weak_count13__get_deleterERKSt9type_info",
+        "_ZNKSt6__ndk14__fs10filesystem4path10__filenameEv",
+        "_ZNKSt6__ndk14__fs10filesystem4path16__root_directoryEv",
+        "_ZNKSt6__ndk18ios_base6getlocEv",
+        "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6__initEmc",
+        "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6resizeEmc",
+        "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE9__grow_byEmmmmmm",
+        "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_",
+        "_ZNSt6__ndk113basic_istreamIcNS_11char_traitsIcEEED0Ev",
+        "_ZNSt6__ndk113basic_istreamIcNS_11char_traitsIcEEED1Ev",
+        "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryC1ERS3_",
+        "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev",
+        "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEElsEj",
+        "_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED0Ev",
+        "_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED1Ev",
+        "_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev",
+        "_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEE4syncEv",
+        "_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEE5imbueERKNS_6localeE",
+        "_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEE6setbufEPcl",
+        "_ZNSt6__ndk119__shared_weak_count14__release_weakEv",
+        "_ZNSt6__ndk119__shared_weak_countD2Ev",
+        "_ZNSt6__ndk15ctypeIcE2idE",
+        "_ZNSt6__ndk18ios_base33__set_badbit_and_consider_rethrowEv",
+        "_ZThn16_NSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED0Ev",
+        "_ZThn16_NSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED1Ev",
+        "_ZTv0_n24_NSt6__ndk113basic_istreamIcNS_11char_traitsIcEEED0Ev",
+        "_ZTv0_n24_NSt6__ndk113basic_istreamIcNS_11char_traitsIcEEED1Ev",
+        "_ZTv0_n24_NSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED0Ev",
+        "_ZTv0_n24_NSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED1Ev",
+        "__aarch64_ldadd8_acq_rel",
+        "__cxa_rethrow",
+        "strncpy",
+        "vsnprintf"
+      ],
+      "u_extra": [
+        "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7reserveEm",
+        "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE5writeEPKcl",
+        "_ZNSt6__ndk19to_stringEj",
+        "__strncpy_chk"
+      ]
+    },
+    "bytes": 1426376,
+    "sha256": "cd41eb437c8d28dbe4076b42a15a3b4e12fc18e7fe52bad451bab39d53ffb23e",
+    "abi": {
+      "strong": 4,
+      "binding": "GLOBAL",
+      "type": "FUNC",
+      "visibility": "HIDDEN",
+      "matchesFrozen": true
+    },
+    "host": {
+      "executions": 54,
+      "preservedCurrentCppScenarios": 19,
+      "explicitIoCorrectionScenarios": 5,
+      "syntheticTokenScenarios": 3
+    },
+    "deviceAcceptance": "pending",
+    "proof": [
+      "notes/work/P1-M052-CPP-SWITCH/EVIDENCE-SUMMARY.json",
+      "notes/work/P1-M052-CPP-SWITCH/RAW-U-REVIEW.json",
+      "notes/work/P1-M052-CPP-SWITCH/PRODUCER-PLAN.md",
+      "notes/work/P1-M052-CPP-SWITCH/LANDED-HOST-REPORT.json",
+      "notes/work/P1-M052-CPP-SWITCH/LANDED-MANIFEST-VALIDATION.json"
+    ],
+    "measuredObjectScope": "pre-landing C shadow native ELF; current D-source build/pack gate is owned by the primary agent",
+    "landedHost": {
+      "cases": 27,
+      "passed": 27,
+      "sourceOverride": false,
+      "androidExecution": false,
+      "deviceAcceptance": "pending",
+      "report": "notes/work/P1-M052-CPP-SWITCH/LANDED-HOST-REPORT.json",
+      "sha256": "2785345c62aa9cad80198cf1ee0f3f1e074562454ab17f2dd69766e870d9870a"
+    }
+  },
+  "sourceMigration": {
+    "from": "src/skroot/skroot_autorun_bootstrap_install_patched.ll",
+    "to": "src/skroot/skroot_autorun_bootstrap_install.cpp",
+    "acceptance": "partial: source producer selected; bounded host contract and pre-landing native export ABI verified; default raw-U gate, whole-archive consumer/package and device acceptance remain separate",
+    "deviceAcceptance": "pending",
+    "currentCppRecoveryFunctionCount": "not claimed",
+    "historicalIrRecoveryFunctionCount": 136,
+    "persistentHostTest": "tests/test_m052_file_contract.py",
+    "sourceProducerSwitched": true,
+    "officialSdkSwitched": false
+  },
+  "maplesuNativeBootstrapInstaller": {
+    "implementation": "src/maplesu/install/bootstrap_install.cpp",
+    "compatibility": "Three existing hidden C++ entries and the C helper-path entry; persisted version filename retained.",
+    "acceptance": "Source ownership migration; fixed-payload host/NDK acceptance recorded separately; official delivery and device pending."
+  },
+  "headers": [
+    "src/maplesu/install/lifecycle.h",
+    "src/maplesu/install/bootstrap_install.h"
+  ],
+  "sourceBootstrapDependencyClosure20261119": {
+    "status": "source-candidate-not-compiled-or-tested",
+    "reason": "The source-built helper consumes runtime module recovery from the 256-member bootstrap archive; payload-independent state providers must not be excluded with the embedded helper installer.",
+    "stateProvider": "src/maplesu/install/bootstrap_state.cpp",
+    "stateProviderMember": "maplesu_installer.o",
+    "movedExistingSymbols": [
+      "maplesu::sdk::unsafe_reset_autorun_bootstrap_safe_flag()",
+      "maplesu::sdk::unsafe_reset_autorun_bootstrap_duplicate_boot_session_flag()",
+      "maplesu_installed_helper_path"
+    ],
+    "preserved": [
+      "existing exported names and hidden visibility",
+      "current authenticated storage path",
+      "real root acquisition before reset",
+      "existing state-file suffixes",
+      "real create/truncate and SELinux labeling",
+      "original error propagation",
+      "real payload publication and version commitment"
+    ],
+    "priorMeasuredSelfChecks": "Historical evidence only; current member T/U deltas, helper link and device validation are pending.",
+    "baselineChanged": false,
+    "allowlistChanged": false,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false,
+    "payloadProvider": "src/maplesu/install/bootstrap_install.cpp",
+    "payloadEntriesRetained": [
+      "maplesu::install::prepare_environment_bootstrap()",
+      "maplesu::install::commit_environment_version()",
+      "maplesu::sdk::unsafe_install_autorun_bootstrap()"
+    ]
+  },
+  "p3p4InstallationHelperRootStatus20261119": {
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/installation_state.h",
+        "bytes": 20904,
+        "sha256": "cdc79c8535633ddb245ca3e9ee439a9b28b56c79f2d9acca09a6a818a5137e88"
+      }
+    ],
+    "canonicalRecipeChanged": false,
+    "publicSignaturesChanged": false,
+    "privateAbiRequiresSameHeaderConsumers": true,
+    "compiled": false,
+    "tested": false,
+    "targetQualified": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "coreInstallationRevision2_20261119": {
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/bootstrap_install.h",
+        "bytes": 814,
+        "sha256": "f41a73a20ee26af3f839b6af7135806d2ee4767ce0c75331cad4bd1796218f8e"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/bootstrap_install.cpp",
+        "bytes": 7499,
+        "sha256": "387a805b57d3761ca955bd16d114d3e4c69f582ae2344bf72ce4d0c9f9c7da9c"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/CONTRACT.md",
+    "preserveHistoricalSnapshotSections": true,
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false,
+    "productionWritten": false,
+    "canonicalSourcesChange": "none"
+  },
+  "ownerInstallationSource20261119": {
+    "status": "source-candidate-awaiting-affected-validation",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/bootstrap_install.cpp",
+        "bytes": 7629,
+        "sha256": "0e5f5f1de85a037bbde39d9d8f5dab59d5af987dee77d53d3f5cb4dbb34d449c"
+      }
+    ],
+    "sourceContract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/owner-installation-20261119/CONTRACT.md",
+    "publicSignaturesChanged": false,
+    "productionWritten": false,
+    "compiled": false,
+    "tested": false,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "privateHeaders": [
+    "src/maplesu/compat/install_bootstrap_exports_legacy_abi.h"
+  ],
+  "legacyBinaryExports": {
+    "status": "source-compiled-old-and-new-consumers-linked",
+    "compatibilityHeader": "src/maplesu/compat/install_bootstrap_exports_legacy_abi.h",
+    "symbolAliases": 1,
+    "scope": "Exact frozen skroot_env binary names alias the sole maintained maplesu::sdk function bodies; existing install behavior and error propagation preserved",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "validation": ".tmp/main-sdk-installer-abi-20261120/linked-abi-review-effective-m048/EXECUTION.json",
+    "rawGatePassed": false
+  }
+}

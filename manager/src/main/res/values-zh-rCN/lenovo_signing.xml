@@ -1,0 +1,17 @@
+<resources>
+    <string name="install_advanced_title">高级选项</string>
+    <string name="install_advanced_expand">展开</string>
+    <string name="install_advanced_collapse">收起</string>
+    <string name="install_lenovo_title">联想免解镜像签名支持</string>
+    <string name="install_lenovo_summary">启用联想AVB免解签名支持，对Boot进行签名，使联想免解设备可直接安装镜像，非联想免解设备请勿启用</string>
+    <string name="install_lenovo_confirm_title">是否启用联想免解镜像签名支持？</string>
+    <string name="install_lenovo_aosp">高版本联想免解镜像签名支持（AOSP签名）</string>
+    <string name="install_lenovo_aosp_hint">非新版本可不勾选。AOSP 四镜像签名仅用于 boot；init_boot 始终使用非链式签名。</string>
+    <string name="install_lenovo_legacy">旧版本联想 AVB 签名</string>
+    <string name="install_lenovo_boot_target">全部修补完成后签名：boot 使用链式，init_boot 使用非链式。点击配置新版 AOSP 签名。</string>
+    <string name="install_lenovo_select_image">请选择 %1$s 镜像</string>
+    <string name="install_lenovo_image_needed">必选 · 请使用与 Boot 相同固件的镜像</string>
+    <string name="install_lenovo_images_required">请先选择完整的签名镜像文件，再继续修补。</string>
+    <string name="install_lenovo_auto_images">自动提取配套分区镜像</string>
+    <string name="install_lenovo_auto_images_summary">使用当前槽位，全部修补完成后签名，校验完整镜像组后刷写，并保留回滚备份。</string>
+</resources>

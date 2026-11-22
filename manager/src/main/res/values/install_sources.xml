@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="install_keep_modules_title">Keep existing modules?</string>
+    <string name="install_keep_modules_body">Existing modules may affect MapleSU_Ultra concealment and change policies.</string>
+    <string name="install_keep_modules_no">No</string>
+    <string name="install_modules_cleaning">Uninstalling existing modules…</string>
+    <string name="install_modules_cleanup_failed">Module cleanup did not finish. Retry before continuing the installation.</string>
+    <string name="install_direct">Direct install</string>
+    <string name="install_migrate_to_manager">Migrate to this manager</string>
+    <string name="install_read_current_partition">Read current %1$s partition</string>
+    <string name="install_read_current_partition_summary">Read the selected partition and patch it for the target mode.</string>
+    <string name="install_current_partition_title">Use current %1$s?</string>
+    <string name="install_current_partition_conflict">Read the current %1$s and install the selected mode. Restore the original image first when possible. Existing patches or services may conflict, and switching modes or restoring later may require the original firmware images.</string>
+    <string name="install_direct_continue">Continue directly</string>
+    <string name="install_file_conflict_title">Install the selected image?</string>
+    <string name="install_file_conflict">Patch the selected image for the target mode. Existing patches or services may conflict. Restore the original images first when possible.</string>
+    <string name="install_restore_original_image">Automatically restore the original kernel manager image</string>
+    <string name="install_restore_original_image_summary">Restore a matching backup before patching when available; otherwise patch the current partition.</string>
+    <string name="install_original_manager">Original manager</string>
+    <string name="install_original_manager_auto">Detect automatically</string>
+    <string name="install_stock_backup_unavailable_title">Install directly?</string>
+    <string name="install_stock_backup_unavailable">No usable original-image backup matching this device was found.</string>
+    <string name="install_stock_backup_ambiguous">The correct backup source is unclear. Go back to choose the original manager.</string>
+    <string name="install_stock_backup_mismatch">The backup does not match the current partition. Go back to choose another manager.</string>
+    <string name="install_stock_backup_current_continue">You can still install from the current partition. Existing patches or services may conflict; switching modes or restoring later may require the original firmware images.</string>
+    <string name="install_stock_backup_file_continue">You can still patch the selected image and continue installing. Existing patches or services may conflict; switching modes or restoring later may require the original firmware images.</string>
+    <string name="install_source_connecting">Requesting installation access…</string>
+    <string name="install_source_connecting_hint">Allow the root request to read the selected partition.</string>
+    <string name="install_source_root_required">Root access is needed</string>
+    <string name="install_source_retry_hint">Allow MapleSU in your current manager, then tap the partition source to retry. You can also choose an image file.</string>
+    <string name="install_source_checking_backup">Reading the selected image…</string>
+    <string name="install_source_reading_image_hint">Reading the image format and target partition.</string>
+    <string name="install_source_check_failed">Boot image preparation failed</string>
+    <string name="install_source_check_retry">Tap Next to try again. Your selected image is kept.</string>
+    <string name="install_source_connecting_service">Reading the current installation…</string>
+    <string name="install_ultra_install_update">Install / update</string>
+    <string name="install_source_connecting_service_hint">Identifying the selected boot partition.</string>
+    <string name="install_source_service_unavailable">Partition access failed</string>
+    <string name="install_source_service_retry">Select the partition again to retry. If this persists, export the logs from Settings.</string>
+    <string name="install_source_partition_retry">Tap the partition source again to retry.</string>
+    <string name="install_originals_saved">Originals saved: %1$s</string>
+    <string name="install_rollback_saved">Pre-install rollback copy: %1$s</string>
+    <string name="install_stock_restoring">Restoring original images and writing the selected partition…</string>
+</resources>

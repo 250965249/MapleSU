@@ -1,0 +1,243 @@
+{
+  "schema": "maplesu.kmi-matrix.v1",
+  "note": "One row per KMI family, not per kernel release. Requirement: every kernel from 5.10 through 6.18 must be covered, i.e. exactly these eight rows. The ABI is fixed per KMI; only the vermagic release string varies inside a family. tools/check_kmi_matrix.py asserts the required set, the manager's admission table and build.py's KMI_TABLE all agree.",
+  "updated": "2026-11-08",
+  "kmis": [
+    {
+      "kmi": "android12-5.10",
+      "api": 12,
+      "kernel": "5.10",
+      "admission": true,
+      "exploit": {
+        "payload": "stock dfroot ko (foreign build: reference author's own kernel)",
+        "status": "foreign",
+        "needs": "rebuild provider to embed the measured family-5.10 root module, then device acceptance"
+      },
+      "ultra": {
+        "contract": "jailbreak-providers/root-loader/contracts/family-5.10.json",
+        "module": "work/ultra-510-support-20261108/products/l3/per-kmi/android12-5.10/l3/maplesu_l3.ko",
+        "supported": false,
+        "buildSupported": true,
+        "needs": "device acceptance on android12-5.10; local root/L3 build, CFI and ABI gates implemented",
+        "evidence": "work/ultra-510-support-20261108/README.md; image instructions plus pinned reference module, no image BTF"
+      },
+      "normal": {
+        "ko": "third_party/kernelsu/lkm/android12-5.10_kernelsu.ko",
+        "embedded": true,
+        "supported": false,
+        "needs": "first device run of ksud late-load",
+        "evidence": "tools/check_ksu_embedding.py OK (source + binary)"
+      }
+    },
+    {
+      "kmi": "android13-5.10",
+      "api": 13,
+      "kernel": "5.10",
+      "admission": true,
+      "exploit": {
+        "payload": "stock dfroot ko (foreign build: reference author's own kernel)",
+        "status": "foreign",
+        "needs": "image has no .BTF: supply a vmlinux/BTF build; then contract + module"
+      },
+      "ultra": {
+        "contract": null,
+        "module": null,
+        "supported": false,
+        "needs": "measured android13-5.10 image and ABI contract; Manager excludes the android12-5.10 module for this KMI"
+      },
+      "normal": {
+        "ko": null,
+        "embedded": false,
+        "supported": false,
+        "needs": "KernelSU CI build for this KMI (DDK), then embed in ksud"
+      }
+    },
+    {
+      "kmi": "android13-5.15",
+      "api": 13,
+      "kernel": "5.15",
+      "admission": true,
+      "exploit": {
+        "payload": "stock dfroot ko (foreign build: reference author's own kernel)",
+        "status": "foreign",
+        "needs": "rebuild the stager with the 5.15 module once it builds"
+      },
+      "ultra": {
+        "contract": null,
+        "module": null,
+        "supported": false,
+        "needs": "build without -fsanitize=kcfi for kernels that have no KCFI",
+        "contracts": [
+          "family-5.15.json"
+        ],
+        "gates": "contract exists; build blocked because 5.15 has no KCFI (no compare site)"
+      },
+      "normal": {
+        "ko": "third_party/kernelsu/lkm/android13-5.15_kernelsu.ko",
+        "embedded": true,
+        "supported": false,
+        "needs": "first device run of ksud late-load",
+        "evidence": "tools/check_ksu_embedding.py OK (source + binary)"
+      }
+    },
+    {
+      "kmi": "android14-5.15",
+      "api": 14,
+      "kernel": "5.15",
+      "admission": true,
+      "exploit": {
+        "payload": "stock dfroot ko (foreign build: reference author's own kernel)",
+        "status": "foreign",
+        "needs": "call_usermodehelper is not exported: resolve it at run time, then contract + module"
+      },
+      "ultra": {
+        "contract": null,
+        "module": null,
+        "supported": false,
+        "needs": "call_usermodehelper is not exported: resolve it at run time, then contract + module"
+      },
+      "normal": {
+        "ko": null,
+        "embedded": false,
+        "supported": false,
+        "needs": "KernelSU CI build for this KMI (DDK), then embed in ksud"
+      }
+    },
+    {
+      "kmi": "android14-6.1",
+      "api": 14,
+      "kernel": "6.1",
+      "admission": true,
+      "exploit": {
+        "payload": "stock dfroot ko (foreign build: reference author's own kernel)",
+        "status": "foreign",
+        "needs": "glue template must be generated per family (struct module size/offsets differ), then module + stager"
+      },
+      "ultra": {
+        "contract": null,
+        "module": null,
+        "supported": false,
+        "needs": "first device run on this family",
+        "contracts": [
+          "family-6.1.json"
+        ],
+        "gates": "G1-G7 pass both engines (KCFI prefixes patched from the image)"
+      },
+      "normal": {
+        "ko": "third_party/kernelsu/lkm/android14-6.1_kernelsu.ko",
+        "embedded": true,
+        "supported": false,
+        "needs": "first device run of ksud late-load",
+        "evidence": "tools/check_ksu_embedding.py OK (source + binary)"
+      }
+    },
+    {
+      "kmi": "android15-6.6",
+      "api": 15,
+      "kernel": "6.6",
+      "admission": true,
+      "exploit": {
+        "payload": "maplesu_root (built for this family)",
+        "status": "ours",
+        "note": "the stager embeds our module, not the reference author's build"
+      },
+      "ultra": {
+        "contract": null,
+        "module": "jailbreak-providers/root-loader/build/maplesu_root.ko",
+        "packaged": "assets/maplesu/root/maplesu_root.ko",
+        "supported": false,
+        "needs": "D1-D7 acceptance: DAEMON_READY(rootBackend=hook), NativeSuDaemon root, third-party SU uid=0 x3, no new mounts",
+        "evidence": "build_root_module.py G1-G7 PASS; packaged manifest ir.root block",
+        "contracts": [
+          "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+          "6.6.66-android15-8-g29d86c5fc9dd-abogki428889875-4k"
+        ],
+        "gates": "G1-G7 PASS for both releases (build_root_module.py)",
+        "deviceVerified": {
+          "kernelEntry": true,
+          "evidence": "verdict=OK stage2=ALREADY_RESIDENT daemon=STARTED unload=DONE; enforce restored (readback_final=1); same boot survived",
+          "date": "2026-10-30"
+        }
+      },
+      "normal": {
+        "ko": "third_party/kernelsu/lkm/android15-6.6_kernelsu.ko",
+        "embedded": true,
+        "supported": false,
+        "needs": "first device run of ksud late-load",
+        "evidence": "tools/check_ksu_embedding.py OK (source + binary)"
+      }
+    },
+    {
+      "kmi": "android16-6.12",
+      "api": 16,
+      "kernel": "6.12",
+      "admission": true,
+      "exploit": {
+        "payload": "stock dfroot ko (foreign build: reference author's own kernel)",
+        "status": "foreign",
+        "needs": "rebuild the stager with -DMAPLESU_KO_OVERRIDE for this family"
+      },
+      "ultra": {
+        "contract": null,
+        "module": null,
+        "supported": false,
+        "needs": "first device run on this family",
+        "contracts": [
+          "family-6.12.json"
+        ],
+        "gates": "G1-G7 pass both engines (KCFI patched from the image)"
+      },
+      "normal": {
+        "ko": "third_party/kernelsu/lkm/android16-6.12_kernelsu.ko",
+        "embedded": true,
+        "supported": false,
+        "needs": "first device run of ksud late-load",
+        "evidence": "tools/check_ksu_embedding.py OK (source + binary)"
+      }
+    },
+    {
+      "kmi": "android17-6.18",
+      "api": 17,
+      "kernel": "6.18",
+      "admission": true,
+      "exploit": {
+        "payload": "stock dfroot ko (foreign build: reference author's own kernel)",
+        "status": "foreign",
+        "needs": "rebuild the stager with -DMAPLESU_KO_OVERRIDE for this family"
+      },
+      "ultra": {
+        "contract": null,
+        "module": null,
+        "supported": false,
+        "needs": "first device run on this family",
+        "contracts": [
+          "family-6.18.json"
+        ],
+        "gates": "G1-G7 pass both engines (kprobe 0x78, merged export table, KCFI patched)",
+        "companion": "third_party/kernelsu/lkm/android17-6.18_maplesu_vr.ko",
+        "companionEmbedded": true,
+        "evidence": "work/ksu-6.18-20261112/修复与验证.md"
+      },
+      "normal": {
+        "ko": "third_party/kernelsu/lkm/android17-6.18_kernelsu.ko",
+        "embedded": true,
+        "supported": false,
+        "needs": "first device run of ksud late-load",
+        "evidence": "work/ksu-6.18-20261112/embedded-assets.json"
+      }
+    }
+  ],
+  "required": [
+    "android12-5.10",
+    "android13-5.10",
+    "android13-5.15",
+    "android14-5.15",
+    "android14-6.1",
+    "android15-6.6",
+    "android16-6.12",
+    "android17-6.18"
+  ],
+  "gates": {
+    "exploitPayloads": "tools/check_exploit_payloads.py -- per family: ours vs foreign"
+  }
+}

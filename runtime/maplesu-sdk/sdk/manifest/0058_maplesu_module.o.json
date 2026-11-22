@@ -1,0 +1,150 @@
+{
+  "idx": 58,
+  "name": "maplesu_module.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/module/api.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-flto=thin",
+    "-fvisibility=hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 5,
+    "recovered": 5,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "d4f70f3d245e48d641ada5bab863dfd78173f274dc4f1d893d84dfcd1e362d39",
+    "bytes": 28796
+  },
+  "evidence": [
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n04m-implementation/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n04m-implementation/CURRENT.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n04m-implementation/REGRESSION.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "T": {
+        "missing": [],
+        "extra": []
+      },
+      "U": {
+        "missing": [],
+        "extra": []
+      },
+      "adjustedU": {
+        "missing": [],
+        "extra": []
+      }
+    },
+    "baselineConsumed": [],
+    "note": "PROTOCOL §5 includes T/t/W/w. T and U both directions empty, raw and baseline-adjusted. Zero baseline entries consumed. Compiled using exact ThinLTO profile flags."
+  },
+  "notes": "",
+  "privateHeaders": [
+    "src/maplesu/compat/module_api_exports_legacy_abi.h",
+    "src/maplesu/compat/module_api_legacy_abi.h",
+    "src/maplesu/compat/module_metadata_abi.h",
+    "src/maplesu/module/types.h",
+    "src/maplesu/module/operations.h",
+    "src/maplesu/compat/module_carrier_conversion.h",
+    "include/maplesu_module_install_private.h",
+    "include/maplesu_request_private.h"
+  ],
+  "nativeModuleApiOwnershipAcceptance": {
+    "status": "source-migrated-pending-formal-and-device",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n04m-implementation/DELIVERY.json",
+    "scope": "Five unique TU-private MapleSU API functions; original key/provider/callback order and natural ABI retained; old hidden exports thin-forwarded. Existing published inline TLS reentry issue is recorded separately and unchanged.",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "maplesuNativeCarriersR21": {
+    "status": "source-frozen-validation-pending",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/native-carriers-r21/IMPLEMENTATION.md",
+    "scope": "MapleSU native descriptor, record and version in metadata/ZIP/list/install/API; legacy ABI and raw frames retained at explicit compatibility edges",
+    "sourceBeforeSha256": "cc8cc0e5db50760ce8975bc8663cf4725287bec698546383551319a19ffdfdb5",
+    "sourceAfterSha256": "17a97782d0f733e6a39c484e1fdfff6f2b52a2307555dd0a7952af95867d7879",
+    "testsExecuted": false,
+    "ndkExecuted": false,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "compatibilityContracts": [
+      "The public callback path enumerates the native list once and converts one record per synchronous callback; it creates no second complete legacy list.",
+      "Public inline list append behavior, install rejection reason lifetime, key validation and run-once semantics remain unchanged."
+    ]
+  },
+  "moduleInstallCompletion20261118": {
+    "status": "source-implemented-pending-single-owner-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/typed-state-chain-20261118/module-install-completion/ASSESSMENT.md",
+    "sourceSha256": {
+      "src/maplesu/module/install.cpp": "05b719a5ffbb4e8470f144332a7d167356924c98b4a02712339dc32cc30caae9",
+      "src/maplesu/module/api.cpp": "2724df6459677e47a9ca24eedf640753b48b5c0c57a8ae9b3e204c0c38a4a4ad",
+      "src/maplesu/module/list.cpp": "5870a3c616bf552354d8eac59f7ee490a70fd25e1fac9cbb4471759bc1c0b9a3",
+      "src/maplesu/module/runtime.cpp": "1c1310d009c052d8e10dc47f26727567faa8e78853d3c1fb04e4c465d281c915",
+      "src/maplesu/module/operations.h": "8f0443fe2ae52f6656b23270d02c6d9015f505a2f91785f29673330210cfb6fb",
+      "src/maplesu/module/state.h": "b7dac049ff54e171a784c6d6b0c8e2da6eac2c48604cae5f5482a32b106261ad",
+      "src/maplesu/module/state.cpp": "d498f95298b111b5622ba82f36028a3187a4d4a2268bffa370bbf7cbb7f66ea8",
+      "include/maplesu_module_install_private.h": "99ed7457fdf79634dc647efcf249e089d4d3e7726fea08d1990f7cb2b69256f7",
+      "src/maplesu/compat/module_runtime_legacy_abi.h": "eecbd7d7fba011ba85a2ac315b2a9382bfd6e4f5b7fa77405ab04284ee5591c0",
+      "src/maplesu/module/callback.cpp": "76dfb8f0ff682951373b3863439606afd8e05de9d18376bd86c82062ee7d5bf7"
+    },
+    "scope": "Per-ID durable install/rollback, exact callback/worker receipts, context paths and boot recovery isolation; committed startup diagnostics remain separate. Public module ABI and original SDK codes retained.",
+    "testsRun": false,
+    "ndkRun": false,
+    "formalAssetsPromoted": false,
+    "deviceTested": false,
+    "optionalStartupMode": "Missing/unreadable install.mode selects committed next-boot activation, not installation rejection.",
+    "storagePaths": "Use current authenticated worker StorageContext; no new worker factory is claimed.",
+    "validation": "Affected source/runtime results are recorded separately under dedicated-regression/module-lifecycle-20261118; no formal SDK or device claim."
+  },
+  "ownerDeploymentWorker20261119": {
+    "status": "source-implemented-validation-pending",
+    "namespaceCommand": 27,
+    "newPublicAbi": false,
+    "workerSessionOwned": true,
+    "moduleIdFromCallerOrArchive": true,
+    "legacyKeyAbiPreserved": true,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false
+  },
+  "legacyBinaryExports20261120": {
+    "status": "implemented-actual-ndk-and-strict-link-verified",
+    "compatibility": "Exact frozen binary exports alias the existing MapleSU function; no duplicate implementation or error projection.",
+    "source": "runtime/maplesu-sdk/sdk/src/maplesu/module/api.cpp",
+    "aliasHeader": "src/maplesu/compat/module_api_exports_legacy_abi.h",
+    "exports": [
+      {
+        "legacy": "_ZN10skroot_env16uninstall_moduleEPKcS1_",
+        "target": "_ZN7maplesu3sdk16uninstall_moduleEPKcS2_"
+      },
+      {
+        "legacy": "_ZN10skroot_env22install_module_with_cbEPKcS1_PFvS1_E",
+        "target": "_ZN7maplesu3sdk22install_module_with_cbEPKcS2_PFvS2_E"
+      },
+      {
+        "legacy": "_ZN10skroot_env23get_all_modules_with_cbEPKcPFvPKNS_13module_recordEE",
+        "target": "_ZN7maplesu3sdk23get_all_modules_with_cbEPKcPFvPKNS0_13module_recordEE"
+      },
+      {
+        "legacy": "_ZN10skroot_env31parse_module_desc_from_zip_fileEPKcS1_RNS_11module_descE",
+        "target": "_ZN7maplesu3sdk31parse_module_desc_from_zip_fileEPKcS2_RNS0_11module_descE"
+      },
+      {
+        "legacy": "_ZN10skroot_env35install_module_dev_run_once_with_cbEPKcS1_PFvS1_E",
+        "target": "_ZN7maplesu3sdk35install_module_dev_run_once_with_cbEPKcS2_PFvS2_E"
+      }
+    ],
+    "validation": ".tmp/legacy-module-ops-abi-20261120/green-linked-addresses/EXECUTION.json",
+    "rawMemberGateChanged": false,
+    "formalPromotion": false,
+    "deviceValidated": false
+  }
+}

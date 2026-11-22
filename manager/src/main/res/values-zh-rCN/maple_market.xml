@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="maple_market_title">MapleSU 市场</string>
+    <string name="maple_market_intro">发现适合当前 MapleSU 环境的模块</string>
+    <string name="maple_market_search">搜索模块、作者或简介</string>
+    <string name="maple_market_empty">暂时没有模块</string>
+    <string name="maple_market_no_results">没有找到匹配的模块</string>
+    <string name="maple_market_refresh">刷新</string>
+    <string name="maple_market_retry">重试</string>
+    <string name="maple_market_source">模块源</string>
+    <string name="maple_market_official">官方源</string>
+    <string name="maple_market_custom">自定义源</string>
+    <string name="maple_market_source_hint">使用官方源，或添加你信任的模块清单。</string>
+    <string name="maple_market_manifest_url">清单地址</string>
+    <string name="maple_market_trusted_key">受信任公钥</string>
+    <string name="maple_market_restore_official">恢复官方源</string>
+    <string name="maple_market_save_source">保存模块源</string>
+    <string name="maple_market_cached">正在显示已保存的模块，可刷新获取更新。</string>
+    <string name="maple_market_details">模块介绍</string>
+    <string name="maple_market_changelog">更新日志</string>
+    <string name="maple_market_no_changelog">暂无更新日志</string>
+    <string name="maple_market_download">下载并安装</string>
+    <string name="maple_market_update">下载并更新</string>
+    <string name="maple_market_reinstall">重新安装</string>
+    <string name="maple_market_update_available">有更新</string>
+    <string name="maple_market_ultra_native">Ultra 原生模块</string>
+    <string name="maple_market_ksu_compatible">KSU 兼容模块</string>
+    <string name="maple_market_open_project">模块项目</string>
+    <string name="maple_market_open_manifest">查看清单</string>
+    <string name="maple_market_confirming_environment">正在确认当前环境…</string>
+    <string name="maple_market_downloading">正在下载…</string>
+    <string name="maple_market_download_busy">另一个模块正在下载</string>
+    <string name="maple_market_download_notice">下载前请确认</string>
+    <string name="maple_market_incompatible">当前环境不支持此模块</string>
+    <string name="maple_market_from_repository">从 MapleSU 模块仓库中下载</string>
+    <string name="maple_market_local_file">选择本地文件</string>
+    <string name="maple_market_close_menu">收起安装菜单</string>
+</resources>

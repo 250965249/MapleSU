@@ -1,0 +1,168 @@
+{
+  "idx": 73,
+  "name": "patch_avc_denied.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/patch_avc_denied.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "producer": {
+    "tool": "clang++",
+    "profile": "core-oz-bitcode-fexceptions",
+    "container": "bitcode",
+    "kind": "SINGLE"
+  },
+  "status": "partial",
+  "recovery": {
+    "functions": 356,
+    "recovered": 341,
+    "unrecovered": [
+      "_ZNSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EED0Ev",
+      "_ZNKSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EE7__cloneEv",
+      "_ZNKSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EE7__cloneEPNS0_6__baseISE_EE",
+      "_ZNSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EE7destroyEv",
+      "_ZNSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EE18destroy_deallocateEv",
+      "_ZNSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EEclEOS7_S9_",
+      "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS6_3GpXEE0_NS_9allocatorISB_EEF7KModErrS8_SA_EEENS_22__allocator_destructorINSC_ISG_EEEEED2B7v170000Ev",
+      "_ZNSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EED0Ev",
+      "_ZNKSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EE7__cloneEv",
+      "_ZNKSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EE7__cloneEPNS0_6__baseISG_EE",
+      "_ZNSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EE7destroyEv",
+      "_ZNSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EE18destroy_deallocateEv",
+      "_ZNSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EEclEOS9_SB_",
+      "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS8_3GpXEE0_NS_9allocatorISD_EEF7KModErrSA_SC_EEENS_22__allocator_destructorINSE_ISI_EEEEED2B7v170000Ev",
+      "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE3endB7v170000Ev"
+    ]
+  },
+  "original": {
+    "sha256": "c1cf14599a22813c64fd4b0b7b57db8aa68365042b5d293086e819cd6aec9d9d",
+    "bytes": 593776
+  },
+  "evidence": [
+    "notes/work/AGENT112/STATUS.md",
+    "notes/work/AGENT112/proof/073/EQUIVALENCE.md",
+    "notes/work/AGENT116/STATUS.md",
+    "notes/work/AGENT116/final-EQUIVALENCE.md",
+    "notes/work/AGENT116/proof/073/equiv.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/REQUEST-V2-METADATA-CONSUMERS.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/APPEND-PUBLICATION-BOUNDS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": 0,
+    "equivalence": {
+      "functions": "341/356",
+      "missing": [
+        "_ZNSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EE7__cloneEPNS0_6__baseISE_EE",
+        "_ZNSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS5_3GpXEE0_NS_9allocatorISA_EEF7KModErrS7_S9_EEclEOS7_S9_",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZL25myget_append_package_addrRmEUlPN6asmjit5v1_163a649AssemblerERNS6_3GpXEE0_NS_9allocatorISB_EEF7KModErrS8_SA_EEENS_22__allocator_destructorINSC_ISG_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EE7__cloneEPNS0_6__baseISG_EE",
+        "_ZNSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS7_3GpXEE0_NS_9allocatorISC_EEF7KModErrS9_SB_EEclEOS9_SB_",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZL22mykallsyms_lookup_namePKcRmEUlPN6asmjit5v1_163a649AssemblerERNS8_3GpXEE0_NS_9allocatorISD_EEF7KModErrSA_SC_EEENS_22__allocator_destructorINSE_ISI_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE3endB7v170000Ev"
+      ],
+      "extra": [
+        "_ZN12_GLOBAL__N_120MyAsmJitErrorHandlerC2Ev",
+        "_ZN6asmjit5v1_163a6416EmitterExplicitTINS1_9AssemblerEE4b_loERKNS0_5LabelE",
+        "_ZN6asmjit5v1_163a6416EmitterExplicitTINS1_9AssemblerEE4b_neERKNS0_5LabelE"
+      ],
+      "call_target_match": "335/341",
+      "bag_min": 0.6195,
+      "bag_mean": 0.9963,
+      "seq_mean": 0.9908
+    },
+    "note": "MEASURED on the official archive produced by build.py --all: functions 341/356 (missing 15, extra 3); call-target sets equal 335/341; bag_min 0.6195, bag_mean 0.9963, seq_mean 0.9908. NOT AT BAR: function inventory 341/356; call-target sets 335/341; bag_min 0.6195 < 0.95. Archive: build/ag116b/out/libkernel_module_kit_static.a sha256=8f6a6361ef69d50d09fde21258315fcf5ec39f91fe9696649746d1f9de667f40.",
+    "adjustedDiff": []
+  },
+  "notes": "历史恢复快照（截至 2026-11-16）：按冻结成员的根 key 前缀解密、版本门与 append 描述块偏移语义重建；当时符号闸门 PASS（基线 0），行为等价 partial，记录 15 missing / bag_min 0.6195。以上 selfCheck、旧符号闸门、旧函数恢复计数和旧行为等价数值均为历史数据，不代表当前选源或当前验收。P3-B1 开发期间曾改用 canonical kallsyms getter 并清退重复 locator；当时仅有 Android 实际头语法证据，不能继承成后续主机/运行/设备验证。\n\n2026-11-16 历史正式选源快照：production 选择冻结的完整 SKP bitcode reference/skp/patch_avc_denied.bc；当时恢复的 C++ 源仅供研究，未作为该快照成员输入。该历史来源及原始样本身份继续保留。\n\n2026-11-19 当前维护源码候选：恢复三段 serial eligibility emitter、互斥分支、实际捕获与成员输出；单独修复原 no-prefix null-load 缺陷。当前 central manifest 选用 SINGLE C++ 源 src/patch/patch_avc_denied.cpp，member 状态仍为 partial。该源 SHA-256 为 2dbf7bf1ae1e05f18e06f5f261466abcf0e29a67bc7675f97fb1e776347ace5b；本代 idx73 编译对象 297640 B / SHA-256 9b26973989cadc114a7498fb2ed04dd7e5b316cfdc60172d7908704603e69813，已进入 260 成员归档。\n\n2026-11-19 当前门禁与验收边界：m073 raw member gate 仍为 FAIL / exit 7，强 T 导出 6 项不变，U missing 12、U extra 3。独立逐符号审查允许用于源码采用，不改写 raw gate 结论、不改 baseline/allowlist。当前同代整归档 --whole-archive --no-undefined 链接 exit 0；这仅证明符号闭包，不证明行为等价、运行时、设备或最终功能通过。全包 gate 为 191/260 通过、69 失败，m073 不代表其他失败项。\n\n最终策略/Hook 执行、正常应用原生拒绝路径与新增路径差异、完整 SDK 正式身份、配对产物和设备验收均保持待验；未以历史收据或静态结果替代.",
+  "extraFlags": [],
+  "origin": "manifest-json",
+  "sourceFile": "runtime/maplesu-sdk/sdk/manifest/0073_patch_avc_denied.o.json",
+  "developmentRefactor": {
+    "schema": "maplesu-sdk-development-refactor/1",
+    "date": "2026-11-15",
+    "scope": "P3-B1 development source only; declared member TUs, not a complete dependency closure",
+    "change": "P3-B1 uses the canonical kallsyms getter and removes duplicate Key/base62/append/kallsyms locator implementations; policy and execution-emitter behavior are not accepted by the metadata tests.",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/patch/patch_avc_denied.cpp",
+        "sha256": "d01e21a9c84c28f2b3d6e0f31a394d4385b88b890924be8eb6234deb68255756"
+      }
+    ],
+    "validation": [
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/REQUEST-V2-METADATA-CONSUMERS.md",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/request-metadata-r1/receipt.json",
+        "scope": "Actual m073 production source participates only in the four-TU Android actual-header syntax checks, not the 2302 host consumer execution."
+      },
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/APPEND-PUBLICATION-BOUNDS.md",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/RECEIPT.json",
+        "scope": "Current m073 is one of four frozen Android syntax TUs, 4/4 overall. It is not executed by the 2307 host consumer test or five-TU 91/0 cold chain; policy/Hook, Root/authorization and devices remain unverified for this development change."
+      }
+    ],
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalFields": "original/recovery/selfCheck/status are preserved as historical restoration metadata; current source validation is scoped by the named frozen evidence",
+    "sharedValidationInputs": [
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "sha256": "f457430ab12757fcc729fd3f4289753ee10c95d7166f8ca09f8b0fb2c643d219",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read_metadata.h",
+        "sha256": "aa49a2c66a704f8c85668851739671a612cf790adefacba17640f37364ab1eeb",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "sha256": "1b93fa56fc3a9cc6929ff4ad29b4b0e5f8042b4f0cd5a235359c34e6f53aacf0",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      }
+    ]
+  },
+  "historicalReferenceInput": {
+    "schema": 1,
+    "memberOrdinal": 73,
+    "memberName": "patch_avc_denied.o",
+    "format": "LLVM bitcode",
+    "sha256": "c1cf14599a22813c64fd4b0b7b57db8aa68365042b5d293086e819cd6aec9d9d",
+    "bytes": 593776,
+    "sourceArchive": "runtime/upstream-pro/maintenance/baseline/libkernel_module_kit_static.a",
+    "sourceArchiveSha256": "215cdd0c928f46f282b11a7be18e604eed2c96a668783071b82a2f2329148272",
+    "frozenArchiveSha256": "49df399288a2fc08d38c7c20e0632fbb21525fb05723a3443cb14fabd350b1e9",
+    "frozenMemberIdentical": true,
+    "reason": "The C++ reconstruction has incomplete serial/root-key installation-eligibility emitters. Select the original complete SKP implementation instead.",
+    "sourceRecoveryComplete": false,
+    "deviceValidated": false
+  },
+  "sourceRecoveryCandidate": {
+    "sourceRecoveryImplemented": true,
+    "sourceValidationComplete": true,
+    "report": "D:\\Maple_Workflow\\MapleSU\\.tmp\\sdk-source-delivery-20261118\\m073-source-recovery\\REPORT.md",
+    "originalQualificationOracle": "D:\\Maple_Workflow\\MapleSU\\.tmp\\sdk-source-delivery-20261118\\m073-source-recovery\\emitters\\DELIVERY.json",
+    "explicitOriginalDefectFix": "D:\\Maple_Workflow\\MapleSU\\.tmp\\sdk-source-delivery-20261118\\m073-source-recovery\\prefix-defect\\TESTS.json",
+    "rawMemberGatePassed": false,
+    "rawSymbolReview": "D:\\Maple_Workflow\\MapleSU\\.tmp\\sdk-source-delivery-20261118\\m073-source-recovery\\SYMBOL-REVIEW.json",
+    "historicalRecoveryCountsPreserved": true,
+    "productionAdopted": false,
+    "sameGenerationFinalLinkAccepted": false,
+    "deviceAccepted": false
+  }
+}

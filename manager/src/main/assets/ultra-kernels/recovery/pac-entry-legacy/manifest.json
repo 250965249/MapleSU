@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "deviceFirmware": "PLQ110_16.0.7.201(CN01)",
+  "kernelRelease": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+  "note": "2026-11-05: 保留原异常入口；执行权限与清理失败停止执行；离线重放和构建通过，待真机验收。",
+  "variants": [
+    {
+      "id": "k22",
+      "label": "MapleSU 内核（推荐）",
+      "summary": "系统内核推荐档 · euid==0 放行（TEE 注入已验证）",
+      "status": "ready",
+      "debugOnly": false,
+      "default": true,
+      "specAsset": "ultra-kernels/k22-ultra-6.6.89.spec",
+      "specSha256": "a2a1b787fb62380272c134012d25f8ccf91e60184a0ca6e46e0bd9832c96c7ac",
+      "patches": 16,
+      "kernelRelease": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+      "baseKernelSha256": "346d51ea1f63413ffa5d99c5c426806291af3573f0a1d66a7621c388e835880e",
+      "expectedKernelSha256": "ee72ca39ac83542f8ff5d40a65a54a23fddb208d58e449cda4bb51749df124da",
+      "knownBaseImageSha256": "7ceb5e319f10a9a41a5406713f8993e2fa7079d87934d0fa674ba8e61326638d",
+      "knownBaseImageBootSha256": "61bf80a89bcebcea00d1d0b0d6044162f607bbd86f8e8a14a236b929a0925be4",
+      "imageSizeBytes": 100663296,
+      "ramdiskSize": 0,
+      "verification": "experimental"
+    },
+    {
+      "id": "k21",
+      "label": "兼容内核（回退）",
+      "summary": "系统内核回退档 · AVC 双 NOP + 54 B envelope",
+      "status": "ready",
+      "debugOnly": false,
+      "default": false,
+      "specAsset": "ultra-kernels/k21-ultra-6.6.89.spec",
+      "specSha256": "e86d4064de62006b6c70d771e7b66c5f1479c8580fe2c8a0a3e6301f997f8dd2",
+      "patches": 15,
+      "kernelRelease": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+      "baseKernelSha256": "346d51ea1f63413ffa5d99c5c426806291af3573f0a1d66a7621c388e835880e",
+      "expectedKernelSha256": "0cc53a4000d0a7a357365d3cfbdcbdd9d1ec3b3111fa321dc37e04f9a6bab434",
+      "knownBaseImageSha256": "7ceb5e319f10a9a41a5406713f8993e2fa7079d87934d0fa674ba8e61326638d",
+      "knownBaseImageBootSha256": "8d26dfcb491373c7961549f6e7f8303eab5c768383b115d27be96c4461ca0840",
+      "imageSizeBytes": 100663296,
+      "ramdiskSize": 0,
+      "verification": "experimental"
+    }
+  ],
+  "verification": "experimental"
+}

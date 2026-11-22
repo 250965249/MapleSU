@@ -1,0 +1,35 @@
+{
+  "idx": 8,
+  "name": "file_struct.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/file_struct.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 2,
+    "recovered": 2,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "deb7ec7d607aa3b6cfff053391172f98b4f6d030f2767d1566d5bc495cc58613",
+    "bytes": 27032
+  },
+  "evidence": [
+    "notes/work/LAST14-A/proof/008/EQUIVALENCE.md",
+    "notes/work/LAST14-A/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "note": "Two-way raw symbol gate: T 2/2, U 32/32, raw diff empty both ways; zero gate-symbol-baseline entries consumed. verify_equiv: status=equivalent, functions 33/33, missing=0, extra=0, call_target_match=33, bag_min=1.0, bag_mean=1.0."
+  },
+  "notes": "get_file_struct_fdtab_offset probes init_files for the embedded fdtable by its max_fds==64 signature (4-byte steps, 64 bytes); get_file_struct_fdt_offset derives fdt = fdtab - 8 from it."
+}

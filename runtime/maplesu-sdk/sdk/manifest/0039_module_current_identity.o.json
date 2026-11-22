@@ -1,0 +1,76 @@
+{
+ "idx": 39,
+ "name": "module_current_identity.o",
+ "group": "core",
+ "layout": "bitcode",
+ "kind": "SINGLE",
+ "sources": [
+  "src/module/module_current_identity.cpp"
+ ],
+ "flagsProfile": "core-oz-bitcode-fexceptions",
+ "extraFlags": [
+  "-D_FORTIFY_SOURCE=2"
+ ],
+ "status": "complete",
+ "recovery": {
+  "functions": 4,
+  "recovered": 4,
+  "unrecovered": []
+ },
+ "original": {
+  "sha256": "590f5ac9bc194b25d239e4f5e3a8bcc567f610b4f31ad1cf0d67dcf633a97de7",
+  "bytes": 4432
+ },
+ "evidence": [
+  ".tmp/p3-key-storage-r25/REPORT.md"
+ ],
+ "selfCheck": {
+  "tDiff": [],
+  "uDiff": [],
+  "raw": {
+   "tMissing": [],
+   "tExtra": [],
+   "uMissing": [],
+   "uExtra": []
+  },
+  "adjusted": {
+   "tMissing": [],
+   "tExtra": [],
+   "uMissing": [],
+   "uExtra": []
+  },
+  "allowancesConsumed": {
+   "uMissing": [],
+   "uExtra": []
+  },
+  "note": "Measured magic 4243c0de. PROTOCOL section 5 T/t/W/w: original/rebuilt 4/4; U 2/2; all bidirectional differences empty, zero baseline consumed."
+ },
+ "notes": "P3 development refactor 2026-11-16: the process-global root Key provider serializes publication/copy and returns a per-thread 1024-byte snapshot, preserving the 1023-character legacy boundary. Load-time pthread_atfork protects the same mutex across fork; registration/lock errors yield an empty getter identity and errno without C ABI exceptions. Four public C symbol shapes and id32 behavior are retained. Original/recovery/selfCheck describe the historical restoration baseline, not symbol/byte equivalence of this changed member. Current source, host/fork/error tests, final archive and device acceptance require their own receipts; no formal delivery changed.",
+ "developmentRefactor": {
+  "schema": "maplesu-sdk-development-refactor/1",
+  "date": "2026-11-16",
+  "scope": "m039 process-global root Key storage; id32 unchanged",
+  "sourceSnapshot": [
+   {
+    "path": "runtime/upstream-pro/sdk/src/module/module_current_identity.cpp",
+    "sha256": "249ff8cc97a8c14144c89d1eb5022dab738fca1558ddcc4e01c67bcde4c1fd34"
+   }
+  ],
+  "validationStatus": "source-only-awaiting-dedicated-batch",
+  "formalDeliveryUpdated": false,
+  "deviceValidated": false
+ },
+ "p5ForkCoordination20261118": {
+  "status": "implemented, awaiting combined affected validation",
+  "source": "src/module/module_current_identity.cpp",
+  "sourceSha256": "277d5c5897729bbc4c38283abef07a7cd2a14cede92ad0091b5806785ca27dad",
+  "changes": [
+   "Existing single atfork handler takes publication before Root key",
+   "Parent/child releases Root key before publication",
+   "Optional hidden callbacks preserve no-Hook link behavior",
+   "Hidden registration-status getter requires same-generation P5 member"
+  ],
+  "newTestsRun": false,
+  "wholeP5Complete": false
+ }
+}

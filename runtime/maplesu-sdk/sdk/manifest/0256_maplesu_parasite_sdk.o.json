@@ -1,0 +1,81 @@
+{
+  "idx": 256,
+  "name": "maplesu_parasite_sdk.o",
+  "group": "maplesu",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/maplesu_parasite_sdk.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-Iinclude/maplesu",
+    "-std=c++17",
+    "-frtti",
+    "-U_FORTIFY_SOURCE",
+    "-fvisibility=default",
+    "-fno-visibility-inlines-hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 16,
+    "recovered": 16,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "08b0c9e6964792359b081c5bdbbb4661bd64f3d7aa48eaf2c3b3f3b6c14b4e2f",
+    "bytes": 173072
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "PASS, both directions empty, raw (native ELF member: the parent's zero-tolerance rule applies and is met without any baseline subtraction). Command: py notes/work/MAPLESU/tools/selfcheck.py (same flags/include/cwd as tools/build_offsets_batch.py:132-139; symbol sets read exactly as PROTOCOL 5 specifies). T 220/220, U 116/116, all four diffs empty. Full log: notes/work/MAPLESU/selfcheck.log.",
+    "frozenVsBuilt": {
+      "frozen": {
+        "bytes": 173072,
+        "sha256": "08b0c9e6964792359b081c5bdbbb4661bd64f3d7aa48eaf2c3b3f3b6c14b4e2f"
+      },
+      "builtFromSdkSource": {
+        "bytes": 173080,
+        "sha256": "c6cb65a64fa4e9975ea66913551ac7fa1f705b56bba1fe69e03dfb50a7de9cd5"
+      },
+      "differingSections": [
+        ".strtab (+8 B)",
+        ".symtab (STT_FILE name offsets only)"
+      ]
+    },
+    "buildNote": "reference member resolves plain open/read, so this unit disables the distro FORTIFY redirection to match the reference build recipe"
+  },
+  "notes": "",
+  "p7RemainingOwnerConsumers20261121": {
+    "sourceSnapshot": [
+      {
+        "path": "runtime/ultra/parasite/parasite_sdk.cpp",
+        "sha256": "c4ef269645fbc5b1c4f6f167a6f8c05171f170fd14deb3de65394d1216d27961"
+      }
+    ],
+    "contract": "Consume existing authenticated request context; null Owner accepted, explicit invalid Key never falls back; actual worker scopes/close and first failures retained; legacy public ABI preserved.",
+    "publicAbiChanged": false,
+    "evidenceDirectory": ".tmp/p7-development-20261121/keyless/validation",
+    "deviceValidated": false,
+    "formalAssetsPromoted": false,
+    "historicRawGateUnchanged": true
+  },
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/maplesu_parasite_sdk.cpp",
+        "sha256": "572eae95ef734688b7354a4e3eece5d7bce3c13360923cdf3ffcca2c93ffe333"
+      },
+      {
+        "path": "runtime/ultra/parasite/parasite_sdk.cpp",
+        "sha256": "c4ef269645fbc5b1c4f6f167a6f8c05171f170fd14deb3de65394d1216d27961"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  }
+}

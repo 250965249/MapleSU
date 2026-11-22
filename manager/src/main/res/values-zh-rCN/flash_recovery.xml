@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flash_restore_pre_install_message">还原本次安装前的启动镜像，回到之前的工作环境。此操作不是恢复原厂镜像，已保存的原厂镜像备份会继续保留。</string>
+    <string name="flash_restore_pre_install">恢复安装前状态</string>
+</resources>

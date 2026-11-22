@@ -1,0 +1,52 @@
+{
+  "imagePath": "native-inputs\\kernels\\android12-5.10-9465fbb7\\Image",
+  "imageSha256": "9465fbb7871eddc4d4115174e5e378caa7526123b9af989fab3f906b1ffea33b",
+  "symbolPath": "native-inputs\\kernels\\android12-5.10-9465fbb7\\symbols.tsv",
+  "symbolSha256": "b20da52c3497b6bcb69d2591967b39206ad06dc15cd05ed952658d370ff8a4d8",
+  "release": "5.10.226-android12-9-o-gb4f7990ee2d5",
+  "functionBoundary": "next distinct exact symbol from target kallsyms",
+  "expected": {
+    "task_struct.cred": 1920,
+    "cred.uid": 4,
+    "cred.euid": 20
+  },
+  "functions": [
+    {
+      "name": "__arm64_sys_getuid",
+      "imageOffset": 1455084,
+      "sizeBytes": 40,
+      "nextSymbol": "__arm64_sys_gettid",
+      "sha256": "2c03417508562d756aad49671405c2b518bf9f964a62a41e4059379008fb34b4",
+      "bytesHex": "3f2303d5084138d508c143f96933019029e14eb9080540b9bf2303d51f0500312001881ac0035fd6"
+    },
+    {
+      "name": "__arm64_sys_geteuid",
+      "imageOffset": 1463308,
+      "sizeBytes": 40,
+      "nextSymbol": "__arm64_sys_getegid",
+      "sha256": "3eccb0f3e50b98c112263c00249159c546d28e9f28e5a3eaf9a6034b4d3e1ca2",
+      "bytesHex": "3f2303d5084138d508c143f9493301d029e14eb9081540b9bf2303d51f0500312001881ac0035fd6"
+    },
+    {
+      "name": "__arm64_sys_getgid",
+      "imageOffset": 1463268,
+      "sizeBytes": 40,
+      "nextSymbol": "__arm64_sys_geteuid",
+      "sha256": "d555ec2cf1dd4f019642caeef1f364feb883914bbc8f621b2c8ed77446903aa8",
+      "bytesHex": "3f2303d5084138d508c143f9493301d029e54eb9080940b9bf2303d51f0500312001881ac0035fd6"
+    },
+    {
+      "name": "__arm64_sys_getegid",
+      "imageOffset": 1463348,
+      "sizeBytes": 40,
+      "nextSymbol": "__arm64_sys_getcpu",
+      "sha256": "0bf67e35a074fa045bcc13eb07ea70dcc0376fc3edc5e6b530abc745ae6a9cbe",
+      "bytesHex": "3f2303d5084138d508c143f9493301d029e54eb9081940b9bf2303d51f0500312001881ac0035fd6"
+    }
+  ],
+  "deviceEvidence": false,
+  "dataSymbols": {
+    "overflowuid": 41746144,
+    "overflowgid": 41746148
+  }
+}

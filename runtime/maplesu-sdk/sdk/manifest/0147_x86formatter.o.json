@@ -1,0 +1,31 @@
+{
+  "idx": 147,
+  "name": "x86formatter.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/x86/x86formatter.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "13915b8993e66879d5c9e3dab579141e8578d1098324ad9ae23cd8a56fb6f82d",
+    "bytes": 27304
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-vsnprintf",
+      "+snprintf"
+    ],
+    "note": "import-set residual snprintf, vsnprintf [libc-printf-family]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (1 missing / 1 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

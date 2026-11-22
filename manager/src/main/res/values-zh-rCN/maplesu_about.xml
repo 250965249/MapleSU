@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 「关于 MapleSU」小窗 · 简体中文。与 values/maplesu_about.xml 键一一对应。 -->
+<resources>
+    <string name="about_maple_title">关于 MapleSU</string>
+    <string name="about_join_telegram">加入 Telegram 频道</string>
+    <string name="about_view_advisors">查看 MapleSU 用户顾问名单</string>
+    <string name="about_maple_entry_summary">开发者、开源致谢与许可</string>
+    <string name="about_maple_overview">简介：一款 Android Root 管理器，提供两种工作模式，按需切换。</string>
+    <!-- 隐藏模式下使用不含工作模式的简介。 -->
+    <string name="about_maple_overview_plain">简介：一款 Android Root 管理器。</string>
+    <string name="about_maple_ultra_point_kernel">对 Kernel 进行补丁，实现 SU 授权，内核方案由 MapleSU 维护。</string>
+    <string name="about_maple_ultra_point_selinux">零模块下，0 可见 SELinux 策略修改、0 挂载，全局保持 Enforcing。</string>
+    <string name="about_maple_ultra_point_side_channel">从内核层消除策略修改与挂载带来的侧信道特征。</string>
+    <string name="about_maple_normal">以 KernelSU 作为底层实现，接入 KSU 模块生态。</string>
+    <string name="about_maple_developers">开发者：MapleAutumn。</string>
+    <string name="about_maple_community">官方频道 · 更新与公告</string>
+    <string name="about_maple_credits">致谢：</string>
+    <string name="about_maple_credit_7kimisu">管理器的直接派生基础，保留原作署名与许可。</string>
+    <string name="about_maple_credit_finasu">UI 设计与交互的主要参考。</string>
+    <string name="about_maple_credit_kernelsu">Normal 模式的主要实现来源与模块生态基础。</string>
+    <string name="about_maple_credit_kernelpatch">内核补丁方向的开源工作。</string>
+    <string name="about_maple_credit_sdk">Ultra 模块适配与 SU 底层方案参考。</string>
+    <string name="about_maple_special_thanks">特别致谢：小酒、晚风、有希、佐佐鱼、知秋。</string>
+</resources>

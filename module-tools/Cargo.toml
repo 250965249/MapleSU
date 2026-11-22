@@ -1,0 +1,27 @@
+[package]
+name = "maplesu-module-tools"
+version = "0.2.0"
+edition = "2021"
+description = "MapleSU module tool multicall host (KSU-compatible argv[0] dispatch)"
+license = "GPL-3.0-or-later"
+publish = false
+
+# Mirrors KSU's `ksud` shape: one host binary that dispatches on argv[0], with
+# `resetprop` published as a symlink to this host. The resetprop CLI itself is
+# reused verbatim from the pinned ksu_props attribute library rather than
+# reimplemented, so the module-visible contract is the upstream one.
+[[bin]]
+name = "maplesu-tools"
+path = "src/main.rs"
+
+[dependencies]
+# Pinned ksu_props at ddb6ee7294467f7f25bad2118e9e24eee104144b. The library crates
+# carry the real Android property implementation; `tools/resetprop` is a bin, so
+# its resetprop_main is pulled in through the path include below.
+prop-rs = { path = "../third_party/ksu_props/src/crates/prop-rs" }
+prop-rs-android = { path = "../third_party/ksu_props/src/crates/prop-rs-android" }
+libc = "0.2"
+memmap2 = "0.9"
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+log = "0.4"

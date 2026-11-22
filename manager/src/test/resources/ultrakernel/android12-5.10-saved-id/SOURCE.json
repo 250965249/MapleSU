@@ -1,0 +1,30 @@
+{
+  "image": "native-inputs/kernels/android12-5.10-9465fbb7/Image",
+  "imageBytes": 48045172,
+  "imageSha256": "9465fbb7871eddc4d4115174e5e378caa7526123b9af989fab3f906b1ffea33b",
+  "symbols": [
+    {
+      "symbol": "__do_sys_getresuid",
+      "start": 1458184,
+      "endExclusive": 1459328,
+      "bytes": 1144,
+      "sha256": "c80ca7c2a98993ad800e85d7bc0018f06416c0176e55abb13fe50eccbac84f99"
+    },
+    {
+      "symbol": "__do_sys_getresgid",
+      "start": 1459376,
+      "endExclusive": 1460500,
+      "bytes": 1124,
+      "sha256": "e5bd51b9f3b787b607e4223e43398092832785c6199dd28c5eb1f7a137647f69"
+    },
+    {
+      "symbol": "__arm64_sys_geteuid",
+      "start": 1463308,
+      "endExclusive": 1463348,
+      "bytes": 40,
+      "sha256": "3eccb0f3e50b98c112263c00249159c546d28e9f28e5a3eaf9a6034b4d3e1ca2"
+    }
+  ],
+  "overflowuid": 41746144,
+  "overflowgid": 41746148
+}

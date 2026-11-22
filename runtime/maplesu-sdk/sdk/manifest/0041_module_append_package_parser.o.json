@@ -1,0 +1,234 @@
+{
+  "idx": 41,
+  "name": "module_append_package_parser.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module/module_append_package_parser.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-flto=thin"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 9,
+    "recovered": 9,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "a4028f725bd68bae88b801b630523e5359941f64cc01589fc77a8a66e57f08d0",
+    "bytes": 75084
+  },
+  "evidence": [
+    "runtime/upstream-pro/sdk/notes/work/UIMP/STATUS.md#idx-41",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/REQUEST-V2-METADATA-CONSUMERS.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/METADATA-CLIENT-EMITTER-PAIRING.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/APPEND-PUBLICATION-BOUNDS.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/ROOT-KEY-PARSER-BOUNDS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "强导出 T 9/9、强未定义 U 72/72，双向差集为空，未消耗工具链基线。行为等价复验（tools/verify_equiv.py）：函数清单 109/109 全等（missing=0 extra=0）、逐函数 call target 集合 109/109 全等、seq_mean 0.9847、bag_mean 0.9990、bag_min 0.9631（>=0.95），判定 equivalent。补齐的路径：根 key 解析（两段 base62 前缀 + 字符追加 + 解密 + 末尾负号标记）、append 描述地址的内核侧定位（发射 x30-4+偏移 的例程并在内核执行）、data/kallsyms/fake-proc-path 三个偏移查询、do_execve 参数包、avc_denied 双地址、filldir64 地址、seccomp 偏移、slow_avc_audit 地址，各自带一次性缓存与内核读取失败语义。",
+    "measured": {
+      "origStrongT": 9,
+      "newStrongT": 9,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "origU": 72,
+      "newU": 72,
+      "uMissing": 0,
+      "uExtra": 0,
+      "verifyEquivRefFunctions": 109,
+      "verifyEquivNewFunctions": 109,
+      "verifyEquivMatched": 109,
+      "verifyEquivMissing": 0,
+      "verifyEquivExtra": 0,
+      "verifyEquivCallTargetMatch": 109,
+      "verifyEquivSeqMean": 0.9847,
+      "verifyEquivBagMean": 0.999,
+      "verifyEquivBagMin": 0.9631,
+      "verifyEquivStatus": "equivalent"
+    }
+  },
+  "notes": "append 包解析器：根 key 解出偏移后在内核侧按 x30 相对定位描述块，再按字段偏移读出 execve/avc/filldir64/seccomp/slow_avc_audit 所需的内核地址。 以上 original/recovery/selfCheck、等价度及 LR/缓存路径描述均为历史还原快照。P3-B1 开发源码使用显式 descriptor、集中 legacy locator 和共享字段解析；54B 发布边界修复仅证明缺字段准确报错及零越界 read，未补齐 slow_avc 字段功能。本轮最终 root-Key 解析器绑定 SHA 53a07fcb78cabd2e5a5106c9e6d93cf5b8c22ee7eb388d7febb912948f698456，精确生产解析器/辅助函数与 pure bind-Key 的 42 例 ASan/UBSan 42/0；实际原树 metadata 普通主机回归 2307/0、16 线程 1600 lookup 单列，后者未启用 sanitizer。旧五 TU 冷链和四 TU 语法仅保留原冻结范围；新单成员 NDK、完整交付及设备验收分别登记，正式 r9 身份保留。",
+  "developmentRefactor": {
+    "schema": "maplesu-sdk-development-refactor/1",
+    "date": "2026-11-15",
+    "scope": "P3-B1 development source only; declared member TUs, not a complete dependency closure",
+    "change": "P3-B1 explicit descriptor, centralized legacy locator/field parser and 54B v2 publication bounds; final bounded root-Key parser patch is applied and bound to the recorded production-source SHA.",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/module_append_package_parser.cpp",
+        "sha256": "53a07fcb78cabd2e5a5106c9e6d93cf5b8c22ee7eb388d7febb912948f698456"
+      }
+    ],
+    "validation": [
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/METADATA-CLIENT-EMITTER-PAIRING.md",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/metadata-client-pairing-r1/RECEIPT.json",
+        "scope": "Historical original cold-chain result 93/1, preserving the real 54B publication versus 58B slow_avc consumer failure."
+      },
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/APPEND-PUBLICATION-BOUNDS.md",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/RECEIPT.json",
+        "scope": "Historical bounds-green m041 SHA 1796be970cbfb83db66deaf5630e15b3f9f2b78b49c728688fda64f86007a2ff: host 2307/0, actual-client/A64 cold chain 91/0, Android syntax as one of four TUs. Missing v2 slow_avc returns ERR_MODULE_INTERNAL_APPEND without reading unpublished bytes. These receipts do not verify the later parser revision or full slow_avc functionality."
+      },
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/ROOT-KEY-PARSER-BOUNDS.md",
+        "scope": "Final original-tree parser source participates in actual read/m024/m041 metadata host regression: 2307/0, 16 threads and 1600 lookups. Plain host compilation, without ASan/UBSan; captured request I/O and compile-only legacy assembler, simulated pid changes, no emitter/device/fork execution. m073 is not executed by this suite.",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/root-key-parser-bounds-r1/metadata/receipt.json",
+        "receiptSha256": "450d2e9189c323d4d0a717135e6d41bdff33592ea89548596e5ef249860cc9fe"
+      },
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/ROOT-KEY-PARSER-BOUNDS.md",
+        "scope": "Exact parser/helpers extracted from the final production m041 source and exact pure msu_sdk_bind_key: 42 cases/0 failures, compiled with ASan/UBSan. This is focused parser/bind-Key validation, not a complete m041 member, archive, Android package, Root, Hook or device run.",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/root-key-parser-bounds-r1/green/RESULTS.json",
+        "receiptSha256": "338932749506f080e5335c9af38f1e198e8679007a8befe6df266b8e23ab68aa"
+      }
+    ],
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalFields": "original/recovery/selfCheck/status are preserved as historical restoration metadata; current source validation is scoped by the named frozen evidence",
+    "sharedValidationInputs": [
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "sha256": "f457430ab12757fcc729fd3f4289753ee10c95d7166f8ca09f8b0fb2c643d219",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read_metadata.h",
+        "sha256": "aa49a2c66a704f8c85668851739671a612cf790adefacba17640f37364ab1eeb",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "sha256": "1b93fa56fc3a9cc6929ff4ad29b4b0e5f8042b4f0cd5a235359c34e6f53aacf0",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      }
+    ],
+    "androidSyntaxValidation": {
+      "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/root-key-parser-bounds-r1/metadata/MAIN-VERIFICATION.json",
+      "receiptSha256": "195514c909ba69cecb60f2c79636ab39c2346eb8283657f36fae3f9522ac8cbe",
+      "scope": "Actual final m041 Android syntax only: NDK 26.1, aarch64 Android21, C++20/fexceptions, 1/1; no archive linking or device execution."
+    },
+    "parserValidationAuxiliarySource": {
+      "path": "jailbreak-providers/root-loader/module/boot_sdk_protocol.h",
+      "sha256": "fc1c9df5bca4bd3e199c2a68f79b8a6713573249e0002493b0655ecf36960e02",
+      "scope": "Exact pure bind-Key test input; not a declared m041 member TU or root-loader runtime acceptance"
+    }
+  },
+  "ordinaryConsumerBatch20261117": {
+    "date": "2026-11-17",
+    "scope": "P3/P4 isolated ordinary consumers only; no composed member, Android TU, archive or device claim",
+    "inputs": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/module_append_package_parser.cpp",
+        "bytes": 14234,
+        "sha256": "003bf95e0ed6540bf129e3aa7cf30793fbbae49401300c3934eec6c4592ca3cd"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_identity.h",
+        "bytes": 1195,
+        "sha256": "1b82769394c4981d695e73de4bbc8735d50a0eb4f673b93c500c712876c5c73d"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/validation/FINAL-SUMMARY.json",
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "originalRestorationFieldsRetained": true
+  },
+  "ownerConsumerBatchR02": {
+    "date": "2026-11-17",
+    "scope": "Explicit owner v3 QUERY/ECHO64/READ and ordinary metadata/cache consumers only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 2622,
+        "sha256": "6940ed9c1716bc30f5332784c9522552a4949880426aeae8066265fade99e77d"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_identity.h",
+        "bytes": 1737,
+        "sha256": "24bc18c9c6ef6ab3144408efb99f0baad1b3c90be599d4ed17a7976288e137ae"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read_metadata.h",
+        "bytes": 4004,
+        "sha256": "da7652fa340f004251d13636c799981da373065412f559664d7a77671bfed11f"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/module_append_package_parser.cpp",
+        "bytes": 15270,
+        "sha256": "61972570ff0706ce2c92304abcf787db9ed8a040d8de98129bea2a2b57f3e200"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r02/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r02/validation/FINAL-SUMMARY.json",
+    "producerIntegrated": false,
+    "kernelOwnerModuleBuilt": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "ordinaryThreadIdentityBatchR03": {
+    "dateUtc": "2026-11-17",
+    "scope": "R03 current-thread capability reads and unique calling-thread auth identity; source-only candidate provenance",
+    "inputs": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/module_append_package_parser.cpp",
+        "bytes": 15270,
+        "sha256": "61972570ff0706ce2c92304abcf787db9ed8a040d8de98129bea2a2b57f3e200"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 2793,
+        "sha256": "27128b422fdf28418217d7ef3c394ed695c3fc455252c8988cc2115672c8e352"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_identity.h",
+        "bytes": 1861,
+        "sha256": "a37b106e34e2c688225e365fab5ea5e38adea8d0abb979e6f03f62674e7752a5"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r03/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r03/validation/FINAL-SUMMARY.json",
+    "validationScope": "Actual m023 and m000 host seams only; shared inline identity tested with actual m023. Other member sources inherit R02 and are not rerun/rebuilt by R03.",
+    "producerIntegrated": false,
+    "androidTuValidatedByThisBatch": false,
+    "composedMemberBuilt": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "ownerManagementBatchR04": {
+    "dateUtc": "2026-11-18",
+    "scope": "R04 same owner-v3 gateway management, complete receipt and typed credentials; isolated candidate only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/module_append_package_parser.cpp",
+        "bytes": 15270,
+        "sha256": "61972570ff0706ce2c92304abcf787db9ed8a040d8de98129bea2a2b57f3e200"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 3452,
+        "sha256": "9e1e039f644b4b85002a82ed23d00f819300f4e6c6c4a84028fa55e7f55a11a2"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r04/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r04/validation/FINAL-SUMMARY.json",
+    "validationScope": "Only final named actual TUs and explicit seams count; adding this record does not assert each member was rebuilt or run.",
+    "producerSelectionIntegrated": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  }
+}

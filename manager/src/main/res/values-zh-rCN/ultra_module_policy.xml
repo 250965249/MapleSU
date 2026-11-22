@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ultra_module_policy_load">加载模块Selinux策略</string>
+    <string name="ultra_module_policy_load_summary">兼容部分需要修改Selinux策略而进行Hook/注入等功能的模块（如Zygisk-Next），可能会导致被检测</string>
+    <string name="ultra_module_policy_hide">隐藏模块修改Selinux策略</string>
+    <string name="ultra_module_policy_hide_summary">尝试全局隐藏模块所带来的Selinux修改，不稳定仍可能会有环境影响</string>
+    <string name="ultra_module_policy_reboot">重启后全局生效</string>
+    <string name="ultra_module_policy_session_pending">当前临时会话尚未准备策略入口，无需更新 boot</string>
+    <string name="ultra_module_policy_hook_hide_unavailable">当前临时后端尚未接入模块策略隐藏接口，普通策略加载仍可使用</string>
+    <string name="ultra_module_policy_hook_applied">已免重启应用于后续模块策略事务；已经加载的策略保持不变</string>
+    <string name="ultra_module_policy_pending">等待重启生效，本次启动仍保持原有策略模式</string>
+    <string name="ultra_module_policy_unavailable">策略后端待更新；可先保存加载设置，更新环境并重启后应用</string>
+    <string name="ultra_module_policy_read_failed">读取策略设置失败，尚未更改任何状态</string>
+    <string name="ultra_module_policy_hide_unavailable">策略后端待更新，请完成环境升级并重启后启用</string>
+    <string name="ultra_module_policy_hide_try">当前内核兼容性尚未验证，可确认风险后尝试启用</string>
+    <string name="ultra_module_policy_hide_fallback">策略隐藏未完成，已恢复普通模块加载；可导出诊断日志查看原因</string>
+    <string name="ultra_module_policy_hide_failed">本次启动未完成策略初始化，可关闭实验设置并导出日志排查</string>
+    <string name="ultra_module_policy_risk_title">尝试启用策略隐藏</string>
+    <string name="ultra_module_policy_risk_message">当前内核尚未通过完整兼容验证。继续将尝试使用同系列内核实现，可能导致 Panic、自动重启或启动失败。点击“仍然启用”后保存设置，重启时尝试加载；必要运行条件检查仍会保留，实际结果会写入可导出的诊断日志。尝试失败后，可关闭此设置并重启恢复。</string>
+    <string name="ultra_module_policy_risk_confirm">仍然启用</string>
+    <string name="ultra_module_policy_notice_title">当前模块需要加载Selinux策略</string>
+    <string name="ultra_module_policy_notice">%1$s 包含Selinux策略。当前已关闭加载，或尚未在本次启动生效，依赖这些策略的功能可能不生效。允许修改策略可能扩大模块权限、影响系统稳定性，并导致环境修改被检测。如需允许加载，可前往设置开启“加载模块Selinux策略”并确认生效状态。点击确定仅关闭提示，不会自动开启策略加载。</string>
+    <string name="ultra_module_policy_notice_suppress">不再提示</string>
+</resources>

@@ -1,0 +1,15 @@
+{
+  "android/content/Context.java": "package android.content; public class Context {}",
+  "android/content/SharedPreferences.java": "package android.content; public interface SharedPreferences { int getInt(String k,int d); String getString(String k,String d); }",
+  "android/util/Log.java": "package android.util; public class Log { public static int e(String t,String m){return 0;} public static int e(String t,String m,Throwable e){return 0;} }",
+  "android/webkit/WebResourceResponse.java": "package android.webkit; public class WebResourceResponse {\n  final String mime,encoding; final java.io.InputStream data;\n  public WebResourceResponse(String m,String e,java.io.InputStream d){mime=m;encoding=e;data=d;}\n  public String getMimeType(){return mime;} public String getEncoding(){return encoding;}\n  public java.io.InputStream getData(){return data;}\n}",
+  "androidx/annotation/NonNull.java": "package androidx.annotation; public @interface NonNull {}",
+  "androidx/annotation/WorkerThread.java": "package androidx.annotation; public @interface WorkerThread {}",
+  "androidx/webkit/WebViewAssetLoader.java": "package androidx.webkit; public class WebViewAssetLoader { public interface PathHandler { android.webkit.WebResourceResponse handle(String path); } }",
+  "com/topjohnwu/superuser/Shell.java": "package com.topjohnwu.superuser; public class Shell {}",
+  "com/topjohnwu/superuser/io/SuFile.java": "package com.topjohnwu.superuser.io; public class SuFile extends java.io.File { public SuFile(String p){super(p);} public void setShell(com.topjohnwu.superuser.Shell s){} }",
+  "com/topjohnwu/superuser/io/SuFileInputStream.java": "package com.topjohnwu.superuser.io; public class SuFileInputStream { public static java.io.InputStream open(SuFile f) throws java.io.IOException { return new java.io.FileInputStream(f); } }",
+  "com/maplesu/core/ui/util/AppearancePreferences.java": "package com.maplesu.core.ui.util; public class AppearancePreferences { public static android.content.SharedPreferences prefs(android.content.Context c){ throw new UnsupportedOperationException(); } }",
+  "com/maplesu/core/ui/webui/Insets.java": "package com.maplesu.core.ui.webui; public class Insets { public String getCss(){return \"/* platform insets */\";} }",
+  "com/maplesu/core/ui/webui/MonetColorsProvider.java": "package com.maplesu.core.ui.webui; public class MonetColorsProvider { public static final MonetColorsProvider INSTANCE=new MonetColorsProvider(); public String getColorsCss(){return \"\";} }"
+}

@@ -1,0 +1,263 @@
+{
+  "idx": 24,
+  "name": "module_base_kernel_mem.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_mem/module_base_kernel_mem.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "status": "complete",
+  "recovery": {
+    "functions": 12,
+    "recovered": 12,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "8bddff1534197f80737db6b57f01714a155a6aa34d50879dbf19f1081db92448",
+    "bytes": 184576
+  },
+  "evidence": [
+    "notes/work/AGENT110/STATUS.md",
+    "notes/work/AGENT110/proof/024/equiv.json",
+    "notes/work/AGENT110/proof/024/gate.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/REQUEST-V2-METADATA-CONSUMERS.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/APPEND-PUBLICATION-BOUNDS.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p3/ROOT-KEY-PARSER-BOUNDS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Frozen symbol shape recovered: the two shellcode drivers are file-scope static with std::function BY VALUE (_ZL31exec_kernel_shellcode_no_result.../_ZL31get_kernel_shellcode_u64_result...), and the two helpers are C-named local symbols (t maplesu_exec_kernel_patch_checked / t maplesu_memory_protection_pages, pinned with an asm label). set_memory_ro/rw/x now follow the frozen flow (get_page_size -> maplesu_memory_protection_pages -> aligned page_addr -> maplesu_exec_kernel_patch_checked). Measured (single-stage, frozen per-TU flags incl. visibility): inventory 334/338 matched, missing 4 (OUTLINED_FUNCTION_50..53), extra 11 (1 MyAsmJitErrorHandler D2 + 9 unique_ptr<__function...> D2 + 1 patch_kernel_static_code D2), call-target 269/334, bag_mean 0.8678, bag_min 0.0 (outliner fragments) => bar NOT met. R1-R5 memory closure structure preserved.",
+    "measured": {
+      "baselineConsumed": [],
+      "refFunctions": 338,
+      "newFunctions": 340,
+      "matched": 326,
+      "missingCount": 12,
+      "extraCount": 14,
+      "callTargetMatch": 251,
+      "seqMean": 0.8946,
+      "bagMean": 0.8787,
+      "bagMin": 0.0,
+      "gateStatus": "PASS",
+      "gateBaselineConsumed": [],
+      "verifyEquivCommand": "py tools/verify_equiv.py --reference <freeze>/archive/libkernel_module_kit_static.a --built notes/work/AGENT110/proof/024/built.a --members 24",
+      "verifyEquivStatus": "diverges",
+      "equivalenceBarMet": false
+    }
+  },
+  "notes": "Kernel memory permission/write path; verified unchanged against the su-uid-isolation freeze. The preceding freeze/unchanged claim and retained original/recovery/selfCheck describe historical restoration evidence. P3-B1 development source obtains base metadata from the canonical explicit descriptor and removes the derived static cache. Current evidence is limited to the recorded host base/metadata/read seams and Android syntax; full memory-operation behavior, rebuilt formal delivery and device acceptance remain separate.",
+  "blockedBy": [],
+  "extraFlags": [
+    "-fno-function-sections",
+    "-fno-data-sections",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden"
+  ],
+  "developmentRefactor": {
+    "schema": "maplesu-sdk-development-refactor/1",
+    "date": "2026-11-15",
+    "scope": "P3-B1 development source only; declared member TUs, not a complete dependency closure",
+    "change": "P3-B1 base getter consumes the canonical explicit descriptor; retired derived static base cache is removed, while the legacy compatibility branch and other memory operations retain separate acceptance.",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_mem/module_base_kernel_mem.cpp",
+        "sha256": "41b2b9ae1fc1aff2e4180f4ad39ff9c11a4ac18cfb876942ded7f34166dd38f7"
+      }
+    ],
+    "validation": [
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/REQUEST-V2-METADATA-CONSUMERS.md",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/request-metadata-r1/receipt.json",
+        "scope": "Historical B1 consumer snapshot: actual read/m024/m041 with captured request I/O, 2302/0; four Android syntax TUs. The later shared-header revision is not relabeled as this old receipt."
+      },
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/APPEND-PUBLICATION-BOUNDS.md",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/RECEIPT.json",
+        "scope": "m024 participates in frozen consumer host 2307/0 and actual-client/A64 five-TU cold chain 91/0, and is one of four Android syntax TUs. This covers base/metadata/read seams, not all memory write/protection behavior or device execution."
+      },
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p3/ROOT-KEY-PARSER-BOUNDS.md",
+        "scope": "Final original-tree parser source participates in actual read/m024/m041 metadata host regression: 2307/0, 16 threads and 1600 lookups. Plain host compilation, without ASan/UBSan; captured request I/O and compile-only legacy assembler, simulated pid changes, no emitter/device/fork execution. m073 is not executed by this suite.",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/root-key-parser-bounds-r1/metadata/receipt.json",
+        "receiptSha256": "450d2e9189c323d4d0a717135e6d41bdff33592ea89548596e5ef249860cc9fe"
+      }
+    ],
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalFields": "original/recovery/selfCheck/status are preserved as historical restoration metadata; current source validation is scoped by the named frozen evidence",
+    "sharedValidationInputs": [
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "sha256": "f457430ab12757fcc729fd3f4289753ee10c95d7166f8ca09f8b0fb2c643d219",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read_metadata.h",
+        "sha256": "aa49a2c66a704f8c85668851739671a612cf790adefacba17640f37364ab1eeb",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "sha256": "1b93fa56fc3a9cc6929ff4ad29b4b0e5f8042b4f0cd5a235359c34e6f53aacf0",
+        "binding": "docs/dual-mode/impl/_work/2026-11-15-p3/evidence/append-bounds-r1/green/FREEZE.json",
+        "scope": "Selected shared P3 validation input; not a declared member TU or complete dependency closure"
+      }
+    ]
+  },
+  "ownerConsumerBatchR02": {
+    "date": "2026-11-17",
+    "scope": "Explicit owner v3 QUERY/ECHO64/READ and ordinary metadata/cache consumers only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 2622,
+        "sha256": "6940ed9c1716bc30f5332784c9522552a4949880426aeae8066265fade99e77d"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_identity.h",
+        "bytes": 1737,
+        "sha256": "24bc18c9c6ef6ab3144408efb99f0baad1b3c90be599d4ed17a7976288e137ae"
+      },
+      {
+        "path": "runtime/pro/authorization/kernel_read_metadata.h",
+        "bytes": 4004,
+        "sha256": "da7652fa340f004251d13636c799981da373065412f559664d7a77671bfed11f"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_mem/module_base_kernel_mem.cpp",
+        "bytes": 21534,
+        "sha256": "e32e9d6b710b680702a52f42142ddd172187a9a990d80b41bf705cb707be0764"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r02/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r02/validation/FINAL-SUMMARY.json",
+    "producerIntegrated": false,
+    "kernelOwnerModuleBuilt": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "ordinaryThreadIdentityBatchR03": {
+    "dateUtc": "2026-11-17",
+    "scope": "R03 current-thread capability reads and unique calling-thread auth identity; source-only candidate provenance",
+    "inputs": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_mem/module_base_kernel_mem.cpp",
+        "bytes": 21534,
+        "sha256": "e32e9d6b710b680702a52f42142ddd172187a9a990d80b41bf705cb707be0764"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 2793,
+        "sha256": "27128b422fdf28418217d7ef3c394ed695c3fc455252c8988cc2115672c8e352"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_identity.h",
+        "bytes": 1861,
+        "sha256": "a37b106e34e2c688225e365fab5ea5e38adea8d0abb979e6f03f62674e7752a5"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r03/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r03/validation/FINAL-SUMMARY.json",
+    "validationScope": "Actual m023 and m000 host seams only; shared inline identity tested with actual m023. Other member sources inherit R02 and are not rerun/rebuilt by R03.",
+    "producerIntegrated": false,
+    "androidTuValidatedByThisBatch": false,
+    "composedMemberBuilt": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "ownerManagementBatchR04": {
+    "dateUtc": "2026-11-18",
+    "scope": "R04 same owner-v3 gateway management, complete receipt and typed credentials; isolated candidate only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_mem/module_base_kernel_mem.cpp",
+        "bytes": 21634,
+        "sha256": "f12daf0a066936567075c2cb6502c19e7129d424e5b0c3242fa83a47399f6624"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 3452,
+        "sha256": "9e1e039f644b4b85002a82ed23d00f819300f4e6c6c4a84028fa55e7f55a11a2"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/private_module_base_kernel_func_executor.h",
+        "bytes": 2028,
+        "sha256": "ecc890c4fac6aca3e255f851597d13b1619eb57aad01dc5dcbc5b0b435c74545"
+      },
+      {
+        "path": "runtime/pro/authorization/execution_frame.h",
+        "bytes": 3350,
+        "sha256": "c01cadbfb6c30a973345a3f81446496fa4cefeb4cbcc38dd381347b762059d71"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r04/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r04/validation/FINAL-SUMMARY.json",
+    "validationScope": "Only final named actual TUs and explicit seams count; adding this record does not assert each member was rebuilt or run.",
+    "producerSelectionIntegrated": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "p3StageClosureBatchR08": {
+    "dateUtc": "2026-11-18",
+    "scope": "P3 same-gateway text/reserve/publication/shared-bool lifetime, negotiated metadata and complete legacy receipt boundary; frozen source only",
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r08/CONTRACT.md",
+    "rwByteLengthPreserved": true,
+    "roXRequiresFullFourByteInstructions": true,
+    "validationScope": "Only named affected validation receipts prove their frozen inputs; source freeze is not a composed member/archive/target/device result.",
+    "interfaceRevision": "R08-member24-shared-bool",
+    "sharedBoolCreatorAndPublicationRefsSeparated": true,
+    "publicSignaturesChanged": false,
+    "globalErrorEnumChanged": false,
+    "canonicalBuildSelectionChanged": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true,
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/kernel_mem/module_base_kernel_mem.cpp",
+        "bytes": 22046,
+        "sha256": "1f7849812bcdc893824d6a4f4756e1ea2e0e070577278de19d44c5ee2792e8e2"
+      },
+      {
+        "path": "runtime/upstream-pro/include/module_base_kernel_mem.h",
+        "bytes": 4935,
+        "sha256": "54ae2d5194e031dd818717fab620d89718e80522ea9937ab4502b948ae693b70"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 6336,
+        "sha256": "c3bda6ce0f0dd8aec1035d6906e9d3310ae23d97033dee4737b511ec7bac2b5e"
+      },
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "bytes": 20784,
+        "sha256": "f960981f204f3dd48803bc01b14223cd4ce685aaf126370e1fcbc87418c82b4d"
+      }
+    ],
+    "originalApiIds": [
+      "CALL-0389",
+      "CALL-0390"
+    ],
+    "privateInlineDependenciesRequireSameGenerationRebuild": true
+  },
+  "p3Closeout20261118": {
+    "dateUtc": "2026-11-18",
+    "source": "src/kernel_mem/module_base_kernel_mem.cpp",
+    "sourceSha256": "ca976a6557916a35dc1f59e8ca8b0c6c672c16e7bc0a76a7184ec70a33463527",
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/p3-closeout-20261118/SOURCE-CLOSEOUT.md",
+    "change": "Owner protected byte writes use one native text-lock transaction, preserving a partial tail inside the producer; no userspace neighbor read/patch window",
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false,
+    "canonicalRecipeChanged": false,
+    "P3Complete": false
+  }
+}

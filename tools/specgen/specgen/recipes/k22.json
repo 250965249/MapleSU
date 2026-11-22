@@ -1,0 +1,634 @@
+{
+  "schema": 1,
+  "id": "k22",
+  "note": "Derived from k22-pro-6.6.89.spec by tools/specgen/derive_recipe.py. Every site offset is a symbol reference plus a byte delta; every embedded address is a relocation resolved from the target kernel's kallsyms.",
+  "referenceKernelRelease": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+  "credential": {
+    "length": 48,
+    "initPathTemplate": "/data/{key16}/init"
+  },
+  "records": [
+    {
+      "role": "die+0x0",
+      "site": {
+        "symbol": "die",
+        "delta": 0
+      },
+      "length": 212,
+      "relocs": [
+        {
+          "at": 28,
+          "kind": "imm64_delta",
+          "adr": 24,
+          "reg": 13,
+          "words": 2,
+          "target": {
+            "symbol": "panic",
+            "delta": 0
+          }
+        },
+        {
+          "at": 148,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "die",
+            "delta": 212
+          }
+        },
+        {
+          "at": 152,
+          "kind": "branch",
+          "op": "bl",
+          "target": {
+            "symbol": "module_alloc",
+            "delta": 0
+          }
+        },
+        {
+          "at": 172,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "drm_dev_printk",
+            "delta": 4
+          }
+        },
+        {
+          "at": 184,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "__drm_printfn_coredump",
+            "delta": 4
+          }
+        },
+        {
+          "at": 204,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "__dev_printk",
+            "delta": 4
+          }
+        },
+        {
+          "at": 208,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "arm64_notify_die",
+            "delta": 0
+          }
+        }
+      ],
+      "template": "cbff81923f000beb42060054104138d5111244f92b0040f90c0000100d089cd24d20a0f28c010d8b0d0080d26e696d388f696d38df010f6b61040054ad050091bfc100f14bffff546c010d8b8e0140398f494039ef010e0b8f4900398c0500918e4940394effff356c094139604144f89fc50071800100549fc90071a00100549fcd0071a00100549fd1007180010054f17fbfa910000014c2390094f17fc1a8070000146e0d41390e000039046f23140000403902000014056e2314200a00f9040000142d1a40b94d0000350b3f241408010014",
+      "referenceOrigSha256": "9320d65fecf25cc23728fdbcc79480579bad8f2c20754427d2f8480a3a1ab3f3"
+    },
+    {
+      "role": "die+0xD4",
+      "site": {
+        "symbol": "die",
+        "delta": 212
+      },
+      "length": 16,
+      "relocs": [
+        {
+          "at": 8,
+          "kind": "branch",
+          "op": "bl",
+          "target": {
+            "symbol": "module_alloc",
+            "delta": 0
+          }
+        },
+        {
+          "at": 12,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "die",
+            "delta": 156
+          }
+        }
+      ],
+      "template": "604d40b940000034b1390094efffff17",
+      "referenceOrigSha256": "73c1c2737fa165ccab7f77a6fe92a971f073aa097e555ec547975b3ece8f30ae"
+    },
+    {
+      "role": "arm64_notify_die+0x0",
+      "site": {
+        "symbol": "arm64_notify_die",
+        "delta": 0
+      },
+      "length": 52,
+      "relocs": [
+        {
+          "at": 20,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "do_execveat_common",
+            "delta": 4
+          }
+        },
+        {
+          "at": 48,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "die",
+            "delta": 0
+          }
+        }
+      ],
+      "template": "fd7bc1a8e61fc1a8e417c1a8e20fc1a8e007c1a810f80e143f2303d5e007bfa9e20fbfa9e417bfa9e61fbfa9fd7bbfa9b8feff17",
+      "referenceOrigSha256": "3e162151c8eb06cdd009cbf8011e570ad7061a3cae5241d62a8f1136616b3431"
+    },
+    {
+      "role": "free_initmem+0x0",
+      "site": {
+        "symbol": "free_initmem",
+        "delta": 0
+      },
+      "length": 58,
+      "relocs": [
+        {
+          "at": 0,
+          "kind": "word",
+          "op": "ret"
+        },
+        {
+          "at": 4,
+          "kind": "u32_self",
+          "delta": 4
+        },
+        {
+          "at": 8,
+          "kind": "u32_target",
+          "target": {
+            "symbol": "kallsyms_lookup_name",
+            "delta": 0
+          }
+        },
+        {
+          "at": 12,
+          "kind": "init_path",
+          "length": 28
+        },
+        {
+          "at": 40,
+          "kind": "u32_target",
+          "target": {
+            "symbol": "do_execveat_common",
+            "delta": 0
+          }
+        },
+        {
+          "at": 44,
+          "kind": "u32_const",
+          "value": "0xE7280001"
+        },
+        {
+          "at": 48,
+          "kind": "u32_const",
+          "value": "0x000B0062"
+        },
+        {
+          "at": 52,
+          "kind": "u32_target",
+          "target": {
+            "symbol": "filldir64",
+            "delta": 0
+          }
+        },
+        {
+          "at": 56,
+          "kind": "u16_struct",
+          "name": "task_struct.seccomp"
+        }
+      ],
+      "note": "pure data record, assembled from fields",
+      "referenceOrigSha256": "08283291be29546858850df46b1c76711548fe8380356d0566651def93a137dc"
+    },
+    {
+      "role": "report_cfi_failure+0x0",
+      "site": {
+        "symbol": "report_cfi_failure",
+        "delta": 0
+      },
+      "length": 8,
+      "relocs": [
+        {
+          "at": 0,
+          "kind": "word",
+          "op": "movz",
+          "rd": 0,
+          "imm": 1,
+          "sf": 1
+        },
+        {
+          "at": 4,
+          "kind": "word",
+          "op": "ret"
+        }
+      ],
+      "note": "one-instruction stub, assembled from ops",
+      "referenceOrigSha256": "cb76cf07cf50f4687f6471e93d2a05ca26c33fdda97d1b17601dd6b074563848"
+    },
+    {
+      "role": "free_reserved_area+0x0",
+      "site": {
+        "symbol": "free_reserved_area",
+        "delta": 0
+      },
+      "length": 8,
+      "relocs": [
+        {
+          "at": 0,
+          "kind": "word",
+          "op": "mov_wzr",
+          "rd": 0
+        },
+        {
+          "at": 4,
+          "kind": "word",
+          "op": "ret"
+        }
+      ],
+      "note": "one-instruction stub, assembled from ops",
+      "referenceOrigSha256": "b1aa0cbdb237837ffd242b0331fd8442cce21ae169321273a1e8fa9c4be8064c"
+    },
+    {
+      "role": "do_execveat_common+0x0",
+      "site": {
+        "symbol": "do_execveat_common",
+        "delta": 0
+      },
+      "length": 4,
+      "relocs": [
+        {
+          "at": 0,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "arm64_notify_die",
+            "delta": 24
+          }
+        }
+      ],
+      "note": "pure data record, assembled from fields",
+      "referenceOrigSha256": "f42188d81718c4fb96428ed4d432fc815af923c9786e982c05344cc30fa371ac"
+    },
+    {
+      "role": "avc_denied+0x28",
+      "site": {
+        "symbol": "avc_denied",
+        "delta": 40
+      },
+      "length": 4,
+      "relocs": [
+        {
+          "at": 0,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "drm_dev_printk",
+            "delta": 36
+          }
+        }
+      ],
+      "note": "pure data record, assembled from fields",
+      "referenceOrigSha256": "110f46b5b35c069160560c6ad6786f647dd44e8760a52a46fc22dbbcd7630b91"
+    },
+    {
+      "role": "__drm_puts_coredump+0x0",
+      "site": {
+        "symbol": "__drm_puts_coredump",
+        "delta": 0
+      },
+      "length": 88,
+      "relocs": [
+        {
+          "at": 8,
+          "kind": "imm64_delta",
+          "adr": 4,
+          "reg": 13,
+          "words": 4,
+          "target": {
+            "symbol": "free_initmem",
+            "delta": 12
+          }
+        },
+        {
+          "at": 36,
+          "kind": "branch",
+          "op": "bl",
+          "target": {
+            "symbol": "module_alloc",
+            "delta": 0
+          }
+        },
+        {
+          "at": 60,
+          "kind": "branch",
+          "op": "bl",
+          "target": {
+            "symbol": "kern_path",
+            "delta": 0
+          }
+        },
+        {
+          "at": 84,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "arm64_notify_die",
+            "delta": 0
+          }
+        }
+      ],
+      "template": "c0035fd60c0000100d2f98d26deebff2edffdff2edfffff28c010d8beb33bfa9000082d2e4cbdc97eb33c1a8eb33bfa9e20300aae0030caa21008052c49beb97eb33c1a8800000358d1540386d150038cdffff352c93dc17",
+      "referenceOrigSha256": "cfd4728e688f9cde5f7e411746e1f2d3d48ac8cdb87d312926114706e4a8ae96"
+    },
+    {
+      "role": "__drm_printfn_coredump+0x0",
+      "site": {
+        "symbol": "__drm_printfn_coredump",
+        "delta": 0
+      },
+      "length": 88,
+      "relocs": [
+        {
+          "at": 24,
+          "kind": "branch",
+          "op": "bl",
+          "target": {
+            "symbol": "set_memory_ro",
+            "delta": 0
+          }
+        },
+        {
+          "at": 32,
+          "kind": "branch",
+          "op": "bl",
+          "target": {
+            "symbol": "set_memory_x",
+            "delta": 0
+          }
+        },
+        {
+          "at": 40,
+          "kind": "branch",
+          "op": "bl",
+          "target": {
+            "symbol": "__drm_printfn_coredump",
+            "delta": 88
+          }
+        },
+        {
+          "at": 60,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "__drm_printfn_coredump",
+            "delta": 104
+          }
+        },
+        {
+          "at": 72,
+          "kind": "branch",
+          "op": "bl",
+          "target": {
+            "symbol": "set_memory_rw",
+            "delta": 0
+          }
+        },
+        {
+          "at": 80,
+          "kind": "branch",
+          "op": "bl",
+          "target": {
+            "symbol": "module_memfree",
+            "delta": 0
+          }
+        },
+        {
+          "at": 84,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "arm64_notify_die",
+            "delta": 0
+          }
+        }
+      ],
+      "template": "c0035fd631420091eb47bfa9604144f8615140b9e007bfa96101dd97e007c1a80202dd97eb47c1a80c0000941f7508d59f3b03d5df3f03d540013fd60b000014e07fbfa91f2003d5e401dd97e07fc1a8a324e297f592dc17",
+      "referenceOrigSha256": "094fdb9096a73c38c00871c0abf1c06fd8e7b37cf7205dbc87fe80a762dd7fc4"
+    },
+    {
+      "role": "__drm_printfn_coredump+0x58",
+      "site": {
+        "symbol": "__drm_printfn_coredump",
+        "delta": 88
+      },
+      "length": 16,
+      "relocs": [],
+      "template": "615140b96a4144f8ea07bfa9c0035fd6",
+      "referenceOrigSha256": "2f64516c67dc9959be14f9ac80bcd17cb77684ef29ecbf86280938784d4f8ad5"
+    },
+    {
+      "role": "__drm_printfn_coredump+0x68",
+      "site": {
+        "symbol": "__drm_printfn_coredump",
+        "delta": 104
+      },
+      "length": 20,
+      "relocs": [
+        {
+          "at": 4,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "__drm_printfn_coredump",
+            "delta": 64
+          }
+        }
+      ],
+      "template": "e007c1a8f5ffff171f2003d51f2003d51f2003d5",
+      "referenceOrigSha256": "b4abb7e03c4016e57a3ca922b6fa7897e34d3bf74cce4730113ef42a691dca30"
+    },
+    {
+      "role": "drm_dev_printk+0x0",
+      "site": {
+        "symbol": "drm_dev_printk",
+        "delta": 0
+      },
+      "length": 108,
+      "relocs": [
+        {
+          "at": 32,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "arm64_notify_die",
+            "delta": 0
+          }
+        }
+      ],
+      "template": "c0035fd62e003bd5ce4d50d3ce0900910024ce9a0020ce9a207a0bd59f3b03d50692dc170b4138d56c1144f98d1940b9cd010035eecf04b26c1944f99f010eeb200100542ecd8d522e8dae729f010e6bc10000546dd160398d0000353f28007142000054e0031f2ac0035fd6",
+      "referenceOrigSha256": "d3a8d010c9d4cf0dba427c2e3149f75e885f412e696773713bf26cf1366eb796"
+    },
+    {
+      "role": "__dev_printk+0x0",
+      "site": {
+        "symbol": "__dev_printk",
+        "delta": 0
+      },
+      "length": 84,
+      "relocs": [
+        {
+          "at": 76,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "__drm_puts_coredump",
+            "delta": 4
+          }
+        },
+        {
+          "at": 80,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "arm64_notify_die",
+            "delta": 0
+          }
+        }
+      ],
+      "template": "c0035fd60cc260399fa5017121020054050000142f6170705f70726f63657373363400008affff10ec030baaef030aaaee154038ce0000348d154038ad000034bf010e6b4f118f9afaffff17ac2eff17ebc1db17",
+      "referenceOrigSha256": "f472ebd0dc356cd46101ad92e3fdfe484e3a66d12e0f858504795ce7f9f31e8b"
+    },
+    {
+      "role": "panic+0x0",
+      "site": {
+        "symbol": "panic",
+        "delta": 0
+      },
+      "length": 48,
+      "relocs": [
+        {
+          "at": 0,
+          "kind": "credential",
+          "length": 48
+        }
+      ],
+      "note": "pure data record, assembled from fields",
+      "referenceOrigSha256": "63ce73dc81ea9d96814f3104bd6bc3845fd680b8a2860084940905d803a15b0d"
+    },
+    {
+      "role": "__traceiter_kvm_userspace_exit+0x70",
+      "site": {
+        "symbol": "__traceiter_kvm_userspace_exit",
+        "delta": 112
+      },
+      "length": 54,
+      "relocs": [
+        {
+          "at": 0,
+          "kind": "u32_self",
+          "delta": 0
+        },
+        {
+          "at": 4,
+          "kind": "u32_target",
+          "target": {
+            "symbol": "kallsyms_lookup_name",
+            "delta": 0
+          }
+        },
+        {
+          "at": 8,
+          "kind": "init_path",
+          "length": 28
+        },
+        {
+          "at": 36,
+          "kind": "u32_target",
+          "target": {
+            "symbol": "do_execveat_common",
+            "delta": 0
+          }
+        },
+        {
+          "at": 40,
+          "kind": "u32_const",
+          "value": "0xE7280001"
+        },
+        {
+          "at": 44,
+          "kind": "u32_const",
+          "value": "0x000B0062"
+        },
+        {
+          "at": 48,
+          "kind": "u32_target",
+          "target": {
+            "symbol": "filldir64",
+            "delta": 0
+          }
+        },
+        {
+          "at": 52,
+          "kind": "u16_struct",
+          "name": "task_struct.seccomp"
+        }
+      ],
+      "note": "pure data record, assembled from fields",
+      "referenceOrigSha256": "eeeb6fb37f08308037bc69fe75dcdd2c0314caac7dbd6c16b920f8a6f55c952e"
+    },
+    {
+      "role": "drm_dev_printk+0x5C",
+      "site": {
+        "symbol": "drm_dev_printk",
+        "delta": 92
+      },
+      "length": 8,
+      "relocs": [
+        {
+          "at": 0,
+          "kind": "word",
+          "op": "nop"
+        },
+        {
+          "at": 4,
+          "kind": "word",
+          "op": "nop"
+        }
+      ],
+      "note": "one-instruction stub, assembled from ops",
+      "referenceOrigSha256": "507d1a8aeeda81c602d1bd9f27b1d0256542e0b34b9cffcab1939713f8440d85"
+    },
+    {
+      "role": "drm_dev_printk+0x34",
+      "site": {
+        "symbol": "drm_dev_printk",
+        "delta": 52
+      },
+      "length": 4,
+      "relocs": [
+        {
+          "at": 0,
+          "kind": "branch",
+          "op": "b",
+          "target": {
+            "symbol": "drm_dev_printk",
+            "delta": 100
+          }
+        }
+      ],
+      "note": "pure data record, assembled from fields",
+      "referenceOrigSha256": "7d29a87084b2e7073448796a6dd209760002a0340ccee730c4558c451dee8599"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appearance_intro_title">Choose your MapleSU</string>
+    <string name="appearance_intro_subtitle">Two styles. The same MapleSU.</string>
+    <string name="appearance_intro_miuix">Miuix · Soft surfaces, floating navigation and gently falling maple leaves.</string>
+    <string name="appearance_intro_material">Material · Clear hierarchy, simple surfaces and a focused experience.</string>
+    <string name="appearance_intro_start">Get started</string>
+    <string name="appearance_intro_later">You can change this later in Settings · Appearance.</string>
+    <string name="appearance_intro_preview_ready">Make it yours</string>
+    <string name="appearance_intro_preview_detail">Your device, your style</string>
+    <string name="appearance_intro_preview_device">At a glance</string>
+</resources>

@@ -1,0 +1,181 @@
+{
+  "idx": 29,
+  "name": "module_base_kernel_func_hook.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/func_hook/module_base_kernel_func_hook.cpp"
+  ],
+  "privateHeaders": [
+    "src/func_hook/legacy_boot_hook_publication.h"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-fexceptions",
+    "-D_FORTIFY_SOURCE=2",
+    "-fno-function-sections",
+    "-fno-data-sections",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 10,
+    "recovered": 10,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "5d740720790b256cba6347547979fe86e15d1e45354ab7b80299e3349ea71b6e",
+    "bytes": 209096
+  },
+  "evidence": [
+    "notes/work/AGENT110/STATUS.md",
+    "notes/work/AGENT110/proof/029/equiv.json",
+    "notes/work/AGENT110/proof/029/gate.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Frozen mangling shape recovered: find_ret_insn_slot_offset / emit_ret_by_entry_insn are file-static in namespace kernel_module (_ZN13kernel_moduleL...), read_brk_4_kprobe_original_insn is a global-scope static (_ZL31read_brk_4_kprobe_original_insnmRj), and the frame-marker arrays are non-const char[64] so std::search keeps the frozen <PKc,Pc> overload family. Measured (single-stage, frozen per-TU flags incl. visibility): inventory 268/268 matched, missing 0, extra 13 (7 outliner fragments + 2 unique_ptr D2 + 4 vector<u8> helpers), call-target 238/268, bag_mean 0.8725, bag_min 0.0 (outliner fragments) => bar NOT met. R1-R5 hook closure structure preserved.",
+    "measured": {
+      "baselineConsumed": [],
+      "refFunctions": 268,
+      "newFunctions": 280,
+      "matched": 255,
+      "missingCount": 13,
+      "extraCount": 25,
+      "callTargetMatch": 199,
+      "seqMean": 0.8854,
+      "bagMean": 0.8743,
+      "bagMin": 0.0,
+      "gateStatus": "PASS",
+      "gateBaselineConsumed": [],
+      "verifyEquivCommand": "py tools/verify_equiv.py --reference <freeze>/archive/libkernel_module_kit_static.a --built notes/work/AGENT110/proof/029/built.a --members 29",
+      "verifyEquivStatus": "diverges",
+      "equivalenceBarMet": false
+    }
+  },
+  "notes": "",
+  "p5StageClosure20261118": {
+    "stage": "P5",
+    "requirements": [
+      "HOOK-01",
+      "HOOK-02",
+      "HOOK-03",
+      "RELOC-01"
+    ],
+    "sourceStatus": "local implementation; shared persistent-publication consumer pending formal contract",
+    "source": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p5-stage-close-20261118/candidate/runtime/upstream-pro/sdk/src/func_hook/module_base_kernel_func_hook.cpp",
+    "sourceSha256": "0cbd948d9e9e8050b2ccb050f6ca8e0987c268b6484d0b09a748adb2eb50c4e8",
+    "productionPreimageSha256": "56c2485a953304903ec6b23eacb54cf54980663968e1b81e53937aa091250089",
+    "implemented": [
+      "Single current-source publication/recovery path and no-handle installed-entry registration",
+      "Disable write/readback precedes host enabled state transition",
+      "Complete pending transaction identity prevents stale-handle clearing of a newer publication",
+      "Provably unpublished handler and after-pool RAII; exposed storage is never freed without lifetime proof",
+      "Active-after original function uses exact incoming SP with per-call LR/x28 return ownership",
+      "After metadata occupies a separate 16-byte region outside the legacy handler working frame",
+      "Bounded origin/return anchors and assembly-error rejection before publication",
+      "Publication, bridge pipe registry and Root-key locks use one coordinated fork order without copied recursive mutex ownership"
+    ],
+    "limits": [
+      "64 concurrent after instances: exhausted calls retain original function and count missed callbacks",
+      "Shared Owner publication/gate lifetime is not consumed by this local candidate yet",
+      "Current legacy idle allocator/text synchronization and kprobe read lifetime still require shared producer integration",
+      "No hardware PAC/BTI/GCS/SMP/hotplug qualification",
+      "No new build, test, formal archive or device evidence; prior 818 results not inherited"
+    ],
+    "completeP5": false
+  },
+  "p5OwnerPublication20261118": {
+    "sourceStatus": "isolated consumer revision3 with explicit typed shared-bool dependencies; producer unfrozen",
+    "sourceSha256": "1928bf60bda5ee3a1efde4f2292de1cc5402c645b60f888e25b81ec1cd98a232",
+    "preimageSha256": "0cbd948d9e9e8050b2ccb050f6ca8e0987c268b6484d0b09a748adb2eb50c4e8",
+    "privateHeaders": [
+      "owner_publication_gate.h",
+      "owner_hook_codegen.h",
+      "owner_hook_publication.h",
+      "../../include/maplesu_hook_private.h"
+    ],
+    "implemented": [
+      "Explicit Owner mode routes before, after, uninstall and pending cleanup through single publication API",
+      "Near code reservation replaces legacy peek/reserve donor and flag pool in Owner path",
+      "Permanent code and after return data own all references outside payload callback interval",
+      "Balanced normal and early before exits; after original runs at incoming SP",
+      "Complete payload closure uploaded and read back before sole PUBLISH entry write",
+      "Uncertain staging reconciles via explicit CLOSE without replaying publication",
+      "Known publication retirement and null-output pending cleanup preserve primary errors",
+      "Explicit cache synchronization declaration fixes current real Android m029 compilation failure",
+      "Private installer explicitly includes typed shared-bool members in the same dependency closure; no literal scan or protected raw write"
+    ],
+    "limits": [
+      "Caller migration/receipt lifecycle remains separate; A shared-bool API is implemented but unfrozen",
+      "Owner rejects active BRK/kprobe entry conflict; Legacy reader and full native coexistence remain unresolved",
+      "A R08 data permissions, full ABI/CFI/no-FP qualification and publication-cap binding outstanding",
+      "64 after instances: callback skipped on exhaustion",
+      "Same-generation formal archive and hardware qualification outstanding"
+    ],
+    "completeP5": false,
+    "productionWritten": false,
+    "deviceEvidence": false
+  },
+  "p5CleanupReceiptPreservation20261118": {
+    "sourceStatus": "isolated revision5 consumer of the frozen R08 revision3 CleanupReceiptScope",
+    "source": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p5-stage-close-20261118/owner-consumer-revision5/candidate/runtime/upstream-pro/sdk/src/func_hook/owner_hook_publication.h",
+    "sourceSha256": "bdbf2c6b35472a0ee6c217b4da11fa2747f20e972190a3574e1c54c0281fd43f",
+    "preimageSha256": "080f67828529dc1afcfd3457e241ab1da6e05d718c1c503581120c742ef54fa5",
+    "producerFreeze": ".tmp/p3-p4-owner-20261117/r08/revision3/SOURCE-FREEZE.json",
+    "producerFreezeSha256": "23e344c461ba298bbdd11a86b84addf692c0fa8bcead40b33ad76bd1a93bd767",
+    "privateHeaderSha256": "9d44ffe079b9247dcb358c5f232b76c7b43303f90bf8e03fe225682eb782a7ce",
+    "implemented": [
+      "Preserve the original TLS RequestManagementReply and errno around pre-PREPARE staging destruction",
+      "Preserve the PREPARE failure receipt before its explicit early CLOSE and local cleanup",
+      "Preserve the decisive failure receipt around complete_failure CLOSE/RETIRE cleanup",
+      "Leave real session, authority, uncertainty and resource changes intact; successful uninstall exposes its actual operation receipt"
+    ],
+    "validation": "Source change only; no tests or builds run for this revision",
+    "completeP5": false,
+    "productionWritten": false,
+    "formalAssetsPromoted": false,
+    "deviceEvidence": false
+  },
+  "p5DevelopmentClosure20261119": {
+    "scope": "Current production P5 sources and focused compilation/regressions; formal SDK and target execution remain separate",
+    "requirements": [
+      "HOOK-01",
+      "HOOK-02",
+      "HOOK-03",
+      "RELOC-01"
+    ],
+    "inputs": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/module_base_kernel_func_hook.cpp",
+        "sha256": "d9277990b9d9bf69026bb1308769fd9c00c9ef0c30eb4c2bcd88eb35ef515a2d"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_hook_private.h",
+        "sha256": "2636d9f3f98d6ffa40542179a1f1cd488cb4fb2f8a1f34a7c7190882f93b838c"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_hook_publication.h",
+        "sha256": "0a4510fc9b294fcedb737cd53abb88c36b62f2ca4d147705100feaa265a92ce3"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/legacy_hook_publication.h",
+        "sha256": "8003a8db4635363e2d04704e065fe3ea4d0d53de7b88fc579166fb20f8811215"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_hook_codegen.h",
+        "sha256": "ca3bbaf752c13a0315f627e673461c94fe560130defb4001d17f5fa331dd3363"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_publication_gate.h",
+        "sha256": "783e4b7a72384c48b96e5a134fe3ca070ed1ef5a10cc1865a1d2a5b3c0b55d8f"
+      }
+    ],
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/P5-DEVELOPMENT-CLOSEOUT-20261119.md",
+    "formalRelease": false,
+    "deviceValidated": false
+  }
+}

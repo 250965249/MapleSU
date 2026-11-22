@@ -1,0 +1,32 @@
+{
+  "idx": 74,
+  "name": "patch_audit_log_start.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/patch_audit_log_start.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-flto=thin"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 5,
+    "recovered": 5,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "457d837ef50127f7de72734d473ed6fbcfc2b5618bf0c8e5d55612f9b69b0ec7",
+    "bytes": 43000
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Adapted from the upstream open source of this patch module onto the shipped module frameworks (aarch64 asm context + before-hook primitives + PatchBase). Measured: strong-T 5/5, strong-U 58/58, both two-way diffs empty; the complete defined surface (73 names and kinds) and the complete undefined surface (58) are identical to the shipped member. Byte size 41976 vs 43000 (-2.4%) follows from the newer patch level of the shipped build's compiler."
+  },
+  "notes": "Full port of the upstream open-source behaviour; nothing left unimplemented."
+}

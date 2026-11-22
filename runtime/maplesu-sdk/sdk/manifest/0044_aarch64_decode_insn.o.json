@@ -1,0 +1,56 @@
+{
+  "idx": 44,
+  "name": "aarch64_decode_insn.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/aarch64/aarch64_decode_insn.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "99e012fb206871f5764fa97ec1c61ad8e9b9523a6cf772ca747e37b2419d1066",
+    "bytes": 3252
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "orig.T=1 new.T=1 orig.U=0 new.U=0; both diffs empty (PASS). Only symbol _ZN13kernel_module25aarch64_insn_is_steppableEj."
+  },
+  "notes": "",
+  "p5StageClose20261118": {
+    "dateUtc": "2026-11-18",
+    "status": "implemented-awaiting-concentrated-validation",
+    "requirements": [
+      "RELOC-01",
+      "HOOK-03"
+    ],
+    "sourceSelection": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p5-stage-close-20261118/relocation/SOURCE-SELECTION.json",
+    "assessment": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p5-stage-close-20261118/relocation/ASSESSMENT.md",
+    "productionIntegrated": false,
+    "newCompileOrTestsRun": false,
+    "formalAssetsPromoted": false,
+    "deviceRun": false,
+    "historicalFieldsScope": "All pre-existing recovery/original/selfCheck/notes fields are preserved as historical reconstruction metadata; no prior 818/584/26 evidence is inherited by this candidate.",
+    "remaining": [
+      "Actual emitted-code and affected compilation validation of this candidate",
+      "Hardware PAC/BTI/CFI, including BLR-to-BR branch-type behavior for non-IP0/IP1 targets; no hardware qualification inherited",
+      "Synchronous-fault context and SMP behavior",
+      "Same-generation archive/helper/backend/APK selection and device acceptance"
+    ],
+    "sourcePath": "runtime/upstream-pro/sdk/src/aarch64/aarch64_decode_insn.cpp",
+    "sourceSha256": "d257d3de7f1e1a547437192279abe036929730aaef07204d92633e17eab9b062",
+    "changes": [
+      "Route the entire integer/SIMD/PRFM literal class to relocation",
+      "UDF cannot take the raw-copy path",
+      "Keep current stricter MSR/exception/ERET/PAC-authenticated rejection behavior"
+    ]
+  }
+}

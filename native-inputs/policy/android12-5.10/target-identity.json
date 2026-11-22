@@ -1,0 +1,103 @@
+{
+  "buildId": "cacb80a04f0868249580229a64636aa3c3e75630",
+  "pageSize": 4096,
+  "hooks": [
+    {
+      "name": "sel_write_context",
+      "first16": "3f2303d5ff4301d15e8600f8fd7b02a9"
+    },
+    {
+      "name": "sel_write_access",
+      "first16": "3f2303d5ff8301d15e8600f8fd7b03a9"
+    },
+    {
+      "name": "selinux_setprocattr",
+      "first16": "3f2303d5ff8303d15e8600f8fd7b09a9"
+    },
+    {
+      "name": "sel_open_handle_status",
+      "first16": "3f2303d55e8600f8fd7bbea9f30b00f9"
+    },
+    {
+      "name": "sel_read_handle_status",
+      "first16": "3f2303d55e8600f8fd7bbca9f70b00f9"
+    },
+    {
+      "name": "sel_mmap_handle_status",
+      "first16": "3f2303d55e8600f8fd7bbfa9fd030091"
+    },
+    {
+      "name": "sk_filter_trim_cap",
+      "first16": "3f2303d5ffc302d15e8600f8fd7b05a9"
+    },
+    {
+      "name": "commit_creds",
+      "first16": "3f2303d55e8600f8fd7bbca9f70b00f9"
+    },
+    {
+      "name": "__skb_try_recv_datagram",
+      "first16": "3f2303d5ff0302d15e8600f8fd7b02a9"
+    }
+  ],
+  "dynamicScs": false,
+  "cacheFunction": "__flush_icache_range",
+  "alternativesReturnsStatus": false,
+  "nativeCodeAbi": [
+    {
+      "name": "__flush_icache_range",
+      "first16": "5f2403d55f2403d524423bd5df4203d5",
+      "runtimeFirst16": [
+        "5f2403d55f2403d51f2003d51f2003d5",
+        "5f2403d55f2403d524423bd5df4203d5"
+      ]
+    },
+    {
+      "name": "memcpy",
+      "first16": "5f2403d5e60300aa5f4000f1c3030054",
+      "runtimeFirst16": [
+        "5f2403d5e60300aa5f4000f1c3030054"
+      ]
+    },
+    {
+      "name": "memset",
+      "first16": "5f2403d5e80300aa271c0012e720072a",
+      "runtimeFirst16": [
+        "5f2403d5e80300aa271c0012e720072a"
+      ]
+    },
+    {
+      "name": "strlen",
+      "first16": "5f2403d5ebc300b201ec7c92070c40f2",
+      "runtimeFirst16": [
+        "5f2403d5ebc300b201ec7c92070c40f2"
+      ]
+    },
+    {
+      "name": "strcmp",
+      "first16": "5f2403d5070001caeac300b2ff0840f2",
+      "runtimeFirst16": [
+        "5f2403d5070001caeac300b2ff0840f2"
+      ]
+    }
+  ],
+  "requiredLoaderSymbols": [
+    "sel_write_context",
+    "sel_write_access",
+    "selinux_setprocattr",
+    "sel_open_handle_status",
+    "sel_read_handle_status",
+    "sel_mmap_handle_status",
+    "sk_filter_trim_cap",
+    "commit_creds",
+    "__skb_try_recv_datagram",
+    "set_memory_nx",
+    "set_memory_rw",
+    "set_memory_ro",
+    "set_memory_x",
+    "__flush_icache_range",
+    "apply_alternatives_module"
+  ],
+  "release": "5.10.252-dirty",
+  "configSha256": "0eafd90ae5602d150e5248b7ca4f941becd4a66737896eeadf68d4d7b9c66e12",
+  "scope": "Exact image identity and hook bytes, not OEM image family or runtime capability acceptance"
+}

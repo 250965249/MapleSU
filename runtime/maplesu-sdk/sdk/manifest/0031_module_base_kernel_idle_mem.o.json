@@ -1,0 +1,44 @@
+{
+ "idx": 31,
+ "name": "module_base_kernel_idle_mem.o",
+ "group": "core",
+ "layout": "bitcode",
+ "kind": "SINGLE",
+ "sources": [
+  "src/module_base/module_base_kernel_idle_mem.cpp"
+ ],
+ "flagsProfile": "core-oz-bitcode-fexceptions",
+ "extraFlags": [
+  "-D_FORTIFY_SOURCE=2"
+ ],
+ "status": "partial",
+ "recovery": {
+  "functions": 0,
+  "recovered": 0,
+  "unrecovered": [],
+  "sourceComplete": true,
+  "scope": "historical restoration counts preserved in notes/HISTORY-STORAGE-HISTORY.json; current device/delivery acceptance pending"
+ },
+ "original": {
+  "sha256": "40c9dee79a0ff6887970babc6f0664ceafcbc17fae10e1b892759cbff298a293",
+  "bytes": 233168
+ },
+ "evidence": [
+  "tests/test_history_storage.py",
+  "notes/HISTORY-STORAGE-HISTORY.json",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/HISTORY-STORAGE-ASSESSMENT.md",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/history-storage-focused-r1.json",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/history-storage-symbol-delta-r1.json",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/history-storage-reset-focused-r1.json",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/history-storage-reset-symbol-delta-r1.json",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/history-storage-reset-integration-r1.json"
+ ],
+ "selfCheck": {
+  "tDiff": [
+   "_ZN7maplesu18allocation_history17reset_idle_memoryEv"
+  ],
+  "uDiff": [],
+  "note": "Explicit close-error propagation and shared reset now verified by 34 actual-source host assertions and both NDK manifest-profile builds. Each member adds one hidden maplesu::allocation_history reset definition; strong U unchanged, one weak libc++ close definition added. Reset reuses the existing allocator history writer and preserves the first error. Historical claims retained; full delivery/device acceptance pending; no default gate/allow change."
+ },
+ "notes": "Fully maintainable source; partial tracks pending full delivery/kernel/device acceptance. Existing eight-byte history format, paths, tags and public API retained; helper reset shares storage implementation."
+}

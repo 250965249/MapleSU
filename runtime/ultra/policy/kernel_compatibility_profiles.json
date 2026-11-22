@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "profilesBySeries": {
+    "6.6": [
+      { "CONFIG_PAGE_BLOCK_ORDER": "n" }
+    ],
+    "6.12": [
+      { "CONFIG_HAVE_FUNCTION_GRAPH_FREGS": "n" },
+      { "CONFIG_ARCH_HAS_UACCESS_FLUSHCACHE": "n" },
+      {
+        "CONFIG_HAVE_FUNCTION_GRAPH_FREGS": "n",
+        "CONFIG_ARCH_HAS_UACCESS_FLUSHCACHE": "n"
+      }
+    ]
+  }
+}

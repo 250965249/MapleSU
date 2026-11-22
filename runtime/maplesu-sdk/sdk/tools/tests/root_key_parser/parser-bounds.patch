@@ -1,0 +1,129 @@
+--- a/runtime/upstream-pro/sdk/src/module/module_append_package_parser.cpp
++++ b/runtime/upstream-pro/sdk/src/module/module_append_package_parser.cpp
+@@ -4,6 +4,8 @@
+ 
+ #include <cstdint>
+ #include <cstring>
++#include <exception>
++#include <limits>
+ #include <functional>
+ #include <string>
+ #include <vector>
+@@ -19,17 +21,26 @@
+ 
+ // Position of one base62 digit; -1 when the character is not a digit.
+ int idx_of(char c) {
+-    return static_cast<int>(alphabet62.find(c));
++    const size_t position = alphabet62.find(c);
++    return position == std::string::npos ? -1 : static_cast<int>(position);
+ }
+ }  // namespace
+ 
+ // Reverses the per-character rotation applied before the base62 encoding.
+ static std::string simple_decrypt_with_key(const std::string& cipher, char key) {
++    const int key_index = idx_of(key);
++    if (cipher.size() < 2 || key_index < 0) {
++        return {};
++    }
+     const size_t length = cipher.size() - 1;
+     std::string plain;
+     plain.reserve(length);
+     for (size_t i = 0; i < length; ++i) {
+-        int value = (idx_of(cipher[i + 1]) - (idx_of(key) + static_cast<int>(i))) % BASE62;
++        const int digit = idx_of(cipher[i + 1]);
++        if (digit < 0) {
++            return {};
++        }
++        int value = (digit - key_index - static_cast<int>(i % BASE62)) % BASE62;
+         if (value < 0) {
+             value += BASE62;
+         }
+@@ -46,12 +57,20 @@
+ }
+ 
+ // Decodes a base62 digit string into its integer value.
+-static uint64_t from_base62(const std::string& text) {
+-    uint64_t value = 0;
+-    for (auto it = text.begin(); it != text.end(); ++it) {
+-        value = value * static_cast<uint64_t>(BASE62) + static_cast<uint64_t>(alphabet62.find(*it));
+-    }
+-    return value;
++static bool from_base62(const std::string& text, uint64_t& value) {
++    value = 0;
++    if (text.empty()) {
++        return false;
++    }
++    for (char character : text) {
++        const int digit = idx_of(character);
++        if (digit < 0 || value > (std::numeric_limits<uint64_t>::max() -
++                                 static_cast<uint64_t>(digit)) / BASE62) {
++            return false;
++        }
++        value = value * BASE62 + static_cast<uint64_t>(digit);
++    }
++    return true;
+ }
+ 
+ namespace kernel_module {
+@@ -78,23 +97,44 @@
+     if (root_key == nullptr) {
+         return;
+     }
+-    std::string root_key_text(root_key);
+-    if (root_key_text.size() < 16) {
+-        return;
+-    }
+-    const uint64_t prefix_length = from_base62(simple_decrypt(root_key_text.substr(0, 2)));
+-    char buffer[256] = {0};
+-    std::strcpy(buffer, root_key_text.c_str());
+-    buffer[std::strlen(buffer)] = root_key_text.at(15);
+-    buffer[std::strlen(buffer)] = root_key_text.at(2);
+-    const std::string combined(buffer);
+-    std::string tail = combined.substr(combined.size() - prefix_length, std::string::npos);
+-    std::string tail_plain = simple_decrypt(tail);
+-    const bool negative = tail_plain.ends_with('0');
+-    tail_plain.erase(tail_plain.size() - 1, std::string::npos);
+-    const uint64_t magnitude = from_base62(tail_plain);
+-    out_value = static_cast<int>(negative ? -static_cast<int64_t>(magnitude)
+-                                         : static_cast<int64_t>(magnitude));
++    try {
++        std::string root_key_text(root_key);
++        if (root_key_text.size() < 16) {
++            return;
++        }
++        uint64_t prefix_length = 0;
++        if (!from_base62(simple_decrypt(root_key_text.substr(0, 2)), prefix_length)) {
++            return;
++        }
++        root_key_text.push_back(root_key_text[15]);
++        root_key_text.push_back(root_key_text[2]);
++        if (prefix_length < 3 || prefix_length > root_key_text.size()) {
++            return;
++        }
++        const std::string tail = root_key_text.substr(root_key_text.size() - prefix_length);
++        std::string tail_plain = simple_decrypt(tail);
++        if (tail_plain.size() < 2) {
++            return;
++        }
++        const bool negative = tail_plain.back() == '0';
++        tail_plain.pop_back();
++        uint64_t magnitude = 0;
++        if (!from_base62(tail_plain, magnitude)) {
++            return;
++        }
++        const uint64_t limit = static_cast<uint64_t>(std::numeric_limits<int>::max()) +
++                               (negative ? 1 : 0);
++        if (magnitude > limit) {
++            return;
++        }
++        if (negative && magnitude == limit) {
++            out_value = std::numeric_limits<int>::min();
++        } else {
++            out_value = negative ? -static_cast<int>(magnitude) : static_cast<int>(magnitude);
++        }
++    } catch (const std::exception&) {
++        out_value = 0;
++    }
+ }
+ 
+ // Executes one emitted routine in the kernel and returns its X0 result.

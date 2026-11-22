@@ -1,0 +1,44 @@
+{
+  "repository": "https://github.com/topjohnwu/libsu",
+  "tag": "6.0.0",
+  "commit": "8c3e80ffe466b89ff875471e542d77e6a1b480c5",
+  "archiveUrl": "https://codeload.github.com/topjohnwu/libsu/zip/8c3e80ffe466b89ff875471e542d77e6a1b480c5",
+  "archiveSHA256": "48b4ff531cd1560f65d2f11b73a4e35b3f06225900cc1306d10fa9de32860582",
+  "filesSHA256": {
+    "service/.gitignore": "5b46eb48d96e8571e8c93e4ef4f6ffbe6807b6d7350664a36a064e1167a32718",
+    "service/build.gradle.kts": "44d8a03460aeb99c723ad9f9c2cefd74dbd10b60ca8d873e15d3d4d470bac486",
+    "service/src/main/aidl/com/topjohnwu/superuser/internal/IRootServiceManager.aidl": "5ed24140042277b52606b61fd4cb7b8bd76167c9921664051e27911f261893ba",
+    "service/src/main/AndroidManifest.xml": "343d5be1ac17cdd45d1a2f2ddc616c509290e655869125a9422a96d88aa66066",
+    "service/src/main/assets/main.jar": "ae7fdb8b70bd2c1cc2c27043e985f8dc5cfff2cb9142a1576dcdbc889763ef7b",
+    "service/src/main/java/com/topjohnwu/superuser/internal/BinderHolder.java": "5935b6a37b48258a4adcb9cdb1683c46bf5734abfcf2554712ce3c77f7cb1b40",
+    "service/src/main/java/com/topjohnwu/superuser/internal/HiddenAPIs.java": "fe10487695eb149dc7d7b12f121ea39a7da463775a73dafd0fbde18c9318d8b5",
+    "service/src/main/java/com/topjohnwu/superuser/internal/RootServerMain.java": "5aec38514b20cbb1d69c055752783a5b877763f53fa9e493cf4702eb0c55adc5",
+    "service/src/main/java/com/topjohnwu/superuser/internal/RootServiceManager.java": "c7af2ffb2c228858a5f0989b4ebe1ccf0546cb8da258f2ff5a5b3f1148e4757c",
+    "service/src/main/java/com/topjohnwu/superuser/internal/RootServiceServer.java": "fdf005874b1e5d39e8f17eb7d7a983cc8a7877e547499e29abc70d1a5981fb7e",
+    "service/src/main/java/com/topjohnwu/superuser/ipc/RootService.java": "b7c0012a7443c7ab9ed186032ec13afdd21448853a5013108c4d7e8c4ece83a7"
+  },
+  "license": "Apache-2.0",
+  "officialAar": {
+    "coordinates": "com.github.topjohnwu.libsu:service:6.0.0",
+    "sha256": "528bbcc3f057e8b5ea6f69a2deea1e0ff536880602e99e98763d7b74cf1d0659"
+  },
+  "mainJar": {
+    "sha256": "ae7fdb8b70bd2c1cc2c27043e985f8dc5cfff2cb9142a1576dcdbc889763ef7b",
+    "bytes": 3656,
+    "upstreamAssetMatchesOfficialAar": true,
+    "rebuilt": false
+  },
+  "licenseSHA256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "derivedFilesSHA256": {
+    "src/main/aidl/com/topjohnwu/superuser/internal/IRootServiceManager.aidl": "5ed24140042277b52606b61fd4cb7b8bd76167c9921664051e27911f261893ba",
+    "src/main/AndroidManifest.xml": "343d5be1ac17cdd45d1a2f2ddc616c509290e655869125a9422a96d88aa66066",
+    "src/main/assets/main.jar": "ae7fdb8b70bd2c1cc2c27043e985f8dc5cfff2cb9142a1576dcdbc889763ef7b",
+    "src/main/java/com/topjohnwu/superuser/internal/BinderHolder.java": "5935b6a37b48258a4adcb9cdb1683c46bf5734abfcf2554712ce3c77f7cb1b40",
+    "src/main/java/com/topjohnwu/superuser/internal/HiddenAPIs.java": "fe10487695eb149dc7d7b12f121ea39a7da463775a73dafd0fbde18c9318d8b5",
+    "src/main/java/com/topjohnwu/superuser/internal/RootServerMain.java": "5aec38514b20cbb1d69c055752783a5b877763f53fa9e493cf4702eb0c55adc5",
+    "src/main/java/com/topjohnwu/superuser/internal/RootServiceManager.java": "dc0fa0d41a2b3b65fb5c222c5946d924d54ad13f259ccd9efca843c930642096",
+    "src/main/java/com/topjohnwu/superuser/internal/RootServiceRouting.java": "10c7cf13a71fea144c8e2d5af2aa59864ed94433ae579f50c6dd30bc206c12d9",
+    "src/main/java/com/topjohnwu/superuser/internal/RootServiceServer.java": "964d11ab2be08c893a900726ad72d738c76c6656cc3223d321f597c684553e7b",
+    "src/main/java/com/topjohnwu/superuser/ipc/RootService.java": "b7c0012a7443c7ab9ed186032ec13afdd21448853a5013108c4d7e8c4ece83a7"
+  }
+}

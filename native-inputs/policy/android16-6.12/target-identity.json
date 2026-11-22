@@ -1,0 +1,127 @@
+{
+  "buildId": "2b70dd0ba73ce34f58ccc7bac3f6a6443fb08c01",
+  "pageSize": 4096,
+  "hooks": [
+    {
+      "name": "sel_write_context",
+      "first16": "3f2303d5ff0301d1fd7b02a9f44f03a9"
+    },
+    {
+      "name": "sel_write_access",
+      "first16": "3f2303d5ffc301d1fd7b03a9f72300f9"
+    },
+    {
+      "name": "selinux_setprocattr",
+      "first16": "3f2303d5fd7bbea9f44f01a9fd030091"
+    },
+    {
+      "name": "sel_open_handle_status",
+      "first16": "3f2303d5fd7bbea9f30b00f9fd030091"
+    },
+    {
+      "name": "sel_read_handle_status",
+      "first16": "0a1040f9ca0200b4e80303aae00301aa"
+    },
+    {
+      "name": "sel_mmap_handle_status",
+      "first16": "3f2303d5fd7bbea9f44f01a9fd030091"
+    },
+    {
+      "name": "sk_filter_trim_cap",
+      "first16": "3f2303d5ffc301d1fd7b03a9f72300f9"
+    },
+    {
+      "name": "commit_creds",
+      "first16": "3f2303d5fd7bbda9f50b00f9f44f02a9"
+    },
+    {
+      "name": "__skb_try_recv_datagram",
+      "first16": "3f2303d5ff0302d1fd7b02a9fc6f03a9"
+    }
+  ],
+  "dynamicScs": true,
+  "cacheFunction": "caches_clean_inval_pou",
+  "alternativesReturnsStatus": false,
+  "nativeCodeAbi": [
+    {
+      "name": "caches_clean_inval_pou",
+      "first16": "5f2403d51f2003d51f2003d5e20300aa",
+      "runtimeFirst16": [
+        "5f2403d51f2003d51f2003d5e20300aa",
+        "5f2403d59f3a03d510000014e20300aa"
+      ]
+    },
+    {
+      "name": "memcpy",
+      "first16": "5f2403d52400028b0500028b5f0002f1",
+      "runtimeFirst16": [
+        "5f2403d52400028b0500028b5f0002f1"
+      ]
+    },
+    {
+      "name": "memset",
+      "first16": "5f2403d5e80300aa271c0012e720072a",
+      "runtimeFirst16": [
+        "5f2403d5e80300aa271c0012e720072a"
+      ]
+    },
+    {
+      "name": "strlen",
+      "first16": "5f2403d5040c4092e8c300b29f0000f1",
+      "runtimeFirst16": [
+        "5f2403d5040c4092e8c300b29f0000f1"
+      ]
+    },
+    {
+      "name": "strcmp",
+      "first16": "5f2403d52a0000cbe8c300b206084092",
+      "runtimeFirst16": [
+        "5f2403d52a0000cbe8c300b206084092"
+      ]
+    }
+  ],
+  "requiredLoaderSymbols": [
+    "sel_write_context",
+    "sel_write_access",
+    "selinux_setprocattr",
+    "sel_open_handle_status",
+    "sel_read_handle_status",
+    "sel_mmap_handle_status",
+    "sk_filter_trim_cap",
+    "commit_creds",
+    "__skb_try_recv_datagram",
+    "set_memory_nx",
+    "set_memory_rw",
+    "set_memory_ro",
+    "set_memory_x",
+    "caches_clean_inval_pou",
+    "apply_alternatives_module"
+  ],
+  "release": "6.12.76-4k",
+  "configSha256": "1fad580a5ac5d115fa2a7aeb6731f0d3324d32929a5f8b976eea91a5d207bae3",
+  "scope": "Exact image identity and hook bytes, not OEM image family or runtime capability acceptance",
+  "nativeScsReplay": {
+    "base": 18446743800979378176,
+    "entry": 18446743800979381904,
+    "bytes": 8192,
+    "sha256": "dab750be72c7f985b37d3891db101f318c3b9480676eaade62936287ac944db4",
+    "strlen": 18446743800997849584,
+    "rodata": [
+      {
+        "base": 18446743800998363136,
+        "file": "native-scs-rodata-0.bin",
+        "sha256": "94459b727091249ee155d6bf08a31ccb863af0f0390c2f30741e79527cae9f8a"
+      }
+    ],
+    "extraText": [
+      {
+        "base": 18446743800979443712,
+        "file": "native-scs-helper-0.bin",
+        "sha256": "02d4d50a143bddf319a416ebbaf6d10a6bdcde8f4de94f547832ad4a5734486c"
+      }
+    ],
+    "strcmp": 18446743800997849264
+  },
+  "scsFunction": "__pi_scs_patch",
+  "scsArguments": 2
+}

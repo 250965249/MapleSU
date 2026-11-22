@@ -1,0 +1,2 @@
+# Host verification of the legacy 5.15 CFI dispatcher.
+unicorn>=2.1,<3

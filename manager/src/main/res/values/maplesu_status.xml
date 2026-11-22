@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="maplesu_install_title">Install / update MapleSU</string>
+    <string name="maplesu_install_summary">Patch the stock boot image or install directly</string>
+    <string name="maplesu_upstream_sources"><![CDATA[<a href="https://github.com/FengQiuFQ/MapleSU">View source on GitHub</a><br/><a href="https://github.com/tiann/KernelSU">Upstream: KernelSU</a>]]></string>
+</resources>

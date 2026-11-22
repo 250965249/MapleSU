@@ -1,0 +1,1358 @@
+{
+  "repository": "https://github.com/abcz316/SKRoot-linuxKernelRoot",
+  "commit": "388732b35fe0a6e77c097bf7b1c6b4869a0b3297",
+  "path": "Lite_version/src/patch_kernel_root",
+  "permission": "User reports existing reuse permission; retain grant separately.",
+  "compileUnits": [
+    "3rdparty/asmjit2-src/src/asmjit/arm/a64assembler.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/arm/a64builder.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/arm/a64compiler.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/arm/a64emithelper.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/arm/a64formatter.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/arm/a64func.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/arm/a64instapi.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/arm/a64instdb.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/arm/a64operand.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/arm/a64rapass.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/arm/armformatter.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/archtraits.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/assembler.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/builder.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/codeholder.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/codewriter.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/compiler.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/constpool.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/cpuinfo.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/emithelper.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/emitter.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/emitterutils.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/environment.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/errorhandler.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/formatter.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/func.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/funcargscontext.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/globals.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/inst.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/instdb.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/jitallocator.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/jitruntime.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/logger.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/operand.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/osutils.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/ralocal.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/rapass.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/rastack.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/string.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/support.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/target.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/type.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/virtmem.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/zone.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/zonehash.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/zonelist.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/zonestack.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/zonetree.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/core/zonevector.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/x86/x86assembler.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/x86/x86builder.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/x86/x86compiler.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/x86/x86emithelper.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/x86/x86formatter.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/x86/x86func.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/x86/x86instapi.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/x86/x86instdb.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/x86/x86operand.cpp",
+    "3rdparty/asmjit2-src/src/asmjit/x86/x86rapass.cpp",
+    "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64BaseInfo.c",
+    "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64Disassembler.c",
+    "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64InstPrinter.c",
+    "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64Mapping.c",
+    "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64Module.c",
+    "3rdparty/capstone-5.0.7/src/cs.c",
+    "3rdparty/capstone-5.0.7/src/Mapping.c",
+    "3rdparty/capstone-5.0.7/src/MCInst.c",
+    "3rdparty/capstone-5.0.7/src/MCInstrDesc.c",
+    "3rdparty/capstone-5.0.7/src/MCRegisterInfo.c",
+    "3rdparty/capstone-5.0.7/src/SStream.c",
+    "3rdparty/capstone-5.0.7/src/utils.c",
+    "3rdparty/cJSON/cJSON.cpp",
+    "analyze/init_cred_searcher.cpp",
+    "analyze/kallsyms_lookup_name.cpp",
+    "analyze/kallsyms_lookup_name_4_6_0.cpp",
+    "analyze/kallsyms_lookup_name_6_12_0.cpp",
+    "analyze/kallsyms_lookup_name_6_1_0.cpp",
+    "analyze/kallsyms_lookup_name_6_1_42.cpp",
+    "analyze/kallsyms_lookup_name_6_1_60.cpp",
+    "analyze/kallsyms_lookup_name_6_4_0.cpp",
+    "analyze/kernel_symbol_finder.cpp",
+    "analyze/kernel_symbol_proxy.cpp",
+    "analyze/kernel_version_parser.cpp",
+    "analyze/symbol_analyze.cpp",
+    "patch_audit_log_start.cpp",
+    "patch_avc_denied.cpp",
+    "patch_base.cpp",
+    "patch_compat_filldir.cpp",
+    "patch_current_avc_check.cpp",
+    "patch_do_execve.cpp",
+    "patch_filldir64.cpp",
+    "patch_kernel_root.cpp"
+  ],
+  "files": [
+    {
+      "path": "3rdparty/aarch64_asm_canary_bypass_guard.h",
+      "sha256": "6968b796ce2932a32903845b7f5cec7053a46e8e90380fac1f8c820e5894ef12"
+    },
+    {
+      "path": "3rdparty/aarch64_asm_helper.h",
+      "sha256": "43f61e8992c25b507a25dfe1aa76e812821f4ecc025c236d1004ef45c3478cb1"
+    },
+    {
+      "path": "3rdparty/aarch64_asm_reg_protect_guard.h",
+      "sha256": "907903647076b726ff0188506bb263aad167ab55a83d78f1ab432fb28c936f72"
+    },
+    {
+      "path": "3rdparty/aarch64_asm_stack_buf_guard.h",
+      "sha256": "2a5b8c8e70ffc07041cd6eb78af8312aef9b8582929e5f24fabd4f53a77706b8"
+    },
+    {
+      "path": "3rdparty/aarch64_reg_protect_guard.h",
+      "sha256": "907903647076b726ff0188506bb263aad167ab55a83d78f1ab432fb28c936f72"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/LICENSE.md",
+      "sha256": "5b0f48131c666e80bae8d194389dba07bcb61831edc3ab7d7ce90f4a6a8d2ee4"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/a64.h",
+      "sha256": "05c6ba617ce2839b507bc3ba75967db7d6a61c688ccb388adebb066d3356b0a1"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm.h",
+      "sha256": "cf2e390981d8a337053c0cbd643dcf1d591be93e47502c033130b9a1ec7387c9"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64archtraits_p.h",
+      "sha256": "35764ef877f5cf1b0a66edf71c86e768701795a60e3c8aec875bb5fd2b17425d"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64assembler.cpp",
+      "sha256": "2c1f62191128062358038fe65aa26371c1f5d54325222082aa7aa12596266787"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64assembler.h",
+      "sha256": "5ed2a1ad9f783c8a0def5b4104c4e7350d5bb3999f8b9156d1afad53388b7e05"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64builder.cpp",
+      "sha256": "073f05dde9d0f7716f1a975916098088a0c2f35d78846f8145f110594a793487"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64builder.h",
+      "sha256": "ab0cd93a4a0719454c309e9e31ffd78f1b05796efafd2da6a8c7c4041ec9e6d8"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64compiler.cpp",
+      "sha256": "86867d344ea93ef8c3d8c2ae6452586b8eb7ad2a9d129372350017993b860c3f"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64compiler.h",
+      "sha256": "fc0085f4383a8e7f6f34a5995f3f4109f55cf790e34e4161e3214fa009674bd4"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64emithelper.cpp",
+      "sha256": "adabd64fbe589d0be2b19fe4106348ed3073b0920688fed4c2026f2925bed820"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64emithelper_p.h",
+      "sha256": "d7d63a61261f20a84a93cb3adb2111b878bd3c82238e04de27b73ed94662322e"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64emitter.h",
+      "sha256": "d90ac355d80f39a87329083b95f612f24f72d66620f2ebdaed0c7ea59473fa73"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64formatter.cpp",
+      "sha256": "4c7fbff3b02a5fda72e02f980e1a9c6d8f357387e64009d6abe21cda88ad2de5"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64formatter_p.h",
+      "sha256": "445b02a6de891aaa70a27d71386057eb078bea90d5e98f188405b898e21e6fcf"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64func.cpp",
+      "sha256": "510b87117bbb45d0d8580035b57b29b6bd169cf9b8a7d4e49e83ccd57dbe7e8b"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64func_p.h",
+      "sha256": "8f9a339b71e0db2aa29146c9966abff42d525ee6bc9efc2cf5513a5d2009f16e"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64globals.h",
+      "sha256": "0414d1be85e9fe386922ce77f658441b11557f5ec79538714d1d28403f38cf07"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64instapi.cpp",
+      "sha256": "9ac97b0c4b3d3bb42ccefbe713402474c42ee95b0fb1dba848cfc66737088460"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64instapi_p.h",
+      "sha256": "4204e21124a73b65a73831dcd137484961787b7d7df31cb519749db8062fa751"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64instdb.cpp",
+      "sha256": "49a4247beb552c8596f6d80de442138c09571a993c69d4468499172a1c9d7d63"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64instdb.h",
+      "sha256": "6cc8aa024ae2654a70ee43462c23f576bd521453450c4334a5737a00cdeb0790"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64instdb_p.h",
+      "sha256": "0949dbfb515c9c90eb37f7b2582adfa017cbdd1392e806e61c91ca47be2291a4"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64operand.cpp",
+      "sha256": "9d09043e96b6a13d196effe89186b8e533d8f4e86efb85bf2960a4c8cb4699f6"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64operand.h",
+      "sha256": "2f33ed439764527f88c6e8271ccfb84e453678ada26f6818c8a2712ee4c43a4b"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64rapass.cpp",
+      "sha256": "f1f8cff440bc60770d21460e8dc1e8bce47a01836a58459b0b6651cc00f68144"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/a64rapass_p.h",
+      "sha256": "81df670f336c3225d3eae7c90ba716c69dfbb83197576707686f3fade41773da"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/armformatter.cpp",
+      "sha256": "341cc51b132a1176281a6d5d04dac4057281f79e3cb43494936c06e4cc5b5ef7"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/armformatter_p.h",
+      "sha256": "12f6cc4d2471068df2f108f58c9f44990d79dad2cff49f4a9362ac2595afe035"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/armglobals.h",
+      "sha256": "175589eb589422509b34b7169abf019f5839ecf2f8285657baca262f21f1ee93"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/armoperand.h",
+      "sha256": "7dac6ced7506a03caff1d842c85baed09924330a635b616b73506fae7c7dec98"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/arm/armutils.h",
+      "sha256": "638f897684d15249569bc687d95aec6ca9a9d1c4b0c5a3994c001736daa65560"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/asmjit-scope-begin.h",
+      "sha256": "ac034e5ede26a6f4528f22d11dd9bc3a2e004f9c6e332279fb79444efc446dbd"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/asmjit-scope-end.h",
+      "sha256": "17a5a52eccdbc748d0e26e6bf2f6aa472e0782fdbb2fd2c59108d7ebcd3386b9"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/asmjit.h",
+      "sha256": "834d510c897595529f2923b57d202202c61960dbe7d68486396a5fac3ce1a603"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core.h",
+      "sha256": "161e92885a7ebd856ff7ce449ef9f9088ff2afacb662b9bcce06f64815097294"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/api-build_p.h",
+      "sha256": "cf71592b221c8b684e091d2604fcc77e3db86c3f4bd94be2a4516a84ede3c662"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/api-config.h",
+      "sha256": "338f89502add8963c61a100a4c9437864d01733eaaa5a74f7687249244518ce8"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/archcommons.h",
+      "sha256": "d57d5563b58856a6ca3afeb6a9d30f50eaa6d7dd72c06ea780cc2f2e3438f7ca"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/archtraits.cpp",
+      "sha256": "5e0d0e4d02a082f2a4280067fe6192ea9e04aff355a3e9484f8b9e983d7db484"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/archtraits.h",
+      "sha256": "04f286bd46e17720d1e8468d5e1bc0f9bc8a0bb6fd7fa75d3fdfc40388b7b7da"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/assembler.cpp",
+      "sha256": "32cf77c0cafec41794d35edfb3f9920d52593c956e49a87af211bffcf56284a5"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/assembler.h",
+      "sha256": "595913a2c8e4ee30f4ae060fe543b1fef50a62ef44dcb0117be9b21b9c3314e7"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/builder.cpp",
+      "sha256": "c2f813d2aa7c14722811b6e6ef8e446615e48110afae1f0db068b8043372a485"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/builder.h",
+      "sha256": "672ca341035bf3d9e029ee10245b5813c55c77cdd49ba941507efdd2876d9cac"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/builder_p.h",
+      "sha256": "6d4d07774757a8a2a40d74a6c0721b17483b87731e3999313a4c75789c1dbaf3"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/codebuffer.h",
+      "sha256": "35047b0cc72051de1c6c534a8db771881a36d28bfab9c5846113b4b01704e2ef"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/codeholder.cpp",
+      "sha256": "23d7c74423ae94790282c29f23046a82920cbe5930cda034ceda3289b501b82d"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/codeholder.h",
+      "sha256": "bc5af0963ed2deb06c0eadf35d43ea9a4218d34f9346fd55dc4cbb2461821d0e"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/codewriter.cpp",
+      "sha256": "caf88c4a52fbad756eed8a523ab48742ef792a0d20249e8aed4a27e5713e8b75"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/codewriter_p.h",
+      "sha256": "74c753467dd7cd1dc6d57b3578fd717db8ae8f6b832d99d894761b701712d4d4"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/compiler.cpp",
+      "sha256": "13cb28e9d8eee896373c94445f9c46a174cffe299fd6e577ef309113b057807b"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/compiler.h",
+      "sha256": "b75a3106ae89164e0ba38c3b952f5949029c6e01ed7a3d1741cffd114899581e"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/compilerdefs.h",
+      "sha256": "17127e2866bf1986328d996f3f22779cb462747884439837de03cb5478d3840d"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/constpool.cpp",
+      "sha256": "8d4f55ee919dfe43bde56884c06cf8a5891426798e0d85060769d694ea2df57a"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/constpool.h",
+      "sha256": "9582f8cf333accc21409a43901293f6824475193e74c175268e6d5e2fd5f416c"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/cpuinfo.cpp",
+      "sha256": "04ac242092a43849ee58a90c8e3a20605ab6346b348dc3a9b298008673c114a7"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/cpuinfo.h",
+      "sha256": "5d02fb636520b7a69fa62b1e53ff774da0859864c4bb4cd133aaef4d04720953"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/emithelper.cpp",
+      "sha256": "19995255d5815c57ac49b7463e24d75b0598faeee3f968479accefabd0b99946"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/emithelper_p.h",
+      "sha256": "838ce7c392b2cb449f90e12de5127c7a5789db10371cbc8f8abbaa1f0df21ba4"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/emitter.cpp",
+      "sha256": "e9b14da4a9695e62db454d289769d80178f4ae543a3a6109514d0963003ce866"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/emitter.h",
+      "sha256": "388be9775239060894ada2ff7a1a58bd9d67ce425f6c7021daa5a2b1a34001d3"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/emitterutils.cpp",
+      "sha256": "1396a446f5bb2ad1113c704bc7a60c21c5ff868d308f506da9b76d05399a69e2"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/emitterutils_p.h",
+      "sha256": "ede2f4af2678ec702a0c108f8ea83507a9e247a4c6c64df536edf9829ca95f5e"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/environment.cpp",
+      "sha256": "2889bde18b8ffe50b1621caf0d9c6c65bc2f7bfb881aac26ead263456ff745ec"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/environment.h",
+      "sha256": "124f9d579730fac5b8c0257eb09f971bd9f84f77cf7748f06c6e09d7a2159ea2"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/errorhandler.cpp",
+      "sha256": "1eedfba31b7d9451b781e97a3d3fcbf08ff4ddd22d7516433447c970c09d8eb6"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/errorhandler.h",
+      "sha256": "405f10f5b986618cc7f3fe75c52d921b9bff092f8ecb5d78bb731298bbb1cbb7"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/formatter.cpp",
+      "sha256": "e7a37dee3824efa4e061f5dac03ab64d4591f2766e09d22a00e3f9a898b8900a"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/formatter.h",
+      "sha256": "98adbdb4b9a18d8ade93abdd07d39342c9e67d08631ded642a4aab33d026a93c"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/formatter_p.h",
+      "sha256": "3f2653270ae701d637fa6768d0d81c330fbbcebb66b354f57b04b8bcf32aae1f"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/func.cpp",
+      "sha256": "4d278aa78406e62c706f7c21c416134ad636646063d9603a29564e04b79b1f7a"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/func.h",
+      "sha256": "643fbf1ac2ee1beb03dfcb76d669650362c158de5890c81751a41556d90e575c"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/funcargscontext.cpp",
+      "sha256": "9e334373b128308f414fbc956f3e47d098fbf71dc71b7c0cf63a33bef4edfb90"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/funcargscontext_p.h",
+      "sha256": "fac13db0410f6e34e1b603d6640acf747845274882838646f414f67fd6e7e686"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/globals.cpp",
+      "sha256": "42a7370dbfb1443ed51eb53d7ac161c721316507e2a77f29463032cff07023b8"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/globals.h",
+      "sha256": "6706d300f37b4fd75adcb30ce6151500456f32d44d1690548abbb471ae6a1bc5"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/inst.cpp",
+      "sha256": "c61907ab58e25a64b69fbcd8576771707fa99f46f0ac6655378267352cabe4a3"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/inst.h",
+      "sha256": "2db57ff9b55131d1eec89b02d4efe62158f3c6564da6f7ebb14a872717037fe4"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/instdb.cpp",
+      "sha256": "ddb064576fc4158c0b96b26132e895c2d8c9b212901e91fdce41d1d31507b0e1"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/instdb_p.h",
+      "sha256": "0f4bdc308362352eb2a445def6556291f8039571d4e4c26988d4e1314cff56fb"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/jitallocator.cpp",
+      "sha256": "36e607bb1dd7bef496cf3cb6afd8e186d60a46d542a319dee20b6d00bec13a91"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/jitallocator.h",
+      "sha256": "329167f24b9e684172d91131cd38a4b23f912485175f42b9ffb14ebed88db266"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/jitruntime.cpp",
+      "sha256": "90eb3c3dc1344f75b2cd7f842ea2c954d58626bcaddded02b163dd93e785ca97"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/jitruntime.h",
+      "sha256": "c7d79d6844644d223d5b6bb9765487a36a0b3c0e5a9e7b9f14366f7e7eb233e7"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/logger.cpp",
+      "sha256": "a1c3ec91d130f400564c09fbc42ee65fd7f1e8a8ea685d926ed67f01e7ea3f70"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/logger.h",
+      "sha256": "873828d06cd214a0f7860367ed27b465971b6ed74a871f4f9c5eb6e123912e1d"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/misc_p.h",
+      "sha256": "0cafec07fd5de632073fefa27cc192d4eb188e27b847f74e95bc69fb6fb94713"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/operand.cpp",
+      "sha256": "3c20c473f608b2cc63971db14c806f64d792a70456d790b296ce518db2d10903"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/operand.h",
+      "sha256": "1333b53c7680dfe62d36043db1d2d61969908ddf27eb7bcd8e30225e62af489c"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/osutils.cpp",
+      "sha256": "d0e2163533f1d560e8773bd9d227ff533036bbac26ddc67864010e30862c9d65"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/osutils.h",
+      "sha256": "de30d57d409751206dcde3337f1e2eaba02f0845f78247564d2f111b67efd737"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/osutils_p.h",
+      "sha256": "7b7bf03d13f49aa7333f7f26f8bb970c1c018e55ac56a71739b9a316a58e94a1"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/raassignment_p.h",
+      "sha256": "9363cd5817fa44e689523f78dc90fd1adff3f0a9d3cff91f152936614f6e37fb"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/rabuilders_p.h",
+      "sha256": "2cc82f828899a6e41965e8a105aa0ba12adf38bfedde71eb2926411b2bb20eb5"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/radefs_p.h",
+      "sha256": "6d47e046c5fd0191b3e654e7f959f2f660ea9f649fee94bb86d7837247e7aab4"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/ralocal.cpp",
+      "sha256": "f4297af4017169c3211cd44e3a9eafc2a038377162eb0af7c2d44f8a48398d57"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/ralocal_p.h",
+      "sha256": "7385bd9765cb30dfc56211d62db3cdb50abadbe6a884e9f979aa9eae4c5ad9e3"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/rapass.cpp",
+      "sha256": "1b1ceea00fbb57273fd2c0a1f7d285e64a6ed245baf3dcd39c8db40c9dd6f3cc"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/rapass_p.h",
+      "sha256": "a26d8f8634daa59b8ea60da85f4531bffdbd14bf4ca53020ed2628924feb69b0"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/rastack.cpp",
+      "sha256": "9f6a1f442e49f053b5c4915d839d291877887f11f0e892a46384fb2ccb048896"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/rastack_p.h",
+      "sha256": "0d6550e3bfebb7236e7066cea806a81543f30883500125d7250e26ec46ddc6eb"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/string.cpp",
+      "sha256": "846b174fce6e49914326a2e7dc106bd687ad0bc7bff651350f6cc9f19100c688"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/string.h",
+      "sha256": "9866fdf978e13d49c40b3a4dd490c8b922df6e9b803482e727f23f401bbb435e"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/support.cpp",
+      "sha256": "98d164f51326e8472f4645b0c0e9beade5d5b872e9dcc18dfb99b6f24bf45cde"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/support.h",
+      "sha256": "045d7bab82a2c1ddc15ca57c1d90230fbada7c88c9bcc712ce8dc9a0c3866c8b"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/support_p.h",
+      "sha256": "c79cd3e8ba7be11dd931ef6db2d0c756e7d26742ec7aa4a5cd848ef29ae3d7ff"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/target.cpp",
+      "sha256": "3e01ab2f02c3da563a211c51035ac4286faaea299474848d0cd7d6349b26dd10"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/target.h",
+      "sha256": "f5f01f572558ae7477090548ee041736260251a10a8d7c9f5dda2e6bd78a4f7d"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/type.cpp",
+      "sha256": "0173391200d14d0c92cbbc10b6ac241d0324670fb127f739a3ed1594736783c9"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/type.h",
+      "sha256": "d6d0c2fc56c9868b644412d9d0edaf463f647f9cec4b6a4a60399bcb41c93cc1"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/virtmem.cpp",
+      "sha256": "64c3dde0c207bd5874141b000da937f7abb5013d038e999ec50baabe3e0e9ead"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/virtmem.h",
+      "sha256": "ddc5a170c82fbe1909a85213f143b2ce72ca058b172133403e8436ad5be04bb3"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zone.cpp",
+      "sha256": "4520ed82f8bb3f41f800f745d357fcdc3559290f8fab83f397d82a92be09dc76"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zone.h",
+      "sha256": "436363d8d40c255f92cb2aad052593df64ff7166c8539a8c5b48ea5155e88956"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonehash.cpp",
+      "sha256": "811a499db4c69e71c3fd97fc73df8c8b69d6fbd2a8f893c95d6679e865a4b0b3"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonehash.h",
+      "sha256": "93fad246112d58e03fcf4646d9faffdd29fb212749adede9f039cf7bd7ff8c3e"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonelist.cpp",
+      "sha256": "8602d59147c004b8ce43921ef3807d103b481e648b18841aade628aebc9ac268"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonelist.h",
+      "sha256": "193a6d9043f4c7ac3c0276a250b2d0f87c969745d4082808e52e23bef3e4cde6"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonestack.cpp",
+      "sha256": "37bcf20891e4ae40b9cba7c18d8cb37db7036324750dbb51db9abbfa92ff910f"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonestack.h",
+      "sha256": "637a065da63eeff53601684485b2e3169f8e189f8cc150fc552e7e60651f17cc"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonestring.h",
+      "sha256": "7322369f979708f328824b589dfec525167dfa664b1ae5c15936f6f263303663"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonetree.cpp",
+      "sha256": "78a492d3e1c3f9397def40701a96efd8c761aec68c58ce7df6129bcb93531a8e"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonetree.h",
+      "sha256": "3ca949567dfff4ab06ae368789186b475043ad149655c601482ed727a42832db"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonevector.cpp",
+      "sha256": "62de29f787e1eaa268e74ec9404fbd4518be28fec0c140a8bf21cd03d1760915"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/core/zonevector.h",
+      "sha256": "bbc728725e681f76037c088e3783556262dc4bdcc78b7080fd83a27bcd7b4eb3"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86.h",
+      "sha256": "d837e205d455475fe86686eb83d2419b7c53a4e1a094f3438afb4cef4e33545f"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86archtraits_p.h",
+      "sha256": "328349b2164d540ddcec615280d94a91f1cf296465678a605d10616a0126cc9f"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86assembler.cpp",
+      "sha256": "1ff5d7440e02c6ca72df486321939ef5a0317aa9fbee472c612be7472a76ff36"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86assembler.h",
+      "sha256": "74b0f23294fb435285fa507895cfc2fe7cb33bc9db6c584f58ebe238ee4896aa"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86builder.cpp",
+      "sha256": "009a6a5817a4251ab56151dd724499214e1400022a2f7a5244b42ef62d00633a"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86builder.h",
+      "sha256": "cae9d0b88a25d66e347065adb1ebaece85da47a93a79729c264883613c9181a8"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86compiler.cpp",
+      "sha256": "8b1c8f573d17c949d77165b0d04908396bbf13ce3942350c365123b1d6222478"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86compiler.h",
+      "sha256": "0cffdda5776459f74c12e594fe2a708514cd39573feeebf0cb24378986cc1e53"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86emithelper.cpp",
+      "sha256": "97770b06e0c61e1ef8c270c28e02150f7de4f4f9e9ba4a2e95b77f5edc2b6dfa"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86emithelper_p.h",
+      "sha256": "3350e45a817503d3225e88ab596f26093dc883eb4e211a9bcc4ee4744d6c46bd"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86emitter.h",
+      "sha256": "2bf67814b3873a0ad0b0c3bd4fc0cf5640e445e9a360e5cd9448535447c6cfbd"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86formatter.cpp",
+      "sha256": "a9d9d0a507ce0f57af5620efb4df6798e672587cfb9e8ba2f0715ea47df4a89d"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86formatter_p.h",
+      "sha256": "88643ea144ea1912942db6935d414c7ac915ab4a8e9d43b08b229a04f09dbc78"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86func.cpp",
+      "sha256": "c2200fbfef1994b0e39e12adf0c1f18e6ae396d79c73584578496b1809b7d9f9"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86func_p.h",
+      "sha256": "5e1112af6aad31a270b597027b64bf127afc1c5bfda6a13255a48debff11f181"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86globals.h",
+      "sha256": "467f39555176ef9c41279528f0b95a2adbd140473cb008478d6db215ee254d67"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86instapi.cpp",
+      "sha256": "c4bcdb560cf6b1ba2d2cc04396edf3e0cb7e0a69f863b50f5ae35f40248c0ed7"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86instapi_p.h",
+      "sha256": "246b82ad208ed1aeff3aa509638bc210e0fcfbdae4b09328241370112da0fd2d"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86instdb.cpp",
+      "sha256": "7cc4b611ebcbba389639f3c4b59e07a889664146906f83e23c32cc158c777388"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86instdb.h",
+      "sha256": "051f1ba0e5c403f47ba5067e378c9309a80229fcc10bb916c38a9355e5c87d07"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86instdb_p.h",
+      "sha256": "bd1e59e259f7f10c44cf970c828a0532e4a2ae0dabbd859fb17be37bb6584d74"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86opcode_p.h",
+      "sha256": "3796a05da28ab9011343f2d1f7f126e5cbecf138d1e254a405c2d51b783ac462"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86operand.cpp",
+      "sha256": "8ee81b1aa40649bb3b5de80da6df4c7c33019d372a19d89070b15d0b3adaceef"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86operand.h",
+      "sha256": "01c1b0da28d25fa755b55a677c470d237e613b5010d010d25b43cd039e1b3bc7"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86rapass.cpp",
+      "sha256": "9d0bfbbdeafc1ec5faad43ddc5f6e5309e98396dee95b84c0dc7396b5cb7270d"
+    },
+    {
+      "path": "3rdparty/asmjit2-src/src/asmjit/x86/x86rapass_p.h",
+      "sha256": "6f4b559359ac3908c2ad81d4b1cc7eaa978ff25a7f9d483f831b3a54e4394d10"
+    },
+    {
+      "path": "3rdparty/cJSON/cJSON.cpp",
+      "sha256": "604bab7bd7904ea967b8a36734e2780fabbe505aba5744aa9eb2498a90fd5898"
+    },
+    {
+      "path": "3rdparty/cJSON/cJSON.h",
+      "sha256": "46afab47f56c51429bf7162433ca2b73ed8c30d56daa5fb44cae0e9cdfebf850"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/arm.h",
+      "sha256": "55b51767f8a9118eb73a34ed231eb6ffe3ace5df3326e42fee430778f5628d30"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/arm64.h",
+      "sha256": "335cd0305922e852777cdcaa0e38479d07d1333d46cc8cde0fe90c03ce776c9b"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/bpf.h",
+      "sha256": "864014559514848b914b26310c912eaf42a1c54ab30cb9f89d6edf6393a79eef"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/capstone.h",
+      "sha256": "8d119a76a0c75d86773e09967bbe2d660a2226804076b7476ca54726f09e571d"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/evm.h",
+      "sha256": "1defbf3926651d481ae0fd9942f3811ceac6a79df28fbd5d58eb6b0423d8b34d"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/m680x.h",
+      "sha256": "6d20cb54b1c882aa874ea364e98c880484fdee65e046d0a172a31b82400eb141"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/m68k.h",
+      "sha256": "91f23e01a3addcb9b8b18de5d2fd2946134fac782cc7833144187b259f145a98"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/mips.h",
+      "sha256": "8f806d3f8f86f84a36a6c2e586c10191c8494a8e6cb036db5ed020c5ae402158"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/mos65xx.h",
+      "sha256": "7ef12404e03725a1d807f46bfac06de0c45981b353532ab67efb4e07e4e46ce9"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/platform.h",
+      "sha256": "06ccad6778eea6a94930f10e20e24ae4287014a4dc87cc66b9f13198371d838c"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/ppc.h",
+      "sha256": "d1d5bf90bf03ccf479262cf90d003ccd271f941a369e0e5556076afc3a55caba"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/riscv.h",
+      "sha256": "6d112f486553896607746315340b69db991242d81e8c33b30f02e0c339ade25a"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/sh.h",
+      "sha256": "a3be96c93a2b91682ff0bcd3ba0a1303a6f30fce8aa9105d52a84d0467b60aa4"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/sparc.h",
+      "sha256": "59f988c98630a9c3f70282a1095861f48bfcfd58f6d104f24f378a17eaf767ca"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/systemz.h",
+      "sha256": "32da6c63cd358ba7002814b2a0f77d0fd617347ead2c30cddc8e9f8075740b87"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/tms320c64x.h",
+      "sha256": "e30f98590a301d65e413951a663ea6cd15f7f9992543bd52dcc6f1205ee0a061"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/tricore.h",
+      "sha256": "c0bcc689644f0066cbae95d3b6e9370545336aa5415c329990f273f01e736c23"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/wasm.h",
+      "sha256": "f2861adc7692734ddf9e955f6eba5c00ea5462eb30f8c2da2239b4718febff53"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/x86.h",
+      "sha256": "e150421101a4467c7f1ff6418f16a97f7504df27af6f2d86c44b13b8f3f7b8a0"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/capstone/xcore.h",
+      "sha256": "5f81adf0761c57cf61306e4f683f27cedcc9f50d7a308a374c389d16e490c297"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/platform.h",
+      "sha256": "f2beaaae0d1f8ac9d560e43823e4bb5fa769450f4bddbe0e82ac43c3fb88cafa"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/windowsce/intrin.h",
+      "sha256": "d24dca6c3d80f8ae288e5d5922d16e4a163c0dbf5843ff2fb6bb0cf52ab854d0"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/include/windowsce/stdint.h",
+      "sha256": "e61bf4c7f6a48920147f221380398a4c8540a315143dda3e66c02f24f69fc99c"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/CMakeLists.txt",
+      "sha256": "a40bc15f85abc57c29ad8aab670130e94a89674740fb27f6ca1431928df9e045"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/COMPILE.TXT",
+      "sha256": "558aaadffb37762273ff8f7a9c5b945f01a07bef9be4096859b1cb4533877be5"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/COMPILE_CMAKE.TXT",
+      "sha256": "f1928a2d85d7c3c41d65fe143612dabfb2e67d05f1b89947ae1b881c4b213752"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/COMPILE_MSVC.TXT",
+      "sha256": "6213ab10d9e8836d812bed563c6a09f3a75e643776e39355be09249111293000"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/CPackConfig.txt",
+      "sha256": "2f63e5c949065e034914b5a15c2e47f9b3a9b73f6f2a3421ade8e76c7971e9ca"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/CREDITS.TXT",
+      "sha256": "cd1c44a8352e47542e04e8a8db1eb5a33838d2112f7cdc275f7333186244f8b6"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/HACK.TXT",
+      "sha256": "08b5f0850cbde60f6fd44d9e605e46340e22663ce01652874784b96de38994be"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/LEB128.h",
+      "sha256": "16bb481f03d8fd58b129224f9f87f880e3fcc1500526f30af1eab57c232e508d"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/LICENSE.TXT",
+      "sha256": "404bd0cb0137ffb797258f844f53e5273f9b6d5781a1a359a2880411f49a4f30"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/LICENSE_LLVM.TXT",
+      "sha256": "d4cc2005623614495b43508021c85d1d2ff21d8766287605ac41fee47f499bf9"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/MCDisassembler.h",
+      "sha256": "7af47bb825ae85bb2757a533b16ddecd754faa0bfd0cf9ce497be72ca3a57547"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/MCFixedLenDisassembler.h",
+      "sha256": "35a4d3e055c0a74ae0ad0092c801089cd6954c51caaad7d45db5ba07dea5e8fe"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/MCInst.c",
+      "sha256": "7a148ac2fd735fe17491cb497fcb3a92ef323c0fdff7b5a55d4d1a07521e93e8"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/MCInst.h",
+      "sha256": "ad1e64be4f6e5c382df705138fd77e6b8a39387431c70490950270ed6308a9fa"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/MCInstrDesc.c",
+      "sha256": "23e1aedea8752140380b415c50309e3cf3f148d8881ace310064224717fe163c"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/MCInstrDesc.h",
+      "sha256": "e708541aef3293f36c6665edc9153fde1ab9322efd01e91580fc3d75b1f330c0"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/MCRegisterInfo.c",
+      "sha256": "fc1f88badf9b1c7ab84f02280bc8e1fa5f577f8970f5f6ef9cdcbfb7a0b65219"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/MCRegisterInfo.h",
+      "sha256": "07807c43c6f8cbd660df54eda742a70101414af3eb6284cc6d652b336b0ae060"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/Makefile",
+      "sha256": "2266c5e9df181b61d3168be093902ea32cc6d4a91cc83fbce7c1bbd1cbe91a0b"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/Mapping.c",
+      "sha256": "f8559a33ff23b3e15527da1c3c48e65a15f6eb342c8847c9ce6f0e8783b12f02"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/Mapping.h",
+      "sha256": "b4b89cd192f3a0788beb8c87f090ede7db3d1d7defd4d118f33317c139a5e00d"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/MathExtras.h",
+      "sha256": "495f2846e2e7723c7a1580e126089f8303eb3b1503641798da7a6feafd657d04"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/README.md",
+      "sha256": "0f5f409075955aacdc4855b1dc35e57bdc1383ca3c54f99dbb7fa658cda7187c"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/SPONSORS.TXT",
+      "sha256": "a1f060b17ec3ff0ec7149b01efc45d28086396affca78412473be4ab1197622d"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/SStream.c",
+      "sha256": "4318b2e4729012175448ef5f087edd67a78e8fa93583648a1b7f285261b72694"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/SStream.h",
+      "sha256": "d6d30916916b837fe9da0f1cdbdf262d49e02ef3561ea8c2ee449cc2da240836"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64AddressingModes.h",
+      "sha256": "f032463219e62724a47ca210bba5afab8424897d57b0b716ba8ece7970dcfd9e"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64BaseInfo.c",
+      "sha256": "5bcc07e004f5067cd6a7ed9679559f750bc5fa94c3a92a0cfe148ea5d9c43e9f"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64BaseInfo.h",
+      "sha256": "7861f0ddbd0ba040b384c423a8b749e9b5155bac2a95ceeea5e5a7fc8fd53e6e"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64Disassembler.c",
+      "sha256": "9e7afc7be9be7d03056eaa193c95bfc7bac863c1ddb72646db10a9ae2910fd0a"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64Disassembler.h",
+      "sha256": "c5721aabbca9847833b2d7fe3fa4a8e339d5fc557d768a987ccd1a014899aa26"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64GenAsmWriter.inc",
+      "sha256": "174787ffa2f6cd31133311193e70d656d057afa9e31e63652189cd24e12a8221"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64GenDisassemblerTables.inc",
+      "sha256": "09f35a2d0e0099946a0bdce97a75c55e603d09ba50d163b9535e31797b2fe7a4"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64GenInstrInfo.inc",
+      "sha256": "0f62270bf7319f0dca923e59de88f681b702da1098879a6137b77ebde0d5da0b"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64GenRegisterInfo.inc",
+      "sha256": "8f50064ec7eb3852425e4089c1e1f36f016acbe0ba1c764a29592ed2b7f22c09"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64GenRegisterName.inc",
+      "sha256": "82df8b8c4fefec6bd16550e105fc8ee00cd2f5ef8a6c7c8d4241da21c5051082"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64GenRegisterV.inc",
+      "sha256": "1590311f8c2edda8dc1f973cb59b25e5fc81770da9985a9fdcafcf59a1babab8"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64GenSubtargetInfo.inc",
+      "sha256": "738280062999801937ce0076cdedc6cb7199ece8a360e9ac841ccd3070396fd5"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64GenSystemOperands.inc",
+      "sha256": "667461676dff003e862be00c2af0257f9858403283e2532b897b92de877cd2b0"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64GenSystemOperands_enum.inc",
+      "sha256": "d81f0fdd30880bf8e9a3d0fc6433b35df7016d245e3b177700235c933d7738d6"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64InstPrinter.c",
+      "sha256": "572144309f5a9bfe298c12345493833432b476065d3cf2cb3a3805faac3df303"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64InstPrinter.h",
+      "sha256": "d83c8097123f6b32abbc190cb29bd7b4fe82589a3c13b9f8a5c62c13b0b6f6a7"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64Mapping.c",
+      "sha256": "1cf7c78975cfd9a2861aba141a11d8364c5640c4fef13997c2add4ec4281de4f"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64Mapping.h",
+      "sha256": "022e7e433e6edf9c01e48778308d0b78e392795428400f8e088c43e8ea96c649"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64MappingInsn.inc",
+      "sha256": "57f80ac42b702187d960cf4587723b578f71f3e9f136caa1f4a5b3d1c2b869f6"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64MappingInsnName.inc",
+      "sha256": "f0f942febdf5fd61ca0f11ccd07206b69277776e46a95e55b23b55be728af3a5"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64MappingInsnOp.inc",
+      "sha256": "182854b11ad6003b93142dd116b60e9d40844849019d4b834128e7b6af9b3150"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64Module.c",
+      "sha256": "cd923d1ffdb2dabc1040861089b0dbf2681828ea23e77a4d49da61b9269212a7"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/arch/AArch64/AArch64Module.h",
+      "sha256": "490dbaeb739c40ae0b84e20bbb4b7744c55cf283d6c060f7b61d7770b9a8234d"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/cs.c",
+      "sha256": "4084c89036d759c4f72e95b451540f73395ca4a30e669f484f4f241caee649c9"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/cs_priv.h",
+      "sha256": "7360daaf3082181aa7edf9251dd7ffbb289d4c1c303603d1e6370e656ef3e4f9"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/cs_simple_types.h",
+      "sha256": "47a5c7df006975a52f4c56af89cfcd126a0cd2d1893e0e9e16d19871e32d16b6"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/arm.h",
+      "sha256": "55b51767f8a9118eb73a34ed231eb6ffe3ace5df3326e42fee430778f5628d30"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/arm64.h",
+      "sha256": "335cd0305922e852777cdcaa0e38479d07d1333d46cc8cde0fe90c03ce776c9b"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/bpf.h",
+      "sha256": "864014559514848b914b26310c912eaf42a1c54ab30cb9f89d6edf6393a79eef"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/capstone.h",
+      "sha256": "8d119a76a0c75d86773e09967bbe2d660a2226804076b7476ca54726f09e571d"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/evm.h",
+      "sha256": "1defbf3926651d481ae0fd9942f3811ceac6a79df28fbd5d58eb6b0423d8b34d"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/m680x.h",
+      "sha256": "6d20cb54b1c882aa874ea364e98c880484fdee65e046d0a172a31b82400eb141"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/m68k.h",
+      "sha256": "91f23e01a3addcb9b8b18de5d2fd2946134fac782cc7833144187b259f145a98"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/mips.h",
+      "sha256": "8f806d3f8f86f84a36a6c2e586c10191c8494a8e6cb036db5ed020c5ae402158"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/mos65xx.h",
+      "sha256": "7ef12404e03725a1d807f46bfac06de0c45981b353532ab67efb4e07e4e46ce9"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/platform.h",
+      "sha256": "06ccad6778eea6a94930f10e20e24ae4287014a4dc87cc66b9f13198371d838c"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/ppc.h",
+      "sha256": "d1d5bf90bf03ccf479262cf90d003ccd271f941a369e0e5556076afc3a55caba"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/riscv.h",
+      "sha256": "6d112f486553896607746315340b69db991242d81e8c33b30f02e0c339ade25a"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/sh.h",
+      "sha256": "a3be96c93a2b91682ff0bcd3ba0a1303a6f30fce8aa9105d52a84d0467b60aa4"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/sparc.h",
+      "sha256": "59f988c98630a9c3f70282a1095861f48bfcfd58f6d104f24f378a17eaf767ca"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/systemz.h",
+      "sha256": "32da6c63cd358ba7002814b2a0f77d0fd617347ead2c30cddc8e9f8075740b87"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/tms320c64x.h",
+      "sha256": "e30f98590a301d65e413951a663ea6cd15f7f9992543bd52dcc6f1205ee0a061"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/tricore.h",
+      "sha256": "c0bcc689644f0066cbae95d3b6e9370545336aa5415c329990f273f01e736c23"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/wasm.h",
+      "sha256": "f2861adc7692734ddf9e955f6eba5c00ea5462eb30f8c2da2239b4718febff53"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/x86.h",
+      "sha256": "e150421101a4467c7f1ff6418f16a97f7504df27af6f2d86c44b13b8f3f7b8a0"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/capstone/xcore.h",
+      "sha256": "5f81adf0761c57cf61306e4f683f27cedcc9f50d7a308a374c389d16e490c297"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/platform.h",
+      "sha256": "f2beaaae0d1f8ac9d560e43823e4bb5fa769450f4bddbe0e82ac43c3fb88cafa"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/windowsce/intrin.h",
+      "sha256": "d24dca6c3d80f8ae288e5d5922d16e4a163c0dbf5843ff2fb6bb0cf52ab854d0"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/include/windowsce/stdint.h",
+      "sha256": "e61bf4c7f6a48920147f221380398a4c8540a315143dda3e66c02f24f69fc99c"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/utils.c",
+      "sha256": "6dfa28f213d9aa44ec4e286dbb1a38811ba6e7f55243587fe615096b2b1473eb"
+    },
+    {
+      "path": "3rdparty/capstone-5.0.7/src/utils.h",
+      "sha256": "50060c51b543c6a99c5b6d9618bd25b9aa8d07dd68514ef4fa348ac7061121ce"
+    },
+    {
+      "path": "3rdparty/find_adrp_target.h",
+      "sha256": "9035409519aa0a827cf75b601e70bafd7be02eb8c6b4ddfc03f31cc671adf708"
+    },
+    {
+      "path": "3rdparty/find_end_func_offset.h",
+      "sha256": "60a55e5982cd3e3dd6721d2fdaf3703653fadda7a80dac276911836d7b7c3284"
+    },
+    {
+      "path": "3rdparty/find_func_arg_size.h",
+      "sha256": "6a2863888341d73a6d1626c78769b79e477367e3e33dbc766c55d5263f7f286e"
+    },
+    {
+      "path": "3rdparty/find_imm_register_offset.h",
+      "sha256": "4ff66d9ac6d80d32ed36be6c969e11f423f3fb5662a73c13f1a27c75e8efa9ed"
+    },
+    {
+      "path": "3rdparty/find_mrs_register.h",
+      "sha256": "74377a4949f52057fb325fc4c12ea71a0072569a81655c9d1aa113b20cd307b0"
+    },
+    {
+      "path": "Makefile",
+      "sha256": "52870c619ebef8749390d680d7a3c8ec2675c8636a2acfb54642aca77c197318"
+    },
+    {
+      "path": "analyze/aarch64_insn.h",
+      "sha256": "44dbeba80a0067c22cc39e4cb74e66b6de5fdabf3c97dabde3d5dccb614b1f5c"
+    },
+    {
+      "path": "analyze/aarch64_simulate_insn.h",
+      "sha256": "ae1124aa4b77b7295d1be75480ccd008c37effea8360a45895f16e9bea41a8cb"
+    },
+    {
+      "path": "analyze/base_func.h",
+      "sha256": "cfdcc692a30dd35277b4b5cf35959e54f6cb147ceb73e7643d11fec6232dca8d"
+    },
+    {
+      "path": "analyze/find_static_code_start.h",
+      "sha256": "580a5096436ab803e73c550c1b10a5e63f6f38e22219f924dcf00dcf2cb2b2d7"
+    },
+    {
+      "path": "analyze/init_cred_searcher.cpp",
+      "sha256": "ff6f0771fab8f173f6c7f92195ce0745de691846dc4615e43525dbef01da0789"
+    },
+    {
+      "path": "analyze/init_cred_searcher.h",
+      "sha256": "d7333c91e86899677f398561a2bee99adcc468aaf697e8a4b84909ec6f0a3e8d"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_interface.h",
+      "sha256": "f083928e03987bcd07308eaf2cd62bbfb7e8dca2010c28b53ff47621d83ddfb9"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name.cpp",
+      "sha256": "aec91e2bf983f95629e2bd5001727f96aa5b953ee1db7d86a504bb2d6f5c73ac"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name.h",
+      "sha256": "30f30d649e000b5b7fcdb7557d28fa154417a445010e05f4166f1f91d76ad2a0"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_4_6_0.cpp",
+      "sha256": "fd883dceac5aafa3362348cc708021393a716f86e08c72fb21033e58edeba8cf"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_4_6_0.h",
+      "sha256": "b1aebb52564f15992b62b3aace919bc3569fa7a4fe3958742d1edcebf5a4e176"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_6_12_0.cpp",
+      "sha256": "1b39f08f5b84ffa3113e68e34f1814a406f0f68916b82bb3ec0524941ae81382"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_6_12_0.h",
+      "sha256": "d02fb2e65f8bc5cae09b56ad02c9a8537e6aecb72afd0885e41527ef21b1e51d"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_6_1_0.cpp",
+      "sha256": "891df82685a1ccabd48e9a87699ce281a6fb36b13a49cba367209ace170c60b6"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_6_1_0.h",
+      "sha256": "a5f7d93123f86b7e31c694322539d5d49a2f863b54e349444f01c78b71a27e4b"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_6_1_42.cpp",
+      "sha256": "ddb64d9f9dc5399069b1071fc145fefb1e50a22198ec662e8bcab1d742b2c555"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_6_1_42.h",
+      "sha256": "9553d912b8f3336b722ca1c0e5b9b8fa1e68b28336fe64b5ae33f04a586cca34"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_6_1_60.cpp",
+      "sha256": "3099bca461053bc33392fd900bd27004dadef01ec26c57a00130afcc1f3547f5"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_6_1_60.h",
+      "sha256": "0c1bd393763b73f447d62e54080c771bab2f4423a684453656c99f15d612978c"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_6_4_0.cpp",
+      "sha256": "7bb70b01afb5ca1138e085c991054eb739b3b663963e954f0b8ee0d263a23451"
+    },
+    {
+      "path": "analyze/kallsyms_lookup_name_6_4_0.h",
+      "sha256": "a8e5bf85fa15c0acb15484c64e229314b128b5be36a2bc0e23df7b299f295728"
+    },
+    {
+      "path": "analyze/kernel_symbol_finder.cpp",
+      "sha256": "78435621fb247b61e07df00198f58cfd8275738de3659e247e31f960acc7a36a"
+    },
+    {
+      "path": "analyze/kernel_symbol_finder.h",
+      "sha256": "dbb79d334d5140d041383787d9794adfe5d08a54cca901c2f5a9fc2eb88ec621"
+    },
+    {
+      "path": "analyze/kernel_symbol_parser.cpp",
+      "sha256": "ebf88fdcb6d79515785bda89e76d766c0200fab18ba6520987cfed837b47a358"
+    },
+    {
+      "path": "analyze/kernel_symbol_parser.h",
+      "sha256": "0c4604dfb826df42a6d7997bfaa4d6f22b8ae11e20ae3bba0db739e6cf7468da"
+    },
+    {
+      "path": "analyze/kernel_symbol_proxy.cpp",
+      "sha256": "e1a3dab2edb6e3a71b28fbb9fe7c8f4ea448329dd4d7212cf461155b7a19d233"
+    },
+    {
+      "path": "analyze/kernel_symbol_proxy.h",
+      "sha256": "02a83d691130e82e2df87a5d6cfcd259089951088f6a062d31c0098b297e1218"
+    },
+    {
+      "path": "analyze/kernel_version_parser.cpp",
+      "sha256": "15afdbc0fcac93499b2035ff7e80aab03d8531aa85f94402da5a2475be2931fd"
+    },
+    {
+      "path": "analyze/kernel_version_parser.h",
+      "sha256": "c878bf2cde5bae3a19620cbe00f334f8193050bb16fd0bfa541f9f30fceb2fe4"
+    },
+    {
+      "path": "analyze/symbol_analyze.cpp",
+      "sha256": "3f79737d9419601e25a50405c7992a847c1b3f501f48f842f0cc2bc7a9d8790a"
+    },
+    {
+      "path": "analyze/symbol_analyze.h",
+      "sha256": "0078af200dc88160d66e7c2fa9fc51fde2a84f9bc4f70a1bd4275d33d62739e1"
+    },
+    {
+      "path": "patch_audit_log_start.cpp",
+      "sha256": "21020a1a99a8356db4710ae230ca968e2ae30ee4d0707a69f47306eea92753d7"
+    },
+    {
+      "path": "patch_audit_log_start.h",
+      "sha256": "0413d0c291622639e4c336f3db192052c9a998f633d24dd1ee18aba5db66f9c7"
+    },
+    {
+      "path": "patch_avc_denied.cpp",
+      "sha256": "0c90a3f03b66472881c256015c81f2c08bddbef18c3a54cf167ecb4ee83c712c"
+    },
+    {
+      "path": "patch_avc_denied.h",
+      "sha256": "498498a8b95b645b029f123cdd43838f233ec76ade227474ae29f0fc082f861b"
+    },
+    {
+      "path": "patch_base.cpp",
+      "sha256": "becfd64aaa4663e5757cc131db690fc89dc09255144cd362649ab2791adf56cc"
+    },
+    {
+      "path": "patch_base.h",
+      "sha256": "4595a77caf5ed80667eb64e1c8ebd9c461b1a0d7540e13a40a8a3f11da4a7045"
+    },
+    {
+      "path": "patch_compat_filldir.cpp",
+      "sha256": "c0c34f2c2dc3e4ee0c86ac2b1c0aa91a8004f8b8579cd08a6fe97d2cef7e751d"
+    },
+    {
+      "path": "patch_compat_filldir.h",
+      "sha256": "d1f32ab69df7424a1505db9b87de84ac6ba33c9e94d429ff8e4033fe54eee829"
+    },
+    {
+      "path": "patch_current_avc_check.cpp",
+      "sha256": "691a2bc4be0a42b30519b977c958238e4d89dcb9675d20a19b5d399476d75e74"
+    },
+    {
+      "path": "patch_current_avc_check.h",
+      "sha256": "4d3dc67f1fa93c5b64b941bbc58744acb02ab387680e42a086949580cfa3ea06"
+    },
+    {
+      "path": "patch_do_execve.cpp",
+      "sha256": "6b43850bade0aa9f9848c2a5658a7515c14650f8abbc6f014e3cdf3e6d5fad7e"
+    },
+    {
+      "path": "patch_do_execve.h",
+      "sha256": "2003941b801953bf7620efd735ea7a08b95beca50c99cf2b7bcb255d652c69f5"
+    },
+    {
+      "path": "patch_filldir64.cpp",
+      "sha256": "aa080f6a979e06a1905a2ca67d2ec0b2a440426a08c05b66e15b6b52eaed2b7c"
+    },
+    {
+      "path": "patch_filldir64.h",
+      "sha256": "f61fc16b4cce9884566587ab40390012e28a214b54173c41c6e7b8f3051b1d2a"
+    },
+    {
+      "path": "patch_kernel_root.cpp",
+      "sha256": "e372fc52d2389c7cbaa8051bf1b4bfaf0481c04e22f4efb2754bfeea05f4ba8a"
+    },
+    {
+      "path": "patch_kernel_root.h",
+      "sha256": "bbb3f6424873fa2cf3478f621730fbaade18b5ba2d1f77a0309a773b5c539be4"
+    },
+    {
+      "path": "patch_kernel_root.vcxproj",
+      "sha256": "4a340a23749c07d9d134aec610b49e5c30d0b9e625d0905eebc57a073dae64db"
+    },
+    {
+      "path": "patch_kernel_root.vcxproj.filters",
+      "sha256": "af4959f57446f460afd41eb4912c58083991222ceec238316da08cbaa0bdaf28"
+    }
+  ]
+}

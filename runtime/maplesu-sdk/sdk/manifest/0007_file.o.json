@@ -1,0 +1,31 @@
+{
+  "idx": 7,
+  "name": "file.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/file.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 9,
+    "recovered": 9,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "96971b465b2b7f4c9150d7cd80bde2421e3e27d36d1d2bf464ffed34ed9fb405",
+    "bytes": 245348
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Two-way symbol gate clean: T 9/9 exported resolvers, U 139/139 imports, raw diff empty both ways, no allowance consumed. Rebuilt in the frozen member's container with the member's flagsProfile."
+  },
+  "notes": ""
+}

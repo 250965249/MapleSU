@@ -1,0 +1,80 @@
+{
+  "contributors": [
+    {
+      "name": "MapleAutumn",
+      "github": "FengQiuFQ"
+    },
+    {
+      "name": "晚风",
+      "github": "bywanfeng"
+    },
+    {
+      "name": "有希",
+      "github": "matsuzaka-yuki"
+    },
+    {
+      "name": "佐佐鱼",
+      "github": "Yutou04-sa"
+    },
+    {
+      "name": "知秋",
+      "github": "947409161"
+    },
+    {
+      "name": "7kimimasy",
+      "github": "hartgerinktarcila-design"
+    }
+  ],
+  "source": "CREDITS.md",
+  "upstreamProjects": [
+    {
+      "name": "FinaSU"
+    },
+    {
+      "name": "KernelSU"
+    },
+    {
+      "name": "7kimisu"
+    },
+    {
+      "name": "KernelPatch"
+    },
+    {
+      "name": "SKRoot"
+    },
+    {
+      "name": "libsu"
+    },
+    {
+      "name": "AndroidX"
+    },
+    {
+      "name": "Compose"
+    },
+    {
+      "name": "Miuix"
+    },
+    {
+      "name": "MaterialKolor"
+    },
+    {
+      "name": "Apache Commons Compress"
+    },
+    {
+      "name": "Magisk/libsepol"
+    },
+    {
+      "name": "ReZygisk"
+    },
+    {
+      "name": "CSOLoader"
+    },
+    {
+      "name": "PLTI"
+    }
+  ],
+  "sources": [
+    "CREDITS.md",
+    "manager/src/main/assets/maplesu/advisors/members.json"
+  ]
+}

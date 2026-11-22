@@ -1,0 +1,27 @@
+name: 问题反馈
+description: 提交可复现的 MapleSU 问题
+title: "[Bug] "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: MapleSU 版本与工作模式
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: 设备、Android 与内核版本
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤、预期与实际结果
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 脱敏日志与截图
+      description: 请先移除 Root 凭据、账号、序列号及其他个人数据。安全漏洞使用私密报告入口。

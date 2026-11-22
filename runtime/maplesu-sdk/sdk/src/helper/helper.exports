@@ -1,0 +1,4 @@
+{
+  global: maplesu_helper_su_write; maplesu_helper_su_exec;
+  local: *;
+};

@@ -1,0 +1,19 @@
+{
+  "coordinate": "org.apache.commons:commons-compress:1.28.0",
+  "artifactUrl": "https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.28.0/commons-compress-1.28.0.jar",
+  "artifactSha256": "e1522945218456f3649a39bc4afd70ce4bd466221519dba7d378f2141a4642ca",
+  "verification": "Matched existing strict Gradle verification metadata.",
+  "scope": "Unmodified license and notice bytes from the resolved runtime JAR; transitive dependency review is separate.",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "artifactEntry": "META-INF/LICENSE.txt",
+      "sha256": "51b88fd3e9e24edcdce1dd145a4fca2dcd12911407f00b06dfa6ff600f9733c1"
+    },
+    {
+      "path": "NOTICE.txt",
+      "artifactEntry": "META-INF/NOTICE.txt",
+      "sha256": "0d98967f0ab328af8d9d536aa9a5c684b5dd665657245f6ee6b5915affe811c0"
+    }
+  ]
+}

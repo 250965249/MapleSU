@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_public_beta_notice">公测版本非正式版本，含有不稳定实现，如遇问题请在 @MapleSU_Debug_Bot 反馈</string>
+    <string name="su_grants_saved_delivery_incomplete">授权记录已保存，但执行入口交付失败。请重试授权或修复环境。</string>
+</resources>

@@ -1,0 +1,459 @@
+{
+  "schemaVersion": 1,
+  "scope": "llvm-bitcode members only. Native-ELF members have ZERO allowance.",
+  "authority": "sdk/notes/work/PROTOCOL.md section 5, gate tier-2 (declared toolchain baseline).",
+  "reason": "The reference archive's bitcode was produced by clang 17.0.2 build 11349228 (based on r487747e); the pinned NDK 26.1.10909125 toolchain is clang 17.0.2 build 10552028 (based on r487747d). Same major/minor, different point build. The reference compiler materialises the std::length_error vtable/typeinfo COMDAT into every C++ TU that can throw; the pinned compiler only imports it. Consequence: a byte-faithful source rebuild still shows two extra undefined symbols relative to the reference object. This is a toolchain point-version difference, not a source or behaviour difference.",
+  "hard_rules": [
+    "T (defined strong/weak text) symbol sets MUST be empty both ways. No allowance ever.",
+    "U (undefined) symbol sets: missing-from-rebuild may only contain entries listed in uMissing below; extra-in-rebuild must be empty or explained per member in its metadata.",
+    "W (weak) symbols are informational only; report them, do not gate on them (AGENTS: ACCEPTANCE.md V2 only compares T).",
+    "An entry here may NOT be used to hide a missing implementation path. If a rebuild is missing a symbol that the reference calls, and that symbol is not in this list, the member fails.",
+    "Every allowance must be reproducible: the gate output must show raw diff AND baseline-adjusted diff, plus how many allowance entries were actually consumed.",
+    "The eight bionic/libc++/exception-runtime entries below were added after the member gate attributed 38 of 39 'complete' failures to them with an empty T diff. They are import-set only; a missing kit API symbol is never allowed here.",
+    "Entries with class 'reference-declared-unused' are scoped by `applies_to` (member idx) and `layout`; they cover symbols the reference object declares without a reachable call site (dead code kept by the producer, declaration-only entries, or header-inline copies the rebuild inlines). They must carry `evidence`, may name a native-ELF member explicitly, and may never contain a kit API symbol (kernel_module::*, skroot_env::*, kernel_root::*, maplesu_*)."
+  ],
+  "uMissing": [
+    {
+      "symbol": "_ZNKSt11logic_error4whatEv",
+      "demangled": "std::logic_error::what() const",
+      "reason": "vtable slot of std::logic_error, emitted by the reference clang build as part of the std::length_error COMDAT group",
+      "observed_on": [
+        "kernel_offsets: fdtable.o, file_struct.o, miscdevice.o, page.o (4/4 rebuilt members, u-2 each)",
+        "module_min_sdk.o (pre-existing accepted sample, same tolerance)"
+      ]
+    },
+    {
+      "symbol": "_ZNSt12length_errorD0Ev",
+      "demangled": "std::length_error::~length_error() [deleting destructor]",
+      "reason": "deleting destructor of std::length_error, emitted together with the vtable by the reference clang build",
+      "observed_on": [
+        "kernel_offsets: fdtable.o, file_struct.o, miscdevice.o, page.o (4/4)",
+        "module_min_sdk.o (pre-existing accepted sample)"
+      ]
+    },
+    {
+      "symbol": "__memcpy_chk",
+      "demangled": "bionic __memcpy_chk",
+      "reason": "FORTIFY wrapper materialised by the reference sysroot; the pinned NDK 26.1 bionic headers do not wrap memcpy this way",
+      "observed_on": [
+        "member gate: missing in 19 rebuilt member(s)"
+      ],
+      "class": "toolchain-bionic-libcxx"
+    },
+    {
+      "symbol": "__memset_chk",
+      "demangled": "bionic __memset_chk",
+      "reason": "same FORTIFY wrapper difference as __memcpy_chk",
+      "observed_on": [
+        "member gate: missing in 17 rebuilt member(s)"
+      ],
+      "class": "toolchain-bionic-libcxx"
+    },
+    {
+      "symbol": "__strlen_chk",
+      "demangled": "bionic __strlen_chk",
+      "reason": "same FORTIFY wrapper; already observed on the four sample members",
+      "observed_on": [
+        "member gate: missing in 8 rebuilt member(s)"
+      ],
+      "class": "toolchain-bionic-libcxx"
+    },
+    {
+      "symbol": "__memmove_chk",
+      "demangled": "bionic __memmove_chk",
+      "reason": "same FORTIFY wrapper",
+      "observed_on": [
+        "member gate: missing in 7 rebuilt member(s)"
+      ],
+      "class": "toolchain-bionic-libcxx"
+    },
+    {
+      "symbol": "_ZSt9terminatev",
+      "demangled": "std::terminate()",
+      "reason": "libc++ exception-runtime edge emitted by the reference build's throw paths; the pinned libc++ lowers the same source differently",
+      "observed_on": [
+        "member gate: missing in 6 rebuilt member(s)"
+      ],
+      "class": "toolchain-bionic-libcxx"
+    },
+    {
+      "symbol": "__cxa_begin_catch",
+      "demangled": "C++ ABI catch entry",
+      "reason": "libc++abi entry emitted by reference throw paths",
+      "observed_on": [
+        "member gate: missing in 6 rebuilt member(s)"
+      ],
+      "class": "toolchain-bionic-libcxx"
+    },
+    {
+      "symbol": "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE21__grow_by_and_replaceEmmmmmmPKc",
+      "demangled": "std::string::__grow_by_and_replace",
+      "reason": "libc++ out-of-line growth helper: reference libc++ emits it, pinned libc++ inlines it",
+      "observed_on": [
+        "member gate: missing in 5 rebuilt member(s)"
+      ],
+      "class": "toolchain-bionic-libcxx"
+    },
+    {
+      "symbol": "__gxx_personality_v0",
+      "demangled": "C++ exception personality",
+      "reason": "exception-runtime symbol present when the reference TU was built with exceptions; profile choice, not a source gap",
+      "observed_on": [
+        "member gate: missing in 5 rebuilt member(s)"
+      ],
+      "class": "toolchain-bionic-libcxx"
+    },
+    {
+      "symbol": "chmod",
+      "demangled": "chmod",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        35,
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx35: reference IR declares chmod but the only call is maplesu_private_chmod(...,0); whole-file call count for chmod is 0"
+    },
+    {
+      "symbol": "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6__initEmc",
+      "demangled": "std::string::__init(unsigned long, char)",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: referenced only from retained linkonce_odr old ofstream/filebuf COMDAT bodies (reference W=178 vs rebuild W=160); no strong T function references them"
+    },
+    {
+      "symbol": "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE5flushEv",
+      "demangled": "std::ostream::flush()",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: referenced only from retained linkonce_odr old ofstream/filebuf COMDAT bodies (reference W=178 vs rebuild W=160); no strong T function references them"
+    },
+    {
+      "symbol": "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryC1ERS3_",
+      "demangled": "std::ostream::sentry::sentry(std::ostream&)",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: referenced only from retained linkonce_odr old ofstream/filebuf COMDAT bodies (reference W=178 vs rebuild W=160); no strong T function references them"
+    },
+    {
+      "symbol": "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev",
+      "demangled": "std::ostream::sentry::~sentry()",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: referenced only from retained linkonce_odr old ofstream/filebuf COMDAT bodies (reference W=178 vs rebuild W=160); no strong T function references them"
+    },
+    {
+      "symbol": "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED0Ev",
+      "demangled": "std::ostream::~ostream() [deleting]",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: referenced only from retained linkonce_odr old ofstream/filebuf COMDAT bodies (reference W=178 vs rebuild W=160); no strong T function references them"
+    },
+    {
+      "symbol": "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED1Ev",
+      "demangled": "std::ostream::~ostream()",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: referenced only from retained linkonce_odr old ofstream/filebuf COMDAT bodies (reference W=178 vs rebuild W=160); no strong T function references them"
+    },
+    {
+      "symbol": "_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED2Ev",
+      "demangled": "std::ostream::~ostream() [base]",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: referenced only from retained linkonce_odr old ofstream/filebuf COMDAT bodies (reference W=178 vs rebuild W=160); no strong T function references them"
+    },
+    {
+      "symbol": "_ZNSt6__ndk18ios_base33__set_badbit_and_consider_rethrowEv",
+      "demangled": "std::ios_base::__set_badbit_and_consider_rethrow()",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: referenced only from retained linkonce_odr old ofstream/filebuf COMDAT bodies (reference W=178 vs rebuild W=160); no strong T function references them"
+    },
+    {
+      "symbol": "_ZTv0_n24_NSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED0Ev",
+      "demangled": "std::ostream::~ostream() [virtual thunk, deleting]",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: referenced only from retained linkonce_odr old ofstream/filebuf COMDAT bodies (reference W=178 vs rebuild W=160); no strong T function references them"
+    },
+    {
+      "symbol": "_ZTv0_n24_NSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED1Ev",
+      "demangled": "std::ostream::~ostream() [virtual thunk]",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: referenced only from retained linkonce_odr old ofstream/filebuf COMDAT bodies (reference W=178 vs rebuild W=160); no strong T function references them"
+    },
+    {
+      "symbol": "remove",
+      "demangled": "remove",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: declaration-only in the reference IR, zero call sites"
+    },
+    {
+      "symbol": "rename",
+      "demangled": "rename",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: declaration-only in the reference IR, zero call sites"
+    },
+    {
+      "symbol": "sync",
+      "demangled": "sync",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        88
+      ],
+      "layout": "bitcode",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx88: declaration-only in the reference IR, zero call sites"
+    },
+    {
+      "symbol": "strncmp",
+      "demangled": "strncmp",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        1
+      ],
+      "layout": "elf",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx1: reloc at reference .text+0x5d0 inside the orphaned old comm-finder bytes; the reference deleted the symbol get_task_struct_comm_offset but kept the code (old/new .text identical, 10172 B)"
+    },
+    {
+      "symbol": "memcpy",
+      "demangled": "memcpy",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        1
+      ],
+      "layout": "elf",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx1: referenced only from an out-of-line copy of the header-internal aarch64_asm_to_bytes (0xd8 B, relocs at +0x8c/+0xac); the rebuild inlines that same header function at its call sites"
+    },
+    {
+      "symbol": "_ZN6asmjit5v1_1610DebugUtils15assertionFailedEPKciS3_",
+      "demangled": "asmjit::DebugUtils::assertionFailed",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        1,
+        23
+      ],
+      "layout": "elf",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx1/idx23: the reference carries one out-of-line copy of this header-inline helper; the rebuild inlines it at the call sites, so it stays internal"
+    },
+    {
+      "symbol": "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC1ERKS5_",
+      "demangled": "std::string::string(std::string const&)",
+      "class": "reference-declared-unused",
+      "applies_to": [
+        1
+      ],
+      "layout": "elf",
+      "reason": "declaration retained by the reference object with no reachable call site",
+      "evidence": "idx1: symbol-table-only undefined entry in the reference object; readelf -r has zero relocations referencing it"
+    },
+    {
+      "symbol": "vsnprintf",
+      "demangled": "vsnprintf",
+      "class": "libc-tier-artifact",
+      "applies_to": [
+        110,
+        147
+      ],
+      "layout": "bitcode",
+      "reason": "same call, different libc tier/WRAPPER selection than the reference build",
+      "evidence": "vendor asmjit members: reference calls vsnprintf, rebuild emits snprintf for the same format-only call site"
+    },
+    {
+      "symbol": "__open_2",
+      "demangled": "__open_2",
+      "class": "libc-tier-artifact",
+      "applies_to": [
+        117
+      ],
+      "layout": "bitcode",
+      "reason": "same call, different libc tier/WRAPPER selection than the reference build",
+      "evidence": "vendor asmjit member: reference binds the FORTIFY open wrapper, rebuild binds open64 (bionic aliases it); same file, same flags"
+    },
+    {
+      "symbol": "__read_chk",
+      "demangled": "__read_chk",
+      "class": "libc-tier-artifact",
+      "applies_to": [
+        117
+      ],
+      "layout": "bitcode",
+      "reason": "same call, different libc tier/WRAPPER selection than the reference build",
+      "evidence": "vendor asmjit member: reference binds the FORTIFY read wrapper, rebuild binds plain read"
+    },
+    {
+      "symbol": "__vsnprintf_chk",
+      "demangled": "__vsnprintf_chk",
+      "class": "libc-tier-artifact",
+      "applies_to": [
+        121
+      ],
+      "layout": "bitcode",
+      "reason": "same call, different libc tier/WRAPPER selection than the reference build",
+      "evidence": "vendor asmjit member: reference binds the FORTIFY vsnprintf wrapper, rebuild binds vsnprintf"
+    },
+    {
+      "symbol": "open",
+      "demangled": "open",
+      "class": "libc-tier-artifact",
+      "applies_to": [
+        125
+      ],
+      "layout": "bitcode",
+      "reason": "same call, different libc tier/WRAPPER selection than the reference build",
+      "evidence": "vendor asmjit member: reference binds open, rebuild binds open64; same call"
+    }
+  ],
+  "uExtra": [
+    {
+      "symbol": "strlen",
+      "demangled": "strlen",
+      "class": "vendor-codegen-artifact",
+      "applies_to": [
+        96,
+        97,
+        99,
+        110,
+        115,
+        117,
+        121,
+        125,
+        138,
+        147,
+        149
+      ],
+      "layout": "bitcode",
+      "reason": "vendor member rebuilt from the same upstream source with a different inlining decision",
+      "evidence": "the reference inlines the strlen calls coming from std::char_traits; the rebuild emits the library call instead. Resolved by libc at link time, declared per member"
+    },
+    {
+      "symbol": "snprintf",
+      "demangled": "snprintf",
+      "class": "libc-tier-artifact",
+      "applies_to": [
+        99,
+        110,
+        147
+      ],
+      "layout": "bitcode",
+      "reason": "same call, different libc tier/WRAPPER selection than the reference build",
+      "evidence": "vendor asmjit members: the reference binds the fortified/wrapped printf tier, the rebuild binds snprintf directly; same call site, same arguments"
+    },
+    {
+      "symbol": "open64",
+      "demangled": "open64",
+      "class": "libc-tier-artifact",
+      "applies_to": [
+        117,
+        125
+      ],
+      "layout": "bitcode",
+      "reason": "same call, different libc tier/WRAPPER selection than the reference build",
+      "evidence": "vendor asmjit members: rebuild binds the 64-bit alias, reference binds open/__open_2; same call"
+    },
+    {
+      "symbol": "vsnprintf",
+      "demangled": "vsnprintf",
+      "class": "libc-tier-artifact",
+      "applies_to": [
+        121
+      ],
+      "layout": "bitcode",
+      "reason": "same call, different libc tier/WRAPPER selection than the reference build",
+      "evidence": "vendor asmjit member: rebuild binds vsnprintf where the reference binds its FORTIFY wrapper"
+    }
+  ],
+  "wMissing_informational": [
+    {
+      "symbol": "_ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE20__throw_length_errorB7v170000Ev",
+      "demangled": "std::string::__throw_length_error() const",
+      "reason": "same clang point-version difference as the uMissing entries: the reference build emits a weak out-of-line definition, the pinned build keeps it inline",
+      "observed_on": [
+        "kernel_offsets fdtable/file_struct/miscdevice/page: W ref/new differ by exactly these 3, extra=0"
+      ]
+    },
+    {
+      "symbol": "_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE25__init_copy_ctor_externalEPKcm",
+      "demangled": "std::string::__init_copy_ctor_external(char const*, unsigned long)",
+      "reason": "materialised by the reference build from the static const std::vector<std::string> in include/module_base_kernel_export_symbol.inl",
+      "observed_on": [
+        "same 4 members as above"
+      ]
+    },
+    {
+      "symbol": "_ZNSt6__ndk119__allocate_at_leastB7v170000INS_9allocatorIcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m",
+      "demangled": "std::__allocate_at_least<std::allocator<char>>",
+      "reason": "same template-instantiation difference as above",
+      "observed_on": [
+        "same 4 members as above"
+      ]
+    }
+  ],
+  "wMissing_notes": "W symbols are NEVER gated (ACCEPTANCE.md V2 compares T only). This list exists to explain a constant 3-symbol W delta, not to excuse missing implementations. Counter-example proving W still carries signal: dentry.o (partial) is missing 160 W symbols, all coming from the unimplemented asmjit anchor get_dentry_d_iname_offset; that is a real gap and must stay visible in the report.",
+  "verification": {
+    "reference_toolchain": "Android (11349228, based on r487747e) clang version 17.0.2  [from reference bitcode !llvm.ident]",
+    "pinned_toolchain": "Android (10552028, based on r487747d) clang version 17.0.2  [NDK 26.1.10909125]",
+    "counter_evidence_required": "If a future toolchain change makes these two symbols appear, delete the entries and re-run the gate; do not keep stale allowances."
+  },
+  "provenance_of_extension": {
+    "measured_by": "tools/member_gate.py over the 222-member source build",
+    "evidence": "38 of the 39 gate failures on 'complete' members had an empty T diff; the missing imports concentrate on exactly these 8 symbols across 35 bitcode members; the only T diff was patch_base.o idx 71 (real defect, not allowed anywhere)",
+    "not_covered": "native-ELF members keep zero allowance; idx 23/255/256/257 remain hard diffs and are enumerated in the restoration report"
+  }
+}

@@ -1,0 +1,85 @@
+/*
+ * Loader-facing glue for maplesu_l3.ko (ABI v1).
+ *
+ * The module is built on a host with only the Android NDK, so there is no kbuild
+ * and no modpost-generated `*.mod.c`: the things the loader insists on are emitted
+ * here by hand, with the sizes and offsets taken from this kernel's own BTF
+ * (contract `thisModule`, cross-checked by G1/G7).
+ *
+ * Why a separate glue file instead of reusing root_glue.S.in: the module name is
+ * different and it is embedded in `this_module.name[56]` at a fixed offset, so the
+ * `.zero` between the name and `init` differs. Everything else -- `init`, `exit`,
+ * the PLT placeholders, `__versions` -- is the same shape as the root module's,
+ * because it describes the same `struct module`.
+ *
+ * `exit` points at `cleanup_module` because unregistering the kprobe is the reason
+ * this module is unloadable at all: delete_module() runs that function even when
+ * the helper never asked, and `unregister_kprobe()` is the complete undo of the
+ * hook (it removes the breakpoint and drops the kernel's last pointer into this
+ * module's text, so no `prctl()` can reach freed memory afterwards). Nothing in
+ * this module writes `sys_call_table` or any other kernel-image byte.
+ *
+ * The template has five substitution tokens, all filled from the contract by
+ * build_root_module.py: @L3_NAME_OFF@, @L3_INIT_OFF@, @L3_EXIT_OFF@, @L3_SIZE@,
+ * @L3_VERMAGIC@. The builder refuses to assemble a file in which any token
+ * survived, and refuses a contract whose layout is not coherent, because a
+ * silently wrong offset here is a module that loads and then calls into the middle
+ * of nothing.
+ */
+
+	/* ---- struct module: size and offsets from this image's BTF ---- */
+	.section .gnu.linkonce.this_module,"aw",@progbits
+	.balign 64
+	.global __this_module
+__this_module:
+	/* +0x000 state / list / list_lock / name[56]: only name matters here */
+	.zero	@L3_NAME_OFF@
+	.asciz	"maplesu_l3"
+	/* fill to init, relative to this section: no intermediate literal */
+	.zero	@L3_INIT_OFF@ - (. - __this_module)
+	.quad	init_module			/* +0x188 init */
+	.zero	@L3_EXIT_OFF@ - (. - __this_module)
+	.quad	cleanup_module			/* +0x5b8 exit: restores the slot */
+	.zero	@L3_SIZE@ - (. - __this_module)
+
+	/*
+	 * ---- .modinfo: what modpost would have generated ----
+	 *
+	 *   license=GPL   register_kprobe/unregister_kprobe are EXPORT_SYMBOL_GPL;
+	 *                 a non-GPL module cannot resolve them ("Unknown symbol");
+	 *   vermagic=...  check_modinfo() compares it; CONFIG_MODULE_FORCE_LOAD is
+	 *                 off, so a mismatch is -ENOEXEC with no printk at all;
+	 *   name=...      must equal this_module.name;
+	 *   depends=      empty is legal and correct: no module dependencies.
+	 */
+	.section .modinfo,"a",@progbits
+	.balign	1
+	.asciz	"license=GPL"
+	.asciz	"description=MapleSU L3 kernel credential gate"
+	.asciz	"name=maplesu_l3"
+	.asciz	"depends="
+	.asciz	"vermagic=@L3_VERMAGIC@"
+
+	/* ---- the sections arm64's module finalizer requires ---- */
+	.section .plt,"ax",@progbits
+	.balign 1
+	.byte 0
+	.section .init.plt,"ax",@progbits
+	.balign 1
+	.byte 0
+	.section .text.ftrace_trampoline,"ax",@progbits
+	.balign 1
+	.byte 0
+
+	/*
+	 * ---- struct modversion_info[1], deliberately EMPTY-NAMED ----
+	 * Same reasoning as the root module: the section's presence is what makes
+	 * v6.6 check_version() return 1 with a one-time warning, so no CRC has to
+	 * match and no `module_layout` is pinned.
+	 */
+	.section __versions,"a",@progbits
+	.balign 8
+	.quad 0
+	.zero 56
+
+	.section .note.GNU-stack,"",@progbits

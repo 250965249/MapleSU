@@ -1,0 +1,3805 @@
+{
+  "schemaVersion": 1,
+  "kind": "maplesu-root-loader-kernel-abi",
+  "module": "maplesu_root",
+  "description": "kernel ABI contract for the resident in-kernel root module",
+  "license": "GPL",
+  "kernelRelease": "6.6.66-android15-8-g29d86c5fc9dd-abogki428889875-4k",
+  "imagePath": "native-inputs/kernels/android15-6.6-ddd760da/Image",
+  "imageSha256": "ddd760da9fc14107921d99e1a61f0eeaff5f60be08b554a683491bab0190aa36",
+  "imageBytes": 36387328,
+  "symbolsPath": "native-inputs/kernels/android15-6.6-ddd760da/symbols.tsv",
+  "numSymbols": 105218,
+  "vermagic": "6.6.66-android15-8-g29d86c5fc9dd-abogki428889875-4k SMP preempt mod_unload modversions aarch64",
+  "vermagicSuffix": " SMP preempt mod_unload modversions aarch64",
+  "vermagicProvenance": {
+    "fileOffset": 17446496,
+    "fileOffsetHex": "0x10a3660",
+    "tailOccurrences": 1,
+    "method": "first occurrence of the ' SMP preempt mod_unload modversions aarch64' tail, scanned back to the first non-printable byte (same rule as ir-loader/tests/loader_contract.py:kernel_vermagic)"
+  },
+  "addressSpace": {
+    "fileOffsetEqualsSymbolOffset": true,
+    "checkedWith": "__start_BTF vs the .BTF magic file offset",
+    "startBtfSymbol": {
+      "address": 23927632,
+      "addressHex": "0x16d1b50",
+      "type": "RODATA",
+      "tsvLine": 80217,
+      "tsvText": "23927632\tRODATA\t__start_BTF"
+    },
+    "stopBtfSymbol": {
+      "address": 29946982,
+      "addressHex": "0x1c8f466",
+      "type": "RODATA",
+      "tsvLine": 80219,
+      "tsvText": "29946982\tRODATA\t__stop_BTF"
+    },
+    "btfMagicFileOffset": 23927632,
+    "btfMagicFileOffsetHex": "0x16d1b50",
+    "note": "the symbol list starts _text at offset 0, i.e. offsets are image-relative; __start_BTF landing exactly on the .BTF magic byte proves the two spaces coincide for this image"
+  },
+  "btf": {
+    "magicOffset": 23927632,
+    "magicOffsetHex": "0x16d1b50",
+    "version": 1,
+    "headerBytes": 24,
+    "typeBytes": 3554748,
+    "stringBytes": 2464578,
+    "numTypes": 139270,
+    "blobBytes": 6019350,
+    "sectionSpan": 6019350,
+    "provenance": "image .BTF at 0x16d1b50, parsed with the kernel's own BTF encoding (kernel/bpf/btf.c); every type id below is a BTF id"
+  },
+  "symbolListCoverage": {
+    "rows": 105218,
+    "maxSymbolOffset": 36386824,
+    "maxSymbolOffsetHex": "0x22b3808",
+    "imageBytes": 36387328,
+    "imageBytesHex": "0x22b3a00",
+    "bytesAfterLastSymbol": 504,
+    "clippedAtEof": true,
+    "btfFunctionNames": 59886,
+    "textSymbolNames": 60925,
+    "btfFunctionsMissingFromList": 257,
+    "btfFunctionsMissingExamples": [
+      "__arm64_compat_sys_fadvise64_64",
+      "__arm64_compat_sys_fanotify_mark",
+      "__arm64_compat_sys_getsockopt",
+      "__arm64_compat_sys_ipc",
+      "__arm64_compat_sys_kexec_load",
+      "__arm64_compat_sys_lookup_dcookie",
+      "__arm64_compat_sys_mq_getsetattr",
+      "__arm64_compat_sys_mq_notify"
+    ],
+    "bssBlindSpot": {
+      "applies": true,
+      "why": "the list is built from the image *file*. .bss is a NOLOAD section: it occupies no file bytes, so every .bss symbol's address is at or past the end of the file and it cannot appear in the list. The declaration is checkable: the highest listed symbol sits 0x1f8 bytes before EOF, and .bss is page aligned, so .bss starts at the first page at or after that point.",
+      "consequence": "absence from this list clears function names (all of .text is inside the file) but never data names; a data object missing from the list must be verified on the device, not inferred absent"
+    },
+    "note": "counts are over names, not rows: kallsyms can carry several entries for one name",
+    "improvement": "the shipped list drops every symbol whose address is at or past the end of the image file. Regenerate it without that filter (keep out-of-file addresses) and this contract's data-name verdicts stop being 'unverified' and become present/absent, because .bss would then be represented"
+  },
+  "thisModule": {
+    "btfTypeId": 119,
+    "allBtfTypeIds": [
+      119,
+      22640
+    ],
+    "size": 1536,
+    "sizeHex": "0x600",
+    "nameOffset": 24,
+    "nameOffsetHex": "0x18",
+    "initOffset": 392,
+    "initOffsetHex": "0x188",
+    "exitOffset": 1464,
+    "exitOffsetHex": "0x5b8",
+    "archOffset": 952,
+    "archOffsetHex": "0x3b8",
+    "members": [
+      {
+        "name": "state",
+        "typeId": 120,
+        "typeKind": "ENUM",
+        "typeName": "module_state",
+        "bitOffset": 0,
+        "byteOffset": 0,
+        "byteOffsetHex": "0x0"
+      },
+      {
+        "name": "list",
+        "typeId": 38,
+        "typeKind": "STRUCT",
+        "typeName": "list_head",
+        "bitOffset": 64,
+        "byteOffset": 8,
+        "byteOffsetHex": "0x8"
+      },
+      {
+        "name": "name",
+        "typeId": 121,
+        "typeKind": "ARRAY",
+        "typeName": "char",
+        "bitOffset": 192,
+        "byteOffset": 24,
+        "byteOffsetHex": "0x18",
+        "elements": 56
+      },
+      {
+        "name": "build_id",
+        "typeId": 122,
+        "typeKind": "ARRAY",
+        "typeName": "unsigned char",
+        "bitOffset": 640,
+        "byteOffset": 80,
+        "byteOffsetHex": "0x50",
+        "elements": 20
+      },
+      {
+        "name": "mkobj",
+        "typeId": 123,
+        "typeKind": "STRUCT",
+        "typeName": "module_kobject",
+        "bitOffset": 832,
+        "byteOffset": 104,
+        "byteOffsetHex": "0x68"
+      },
+      {
+        "name": "modinfo_attrs",
+        "typeId": 2043,
+        "typeKind": "PTR",
+        "typeName": "module_attribute",
+        "bitOffset": 1856,
+        "byteOffset": 232,
+        "byteOffsetHex": "0xe8"
+      },
+      {
+        "name": "version",
+        "typeId": 6,
+        "typeKind": "PTR",
+        "typeName": "char",
+        "bitOffset": 1920,
+        "byteOffset": 240,
+        "byteOffsetHex": "0xf0"
+      },
+      {
+        "name": "srcversion",
+        "typeId": 6,
+        "typeKind": "PTR",
+        "typeName": "char",
+        "bitOffset": 1984,
+        "byteOffset": 248,
+        "byteOffsetHex": "0xf8"
+      },
+      {
+        "name": "scmversion",
+        "typeId": 6,
+        "typeKind": "PTR",
+        "typeName": "char",
+        "bitOffset": 2048,
+        "byteOffset": 256,
+        "byteOffsetHex": "0x100"
+      },
+      {
+        "name": "holders_dir",
+        "typeId": 125,
+        "typeKind": "PTR",
+        "typeName": "kobject",
+        "bitOffset": 2112,
+        "byteOffset": 264,
+        "byteOffsetHex": "0x108"
+      },
+      {
+        "name": "syms",
+        "typeId": 2056,
+        "typeKind": "PTR",
+        "typeName": "kernel_symbol",
+        "bitOffset": 2176,
+        "byteOffset": 272,
+        "byteOffsetHex": "0x110"
+      },
+      {
+        "name": "crcs",
+        "typeId": 2058,
+        "typeKind": "PTR",
+        "typeName": "s32",
+        "bitOffset": 2240,
+        "byteOffset": 280,
+        "byteOffsetHex": "0x118"
+      },
+      {
+        "name": "num_syms",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 2304,
+        "byteOffset": 288,
+        "byteOffsetHex": "0x120"
+      },
+      {
+        "name": "param_lock",
+        "typeId": 59,
+        "typeKind": "STRUCT",
+        "typeName": "mutex",
+        "bitOffset": 2368,
+        "byteOffset": 296,
+        "byteOffsetHex": "0x128"
+      },
+      {
+        "name": "kp",
+        "typeId": 2060,
+        "typeKind": "PTR",
+        "typeName": "kernel_param",
+        "bitOffset": 2752,
+        "byteOffset": 344,
+        "byteOffsetHex": "0x158"
+      },
+      {
+        "name": "num_kp",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 2816,
+        "byteOffset": 352,
+        "byteOffsetHex": "0x160"
+      },
+      {
+        "name": "num_gpl_syms",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 2848,
+        "byteOffset": 356,
+        "byteOffsetHex": "0x164"
+      },
+      {
+        "name": "gpl_syms",
+        "typeId": 2056,
+        "typeKind": "PTR",
+        "typeName": "kernel_symbol",
+        "bitOffset": 2880,
+        "byteOffset": 360,
+        "byteOffsetHex": "0x168"
+      },
+      {
+        "name": "gpl_crcs",
+        "typeId": 2058,
+        "typeKind": "PTR",
+        "typeName": "s32",
+        "bitOffset": 2944,
+        "byteOffset": 368,
+        "byteOffsetHex": "0x170"
+      },
+      {
+        "name": "using_gplonly_symbols",
+        "typeId": 99,
+        "typeKind": "TYPEDEF",
+        "typeName": "bool",
+        "bitOffset": 3008,
+        "byteOffset": 376,
+        "byteOffsetHex": "0x178"
+      },
+      {
+        "name": "sig_ok",
+        "typeId": 99,
+        "typeKind": "TYPEDEF",
+        "typeName": "bool",
+        "bitOffset": 3016,
+        "byteOffset": 377,
+        "byteOffsetHex": "0x179"
+      },
+      {
+        "name": "async_probe_requested",
+        "typeId": 99,
+        "typeKind": "TYPEDEF",
+        "typeName": "bool",
+        "bitOffset": 3024,
+        "byteOffset": 378,
+        "byteOffsetHex": "0x17a"
+      },
+      {
+        "name": "num_exentries",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 3040,
+        "byteOffset": 380,
+        "byteOffsetHex": "0x17c"
+      },
+      {
+        "name": "extable",
+        "typeId": 2080,
+        "typeKind": "PTR",
+        "typeName": "exception_table_entry",
+        "bitOffset": 3072,
+        "byteOffset": 384,
+        "byteOffsetHex": "0x180"
+      },
+      {
+        "name": "init",
+        "typeId": 24,
+        "typeKind": "PTR",
+        "typeName": "",
+        "bitOffset": 3136,
+        "byteOffset": 392,
+        "byteOffsetHex": "0x188"
+      },
+      {
+        "name": "mem",
+        "typeId": 2082,
+        "typeKind": "ARRAY",
+        "typeName": "module_memory",
+        "bitOffset": 3584,
+        "byteOffset": 448,
+        "byteOffsetHex": "0x1c0",
+        "elements": 7
+      },
+      {
+        "name": "arch",
+        "typeId": 2087,
+        "typeKind": "STRUCT",
+        "typeName": "mod_arch_specific",
+        "bitOffset": 7616,
+        "byteOffset": 952,
+        "byteOffsetHex": "0x3b8"
+      },
+      {
+        "name": "taints",
+        "typeId": 14,
+        "typeKind": "INT",
+        "typeName": "unsigned long",
+        "bitOffset": 9152,
+        "byteOffset": 1144,
+        "byteOffsetHex": "0x478"
+      },
+      {
+        "name": "num_bugs",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 9216,
+        "byteOffset": 1152,
+        "byteOffsetHex": "0x480"
+      },
+      {
+        "name": "bug_list",
+        "typeId": 38,
+        "typeKind": "STRUCT",
+        "typeName": "list_head",
+        "bitOffset": 9280,
+        "byteOffset": 1160,
+        "byteOffsetHex": "0x488"
+      },
+      {
+        "name": "bug_table",
+        "typeId": 2101,
+        "typeKind": "PTR",
+        "typeName": "bug_entry",
+        "bitOffset": 9408,
+        "byteOffset": 1176,
+        "byteOffsetHex": "0x498"
+      },
+      {
+        "name": "kallsyms",
+        "typeId": 2104,
+        "typeKind": "PTR",
+        "typeName": "rcu",
+        "bitOffset": 9472,
+        "byteOffset": 1184,
+        "byteOffsetHex": "0x4a0"
+      },
+      {
+        "name": "core_kallsyms",
+        "typeId": 2105,
+        "typeKind": "STRUCT",
+        "typeName": "mod_kallsyms",
+        "bitOffset": 9536,
+        "byteOffset": 1192,
+        "byteOffsetHex": "0x4a8"
+      },
+      {
+        "name": "sect_attrs",
+        "typeId": 2113,
+        "typeKind": "PTR",
+        "typeName": "module_sect_attrs",
+        "bitOffset": 9792,
+        "byteOffset": 1224,
+        "byteOffsetHex": "0x4c8"
+      },
+      {
+        "name": "notes_attrs",
+        "typeId": 2114,
+        "typeKind": "PTR",
+        "typeName": "module_notes_attrs",
+        "bitOffset": 9856,
+        "byteOffset": 1232,
+        "byteOffsetHex": "0x4d0"
+      },
+      {
+        "name": "args",
+        "typeId": 41,
+        "typeKind": "PTR",
+        "typeName": "char",
+        "bitOffset": 9920,
+        "byteOffset": 1240,
+        "byteOffsetHex": "0x4d8"
+      },
+      {
+        "name": "percpu",
+        "typeId": 2116,
+        "typeKind": "PTR",
+        "typeName": "percpu",
+        "bitOffset": 9984,
+        "byteOffset": 1248,
+        "byteOffsetHex": "0x4e0"
+      },
+      {
+        "name": "percpu_size",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 10048,
+        "byteOffset": 1256,
+        "byteOffsetHex": "0x4e8"
+      },
+      {
+        "name": "noinstr_text_start",
+        "typeId": 23,
+        "typeKind": "PTR",
+        "typeName": "",
+        "bitOffset": 10112,
+        "byteOffset": 1264,
+        "byteOffsetHex": "0x4f0"
+      },
+      {
+        "name": "noinstr_text_size",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 10176,
+        "byteOffset": 1272,
+        "byteOffsetHex": "0x4f8"
+      },
+      {
+        "name": "num_tracepoints",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 10208,
+        "byteOffset": 1276,
+        "byteOffsetHex": "0x4fc"
+      },
+      {
+        "name": "tracepoints_ptrs",
+        "typeId": 2117,
+        "typeKind": "PTR",
+        "typeName": "tracepoint_ptr_t",
+        "bitOffset": 10240,
+        "byteOffset": 1280,
+        "byteOffsetHex": "0x500"
+      },
+      {
+        "name": "num_srcu_structs",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 10304,
+        "byteOffset": 1288,
+        "byteOffsetHex": "0x508"
+      },
+      {
+        "name": "srcu_struct_ptrs",
+        "typeId": 2120,
+        "typeKind": "PTR",
+        "typeName": "srcu_struct",
+        "bitOffset": 10368,
+        "byteOffset": 1296,
+        "byteOffsetHex": "0x510"
+      },
+      {
+        "name": "num_bpf_raw_events",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 10432,
+        "byteOffset": 1304,
+        "byteOffsetHex": "0x518"
+      },
+      {
+        "name": "bpf_raw_events",
+        "typeId": 2135,
+        "typeKind": "PTR",
+        "typeName": "bpf_raw_event_map",
+        "bitOffset": 10496,
+        "byteOffset": 1312,
+        "byteOffsetHex": "0x520"
+      },
+      {
+        "name": "btf_data_size",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 10560,
+        "byteOffset": 1320,
+        "byteOffsetHex": "0x528"
+      },
+      {
+        "name": "btf_data",
+        "typeId": 23,
+        "typeKind": "PTR",
+        "typeName": "",
+        "bitOffset": 10624,
+        "byteOffset": 1328,
+        "byteOffsetHex": "0x530"
+      },
+      {
+        "name": "jump_entries",
+        "typeId": 15,
+        "typeKind": "PTR",
+        "typeName": "jump_entry",
+        "bitOffset": 10688,
+        "byteOffset": 1336,
+        "byteOffsetHex": "0x538"
+      },
+      {
+        "name": "num_jump_entries",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 10752,
+        "byteOffset": 1344,
+        "byteOffsetHex": "0x540"
+      },
+      {
+        "name": "num_trace_bprintk_fmt",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 10784,
+        "byteOffset": 1348,
+        "byteOffsetHex": "0x544"
+      },
+      {
+        "name": "trace_bprintk_fmt_start",
+        "typeId": 1392,
+        "typeKind": "PTR",
+        "typeName": "char",
+        "bitOffset": 10816,
+        "byteOffset": 1352,
+        "byteOffsetHex": "0x548"
+      },
+      {
+        "name": "trace_events",
+        "typeId": 2137,
+        "typeKind": "PTR",
+        "typeName": "trace_event_call",
+        "bitOffset": 10880,
+        "byteOffset": 1360,
+        "byteOffsetHex": "0x550"
+      },
+      {
+        "name": "num_trace_events",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 10944,
+        "byteOffset": 1368,
+        "byteOffsetHex": "0x558"
+      },
+      {
+        "name": "trace_evals",
+        "typeId": 2138,
+        "typeKind": "PTR",
+        "typeName": "trace_eval_map",
+        "bitOffset": 11008,
+        "byteOffset": 1376,
+        "byteOffsetHex": "0x560"
+      },
+      {
+        "name": "num_trace_evals",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 11072,
+        "byteOffset": 1384,
+        "byteOffsetHex": "0x568"
+      },
+      {
+        "name": "kprobes_text_start",
+        "typeId": 23,
+        "typeKind": "PTR",
+        "typeName": "",
+        "bitOffset": 11136,
+        "byteOffset": 1392,
+        "byteOffsetHex": "0x570"
+      },
+      {
+        "name": "kprobes_text_size",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 11200,
+        "byteOffset": 1400,
+        "byteOffsetHex": "0x578"
+      },
+      {
+        "name": "kprobe_blacklist",
+        "typeId": 768,
+        "typeKind": "PTR",
+        "typeName": "unsigned long",
+        "bitOffset": 11264,
+        "byteOffset": 1408,
+        "byteOffsetHex": "0x580"
+      },
+      {
+        "name": "num_kprobe_blacklist",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 11328,
+        "byteOffset": 1416,
+        "byteOffsetHex": "0x588"
+      },
+      {
+        "name": "num_kunit_suites",
+        "typeId": 13,
+        "typeKind": "INT",
+        "typeName": "int",
+        "bitOffset": 11360,
+        "byteOffset": 1420,
+        "byteOffsetHex": "0x58c"
+      },
+      {
+        "name": "kunit_suites",
+        "typeId": 2141,
+        "typeKind": "PTR",
+        "typeName": "kunit_suite",
+        "bitOffset": 11392,
+        "byteOffset": 1424,
+        "byteOffsetHex": "0x590"
+      },
+      {
+        "name": "source_list",
+        "typeId": 38,
+        "typeKind": "STRUCT",
+        "typeName": "list_head",
+        "bitOffset": 11456,
+        "byteOffset": 1432,
+        "byteOffsetHex": "0x598"
+      },
+      {
+        "name": "target_list",
+        "typeId": 38,
+        "typeKind": "STRUCT",
+        "typeName": "list_head",
+        "bitOffset": 11584,
+        "byteOffset": 1448,
+        "byteOffsetHex": "0x5a8"
+      },
+      {
+        "name": "exit",
+        "typeId": 26,
+        "typeKind": "PTR",
+        "typeName": "",
+        "bitOffset": 11712,
+        "byteOffset": 1464,
+        "byteOffsetHex": "0x5b8"
+      },
+      {
+        "name": "refcnt",
+        "typeId": 11,
+        "typeKind": "TYPEDEF",
+        "typeName": "atomic_t",
+        "bitOffset": 11776,
+        "byteOffset": 1472,
+        "byteOffsetHex": "0x5c0"
+      },
+      {
+        "name": "dyndbg_info",
+        "typeId": 2159,
+        "typeKind": "STRUCT",
+        "typeName": "_ddebug_info",
+        "bitOffset": 11840,
+        "byteOffset": 1480,
+        "byteOffsetHex": "0x5c8"
+      },
+      {
+        "name": "android_kabi_reserved1",
+        "typeId": 81,
+        "typeKind": "TYPEDEF",
+        "typeName": "u64",
+        "bitOffset": 12032,
+        "byteOffset": 1504,
+        "byteOffsetHex": "0x5e0"
+      },
+      {
+        "name": "android_kabi_reserved2",
+        "typeId": 81,
+        "typeKind": "TYPEDEF",
+        "typeName": "u64",
+        "bitOffset": 12096,
+        "byteOffset": 1512,
+        "byteOffsetHex": "0x5e8"
+      },
+      {
+        "name": "android_kabi_reserved3",
+        "typeId": 81,
+        "typeKind": "TYPEDEF",
+        "typeName": "u64",
+        "bitOffset": 12160,
+        "byteOffset": 1520,
+        "byteOffsetHex": "0x5f0"
+      },
+      {
+        "name": "android_kabi_reserved4",
+        "typeId": 81,
+        "typeKind": "TYPEDEF",
+        "typeName": "u64",
+        "bitOffset": 12224,
+        "byteOffset": 1528,
+        "byteOffsetHex": "0x5f8"
+      }
+    ]
+  },
+  "kprobe": {
+    "btfTypeId": 4871,
+    "allBtfTypeIds": [
+      4871
+    ],
+    "size": 128,
+    "sizeHex": "0x80",
+    "addrOffset": 40,
+    "addrOffsetHex": "0x28",
+    "symbolNameOffset": 48,
+    "symbolNameOffsetHex": "0x30",
+    "members": [
+      {
+        "name": "hlist",
+        "typeId": 44,
+        "typeKind": "STRUCT",
+        "typeName": "hlist_node",
+        "bitOffset": 0,
+        "byteOffset": 0,
+        "byteOffsetHex": "0x0"
+      },
+      {
+        "name": "list",
+        "typeId": 38,
+        "typeKind": "STRUCT",
+        "typeName": "list_head",
+        "bitOffset": 128,
+        "byteOffset": 16,
+        "byteOffsetHex": "0x10"
+      },
+      {
+        "name": "nmissed",
+        "typeId": 14,
+        "typeKind": "INT",
+        "typeName": "unsigned long",
+        "bitOffset": 256,
+        "byteOffset": 32,
+        "byteOffsetHex": "0x20"
+      },
+      {
+        "name": "addr",
+        "typeId": 4872,
+        "typeKind": "PTR",
+        "typeName": "kprobe_opcode_t",
+        "bitOffset": 320,
+        "byteOffset": 40,
+        "byteOffsetHex": "0x28"
+      },
+      {
+        "name": "symbol_name",
+        "typeId": 6,
+        "typeKind": "PTR",
+        "typeName": "char",
+        "bitOffset": 384,
+        "byteOffset": 48,
+        "byteOffsetHex": "0x30"
+      },
+      {
+        "name": "offset",
+        "typeId": 53,
+        "typeKind": "INT",
+        "typeName": "unsigned int",
+        "bitOffset": 448,
+        "byteOffset": 56,
+        "byteOffsetHex": "0x38"
+      },
+      {
+        "name": "pre_handler",
+        "typeId": 4874,
+        "typeKind": "TYPEDEF",
+        "typeName": "kprobe_pre_handler_t",
+        "bitOffset": 512,
+        "byteOffset": 64,
+        "byteOffsetHex": "0x40"
+      },
+      {
+        "name": "post_handler",
+        "typeId": 4877,
+        "typeKind": "TYPEDEF",
+        "typeName": "kprobe_post_handler_t",
+        "bitOffset": 576,
+        "byteOffset": 72,
+        "byteOffsetHex": "0x48"
+      },
+      {
+        "name": "opcode",
+        "typeId": 4873,
+        "typeKind": "TYPEDEF",
+        "typeName": "kprobe_opcode_t",
+        "bitOffset": 640,
+        "byteOffset": 80,
+        "byteOffsetHex": "0x50"
+      },
+      {
+        "name": "ainsn",
+        "typeId": 4880,
+        "typeKind": "STRUCT",
+        "typeName": "arch_specific_insn",
+        "bitOffset": 704,
+        "byteOffset": 88,
+        "byteOffsetHex": "0x58"
+      },
+      {
+        "name": "flags",
+        "typeId": 216,
+        "typeKind": "TYPEDEF",
+        "typeName": "u32",
+        "bitOffset": 960,
+        "byteOffset": 120,
+        "byteOffsetHex": "0x78"
+      }
+    ],
+    "note": "register_kprobe() fills addr from symbol_name; the module zeroes the whole object first, so the leading bookkeeping fields (hlist/list/nmissed) never matter"
+  },
+  "selinuxState": {
+    "btfTypeId": 20872,
+    "allBtfTypeIds": [
+      20872
+    ],
+    "size": 128,
+    "sizeHex": "0x80",
+    "enforcingOffset": 0,
+    "enforcingOffsetHex": "0x0",
+    "initializedOffset": 1,
+    "initializedOffsetHex": "0x1",
+    "members": [
+      {
+        "name": "enforcing",
+        "typeId": 99,
+        "typeKind": "TYPEDEF",
+        "typeName": "bool",
+        "bitOffset": 0,
+        "byteOffset": 0,
+        "byteOffsetHex": "0x0"
+      },
+      {
+        "name": "initialized",
+        "typeId": 99,
+        "typeKind": "TYPEDEF",
+        "typeName": "bool",
+        "bitOffset": 8,
+        "byteOffset": 1,
+        "byteOffsetHex": "0x1"
+      },
+      {
+        "name": "policycap",
+        "typeId": 20873,
+        "typeKind": "ARRAY",
+        "typeName": "bool",
+        "bitOffset": 16,
+        "byteOffset": 2,
+        "byteOffsetHex": "0x2",
+        "elements": 8
+      },
+      {
+        "name": "android_netlink_route",
+        "typeId": 99,
+        "typeKind": "TYPEDEF",
+        "typeName": "bool",
+        "bitOffset": 80,
+        "byteOffset": 10,
+        "byteOffsetHex": "0xa"
+      },
+      {
+        "name": "android_netlink_getneigh",
+        "typeId": 99,
+        "typeKind": "TYPEDEF",
+        "typeName": "bool",
+        "bitOffset": 88,
+        "byteOffset": 11,
+        "byteOffsetHex": "0xb"
+      },
+      {
+        "name": "status_page",
+        "typeId": 439,
+        "typeKind": "PTR",
+        "typeName": "page",
+        "bitOffset": 128,
+        "byteOffset": 16,
+        "byteOffsetHex": "0x10"
+      },
+      {
+        "name": "status_lock",
+        "typeId": 59,
+        "typeKind": "STRUCT",
+        "typeName": "mutex",
+        "bitOffset": 192,
+        "byteOffset": 24,
+        "byteOffsetHex": "0x18"
+      },
+      {
+        "name": "policy",
+        "typeId": 20977,
+        "typeKind": "PTR",
+        "typeName": "rcu",
+        "bitOffset": 576,
+        "byteOffset": 72,
+        "byteOffsetHex": "0x48"
+      },
+      {
+        "name": "policy_mutex",
+        "typeId": 59,
+        "typeKind": "STRUCT",
+        "typeName": "mutex",
+        "bitOffset": 640,
+        "byteOffset": 80,
+        "byteOffsetHex": "0x50"
+      }
+    ],
+    "varInBtf": {
+      "present": false,
+      "typeIds": [],
+      "note": "not probative: this BTF encodes almost no variables (a few hundred VARs against tens of thousands of objects), so a missing VAR says nothing about the symbol"
+    },
+    "symbolList": {
+      "present": false,
+      "symbol": null
+    },
+    "writtenByModule": "enforcing = 0, restored on every failure path and in cleanup_module",
+    "writableNow": true
+  },
+  "structOffsets": {
+    "subprocessInfo": {
+      "btfTypeId": 3403,
+      "allBtfTypeIds": [
+        3403
+      ],
+      "size": 112,
+      "sizeHex": "0x70",
+      "path": 56,
+      "pathHex": "0x38",
+      "pathMember": "char *path",
+      "argv": 64,
+      "envp": 72,
+      "wait": 80,
+      "retval": 84,
+      "members": [
+        {
+          "name": "work",
+          "typeId": 751,
+          "typeKind": "STRUCT",
+          "typeName": "work_struct",
+          "bitOffset": 0,
+          "byteOffset": 0,
+          "byteOffsetHex": "0x0"
+        },
+        {
+          "name": "complete",
+          "typeId": 598,
+          "typeKind": "PTR",
+          "typeName": "completion",
+          "bitOffset": 384,
+          "byteOffset": 48,
+          "byteOffsetHex": "0x30"
+        },
+        {
+          "name": "path",
+          "typeId": 6,
+          "typeKind": "PTR",
+          "typeName": "char",
+          "bitOffset": 448,
+          "byteOffset": 56,
+          "byteOffsetHex": "0x38"
+        },
+        {
+          "name": "argv",
+          "typeId": 2434,
+          "typeKind": "PTR",
+          "typeName": "char",
+          "bitOffset": 512,
+          "byteOffset": 64,
+          "byteOffsetHex": "0x40"
+        },
+        {
+          "name": "envp",
+          "typeId": 2434,
+          "typeKind": "PTR",
+          "typeName": "char",
+          "bitOffset": 576,
+          "byteOffset": 72,
+          "byteOffsetHex": "0x48"
+        },
+        {
+          "name": "wait",
+          "typeId": 13,
+          "typeKind": "INT",
+          "typeName": "int",
+          "bitOffset": 640,
+          "byteOffset": 80,
+          "byteOffsetHex": "0x50"
+        },
+        {
+          "name": "retval",
+          "typeId": 13,
+          "typeKind": "INT",
+          "typeName": "int",
+          "bitOffset": 672,
+          "byteOffset": 84,
+          "byteOffsetHex": "0x54"
+        },
+        {
+          "name": "init",
+          "typeId": 3404,
+          "typeKind": "PTR",
+          "typeName": "",
+          "bitOffset": 704,
+          "byteOffset": 88,
+          "byteOffsetHex": "0x58"
+        },
+        {
+          "name": "cleanup",
+          "typeId": 3406,
+          "typeKind": "PTR",
+          "typeName": "",
+          "bitOffset": 768,
+          "byteOffset": 96,
+          "byteOffsetHex": "0x60"
+        },
+        {
+          "name": "data",
+          "typeId": 23,
+          "typeKind": "PTR",
+          "typeName": "",
+          "bitOffset": 832,
+          "byteOffset": 104,
+          "byteOffsetHex": "0x68"
+        }
+      ],
+      "writtenByModule": "path only: setup() replaces it with the empty CONFIG_STATIC_USERMODEHELPER_PATH string, and the module writes the helper path back before exec()",
+      "readBy": "call_usermodehelper_exec() reads path (ldr x8,[x19,#0x38]; ldrb w8,[x8]) and returns 0 immediately when the first byte is NUL"
+    },
+    "kretprobe": {
+      "btfTypeId": 4910,
+      "allBtfTypeIds": [
+        4910
+      ],
+      "size": 176,
+      "sizeHex": "0xb0",
+      "kp": 0,
+      "kpHex": "0x0",
+      "handler": 128,
+      "handlerHex": "0x80",
+      "entryHandler": 136,
+      "entryHandlerHex": "0x88",
+      "maxactive": 144,
+      "nmissed": 148,
+      "dataSize": 152,
+      "dataSizeHex": "0x98",
+      "freelist": 160,
+      "rph": 168,
+      "members": [
+        {
+          "name": "kp",
+          "typeId": 4871,
+          "typeKind": "STRUCT",
+          "typeName": "kprobe",
+          "bitOffset": 0,
+          "byteOffset": 0,
+          "byteOffsetHex": "0x0"
+        },
+        {
+          "name": "handler",
+          "typeId": 4911,
+          "typeKind": "TYPEDEF",
+          "typeName": "kretprobe_handler_t",
+          "bitOffset": 1024,
+          "byteOffset": 128,
+          "byteOffsetHex": "0x80"
+        },
+        {
+          "name": "entry_handler",
+          "typeId": 4911,
+          "typeKind": "TYPEDEF",
+          "typeName": "kretprobe_handler_t",
+          "bitOffset": 1088,
+          "byteOffset": 136,
+          "byteOffsetHex": "0x88"
+        },
+        {
+          "name": "maxactive",
+          "typeId": 13,
+          "typeKind": "INT",
+          "typeName": "int",
+          "bitOffset": 1152,
+          "byteOffset": 144,
+          "byteOffsetHex": "0x90"
+        },
+        {
+          "name": "nmissed",
+          "typeId": 13,
+          "typeKind": "INT",
+          "typeName": "int",
+          "bitOffset": 1184,
+          "byteOffset": 148,
+          "byteOffsetHex": "0x94"
+        },
+        {
+          "name": "data_size",
+          "typeId": 90,
+          "typeKind": "TYPEDEF",
+          "typeName": "size_t",
+          "bitOffset": 1216,
+          "byteOffset": 152,
+          "byteOffsetHex": "0x98"
+        },
+        {
+          "name": "freelist",
+          "typeId": 4914,
+          "typeKind": "STRUCT",
+          "typeName": "freelist_head",
+          "bitOffset": 1280,
+          "byteOffset": 160,
+          "byteOffsetHex": "0xa0"
+        },
+        {
+          "name": "rph",
+          "typeId": 4906,
+          "typeKind": "PTR",
+          "typeName": "kretprobe_holder",
+          "bitOffset": 1344,
+          "byteOffset": 168,
+          "byteOffsetHex": "0xa8"
+        }
+      ],
+      "note": "kp@+0x0 is a struct kprobe, so the surrogate the module declares must be at least 0xb0 bytes: the kernel writes the whole object, including freelist/rph past data_size. handler and entry_handler share one type (kretprobe_handler_t)"
+    },
+    "ptRegs": {
+      "btfTypeId": 2275,
+      "allBtfTypeIds": [
+        2275
+      ],
+      "size": 336,
+      "sizeHex": "0x150",
+      "regs": 0,
+      "regsPath": "anonymous union at +0x0 -> user_regs -> regs",
+      "sp": 248,
+      "pc": 256,
+      "pstate": 264,
+      "origX0": 272,
+      "syscallno": 280,
+      "syscallnoHex": "0x118",
+      "syscallnoType": "s32",
+      "members": [
+        {
+          "name": "",
+          "typeId": 2274,
+          "typeKind": "UNION",
+          "typeName": "",
+          "bitOffset": 0,
+          "byteOffset": 0,
+          "byteOffsetHex": "0x0"
+        },
+        {
+          "name": "orig_x0",
+          "typeId": 81,
+          "typeKind": "TYPEDEF",
+          "typeName": "u64",
+          "bitOffset": 2176,
+          "byteOffset": 272,
+          "byteOffsetHex": "0x110"
+        },
+        {
+          "name": "syscallno",
+          "typeId": 17,
+          "typeKind": "TYPEDEF",
+          "typeName": "s32",
+          "bitOffset": 2240,
+          "byteOffset": 280,
+          "byteOffsetHex": "0x118"
+        },
+        {
+          "name": "unused2",
+          "typeId": 216,
+          "typeKind": "TYPEDEF",
+          "typeName": "u32",
+          "bitOffset": 2272,
+          "byteOffset": 284,
+          "byteOffsetHex": "0x11c"
+        },
+        {
+          "name": "sdei_ttbr1",
+          "typeId": 81,
+          "typeKind": "TYPEDEF",
+          "typeName": "u64",
+          "bitOffset": 2304,
+          "byteOffset": 288,
+          "byteOffsetHex": "0x120"
+        },
+        {
+          "name": "pmr_save",
+          "typeId": 81,
+          "typeKind": "TYPEDEF",
+          "typeName": "u64",
+          "bitOffset": 2368,
+          "byteOffset": 296,
+          "byteOffsetHex": "0x128"
+        },
+        {
+          "name": "stackframe",
+          "typeId": 80,
+          "typeKind": "ARRAY",
+          "typeName": "u64",
+          "bitOffset": 2432,
+          "byteOffset": 304,
+          "byteOffsetHex": "0x130",
+          "elements": 2
+        },
+        {
+          "name": "lockdep_hardirqs",
+          "typeId": 81,
+          "typeKind": "TYPEDEF",
+          "typeName": "u64",
+          "bitOffset": 2560,
+          "byteOffset": 320,
+          "byteOffsetHex": "0x140"
+        },
+        {
+          "name": "exit_rcu",
+          "typeId": 81,
+          "typeKind": "TYPEDEF",
+          "typeName": "u64",
+          "bitOffset": 2624,
+          "byteOffset": 328,
+          "byteOffsetHex": "0x148"
+        }
+      ],
+      "flatMembers": {
+        "exit_rcu": "0x148",
+        "lockdep_hardirqs": "0x140",
+        "orig_x0": "0x110",
+        "pc": "0x100",
+        "pmr_save": "0x128",
+        "pstate": "0x108",
+        "regs": "0x0",
+        "sdei_ttbr1": "0x120",
+        "sp": "0xf8",
+        "stackframe": "0x130",
+        "syscallno": "0x118",
+        "unused2": "0x11c",
+        "user_regs": "0x0",
+        "user_regs.pc": "0x100",
+        "user_regs.pstate": "0x108",
+        "user_regs.regs": "0x0",
+        "user_regs.sp": "0xf8"
+      },
+      "note": "syscallno is at 0x118, not at the end of the embedded user_pt_regs (0x110): orig_x0 occupies 0x110. The module reads regs->syscallno, never a per-release offset"
+    },
+    "kernelParam": {
+      "btfTypeId": 2062,
+      "allBtfTypeIds": [
+        2062,
+        22657
+      ],
+      "size": 40,
+      "sizeHex": "0x28",
+      "name": 0,
+      "mod": 8,
+      "ops": 16,
+      "perm": 24,
+      "level": 26,
+      "flags": 27,
+      "arg": 32,
+      "members": [
+        {
+          "name": "name",
+          "typeId": 6,
+          "typeKind": "PTR",
+          "typeName": "char",
+          "bitOffset": 0,
+          "byteOffset": 0,
+          "byteOffsetHex": "0x0"
+        },
+        {
+          "name": "mod",
+          "typeId": 118,
+          "typeKind": "PTR",
+          "typeName": "module",
+          "bitOffset": 64,
+          "byteOffset": 8,
+          "byteOffsetHex": "0x8"
+        },
+        {
+          "name": "ops",
+          "typeId": 2063,
+          "typeKind": "PTR",
+          "typeName": "kernel_param_ops",
+          "bitOffset": 128,
+          "byteOffset": 16,
+          "byteOffsetHex": "0x10"
+        },
+        {
+          "name": "perm",
+          "typeId": 2072,
+          "typeKind": "CONST",
+          "typeName": "u16",
+          "bitOffset": 192,
+          "byteOffset": 24,
+          "byteOffsetHex": "0x18"
+        },
+        {
+          "name": "level",
+          "typeId": 1092,
+          "typeKind": "TYPEDEF",
+          "typeName": "s8",
+          "bitOffset": 208,
+          "byteOffset": 26,
+          "byteOffsetHex": "0x1a"
+        },
+        {
+          "name": "flags",
+          "typeId": 73,
+          "typeKind": "TYPEDEF",
+          "typeName": "u8",
+          "bitOffset": 216,
+          "byteOffset": 27,
+          "byteOffsetHex": "0x1b"
+        },
+        {
+          "name": "",
+          "typeId": 2061,
+          "typeKind": "UNION",
+          "typeName": "",
+          "bitOffset": 256,
+          "byteOffset": 32,
+          "byteOffsetHex": "0x20"
+        }
+      ],
+      "note": "the glue writes one row of this struct by hand (C1-6), so the offsets must come from here, not from a hand-copied header"
+    }
+  },
+  "exportTable": {
+    "__ksymtab": {
+      "start": 23555632,
+      "startHex": "0x1676e30",
+      "stop": 23595088,
+      "stopHex": "0x1680850",
+      "startTsvLine": 71252,
+      "startTsvText": "23555632\tRODATA\t__start___ksymtab",
+      "stopTsvLine": 74544,
+      "stopTsvText": "23595088\tRODATA\t__stop___ksymtab"
+    },
+    "__ksymtab_gpl": {
+      "start": 23595088,
+      "startHex": "0x1680850",
+      "stop": 23658256,
+      "stopHex": "0x168ff10",
+      "startTsvLine": 74543,
+      "startTsvText": "23595088\tRODATA\t__start___ksymtab_gpl",
+      "stopTsvLine": 79809,
+      "stopTsvText": "23658256\tRODATA\t__stop___ksymtab_gpl"
+    },
+    "entryCounts": {
+      "__ksymtab": 3288,
+      "__ksymtab_gpl": 5264,
+      "outside": 0
+    },
+    "method": "a symbol's export class is the range its __ksymtab_<name> entry address falls in; both bounds are the kernel's own linker symbols, so no heuristic is involved",
+    "contiguous": true
+  },
+  "kcfiInitTypeId": "0x36b1c5a6",
+  "kcfiProvenance": {
+    "kcfiInitTypeId": "0x36b1c5a6",
+    "provenance": "image-bytes",
+    "site": {
+      "fileOffset": 84896,
+      "fileOffsetHex": "0x14ba0",
+      "decoded": [
+        "0x7298b4d1  movk w17, #0xc5a6",
+        "0x72a6d631  movk w17, #0x36b1, lsl #16",
+        "0x6b11021f  cmp  (w1x, w17)",
+        "0x54000040  b.eq +8",
+        "0xd4304660  brk  #0x8233",
+        "0xd63f0260  blr  x19"
+      ],
+      "containingFunction": "do_one_initcall",
+      "containingFunctionSymbol": {
+        "address": 84700,
+        "addressHex": "0x14adc",
+        "type": "TEXT",
+        "tsvLine": 50,
+        "tsvText": "84700\tTEXT\tdo_one_initcall"
+      },
+      "note": "clang kCFI builds the expected type hash for `int (void)` in w17, compares it with the callee's 4-byte prefix and traps on mismatch before the indirect call; a module's init_module must therefore begin with this 32-bit value"
+    },
+    "occurrences": 14725,
+    "distinctTypeIds": 4474,
+    "typeIdSample": [
+      "0x00050794",
+      "0x001667b3",
+      "0x00213d0f",
+      "0x002d429b",
+      "0x0036cf4e",
+      "0x004f076c",
+      "0x00591ff5",
+      "0x00695768",
+      "0x00701c73",
+      "0x00778d81",
+      "0x007eab72",
+      "0x00854598"
+    ]
+  },
+  "modinfo": {
+    "required": [
+      "license=GPL",
+      "vermagic=6.6.66-android15-8-g29d86c5fc9dd-abogki428889875-4k SMP preempt mod_unload modversions aarch64",
+      "name=maplesu_root",
+      "depends="
+    ],
+    "license": "GPL",
+    "licenseRationale": {
+      "why": "a non-GPL module may not resolve a symbol whose __ksymtab entry lives in __ksymtab_gpl, so register_kprobe() alone forces license=GPL; nothing else about this module is GPL-specific",
+      "evidence": [
+        "register_kprobe -> EXPORT_SYMBOL_GPL",
+        "unregister_kprobe -> EXPORT_SYMBOL_GPL"
+      ],
+      "gplBoundSymbols": [
+        "register_kprobe",
+        "unregister_kprobe"
+      ]
+    },
+    "vermagicSuffix": " SMP preempt mod_unload modversions aarch64",
+    "source": "module/root_glue.S.in, .modinfo section (the template is the source of truth; build_root_module.py substitutes @ROOT_VERMAGIC@ and emits no second .modinfo, because the loader rejects a module with two)"
+  },
+  "requiredSymbols": [
+    {
+      "name": "register_kprobe",
+      "why": "step 1: resolve kallsyms_lookup_name through a kprobe",
+      "imported": true,
+      "required": true,
+      "symbol": {
+        "address": 1972612,
+        "addressHex": "0x1e1984",
+        "type": "TEXT",
+        "tsvLine": 7451,
+        "tsvText": "1972612\tTEXT\tregister_kprobe"
+      },
+      "export": {
+        "ksymtabSymbol": "__ksymtab_register_kprobe",
+        "address": 23641480,
+        "addressHex": "0x168bd88",
+        "tsvLine": 78410,
+        "tsvText": "23641480\tRODATA\t__ksymtab_register_kprobe",
+        "section": "__ksymtab_gpl",
+        "macro": "EXPORT_SYMBOL_GPL"
+      },
+      "gplOnly": true,
+      "gplExpectationMatched": true
+    },
+    {
+      "name": "unregister_kprobe",
+      "why": "step 1: remove the temporary kprobe",
+      "imported": true,
+      "required": true,
+      "symbol": {
+        "address": 1974944,
+        "addressHex": "0x1e22a0",
+        "type": "TEXT",
+        "tsvLine": 7455,
+        "tsvText": "1974944\tTEXT\tunregister_kprobe"
+      },
+      "export": {
+        "ksymtabSymbol": "__ksymtab_unregister_kprobe",
+        "address": 23651908,
+        "addressHex": "0x168e644",
+        "tsvLine": 79279,
+        "tsvText": "23651908\tRODATA\t__ksymtab_unregister_kprobe",
+        "section": "__ksymtab_gpl",
+        "macro": "EXPORT_SYMBOL_GPL"
+      },
+      "gplOnly": true,
+      "gplExpectationMatched": true
+    },
+    {
+      "name": "_printk",
+      "why": "diagnostics on every failure path",
+      "imported": true,
+      "required": true,
+      "symbol": {
+        "address": 17019724,
+        "addressHex": "0x103b34c",
+        "type": "TEXT",
+        "tsvLine": 59049,
+        "tsvText": "17019724\tTEXT\t_printk"
+      },
+      "export": {
+        "ksymtabSymbol": "__ksymtab__printk",
+        "address": 23559328,
+        "addressHex": "0x1677ca0",
+        "tsvLine": 71562,
+        "tsvText": "23559328\tRODATA\t__ksymtab__printk",
+        "section": "__ksymtab",
+        "macro": "EXPORT_SYMBOL"
+      },
+      "gplOnly": false,
+      "gplExpectationMatched": true
+    },
+    {
+      "name": "call_usermodehelper",
+      "why": "step 4: start the helper as kernel-domain root",
+      "imported": true,
+      "required": true,
+      "symbol": {
+        "address": 848668,
+        "addressHex": "0xcf31c",
+        "type": "TEXT",
+        "tsvLine": 3082,
+        "tsvText": "848668\tTEXT\tcall_usermodehelper"
+      },
+      "export": {
+        "ksymtabSymbol": "__ksymtab_call_usermodehelper",
+        "address": 23561440,
+        "addressHex": "0x16784e0",
+        "tsvLine": 71738,
+        "tsvText": "23561440\tRODATA\t__ksymtab_call_usermodehelper",
+        "section": "__ksymtab",
+        "macro": "EXPORT_SYMBOL"
+      },
+      "gplOnly": false,
+      "gplExpectationMatched": true
+    }
+  ],
+  "optionalSymbols": [
+    {
+      "name": "memset",
+      "why": "not referenced: maplesu_root.c zeroes the probe with an explicit byte loop and the build uses -fno-builtin; carried so a future build that lowers the loop to memset still has a checked import",
+      "imported": false,
+      "required": false,
+      "symbol": {
+        "address": 16838272,
+        "addressHex": "0x100ee80",
+        "type": "WEAK_SYMBOL_WITH_DEFAULT",
+        "tsvLine": 58494,
+        "tsvText": "16838272\tWEAK_SYMBOL_WITH_DEFAULT\tmemset"
+      },
+      "export": {
+        "ksymtabSymbol": "__ksymtab_memset",
+        "address": 23578132,
+        "addressHex": "0x167c614",
+        "tsvLine": 73129,
+        "tsvText": "23578132\tRODATA\t__ksymtab_memset",
+        "section": "__ksymtab",
+        "macro": "EXPORT_SYMBOL"
+      }
+    }
+  ],
+  "forbiddenSymbolsAbsent": [
+    {
+      "name": "call_usermodehelper_setup",
+      "why": "must never be *imported*: it has no __ksymtab entry on this build, so an import fails with 'Unknown symbol'. The module reaches it through kallsyms instead (runtimeLookups), and the four-argument wrapper stays as the documented fallback import",
+      "inSymbolList": true,
+      "symbolListRowsForName": 1,
+      "ksymtabRowsForName": 0,
+      "symbol": {
+        "address": 847652,
+        "addressHex": "0xcef24",
+        "type": "TEXT",
+        "tsvLine": 3079,
+        "tsvText": "847652\tTEXT\tcall_usermodehelper_setup"
+      },
+      "inBtf": true,
+      "btfKinds": [
+        "FUNC"
+      ],
+      "export": null,
+      "importable": false,
+      "evidence": "present in the symbol list as TEXT but with no __ksymtab_call_usermodehelper_setup entry, so an import fails with 'Unknown symbol'"
+    },
+    {
+      "name": "call_usermodehelper_exec",
+      "why": "same: not exported, so it is a runtime lookup, never an import",
+      "inSymbolList": true,
+      "symbolListRowsForName": 1,
+      "ksymtabRowsForName": 0,
+      "symbol": {
+        "address": 848104,
+        "addressHex": "0xcf0e8",
+        "type": "TEXT",
+        "tsvLine": 3081,
+        "tsvText": "848104\tTEXT\tcall_usermodehelper_exec"
+      },
+      "inBtf": true,
+      "btfKinds": [
+        "FUNC"
+      ],
+      "export": null,
+      "importable": false,
+      "evidence": "present in the symbol list as TEXT but with no __ksymtab_call_usermodehelper_exec entry, so an import fails with 'Unknown symbol'"
+    },
+    {
+      "name": "security_setenforce",
+      "why": "flipping the byte directly is the handover path; the setter is not in this build at all",
+      "inSymbolList": false,
+      "symbolListRowsForName": 0,
+      "ksymtabRowsForName": 0,
+      "symbol": null,
+      "inBtf": false,
+      "btfKinds": [],
+      "export": null,
+      "importable": false,
+      "evidence": "absent everywhere: no __ksymtab_security_setenforce, no symbol-list row, and no BTF type of this name (the kernel was not built with it)"
+    },
+    {
+      "name": "selinux_enforcing",
+      "why": "not a symbol on this kernel at all; the state lives in struct selinux_state",
+      "inSymbolList": false,
+      "symbolListRowsForName": 0,
+      "ksymtabRowsForName": 0,
+      "symbol": null,
+      "inBtf": false,
+      "btfKinds": [],
+      "export": null,
+      "importable": false,
+      "evidence": "absent everywhere: no __ksymtab_selinux_enforcing, no symbol-list row, and no BTF type of this name (the kernel was not built with it)"
+    }
+  ],
+  "runtimeLookups": [
+    {
+      "name": "kallsyms_lookup_name",
+      "symbolClass": "function",
+      "why": "the resolver itself, obtained from kprobe.addr",
+      "status": "listed",
+      "lookupResult": "resolves",
+      "inSymbolList": true,
+      "symbolListRowsForName": 1,
+      "exported": false,
+      "inBtf": true,
+      "btfKinds": [
+        "FUNC"
+      ],
+      "symbol": {
+        "address": 1788776,
+        "addressHex": "0x1b4b68",
+        "type": "TEXT",
+        "tsvLine": 6880,
+        "tsvText": "1788776\tTEXT\tkallsyms_lookup_name"
+      },
+      "severity": "ok",
+      "mustProbeOnDevice": false,
+      "evidence": "TEXT at 0x1b4b68, not exported (no __ksymtab_kallsyms_lookup_name): exactly the case kallsyms_lookup_name exists for"
+    },
+    {
+      "name": "selinux_state",
+      "symbolClass": "data",
+      "why": "step 2: address of the enforcing byte",
+      "status": "not-in-list-bss-possible",
+      "lookupResult": "unverified",
+      "inSymbolList": false,
+      "symbolListRowsForName": 0,
+      "exported": false,
+      "inBtf": true,
+      "btfKinds": [
+        "STRUCT"
+      ],
+      "symbol": null,
+      "severity": "critical",
+      "mustProbeOnDevice": true,
+      "evidence": "no row in the symbol list, but this is a data name and the list cannot contain .bss symbols (see symbolListCoverage.bssBlindSpot); resolvability must be confirmed on the device"
+    },
+    {
+      "name": "call_usermodehelper_setup",
+      "symbolClass": "function",
+      "why": "step 4 primary: allocate the subprocess_info the exec stage consumes; it is in kallsyms but not in __ksymtab (CONFIG_TRIM_UNUSED_KSYMS), which is exactly why the two-stage handover is a lookup and not an import",
+      "status": "listed",
+      "lookupResult": "resolves",
+      "inSymbolList": true,
+      "symbolListRowsForName": 1,
+      "exported": false,
+      "inBtf": true,
+      "btfKinds": [
+        "FUNC"
+      ],
+      "symbol": {
+        "address": 847652,
+        "addressHex": "0xcef24",
+        "type": "TEXT",
+        "tsvLine": 3079,
+        "tsvText": "847652\tTEXT\tcall_usermodehelper_setup"
+      },
+      "severity": "ok",
+      "mustProbeOnDevice": false,
+      "evidence": "TEXT at 0xcef24, not exported (no __ksymtab_call_usermodehelper_setup): exactly the case kallsyms_lookup_name exists for"
+    },
+    {
+      "name": "call_usermodehelper_exec",
+      "symbolClass": "function",
+      "why": "step 4 primary: fork the helper from the subprocess_info whose path we restored -- without this call the module cannot exec anything on this image",
+      "status": "listed",
+      "lookupResult": "resolves",
+      "inSymbolList": true,
+      "symbolListRowsForName": 1,
+      "exported": false,
+      "inBtf": true,
+      "btfKinds": [
+        "FUNC"
+      ],
+      "symbol": {
+        "address": 848104,
+        "addressHex": "0xcf0e8",
+        "type": "TEXT",
+        "tsvLine": 3081,
+        "tsvText": "848104\tTEXT\tcall_usermodehelper_exec"
+      },
+      "severity": "ok",
+      "mustProbeOnDevice": false,
+      "evidence": "TEXT at 0xcf0e8, not exported (no __ksymtab_call_usermodehelper_exec): exactly the case kallsyms_lookup_name exists for"
+    },
+    {
+      "name": "aarch64_insn_patch_text",
+      "symbolClass": "function",
+      "why": "step 3: patch vendor handlers to return 0 (compiled out by default)",
+      "status": "listed",
+      "lookupResult": "resolves",
+      "inSymbolList": true,
+      "symbolListRowsForName": 1,
+      "exported": false,
+      "inBtf": true,
+      "btfKinds": [
+        "FUNC"
+      ],
+      "symbol": {
+        "address": 17120424,
+        "addressHex": "0x1053ca8",
+        "type": "TEXT",
+        "tsvLine": 59444,
+        "tsvText": "17120424\tTEXT\taarch64_insn_patch_text"
+      },
+      "severity": "ok",
+      "mustProbeOnDevice": false,
+      "evidence": "TEXT at 0x1053ca8, not exported (no __ksymtab_aarch64_insn_patch_text): exactly the case kallsyms_lookup_name exists for"
+    },
+    {
+      "name": "oplus_exe_block_ret_handler",
+      "symbolClass": "function",
+      "why": "step 3 vendor handler",
+      "status": "not-in-build",
+      "lookupResult": "null",
+      "inSymbolList": false,
+      "symbolListRowsForName": 0,
+      "exported": false,
+      "inBtf": false,
+      "btfKinds": [],
+      "symbol": null,
+      "severity": "advisory",
+      "mustProbeOnDevice": false,
+      "evidence": "no row in the symbol list and no BTF type of this name: this kernel was not built with it, so the lookup returns NULL (the module's != NULL guard makes that a no-op)"
+    },
+    {
+      "name": "oplus_root_check_post_handler",
+      "symbolClass": "function",
+      "why": "step 3 vendor handler",
+      "status": "not-in-build",
+      "lookupResult": "null",
+      "inSymbolList": false,
+      "symbolListRowsForName": 0,
+      "exported": false,
+      "inBtf": false,
+      "btfKinds": [],
+      "symbol": null,
+      "severity": "advisory",
+      "mustProbeOnDevice": false,
+      "evidence": "no row in the symbol list and no BTF type of this name: this kernel was not built with it, so the lookup returns NULL (the module's != NULL guard makes that a no-op)"
+    },
+    {
+      "name": "task_defex_enforce",
+      "symbolClass": "function",
+      "why": "step 3 vendor handler",
+      "status": "not-in-build",
+      "lookupResult": "null",
+      "inSymbolList": false,
+      "symbolListRowsForName": 0,
+      "exported": false,
+      "inBtf": false,
+      "btfKinds": [],
+      "symbol": null,
+      "severity": "advisory",
+      "mustProbeOnDevice": false,
+      "evidence": "no row in the symbol list and no BTF type of this name: this kernel was not built with it, so the lookup returns NULL (the module's != NULL guard makes that a no-op)"
+    },
+    {
+      "name": "task_defex_user_exec",
+      "symbolClass": "function",
+      "why": "step 3 vendor handler",
+      "status": "not-in-build",
+      "lookupResult": "null",
+      "inSymbolList": false,
+      "symbolListRowsForName": 0,
+      "exported": false,
+      "inBtf": false,
+      "btfKinds": [],
+      "symbol": null,
+      "severity": "advisory",
+      "mustProbeOnDevice": false,
+      "evidence": "no row in the symbol list and no BTF type of this name: this kernel was not built with it, so the lookup returns NULL (the module's != NULL guard makes that a no-op)"
+    }
+  ],
+  "config": {
+    "cfi": {
+      "config": "CONFIG_CFI_CLANG",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "kernel control-flow integrity: init_module must carry the int(void) KCFI id"
+    },
+    "staticUsermodehelper": {
+      "config": "CONFIG_STATIC_USERMODEHELPER",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "every usermodehelper runs through one build-time path; with the path below set to the empty string, call_usermodehelper_setup() overwrites the caller's path with \"\" and the four-argument call_usermodehelper() becomes a silent no-op"
+    },
+    "shadowCallStack": {
+      "config": "CONFIG_SHADOW_CALL_STACK",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "return-address signing: a patched function may end in RETAA/RETAB, so the patch must not assume a plain RET"
+    },
+    "modversions": {
+      "config": "CONFIG_MODVERSIONS",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "the loader compares vermagic and consults __versions"
+    },
+    "trimUnusedKsyms": {
+      "config": "CONFIG_TRIM_UNUSED_KSYMS",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "unused exports are dropped at build time, which is why call_usermodehelper_setup/_exec are absent from __ksymtab"
+    },
+    "btf": {
+      "config": "CONFIG_DEBUG_INFO_BTF",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "the image's .BTF is the layout authority this contract is built on"
+    },
+    "kallsymsAll": {
+      "config": "CONFIG_KALLSYMS_ALL",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "data symbols are in kallsyms, so a data name can be resolved by kallsyms_lookup_name -- which is what makes the .bss blind spot below matter"
+    },
+    "moduleSig": {
+      "config": "CONFIG_MODULE_SIG",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "modules are signed at build time (CONFIG_MODULE_SIG_ALL=y)"
+    },
+    "moduleSigForce": {
+      "config": "CONFIG_MODULE_SIG_FORCE",
+      "value": "n",
+      "expected": "n",
+      "satisfied": true,
+      "why": "signature enforcement is off, so an unsigned module is still loadable -- this is the fact the whole design depends on"
+    },
+    "moduleForceLoad": {
+      "config": "CONFIG_MODULE_FORCE_LOAD",
+      "value": "n",
+      "expected": "n",
+      "satisfied": true,
+      "why": "force-load is off: vermagic must match exactly, there is no override"
+    },
+    "selinux": {
+      "config": "CONFIG_SECURITY_SELINUX",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "SELinux is built in"
+    },
+    "selinuxDevelop": {
+      "config": "CONFIG_SECURITY_SELINUX_DEVELOP",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "struct selinux_state carries the `enforcing` bool only when this is set"
+    },
+    "randstruct": {
+      "config": "CONFIG_RANDSTRUCT_NONE",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "member order is declaration order, so BTF offsets are stable for this build"
+    },
+    "lto": {
+      "config": "CONFIG_LTO_NONE",
+      "value": "y",
+      "expected": "y",
+      "satisfied": true,
+      "why": "no LTO: symbol names and function bodies are as written, not internalised"
+    },
+    "staticUsermodehelperPath": {
+      "config": "CONFIG_STATIC_USERMODEHELPER_PATH",
+      "value": "",
+      "rawValue": "\"\"",
+      "expected": "",
+      "satisfied": true,
+      "why": "the empty override is the reason the module must do the two-stage handover: call_usermodehelper_setup() stores a pointer to this empty rodata string at subprocess_info.path, and call_usermodehelper_exec() sees an empty path and returns 0 without forking anything"
+    }
+  },
+  "configProvenance": {
+    "source": "embedded CONFIG_IKCONFIG blob in the image",
+    "blobOffset": "0x1121810",
+    "compressedBytes": 45625,
+    "plainBytes": 211439,
+    "lines": 7743,
+    "note": "authoritative for this exact image, no device access needed; the prior evidence doc docs/patching/HANDOVER-2026-10-29.md:203 states the same values from device-side observation"
+  },
+  "helperPathPolicy": {
+    "decision": "D-5 (as corrected by step-3 D3-3)",
+    "decisionDoc": "docs/patching/maplesu-kernel-entry-design-2026-10-29.md:99",
+    "decisionQuote": "| D-5 | helper \u8def\u5f84 | \u7edf\u4e00\u4e3a App \u5b9e\u9645 stage \u7684 `<dataDir>/bs`\uff08\u6a21\u5757\u4fa7\u6539\u5e38\u91cf\uff09 |",
+    "policyPath": "/data/user/0/dev.maplesu.manager/bs",
+    "policyPathTemplate": "<CE-dataDir>/bs",
+    "dataDir": "/data/user/0/dev.maplesu.manager",
+    "dataDirKind": "credential-encrypted (CE; /data/data is the same inode)",
+    "aliases": [
+      "/data/data/dev.maplesu.manager/bs"
+    ],
+    "unstagedAlias": {
+      "path": "/data/user_de/0/dev.maplesu.manager/bs",
+      "rejectedBecause": "39 bytes with the NUL; the stock dfroot.ko path array holds 33 characters (/data/data/dev.maplesu.manager/bs)"
+    },
+    "moduleConstant": "/data/user/0/dev.maplesu.manager/bs",
+    "moduleConstantSource": "jailbreak-providers/root-loader/module/maplesu_root.c:104-108",
+    "matches": true,
+    "status": "aligned",
+    "note": "Step-3 aligned the module-side constant to the CE `bs` the App actually stages (D-5). The App writes it in DirtyfragAttempt.stageBootstrap() and the stock dfroot.ko execs the same inode, so one binary serves both the exploit route (argv[0]) and the module's UMH handover (handover.helperArgv). CE is only mounted after user 0 is unlocked, so this handover must never be moved to early boot."
+  },
+  "l2": {
+    "layer": "L2",
+    "schema": "maplesu.l2.contract/1",
+    "design": {
+      "document": "docs/patching/maplesu-l2-hook-framework-design-2026-10-29.md",
+      "revision": "rev-2",
+      "review": "docs/patching/maplesu-l2-ready-review-2026-10-29.md",
+      "reviewScope": "\u00a711 M1-M10 (must-fix) and \u00a712 C0 (the host work this block belongs to)",
+      "status": "host-side contract only: nothing in L2 has run on a device"
+    },
+    "lifetime": "window-scoped: load, arm the control probe, self-check, arm the functional probes, self-trigger the first hit, disarm, unload - all inside one permissive window (Q-L2-1). Nothing is left resident and nothing is persisted across boot",
+    "module": {
+      "name": "maplesu_l2",
+      "fileName": "maplesu_l2.ko",
+      "source": "module/maplesu_l2.c",
+      "glueTemplate": "module/root_glue_l2.S.in",
+      "kind": "second, separately unloadable module; maplesu_root.ko stays frozen and unmodified",
+      "deliveryProof": "`^maplesu_l2 ` in /proc/modules inside the window plus the OP_PROBE magic 0x4d41504c45535531",
+      "thisModule": {
+        "btfTypeId": 119,
+        "size": 1536,
+        "sizeHex": "0x600",
+        "nameOffset": 24,
+        "initOffset": 392,
+        "exitOffset": 1464,
+        "note": "same struct module BTF as maplesu_root.ko: the glue template's offsets are derived, not copied"
+      },
+      "modinfo": {
+        "license": "GPL",
+        "vermagic": "6.6.66-android15-8-g29d86c5fc9dd-abogki428889875-4k SMP preempt mod_unload modversions aarch64",
+        "required": [
+          "license=GPL",
+          "name=maplesu_l2",
+          "depends=",
+          "vermagic=6.6.66-android15-8-g29d86c5fc9dd-abogki428889875-4k SMP preempt mod_unload modversions aarch64"
+        ]
+      },
+      "build": {
+        "verifyCommand": "python jailbreak-providers/root-loader/build_root_module.py --verify-only --module maplesu_l2",
+        "state": "artifact-absent: the module is C1; the command must fail with 'artifact missing', not an argparse error",
+        "gateState": "G1-G7 exist and are module-generic; G8-G14 are the L2 gates and land with the module (C1/C2)"
+      }
+    },
+    "structOffsetsRef": [
+      "structOffsets.kretprobe",
+      "structOffsets.ptRegs"
+    ],
+    "callbacks": {
+      "prototypeRule": "each callback must be declared with the *kernel's* struct names (struct kprobe, struct pt_regs, struct kretprobe_instance). The shim names (struct maplesu_*) are for data layout only",
+      "nocfiAsymmetry": "functions that *call* a runtime-resolved address are MAPLESU_NOCFI; callbacks invoked *by* the kernel are not, because they must keep the prefix the kernel checks",
+      "prototypes": [
+        "static int  l2_pre_execve(struct kprobe *p, struct pt_regs *regs);",
+        "static void l2_post_execve(struct kprobe *p, struct pt_regs *regs, unsigned long flags);",
+        "static int  l2_ret_execve(struct kretprobe_instance *ri, struct pt_regs *regs);",
+        "static int  l2_pre_ctl(struct kprobe *p, struct pt_regs *regs);"
+      ]
+    },
+    "kcfiIds": {
+      "preHandler": {
+        "value": "0xa6be5dd9",
+        "declaration": "int (*)(struct kprobe *, struct pt_regs *)",
+        "structNames": [
+          "kprobe",
+          "pt_regs"
+        ],
+        "member": {
+          "struct": "kprobe",
+          "name": "pre_handler",
+          "offset": 64,
+          "offsetHex": "0x40",
+          "btfTypeId": 4871
+        },
+        "anchorFunctions": [
+          "aggr_pre_handler",
+          "kprobe_breakpoint_handler"
+        ],
+        "anchorFunctionsFound": [
+          "aggr_pre_handler",
+          "kprobe_breakpoint_handler"
+        ],
+        "callSites": [
+          {
+            "function": "aggr_pre_handler",
+            "functionAddress": "0x1e15c0",
+            "functionOffsetHex": "0x74",
+            "compareSiteAddress": "0x1e1634",
+            "loadedMemberOffsetsHex": [
+              "0x30",
+              "0x30",
+              "0x0"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x728bbb31  movk w17, #0x5dd9",
+              "0x72b4d7d1  movk w17, #0xa6be, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0xa6be5dd9"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0xc8",
+            "compareSiteAddress": "0x10541cc",
+            "loadedMemberOffsetsHex": [
+              "0x28",
+              "0x50",
+              "0x68",
+              "0x58",
+              "0x0",
+              "0x0"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x72871131  movk w17, #0x3889",
+              "0x72a6c311  movk w17, #0x3618, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x36183889"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x128",
+            "compareSiteAddress": "0x105422c",
+            "loadedMemberOffsetsHex": [
+              "0x40",
+              "0x10",
+              "0x0",
+              "0x70",
+              "0x28",
+              "0x50",
+              "0x68"
+            ],
+            "memberLoadConfirmed": true,
+            "memberLoadDistanceHex": "0x14",
+            "instructions": [
+              "0x728bbb31  movk w17, #0x5dd9",
+              "0x72b4d7d1  movk w17, #0xa6be, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0xa6be5dd9"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x1a8",
+            "compareSiteAddress": "0x10542ac",
+            "loadedMemberOffsetsHex": [
+              "0x28",
+              "0x50",
+              "0x68",
+              "0x108",
+              "0x108",
+              "0x58"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x72871131  movk w17, #0x3889",
+              "0x72a6c311  movk w17, #0x3618, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x36183889"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x214",
+            "compareSiteAddress": "0x1054318",
+            "loadedMemberOffsetsHex": [
+              "0x48",
+              "0x18",
+              "0x10",
+              "0x0",
+              "0x70",
+              "0x28",
+              "0x50"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x729738f1  movk w17, #0xb9c7",
+              "0x72adc431  movk w17, #0x6e21, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x6e21b9c7"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x254",
+            "compareSiteAddress": "0x1054358",
+            "loadedMemberOffsetsHex": [
+              "0x48",
+              "0x48",
+              "0x18",
+              "0x10"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x729738f1  movk w17, #0xb9c7",
+              "0x72adc431  movk w17, #0x6e21, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x6e21b9c7"
+          }
+        ],
+        "callSitesWithThisId": [
+          {
+            "function": "aggr_pre_handler",
+            "functionAddress": "0x1e15c0",
+            "functionOffsetHex": "0x74",
+            "compareSiteAddress": "0x1e1634",
+            "loadedMemberOffsetsHex": [
+              "0x30",
+              "0x30",
+              "0x0"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x728bbb31  movk w17, #0x5dd9",
+              "0x72b4d7d1  movk w17, #0xa6be, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0xa6be5dd9"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x128",
+            "compareSiteAddress": "0x105422c",
+            "loadedMemberOffsetsHex": [
+              "0x40",
+              "0x10",
+              "0x0",
+              "0x70",
+              "0x28",
+              "0x50",
+              "0x68"
+            ],
+            "memberLoadConfirmed": true,
+            "memberLoadDistanceHex": "0x14",
+            "instructions": [
+              "0x728bbb31  movk w17, #0x5dd9",
+              "0x72b4d7d1  movk w17, #0xa6be, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0xa6be5dd9"
+          }
+        ],
+        "memberLoadConfirmed": true,
+        "provenance": "image-bytes: the compare site(s) above build this id before the indirect call that loads the callback from kprobe.pre_handler (+0x40)",
+        "inImageTypeIdSet": true,
+        "matches": true,
+        "why": "kprobe_pre_handler_t: the kprobe pre-handler the kernel indirect-calls at every probe site; l2_pre_execve and l2_pre_ctl must carry exactly this id"
+      },
+      "postHandler": {
+        "value": "0x6e21b9c7",
+        "declaration": "void (*)(struct kprobe *, struct pt_regs *, unsigned long)",
+        "structNames": [
+          "kprobe",
+          "pt_regs"
+        ],
+        "member": {
+          "struct": "kprobe",
+          "name": "post_handler",
+          "offset": 72,
+          "offsetHex": "0x48",
+          "btfTypeId": 4871
+        },
+        "anchorFunctions": [
+          "kprobe_breakpoint_handler"
+        ],
+        "anchorFunctionsFound": [
+          "kprobe_breakpoint_handler"
+        ],
+        "callSites": [
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0xc8",
+            "compareSiteAddress": "0x10541cc",
+            "loadedMemberOffsetsHex": [
+              "0x28",
+              "0x50",
+              "0x68",
+              "0x58",
+              "0x0",
+              "0x0"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x72871131  movk w17, #0x3889",
+              "0x72a6c311  movk w17, #0x3618, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x36183889"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x128",
+            "compareSiteAddress": "0x105422c",
+            "loadedMemberOffsetsHex": [
+              "0x40",
+              "0x10",
+              "0x0",
+              "0x70",
+              "0x28",
+              "0x50",
+              "0x68"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x728bbb31  movk w17, #0x5dd9",
+              "0x72b4d7d1  movk w17, #0xa6be, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0xa6be5dd9"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x1a8",
+            "compareSiteAddress": "0x10542ac",
+            "loadedMemberOffsetsHex": [
+              "0x28",
+              "0x50",
+              "0x68",
+              "0x108",
+              "0x108",
+              "0x58"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x72871131  movk w17, #0x3889",
+              "0x72a6c311  movk w17, #0x3618, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x36183889"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x214",
+            "compareSiteAddress": "0x1054318",
+            "loadedMemberOffsetsHex": [
+              "0x48",
+              "0x18",
+              "0x10",
+              "0x0",
+              "0x70",
+              "0x28",
+              "0x50"
+            ],
+            "memberLoadConfirmed": true,
+            "memberLoadDistanceHex": "0x18",
+            "instructions": [
+              "0x729738f1  movk w17, #0xb9c7",
+              "0x72adc431  movk w17, #0x6e21, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x6e21b9c7"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x254",
+            "compareSiteAddress": "0x1054358",
+            "loadedMemberOffsetsHex": [
+              "0x48",
+              "0x48",
+              "0x18",
+              "0x10"
+            ],
+            "memberLoadConfirmed": true,
+            "memberLoadDistanceHex": "0x18",
+            "instructions": [
+              "0x729738f1  movk w17, #0xb9c7",
+              "0x72adc431  movk w17, #0x6e21, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x6e21b9c7"
+          }
+        ],
+        "callSitesWithThisId": [
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x214",
+            "compareSiteAddress": "0x1054318",
+            "loadedMemberOffsetsHex": [
+              "0x48",
+              "0x18",
+              "0x10",
+              "0x0",
+              "0x70",
+              "0x28",
+              "0x50"
+            ],
+            "memberLoadConfirmed": true,
+            "memberLoadDistanceHex": "0x18",
+            "instructions": [
+              "0x729738f1  movk w17, #0xb9c7",
+              "0x72adc431  movk w17, #0x6e21, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x6e21b9c7"
+          },
+          {
+            "function": "kprobe_breakpoint_handler",
+            "functionAddress": "0x1054104",
+            "functionOffsetHex": "0x254",
+            "compareSiteAddress": "0x1054358",
+            "loadedMemberOffsetsHex": [
+              "0x48",
+              "0x48",
+              "0x18",
+              "0x10"
+            ],
+            "memberLoadConfirmed": true,
+            "memberLoadDistanceHex": "0x18",
+            "instructions": [
+              "0x729738f1  movk w17, #0xb9c7",
+              "0x72adc431  movk w17, #0x6e21, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x6e21b9c7"
+          }
+        ],
+        "memberLoadConfirmed": true,
+        "provenance": "image-bytes: the compare site(s) above build this id before the indirect call that loads the callback from kprobe.post_handler (+0x48)",
+        "inImageTypeIdSet": true,
+        "matches": true,
+        "why": "kprobe_post_handler_t: the optional post-handler (l2_post_execve, if C1 keeps it); same dispatch site as the pre-handler"
+      },
+      "kretprobeHandler": {
+        "value": "0x8078be15",
+        "declaration": "int (*)(struct kretprobe_instance *, struct pt_regs *)",
+        "structNames": [
+          "kretprobe_instance",
+          "pt_regs"
+        ],
+        "member": {
+          "struct": "kretprobe",
+          "name": "handler",
+          "offset": 128,
+          "offsetHex": "0x80",
+          "btfTypeId": 4910
+        },
+        "anchorFunctions": [
+          "__kretprobe_trampoline_handler",
+          "pre_handler_kretprobe"
+        ],
+        "anchorFunctionsFound": [
+          "__kretprobe_trampoline_handler",
+          "pre_handler_kretprobe"
+        ],
+        "callSites": [
+          {
+            "function": "__kretprobe_trampoline_handler",
+            "functionAddress": "0x1e2708",
+            "functionOffsetHex": "0xb4",
+            "compareSiteAddress": "0x1e27bc",
+            "loadedMemberOffsetsHex": [
+              "0x80",
+              "0x80",
+              "0x0",
+              "0x8",
+              "0x18",
+              "0x0",
+              "0x10",
+              "0x0"
+            ],
+            "memberLoadConfirmed": true,
+            "memberLoadDistanceHex": "0x8",
+            "instructions": [
+              "0x7297c2b1  movk w17, #0xbe15",
+              "0x72b00f11  movk w17, #0x8078, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x8078be15"
+          },
+          {
+            "function": "pre_handler_kretprobe",
+            "functionAddress": "0x1e2848",
+            "functionOffsetHex": "0x1b0",
+            "compareSiteAddress": "0x1e29f8",
+            "loadedMemberOffsetsHex": [
+              "0x88",
+              "0x0"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x7297c2b1  movk w17, #0xbe15",
+              "0x72b00f11  movk w17, #0x8078, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x8078be15"
+          }
+        ],
+        "callSitesWithThisId": [
+          {
+            "function": "__kretprobe_trampoline_handler",
+            "functionAddress": "0x1e2708",
+            "functionOffsetHex": "0xb4",
+            "compareSiteAddress": "0x1e27bc",
+            "loadedMemberOffsetsHex": [
+              "0x80",
+              "0x80",
+              "0x0",
+              "0x8",
+              "0x18",
+              "0x0",
+              "0x10",
+              "0x0"
+            ],
+            "memberLoadConfirmed": true,
+            "memberLoadDistanceHex": "0x8",
+            "instructions": [
+              "0x7297c2b1  movk w17, #0xbe15",
+              "0x72b00f11  movk w17, #0x8078, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x8078be15"
+          },
+          {
+            "function": "pre_handler_kretprobe",
+            "functionAddress": "0x1e2848",
+            "functionOffsetHex": "0x1b0",
+            "compareSiteAddress": "0x1e29f8",
+            "loadedMemberOffsetsHex": [
+              "0x88",
+              "0x0"
+            ],
+            "memberLoadConfirmed": false,
+            "memberLoadDistanceHex": null,
+            "instructions": [
+              "0x7297c2b1  movk w17, #0xbe15",
+              "0x72b00f11  movk w17, #0x8078, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304500  brk  #0x8228",
+              "0xd63f0100  blr  x8"
+            ],
+            "typeId": "0x8078be15"
+          }
+        ],
+        "memberLoadConfirmed": true,
+        "provenance": "image-bytes: the compare site(s) above build this id before the indirect call that loads the callback from kretprobe.handler (+0x80)",
+        "inImageTypeIdSet": true,
+        "matches": true,
+        "why": "kretprobe_handler_t: rp->handler@+0x80 and rp->entry_handler@+0x88 share it; l2_ret_execve must carry exactly this id"
+      },
+      "init": {
+        "value": "0x36b1c5a6",
+        "declaration": "int (*)(void)",
+        "provenance": "image-bytes (kcfiProvenance: image-bytes at 0x14ba0)",
+        "callSites": [
+          {
+            "compareSiteAddress": "0x14ba0",
+            "function": "do_one_initcall",
+            "instructions": [
+              "0x7298b4d1  movk w17, #0xc5a6",
+              "0x72a6d631  movk w17, #0x36b1, lsl #16",
+              "0x6b11021f  cmp  (w1x, w17)",
+              "0x54000040  b.eq +8",
+              "0xd4304660  brk  #0x8233",
+              "0xd63f0260  blr  x19"
+            ]
+          }
+        ],
+        "inImageTypeIdSet": true,
+        "matches": true,
+        "why": "init_module's own entry prefix (unchanged from maplesu_root.ko); C1 must not add a second id for it"
+      }
+    },
+    "kcfiIdCount": 3,
+    "kcfiMismatches": [],
+    "declarationCheck": {
+      "why": "clang's KCFI type id is a hash of the function type, and a pointer to a struct contributes the *record name*. Two otherwise identical prototypes that differ only in the struct name therefore get different ids, so a callback declared with a shim struct name would compare against the wrong id and trap on its first call. That is the whole reason L2 callback prototypes must use the kernel's struct names.",
+      "method": "compile one TU per case with the repo's L2 flag set, read the 4 bytes before the callback's entry point (that is the __cfi_ prefix clang emits), and compare with the image's compare-site id",
+      "compiler": "Android NDK r28c clang 19.0.1 (r530567e)",
+      "flags": [
+        "--target=aarch64-linux-gnu",
+        "-ffreestanding",
+        "-nostdlib",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-pic",
+        "-ffixed-x18",
+        "-mgeneral-regs-only",
+        "-mno-outline-atomics",
+        "-fsanitize=kcfi",
+        "-O2",
+        "-c"
+      ],
+      "reproduce": "jailbreak-providers/root-loader/tests/test_l2_contract.py (skips when the NDK is absent)",
+      "cases": [
+        {
+          "case": "preHandler.kernelNames",
+          "typeId": "0xa6be5dd9",
+          "declaration": "int (*)(struct kprobe *, struct pt_regs *)",
+          "expects": "equals kcfiIds.preHandler.value"
+        },
+        {
+          "case": "postHandler.kernelNames",
+          "typeId": "0x6e21b9c7",
+          "declaration": "void (*)(struct kprobe *, struct pt_regs *, unsigned long)",
+          "expects": "equals kcfiIds.postHandler.value"
+        },
+        {
+          "case": "kretprobeHandler.kernelNames",
+          "typeId": "0x8078be15",
+          "declaration": "int (*)(struct kretprobe_instance *, struct pt_regs *)",
+          "expects": "equals kcfiIds.kretprobeHandler.value"
+        },
+        {
+          "case": "preHandler.shimNames",
+          "typeId": "0x2b8cdf69",
+          "declaration": "int (*)(struct maplesu_kprobe *, struct maplesu_pt_regs *)",
+          "expects": "must differ from kcfiIds.preHandler.value (negative sample)"
+        },
+        {
+          "case": "kretprobeHandler.shimNames",
+          "typeId": "0xd27489d5",
+          "declaration": "int (*)(struct maplesu_kretprobe_instance *, struct pt_regs *)",
+          "expects": "must differ from kcfiIds.kretprobeHandler.value (negative sample)"
+        }
+      ],
+      "note": "no_sanitize(\"kcfi\") on the callee does not remove the prefix (measured on this toolchain), so G8's 'callback keeps its prefix' rule must be a source/attribute check, not a prefix test"
+    },
+    "imports": [
+      {
+        "name": "register_kprobe",
+        "why": "H1/H5: arm the control-channel probe and the execve entry probe",
+        "imported": true,
+        "required": true,
+        "symbol": {
+          "address": 1972612,
+          "addressHex": "0x1e1984",
+          "type": "TEXT",
+          "tsvLine": 7451,
+          "tsvText": "1972612\tTEXT\tregister_kprobe"
+        },
+        "export": {
+          "ksymtabSymbol": "__ksymtab_register_kprobe",
+          "address": 23641480,
+          "addressHex": "0x168bd88",
+          "tsvLine": 78410,
+          "tsvText": "23641480\tRODATA\t__ksymtab_register_kprobe",
+          "section": "__ksymtab_gpl",
+          "macro": "EXPORT_SYMBOL_GPL"
+        },
+        "kcfiPrefix": "0x13a1f3dd",
+        "kcfiSignature": false,
+        "kcfiEvidence": "the 4 bytes before the entry point are 0x13a1f3dd, which is not one of the 4474 type ids a compare site in this image builds"
+      },
+      {
+        "name": "register_kretprobe",
+        "why": "H5: arm the return probe (also L3's return-value rewrite face)",
+        "imported": true,
+        "required": true,
+        "symbol": {
+          "address": 1977364,
+          "addressHex": "0x1e2c14",
+          "type": "TEXT",
+          "tsvLine": 7467,
+          "tsvText": "1977364\tTEXT\tregister_kretprobe"
+        },
+        "export": {
+          "ksymtabSymbol": "__ksymtab_register_kretprobe",
+          "address": 23641492,
+          "addressHex": "0x168bd94",
+          "tsvLine": 78411,
+          "tsvText": "23641492\tRODATA\t__ksymtab_register_kretprobe",
+          "section": "__ksymtab_gpl",
+          "macro": "EXPORT_SYMBOL_GPL"
+        },
+        "kcfiPrefix": "0x2fad54db",
+        "kcfiSignature": false,
+        "kcfiEvidence": "the 4 bytes before the entry point are 0x2fad54db, which is not one of the 4474 type ids a compare site in this image builds"
+      },
+      {
+        "name": "unregister_kprobe",
+        "why": "reverse-order disarm; cleanup_module's undo step",
+        "imported": true,
+        "required": true,
+        "symbol": {
+          "address": 1974944,
+          "addressHex": "0x1e22a0",
+          "type": "TEXT",
+          "tsvLine": 7455,
+          "tsvText": "1974944\tTEXT\tunregister_kprobe"
+        },
+        "export": {
+          "ksymtabSymbol": "__ksymtab_unregister_kprobe",
+          "address": 23651908,
+          "addressHex": "0x168e644",
+          "tsvLine": 79279,
+          "tsvText": "23651908\tRODATA\t__ksymtab_unregister_kprobe",
+          "section": "__ksymtab_gpl",
+          "macro": "EXPORT_SYMBOL_GPL"
+        },
+        "kcfiPrefix": "0xe1bd9118",
+        "kcfiSignature": false,
+        "kcfiEvidence": "the 4 bytes before the entry point are 0xe1bd9118, which is not one of the 4474 type ids a compare site in this image builds"
+      },
+      {
+        "name": "unregister_kretprobe",
+        "why": "same, for the return probe",
+        "imported": true,
+        "required": true,
+        "symbol": {
+          "address": 1979056,
+          "addressHex": "0x1e32b0",
+          "type": "TEXT",
+          "tsvLine": 7470,
+          "tsvText": "1979056\tTEXT\tunregister_kretprobe"
+        },
+        "export": {
+          "ksymtabSymbol": "__ksymtab_unregister_kretprobe",
+          "address": 23651920,
+          "addressHex": "0x168e650",
+          "tsvLine": 79280,
+          "tsvText": "23651920\tRODATA\t__ksymtab_unregister_kretprobe",
+          "section": "__ksymtab_gpl",
+          "macro": "EXPORT_SYMBOL_GPL"
+        },
+        "kcfiPrefix": "0xae060939",
+        "kcfiSignature": false,
+        "kcfiEvidence": "the 4 bytes before the entry point are 0xae060939, which is not one of the 4474 type ids a compare site in this image builds"
+      },
+      {
+        "name": "_printk",
+        "why": "the module's own state transitions, <= 8 lines per attempt",
+        "imported": true,
+        "required": true,
+        "symbol": {
+          "address": 17019724,
+          "addressHex": "0x103b34c",
+          "type": "TEXT",
+          "tsvLine": 59049,
+          "tsvText": "17019724\tTEXT\t_printk"
+        },
+        "export": {
+          "ksymtabSymbol": "__ksymtab__printk",
+          "address": 23559328,
+          "addressHex": "0x1677ca0",
+          "tsvLine": 71562,
+          "tsvText": "23559328\tRODATA\t__ksymtab__printk",
+          "section": "__ksymtab",
+          "macro": "EXPORT_SYMBOL"
+        },
+        "kcfiPrefix": "0xff4ef75c",
+        "kcfiSignature": false,
+        "kcfiEvidence": "the 4 bytes before the entry point are 0xff4ef75c, which is not one of the 4474 type ids a compare site in this image builds"
+      },
+      {
+        "name": "copy_from_kernel_nofault",
+        "why": "H4 kread: a bad address is -EFAULT, never an oops",
+        "imported": true,
+        "required": true,
+        "symbol": {
+          "address": 3031804,
+          "addressHex": "0x2e42fc",
+          "type": "TEXT",
+          "tsvLine": 11129,
+          "tsvText": "3031804\tTEXT\tcopy_from_kernel_nofault"
+        },
+        "export": {
+          "ksymtabSymbol": "__ksymtab_copy_from_kernel_nofault",
+          "address": 23618284,
+          "addressHex": "0x16862ec",
+          "tsvLine": 76477,
+          "tsvText": "23618284\tRODATA\t__ksymtab_copy_from_kernel_nofault",
+          "section": "__ksymtab_gpl",
+          "macro": "EXPORT_SYMBOL_GPL"
+        },
+        "kcfiPrefix": "0xb0319c9d",
+        "kcfiSignature": false,
+        "kcfiEvidence": "the 4 bytes before the entry point are 0xb0319c9d, which is not one of the 4474 type ids a compare site in this image builds"
+      }
+    ],
+    "importCount": 6,
+    "importKcfiRule": "none of the six carries a KCFI type signature. The 4 bytes before each entry point (recorded per import as kcfiPrefix) are not one of the type ids any compare site in this image builds, i.e. the function has no __cfi_ prefix. An indirect call to it from a *sanitised* function therefore compares garbage against garbage and takes brk #0x8228, which is a panic under CONFIG_PANIC_ON_OOPS=y. An import goes through the PLT with no type check at all, which is why these six are imports and only the three unexported names below are runtime lookups. This is the reverse direction of the __nocfi asymmetry used by the root module (callers of *resolved* pointers are __nocfi; callbacks invoked *by* the kernel keep their prefix).",
+    "importsWithKcfiSignature": [],
+    "cookieChannel": {
+      "source": "finit_module uargs (design \u00a73.1.2, must-fix M6)",
+      "uargs": "cookie=0x<16 hex>",
+      "param": "cookie",
+      "paramType": "ullong",
+      "paramOps": "param_ops_ullong",
+      "modinfoParm": "parm=cookie:ullong",
+      "section": "__param",
+      "rows": 1,
+      "perm": 0,
+      "why": "the cookie arrives from the loader only: finit_module's uargs are supplied by the process that loads the module (the helper, inside the window), so no other process can know it and OP_ARM can require cookie == l2.load_cookie instead of accepting whoever calls first (R-L2-14)",
+      "failureSemantics": "a missing or zero cookie makes init_module return -EINVAL (nothing is armed) and the helper records MA_L2_NO_COOKIE; a zero-cookie module that somehow loads refuses every ARM with -EPERM",
+      "notExercised": "NOT_EXERCISED on device: neither __param nor finit_module uargs has ever run on this hardware (design \u00a77.3)",
+      "paramOpsExport": {
+        "ksymtabSymbol": "__ksymtab_param_ops_ullong",
+        "address": 23581864,
+        "addressHex": "0x167d4a8",
+        "tsvLine": 73440,
+        "tsvText": "23581864\tRODATA\t__ksymtab_param_ops_ullong",
+        "section": "__ksymtab",
+        "macro": "EXPORT_SYMBOL"
+      },
+      "paramOpsAddress": {
+        "address": 17433224,
+        "addressHex": "0x10a0288",
+        "type": "DATA",
+        "tsvLine": 60279,
+        "tsvText": "17433224\tDATA\tparam_ops_ullong"
+      },
+      "kernelParam": {
+        "btfTypeId": 2062,
+        "allBtfTypeIds": [
+          2062,
+          22657
+        ],
+        "size": 40,
+        "sizeHex": "0x28",
+        "name": 0,
+        "mod": 8,
+        "ops": 16,
+        "perm": 24,
+        "level": 26,
+        "flags": 27,
+        "arg": 32,
+        "members": [
+          {
+            "name": "name",
+            "typeId": 6,
+            "typeKind": "PTR",
+            "typeName": "char",
+            "bitOffset": 0,
+            "byteOffset": 0,
+            "byteOffsetHex": "0x0"
+          },
+          {
+            "name": "mod",
+            "typeId": 118,
+            "typeKind": "PTR",
+            "typeName": "module",
+            "bitOffset": 64,
+            "byteOffset": 8,
+            "byteOffsetHex": "0x8"
+          },
+          {
+            "name": "ops",
+            "typeId": 2063,
+            "typeKind": "PTR",
+            "typeName": "kernel_param_ops",
+            "bitOffset": 128,
+            "byteOffset": 16,
+            "byteOffsetHex": "0x10"
+          },
+          {
+            "name": "perm",
+            "typeId": 2072,
+            "typeKind": "CONST",
+            "typeName": "u16",
+            "bitOffset": 192,
+            "byteOffset": 24,
+            "byteOffsetHex": "0x18"
+          },
+          {
+            "name": "level",
+            "typeId": 1092,
+            "typeKind": "TYPEDEF",
+            "typeName": "s8",
+            "bitOffset": 208,
+            "byteOffset": 26,
+            "byteOffsetHex": "0x1a"
+          },
+          {
+            "name": "flags",
+            "typeId": 73,
+            "typeKind": "TYPEDEF",
+            "typeName": "u8",
+            "bitOffset": 216,
+            "byteOffset": 27,
+            "byteOffsetHex": "0x1b"
+          },
+          {
+            "name": "",
+            "typeId": 2061,
+            "typeKind": "UNION",
+            "typeName": "",
+            "bitOffset": 256,
+            "byteOffset": 32,
+            "byteOffsetHex": "0x20"
+          }
+        ],
+        "note": "the glue writes one row of this struct by hand (C1-6), so the offsets must come from here, not from a hand-copied header"
+      },
+      "kernelParamOps": {
+        "btfTypeId": 2065,
+        "size": 32,
+        "sizeHex": "0x20",
+        "members": [
+          {
+            "name": "flags",
+            "typeId": 53,
+            "typeKind": "INT",
+            "typeName": "unsigned int",
+            "bitOffset": 0,
+            "byteOffset": 0,
+            "byteOffsetHex": "0x0"
+          },
+          {
+            "name": "set",
+            "typeId": 2066,
+            "typeKind": "PTR",
+            "typeName": "",
+            "bitOffset": 64,
+            "byteOffset": 8,
+            "byteOffsetHex": "0x8"
+          },
+          {
+            "name": "get",
+            "typeId": 2070,
+            "typeKind": "PTR",
+            "typeName": "",
+            "bitOffset": 128,
+            "byteOffset": 16,
+            "byteOffsetHex": "0x10"
+          },
+          {
+            "name": "free",
+            "typeId": 1437,
+            "typeKind": "PTR",
+            "typeName": "",
+            "bitOffset": 192,
+            "byteOffset": 24,
+            "byteOffsetHex": "0x18"
+          }
+        ],
+        "note": "recorded for the audit trail: the module never writes this struct, it only points at the kernel's own param_ops_ullong"
+      }
+    },
+    "importsCookieParam": [
+      {
+        "name": "param_ops_ullong",
+        "why": "the __param row's `ops` pointer: without it the finit_module uargs cookie cannot be parsed, and the control channel loses its authentication (M6)",
+        "imported": true,
+        "required": true,
+        "symbol": {
+          "address": 17433224,
+          "addressHex": "0x10a0288",
+          "type": "DATA",
+          "tsvLine": 60279,
+          "tsvText": "17433224\tDATA\tparam_ops_ullong"
+        },
+        "export": {
+          "ksymtabSymbol": "__ksymtab_param_ops_ullong",
+          "address": 23581864,
+          "addressHex": "0x167d4a8",
+          "tsvLine": 73440,
+          "tsvText": "23581864\tRODATA\t__ksymtab_param_ops_ullong",
+          "section": "__ksymtab",
+          "macro": "EXPORT_SYMBOL"
+        },
+        "kcfiSignature": null,
+        "kcfiEvidence": "not applicable: this is a data object (struct kernel_param_ops), not a function, so it has no entry prefix and no indirect-call check",
+        "reviewTrace": "M4's six imports are unchanged; this seventh symbol is M6's necessary increment and is recorded separately so neither review item is silently rewritten"
+      }
+    ],
+    "importSetFull": [
+      "register_kprobe",
+      "register_kretprobe",
+      "unregister_kprobe",
+      "unregister_kretprobe",
+      "_printk",
+      "copy_from_kernel_nofault",
+      "param_ops_ullong"
+    ],
+    "importSetFullCount": 7,
+    "importSetRule": "O6 asserts the complete undefined-symbol set: exactly the M4 six plus exactly the cookie param(s) declared in importsCookieParam, and nothing else",
+    "runtimeLookups": [
+      {
+        "name": "__arm64_sys_ni_syscall",
+        "symbolClass": "function",
+        "why": "H1 carrier: the function the sys_call_table slots 453..461 point at. The kprobe is installed on it, and ARM re-reads sys_call_table[scno] to prove the number is still unimplemented on this boot (else -EINVAL, MA_L2_SCNO_NOT_UNIMPLEMENTED)",
+        "status": "listed",
+        "lookupResult": "resolves",
+        "inSymbolList": true,
+        "symbolListRowsForName": 1,
+        "exported": false,
+        "inBtf": true,
+        "btfKinds": [
+          "FUNC"
+        ],
+        "symbol": {
+          "address": 134456,
+          "addressHex": "0x20d38",
+          "type": "TEXT",
+          "tsvLine": 259,
+          "tsvText": "134456\tTEXT\t__arm64_sys_ni_syscall"
+        },
+        "severity": "ok",
+        "mustProbeOnDevice": false,
+        "evidence": "TEXT at 0x20d38, not exported (no __ksymtab___arm64_sys_ni_syscall): exactly the case kallsyms_lookup_name exists for",
+        "resolution": "kallsyms_lookup_name (the resolver itself is obtained from the kprobe bootstrap, as in maplesu_root.c)",
+        "addressPolicy": "evidence only: the address in `symbol` is the kallsyms row for this image, not a constant for the module. The module resolves the name at run time; a literal address in module text is a G11 failure and there is no per-release address table anywhere in L2",
+        "addressUse": "must-not-be-hardcoded"
+      },
+      {
+        "name": "sys_call_table",
+        "symbolClass": "data",
+        "why": "the ARM-time self-check reads one 8-byte slot of this table. The table is never written: no set_memory_rw, no text_poke, no sys_call_table store",
+        "status": "listed",
+        "lookupResult": "resolves",
+        "inSymbolList": true,
+        "symbolListRowsForName": 1,
+        "exported": false,
+        "inBtf": false,
+        "btfKinds": [],
+        "symbol": {
+          "address": 17304760,
+          "addressHex": "0x1080cb8",
+          "type": "DATA",
+          "tsvLine": 60058,
+          "tsvText": "17304760\tDATA\tsys_call_table"
+        },
+        "severity": "ok",
+        "mustProbeOnDevice": false,
+        "evidence": "DATA at 0x1080cb8, not exported (no __ksymtab_sys_call_table): exactly the case kallsyms_lookup_name exists for",
+        "resolution": "kallsyms_lookup_name (the resolver itself is obtained from the kprobe bootstrap, as in maplesu_root.c)",
+        "addressPolicy": "evidence only: the address in `symbol` is the kallsyms row for this image, not a constant for the module. The module resolves the name at run time; a literal address in module text is a G11 failure and there is no per-release address table anywhere in L2",
+        "addressUse": "must-not-be-hardcoded"
+      },
+      {
+        "name": "copy_to_user_nofault",
+        "symbolClass": "function",
+        "why": "the control channel returns its 32-byte result block with this; the sleeping copy_to_user cannot be used in kprobe context",
+        "status": "listed",
+        "lookupResult": "resolves",
+        "inSymbolList": true,
+        "symbolListRowsForName": 1,
+        "exported": false,
+        "inBtf": true,
+        "btfKinds": [
+          "FUNC"
+        ],
+        "symbol": {
+          "address": 3032960,
+          "addressHex": "0x2e4780",
+          "type": "TEXT",
+          "tsvLine": 11133,
+          "tsvText": "3032960\tTEXT\tcopy_to_user_nofault"
+        },
+        "severity": "ok",
+        "mustProbeOnDevice": false,
+        "evidence": "TEXT at 0x2e4780, not exported (no __ksymtab_copy_to_user_nofault): exactly the case kallsyms_lookup_name exists for",
+        "resolution": "kallsyms_lookup_name (the resolver itself is obtained from the kprobe bootstrap, as in maplesu_root.c)",
+        "addressPolicy": "evidence only: the address in `symbol` is the kallsyms row for this image, not a constant for the module. The module resolves the name at run time; a literal address in module text is a G11 failure and there is no per-release address table anywhere in L2",
+        "addressUse": "must-not-be-hardcoded"
+      }
+    ],
+    "runtimeLookupCount": 3,
+    "probes": [
+      {
+        "id": "ctl.magic",
+        "kind": "kprobe",
+        "symbol": "__arm64_sys_ni_syscall",
+        "inSymbolList": true,
+        "symbolType": "TEXT",
+        "blacklisted": false,
+        "exported": false,
+        "resolution": "register_kprobe/register_kretprobe resolve symbol_name through kallsyms; the module stores no address for a probe target",
+        "why": "H1 control channel: a syscall number this boot has not implemented, so there is no ordinary traffic on the probe"
+      },
+      {
+        "id": "execve.entry",
+        "kind": "kprobe",
+        "symbol": "do_execveat_common",
+        "inSymbolList": true,
+        "symbolType": "TEXT",
+        "blacklisted": false,
+        "exported": false,
+        "resolution": "register_kprobe/register_kretprobe resolve symbol_name through kallsyms; the module stores no address for a probe target",
+        "why": "H5 observation: exec entry (kprobe) and return (kretprobe); the callbacks only count, they never write regs"
+      },
+      {
+        "id": "execve.ret",
+        "kind": "kretprobe",
+        "symbol": "do_execveat_common",
+        "inSymbolList": true,
+        "symbolType": "TEXT",
+        "blacklisted": false,
+        "exported": false,
+        "resolution": "register_kprobe/register_kretprobe resolve symbol_name through kallsyms; the module stores no address for a probe target",
+        "why": "H5 observation: exec entry (kprobe) and return (kretprobe); the callbacks only count, they never write regs"
+      }
+    ],
+    "controlAbi": {
+      "freeze": "design \u00a73.1.2 (op table) and its calling convention; L3 reuses the same channel and may not re-assign the registers",
+      "carrier": "__arm64_sys_ni_syscall, reached only through an unimplemented syscall number",
+      "call": "syscall(scno, op, a1, a2, a3, x5=result, x6=0, x7=cookie)",
+      "registers": {
+        "x0": "scno (the kernel proves it from pt_regs->syscallno, not from the caller's claim)",
+        "x1": "op",
+        "x2": "a1",
+        "x3": "a2",
+        "x4": "a3",
+        "x5": "user pointer to the 32-byte result block (0 = no result wanted)",
+        "x6": "reserved, must be 0 (a non-zero value is refused, which leaves room for an old kernel to reject a newer call)",
+        "x7": "cookie (64-bit; written into the kernel by OP_ARM, which requires the value the helper injected through finit_module uargs at load time)"
+      },
+      "returns": "-ENOSYS always (the carrier's real return; the module never rewrites the syscall return value)",
+      "resultBlock": {
+        "bytes": 32,
+        "layout": [
+          {
+            "offset": "0x00",
+            "type": "u32",
+            "name": "magic",
+            "value": "0x4d415032"
+          },
+          {
+            "offset": "0x04",
+            "type": "i32",
+            "name": "rc",
+            "value": "0 or -errno"
+          },
+          {
+            "offset": "0x08",
+            "type": "u64",
+            "name": "value"
+          },
+          {
+            "offset": "0x10",
+            "type": "u64",
+            "name": "aux"
+          },
+          {
+            "offset": "0x18",
+            "type": "u32",
+            "name": "hitsTotal"
+          },
+          {
+            "offset": "0x1c",
+            "type": "u32",
+            "name": "state",
+            "value": "bit0 armed, bit1 disarmed, bit2 module resident"
+          }
+        ]
+      },
+      "ops": [
+        {
+          "op": "0x01",
+          "name": "ARM",
+          "args": "a1 = cookie_lo, a2 = cookie_hi"
+        },
+        {
+          "op": "0x02",
+          "name": "PROBE",
+          "args": "-"
+        },
+        {
+          "op": "0x03",
+          "name": "KREAD",
+          "args": "a1 = addr, a2 = len (<= 32)"
+        },
+        {
+          "op": "0x04",
+          "name": "KWRITE",
+          "args": "a1 = addr, a2 = value, a3 = tag"
+        },
+        {
+          "op": "0x05",
+          "name": "SELFTEST",
+          "args": "-"
+        },
+        {
+          "op": "0x06",
+          "name": "HITS",
+          "args": "-"
+        },
+        {
+          "op": "0x07",
+          "name": "DISARM",
+          "args": "-"
+        },
+        {
+          "op": "0x08",
+          "name": "STATUS",
+          "args": "-"
+        }
+      ],
+      "magic": {
+        "probe": "0x4d41504c45535531",
+        "result": "0x4d415032"
+      },
+      "writeWhitelist": {
+        "tags": [
+          "WL_SCRATCH",
+          "WL_SELINUX"
+        ],
+        "rules": [
+          "WL_SCRATCH writes the module's own .bss scratch and reads it back",
+          "WL_SELINUX may write only the byte at selinux_state.enforcing and only the value it just read (a one-byte strb after the same-value compare); writing a different value would move the policy window, which L2 does not own",
+          "anything else is -EACCES; there is no arbitrary kernel write"
+        ],
+        "forbidden": [
+          "set_memory_rw",
+          "apply_to_page_range",
+          "aarch64_insn_patch_text",
+          "text_poke",
+          "copy_to_kernel_nofault"
+        ]
+      }
+    },
+    "config": {
+      "kprobes": {
+        "config": "CONFIG_KPROBES",
+        "value": "y",
+        "expected": "y",
+        "satisfied": true,
+        "why": "register_kprobe/unregister_kprobe exist and are exported: the L2 primitive"
+      },
+      "kretprobes": {
+        "config": "CONFIG_KRETPROBES",
+        "value": "y",
+        "expected": "y",
+        "satisfied": true,
+        "why": "register_kretprobe/unregister_kretprobe exist and are exported: the return side of H5"
+      },
+      "panicOnOops": {
+        "config": "CONFIG_PANIC_ON_OOPS",
+        "value": "y",
+        "expected": "y",
+        "satisfied": true,
+        "why": "any oops/trap in a callback ends the boot: a wrong KCFI id or a bad kread is not a recoverable warning, it is an attempt-ending panic"
+      },
+      "cfi": {
+        "config": "CONFIG_CFI_CLANG",
+        "value": "y",
+        "expected": "y",
+        "satisfied": true,
+        "why": "every callback needs a correct 4-byte type prefix, and no indirect call may be emitted from a callback body"
+      },
+      "functionTracer": {
+        "config": "CONFIG_FUNCTION_TRACER",
+        "value": "n",
+        "expected": "n",
+        "satisfied": true,
+        "why": "not set: there is no ftrace function-hooking primitive on this image, which is why L2 is kprobe/kretprobe-only (the symbol table has no ftrace_caller, __fentry__, _mcount or register_ftrace_function either)"
+      },
+      "kprobesOnFtrace": {
+        "config": "CONFIG_KPROBES_ON_FTRACE",
+        "value": "<not set>",
+        "expected": "n",
+        "satisfied": true,
+        "why": "impossible on this image: the option depends on CONFIG_KPROBES && CONFIG_DYNAMIC_FTRACE, and CONFIG_DYNAMIC_FTRACE is not set (only CONFIG_HAVE_DYNAMIC_FTRACE is). Probes here are BRK-based, so arming one writes exactly one BRK instruction word at the probe site and unregistering restores it"
+      },
+      "dynamicFtrace": {
+        "config": "CONFIG_DYNAMIC_FTRACE",
+        "value": "<not set>",
+        "expected": "n",
+        "satisfied": true,
+        "why": "recorded because kprobesOnFtrace's impossibility is derived from it"
+      }
+    },
+    "kprobeBlacklist": {
+      "symbolPrefix": "_kbl_addr_",
+      "entries": 69,
+      "firstEntries": [
+        "_kbl_addr_mdscr_write",
+        "_kbl_addr_mdscr_read",
+        "_kbl_addr_enable_debug_monitors",
+        "_kbl_addr_disable_debug_monitors",
+        "_kbl_addr_set_user_regs_spsr_ss"
+      ],
+      "targets": [
+        {
+          "symbol": "__arm64_sys_ni_syscall",
+          "blacklisted": false,
+          "blacklistSymbol": null,
+          "blacklistSymbolTsvLine": null
+        },
+        {
+          "symbol": "do_execveat_common",
+          "blacklisted": false,
+          "blacklistSymbol": null,
+          "blacklistSymbolTsvLine": null
+        }
+      ],
+      "why": "a blacklisted symbol cannot be kprobed (register_kprobe returns -EINVAL). This kernel emits the list as one `_kbl_addr_<symbol>` object per entry, so the check is the presence of that name",
+      "note": "the count is a property of this build (69). It is recorded as a fact, never asserted as a constant by the module"
+    },
+    "evidence": {
+      "schema": "maplesu.hook.l2.v1",
+      "key": "l2",
+      "mergeRules": "design \u00a74.2 L2-1..L2-8 (cookie folded into L2-2)",
+      "tokens": [
+        "MA_L2_NOT_EXERCISED",
+        "MA_L2_MODULE_",
+        "MA_L2_LOAD_",
+        "MA_L2_NO_COOKIE",
+        "MA_L2_PROBE_",
+        "MA_L2_SELFCHECK_FAILED",
+        "MA_L2_DISARM_FAILED",
+        "MA_L2_UNLOAD_BUSY",
+        "MA_L2_NO_HIT",
+        "MA_L2_RET_NO_HIT",
+        "MA_L2_ARM_BUSY",
+        "MA_L2_POLICY_MOVED",
+        "MA_L2_SCNO_NOT_UNIMPLEMENTED"
+      ],
+      "ownedBy": "C2/C3 (helper) and C4 (App). manager/** is not touched by C0",
+      "notProof": "the JSON block is the helper's own observation; the kernel ring-buffer lines are the author-side bytes, and both are needed (design \u00a74.1)"
+    },
+    "gateNamespace": {
+      "decision": "Lead namespace decision, 2026-10-29: no id is renumbered; L2 uses the ids the R-D1 fix left free",
+      "hookContract": {
+        "v5Baseline": {
+          "source": "S1-S20",
+          "object": "O1-O5"
+        },
+        "rD1Fix": {
+          "source": "S21"
+        },
+        "reservedUnassigned": {
+          "source": "S22-S25"
+        },
+        "l2": {
+          "source": "S26-S40",
+          "object": "O6-O10"
+        },
+        "l3": {
+          "source": "S41-S52"
+        }
+      },
+      "buildRootModule": {
+        "v5Baseline": "G1-G7 (maplesu_root.ko)",
+        "l2": "G8-G14 (maplesu_l2.ko; gates-first scaffolding in C0, gate bodies with C1/C2)"
+      },
+      "designDocumentMapping": {
+        "designSays": {
+          "source": "S21-S30",
+          "object": "O6-O10"
+        },
+        "implementedAs": {
+          "source": "S26-S40",
+          "object": "O6-O10"
+        },
+        "reason": "S21 is owned by the R-D1 fix; S22-S25 stay free; L3 takes S41-S52"
+      },
+      "l2SourceChecks": [
+        {
+          "id": "S26",
+          "asserts": "hook_l2 is called after hook_stage2 and before hook_daemon, guarded by l2_enabled (absence keeps step-4 behaviour)"
+        },
+        {
+          "id": "S27",
+          "asserts": "hook_l2 validates the staged maplesu_l2.ko (regular file, dir uid, mode 0077, nlink 1, ELF ET_REL/AArch64) before open/finit_module, and uses the named MAPLESU_NR_FINIT_MODULE constant"
+        },
+        {
+          "id": "S28",
+          "asserts": "--l2/--l2-required are parsed only in hook_parse_argv, and l2_required implies l2_enabled"
+        },
+        {
+          "id": "S29",
+          "asserts": "the \"l2\" key is written exactly once, inside hook_write_main_json, in the same single write()"
+        },
+        {
+          "id": "S30",
+          "asserts": "hook_verdict has the l2 branch (l2_required && l2_verdict != OK => FAILED) and never upgrades a verdict"
+        },
+        {
+          "id": "S31",
+          "asserts": "hook_l2 is clean under the extended forbidden table (mount(, BLKROSET, /sys/fs/selinux writes, the stage-1 irreversible steps)"
+        },
+        {
+          "id": "S32",
+          "asserts": "hook_l2 deletes the module only after a successful disarm, and reports disarm and unload separately"
+        },
+        {
+          "id": "S33",
+          "asserts": "the l2 evidence block names the three probe ids verbatim (ctl.magic, execve.entry, execve.ret)"
+        },
+        {
+          "id": "S34",
+          "asserts": "the helper never references check_traceless_invariants.py, and the frozen checks=26/digest constants live in the gate"
+        },
+        {
+          "id": "S35",
+          "asserts": "the helper emits only MA_L2_* tokens for L2 failures, and the l2 block is absent (not zero-filled) when L2 is not enabled"
+        },
+        {
+          "id": "S36",
+          "asserts": "the L2 module source and glue template exist with the frozen identity (name maplesu_l2, .modinfo name=maplesu_l2, init_module/cleanup_module)"
+        },
+        {
+          "id": "S37",
+          "asserts": "kernel_compat.h carries the L2 shims with BTF-derived _Static_asserts whose numbers equal this contract (kretprobe 0xb0/0x80/0x88/0x98, pt_regs syscallno 0x118)"
+        },
+        {
+          "id": "S38",
+          "asserts": "the four L2 callback prototypes use kernel struct names, carry no no_sanitize(\"kcfi\"), and the resolver-calling helpers are MAPLESU_NOCFI"
+        },
+        {
+          "id": "S39",
+          "asserts": "l2_kwrite has exactly the two whitelist tags, a same-value compare before the one-byte WL_SELINUX strb, and no text-mutation helper anywhere"
+        },
+        {
+          "id": "S40",
+          "asserts": "no per-release constant in the L2 source: no magic scno literal, the sys_call_table self-check line exists, scno only from regs->syscallno or the ARM argument, no kernel virtual address literal"
+        }
+      ],
+      "l2ObjectChecks": [
+        {
+          "id": "O6",
+          "asserts": "the L2 object's undefined set is exactly the six imports"
+        },
+        {
+          "id": "O7",
+          "asserts": "no text-mutation/patch helper is imported or referenced (set_memory_rw, apply_to_page_range, aarch64_insn_patch_text, text_poke)"
+        },
+        {
+          "id": "O8",
+          "asserts": "no policy/device write surface (/dev/df, BLKROSET, mount, security_setenforce, /sys/fs/selinux)"
+        },
+        {
+          "id": "O9",
+          "asserts": "no ksu/ksud/kernelsu string"
+        },
+        {
+          "id": "O10",
+          "asserts": "zero \"/data/\" literals, no magic scno materialised by movz/movk/cmp #imm, no kernel virtual address, and the write-scope skeleton: every str/strb outside l2_kwrite has a base that is sp, an own section symbol, or a caller pointer"
+        }
+      ]
+    },
+    "redFirst": {
+      "meaning": "these gates exist before the artifact does, and are red because maplesu_l2.ko / hook_l2() do not exist yet. Gates land red, then C1/C2 turn them green",
+      "hookContractMode": "python jailbreak-providers/dirtyfrag/tests/hook_contract.py --l2-required (fatal); the default run reports the L2 leg as non-fatal RED so the product baseline stays green",
+      "ledger": "work/l2-c0/logs/ (current red counts are recorded there and in docs/patching/maplesu-l2-c0-contract-2026-10-29.md)"
+    },
+    "kcfiIdChecks": {
+      "status": "match",
+      "checked": 4,
+      "mismatches": [],
+      "note": "a mismatch means the pinned id is not the id this image compares at the anchor function's dispatch site: the id must be re-measured before any module is built against it"
+    }
+  },
+  "handover": {
+    "umhWaitMode": "UMH_WAIT_EXEC",
+    "umhWaitModeValue": 1,
+    "forbiddenWaitMode": "UMH_WAIT_PROC",
+    "why": "the helper execs the long-lived consumer and never exits, so WAIT_PROC would park init_module() in kernel_wait() while holding module_mutex",
+    "returnZeroMeans": "handed over and resident",
+    "returnZeroIsNotProof": "the helper's own side effect (provider-log line plus a `getenforce` readback) is the only proof the handover happened; init_module's return value and its printks are not, because the four-argument wrapper returns 0 silently on this image",
+    "cleanupModule": "defined; it is this_module.exit and the only in-kernel restore point reachable through delete_module()",
+    "primaryPath": {
+      "setup": "call_usermodehelper_setup",
+      "exec": "call_usermodehelper_exec",
+      "resolveVia": "kallsyms_lookup_name (runtime; neither is exported)",
+      "sequence": [
+        "info = setup(helper, argv, envp, GFP_KERNEL, NULL, NULL, NULL)",
+        "((struct subprocess_info *)info)->path = helper",
+        "ret = exec(info, UMH_WAIT_EXEC)"
+      ],
+      "gfpKernel": 3264,
+      "pathOffset": 56,
+      "pathOffsetHex": "0x38",
+      "pathOffsetSource": "BTF struct subprocess_info (structOffsets).subprocessInfo.path",
+      "requiredWhen": "config.staticUsermodehelperPath.value == \"\"",
+      "why": "setup() overwrites the caller's path with the empty CONFIG_STATIC_USERMODEHELPER_PATH string; restoring it at subprocess_info.path is the whole fix (DirtyFragX lkm/dfroot.c:185-188 does the same on this device family)"
+    },
+    "fallback": {
+      "call": "call_usermodehelper(path, argv, envp, UMH_WAIT_EXEC)",
+      "usedOnlyWhen": "setup or exec cannot be resolved",
+      "logged": "maplesu_root: umh setup/exec unresolved (setup=%px exec=%px); falling back to the four-argument wrapper",
+      "deadOnThisImage": true,
+      "why": "it keeps the import set at exactly four and the module loadable on a kernel where the pair is missing, but on this static-UMH image it cannot exec anything: it returns 0 and the module must not treat that as proof"
+    },
+    "importSetUnchanged": true,
+    "helperArgv": {
+      "argv": [
+        "<helper>",
+        "--umh",
+        "--entry-enforcing",
+        "<saved>"
+      ],
+      "envp": [
+        "PATH=/system/bin"
+      ],
+      "helper": "/data/user/0/dev.maplesu.manager/bs",
+      "savedValue": "the enforcement byte init_module() read before it wrote 0 ('0' or '1', the value its `selinux permissive for handover (was %d) own_window=%d` printk names). Step-4 (D4-4) adds the honesty field: own_window=1 means this module moved the byte and cleanup_module() must put it back; own_window=0 means the window was already open, the saved byte is inherited, and the module writes nothing back",
+      "storage": {
+        "arrays": [
+          "maplesu_argv",
+          "maplesu_envp",
+          "maplesu_entry"
+        ],
+        "kind": "file-scope static (.bss), never a stack local",
+        "why": "UMH_WAIT_EXEC returns when the exec succeeds; a stack block would be read after init_module() is gone (the reference dfroot.c uses static storage for the same reason)"
+      },
+      "helperSide": {
+        "modeToken": "--umh",
+        "entryToken": "--entry-enforcing",
+        "optional": [
+          "--stage2 <path>",
+          "--daemon <path>"
+        ],
+        "design": "docs/patching/maplesu-step3-umh-mode-design-2026-10-29.md \u00a72.1/\u00a74"
+      }
+    },
+    "entryBaseline": {
+      "policyPath": "<DE>/maplesu-hook-env",
+      "schema": "maplesu.hook.env.v1",
+      "keys": [
+        "schema",
+        "boot",
+        "attempt",
+        "expected",
+        "source"
+      ],
+      "expectedValues": [
+        "-1",
+        "0",
+        "1"
+      ],
+      "sourceValues": [
+        "observed",
+        "baseline",
+        "unknown"
+      ],
+      "originMapping": {
+        "enforce_before==1": "KERNEL_SAVED (source=kernel; the value is the kernel's own live byte, never written by the helper)",
+        "enforce_before==0 && expected in {0,1}": "BASELINE (source copied from the env: observed or baseline)",
+        "otherwise": "FAILED (source=unknown, no selinuxfs write)"
+      },
+      "whoWrites": "App (DirtyfragAttempt.start, after publishConfig and before the provider starts; 0600, one line, <=192 bytes)",
+      "whoReads": "helper step 3.5 (hook_read_env, openat(dirfd), once, inside the window)",
+      "neverWriteZeroWhen": "enforce_before==1",
+      "why": "the module loads after dfroot already wrote 0, so it cannot know the entry value; the App cannot read selinuxfs either, so it reports a *target plus provenance* rather than an observation. KERNEL_SAVED is reserved for the one case where the kernel's value is its own",
+      "residualRisk": "the env file is unauthenticated: the App owns it and could ask for expected=0/source=observed, leaving the device permissive until the next boot. It gains no capability it did not have, and DAEMON_READY is still refused because F1 requires restoreEnforcing==1"
+    },
+    "restoreOrder": {
+      "steps": [
+        "decide",
+        "fork",
+        "delete_module",
+        "readback_post",
+        "write_if_needed",
+        "readback_final",
+        "klog",
+        "record"
+      ],
+      "why": "the module's cleanup_module() runs inside delete_module() and writes back the byte it saved. Writing before the unload is therefore overwritten - which is exactly how step-3 produced wrote=1/readback_pre=0 while the device was still permissive. Restore-last makes the helper's write the final privileged action, and the unload child the only writer, so there is no second write and no swing back",
+      "singleWriter": "hook_unload_child only; the parent never writes",
+      "preexisting": "post_unload==want is logged as `restore preexisting=%d by=external` and NOT rewritten",
+      "parentWaitMs": 1500,
+      "childWindowMs": 4000,
+      "pendingMeans": "the parent's bounded wait expired while the child is still retrying; PENDING is an expected outcome (R12's mitigation is the parent exiting so init_module returns and releases module_mutex), not a failure"
+    },
+    "failureReturns": {
+      "-ENOSYS": "kallsyms_lookup_name (or the kprobe that yields it) could not be resolved; nothing was read, written or restored",
+      "-ENOENT": "selinux_state could not be resolved; the enforcement byte was never saved or changed, nothing was restored",
+      "-EINVAL": "call_usermodehelper_setup/_exec could not both be resolved, so the four-argument fallback is the only path left - and on this static-UMH kernel that path cannot exec anything; the saved enforcing value was restored and nothing ran",
+      "-ENOMEM": "call_usermodehelper_setup() returned NULL; nothing was queued, the saved enforcing value was restored",
+      "-ENODEV": "call_usermodehelper_exec() returned non-zero, i.e. the helper was not exec'd ('nothing ran'); the saved enforcing value was restored"
+    },
+    "failureReturnsAppMapping": {
+      "producer": "jailbreak-providers/dirtyfrag/adapter/bootstrap.c (ir_errno_token)",
+      "consumer": "JailbreakExecutor.IR_FAILURE ((?:MAPLESU|SKROOT)_(?:IR|HANDOVER)_[A-Z_]+)",
+      "loaderLayer": {
+        "EKEYREJECTED": "MAPLESU_IR_ORIG_MISMATCH",
+        "EOPNOTSUPP": "MAPLESU_IR_SPEC_INVALID",
+        "ENODEV": "MAPLESU_IR_NO_SYMBOLS",
+        "EIO": "MAPLESU_IR_APPLY_FAILED",
+        "other": "MAPLESU_IR_LOAD_FAILED"
+      },
+      "handoverOverrides": [
+        {
+          "printk": "kallsyms_lookup_name not found",
+          "token": "MAPLESU_HANDOVER_NO_UMH"
+        },
+        {
+          "printk": "kprobe resolved no address",
+          "token": "MAPLESU_HANDOVER_NO_UMH"
+        },
+        {
+          "printk": "selinux_state not found",
+          "token": "MAPLESU_HANDOVER_NO_SELINUX"
+        },
+        {
+          "printk": "umh setup returned NULL",
+          "token": "MAPLESU_HANDOVER_NO_MEMORY"
+        },
+        {
+          "printk": "fallback cannot hand over",
+          "token": "MAPLESU_HANDOVER_NO_UMH"
+        },
+        {
+          "printk": "helper exec failed",
+          "token": "MAPLESU_HANDOVER_NO_EXEC"
+        }
+      ],
+      "note": "the override only fires when the module's own classified printk is in the dump taken for this failure; an empty or unreadable dump leaves the loader-layer token in place, so a missing kernel channel is never reported as a specific cause"
+    }
+  },
+  "abiChecks": {
+    "status": "unresolved",
+    "checked": 10,
+    "mismatches": [],
+    "unresolved": [
+      "selinuxState.size",
+      "thisModule.nameOffset",
+      "thisModule.initOffset",
+      "thisModule.exitOffset",
+      "thisModule.size"
+    ],
+    "claims": [
+      {
+        "abi": "kprobe.size",
+        "kind": "struct-size",
+        "source": "module/kernel_compat.h",
+        "claimed": "0x80",
+        "btf": "0x80",
+        "matches": true,
+        "resolved": true,
+        "quote": "_Static_assert(sizeof(struct maplesu_kprobe) == 0x80, ...)"
+      },
+      {
+        "abi": "kprobe.addr",
+        "kind": "member-offset",
+        "source": "module/kernel_compat.h",
+        "claimed": "0x28",
+        "btf": "0x28",
+        "matches": true,
+        "resolved": true,
+        "quote": "_Static_assert(__builtin_offsetof(struct maplesu_kprobe, addr) == 0x28, ...)"
+      },
+      {
+        "abi": "kprobe.symbol_name",
+        "kind": "member-offset",
+        "source": "module/kernel_compat.h",
+        "claimed": "0x30",
+        "btf": "0x30",
+        "matches": true,
+        "resolved": true,
+        "quote": "_Static_assert(__builtin_offsetof(struct maplesu_kprobe, symbol_name) == 0x30, ...)"
+      },
+      {
+        "abi": "selinuxState.size",
+        "kind": "struct-size",
+        "source": "module/kernel_compat.h",
+        "claimed": null,
+        "btf": "0x80",
+        "matches": false,
+        "resolved": false,
+        "quote": "_Static_assert(sizeof(struct maplesu_selinux_state) == 0x80, ...)"
+      },
+      {
+        "abi": "selinuxState.enforcing",
+        "kind": "member-offset",
+        "source": "module/kernel_compat.h",
+        "claimed": "0x0",
+        "btf": "0x0",
+        "matches": true,
+        "resolved": true,
+        "quote": "u8 enforcing;             /* +0x00 */"
+      },
+      {
+        "abi": "selinuxState.initialized",
+        "kind": "member-offset",
+        "source": "module/kernel_compat.h",
+        "claimed": "0x1",
+        "btf": "0x1",
+        "matches": true,
+        "resolved": true,
+        "quote": "u8 initialized;           /* +0x01 */"
+      },
+      {
+        "abi": "thisModule.nameOffset",
+        "kind": "member-offset",
+        "source": "module/root_glue.S.in",
+        "claimed": null,
+        "btf": "0x18",
+        "matches": false,
+        "resolved": false,
+        "quote": ".zero 0x18 / .asciz \"maplesu_root\"  (name inside char[56])"
+      },
+      {
+        "abi": "thisModule.initOffset",
+        "kind": "member-offset",
+        "source": "module/root_glue.S.in",
+        "claimed": null,
+        "btf": "0x188",
+        "matches": false,
+        "resolved": false,
+        "quote": ".quad init_module   /* +0x188 init */"
+      },
+      {
+        "abi": "thisModule.exitOffset",
+        "kind": "member-offset",
+        "source": "module/root_glue.S.in",
+        "claimed": null,
+        "btf": "0x5b8",
+        "matches": false,
+        "resolved": false,
+        "quote": ".quad cleanup_module /* +0x5b8 exit: restore point on delete_module */"
+      },
+      {
+        "abi": "thisModule.size",
+        "kind": "struct-size",
+        "source": "module/root_glue.S.in",
+        "claimed": null,
+        "btf": "0x600",
+        "matches": false,
+        "resolved": false,
+        "quote": ".zero 0x600 - 0x5c0  (the last field ends at sizeof(struct module))"
+      }
+    ],
+    "documentationDefects": [
+      {
+        "struct": "maplesu_kprobe",
+        "offset": "0x0",
+        "memberNameInSource": "pre_handler",
+        "memberNameInBtf": "hlist",
+        "impact": "naming only: the byte offset and the field's size agree, and the module never reads this slot"
+      },
+      {
+        "struct": "maplesu_kprobe",
+        "offset": "0x8",
+        "memberNameInSource": "post_handler",
+        "memberNameInBtf": "hlist",
+        "impact": "naming only: the byte offset and the field's size agree, and the module never reads this slot"
+      },
+      {
+        "struct": "maplesu_kprobe",
+        "offset": "0x10",
+        "memberNameInSource": "fault_handler",
+        "memberNameInBtf": "list",
+        "impact": "naming only: the byte offset and the field's size agree, and the module never reads this slot"
+      },
+      {
+        "struct": "maplesu_kprobe",
+        "offset": "0x18",
+        "memberNameInSource": "ignored_handler",
+        "memberNameInBtf": "list",
+        "impact": "naming only: the byte offset and the field's size agree, and the module never reads this slot"
+      },
+      {
+        "struct": "maplesu_kprobe",
+        "offset": "0x20",
+        "memberNameInSource": "opcode",
+        "memberNameInBtf": "nmissed",
+        "impact": "naming only: the byte offset and the field's size agree, and the module never reads this slot"
+      },
+      {
+        "struct": "maplesu_kprobe",
+        "offset": "0x38",
+        "memberNameInSource": "nokprobe_inline",
+        "memberNameInBtf": "offset",
+        "impact": "naming only: the byte offset and the field's size agree, and the module never reads this slot"
+      }
+    ],
+    "note": "BTF is the authority; a claimed value that differs from it is a module-source defect, not a contract defect"
+  }
+}

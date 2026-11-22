@@ -1,0 +1,295 @@
+{
+  "idx": 70,
+  "name": "module_root.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module/idx070/module_root.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 4,
+    "recovered": 4,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "2fa20ab0258c0bd2aef27a9e224eb92feb4df385f4e98b902dd4df3f74db1ee2",
+    "bytes": 69240
+  },
+  "evidence": [
+    "notes/work/AGENT115/STATUS.md",
+    "notes/work/AGENT115/proof/0070/built.a",
+    "notes/work/AGENT115/proof/0070/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "tMissing": [],
+      "tExtra": [],
+      "uMissing": [],
+      "uExtra": []
+    },
+    "kinds": {
+      "orig": "4T/17V/52W/3b/18r/8t",
+      "new": "4T/17V/52W/3b/18r/8t"
+    },
+    "note": "符号闸门 PASS（实测）：T 4/4、U 88/88，原始双向差集为空，基线消耗 0。行为等价实测未达 0.95 档：函数清单 64/64、missing 0、extra 0、call 61/64、bag_min 0.0、bag_mean 0.9442。构建配方 stages=1（见 recipe 字段）。",
+    "measured": {
+      "strongT": 4,
+      "strongU": 88,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "strongUMissing": 0,
+      "strongUExtra": 0,
+      "definedKinds": {
+        "V": 17,
+        "r": 18,
+        "t": 8,
+        "W": 52,
+        "b": 3,
+        "T": 4
+      },
+      "newObjectBytes": 69208,
+      "newObjectSha256": "13c07f63fa2c43d0cc3e59209b2acf1e777266f67bf77b8ce7ba0fae309df72f",
+      "baselineConsumed": [],
+      "recipeStages": 1,
+      "verifyEquivRefFunctions": 64,
+      "verifyEquivNewFunctions": 64,
+      "verifyEquivMatched": 64,
+      "verifyEquivMissing": 0,
+      "verifyEquivExtra": 0,
+      "verifyEquivCallTargetMatch": 61,
+      "verifyEquivBagMin": 0.0,
+      "verifyEquivBagMean": 0.9442,
+      "verifyEquivSeqMean": 0.937,
+      "verifyEquivRefFunctionsMissingNames": [],
+      "verifyEquivExtraNames": []
+    }
+  },
+  "notes": "EQUIVALENCE(measured, verify_equiv 0.95): fn 64/64 missing 0 extra 0 call_target_match 61/64 bag_min 0.0 bag_mean 0.9442 seq_mean 0.937; recipe stages=1",
+  "blockedBy": [
+    "verify_equiv call target 61/64：函数指令布局未逐条对齐（分支目标偏移随体积差漂移）",
+    "verify_equiv bag_min 0.0 < 0.95：OUTLINED_FUNCTION 片段切分/栈槽基址残余"
+  ],
+  "ordinaryConsumerBatch20261117": {
+    "date": "2026-11-17",
+    "scope": "P3/P4 isolated ordinary consumers only; no composed member, Android TU, archive or device claim",
+    "inputs": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/idx070/cgroup_v1_tasks_self.h",
+        "bytes": 4912,
+        "sha256": "8d5837ba32bc8e53627f0c965785736295316d900891fb9aa26cb35216aa23a0"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/idx070/cgroup_v2_self.h",
+        "bytes": 2096,
+        "sha256": "b911737455b5efc3d4eedd0e03c8157d9990d592916c5258196cd1e4a91377bf"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/idx070/selinux_procattr_util.h",
+        "bytes": 2504,
+        "sha256": "96740fc10678f38f4e9cf7161690902313b8b62f80b6dda48b05a285ca3d354c"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/validation/FINAL-SUMMARY.json",
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "originalRestorationFieldsRetained": true
+  },
+  "ownerManagementBatchR04": {
+    "dateUtc": "2026-11-18",
+    "scope": "R04 same owner-v3 gateway management, complete receipt and typed credentials; isolated candidate only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/idx070/module_root.cpp",
+        "bytes": 19397,
+        "sha256": "94ed464f3b45e14c34ec0b13fba082ebe5adad89e03a639578eb1cc21112df95"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 3452,
+        "sha256": "9e1e039f644b4b85002a82ed23d00f819300f4e6c6c4a84028fa55e7f55a11a2"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r04/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r04/validation/FINAL-SUMMARY.json",
+    "validationScope": "Only final named actual TUs and explicit seams count; adding this record does not assert each member was rebuilt or run.",
+    "producerSelectionIntegrated": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "rootEnvironmentBatchR07": {
+    "dateUtc": "2026-11-18",
+    "scope": "Existing Root composite outcome and necessary environment errors; private diagnostics and local inline ODR closure only",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/idx070/module_root.cpp",
+        "bytes": 23321,
+        "sha256": "62fa29306fd947a598d18760c4dd657d728d2339abf90720cbd9db3627006e0c"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/idx070/cgroup_v1_tasks_self.h",
+        "bytes": 6857,
+        "sha256": "f3a571aa5ec32f05d99c72f939e07df94be523b2ba5f17fa9c9cd95dd92b3313"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/idx070/cgroup_v2_self.h",
+        "bytes": 2350,
+        "sha256": "8b28a723f4bb6020688eff214a2b2517c39c3df7e9b7f70ee69073cdcf98ceb5"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/idx070/selinux_procattr_util.h",
+        "bytes": 2729,
+        "sha256": "75cee995b7cda5c73c2b74b3e9f93cce988140b9bb3b9603ea24b9e52bd3a5aa"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_root_private.h",
+        "bytes": 868,
+        "sha256": "3e73e964579c693bdb0d131bddd6e7fe3d5d0d235401f69531b7e10df1fc85fb"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 4276,
+        "sha256": "959fec109c4923ae40f124fa45a3cf011766980358945cc63de64f716d3d21fe"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r07/CONTRACT.md",
+    "validation": "docs/parallel/2026-11-17/a-p3-p4/evidence/r07/FINAL-SUMMARY.json",
+    "validationScope": "Only named actual m070/helper host seams and one real Android raw TU; no archive or device proof",
+    "globalErrorEnumChanged": false,
+    "publicRootAbiChanged": false,
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalRestorationFieldsRetained": true
+  },
+  "p3p4NativeProcattrR10": {
+    "dateUtc": "2026-11-18",
+    "scope": "Current isolated sources; canonical build recipe retained",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module/idx070/module_root.cpp",
+        "bytes": 23986,
+        "sha256": "f9e413f6693f8f36e8e07b6c72a83d23aefd5d74bdee428a5920158eb860ce9d"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 9042,
+        "sha256": "8adaaf19644dc534c91c9da0b99f9fd951332a543bef0ec90b7c35dd25389445"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_root_private.h",
+        "bytes": 868,
+        "sha256": "3e73e964579c693bdb0d131bddd6e7fe3d5d0d235401f69531b7e10df1fc85fb"
+      },
+      {
+        "path": "runtime/pro/authorization/request_protocol.h",
+        "bytes": 26424,
+        "sha256": "ba6f1562a0eef39b83f2feb5ff2198bc110d1bbabb223cff8c030a0045743b1c"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r10/CONTRACT.md",
+    "privateRequestSymbolAdded": true,
+    "rootTransitionLayoutChanged": false,
+    "publicSignaturesChanged": false,
+    "formalBuildSelected": false,
+    "targetValidated": false,
+    "deviceValidated": false,
+    "historicalEvidenceRetainsItsOriginalInputScope": true
+  },
+  "p3p4CurrentTaskState20261118": {
+    "dateUtc": "2026-11-18",
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/task-state-20261118/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/idx070/module_root.cpp",
+        "bytes": 25208,
+        "sha256": "38710cf61e04dbd13f23a8a5d3704e8715968ab859ba5109c807e1b9deecb292"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_root_private.h",
+        "bytes": 1873,
+        "sha256": "a71575e756ea235f5137a062633894203be01af8aa8a1a6b584f4d979b949d4e"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_private.h",
+        "bytes": 9594,
+        "sha256": "bc6e0c60c30df056d32e0d99997ab95c41ca2e553d3ad753d7b1adbc3717789b"
+      }
+    ],
+    "canonicalRecipeChanged": false,
+    "privateRootTransitionLayoutChanged": true,
+    "publicSignaturesChanged": false,
+    "compiled": false,
+    "tested": false,
+    "targetValidated": false,
+    "deviceValidated": false,
+    "historicalEvidenceRetainsItsOriginalScope": true,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "authenticatedCurrentTaskName20261119": {
+    "sourceSnapshot": {
+      "path": "runtime/maplesu-sdk/sdk/src/module/idx070/module_root.cpp",
+      "bytes": 25215,
+      "sha256": "cbee571cc3b832c86417fdb0fcd33665bf1593ee103fc89144485ee855436605"
+    },
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/helper-fixed-initialization-20261119/CONTRACT.md",
+    "status": "source-implemented-awaiting-focused-validation",
+    "legacyWireUnchanged": true,
+    "helperArbitraryMemoryAllowed": false,
+    "productionWritten": false,
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false
+  },
+  "p5DevelopmentClosure20261119": {
+    "scope": "Current production P5 sources and focused compilation/regressions; formal SDK and target execution remain separate",
+    "requirements": [
+      "HOOK-01",
+      "HOOK-02",
+      "HOOK-03",
+      "RELOC-01"
+    ],
+    "inputs": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/idx070/module_root.cpp",
+        "sha256": "d8c2fd5464e5da0a4573158424f0dd38463e50827001485b8d3a9daebf1d3b8e"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_hook_private.h",
+        "sha256": "2636d9f3f98d6ffa40542179a1f1cd488cb4fb2f8a1f34a7c7190882f93b838c"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_hook_publication.h",
+        "sha256": "0a4510fc9b294fcedb737cd53abb88c36b62f2ca4d147705100feaa265a92ce3"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/legacy_hook_publication.h",
+        "sha256": "8003a8db4635363e2d04704e065fe3ea4d0d53de7b88fc579166fb20f8811215"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_hook_codegen.h",
+        "sha256": "ca3bbaf752c13a0315f627e673461c94fe560130defb4001d17f5fa331dd3363"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_publication_gate.h",
+        "sha256": "783e4b7a72384c48b96e5a134fe3ca070ed1ef5a10cc1865a1d2a5b3c0b55d8f"
+      }
+    ],
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/P5-DEVELOPMENT-CLOSEOUT-20261119.md",
+    "formalRelease": false,
+    "deviceValidated": false
+  }
+}

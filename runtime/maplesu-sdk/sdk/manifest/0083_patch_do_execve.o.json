@@ -1,0 +1,75 @@
+{
+  "idx": 83,
+  "name": "patch_do_execve.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/patch_do_execve.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-std=c++17",
+    "-fno-lto",
+    "-U_FORTIFY_SOURCE",
+    "-UNDEBUG"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 132,
+    "recovered": 132,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "1bada604b50ef69ca5c5e7eacf83a1afccb5c555f090ef9d7772f8516db95401",
+    "bytes": 81472
+  },
+  "evidence": [
+    "notes/work/PKG-C/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "member_gate 口径实测：强导出 T 5/5、强 U 73/73、弱 W 120/120，双向差集为空（missing 0 / extra 0）。编译配方以 flagsProfile 为底座、由 extraFlags 末尾覆盖成冻结成员的配方（-std=c++17 / -fno-lto / 关闭 fortify / 关闭 NDEBUG）：位码反汇编与冻结成员逐行相同，唯一差异是模块标识与 source 文件名这两个路径字符串，故体积 81508 B vs 81472 B。",
+    "measured": {
+      "frozen": {
+        "strongDefined": 5,
+        "strongUndefined": 73,
+        "weakDefined": 120,
+        "local": 7
+      },
+      "rebuilt": {
+        "strongDefined": 5,
+        "strongUndefined": 73,
+        "weakDefined": 120,
+        "local": 7
+      }
+    }
+  },
+  "notes": "execve 的 before-hook 发射器：fake su 路径后缀校验 → 允许名单判定 → 把路径参数改写成 u-00000000/su 的私有路径（内核栈上拼十进制 UID 串）→ 安装 before-hook。extraFlags 里的四个覆盖项是冻结成员编译配方的一部分，不是功能开关；旧版副本 src/patch/idx083/patch_do_execve.cpp 已被本文件取代（不再列在 sources 中）。",
+  "blockedBy": [],
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/patch/patch_do_execve.cpp",
+        "sha256": "aa98978036801ccbd9f76313216c1f5fd9bffb652e303b510081038df35e89fc"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_uid_lifetime_private.h",
+        "sha256": "4a0a57152133d84b654f4238fc786f7d28fb8485e1965d846622e6a5fa000826"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/default_module/module_su_redirect/patch_base.h",
+        "sha256": "627a0e1328c52a92ceb26caedbdbcdc0073a0c1009a28e4301bc351a886c0ae0"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/core01/patch_base_su_redirect.h",
+        "sha256": "15a0ded57d388057d7b8c5eb2842f1b9b7dcb74293a8cb4816c337b86e0d97bb"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  }
+}

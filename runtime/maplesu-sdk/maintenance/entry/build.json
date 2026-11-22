@@ -1,0 +1,1155 @@
+{
+  "baselineArchiveSha256": "ccface9bbfbb162bb615ff20213b63eda213a0e0d9b758dcc3f77f3dd2bc4679",
+  "baselineHelperSha256": "d4182dc7ec8f7628d1c6129d8ed70cd1dc08ac425dbefe338c505712746d6a33",
+  "baselineSdkBuildId": "maplesu-pro-5.1.0-environment-state-r16-20261108",
+  "baselineSdkManifestSha256": "609954bbc15e49fd9b9562a6caabb518e83c2cf0aa75b4afad3c4febc6772229",
+  "helperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+  "helperNormalizedSha256": "0e91450d5dd1677a75f8f35691851e0984d6fac0a33c541d8cc3b4e1eae062fd",
+  "helperBuildId": "d8e9350c36c154d435ead88b8c7445e045413563",
+  "helperBytes": 1350064,
+  "hookSite": 693952,
+  "hookEntry": 1232824,
+  "policyLauncher": 1232192,
+  "keyAddress": 182886,
+  "originalSelinuxInitializer": 1040244,
+  "identityHookSite": 694092,
+  "identityCallUnchanged": true,
+  "identityModuleTail": 1230388,
+  "moduleGuardEntry": 1232940,
+  "readySlot": 1184392,
+  "originalIdentityEntry": 1230304,
+  "originalIdentityLauncher": 1230392,
+  "originalModuleLoader": 683828,
+  "extensionBytes": 988,
+  "backend": {
+    "sha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "size": 12862064,
+    "buildId": "4c2f4f32dbdd15778b36f949ffe8d73c231717ef",
+    "fileName": "libmaplesu_policy_boot.740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657.so",
+    "noteOffset": 720,
+    "noteHex": "040000001400000003000000474e55004c2f4f32dbdd15778b36f949ffe8d73c231717ef",
+    "path": "runtime/upstream-pro/backend/libmaplesu_policy_boot.740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657.so"
+  },
+  "backendIdentityHeaderSha256": "3ac8f717bb1e900dd5f2da1a399c63e4fde3ddf6b80acb8a70d48b87bbb6b01a",
+  "sourceSha256": {
+    "runtime/pro/policy/environment_loader.c": "b7db27f206a58aa900b5b2722fc0c787c07e5c74e1ed1d324d2a2055980d4a81",
+    "runtime/pro/policy/environment_entry.S": "123099c5536f75a007eb0a8d55d1ccc3f8de1a3b0dd307612898179c357df14a",
+    "scripts/policy_backend_identity.py": "f66a5cf85169d738920d0c9def8006d265a62952a47292e1e588b028a0fc1d6c",
+    "scripts/build-pro-policy-entry.py": "ed3e4a0607f98f7a0b489bd28ae91ca8265017f2d9b3897fa2932e1bd45ef3cb"
+  },
+  "productionArchiveUnchanged": true,
+  "deviceAccess": false,
+  "limitation": "Candidate only. Kernel backend/hiding and deployment acceptance remain pending.",
+  "sdkBuildId": "maplesu-pro-5.2.0-private-dac-batch-20261114",
+  "archiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+  "helperCredentialSnapshotRepair": {
+    "status": "candidate",
+    "baselineSdkBuildId": "maplesu-pro-5.2.0-cred-snapshot-20261113",
+    "baselineArchiveSha256": "0f37d8ae64f868941ac9cf3d2f5472fdeb1db3d8d0461929fd8fc23cdac73cc3",
+    "archiveSha256": "09c475dfbeff7c13c85a1df9874ae7423244ac58f0f13bc87477caa02c5dddcc",
+    "baselineHelperSha256": "65d3bb2eafb660b399a63c854cab6d072201a1849b571672d5d0c54cd7b9271a",
+    "helperSha256": "525efe304aaf480e3dedbaa4e9d2c26d158ed8a837e99a7244b88c09fc490504",
+    "helperNormalizedSha256": "6741bd87e59570852c5ae72b916e81169d0805c94653a92bb8eb5f791d1aeed3",
+    "helperBuildId": "2668c913fe9b7a50963800a5d5bf1b0716bb9049",
+    "helperBytes": 1282312,
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "ca07bf26e379f1a39baed6cfbcc4f094f702a37442743cfe2fa422e7dcc0b7ec",
+          "candidateSha256": "879e6a229859e6ba029f0976004e0011dd10e174fdef624bb798dd596cb643bf",
+          "baselineSize": 1357984,
+          "candidateSize": 1390176
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "c9cc86f67fd237429fdec7078ec3031ef3efa6f0f2e402189f66ce9978984240",
+          "candidateSha256": "762e3e35dc2289fbf84b4911bc96f5c86b702cfe5140943a4a0f910b7f9b824f",
+          "baselineSize": 20552,
+          "candidateSize": 20552
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 256
+    },
+    "patchedGetterBytes": 4,
+    "keySlotPreserved": true,
+    "installerBaselineCodeAndAbiReproduced": true,
+    "gateBaselineCodeAndAbiReproduced": true,
+    "priorRepairsPreserved": true,
+    "backendRelinked": false,
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "kernelRuntimeMembersUnchanged": true,
+    "replayCases": 15,
+    "replayBoundary": "Original comm/config getters and execute_kernel_asm_func at 0xbdd00 are modeled. Candidate getter, PIE callback bridge, original synchronous generator/AsmJit/prologue/epilogue and emitted three-pointer comparison execute unchanged. Each final execution gets a new modeled credential; baseline per-byte reads receive 24 changing credentials.",
+    "replayIsMachineCodeSimulation": true,
+    "realKernelAcceptance": false,
+    "deviceVerification": false,
+    "entryManifest": {
+      "path": "work/pre-release-audit-20261113/continuation-20261113-r4/helper-snapshot-candidate/build.json",
+      "sha256": "68a0eb84d935690e13859d9c4e6d83f1acf211cdd54b6d1da5298e23545cec4e"
+    },
+    "replay": {
+      "path": "work/pre-release-audit-20261113/continuation-20261113-r4/helper-snapshot-candidate/replay.json",
+      "sha256": "277cc6320d504785ed9df35dd45990e8252f83320a00fe21177ea63a3c728767"
+    },
+    "buildScript": {
+      "path": "work/pre-release-audit-20261113/continuation-20261113-r5/helper-sdk/build_sdk_candidate.py",
+      "sha256": "5d347654523e336efa27a8b1a3c271697eb52f512faae71fb67edccf41de2b65"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778"
+  },
+  "kernelReadRepair": {
+    "passed": true,
+    "baselineArchiveSha256": "09c475dfbeff7c13c85a1df9874ae7423244ac58f0f13bc87477caa02c5dddcc",
+    "archiveSha256": "88a4a2f775b63d266dac0912946595d8be6ae1a14b87e60ad2acffc673bdc04d",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 23,
+          "name": "module_base_kernel_request.o",
+          "baselineSha256": "91b710329a50636572b8844bc659efe0dc4c8ebeebfe3b53322881e763163af0",
+          "candidateSha256": "7216cfd8920a33f62b6e288f624903a12659b75829863c9102ed4e4862ba2dd8",
+          "baselineSize": 45592,
+          "candidateSize": 98352
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 257
+    },
+    "canonicalSymbol": "_ZN13kernel_module23request_kernel_read_memEmPvj",
+    "legacySymbol": "maplesu_legacy_request_kernel_read_mem",
+    "wrappedSymbolAbsent": true,
+    "archiveSymbolCounts": {
+      "_ZN13kernel_module23request_kernel_read_memEmPvj": 1,
+      "maplesu_legacy_request_kernel_read_mem": 1,
+      "__wrap__ZN13kernel_module23request_kernel_read_memEmPvj": 0
+    },
+    "requestIsolationPreserved": true,
+    "originalRequestTextSha256": "c2fb22306fbdaed531fee7975b73b954b090433cfca01e08253d55adf1d01546",
+    "originalRequestRelocationsPreserved": true,
+    "helperMemberUnchanged": true,
+    "productionArchiveUnchanged": true,
+    "deviceAccess": false,
+    "sources": {
+      "runtime/pro/authorization/kernel_read.cpp": "8b6bb1f3556f916742dcd9107b6206ca56c6c8b0ae51c4b862bac43e29647060",
+      "scripts/update-pro-kernel-read.py": "9fe54bc125ef00511d4ece0ca353f91858cf953be38df23a5c1c32e60c5939ec",
+      "runtime/pro/authorization/kernel_read_metadata.h": "63c83954ae7da83183b08bd0860befb111d8c732a86f89ea5273c15720716c21",
+      "runtime/upstream-pro/include/module_err_def.h": "1815c33b84576df96fee6261c6d24a5b66c5c165fca0df810f6f0336138740ae",
+      "runtime/upstream-pro/include/aarch64_asm_helper.h": "d4d56017ce91c5b0ef75467ebde2dddd5f10137ed0d98321a37da469335d1018",
+      "runtime/upstream-pro/include/module_base_kernel_mem.h": "60bf587bb10735c6639ccbb68902f58497fa2767b7b596f5bb41f53cd397cab5",
+      "runtime/upstream-pro/include/module_base_kernel_symbol_kaddr.h": "17a41bc0a0e67254b10bb8c011a422b40b761ed3a028ad33b2926c586ad6431e"
+    },
+    "report": {
+      "path": "work/panic-kernel-read-20261114/delivery-v1/evidence/kernel-read-report.json",
+      "sha256": "f6d56409fcc1ceaefc241b0860c4684e1fb341702d95bc0e8a01bbedaf609af3"
+    },
+    "coldResolverReplay": {
+      "path": "work/panic-kernel-read-20261114/delivery-v1/evidence/sdk-cold-resolver.json",
+      "sha256": "42e9656f8b395020c6436b4a9e8339ce5a2b0e15994da46d54dae0ddb84ad7d6"
+    },
+    "validation": {
+      "path": "work/panic-kernel-read-20261114/delivery-v1/evidence/main-read-validation.json",
+      "sha256": "927c051a46b8bd21aad0756294c54374c9fa104a6541b7f397e267053f7584c4"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "status": "candidate",
+    "deviceVerification": false,
+    "realKernelAcceptance": false
+  },
+  "helperKernelReadRepair": {
+    "schemaVersion": 1,
+    "baselineHelperSha256": "525efe304aaf480e3dedbaa4e9d2c26d158ed8a837e99a7244b88c09fc490504",
+    "helperSha256": "49735acbfe501dbba6b8eb484e1b5d42a56939743236ee9413dcb25200acc233",
+    "helperNormalizedSha256": "481394de580e9406b60fdb96fad5226c266f44544b8843e49d25fbba09ecd23c",
+    "helperBuildId": "fdfb31998a1e8a9a2d805913891ebbd3d5aa13da",
+    "helperBytes": 1315928,
+    "entryPatch": {
+      "offset": 805096,
+      "baselineHex": "fd7bbda9",
+      "candidateHex": "0ae20114"
+    },
+    "extension": {
+      "address": 1298704,
+      "offset": 1282320,
+      "bytes": 1840,
+      "sha256": "0be1f9f008b47fdbf2085f16ecd90e3808091714aa2a5396aad0d4eb4ba71b7c"
+    },
+    "symbols": {
+      "maplesu_helper_kernel_read": 1298704,
+      "maplesu_metadata_template": 1299800,
+      "maplesu_metadata_template_end": 1300160,
+      "maplesu_metadata_source": 1300144,
+      "maplesu_metadata_size": 1300152,
+      "maplesu_read_template": 1300160,
+      "maplesu_read_size": 1300520,
+      "maplesu_read_nofault": 1300528,
+      "maplesu_read_usercopy": 1300536,
+      "maplesu_read_template_end": 1300544,
+      "maplesu_read_source": 1300504,
+      "maplesu_read_destination": 1300512
+    },
+    "apiBoundaries": {
+      "helper_append": {
+        "address": 785108,
+        "bytes": 48,
+        "sha256": "eafc7ed1b1d75e6e7820e9e47ea1ca4ef86068f0ade4f68cbe800ef70f3cb149"
+      },
+      "helper_lookup": {
+        "address": 765084,
+        "bytes": 88,
+        "sha256": "c176753032e4ca3c314903537214f26732058f40b2a8380d9a60d9ddc65bf737"
+      },
+      "helper_execute": {
+        "address": 809640,
+        "bytes": 732,
+        "sha256": "523207f924d88bf0b55699512818fdff7777aa92ba6419b6ca186547475c2887"
+      }
+    },
+    "keySlotPreserved": true,
+    "dynamicMetadataPreserved": true,
+    "oldExecutableRangesPreserved": true,
+    "requestCredentialIsolationPreserved": true,
+    "originalUnwindEntriesPreserved": 3934,
+    "addedUnwindEntries": 6,
+    "productionInputsModified": false,
+    "deviceRequests": false,
+    "sources": {
+      "runtime/pro/authorization/helper_kernel_read.cpp": "1cda3d033aa52d68920ec0e487ed49192a7362eba85561a737b86673fd1c07df",
+      "runtime/pro/authorization/helper_kernel_read.S": "0db667a3099792bb586b9c0472839c82eb71b8eeda354b861b7a74f783db86a5",
+      "runtime/pro/authorization/kernel_read_metadata.h": "63c83954ae7da83183b08bd0860befb111d8c732a86f89ea5273c15720716c21",
+      "scripts/update-pro-helper-kernel-read.py": "650a8f4869cd2badb5dad797aa26fd97238cfecb43a6ffb8f01a53b40f4ce14f",
+      "scripts/tests/test-pro-helper-kernel-read.py": "173834cbae872ae4b7713c54373e7b5457c417f780a4aaca0ae0f2a2e84f0e84"
+    },
+    "callbackReplay": {
+      "path": "work/panic-kernel-read-20261114/delivery-v1/evidence/helper-read-replay.json",
+      "sha256": "026b8fa15798062dcf7046f494006f378d703720ad1899617799fd0398adb773"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "status": "candidate",
+    "deviceVerification": false,
+    "realKernelAcceptance": false
+  },
+  "memoryProtectionRepair": {
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "sources": {
+      "scripts/package-pro-memory-protection.py": "9232b7df9f5299bb432e35f103ef0e1a3ddcfc454133939dffec7fc649d7ff5f",
+      "runtime/pro/upgrade/sdk-m052.bc": "342b920914ad62f700398482f8bfd403344e54cf36f032a77c51d0c1e306d3c2",
+      "runtime/pro/modules/module_control.cpp": "e827b1205df951a1d2157ee7491942f4adb344a087e281c4c44cf183e03677af",
+      "scripts/repair-pro-environment-upgrade.py": "b7e73a4a2191ff4341915d9249d5d6caa89009f6b75f755b840c1dd4873421e9",
+      "runtime/pro/boot/helper_memory_protection.S": "31e390bcaa8daad5a38a89d452b2e596921e8b7ff1107b0009d883d7396e24fc",
+      "scripts/update-pro-helper-memory-protection.py": "b8e20c6814373fd8960844d77f1f402257868fe511ab9da19ca3a99f022270bb",
+      "scripts/update-pro-memory-protection.py": "e34a5156614a20a9a9f13cc28ae32a67ef5dfff0a702c0cd73b453be683c3fac",
+      "work/panic-kernel-read-20261114/prepare_permission_delivery.py": "2f92b02a4821804df80624e1b6d34c89cd79c436d942b48845353eb5342301a7"
+    },
+    "candidateObjectSha256": "8bddff1534197f80737db6b57f01714a155a6aa34d50879dbf19f1081db92448",
+    "helper": {
+      "entryPatch": {
+        "offset": 787668,
+        "baselineHex": "2b8f0114",
+        "candidateHex": "e3130214"
+      },
+      "extension": {
+        "address": 1332320,
+        "offset": 1315936,
+        "bytes": 80,
+        "sha256": "3343493ad12c1862d3114d11f7214a68fc7ebf92af0143bd3ffb8d4408dcc03b"
+      }
+    },
+    "validationScope": [
+      "compile",
+      "baseline-contract",
+      "global-abi",
+      "archive-member-diff",
+      "helper-section-whitelist"
+    ],
+    "deviceAcceptance": false,
+    "realKernelAcceptance": false,
+    "compileEvidence": {
+      "helper-compile.json": {
+        "path": "work/panic-kernel-read-20261114/permission-delivery-v1/evidence/helper-compile.json",
+        "sha256": "064581140a110bf1e9ed47b1e4e3ce0aaa0cd163d2ac9afe7937d775e49b7311"
+      },
+      "memory-compile.json": {
+        "path": "work/panic-kernel-read-20261114/permission-delivery-v1/evidence/memory-compile.json",
+        "sha256": "7fb6c04e2bd12690274ef765b64487f38357cb3c76b77992527e1bcfdd2f4838"
+      },
+      "packaging.json": {
+        "path": "work/panic-kernel-read-20261114/permission-delivery-v1/evidence/packaging.json",
+        "sha256": "a9d466b1af2bf14dd3864c44a75c3f637643d0565cc079a683b6cdd105e9ba10"
+      }
+    }
+  },
+  "executorRestoreRepair": {
+    "baselineArchiveSha256": "2878603a67fcdf0bec0ee735fd3d96a9dfb2a91f3206807d49152c8c16f439a5",
+    "archiveSha256": "65cd1e2adb6622a4e0d8c99341a916aa8df7c04485c20378ac4abda211b159ea",
+    "baselineHelperSha256": "cd96f85a301cba191c5d07b2be8ec01a660721d4c64ec8b9de38bb41c2eae12c",
+    "helperSha256": "c8f6f61dd015a30ee35ef19226ed35549371d5e3d7c422b70859bcad47c07e94",
+    "helperNormalizedSha256": "e028dd649e190b203f5fd9957af900b9f6214cf7645fd4bbd7eeeb2a00d9b7a1",
+    "helperBuildId": "906f6a5503338368726d8d6de194a27b235fe8dc",
+    "helperBytes": 1347984,
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 25,
+          "name": "module_base_kernel_func_executor.o",
+          "baselineSha256": "3aee013bde5aa9140cccd9ad82d55f3c20212f5a6e2d302c243b9436e78fecb7",
+          "candidateSha256": "1c9a5b9a8ff0433dc17b75defccd90187652e566e5bab106653bcfbd432ff5be",
+          "baselineSize": 67120,
+          "candidateSize": 60288
+        },
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "c85f6bc9124987decee88ae25993df4c8bd0db084142e748858b3aa7d4ed24a2",
+          "candidateSha256": "0018e766a091c03891daa625edb5cdc787ed454e4163dfaae2c6f525941dd348",
+          "baselineSize": 1423872,
+          "candidateSize": 1455840
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "d9e82ba13fd7d711cd6f108f5efc4cd59fab43ba4e513bc2e0add9b13be5a610",
+          "candidateSha256": "07fb04afb5b9c7d6138265f4821802b8847186a8fa84e897cfdbc946cb9732c6",
+          "baselineSize": 20552,
+          "candidateSize": 20552
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 255
+    },
+    "helperEntry": {
+      "offset": 809848,
+      "before": "00e4006fc8008052ff9301b8ff1f00b9",
+      "after": "e00f40b94dfe0194f30300aa59000014"
+    },
+    "sources": {
+      "runtime/pro/authorization/executor_restore.cpp": "0e68105b1fc08199ac1977fb3961bfef3f0551fd9da6515d767a37a51ec4487f",
+      "scripts/update-pro-executor-restore.py": "092922163995f183e882f6eaf809b01b75a71d0efbe7fd149650bf1f650eb248"
+    },
+    "deviceAcceptance": false,
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "validation": {
+      "path": "work/panic-implementation-20261114/executor-candidate/restore-validation.json",
+      "sha256": "19f1a2ad240edbe0bcb10863dfb57c052ec16cabf0485a50a8b9b02ae5971837"
+    },
+    "method": "Restore full securebits in one no-result callback through its own reply slot; no cross-request cred pointer"
+  },
+  "helperAllowlistRepair": {
+    "schemaVersion": 1,
+    "baselineHelperSha256": "7a05bc7461413a1725606ee779e9c6b1618cd01cc87a10fb32315cb97801d6e0",
+    "helperSha256": "c7f6bf334221184446639dac8ecdbce979d00643e1fdc998f56b3df92d8f1781",
+    "helperNormalizedSha256": "bd0f3303880519bf9740a3b8bb3d53fca2132d41cca6156c3f4ef7a97cbe5254",
+    "helperBuildId": "0d84e934aa35b01e74fc5b5e0b8252eac7ed027c",
+    "helperBytes": 1348016,
+    "patches": [
+      {
+        "address": "0xf5130",
+        "offset": 1003824,
+        "baselineHex": "60f9ffd000fc3591eb040094c00000b4c62cff97f60300aaa01500b5e0031faade040094",
+        "candidateHex": "e0031faae5040094f60300aa001600b5050000141f2003d51f2003d51f2003d51f2003d5"
+      },
+      {
+        "address": "0xf517c",
+        "offset": 1003900,
+        "baselineHex": "e8c340f9",
+        "candidateHex": "09000014"
+      },
+      {
+        "address": "0xf5eec",
+        "offset": 1007340,
+        "baselineHex": "80f9ff90",
+        "candidateHex": "a95c0114"
+      }
+    ],
+    "extension": {
+      "address": "0x14d190",
+      "offset": 1347984,
+      "bytes": 32,
+      "sha256": "492d4e1e181bf94ffeb17d47ca3be0795547d08b6b80d24b2f9661eb0e69b815"
+    },
+    "keySlotPreserved": true,
+    "originalSectionsWhitelistVerified": true,
+    "dynamicMetadataPreserved": true,
+    "originalUnwindMetadataPreserved": true,
+    "existingFixesPreserved": true,
+    "productionInputsModified": false,
+    "callbackReplay": {
+      "path": "work/panic-implementation-20261114/native-audit/helper-candidate/allowlist-replay.json",
+      "sha256": "2bd1ff8a0b3279ad14bf1d7a89e5b6d37406102a9174a1577bcbf19190427cf9"
+    },
+    "causality": "Helper initialization clears old control and retirement keys before this writer. This fixes its stale writer lifecycle coverage, but does not establish the current NX panic cause.",
+    "sources": {
+      "scripts/update-pro-helper-allowlist.py": "50a0c373386206ba39bf67aaac254d29c73c33745b39c30be47cae04d46e9e89",
+      "scripts/tests/test-pro-helper-allowlist.py": "03a32de6e770a919cd8edacde3d06727f1e8eaea1e5c12564c13bc89e932a58c"
+    },
+    "baselineArchiveSha256": "d5c70619383f60a10798ed2373e06a7399339417bfff8858042f8a28892afd4f",
+    "archiveSha256": "525d398fab185a90d6fa32a5b63fa2a558096ede040499ff9f459fbea57f45e4",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "a0b1effe243833debd649c652a2e7ced92de89a04b5fc865669da5196010a205",
+          "candidateSha256": "6f881191d90bf58234fd2607d0be157be54c4a6317c432735b59060130904439",
+          "baselineSize": 1455840,
+          "candidateSize": 1455872
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "07fb04afb5b9c7d6138265f4821802b8847186a8fa84e897cfdbc946cb9732c6",
+          "candidateSha256": "c0c9d8586b395e21937f5aef4a29a9275db837178a98d4d7e023d700df6fc1a4",
+          "baselineSize": 20552,
+          "candidateSize": 20552
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 256
+    },
+    "installerBaselineReproduced": true,
+    "gateBaselineReproduced": true,
+    "kernelRuntimeMembersUnchanged": true,
+    "backendRelinked": false,
+    "loaderBytesUnchanged": true,
+    "retainedExecutorRestore": true,
+    "deviceVerification": false,
+    "realKernelAcceptance": false,
+    "preparedBy": {
+      "path": "work/panic-implementation-20261114/helper-delivery-tools/prepare_helper_delivery.py",
+      "sha256": "f41db82fe3f60efbacf287d6abe576ac1f6ef9b915fcc0ab9218bb6c2fb4c4bc"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657"
+  },
+  "helperMemoryRangeRepair": {
+    "schemaVersion": 1,
+    "baselineHelperSha256": "c7f6bf334221184446639dac8ecdbce979d00643e1fdc998f56b3df92d8f1781",
+    "helperSha256": "b9513d7e36178752293065c3891137cba5d83f4d6e867449ea756a36b8fdee1a",
+    "helperNormalizedSha256": "d1282c5c5a698fa52a1fb03aea1e35ee5b3ce4dd9ade3a44b08831b55566c910",
+    "helperBuildId": "3d14b9f4d4f643bc0d579787c3ddec0bbeda0e59",
+    "helperBytes": 1348192,
+    "patches": [
+      {
+        "address": "0xc09ac",
+        "offset": 788908,
+        "baselineHex": "14cc7492",
+        "candidateHex": "f40300aa"
+      },
+      {
+        "address": "0xc0938",
+        "offset": 788792,
+        "baselineHex": "b4ce7492",
+        "candidateHex": "f40315aa"
+      },
+      {
+        "address": "0xc0914",
+        "offset": 788756,
+        "baselineHex": "b4ce7492",
+        "candidateHex": "f40315aa"
+      },
+      {
+        "address": "0xc09b4",
+        "offset": 788916,
+        "baselineHex": "490d0094",
+        "candidateHex": "ff310214"
+      },
+      {
+        "address": "0xc0940",
+        "offset": 788800,
+        "baselineHex": "660d0094",
+        "candidateHex": "1e320214"
+      },
+      {
+        "address": "0xc091c",
+        "offset": 788764,
+        "baselineHex": "6f0d0094",
+        "candidateHex": "29320214"
+      }
+    ],
+    "extension": {
+      "address": "0x14d1b0",
+      "offset": 1348016,
+      "bytes": 172,
+      "sha256": "c17eef1c397b874f73db4f54876d3e0a6b31a20c0c846a5f86cfda8c1416e9b3"
+    },
+    "keySlotPreserved": true,
+    "originalSectionsWhitelistVerified": true,
+    "dynamicMetadataPreserved": true,
+    "originalUnwindMetadataPreserved": true,
+    "noNewCallsOrStackFrames": true,
+    "existingFixesPreserved": true,
+    "productionInputsModified": false,
+    "deviceRequests": false,
+    "scope": "Protection range validation and page arithmetic; current NX panic causality remains unestablished.",
+    "sources": {
+      "scripts/update-pro-helper-memory-protection-range.py": "9293207c6dee5dc4fd2ea8eb7469d26d683e8fb23d7689d42722ccc50c6ab856",
+      "runtime/pro/boot/helper_memory_protection_range.S": "a63899c988baae8a50e8f6236a0d28289f9b4178c7c9bf31a8eeb3f839cc9f94",
+      "scripts/tests/test-pro-helper-memory-protection-range.py": "e8b4aa0648fab1914aa189a902bbc75202156bd1532388528def212c3a0d6f6e"
+    },
+    "replays": {
+      "range-replay.json": "4ebf48f5f93cca4cd54d89c47c93627d8097dc2f8090a385ceb8931667b2399c",
+      "allowlist-replay.json": "dd48780d9b5625ce00d87a464a087784caf5c6f505ac5a8795e5657323e8ec20"
+    },
+    "baselineArchiveSha256": "525d398fab185a90d6fa32a5b63fa2a558096ede040499ff9f459fbea57f45e4",
+    "archiveSha256": "50d456afbe699b43a80a7276ae8a8e3e8d48b169683251c9402becec4388b186",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "6f881191d90bf58234fd2607d0be157be54c4a6317c432735b59060130904439",
+          "candidateSha256": "4146e309b2857f6665e99e53825c5fff2bc39ae0ad7a470f7bb69ae06c048e34",
+          "baselineSize": 1455872,
+          "candidateSize": 1456048
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "c0c9d8586b395e21937f5aef4a29a9275db837178a98d4d7e023d700df6fc1a4",
+          "candidateSha256": "766670ec397e0b9da18229598bc445654c9c433b4f8d5ea0f1583c4f4317b2dc",
+          "baselineSize": 20552,
+          "candidateSize": 20552
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 256
+    },
+    "installerBaselineReproduced": true,
+    "gateBaselineReproduced": true,
+    "kernelRuntimeMembersUnchanged": true,
+    "backendRelinked": false,
+    "loaderBytesUnchanged": true,
+    "retainedExecutorRestore": true,
+    "deviceVerification": false,
+    "realKernelAcceptance": false,
+    "preparedBy": {
+      "path": "work/panic-implementation-20261114/helper-range-delivery-tools/prepare_helper_delivery.py",
+      "sha256": "2c8709c23ce4f39e41760536f93ea33f4a092349e57787c41961edfba0e9054d"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657"
+  },
+  "memoryProtectionRangeRepair": {
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "schemaVersion": 1,
+    "baselineArchiveSha256": "50d456afbe699b43a80a7276ae8a8e3e8d48b169683251c9402becec4388b186",
+    "baselineHelperSha256": "b9513d7e36178752293065c3891137cba5d83f4d6e867449ea756a36b8fdee1a",
+    "baselineObjectSha256": "1449fde70c49d7e52c57be86ea2ff1f6ef8881d2ec07d1988d79f370a1bd1753",
+    "candidateObjectSha256": "8bddff1534197f80737db6b57f01714a155a6aa34d50879dbf19f1081db92448",
+    "helperCandidateSha256": "b9513d7e36178752293065c3891137cba5d83f4d6e867449ea756a36b8fdee1a",
+    "helperSha256": "42188c46112eea947e470efce8538c94d6f24d539608f402b76d49e0ff437c5a",
+    "helperNormalizedSha256": "3defe5f677fb190498ada2ed748f154917a27c629b26762893614f7f6937d32b",
+    "helperBuildId": "28850f669915c3250c1f574ab3e640ae8a8cffe1",
+    "helperBytes": 1348192,
+    "helperPatches": [
+      {
+        "address": "0xc09ac",
+        "offset": 788908,
+        "baselineHex": "14cc7492",
+        "candidateHex": "f40300aa"
+      },
+      {
+        "address": "0xc0938",
+        "offset": 788792,
+        "baselineHex": "b4ce7492",
+        "candidateHex": "f40315aa"
+      },
+      {
+        "address": "0xc0914",
+        "offset": 788756,
+        "baselineHex": "b4ce7492",
+        "candidateHex": "f40315aa"
+      },
+      {
+        "address": "0xc09b4",
+        "offset": 788916,
+        "baselineHex": "490d0094",
+        "candidateHex": "ff310214"
+      },
+      {
+        "address": "0xc0940",
+        "offset": 788800,
+        "baselineHex": "660d0094",
+        "candidateHex": "1e320214"
+      },
+      {
+        "address": "0xc091c",
+        "offset": 788764,
+        "baselineHex": "6f0d0094",
+        "candidateHex": "29320214"
+      }
+    ],
+    "helperExtension": {
+      "address": "0x14d1b0",
+      "offset": 1348016,
+      "bytes": 172,
+      "sha256": "c17eef1c397b874f73db4f54876d3e0a6b31a20c0c846a5f86cfda8c1416e9b3"
+    },
+    "pageSizes": [
+      4096,
+      16384,
+      65536
+    ],
+    "maxPageCount": 2147483647,
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 24,
+          "name": "module_base_kernel_mem.o",
+          "baselineSha256": "1449fde70c49d7e52c57be86ea2ff1f6ef8881d2ec07d1988d79f370a1bd1753",
+          "candidateSha256": "8bddff1534197f80737db6b57f01714a155a6aa34d50879dbf19f1081db92448",
+          "baselineSize": 184376,
+          "candidateSize": 184576
+        },
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "4146e309b2857f6665e99e53825c5fff2bc39ae0ad7a470f7bb69ae06c048e34",
+          "candidateSha256": "fca8f07f2aa44c9003b1dbf8e8250cb0a1f6c80ced60045f37b9028f8c71a18b",
+          "baselineSize": 1456048,
+          "candidateSize": 1456048
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 256
+    },
+    "sources": {
+      "work/panic-implementation-20261114/sdk-range-delivery-tools/import_range_delivery.py": "956ea000e44e1d94a5e26e011323f1081006307309da79346887a6d11dbcbfb3",
+      "work/panic-implementation-20261114/sdk-range-delivery-tools/prepare_range_delivery.py": "7fd99a1a4dc50339ea1efb2466ea5fe204e235d0338f2d5fc1af5b2f5c241c6d",
+      "work/panic-implementation-20261114/sdk-range-delivery-tools/verify_overlay.py": "bf7dee7e32e2ccca7c22e5f37f161f50afe868855c472bf73ca4643de0169afb",
+      "scripts/update-pro-memory-protection-range.py": "0fa535f8e7e0b03ae8efda8d5c0eae820a94eff29debb701ab3fb9fd456f2aec",
+      "runtime/pro/boot/memory_protection_range.ll": "10b9b84093b88e10bc88d5b06870c7910b573a98b7a5ff24a848df917038c741",
+      "scripts/tests/test-pro-memory-protection-range.py": "69b28353b4c189df09e99568ecf64c97001a82800cef6797f8171489cc7ba0d7",
+      "scripts/tests/test-pro-helper-allowlist.py": "03a32de6e770a919cd8edacde3d06727f1e8eaea1e5c12564c13bc89e932a58c",
+      "runtime/pro/upgrade/sdk-m052.bc": "342b920914ad62f700398482f8bfd403344e54cf36f032a77c51d0c1e306d3c2",
+      "runtime/pro/modules/module_control.cpp": "e827b1205df951a1d2157ee7491942f4adb344a087e281c4c44cf183e03677af",
+      "scripts/repair-pro-environment-upgrade.py": "b7e73a4a2191ff4341915d9249d5d6caa89009f6b75f755b840c1dd4873421e9",
+      "scripts/update-pro-helper-memory-protection-range.py": "9293207c6dee5dc4fd2ea8eb7469d26d683e8fb23d7689d42722ccc50c6ab856",
+      "runtime/pro/boot/helper_memory_protection_range.S": "a63899c988baae8a50e8f6236a0d28289f9b4178c7c9bf31a8eeb3f839cc9f94",
+      "scripts/tests/test-pro-helper-memory-protection-range.py": "e8b4aa0648fab1914aa189a902bbc75202156bd1532388528def212c3a0d6f6e"
+    },
+    "backendRelinked": true,
+    "backendReused": false,
+    "loaderBytesUnchanged": false,
+    "retainedPermissionReturnRepair": true,
+    "retainedHistoricalRepairMetadata": true,
+    "installerBaselineReproduced": true,
+    "gateBaselineReproduced": true,
+    "deviceVerification": false,
+    "realKernelAcceptance": false,
+    "panicCausalityEstablished": false,
+    "preparedBy": {
+      "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/prepare_range_delivery.py",
+      "sha256": "7fd99a1a4dc50339ea1efb2466ea5fe204e235d0338f2d5fc1af5b2f5c241c6d"
+    },
+    "evidence": {
+      "backend-rebind.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/backend-rebind.json",
+        "sha256": "cc876f0c9efa109d276c6b49dd4153c50a7da007de6d9dba1e41c6f705a26268"
+      },
+      "helper-allowlist-replay.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/helper-allowlist-replay.json",
+        "sha256": "cfe399c83939d8ac9ed0b8e3081e6ce0ca0ecb1f389d9c23a37ef5d4e1619a34"
+      },
+      "helper-range-compile.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/helper-range-compile.json",
+        "sha256": "60435b8d1833fe660559f4aa6a86cd9607f81d225896260d83cf8b01d485a215"
+      },
+      "helper-range-replay.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/helper-range-replay.json",
+        "sha256": "dbcc5b5aeaa25a6745d318a1fb75d4d4afb6b404089baa9bf1e4468f49f045ff"
+      },
+      "sdk-range-compile.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/sdk-range-compile.json",
+        "sha256": "74a6ab6b9aaf7d50fbd46c41f57b7b945570d075b77a492b2affcec489f88ac4"
+      },
+      "sdk-range-replay.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/sdk-range-replay.json",
+        "sha256": "973637df53a97bb495155bd49b5e15822e0db950806c3a9655e1cd5affbaf236"
+      }
+    }
+  },
+  "taskCommScanRepair": {
+    "passed": true,
+    "deviceExecuted": false,
+    "productionArchiveUnchanged": true,
+    "baselineArchiveSha256": "cdeeec80f790c9c3891b8dab95e3c5419b486408230e087946808033a4d5a3b6",
+    "archiveSha256": "9054ef645f7824c998d3f905e4d4f5a41f23009804573dbee400b63784fe8a2d",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 1,
+          "name": "task_struct.o",
+          "baselineSha256": "3939fc09c9c7e75792224a73f7a9d088eb6387ef78031629442c79f06431882f",
+          "candidateSha256": "63a23ef7380e662ab26323cbca5e5fa2532bf5e6ec8b446313f67948ffdbdb69",
+          "baselineSize": 333984,
+          "candidateSize": 354760
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 257
+    },
+    "originalM001TextPreserved": true,
+    "originalM001RelocationsPreserved": true,
+    "canonicalStrongDefinition": true,
+    "originalOtherGlobalDefinitionsPreserved": true,
+    "sources": {
+      "runtime/pro/authorization/task_comm_scan.cpp": "0065b3373804bc0dbb97de69809f15ce6a5ecc984f5b69ef0248056fdbd15786",
+      "runtime/pro/authorization/task_comm_scan.h": "31a72441a6575b56a04d3a8b90f7121d919208c3bd6df8f83af034dde351046c",
+      "scripts/update-pro-task-comm-scan.py": "a22aa4b227e02acce03d9c1f4d72b7411437cc9e8946df1b2c90c6bfa59fff3c",
+      "runtime/upstream-pro/include/module_err_def.h": "1815c33b84576df96fee6261c6d24a5b66c5c165fca0df810f6f0336138740ae",
+      "runtime/upstream-pro/include/aarch64_asm_helper.h": "d4d56017ce91c5b0ef75467ebde2dddd5f10137ed0d98321a37da469335d1018",
+      "runtime/upstream-pro/include/module_base_kernel_export_symbol.h": "a2f93607a9f6d242763093211eb95e49c21a0e0c42587f56761f09cf61e023bf",
+      "runtime/upstream-pro/include/module_base_kernel_export_symbol.inl": "c8ac54d7817687e34207246fbe46c927f97a41800b9f48e76ec0c0ff54516639",
+      "runtime/upstream-pro/include/module_base_kernel_func_executor.h": "a88b73aa9eba789f0e87069f635f6bf1d6b5bf9833c9e21e4cb351c7b548bf85",
+      "runtime/upstream-pro/include/module_base_kernel_mem.h": "60bf587bb10735c6639ccbb68902f58497fa2767b7b596f5bb41f53cd397cab5",
+      "runtime/upstream-pro/include/kernel_offsets/task_struct.h": "6932e29a13586a0216dfc2665e043f028cc0773411b8112fa83a74c5759626de"
+    },
+    "baselineCredentialSnapshotMemberSha256": "3939fc09c9c7e75792224a73f7a9d088eb6387ef78031629442c79f06431882f",
+    "requestIsolationPreserved": true,
+    "validationScope": [
+      "ndk-compile",
+      "m001-text-preserved",
+      "m001-relocations-preserved",
+      "canonical-strong-definition",
+      "archive-member-diff"
+    ],
+    "deviceAcceptance": false,
+    "schemaVersion": 1,
+    "deviceRootEntryTimingObserved": true,
+    "deviceRootEntryTimingEvidence": {
+      "path": "work/panic-implementation-20261114/task-comm-scan/device-timing-after.json",
+      "sha256": "665ffb1533211da3aaabd34a0dd2ca889920f693634cc8ecb21c3790431616cb"
+    },
+    "focusedValidation": {
+      "path": "work/panic-implementation-20261114/task-comm-scan/tests/verification.json",
+      "sha256": "89435c26bcadca0bc3ff6197ec8b53936c46280b4a6a024b92749ac397cf7ba7"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "pairedEvidence": {
+      "backend-range.json": {
+        "path": "work/panic-implementation-20261114/task-comm-scan/delivery-v2/evidence/backend-range.json",
+        "sha256": "d4c08108999e3c31342d39ca7c3eff94fd57dfad4729f6359420578adf46e013"
+      },
+      "helper-allowlist.json": {
+        "path": "work/panic-implementation-20261114/task-comm-scan/delivery-v2/evidence/helper-allowlist.json",
+        "sha256": "a5be6755374f785134a96061f8b3608a6da52d789c216f8daf8f5d90df7b9acf"
+      },
+      "helper-range.json": {
+        "path": "work/panic-implementation-20261114/task-comm-scan/delivery-v2/evidence/helper-range.json",
+        "sha256": "c5aa33eff0cf02d3fe019cc5de8ae9d8c076e173a989d96b44018870fa2c8bd0"
+      },
+      "linked-functions.json": {
+        "path": "work/panic-implementation-20261114/task-comm-scan/delivery-v2/evidence/linked-functions.json",
+        "sha256": "33ea02249cc48aa4fca158720d0b17593a593c295f8e7a6421c2dcce1d95159a"
+      },
+      "rebind.json": {
+        "path": "work/panic-implementation-20261114/task-comm-scan/delivery-v2/evidence/rebind.json",
+        "sha256": "b5d092e9649058935ab0c18e5ee3eea83025f8d1ade32ba9d4a82945d0ea5ad5"
+      }
+    }
+  },
+  "moduleControlWaitRepair": {
+    "passed": true,
+    "deviceExecuted": false,
+    "baselineArchiveSha256": "73dd1058c87af45be602a438c14b0f5005083c7e5c7bac4e6677d9caba66c063",
+    "archiveSha256": "e1c4265b8a84e6fb21f047a8b9199a8106a8cf50654df3d9d22af7ec98a576cf",
+    "baselineHelperSha256": "4ba5868f757ef7afa7697605378c9001f5faf51dd3f42db2a470aa92065d0520",
+    "helperSha256": "4ba5868f757ef7afa7697605378c9001f5faf51dd3f42db2a470aa92065d0520",
+    "helperUnchanged": true,
+    "baselineExactReproduction": true,
+    "baselineSourceSha256": "e827b1205df951a1d2157ee7491942f4adb344a087e281c4c44cf183e03677af",
+    "baselineMemberSha256": "766670ec397e0b9da18229598bc445654c9c433b4f8d5ea0f1583c4f4317b2dc",
+    "baselineModuleControl": {
+      "sdkVersion": "5.1.0",
+      "archiveSha256": "73dd1058c87af45be602a438c14b0f5005083c7e5c7bac4e6677d9caba66c063",
+      "baselineArchiveSha256": "3b8c478d978ae3780f73f177d0b784e909dd04184546c97b84fab9e46ff10f87",
+      "helperSha256": "4ba5868f757ef7afa7697605378c9001f5faf51dd3f42db2a470aa92065d0520",
+      "helperNormalizedSha256": "ec7f939e3448b746d34bab41febe96315d622c2e989296bea8fc3fe670cb4275",
+      "helperBuildId": "67685b7d75f97121e95c68e62ebf307814c577f0",
+      "helperBytes": 1348192,
+      "gateFileOffset": 1179648,
+      "gateVirtualAddress": 1196032,
+      "gateBytes": 331,
+      "sourceSha256": "e827b1205df951a1d2157ee7491942f4adb344a087e281c4c44cf183e03677af",
+      "deviceVerification": false,
+      "semantics": "Atomic desired boot state; installed-helper gate verified; legacy ABI retained; immediate stop unsupported.",
+      "previousBootstrapIrSha256": "93d884d249ab06e80af1eea9f7f4732c676cc455b9246ecfc560b32fe64f134c",
+      "memberOrdinal": 255,
+      "memberName": "maplesu_module_control.o",
+      "memberSha256": "766670ec397e0b9da18229598bc445654c9c433b4f8d5ea0f1583c4f4317b2dc"
+    },
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "766670ec397e0b9da18229598bc445654c9c433b4f8d5ea0f1583c4f4317b2dc",
+          "candidateSha256": "5058455888b37b30221026b57eae02fd9870ade9926544c466f3a030044d556c",
+          "baselineSize": 20552,
+          "candidateSize": 20560
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 257
+    },
+    "globalAbiPreserved": true,
+    "sources": {
+      "runtime/pro/modules/module_control.cpp": "b6d1c2244ceeebded2de1d919567584e877786487aff60fe0550a5b173fd3aba",
+      "runtime/tests/module_control_wait_test.cpp": "22c4cf0e4b22b4d3570b600044ecff3e7227248a53809afff449e45c42a661f4",
+      "scripts/tests/test-module-control-wait.py": "0c517071369ab42345a0d7ba84de0f3dbf216c966dc569271ebbea5c8a607e0b",
+      "scripts/tests/test-module-control-wait-delivery.py": "3f58c94db3775d848448b6ae73237185f3b5e2fd1998f05a847c6f8d46d93283",
+      "scripts/policy_backend_delivery.py": "95e1fedca97be5b1088c89b063ca1fe85cb9eee46882e199a8daf3c632cee834",
+      "work/panic-implementation-20261114/module-control-wait/build_candidate.py": "4a5e7696b8ea92f4f2d2d02367bf061b53f8b83a3e43ac9283e10c27576ca833"
+    },
+    "waitTimeoutMilliseconds": 10000,
+    "validationScope": [
+      "exact-baseline-reproduction",
+      "global-abi",
+      "m255-only-member-diff"
+    ],
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "schemaVersion": 1,
+    "backendRelinked": true,
+    "backendUnchanged": true,
+    "backendUsesM255": false,
+    "allHistoricalRepairsRetained": true,
+    "regression": {
+      "before": {
+        "path": "work/panic-implementation-20261114/module-control-wait/tests-before/verification.json",
+        "sha256": "9531d89668b7dba8ead1935df0f9e131cb11b59ce011112e61ae70690c3abf15"
+      },
+      "after": {
+        "path": "work/panic-implementation-20261114/module-control-wait/tests-after/verification.json",
+        "sha256": "cf1f25b71a5417b50f20dadddfd548c07242b4c7d21f2dbf3750c8c96af4b40a"
+      },
+      "deliveryContract": {
+        "path": "work/panic-implementation-20261114/module-control-wait/delivery-contract.json",
+        "sha256": "7a858a2dd509e87ca80a5e42899c5746028a87b12b3cc98f6469a5d5215f74f3"
+      }
+    }
+  },
+  "zeroModuleQuietRepair": {
+    "schemaVersion": 1,
+    "candidateOnly": false,
+    "complete": false,
+    "deviceAcceptance": false,
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "baselineHelperSha256": "4ba5868f757ef7afa7697605378c9001f5faf51dd3f42db2a470aa92065d0520",
+    "baselineArchiveSha256": "e1c4265b8a84e6fb21f047a8b9199a8106a8cf50654df3d9d22af7ec98a576cf",
+    "helperBuildId": "ea8af9a40bab3e14a3253aba004156ba113abd10",
+    "quietSlot": 1184396,
+    "patchSites": [
+      {
+        "address": 693952,
+        "offset": 693952,
+        "baselineHex": "3e0e0294",
+        "candidateHex": "ab8f0294"
+      },
+      {
+        "address": 1040468,
+        "offset": 1040468,
+        "baselineHex": "ff7f0da9",
+        "candidateHex": "613d0114"
+      },
+      {
+        "address": 1043232,
+        "offset": 1043232,
+        "baselineHex": "c6ffff97",
+        "candidateHex": "bd3a0194"
+      }
+    ],
+    "gateRebindReceipt": {
+      "path": "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/delivery/gate-rebind-receipt.json",
+      "sha256": "4a738e1d38faad3d8d0e430556bae4ac751f6546000b27ab7adaa25d8af987e7"
+    },
+    "finalMetadataValidation": true,
+    "baselineArchive": {
+      "path": "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/delivery/backup/runtime/upstream-pro/lib/arm64-v8a/libkernel_module_kit_static.a",
+      "sha256": "e1c4265b8a84e6fb21f047a8b9199a8106a8cf50654df3d9d22af7ec98a576cf"
+    },
+    "sources": {
+      "scripts/policy_backend_delivery.py": "cd7fd91e68df8b7593f6235daf47c096d324006a1fefc194c79efc6d2a1b2c09",
+      "scripts/zero_module_quiet_delivery.py": "7bc7334654d34f9e53b4b0b600fca1ca0047d173d71c1f09eb767a0739c66889",
+      "scripts/tests/test-zero-module-quiet-delivery.py": "3a6924b21d9259f15fbf1458e84fb908d3124ded24277e8e7c40718afc12c848",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/quiet_boot.c": "b1ff79897ee05cd4f029c7c15c43dea54b7b9cfc3ac7b0e2ab9a9144e8be7b27",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/quiet_boot.S": "cc2aa4f3f9e8525ba1da5f446977193fc74b5bc2d4b364ff4181c44715c682f1",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/build_quiet_candidate.py": "05d85dd864d3bc0e145dff14c7d7e898c785af95076a4fd2ad99397ec2b7d79c",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/verify_quiet_candidate.py": "10a1e77eebc425e1e36b9b32b8bf79aae5e649825bd7a5d0b1e0fcfcd9c0f1fe",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/prepare_delivery.py": "ef1d9fe984ce5d80fc50b7343fa4a17a7eb26cfa1b5d52686429315d5a41c1ec",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/import_delivery.py": "564fac1a9d73c5ffdfa3da9cf4dac5e2a66b730f48dc2ac8ba3178be5997715a"
+    }
+  },
+  "privateDacRepair": {
+    "schemaVersion": 1,
+    "deviceAcceptance": false,
+    "baselineArchiveSha256": "84d6b5a35bfdf822768d6005bae478982eabc84158f3a6f85728455657c48843",
+    "baselineHelperSha256": "a121b912bcc68efeafc3cba8c5077950f5768bef5e8dee2a22ada5e47ba9f7c0",
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "historicalFreeze": {
+      "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/baseline-root/freeze.json",
+      "sha256": "fedbf177c654d19b14a705efa2918b3c7213184b970cff5fe3f458432fb87714"
+    },
+    "batchArchive": {
+      "path": "work/panic-implementation-20261114/module-list-batch/aarch64-candidate/module-list-batch-sdk.a",
+      "sha256": "330399d3ae5cb4afb9cd694c85a8ce4067712d07f9025dfb0019da08d036fd5b"
+    },
+    "sources": {
+      "runtime/pro/identity/private_dac.c": "d7add16778d6cb4266b3c1d2ebe0c7d3529c02bac29ce033b2077749366fa643",
+      "runtime/pro/identity/private_dac.h": "5f9856fc8c846cf7f24aedc864f7f3c6ba7df834f9b075800c92287c3d45e304",
+      "runtime/pro/identity/private_dac.S": "1a0cfb4b9d7e77f7b55db0e9ab71fd5a886a5f1006c74433e40bf37ca411d878",
+      "runtime/pro/identity/private_allowlist.cpp": "3dfcfb0e3c0d5a1a786f0feabbeabf4d23879502eb8fb49333a9982b0c6a23e1",
+      "runtime/pro/authorization/su_exec_context.cpp": "a2c96c10f8e8739b6c01a814197954af086a2567697b57c73d47452c164037ea",
+      "work/panic-implementation-20261114/native-audit/private-dac/build_candidate.py": "b2aaa3a438e038e8d0d71c37236597a2119d73690a1087f7d3ab4809d4ae5c3a",
+      "runtime/pro/modules/module_control.cpp": "77eee7011fc86e21aa07f245bb3f9252911f24dae02b62b559576d5cd3f1ad28",
+      "runtime/upstream-pro/include/maplesu_module_control.h": "a6767cc874f953dfbecc6999526e4bc2bfb7ca42d6a677718856b9a0819df9fa",
+      "runtime/pro/bridge/native_lib_pro.cpp": "a77b373c31bd348b883e01019557dff7eaa86d5e502015507cfcce0d074a6005"
+    },
+    "sourceRebindings": [],
+    "dacContract": {
+      "ownerRoot": 457,
+      "initRoot": 448,
+      "privateChildren": 448,
+      "suExecContext": 457,
+      "allowlist": 384,
+      "authorizationRecord": 384
+    },
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 35,
+          "name": "module_base_disk_storage.o",
+          "baselineSha256": "26ec90de451316ddc852fb7b42019a2d4f4866cfe855f4581f426b42ccef449f",
+          "candidateSha256": "c6e19ab2e3208a75adbb0ecfb5e3d589a36526a120ceb3c52e89ca2d85e8bb35",
+          "baselineSize": 95716,
+          "candidateSize": 91128
+        },
+        {
+          "ord": 47,
+          "name": "skroot_unsafe_hide_dir.o",
+          "baselineSha256": "897bace0d3461cda3f699ae3748e8c9d152145dcc4e30b2b6c8b6c2d9c06f74e",
+          "candidateSha256": "12234afad83fb01144da171da95058a325daacaba998e6b499eb4659d076c050",
+          "baselineSize": 67540,
+          "candidateSize": 65892
+        },
+        {
+          "ord": 48,
+          "name": "skroot_unsafe_su_install.o",
+          "baselineSha256": "9b0e1cee67454f5dd2602fa42f0a406881295e2be375aa79c46282d357e7ffac",
+          "candidateSha256": "5ff401193406c9d5e02c65f9051ded2079fff6be0c9ddeb9eaca9e0547a22d8f",
+          "baselineSize": 812136,
+          "candidateSize": 812136
+        },
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "13759eb99c3b7a1cb14b552521e5b0cd7ec6015c3345f2c9f14ad2c6c1239284",
+          "candidateSha256": "57b8610a18f0464fcca0d394bd89115b05850da278f45eee4972542b90bcfac7",
+          "baselineSize": 1457264,
+          "candidateSize": 1457920
+        },
+        {
+          "ord": 81,
+          "name": "module_su_redirect.o",
+          "baselineSha256": "b8da16c8434ee90edd7b4e98f6c6a625c1deb15120e1aeb6fe068f3fb45263a4",
+          "candidateSha256": "0392cea9b9057d9ab4d18ea3979f25c559e9af48e472a07e472718100c0a16dd",
+          "baselineSize": 289816,
+          "candidateSize": 289816
+        },
+        {
+          "ord": 88,
+          "name": "su_allowlist.o",
+          "baselineSha256": "4e354a771388ccfdc3e4dbe41e53be3a85ad38d57eab1e0404bde20902bb21a5",
+          "candidateSha256": "b60f13b38f955d7cce171048f515031efc19cd76774548dd64ffa08556da30ee",
+          "baselineSize": 112592,
+          "candidateSize": 129076
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "8acc0a75e3d94b3e6b760f8de7fba94d3081d29718c76705be97adb7c4a17f87",
+          "candidateSha256": "1796b736f9d4eecd3979274e861e971359cdf1f6f3151d77bd62ffd8f2e21dea",
+          "baselineSize": 20560,
+          "candidateSize": 37248
+        }
+      ],
+      "added": [
+        {
+          "ord": 258,
+          "name": "maplesu_private_dac.o",
+          "candidateSha256": "5f84eec692e18a078b4ceb25b1e3354aa224d37f9892be41f53d9a2f47857b8f",
+          "candidateSize": 2400
+        },
+        {
+          "ord": 259,
+          "name": "maplesu_private_allowlist.o",
+          "candidateSha256": "e2f65eb8a75c474c9439a411671646124343c20d220b7a54d07fb67bd6726d24",
+          "candidateSize": 7240
+        }
+      ],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 251
+    },
+    "helperDelta": {
+      "baselineSha256": "a121b912bcc68efeafc3cba8c5077950f5768bef5e8dee2a22ada5e47ba9f7c0",
+      "candidateSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+      "patches": [
+        {
+          "address": 739264,
+          "offset": 739264,
+          "baselineHex": "e13f8052",
+          "candidateHex": "68640214"
+        },
+        {
+          "address": 739288,
+          "offset": 739288,
+          "baselineHex": "0e7a0194",
+          "candidateHex": "d2630294"
+        },
+        {
+          "address": 1038352,
+          "offset": 1038352,
+          "baselineHex": "e13f8052",
+          "candidateHex": "01308052"
+        },
+        {
+          "address": 1038356,
+          "offset": 1038356,
+          "baselineHex": "ff550094",
+          "candidateHex": "c33f0194"
+        },
+        {
+          "address": 1038372,
+          "offset": 1038372,
+          "baselineHex": "e0830091",
+          "candidateHex": "54400114"
+        },
+        {
+          "address": 1014672,
+          "offset": 1014672,
+          "baselineHex": "e13f8052",
+          "candidateHex": "e1031f2a"
+        },
+        {
+          "address": 1014680,
+          "offset": 1014680,
+          "baselineHex": "1e6d0094",
+          "candidateHex": "e2560194"
+        },
+        {
+          "address": 1012752,
+          "offset": 1012752,
+          "baselineHex": "06000014",
+          "candidateHex": "03000014"
+        },
+        {
+          "offset": 600,
+          "baselineHex": "20970200000000002097020000000000",
+          "candidateHex": "b099020000000000b099020000000000"
+        },
+        {
+          "offset": 816,
+          "baselineHex": "ea8af9a40bab3e14a3253aba004156ba113abd10",
+          "candidateHex": "d8e9350c36c154d435ead88b8c7445e045413563"
+        }
+      ],
+      "append": {
+        "offset": 1349408,
+        "bytes": 656,
+        "sha256": "67fcfcd90649ba70572acb4925feafe021252adf6e7be604e9d5cd257c200c75"
+      }
+    },
+    "evidence": {
+      "m255IdentityRebind": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/candidate-reports/m255IdentityRebind.json",
+        "sha256": "3679a4be37f6e28a8829f2b1393836eebf56bd981d093f8582c19c4b1da87e97"
+      },
+      "writerReplay": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/candidate-reports/writerReplay.json",
+        "sha256": "922cb0ef714dca8d1882c3dc3d4639a74342b6b50f851068876d95ca1b023f8b"
+      },
+      "archiveBuild": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/candidate-reports/archiveBuild.json",
+        "sha256": "1dc8199f0903b13e12f39a57e3774819474b121c2f3b37ba6340153d79511ad9"
+      },
+      "oldHelperRepairs": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/candidate-reports/oldHelperRepairs.json",
+        "sha256": "f0d4f2e1e0366eb148656d20560328d2489cb90c5ff8e2b3a0d3d35a81a8b2fd"
+      }
+    }
+  },
+  "suRetentionPersistenceRepair": {
+    "schemaVersion": 1,
+    "deviceAcceptance": false,
+    "baselineManifest": {
+      "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/retention-baseline/manifest.json",
+      "sha256": "d5b4d0fa11bc50096b2846a255ba63eb888916062d0e48f6a1aee60d192f0275"
+    },
+    "baselineArchive": {
+      "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/retention-baseline/libkernel_module_kit_static.a",
+      "sha256": "2c6bc470af5ac72054b9e1f0ea239ff84908619d8e2347e09104a9a243ac8489"
+    },
+    "baselineArchiveSha256": "2c6bc470af5ac72054b9e1f0ea239ff84908619d8e2347e09104a9a243ac8489",
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "helperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "baselineMemberSha256": "0392cea9b9057d9ab4d18ea3979f25c559e9af48e472a07e472718100c0a16dd",
+    "candidateMemberSha256": "a607e83942a4f577037eb0f6e5089b9c2e047696bfde00ede4202c872fdb642e",
+    "sources": {
+      "runtime/pro/authorization/su_allowlist_writer.cpp": "1596ac994912744c3d3e985567ce52f8becbee4d9242bbd5a5d4929370c7fed2",
+      "runtime/pro/authorization/su_retention_store.cpp": "f1b4f13cd8d487b4f6ba9526343204733a2a619629c948c4b13c5f378d664742",
+      "runtime/pro/authorization/su_retention_store.h": "bf17e1022ab10e9ba54a7f8c79f01b1cf74514a6df3f9e679effe061cd799e19",
+      "scripts/repair-pro-su-authorization.py": "63584941c8dad3b7f395bcb273cf477a8f128a805f592077f56b0444c47cf2a1"
+    },
+    "evidence": {
+      "archiveBuild": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/retention-reports/retention-build.json",
+        "sha256": "1993026c3dc44c1b7c0445b78da3c083c0f99bf8c449c06ef3da5948eda6cbc1"
+      },
+      "durability": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/retention-reports/retention-durability.json",
+        "sha256": "bca5457200b23b474f3212fdfd6251ac42012c3c71bb0ca037993e02bfaa147c"
+      }
+    }
+  }
+}

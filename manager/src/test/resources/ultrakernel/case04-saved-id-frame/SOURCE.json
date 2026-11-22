@@ -1,0 +1,90 @@
+{
+  "input": {
+    "path": "boot.img",
+    "bytes": 201326592,
+    "sha256": "2aaab7297fe9e6afbf6a3090aa80f4c9bada4bb3d43903278db8c45b6af86d2a"
+  },
+  "readOnlyWindowExport": "C:/Temp/MapleSU-P2-static-scs-entry-r1/cred-windows/receipt.json",
+  "windows": [
+    {
+      "name": "__arm64_sys_getegid",
+      "start": 1335004,
+      "nextSymbol": 1335052,
+      "end": 1335052,
+      "bytes": 48,
+      "sha256": "9dd0e1a2a255ef34fb08bb05321ad07bbb51e366bae5b18bf7343a64d855a2f0",
+      "boundedByNextSymbol": true,
+      "truncated": false
+    },
+    {
+      "name": "__arm64_sys_geteuid",
+      "start": 1334956,
+      "nextSymbol": 1335004,
+      "end": 1335004,
+      "bytes": 48,
+      "sha256": "69987c390b33164bdc2cce23583f4aa014e68d68992a83c91e3dd727c35e1a68",
+      "boundedByNextSymbol": true,
+      "truncated": false
+    },
+    {
+      "name": "__arm64_sys_getgid",
+      "start": 1334908,
+      "nextSymbol": 1334956,
+      "end": 1334956,
+      "bytes": 48,
+      "sha256": "f479a934bdf08fc176af608a3e3b55d8726e7a4eed094a9df12c1d286339c2d2",
+      "boundedByNextSymbol": true,
+      "truncated": false
+    },
+    {
+      "name": "__arm64_sys_getresgid",
+      "start": 1331552,
+      "nextSymbol": 1331988,
+      "end": 1331988,
+      "bytes": 436,
+      "sha256": "21711f081a6f2fc067fd4319b54a1a0406516c1d86c3d5dc35c702386fd2d8be",
+      "boundedByNextSymbol": true,
+      "truncated": false
+    },
+    {
+      "name": "__arm64_sys_getresuid",
+      "start": 1331104,
+      "nextSymbol": 1331552,
+      "end": 1331552,
+      "bytes": 448,
+      "sha256": "065040419db22356ab268de41b33ce9a8ef01cc19bc0b76e9ffae93814725d66",
+      "boundedByNextSymbol": true,
+      "truncated": false
+    },
+    {
+      "name": "__arm64_sys_getuid",
+      "start": 1327760,
+      "nextSymbol": 1327808,
+      "end": 1327808,
+      "bytes": 48,
+      "sha256": "e220aad3250c9febbe7796e3a6381cc63a1ed5abf72b549b2bf1fbd804b40c22",
+      "boundedByNextSymbol": true,
+      "truncated": false
+    },
+    {
+      "name": "from_kgid_munged",
+      "start": 2788144,
+      "nextSymbol": 2788352,
+      "end": 2788352,
+      "bytes": 208,
+      "sha256": "2311411ab0f492630385aceb640a5c90b755815a2f832933fc1fb94290b67045",
+      "boundedByNextSymbol": true,
+      "truncated": false
+    },
+    {
+      "name": "from_kuid_munged",
+      "start": 2787548,
+      "nextSymbol": 2787756,
+      "end": 2787756,
+      "bytes": 208,
+      "sha256": "ce944438121c9b4b31d87446c18ae4f97d0dc0026dcdd53c238b1d63a683094a",
+      "boundedByNextSymbol": true,
+      "truncated": false
+    }
+  ]
+}

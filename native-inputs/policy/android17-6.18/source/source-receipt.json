@@ -1,0 +1,12 @@
+{
+  "commit": "f957accaf5634f841071adb4f35286ef2779d5b1",
+  "blob": "25f62867a16d9355b058ecdfa0f6b17a616abf38",
+  "path": "native-inputs/policy/android17-6.18/source/seccomp.c",
+  "bytes": 67517,
+  "sha256": "b1dcfea06e6c4665bbf362622949bd6485415724206e7ded1b2f8d9eb356f1fb",
+  "transport": "https://mirrors.tuna.tsinghua.edu.cn/git/AOSP/kernel/common.git",
+  "treeBinding": "actual preserved source-git-metadata ls-tree commit kernel/seccomp.c",
+  "buildsExecuted": 0,
+  "testsExecuted": 0,
+  "deviceOperations": 0
+}

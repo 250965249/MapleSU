@@ -1,0 +1,54 @@
+{
+  "idx": 6,
+  "name": "inode.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/inode.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 19,
+    "recovered": 19,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "08a95ce664213b06883188b3b7b811d60d2f15bcebfc195af6bd74e178666676",
+    "bytes": 269636
+  },
+  "evidence": [
+    "runtime/upstream-pro/sdk/notes/work/BN-T/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "T/U 全量闭合：强导出 T 19/19、强未定义 U 149/149，双向差集均为空（llvm-nm -P 口径）；layout 双向 bitcode。本次补齐 17 个 inode 字段解析入口（i_rwsem/i_mutex、i_pipe/i_cdev/i_link/i_dir_seq、i_ino/i_size/i_rdev、i_mode/i_opflags、i_sb/i_mapping、i_op/i_fop、i_state、i_bdev），并把本 TU 私有的内核执行 / nofault 读取 / 当前任务文件表helper 一并补齐，U 面回到参考成员的 149 个导入。行为等价复验（tools/verify_equiv.py）：函数清单 395/395 全等（missing=0 extra=0）、逐函数 call target 集合 395/395 全等、seq_mean=0.9904、bag_mean=0.9964，工具判 equivalent；但 bag_min=0.8276 未达 0.95 的严格档，12 个函数低于 0.95（两个 mode/opflags 取 inode 的局部 lambda 0.828、i_rdev 0.881、i_state 0.889、两个 time getter 0.906/0.907、init_time_offset_test_file 0.924、i_size 0.931、i_opflags 0.935、get_temp_file_path 0.936、i_sb 0.944、delete_path 0.944）。逐函数操作码多重集差显示：差距来自旧构建的异常清理块数量、vector 长度计算方式（ref 用 end-begin 而重建用常量 128）与少量循环骨架写法，不是缺失调用路径（call target 集合全等即为证）。",
+    "measured": {
+      "origStrongT": 19,
+      "newStrongT": 19,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "origU": 149,
+      "newU": 149,
+      "uMissing": 0,
+      "uExtra": 0,
+      "verifyEquivRefFunctions": 395,
+      "verifyEquivNewFunctions": 395,
+      "verifyEquivMatched": 395,
+      "verifyEquivMissing": 0,
+      "verifyEquivExtra": 0,
+      "verifyEquivCallTargetMatch": 395,
+      "verifyEquivSeqMean": 0.9904,
+      "verifyEquivBagMean": 0.9964,
+      "verifyEquivBagMin": 0.8276,
+      "verifyEquivStatus": "equivalent"
+    }
+  },
+  "notes": ""
+}

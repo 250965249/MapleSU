@@ -1,0 +1,1478 @@
+{
+  "repository": "https://github.com/hartgerinktarcila-design/7kimisu",
+  "commit": "dafd0a96ab1ad37cb4aa692b4081bf68e231d6a7",
+  "path": "manager/app",
+  "license": "GPL-3.0-or-later",
+  "excluded": [
+    "src/main/cpp",
+    "src/main/jniLibs",
+    "src/main/assets/ksu_manager_gen2",
+    "binary build artifacts"
+  ],
+  "files": [
+    {
+      "path": ".clangd.example",
+      "sha256": "de167db98f17e61c4d25cdb20fa89a5698e609c9bbdf67e162f4132ee3d0e0f6"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "976323fcf7f90d12491d294430a9bc444239cf6f6ebf07e44fb662f4e540577b"
+    },
+    {
+      "path": "build.gradle.kts",
+      "sha256": "1f1fb238e5b86ea8ca9da0f6735680a6524600a23f6dff8230004239440c3a7f"
+    },
+    {
+      "path": "proguard-rules.pro",
+      "sha256": "57892a3de62da26ba8058e1e1d838f991f868d101db2fc123e560d584ea537e5"
+    },
+    {
+      "path": "src/main/AndroidManifest.xml",
+      "sha256": "d7106ed8a44e85e6db018a444da1e862d18a86692119a50a032b03b6f3de0a99"
+    },
+    {
+      "path": "src/main/aidl/com/sevenk/core/IKsuInterface.aidl",
+      "sha256": "bb79abe43cbf826356df6e691acbe8398b8ba2aed3223e3fc8d211e4c55256ce"
+    },
+    {
+      "path": "src/main/assets/webview/colors_dark.css",
+      "sha256": "4c4af89360c2312183ea4f1de1214cae1c84849943941881f64a653984dc7344"
+    },
+    {
+      "path": "src/main/assets/webview/colors_light.css",
+      "sha256": "efdfc957a12f70847602ce9e50e00e8009e30b6f7ac4445c799817da98f5bfad"
+    },
+    {
+      "path": "src/main/assets/webview/font.css",
+      "sha256": "5a3c85e2dcd02948d13cf2adc9206e4ce5de78fb3956d99af68be64f242cf456"
+    },
+    {
+      "path": "src/main/assets/webview/markdown.css",
+      "sha256": "e1081e6dc7dc5a380663bb21c34525d3f24731cbe7476fc2157a2ee76bf6bd20"
+    },
+    {
+      "path": "src/main/assets/webview/markdown.js",
+      "sha256": "119d1407ea45616666fc00f0d135853631dec7150fe5abe10fd62735235e9c86"
+    },
+    {
+      "path": "src/main/assets/webview/suggested_changes.css",
+      "sha256": "8ae13e23d1cbd304a22be4ace3066de031d7c5690d49f936b1ffeca9ff8e8997"
+    },
+    {
+      "path": "src/main/assets/webview/syntax_dark.css",
+      "sha256": "2e4d9752bae1a418269707874bbe8d741c6fe30233db217f06e3dabf159ac8c5"
+    },
+    {
+      "path": "src/main/assets/webview/syntax_light.css",
+      "sha256": "82d3412a62a50e0091f0009b546222280a900ca7514cfc1bca59f25878f1c1a0"
+    },
+    {
+      "path": "src/main/assets/webview/template.html",
+      "sha256": "01ea7f4ae22d4859ff75284100d4061f30711467a3bd28cc7b933e8507dd3ffb"
+    },
+    {
+      "path": "src/main/assets/webview/template_dark.html",
+      "sha256": "0d55fc4f52cde6211cad25db2e684644a1fa889cc917d7892cc0642b0ee2d1e0"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/KernelSUApplication.kt",
+      "sha256": "7bbffd4362beaa40f41addab01b0802fe0401ce540fc32c8603c33da533e37b9"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/Kernels.kt",
+      "sha256": "c2479bc75c9cbf0dbb32e0dc7048bdf32a9e78e942b44dd4b0ce82d93bdf52b3"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/Natives.kt",
+      "sha256": "dfbb86975a0e24d76b087ae9856eaaa7d2745d5d0d629c376d96c4124f2b1ae5"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/core/crash/CrashEvidenceClassifier.kt",
+      "sha256": "4490fd791a4410d672ca05458e6d12e95b29f9bf39222d30b1bcfab23895efc7"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/core/tasks/BootKernelVersion.kt",
+      "sha256": "00d296b9f2874f678913b8dab984e4710ebe05827d59fe23d1e714b135df5b34"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/core/tasks/ExtractImage.kt",
+      "sha256": "392a8a068d4e595a0bba0e5282a162d6b2cf704b44f8e9f5fbbd72fe28d39ae3"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/core/tasks/Payload.kt",
+      "sha256": "832e98e421705041024afbedd715619d8a5782deeab71468067901c966a1dd6d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/core/utils/AppExecutors.kt",
+      "sha256": "bdb15f13de94b01aed8521f81eb974b2906e73772f699ee051e3eb33110203aa"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/core/utils/DataSourceChannel.kt",
+      "sha256": "12999509ac4646077c23ede700e973a079ae50a7341b675784a37dbf930ef922"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/model/AppInfo.kt",
+      "sha256": "76698a31f919c7d42f349555657418e896bd35d888ac9fbc1caccfe9eb9c4803"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/model/Module.kt",
+      "sha256": "b01584e046343f0c7de4a9c32c0e5f00f3de89b6703f528fe5cb3828f398500d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/model/ModuleUpdateInfo.kt",
+      "sha256": "f7dcec520c6072db3d47b3ac75bd8da0dcaf281ab8919e14d98d3468c4fb2e7f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/model/RepoModule.kt",
+      "sha256": "e3de0f2f312b1727fae1f61a01e4693feab4520f88cc1eb4506d50826257131d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/model/TemplateInfo.kt",
+      "sha256": "50e7ee422f291d7afe39651de835133c292bc76e91a554848d34789452103fc1"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/repository/ModuleRepoRepository.kt",
+      "sha256": "9607673e99d026971fac6c471cb04d6b7cfea37717f0fa7823b004f441d22988"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/repository/ModuleRepoRepositoryImpl.kt",
+      "sha256": "3693e7876b7d8ff2effba275fb772f03c2399497daa01d6cf311876d4bc336ed"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/repository/ModuleRepository.kt",
+      "sha256": "75a7a61d2271bd57f2fe46100b9152fe6216991a0545093010b5916a7c2ab9c9"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/repository/ModuleRepositoryImpl.kt",
+      "sha256": "5c5702818a50494ec12e1449674843233ffc1e937a2d55ba735504579383aff2"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/repository/SettingsRepository.kt",
+      "sha256": "c7fd0273653a7357a13bd436717001fc76af902d35c077afd2060c70d3deda05"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/repository/SettingsRepositoryImpl.kt",
+      "sha256": "de13b7f4a00e198515697398b2cfa733d1cb6c2aac560cdc266c0dd12b6a6c6f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/repository/SuperUserRepository.kt",
+      "sha256": "051d562f01a2504e121ce86d1a024819da7a8d2da32e746ffeaec0f5e28e84be"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/repository/SuperUserRepositoryImpl.kt",
+      "sha256": "57ca39107927b08d735fbcf17f21d79e4d7dc33850f157a7eb38269c0a65b585"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/repository/TemplateRepository.kt",
+      "sha256": "48c0a5467fa017ebab96346ef10649230c0c2c8b97d3cb44029bb30c2aab966b"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/data/repository/TemplateRepositoryImpl.kt",
+      "sha256": "10c00a29d211a9529f100f96378a66a4e61c5254c2113a966c2be8a17e6512f8"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/magica/AppZygotePreload.java",
+      "sha256": "41474de077fef5fb76090dd317ca704c29a479f198504817e59617cba6ee126c"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/magica/BootCompletedReceiver.java",
+      "sha256": "45fde499a30f0ff6323735ebca9b2a81e956301af87623e77b2784a0f46f26d6"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/magica/MagicaService.java",
+      "sha256": "46fdd92b5bc6097e16f6dd85632e6fe050e927a7f4b5825d3f009fc0282a7ef9"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/profile/Capabilities.kt",
+      "sha256": "6027908da8cc8552133153cb3092ce86b43b2d1e7eced4bc71028526f307d63d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/profile/Groups.kt",
+      "sha256": "22436cc15ce6b9de1666ead91fa9ba020d8324aa27b6c392e34da7bdc113f06b"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/CrashReportDialog.kt",
+      "sha256": "2433a3a397f30704370dd48d0981299a51f67883e1a35aa2cbfc301b094f41de"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/KsuService.kt",
+      "sha256": "c903279abc9932281dc741d651e71419b472efb3d0b839612bc472b070654191"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/MainActivity.kt",
+      "sha256": "9b0ef0c4cd750c47ae79f7e563f1c9b69a0382716c14ea44f8e0b08a19ce21fa"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/UiMode.kt",
+      "sha256": "ddf823cadbb3c0c3c79e791277e701b784c012ce28d7640e32bb9d9912dc7b84"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/AnnouncementPopup.kt",
+      "sha256": "65330abc93a020cbb5e35c7ebe52bf3890493777c51e3e71df1c8b2e0df3a71e"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/AppIconImage.kt",
+      "sha256": "3e09d0fc15b5de021ec7256d14da59b8520613cab85e1f9947c77b776e8e904e"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/FloatingBottomBar.kt",
+      "sha256": "0adb136d0d764d8187b53ac3d6a9053d473b167861e8205d8e9bffc164690617"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/GravityField.kt",
+      "sha256": "53407d32a4d02b339ac85fb1c6cd33c4286531d876dae0e07553de12929f4c68"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/KeyEventBlocker.kt",
+      "sha256": "91f4856eb10e07559b190b9a11437a93d8651962a5c53cbb16b56b5a52f441dd"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/KsuValidCheck.kt",
+      "sha256": "96052d9f6d4b4e4b5b848660dbc7631a5cb1e76d7b196faab599fe2b7c4fa1c5"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/MenuPositionProvider.kt",
+      "sha256": "cffabc07f7b10e9fc85cc07e33488775bcd1612aa963a68384ef58ecbbf357ce"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/ObserveAsEvents.kt",
+      "sha256": "7ed73f0fe994b7ed02f5390bbe5594a83d3e7cf0f4f4f8e4ab009c479d28d15e"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/ScrollToTop.kt",
+      "sha256": "c7926e409988fe657cb8e50b1451ea5ec8a4e7a89679fa4df6c3666a10eb682c"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/SearchStatus.kt",
+      "sha256": "d1549da166a15209c58effadc009091a3b5034bfd7b51754746f5f8650d10b82"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/Snowfall.kt",
+      "sha256": "0794ffa6fb8f79dac0947b3b2e6602b523874c873d8da5ff233020d8c231651f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/TrollRain.kt",
+      "sha256": "a49a652830f02174771313f16c1149164c5101f83c3c26df2e6090b2459561e2"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/WarningLevel.kt",
+      "sha256": "168f9b30ac250b696641e49086588609df7f2b4412925ddb4e657d8a70808666"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/bottombar/BottomBar.kt",
+      "sha256": "588049a0bb9517f7cf7292adb55ebb3d82602f32e8ec6cd6f6d1c82a1f663772"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/bottombar/BottomBarMaterial.kt",
+      "sha256": "0f5a4bec70196e9a20d76c8b72aba7eaea1c7a720d36e54460e57f70e0d0f624"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/bottombar/BottomBarMiuix.kt",
+      "sha256": "93f32377a4fcb0767b6e709d812d0c5eed0b2dc8b8c3a460e77e165caf4bff3a"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/bottombar/NavigationRailMaterial.kt",
+      "sha256": "4476dd1934c25e23219c7fe08d6c97230276f30e0e7ac3642f289f0ad781f7fa"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/bottombar/NavigationRailMiuix.kt",
+      "sha256": "2c6573cbbb27bab633b6b046e996fa78969ab28a37c0b35c5690ade0998ae039"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/choosekmidialog/ChooseKmiDialog.kt",
+      "sha256": "6b873b732e6e39bc1c864cf757be18195e07e8f9647b5812a8c8855a811d64b0"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/choosekmidialog/ChooseKmiDialogMaterial.kt",
+      "sha256": "6af0e1a16713e385731d3e9a1347ec3c1f4dd531998a1ae020cc68aaf80a6c53"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/choosekmidialog/ChooseKmiDialogMiuix.kt",
+      "sha256": "da8fb72c4e21a0b9974e22bbef8d32f69af9bb34f3397a290b1f7ee998cb5cee"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/dialog/Dialog.kt",
+      "sha256": "243417bdc43e4b0ab4813e7f7c80cac16a6fdd77825f0fbc6583feff4e0e0f22"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/dialog/DialogMaterial.kt",
+      "sha256": "fc1126982678f9501b82cd0f8f7c5ad3503a87631f3a120b2b7e1089d48abb5c"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/dialog/DialogMiuix.kt",
+      "sha256": "cbef999ca8e0e4706acedf8a8d20064bcd07c9bb2c81e016ab86900b907509a9"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/dialog/DownloadDialog.kt",
+      "sha256": "bea0712478657e353c10c8ebbe97b27dfa84c3d046c3fe4dd87d3a83fb946918"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/filter/BaseFieldFilter.kt",
+      "sha256": "97d20b3f2cb3ea5dd512350f553a9f458c031cde18676edd037440b75c9d91a7"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/filter/FilterNumber.kt",
+      "sha256": "1d3ab175aa1cb4b060efd7d4d93769fc8f98e3004987742a9f2b0fa3499c9fb7"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/liquid/CombinedBackdrop.kt",
+      "sha256": "9205c7bbb52652f8affeccef5cc9b53b7c004c2380eff612c4cc0eca455e72db"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/liquid/InnerShadow.kt",
+      "sha256": "267a82b0684d55fb7e61c9462ee480025e4357ef48e941fb459b6a9c6f85cd7c"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/liquid/Lens.kt",
+      "sha256": "7a9ae39ca8776ce8e7b960637081b96fae82b8b637895846fbf6ab3717b46aff"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/liquid/Vibrancy.kt",
+      "sha256": "c0a74731e8334ddf1a05b1dacc0e1b1f7f0f8fed299d21d440afc6de7ec35e4f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/markdown/GithubMarkdown.kt",
+      "sha256": "04e73c10d26b02631419203569d8ecbe15231844448e48a012b126161da24528"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/markdown/MarkdownContent.kt",
+      "sha256": "1ab58d270a619c96c941348fda2bf0bf64770d74227cad4076188789f6825412"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/ExpressiveDialog.kt",
+      "sha256": "98cbba562f613aab3884f4f053b4cbf510cdf637f6adaea61f5d9067ca1a62b7"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/ExpressiveMenu.kt",
+      "sha256": "c88f5528a56b7a3f03a41168abb4f41a9fd865258115bcfbaee274228e508995"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/ExpressiveScaffold.kt",
+      "sha256": "801ba0239283b8fcca802fe7badb58800bf786f1150ae4e6be1eb41cc62fffd5"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/ExpressiveSwitch.kt",
+      "sha256": "28469dc5932e17e0d3df4ec7fe17fd4fe33a945eb45ea67364a0e7244b5633a9"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/ExpressiveTabRow.kt",
+      "sha256": "c5d27fb04a8a07cb4c3b1c16fd9cf62a912fae45d6a8031b16f1766c24969d30"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/ExpressiveToggleButton.kt",
+      "sha256": "1be997a32cfd6d6fdb38f68e4f1e72afb4ceef50d4c40b7d6d289235b4db3d59"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/ModuleIcon.kt",
+      "sha256": "9301642f6f2975ff05fab1e206ca703b60e5bf909a3346968274d740a869cff9"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/PersonalizeParts.kt",
+      "sha256": "4711126fb49dd53db094ef0dec9a6d2268164c0a383fbb03a342f46e69cb5d4a"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/SearchBar.kt",
+      "sha256": "98e1304fa42f95ce7fba0916bf95eca562a86505c7992d6fb5ec74d24fc311f3"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/SegmentedList.kt",
+      "sha256": "47dc914b47fd8e8cc368582e40bd221a615994a6821942d6ff844ed78948fc5f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/SegmentedSettingsItems.kt",
+      "sha256": "d00bda9b5affc98fefe0f261264d91092b9860fa7a4d4875d74bff9dde5cf847"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/SendLogBottomSheet.kt",
+      "sha256": "22e6528a8dad9d2d3c136975d7a3ffba1fbf59b244e00c4d0b9df442b6378899"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/SnackBar.kt",
+      "sha256": "05e054b9f908f456e12667abd99a25e5479ced2c62fb9a173b2b22070cc18d7a"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/TonalCard.kt",
+      "sha256": "e6dd58bc8f2df8faeeb89dc02bdb8c12f5f0e2ff14f3a936ae14d1fa42d1d538"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/TopBarBackButton.kt",
+      "sha256": "207d3cebe4e1e24b3933481bdcf5c90b500c94a19021f31c65e4d3ddc7317de3"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/material/WarningCard.kt",
+      "sha256": "dc53e6ac5d63d4fe5fddab8fe0418976503b55c471cc6ada88fcb515a7cf1f17"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/DropdownItem.kt",
+      "sha256": "f740076f29b6ad838e0e68935d73fd7b501b751b2951dd9e21a5a276922cdb75"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/EditText.kt",
+      "sha256": "6a88e0959d27412c413dede5c3cdb38e95ba955e2851b2a5b7cbe4eea72614b3"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/ModuleIcon.kt",
+      "sha256": "4cc0e2aa72ea6e72a322510e92cd3c8b097f69ecd07589b6e7d72d56b2f8208d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/ScaleDialog.kt",
+      "sha256": "1609d54807701cf524eaffe79f57e8ee3dbaec9f00595f7066647c11f5fbed78"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/SendLogDialog.kt",
+      "sha256": "416839ec82de9ee298c746a8c1aaf1f16f03e24158a5b20b86ab407de39112e5"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/StringEditArrow.kt",
+      "sha256": "54a1fee271f9880a8dbde1f51716292fd99d2d55f4d0db553cd13e2aca17da30"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/SuperEditArrow.kt",
+      "sha256": "2260ef7a2030932fc2d383a025d5813dade4c4b6f7fb1f445d4819d0e06cabb0"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/SuperSearchBar.kt",
+      "sha256": "aec8326f7370f04f27585971a254304ba82b21a3bc775184a2b2a65e6589e143"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/WarningCard.kt",
+      "sha256": "8c468db6f421e1dc9e273c8a3239695f14b07e39ba677c08e9dfba2ac7386fa9"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/animation/DampedDragAnimation.kt",
+      "sha256": "aac6f6d74baf61d37e1e725f6669a455c92fb85717b52be211c9ca405ffb8aeb"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/animation/InteractiveHighlight.kt",
+      "sha256": "43a0371fe0ebb765103dd85e4ffbc2f989a19d647f8b13da5edc4d4bce81c1e2"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/effect/BgEffectBackground.kt",
+      "sha256": "6f2122ff6d59d052dd677d2ba4e10be4fe2b4a4b076e512ccd325e80a133071e"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/effect/BgEffectConfig.kt",
+      "sha256": "cbf4240e09dfd406451937959b8c303147d70f9629cb5d0c32ebdee1aaf11819"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/effect/BgEffectModifier.kt",
+      "sha256": "c43d34f13d5de1f8e36bd118914fb2a563bcaa2ff034f3584f8eea7cc2810386"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/effect/BgEffectPainter.kt",
+      "sha256": "f1b73c29d6b3361e0097cdb9ea005601340a2580a755466a8a1d724288f1e348"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/effect/ColorBlendToken.kt",
+      "sha256": "35fd8a66c27582d27867329000192766b1f8e1c7d64ac8a2856c158b9624814e"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/effect/DeviceType.kt",
+      "sha256": "0ab8f2252ed4f83fc11fd8149cd5c107fe78dd7bb77043e4698cf32e98704c09"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/effect/OS3BgFrag.kt",
+      "sha256": "94ed46119f069076731e78ef973a5c68978f153598f7b59e655db170e9928520"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/miuix/modifier/DragGestureInspector.kt",
+      "sha256": "463bdd54b8761da6f22b0701836b74a89bd20cb216c48b499c7de013d1009501"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/profile/AppProfileConfigMaterial.kt",
+      "sha256": "dd81f4f1424be96f074ef5f514a6bf0c2b0cfc3e4ffcd607ebfd929c9a73e022"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/profile/AppProfileConfigMiuix.kt",
+      "sha256": "0aff945949a1b9e2f6a68a251ecdf7abf964e92622df6bb9a7d91369ec4e664c"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/profile/ProfileConfig.kt",
+      "sha256": "efb788d21a58ce5246af92f572b453b6a6d03ca8cfd51ef97770196d751263f0"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/profile/RootProfileConfigMaterial.kt",
+      "sha256": "4197e18e265d1b01819e37c746b4c2b01e301641b63a79bb2de535d5758b3136"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/profile/RootProfileConfigMiuix.kt",
+      "sha256": "03ceb182415876ce975eec15b8d1d5a59a7cffed05b7b9aabb9762cc4d64051f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/profile/TemplateConfigMaterial.kt",
+      "sha256": "a1eb5cb76d4ff8133204ddfefb06689a473557306e214083f6c255f205d0c002"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/profile/TemplateConfigMiuix.kt",
+      "sha256": "a944be4827167f3a4af6f3cc592b513b65baa1f97199e258360fefbe501dd13a"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/profile/dialogs/MultiSelectDialog.kt",
+      "sha256": "94ef427963b12927e2c5fa268c4d4d806c9c9d5631a694dfa7be70ac74d3b7b6"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/profile/dialogs/SingleSelectDialog.kt",
+      "sha256": "1201869aed31648369f1ceca0a042579530a5bb50ecb7ab784bf4eec76a4583c"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/rebootlistpopup/RebootListPopup.kt",
+      "sha256": "22cc32dfa2a26929468bf8fa5a82ff44e702a0227119d64cfe4eb165ac9c9be7"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/rebootlistpopup/RebootListPopupMaterial.kt",
+      "sha256": "1f429e8b13ca2eb62fa1f4a8cf3a0384cda4516cb18b8b385dbcb1f301057ba3"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/rebootlistpopup/RebootListPopupMiuix.kt",
+      "sha256": "61a500bc29065624f3a8ff9d09706c7ee25977537f2316f19b7fc5be46012831"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/statustag/StatusTag.kt",
+      "sha256": "9f0b46550c671ce4a3ff0dc7efc1e4702611b8cb89bb6505cffb27f88d6afef4"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/statustag/StatusTagMaterial.kt",
+      "sha256": "037a40512a8504805d04d30364198d0f841da63d85376b26d42eb4186229a2b5"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/statustag/StatusTagMiuix.kt",
+      "sha256": "b1c832b42208a8c620fa68be21b54229965a69759c37d651d91d07f1a3358061"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/uninstalldialog/UninstallDialog.kt",
+      "sha256": "2014a3bd2484c3a63d74144b88c9c3b7c2853642ab876ee1c39df2dd7b5d9b89"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/uninstalldialog/UninstallDialogMaterial.kt",
+      "sha256": "a744a816bca54a03370c34b0f3097f5f515317f7068c03a9e965c0341edb53fd"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/component/uninstalldialog/UninstallDialogMiuix.kt",
+      "sha256": "1136abf8e780cedf59fc8ac6f478fe54fef35d8e33c413691ebfe790b431641b"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/navigation3/IntentDispatcher.kt",
+      "sha256": "9cce2dc6395e0c00bb311f06bb5b99447d8486e025fd2bd207bdaca28faa7b61"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/navigation3/Navigator.kt",
+      "sha256": "1623e56db23012eddc6b1af715d15eac2f0bb1f9c0449d0addb52a39d7337a9f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/navigation3/Routes.kt",
+      "sha256": "619fb1dd9d3b0ca76480d41046750cc9bbfd10a529d2ede623b7a23a4619cea1"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/about/AboutMaterial.kt",
+      "sha256": "e3b072f07cb4303398c82aed26609160f3e3eee9904fdbc41f6b099185a6f4c5"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/about/AboutMiuix.kt",
+      "sha256": "a13f793b86c396d5ea9481e1a513e2611060a4eb843c4c1040e7719465a19203"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/about/AboutScreen.kt",
+      "sha256": "fb16726d6c18fbc980f215dca4dbca271f39ba4829d8c897f21d463a63939c7d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/about/AboutUiState.kt",
+      "sha256": "b7ae334f584dca0eafdac0d846f33286a233c55b258ca8a54e17d290747fffcf"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/about/AboutUtils.kt",
+      "sha256": "9a4539aeff73a9fc151c132fd4d30eca4cd8d4ce6b2d6ee051ae4b33c9b49b38"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/appprofile/AppProfileMaterial.kt",
+      "sha256": "ba14df772dcf7b325864c0f3338bbf3244980bd4c7c8dbff727e4f1c321bb09d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/appprofile/AppProfileMiuix.kt",
+      "sha256": "8bed67e07f9f8412fcb91b8ed3cf1c9864fec9548057758f6ec4fe706bd19e36"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/appprofile/AppProfileScreen.kt",
+      "sha256": "4c66b406259b51fcedbc08276badeb97027505b1bdb4528c3c925afddd879115"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/appprofile/AppProfileUiState.kt",
+      "sha256": "5d4e78abda993ce49adb0ac0fe4c89435b7e97feab54dc91495754c97e73f006"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/appprofile/AppProfileUtils.kt",
+      "sha256": "8efa418c098005cdd8de2f86a93a1ac8fc696cdecb200aca7dfae6204d78f770"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/colorpalette/ColorPaletteScreen.kt",
+      "sha256": "c38ce4cf31a6d5b34ade355f79b3365a34ff1b11150af4b58a0aeec2c483d80e"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/colorpalette/ColorPaletteScreenMaterial.kt",
+      "sha256": "7eaddfa90381f6949e1c089a9683702298c0f6bec1c88ce4b825cc532509653a"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/colorpalette/ColorPaletteScreenMiuix.kt",
+      "sha256": "bba15eb9cc21e527e084b75655257498f3a17c2bbcfb340338dbb533686e37ef"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/colorpalette/ColorPaletteUiState.kt",
+      "sha256": "8edd385314865ffd171d9faafe20042885799e76e158cc250e954286a0346fe7"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/executemoduleaction/ExecuteModuleActionMaterial.kt",
+      "sha256": "086299b35715c926b931f43717928aa40177147dc4199e432d7d03d538e60273"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/executemoduleaction/ExecuteModuleActionMiuix.kt",
+      "sha256": "bfcf2121c63a5a47c88ca0603ef86670f6d811351f8edf54b1c2ff0b163ccf5e"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/executemoduleaction/ExecuteModuleActionScreen.kt",
+      "sha256": "72a94bdb62e20919b5ce80f5ce2325f372292b32044dc278661d5fef78885188"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/executemoduleaction/ExecuteModuleActionUiState.kt",
+      "sha256": "f1c9d862515855e1b25634dd96604586a24327db983be8e614e03ad6a3de97e0"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/executemoduleaction/ExecuteModuleActionUtils.kt",
+      "sha256": "65a7ca207be3ac290d72054603dbad1efdc9dbce1abd316b6ef336bea670e509"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/flash/FlashMaterial.kt",
+      "sha256": "d53381da3c88e977d810729d9ef30af382d96024fe32392da2ab35d49fdd0ea0"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/flash/FlashMiuix.kt",
+      "sha256": "718e4943c3f2c936fee437dcec968b97a5c4d08986956f6c57d0d61df4b71fbf"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/flash/FlashScreen.kt",
+      "sha256": "022df0381421b3859a047390d506593b49d0316e898455de3a93df5297c74ab2"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/flash/FlashUiState.kt",
+      "sha256": "435ae7959015bb7c76be68023af33ebf8490233949a2275a01869589c00b0c73"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/flash/FlashUtils.kt",
+      "sha256": "3ff9aa39c15f34df505bd6ddb582f99207c8c1ea2a3a297578df909332c66c59"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/home/About7k.kt",
+      "sha256": "d182db6c9bae113b9ce6e1805ab635575e35c871a73a7b9c716acc83fdb58f52"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/home/HomeMaterial.kt",
+      "sha256": "1de403de0034c4212da1a8c20113b1785930c2799d2b249d791ca76f9fc7735b"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/home/HomeMiuix.kt",
+      "sha256": "74315127859ea0adb02701e9e987ed4048d688a3b78fe465c70c72ee7ecb4660"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/home/HomeScreen.kt",
+      "sha256": "8435b49b1c6a84798927b479146d247a574b608360834a4db84a92fec5d5017d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/home/HomeUiState.kt",
+      "sha256": "4dfde994f3397e0eb4c28f9f892603c67ec20ccc893dad3998aaa2fd1989112d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/home/HomeUtils.kt",
+      "sha256": "ebb97caad322e40fe1bbbbaf5ef872a953ee8819fdc1bc7afecaf841469b3f71"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/install/InstallMaterial.kt",
+      "sha256": "bbdb86127146fe8834438265b28b6f5cdef68698621f16b1173c6e6726621228"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/install/InstallMiuix.kt",
+      "sha256": "f74e13c1dcb7dd64afc7dd516a1d7d9f4b4b46d4e593b2a78bfc33f5d2997a42"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/install/InstallScreen.kt",
+      "sha256": "906cccb7fbc37a3c164c1e3da10a1302c1a54c8fe1c1b4884c29d5c75d648a93"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/install/InstallUiState.kt",
+      "sha256": "78eea2669b796f5674d62c44ec6669ce75ec304ab2f5795089999145bfd613eb"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/install/InstallUtils.kt",
+      "sha256": "87f3618ada1bb5cbc295e4759bbc42e48a0a9f64757a14f79544fd7f0e4e87ea"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/module/ModuleMaterial.kt",
+      "sha256": "65cedaf6623c61abe7aa1bb50654c5148e783dc3077fd09d96ebf0c984348320"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/module/ModuleMiuix.kt",
+      "sha256": "7f3ba17a96d4c771a79d5f8d3acadf586ea6f62ff7e3d437efbe80fbece030c3"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/module/ModuleScreen.kt",
+      "sha256": "d4ac02b8d121997ceb67a72c504bc8df93f06c2b1ae5b74657dbce163ce0ac5f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/module/ModuleShortcutState.kt",
+      "sha256": "81f077beda5fc75b636561b886db185b6da9cf1c3f86edc1776b54c0c3128c06"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/module/ModuleUiState.kt",
+      "sha256": "aa949ca1e1669a9855539afeb7dd5a8e01d89fa02cb7ea89f2978aa3605bec7d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/module/ModuleUtils.kt",
+      "sha256": "3225b1d7dd76c1da3b305262e3235b8dd28126a8bc31bcf1e897b9b019050af5"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/modulerepo/ModuleRepoMaterial.kt",
+      "sha256": "bf97dbd432323e80ab20ef33b54b38b34f1344884933e1367698a86162fb0324"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/modulerepo/ModuleRepoMiuix.kt",
+      "sha256": "bef1c325ed356d4c3338baecc3ae27357092ea2e24a947f2c267a94252097112"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/modulerepo/ModuleRepoModels.kt",
+      "sha256": "da4b69136a694937662603edab527a60d869256a6dc1526f22cff781d815143b"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/modulerepo/ModuleRepoScreen.kt",
+      "sha256": "a374ee29624366c5a854f04c4cf9afcab6a91103e1393362c65aacad0ca57741"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/modulerepo/ModuleRepoUiState.kt",
+      "sha256": "3831dfeb095a6966b131abce05c8704fac3e09d9af4a4742d9f7b09b3bd3c8df"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/settings/SettingsMaterial.kt",
+      "sha256": "19cc0e4ec44e37f37b88101de414e0f237e1208c62dc6a01a028f595e2bc13ca"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/settings/SettingsMiuix.kt",
+      "sha256": "4dac3cd887e299671b4c71c59bd463e232be3bcc7d6b024b80bbf2c6f1dc5c61"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/settings/SettingsScreen.kt",
+      "sha256": "03738e21c48af23650aaba4827fe6999d56e422f616a9d945650b888a5fcdc76"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/settings/SettingsUiState.kt",
+      "sha256": "d396ad60e48e35a609a51ebcc6730c91f80f81ecc7ad0da219d0a797f8876848"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/sulog/SulogMaterial.kt",
+      "sha256": "3f608e880591814109c01a347e5406170546a3dd888f0a2717c455ca878f000a"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/sulog/SulogMiuix.kt",
+      "sha256": "f8f77fe9934e98bd073807e65acd56dd3bab935f9f319f118591061eb299bdaf"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/sulog/SulogScreen.kt",
+      "sha256": "e02f26eaec6da3a566aabc2d882a23fe6c399d532e5ae61d6775aded982b419c"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/sulog/SulogUiState.kt",
+      "sha256": "208665036ec38945691922b92128b753ededd8edfecd7057b62975cccbd11ee6"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/superuser/SuperUserMaterial.kt",
+      "sha256": "92d10b4e241580563feb73e9835285cc869570aea3aaf7b28c5ca22190edac3f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/superuser/SuperUserMiuix.kt",
+      "sha256": "11042fd6027d92b68b0ef11cac632016df250828128ec61630d1b59b85ae122e"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/superuser/SuperUserScreen.kt",
+      "sha256": "8e627fbdec2ebace32183a31e27dd90341e5993e12bba67d7b8564d05e6b4cfb"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/superuser/SuperUserUiState.kt",
+      "sha256": "fff4e973f80c598e6bfd9b7f542b3d27f2cfc6ddabecc3c859e4bf71afcb5405"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/template/TemplateMaterial.kt",
+      "sha256": "e3888a0e1bc86d960ae29b23e43b226d59e96b9ec62586f81d5387dbdd0dbbcc"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/template/TemplateMiuix.kt",
+      "sha256": "09577b1d2b35d77284cc7f7c1fd0a7b8fd4da1059b3b3bd18f9a6527c5a2f9f2"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/template/TemplateScreen.kt",
+      "sha256": "d64ba73ec44556dcde862ec390123db49e518e3429689e4f09ae935e5912c6ea"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/template/TemplateUiState.kt",
+      "sha256": "f721f8d14136a7ef9737b2e0845cb585964fed1337385ebdf2efe9ecd7eb0bfd"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/templateeditor/TemplateEditorMaterial.kt",
+      "sha256": "7871c88a58dfb6fdd46431dd94ef759b038c865147d5465e28ed062d8c63402c"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/templateeditor/TemplateEditorMiuix.kt",
+      "sha256": "dea605ed42a3b515ca379edb1a4fe1d6ac64d8c756f1f828b87f756258880a88"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/templateeditor/TemplateEditorScreen.kt",
+      "sha256": "ec4f4532c7e2e7d01c8e0029c2f333b263e3d12e6c72487d4766dcec294a5e66"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/templateeditor/TemplateEditorUiState.kt",
+      "sha256": "430241a924c052d7d3fd28c9c0f060296f079dda847a93918c45e1cf32ee03c0"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/screen/templateeditor/TemplateEditorUtils.kt",
+      "sha256": "7cee21dee98dd1a67a039f5edbe2cec6f0e0735c3afc13b067bf0e334e477ac4"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/security/Stealth.kt",
+      "sha256": "ce474163e473ebcdff07ec771f268dc351a7fd27f09f69fe04bd3ef4e12e51ab"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/security/StealthBootReceiver.kt",
+      "sha256": "0568cff444666e2231d057cfc3a8897c7d2584bc66efd849c5d8516ae81b577a"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/security/StealthCodeStore.kt",
+      "sha256": "92a959744f512216cb8d47b328bf619a6a7e4a7876685d2d57f32c67b456366d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/security/StealthReceiver.kt",
+      "sha256": "e34b84c71caae56d1e5034e6a884f38371087406391964f89d6b024212f036f0"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/theme/Colors.kt",
+      "sha256": "00f4f3d11725de2e964978fa90ea5f537a39df6df4c3f04ebab4ce088d6a49ec"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/theme/DialogColors.kt",
+      "sha256": "e672d76b40e7be912e23c3a4f52bc9607a11a0dc1fcbe580163c9cefcb78293b"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/theme/MaterialTheme.kt",
+      "sha256": "702e43de45f56a0b5779b7902beed7a34829c10bf155c8c3ffc1f2223c26170e"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/theme/MiuixTheme.kt",
+      "sha256": "9ae6fc6fc2d18c123a27ca4e06ae61f8bd8c7666570c952861bea52910eefc46"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/theme/Theme.kt",
+      "sha256": "f1bd37399189ab1828fb27a512ffcbf9711654a4f0c06d4c1d9816307cdf07ed"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/theme/ThemeExt.kt",
+      "sha256": "99353eff72649a98052d96b6ccbd84316996474a42c200fe1a7263003f7f8b5f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/theme/Type.kt",
+      "sha256": "eae5788c4ea1d51137f87feb8aa468cf1d52b5bc8526966c97f7295d91e04b6f"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/AnnouncementPrefs.kt",
+      "sha256": "154c28fe88150116bb431b3839819a5f9007e2ccadc70204240a2db779c1c001"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/AppIconCache.kt",
+      "sha256": "086e343dab3bde6007f2b53187259ae8847f79ab2ecf2037f59351be8d355fc0"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/BlurExt.kt",
+      "sha256": "f7d439cb2d62380ea6729ea620216b7ec48f1568f9a573ff06ce1c734bd781bc"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/Colors.kt",
+      "sha256": "69d25e35e78144ce8a506bac2c70881f9ebffdb596cca8b5e7c69a06c887bcca"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/DeferredContent.kt",
+      "sha256": "03720ed2fc9d7c43ed157afcf8678b15ed03a900495a5c6948d6ac8926a3c4b9"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/DeviceNameHelper.kt",
+      "sha256": "f72feddd3b2dde4d405a832d1318e840953aeb161c8945ba8323ab235f2005ba"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/DownloadManager.kt",
+      "sha256": "1f03d35273486e130fceb59d506e165ca551f6ccbf1102ff6e966c1c1291a013"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/DownloadService.kt",
+      "sha256": "a229be776cad9f6ad53249bfc7530d949d610376e7ddea68c4b71bd3b26604f2"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/Downloader.kt",
+      "sha256": "1245fb6856105776963abd12ad77aa64b275dfdc6c1d07a2841405ae1d66afaf"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/KsuCli.kt",
+      "sha256": "02eeae69c739788a055dfe2cb9bf6b9bb8d9e54034bd20ccc1625510278b7c5e"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/LegacyDataMigration.kt",
+      "sha256": "c430de2106ca7d4228b4a508f936ab1edde000cc8ad2f941dbb9a64a5cce10f4"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/LogEvent.kt",
+      "sha256": "472e0e03d18057c4c7829416d3f67ad87bb7a8b003c5169edc05bc8910f90191"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/ModuleCardArt.kt",
+      "sha256": "b92f8ce987910ee8a7e77a13be587c9249487a45467fc2b5b195478b88314bbc"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/ModuleIcons.kt",
+      "sha256": "17ab21e1e8ce7cde0463d1fda92f4797ce510f98c8ad75a30b82a8eb0ca92d72"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/NavIcons.kt",
+      "sha256": "7b14207d4ebd961265cd9de80996e9e847a6fe7a0732c3102419fb617126eed5"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/Network.kt",
+      "sha256": "1a68527d7f1df6fd15a5680a1bbeb5a922a1937d117db2c7cf43aa064b3551d1"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/OemHelper.kt",
+      "sha256": "98168bc8322edb9176306a30154772d21af11ea20f8b1554bba365d8e66bd1da"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/PinyinUtil.kt",
+      "sha256": "adf8062dc421f6799e373d5cb5886b42a0cb89feb99d957ad24173a5221f949a"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/PrivateDir.kt",
+      "sha256": "a4ad34d61a8dedd248c60fcfbfaff25926319d3075559d1f9657a4227fab7c54"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/SELinuxChecker.kt",
+      "sha256": "2a9e3afbbe67519b75919498e56d239fde3f599a97728e70854304b5ce83d483"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/Serialization.kt",
+      "sha256": "48785bd20114d2589e57d6b1cf7aa5a54542e54215732cd30920475aedfebe46"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/StatusDecoration.kt",
+      "sha256": "09af7aa4ec4e848c736db5c1f8096a74b827665b94ebd9029738652584670871"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/SulogHelper.kt",
+      "sha256": "03258de149193bdd71bde2cec551bc1f5760627a5a26b6477bcb3579722c865b"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/ThemeLock.kt",
+      "sha256": "051cc033248112944070cec69c13e2d2df8048096845e558660bd2282e8a34cf"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/UidGroupUtils.kt",
+      "sha256": "99c6e35ce3764f54b924dcad19faa1662300cf06224c44e86134af6704d78934"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/WallpaperHost.kt",
+      "sha256": "004a1af07214b07a9d35bb6c7b05a3ca32dc9dfd0e1df211e7d117ea65728a84"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/WallpaperPrefs.kt",
+      "sha256": "3ad88a45b2911229acc2dd005403b6e020e32e5b4be39ad1a36123d71ff5f201"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/WallpaperSeedPolicy.kt",
+      "sha256": "803645a438895bcc95e2e71f691db326daab542cc233d2b6e49d95a69c4dc663"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/WallpaperStore.kt",
+      "sha256": "0a49e80e748400cec621a9c15ddc68531ed2a3a2da383e777e6b0dd56daad647"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/WebAdminCli.kt",
+      "sha256": "1ccd08b1fe7493da39575bc5a222ece3193b782710957f7989f77d6b26b48328"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/WindowSize.kt",
+      "sha256": "e96fe8cbbb1e4ee6b7c8461bb3280298aa1546217577626fe6328d3bac08638a"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/module/LatestVersionInfo.kt",
+      "sha256": "7fd2df104f5bb22a50b44a5d967da90a43ddc1dac60bb423a2978a37b205fbf6"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/module/ModuleRepoApi.kt",
+      "sha256": "2b424ff4092f0e91c8bc458317f217d9391ae587d9f396889a19b5ce581d124a"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/util/module/Shortcut.kt",
+      "sha256": "5444a0fa7d987b54591294ff99c08d7201f636e982ff16deb3f182b1f1a28dd5"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/HomeViewModel.kt",
+      "sha256": "b00c6d4ca4ab8e7bd75f1b0be2532701393e9891d904bd2b3ee6828be4fd8488"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/MainActivityUiState.kt",
+      "sha256": "b0250623585e5a571a3af22f8ec6cf97825ef8d6a685ed0285ede9bde67b74aa"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/MainActivityViewModel.kt",
+      "sha256": "1daf50b7c8670dba3e5c051b52699c977d1ac4a5bdf1ce5d6e29ff4306922631"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/ModuleRepoDetailViewModel.kt",
+      "sha256": "885bec6ad47efc419a85274e4123dc5ed589ad39b912270bd856a1ca428bc351"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/ModuleRepoViewModel.kt",
+      "sha256": "36ccb4e7c09aaa6ee8a2d9c5c042077a9025ea9f8fe8a15d663d58fb50f89bb9"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/ModuleViewModel.kt",
+      "sha256": "e596e567c2e8313a8a68d524ee2cf1cfeac67b35124838d19b804ba0886d11a4"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/SearchViewModelHelper.kt",
+      "sha256": "66cb15e10c09314e662eaaf4be8bd2de2eecfdcc53f34a181b335f85c3cffa96"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/SettingsViewModel.kt",
+      "sha256": "97768420c65b6c557e3996e59316e13da5ef9e48f05a1d18825e92491299b57c"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/SulogViewModel.kt",
+      "sha256": "19e84f53665a84f296f2e8d0af034f0f608e0db0dbf5fffc10308338a109a114"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/SuperUserViewModel.kt",
+      "sha256": "914d7da9b89184f53d8b4711b323be72179e025e18270c3c297c2b0b26d2b7ad"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/viewmodel/TemplateViewModel.kt",
+      "sha256": "b1dbf4696cd930677b854235590812031c8e0f1f82d81fbb6eff2d423b40529d"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/Insets.kt",
+      "sha256": "5873819c536ad75c01256860096ceacec227974f5cf78e2ceaf2db4f59551cc1"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/MimeUtil.java",
+      "sha256": "992f13bd7adc827e91e04378f17a05847656bb905119bf47bf38ac7ae0164e0b"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/MonetColorsProvider.kt",
+      "sha256": "f6826817c03ce51afffa87eafd90b6f18eae5b0cb0c1af3dfbd32e1576033a69"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/SuFilePathHandler.java",
+      "sha256": "0b47b4769fc06270824139eaa7adf5afaa8907685a3c6ab8f856771266871f48"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/WebUIActivity.kt",
+      "sha256": "bf276c6a52ab4828f754c82e1318f9f618d8ec5d47a1dd85034c5541a301d9c2"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/WebUIMaterial.kt",
+      "sha256": "a21e94664e406dcd4e717eba0af79d3cbf5aeaa8859d2fc80000c55ef1232247"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/WebUIMiuix.kt",
+      "sha256": "8b7eb02e47c089718c5a2d52ef7b0a0689a7d1ac93d1937c43dfc84d803af490"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/WebUIScreen.kt",
+      "sha256": "47a580b0d3aa6895f861adae431672c186ac8c0ba681d0362b4725b1f6a664be"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/WebUIState.kt",
+      "sha256": "4439bdc55f281e223f1ad8136e2659d4a0491fa9dc99478f22e99aec87953af7"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/WebViewHelper.kt",
+      "sha256": "988de7b73a45333e04a6b8351396fab128bf499aced63b5245241ce0d5d0b18b"
+    },
+    {
+      "path": "src/main/java/com/sevenk/core/ui/webui/WebViewInterface.kt",
+      "sha256": "8c520b650627f30f2b69c4d7dc5914edb5973b260fbcc7a6a02d5efc20043274"
+    },
+    {
+      "path": "src/main/java/me/weishu/kernelsu/data/registry/DownloadIntegrity.kt",
+      "sha256": "8767d18d6d50fca5c9ef73e5ceab505f2eada8bc38879bca0013774eda9b5d6e"
+    },
+    {
+      "path": "src/main/java/me/weishu/kernelsu/data/registry/FileRegistryCache.kt",
+      "sha256": "499563034b4b5a0779dbc2f3e094df0890fcdae4791c5b64cc889ed9cb1c22e3"
+    },
+    {
+      "path": "src/main/java/me/weishu/kernelsu/data/registry/RegistryClient.kt",
+      "sha256": "c7f6ac0fb1374ae0894b213dc065f161923cda84e64609564c4ece6bdb8d6a2f"
+    },
+    {
+      "path": "src/main/java/me/weishu/kernelsu/data/registry/RegistryLocale.kt",
+      "sha256": "c616de14d853ef90441466e6033b68d0e4f779e23c2c910cb472d15c04d4e91e"
+    },
+    {
+      "path": "src/main/java/me/weishu/kernelsu/data/registry/RegistryModels.kt",
+      "sha256": "846225cbda4ae3c61d4fe97041e5a9b9872f90b7cdd9e13a7686ba36f95c0efc"
+    },
+    {
+      "path": "src/main/java/me/weishu/kernelsu/data/registry/RegistryParser.kt",
+      "sha256": "4f8e1839a196e2ef1974eacfaa3b62b2a37c6c99e20ebab8c5772c286ee54c0a"
+    },
+    {
+      "path": "src/main/java/me/weishu/kernelsu/data/registry/RegistryUpdatePolicy.kt",
+      "sha256": "807f7f48474b76ecb8342f79e6632b58edcf5a0f3d44d3e84f393f68d3ab31ba"
+    },
+    {
+      "path": "src/main/java/me/weishu/kernelsu/data/registry/RegistryUrls.kt",
+      "sha256": "5051f499aa0062ac3b58911adcd986040943553386bd56a9513236605a43e139"
+    },
+    {
+      "path": "src/main/proto/update_metadata.proto",
+      "sha256": "a9cd8fb0097acccb73895774764e34078dda19bc7329a45366d18387ce752903"
+    },
+    {
+      "path": "src/main/res/animator/anim_outline_horizontal.xml",
+      "sha256": "cfaead318152a4a211995743502365671a01b28c844a2ad9196f48e9dcfcb411"
+    },
+    {
+      "path": "src/main/res/animator/anim_outline_vertical.xml",
+      "sha256": "ff7a59a457d931c9cc967cb9a498d6d055a0a9b18ae84ae646a1617841177c2b"
+    },
+    {
+      "path": "src/main/res/animator/anim_square_path.xml",
+      "sha256": "b4cd71fbaed840cd99976e60001d4fecc3ee2d575a6c244d1b4543bc3b252abe"
+    },
+    {
+      "path": "src/main/res/animator/anim_square_path_rev.xml",
+      "sha256": "9295cead683f56a01bfd100b1f5297863aa55510ff6f02e994daad4fe21e73e7"
+    },
+    {
+      "path": "src/main/res/drawable-hdpi/ic_launcher_foreground.png",
+      "sha256": "28c7792cce2f92d1d024691afbce2f5a96f6a0167c37f131129368532cbd1f59"
+    },
+    {
+      "path": "src/main/res/drawable-hdpi/ic_launcher_splash.png",
+      "sha256": "390f066c15369884dafb5cbb0a03f2933e5f4de2966baf6e10511f32d525dc58"
+    },
+    {
+      "path": "src/main/res/drawable-mdpi/ic_launcher_foreground.png",
+      "sha256": "9446ae723d1eec00832529793ec1c98d79b298653f1d901cb79186230046ea42"
+    },
+    {
+      "path": "src/main/res/drawable-mdpi/ic_launcher_splash.png",
+      "sha256": "647e6fe6bfcfe5ab540ec8afb3e87fc0a304aadace0a68bb38a481826996a5c0"
+    },
+    {
+      "path": "src/main/res/drawable-nodpi/art_default.jpg",
+      "sha256": "46643416b0cac14b2e8c88dc92bf9042043d0b4d87712234cdbadd74b2811c4d"
+    },
+    {
+      "path": "src/main/res/drawable-nodpi/troll_face.png",
+      "sha256": "da762f2101bbc22ea8756904b6c30dc9a68fd9a93cd817fdcee42f8d3ffc7f7c"
+    },
+    {
+      "path": "src/main/res/drawable-nodpi/wallpaper_default_landscape.jpg",
+      "sha256": "e7d6f8d4b104354734c78b93ef4b00f955a80c8975723764ab759cd70547d35c"
+    },
+    {
+      "path": "src/main/res/drawable-nodpi/wallpaper_default_portrait.jpg",
+      "sha256": "44d7cf0fba286d67dfe064816d67ad0cdad095160de35ad50682b834e392eeef"
+    },
+    {
+      "path": "src/main/res/drawable-xhdpi/ic_launcher_foreground.png",
+      "sha256": "68b030f5df7bf9ea10418b3c5c4d410aca11bac9c5d0c28dc4fb776ef8ac178f"
+    },
+    {
+      "path": "src/main/res/drawable-xhdpi/ic_launcher_splash.png",
+      "sha256": "aedb6ecc1785ec29b0b4f7a9f11e828b220f2a4985d2dd16a3355dd916e1286e"
+    },
+    {
+      "path": "src/main/res/drawable-xxhdpi/ic_launcher_foreground.png",
+      "sha256": "bd8e28130272ccda177f97013ddbffcdc0016108654a01498d0696e3a1ba5529"
+    },
+    {
+      "path": "src/main/res/drawable-xxhdpi/ic_launcher_splash.png",
+      "sha256": "c90fd86bd56cc405a0f4176627af088b9768cf048c82687054ea1dd864d75de7"
+    },
+    {
+      "path": "src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png",
+      "sha256": "71c6b5e4347e23bdcc777cc05dcdea0859ef28ce0346ae14f5fd2ec25602ad44"
+    },
+    {
+      "path": "src/main/res/drawable-xxxhdpi/ic_launcher_splash.png",
+      "sha256": "d802326b51f0cd6af9057493613865a5716746c8ebe9f377381560b3b46304c0"
+    },
+    {
+      "path": "src/main/res/drawable/ic_launcher_monochrome.xml",
+      "sha256": "677f1c9fe93b091b3162c9d5905888b55c22a752f6ef9a6ec390ce9f7980c1be"
+    },
+    {
+      "path": "src/main/res/drawable/ic_launcher_splash.xml",
+      "sha256": "83b9247ed1957362280ff9fea57e9b5570c4d75d9963bea2efe5ba4830e20141"
+    },
+    {
+      "path": "src/main/res/drawable/ic_logo_vector.xml",
+      "sha256": "5e2ef95ea954120437b7a33029c6fab6d5e0b7dc17d0d682066b09af592ab3ed"
+    },
+    {
+      "path": "src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "sha256": "e071a8516287e0bacccc1a14a62502f3e1eda8360b2aad3c88c390ccbfa77122"
+    },
+    {
+      "path": "src/main/res/resources.properties",
+      "sha256": "7ccc53b980aafdd5f27809be6bf4ed91a08274f07fb2e7e03ea17e46d428a647"
+    },
+    {
+      "path": "src/main/res/values-ar/strings.xml",
+      "sha256": "798f24ab989ae068b50c0b777811f2c8f49801be4f9ae582fc0994934bc41101"
+    },
+    {
+      "path": "src/main/res/values-az/strings.xml",
+      "sha256": "e9bd212879173330130096cceb3fdbdce21350a15a62bdbbf25e6bb2b99305b7"
+    },
+    {
+      "path": "src/main/res/values-bg/strings.xml",
+      "sha256": "8f2396ef68949515b543efbfa3f575686346133b8fcdaece0478069bdc93b95d"
+    },
+    {
+      "path": "src/main/res/values-bn-rBD/strings.xml",
+      "sha256": "9ad6dee4e35751c8d1a7f430a616456bedf90aa0f544c1eea212e637dc5437d6"
+    },
+    {
+      "path": "src/main/res/values-bn/strings.xml",
+      "sha256": "2c5248f37b92df5d0aed04d7396c798ad51de3d301c8167146a74f21feb849ce"
+    },
+    {
+      "path": "src/main/res/values-bs/strings.xml",
+      "sha256": "21bccddfd8e0abbe3c2a87de8d2a6b36397a8e1796b11e9a288b8d0e068235c2"
+    },
+    {
+      "path": "src/main/res/values-da/strings.xml",
+      "sha256": "833b806f5d102c17a5782ef2c5604efa8136b87cd22348de5c5d559b9a725351"
+    },
+    {
+      "path": "src/main/res/values-de/strings.xml",
+      "sha256": "17ece9cd80e87d9801370327e7ba753eabacc93fc2a993c43b23e7934af05c4c"
+    },
+    {
+      "path": "src/main/res/values-es/strings.xml",
+      "sha256": "44182b952fcd91f9de6543a1e933210268807ea753d4e1426df8553fdda69d01"
+    },
+    {
+      "path": "src/main/res/values-et/strings.xml",
+      "sha256": "f3e6483a7ab252edd533898f35d7348b56243f72be9b0eac23ce05929d41ab4b"
+    },
+    {
+      "path": "src/main/res/values-fa/strings.xml",
+      "sha256": "1f3e91c8a3b1f6c993aa26d97360aef7d208afaf60ba51d328151b0c19203506"
+    },
+    {
+      "path": "src/main/res/values-fil/strings.xml",
+      "sha256": "f1173c60fa7c4c8149abcb6a051c6e0f1d82d366af056eb81f00a24bed35c43a"
+    },
+    {
+      "path": "src/main/res/values-fr/strings.xml",
+      "sha256": "e2edb90777e54c08435dc269662403c6239133a14e2dc00fb609313d7aa82285"
+    },
+    {
+      "path": "src/main/res/values-gl/strings.xml",
+      "sha256": "1888fe7e36ded140e1b757b12a58e2a783006e7e5de62ccadb3b017df21ae5e4"
+    },
+    {
+      "path": "src/main/res/values-hi/strings.xml",
+      "sha256": "fc3b8d1741a82d679b49f2df5b5d1975970f08a76f574f0d65770a4ef057d043"
+    },
+    {
+      "path": "src/main/res/values-hr/strings.xml",
+      "sha256": "2d4058aa6ba465263636de3aab7d6e72a3db1b40a19b0147fb8e747c663678db"
+    },
+    {
+      "path": "src/main/res/values-hu/strings.xml",
+      "sha256": "0dd2362efc5a2ff49f10020bf2d3a54bad6aae21a6850928d602c9e5775ab9a9"
+    },
+    {
+      "path": "src/main/res/values-in/strings.xml",
+      "sha256": "8baafa9ac28a9b72e68e22fca1ebb8dcab769dde0ceb672c597d9d730242fa5f"
+    },
+    {
+      "path": "src/main/res/values-it/strings.xml",
+      "sha256": "f33cb7f973e2102ad953afc0a116276c7a97f8d9f3b7aa1020d0560c797f1759"
+    },
+    {
+      "path": "src/main/res/values-iw/strings.xml",
+      "sha256": "0a185097d43f73d302d466c99adf14f5394906ec6e63debc7f5e4e8a007a6e6e"
+    },
+    {
+      "path": "src/main/res/values-ja/strings.xml",
+      "sha256": "c410c6032bb917bf226ea6ce92db971a74827f0e98ebb310e400584372486e02"
+    },
+    {
+      "path": "src/main/res/values-km/strings.xml",
+      "sha256": "e8fbe6f5dfdbaaf7156287d22dfcf413643d85ec1701bd83a962c968e8dbddec"
+    },
+    {
+      "path": "src/main/res/values-kn/strings.xml",
+      "sha256": "30687f718d0adeb4e86e663340568bde8d875cceca2ea4925ad4e3c09c40ebea"
+    },
+    {
+      "path": "src/main/res/values-ko/strings.xml",
+      "sha256": "3147e90cc0acf282a27d354573954a53965c20b2cca819d92235b6521aab152d"
+    },
+    {
+      "path": "src/main/res/values-lt/strings.xml",
+      "sha256": "533f8ad272a8960e24aa3a95c65f849054db24cf4a026001ce49410f71293adb"
+    },
+    {
+      "path": "src/main/res/values-lv/strings.xml",
+      "sha256": "41e97f5af1fb33e86d635e2466c72e8837fca57458d50b0dac20b62987ab15e1"
+    },
+    {
+      "path": "src/main/res/values-mr/strings.xml",
+      "sha256": "d50f9238bc0f880c0d5d2eac17b610516e629cd69efb8b3265e8162904dc210b"
+    },
+    {
+      "path": "src/main/res/values-ms/strings.xml",
+      "sha256": "60ce13c3661fc8513d3cb441eb555e71277eaec01454a6e8606f2c9fb2ea38b9"
+    },
+    {
+      "path": "src/main/res/values-my/strings.xml",
+      "sha256": "82ce655383b6011c9dd19f9659e57c328409e6dbf9e6cc61a6ee2031400fb061"
+    },
+    {
+      "path": "src/main/res/values-night/themes.xml",
+      "sha256": "f64ec36ed72ea73b382521fb748a202efda9f4b88dde14cde493cf417f9a6409"
+    },
+    {
+      "path": "src/main/res/values-nl/strings.xml",
+      "sha256": "d20fb861402e528459ba421300036c80976301bae4f6011e8a1a8faa6987dd59"
+    },
+    {
+      "path": "src/main/res/values-pl/strings.xml",
+      "sha256": "8fa38a56c596a4bdd479eceacddc47e1d7e0a2f9eacee82ef2908d9e9f77118f"
+    },
+    {
+      "path": "src/main/res/values-pt-rBR/strings.xml",
+      "sha256": "7ee563d7643c449e220693e9d0acb559e83b2af53a1df3ee6c00a4dd0a86b505"
+    },
+    {
+      "path": "src/main/res/values-pt/strings.xml",
+      "sha256": "b956743765411a04da33d209f2bab8faa5778c35e7c7b3b701802cc4863b8ba5"
+    },
+    {
+      "path": "src/main/res/values-ro/strings.xml",
+      "sha256": "8d8826642b52c9bb2a286553eb338fa77eef9b1cca36ed364ab46f9062cca63a"
+    },
+    {
+      "path": "src/main/res/values-ru/strings.xml",
+      "sha256": "2ac37c802886ffe2c8009169c34bdbeb11a0e7016377b94fb94d0af965543120"
+    },
+    {
+      "path": "src/main/res/values-sl/strings.xml",
+      "sha256": "d95fc3934c8fecd0899390cb525580bdd83772604d63e7f489968127a7b632a9"
+    },
+    {
+      "path": "src/main/res/values-sr/strings.xml",
+      "sha256": "496e1e962a07906956803ceff0a048a76ea8ba2790fb28af3912e5cab8e03b28"
+    },
+    {
+      "path": "src/main/res/values-te/strings.xml",
+      "sha256": "efe546654026606a7f254cf5c83a47f712a29d07f048f8545d77c84fc1cc65f6"
+    },
+    {
+      "path": "src/main/res/values-th/strings.xml",
+      "sha256": "c711ee407535b4c958c375d15ce83cf4cc40bb108674158307ddd29045975926"
+    },
+    {
+      "path": "src/main/res/values-tl/strings.xml",
+      "sha256": "4e732c06e3a7ccb24d07ea0a2dc9d2247cf06640b29393c880792b8b6ef06985"
+    },
+    {
+      "path": "src/main/res/values-tr/strings.xml",
+      "sha256": "2fbe5b106fe7ed258533da07771c34252297290bb667511da7465a13bdad8f78"
+    },
+    {
+      "path": "src/main/res/values-uk/strings.xml",
+      "sha256": "7156483c33af298e36dc4020dd483e7c139f8f351a0bba5f0d48f0219a4017a8"
+    },
+    {
+      "path": "src/main/res/values-vi/strings.xml",
+      "sha256": "328306c0f6edf28ab60c2edc064b8002609445b4c3df1275ec28b07f741176bc"
+    },
+    {
+      "path": "src/main/res/values-zh-rCN/strings.xml",
+      "sha256": "3e754751464739da61e502a8d3ab0a228045a04207fb0c32245c523b7152eb92"
+    },
+    {
+      "path": "src/main/res/values-zh-rHK/strings.xml",
+      "sha256": "6eef363ded6f5da90e44c3770dd58c891b889aeb3662ea9c75054bcaad194c7a"
+    },
+    {
+      "path": "src/main/res/values-zh-rTW/strings.xml",
+      "sha256": "e9ed2b7715088ac8536c83879891d0f16e49ff4f3f6e21622261311bf0ed09bc"
+    },
+    {
+      "path": "src/main/res/values/colors.xml",
+      "sha256": "cc4a4006aceba1bbee8d133882754af0eb650fc17938b1914e4144414eaf6d25"
+    },
+    {
+      "path": "src/main/res/values/strings.xml",
+      "sha256": "dd0b790905852b4d201ebe34003515532b84efcc1879e0c5dec52f50a8d8d705"
+    },
+    {
+      "path": "src/main/res/values/themes.xml",
+      "sha256": "72d64e436d62e8effd906a932b58748bd627dd1887ff7788729f5c174f905163"
+    },
+    {
+      "path": "src/main/res/xml/backup_rules.xml",
+      "sha256": "a14d8eb105be59e96eafb923f76bb590eb4e4ac5acc698ba08902dc73d1ef5a0"
+    },
+    {
+      "path": "src/main/res/xml/data_extraction_rules.xml",
+      "sha256": "d0e8dd8b2259d75c12563c8b94d2a45463ab817d46ef2e710e53a5056c445e22"
+    },
+    {
+      "path": "src/main/res/xml/filepaths.xml",
+      "sha256": "34938e7be6e7fc4373195a6e7fb10602c6ddea581a748ca136447fd2d4d7a5f9"
+    },
+    {
+      "path": "src/main/res/xml/network_security_config.xml",
+      "sha256": "317cbc2b3a9c0e7e83136d5643394ec653b5b29a57691be3af1cc0510907e7b7"
+    },
+    {
+      "path": "src/test/java/me/weishu/kernelsu/data/registry/DownloadStoreTest.kt",
+      "sha256": "c3fb3a2a8425315d31af7bdc9cb6b46ec932363d4358a32ce2fb4ac915296d42"
+    },
+    {
+      "path": "src/test/java/me/weishu/kernelsu/data/registry/DownloadVerifierTest.kt",
+      "sha256": "66a3ea69ae8c13c85665c81e5d926277c86b6a1ea7d2b211b618b3d1d0f3c82a"
+    },
+    {
+      "path": "src/test/java/me/weishu/kernelsu/data/registry/FileRegistryCacheTest.kt",
+      "sha256": "9de3b7ec60123517a350dfe82d0efa0d5c85d0da30bea041e4401f2ff21dd5a0"
+    },
+    {
+      "path": "src/test/java/me/weishu/kernelsu/data/registry/RegistryClientTest.kt",
+      "sha256": "8dc0601c032b5f558896a7575acc723b3e3fd953366a2cf8aed95877cdc4dcd5"
+    },
+    {
+      "path": "src/test/java/me/weishu/kernelsu/data/registry/RegistryLocaleTest.kt",
+      "sha256": "97943d8ffcde06ed381320386b076b8497c7cd404eaaa2e1247634c0245bdbd3"
+    },
+    {
+      "path": "src/test/java/me/weishu/kernelsu/data/registry/RegistryUpdatePolicyTest.kt",
+      "sha256": "b3e1a471580f16af207a8f47c89511dbddd9323f49db1a64b78193558acd4cc5"
+    },
+    {
+      "path": "src/test/java/me/weishu/kernelsu/data/registry/RegistryUrlsTest.kt",
+      "sha256": "2aef8454ebeef6d8d25056dd79075b094ce1ba518b09214c1d1a4d79417b647d"
+    },
+    {
+      "path": "src/test/java/me/weishu/kernelsu/ui/screen/modulerepo/RepoSortTest.kt",
+      "sha256": "0244590dd8549759b4bf1bee3a741e05d1c80b7a8af150cd04d339d09635ad87"
+    }
+  ]
+}

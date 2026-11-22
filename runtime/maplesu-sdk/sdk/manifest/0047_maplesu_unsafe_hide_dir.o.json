@@ -1,0 +1,82 @@
+{
+  "idx": 47,
+  "name": "maplesu_unsafe_hide_dir.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu_core/maplesu_unsafe_hide_dir.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-flto=thin"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 121,
+    "recovered": 121,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "12234afad83fb01144da171da95058a325daacaba998e6b499eb4659d076c050",
+    "bytes": 65892
+  },
+  "evidence": [
+    "notes/work/AGENT112/STATUS.md",
+    "notes/work/AGENT112/proof/047/EQUIVALENCE.md",
+    "notes/work/AGENT116/STATUS.md",
+    "notes/work/AGENT116/final-EQUIVALENCE.md",
+    "notes/work/AGENT116/proof/047/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": 0,
+    "equivalence": {
+      "functions": "121/121",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "120/121",
+      "bag_min": 0.9307,
+      "bag_mean": 0.9989,
+      "seq_mean": 0.9898
+    },
+    "note": "MEASURED on the official archive produced by build.py --all: functions 121/121 (missing 0, extra 0); call-target sets equal 120/121; bag_min 0.9307, bag_mean 0.9989, seq_mean 0.9898. NOT AT BAR: call-target sets 120/121; bag_min 0.9307 < 0.95. Archive: build/ag116b/out/libkernel_module_kit_static.a sha256=8f6a6361ef69d50d09fde21258315fcf5ec39f91fe9696649746d1f9de667f40.",
+    "adjustedDiff": []
+  },
+  "notes": "目录隐藏三入口已实现：create 建 7 个目录并落 kernel/system_file 标签，del 由叶到根删除，clean 扫描 /data 清理旧版本遗留目录。",
+  "p3p4InstallationHelperRootStatus20261119": {
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/installation_state.h",
+        "bytes": 20904,
+        "sha256": "cdc79c8535633ddb245ca3e9ee439a9b28b56c79f2d9acca09a6a818a5137e88"
+      }
+    ],
+    "canonicalRecipeChanged": false,
+    "publicSignaturesChanged": false,
+    "privateAbiRequiresSameHeaderConsumers": true,
+    "compiled": false,
+    "tested": false,
+    "targetQualified": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "privateHeaders": [
+    "src/maplesu/compat/install_hide_dir_exports_legacy_abi.h"
+  ],
+  "legacyBinaryExports": {
+    "status": "candidate-source-compiled-old-and-new-consumers-linked",
+    "compatibilityHeader": "src/maplesu/compat/install_hide_dir_exports_legacy_abi.h",
+    "symbolAliases": 3,
+    "scope": "Exact frozen skroot_env binary names alias the sole maintained maplesu::sdk hide-directory bodies; errors and directory behavior unchanged",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "validation": ".tmp/main-sdk-legacy-install-r3-20261120/evidence/EXECUTION.json",
+    "rawGatePassed": false
+  }
+}

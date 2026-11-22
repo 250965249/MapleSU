@@ -1,0 +1,39 @@
+{
+  "idx": 36,
+  "name": "module_base_linux_version.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module_base/module_base_linux_version.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 5,
+    "recovered": 5,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "8777801902ee5b9075ef63be21016e806c6b40ec8b79a34461712fdc2f0e17e2",
+    "bytes": 47284
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "tDiff": [],
+      "uDiff": []
+    },
+    "adjusted": {
+      "tDiff": [],
+      "uDiff": []
+    },
+    "note": "llvm-nm 双向差集全空：orig T=71 / new T=71，orig U=63 / new U=63。raw 残差 0，adjusted 也是 0（本成员没有踩到中央基线 notes/gate-symbol-baseline.json 里那 2 个工具链点版本残留符号）。IR define 数也一致（72 = 4 语义函数 + 68 libc++ 头内 weak 定义）。layout 由成员头 4 字节实测 4243c0de 判定。"
+  },
+  "notes": ""
+}

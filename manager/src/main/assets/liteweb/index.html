@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="7k" data-scheme="dark" data-style="miuix">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#000000">
+<meta name="referrer" content="no-referrer">
+<title>MapleSU 网页管理器</title>
+<link rel="icon" href="data:,">
+<!-- 资源都在同一个服务里（同源），页面不会访问任何外部地址。
+     静态路径相对本页：Lite 服务把 {prefix}/{token}/<route> 映射到 assets/liteweb/<route>。 -->
+<script>
+  // 首帧前定好亮暗，避免浅色系统先闪一下深色（配色逻辑见 a/app.js 的 applyTheme）。
+  (function () {
+    var id = "auto";
+    try { id = localStorage.getItem("7k-webadmin-theme") || "auto";
+      document.documentElement.dataset.style = localStorage.getItem("maplesu-web-style") === "material" ? "material" : "miuix";
+    } catch (e) {}
+    var dark = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+    var light = id === "7k-light" || id === "latte" || (id === "auto" && !dark);
+    document.documentElement.setAttribute("data-scheme", light ? "light" : "dark");
+  })();
+</script>
+<link rel="stylesheet" href="a/themes.css">
+<link rel="stylesheet" href="a/app.css">
+</head>
+<body>
+
+<header id="topbar">
+  <div class="bar-inner">
+    <div class="bar-title" id="bar-title">MapleSU</div>
+    <button class="icon-btn" id="theme" aria-label="配色">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/>
+        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+      </svg>
+    </button>
+    <button class="icon-btn" id="refresh" aria-label="刷新">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+        <path d="M21 3v5h-5"/>
+        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+        <path d="M8 16H3v5"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="large-head" id="large-head">
+    <h1 id="large-title">MapleSU</h1>
+  </div>
+  <section id="t-home" class="on"></section>
+  <section id="t-users" aria-label="超级用户">
+    <div id="user-toolbar"></div>
+    <div id="users"></div>
+    <div id="sulog-sub" style="display:none">
+      <div id="sulog-toolbar"></div>
+      <div id="sulog"></div>
+    </div>
+  </section>
+  <section id="t-modules">
+    <div id="mod-toolbar"></div>
+    <div id="modules"></div>
+  </section>
+  <section id="t-settings">
+    <div id="settings"></div>
+    <div id="about"></div>
+  </section>
+  <section id="t-hidden"></section>
+</main>
+
+<nav id="dock" role="tablist" aria-label="主导航">
+  <span class="dock-pill" id="dock-pill" aria-hidden="true"></span>
+  <button data-tab="home" class="on" role="tab" aria-selected="true">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+      <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+    </svg>
+    <span>主页</span>
+  </button>
+  <button data-tab="users" role="tab" aria-selected="false">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+      <path d="m9 12 2 2 4-4"/>
+    </svg>
+    <span>超级用户</span>
+  </button>
+  <button data-tab="modules" role="tab" aria-selected="false">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/>
+    </svg>
+    <span>模块</span>
+  </button>
+  <button data-tab="settings" role="tab" aria-selected="false">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 17H5"/>
+      <path d="M19 7h-9"/>
+      <circle cx="17" cy="17" r="3"/>
+      <circle cx="7" cy="7" r="3"/>
+    </svg>
+    <span>设置</span>
+  </button>
+  <button data-tab="hidden" role="tab" aria-selected="false">
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/>
+      <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/>
+      <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/>
+      <path d="m2 2 20 20"/>
+    </svg>
+    <span>隐藏与恢复</span>
+  </button>
+</nav>
+
+<div id="mask"><div class="sheet" id="sheet"></div></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // 本资源包只服务 Ultra 模式；前缀由路径前两段解析（Ultra 服务端不注入模板变量）。
+  window.MAPLESU_LITE_MODE = true;
+  window.__MAPLESU_WEB_PREFIX__ = (function () {
+    var parts = location.pathname.split("/").filter(Boolean);
+    return parts.length >= 2 ? "/" + parts[0] + "/" + parts[1] : "";
+  })();
+</script>
+<script src="a/compat-input.js"></script>
+<script src="a/app.js"></script>
+</body>
+</html>

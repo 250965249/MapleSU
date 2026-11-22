@@ -1,0 +1,31 @@
+{
+  "idx": 2,
+  "name": "mm_struct.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/mm_struct.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 8,
+    "recovered": 8,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "f712ffd94ac59e20f572ee4aa427923286f3e3535a5ed7b7d6ccf23e2f86d2f7",
+    "bytes": 199892
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Two-way symbol gate clean: T 8/8 exported resolvers, U 97/97 imports, raw diff empty both ways, no allowance consumed. Rebuilt in the frozen member's container with the member's flagsProfile."
+  },
+  "notes": ""
+}

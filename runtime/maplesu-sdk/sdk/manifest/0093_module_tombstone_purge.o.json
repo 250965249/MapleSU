@@ -1,0 +1,110 @@
+{
+  "idx": 93,
+  "name": "module_tombstone_purge.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module/module_tombstone_purge.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 20,
+    "recovered": 20,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "cff0b8f43138092aed81a18435e1a283c7337c7ac5b621d1741d1bf2a739a8fe",
+    "bytes": 301032
+  },
+  "evidence": [
+    "notes/work/AGENT115/STATUS.md",
+    "notes/work/AGENT115/proof/0093/built.a",
+    "notes/work/AGENT115/proof/0093/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "符号闸门 PASS（实测）：T 3/3、U 189/189，原始双向差集为空，基线消耗 0。行为等价实测未达 0.95 档：函数清单 408/420、missing 12、extra 20、call 385/408、bag_min 0.0、bag_mean 0.9347。构建配方 stages=1（见 recipe 字段）。",
+    "measured": {
+      "strongT": 3,
+      "strongU": 189,
+      "strongTMissing": 0,
+      "strongTExtra": 0,
+      "strongUMissing": 0,
+      "strongUExtra": 0,
+      "definedKinds": {
+        "V": 44,
+        "r": 83,
+        "t": 95,
+        "W": 331,
+        "d": 7,
+        "b": 3,
+        "T": 2,
+        "B": 1
+      },
+      "newObjectBytes": 303208,
+      "newObjectSha256": "f3906a34bbc4f07dd9ebcaf86220b8c66961702540798474fe6e2e97381ec507",
+      "baselineConsumed": [],
+      "recipeStages": 1,
+      "verifyEquivRefFunctions": 420,
+      "verifyEquivNewFunctions": 428,
+      "verifyEquivMatched": 408,
+      "verifyEquivMissing": 12,
+      "verifyEquivExtra": 20,
+      "verifyEquivCallTargetMatch": 385,
+      "verifyEquivBagMin": 0.0,
+      "verifyEquivBagMean": 0.9347,
+      "verifyEquivSeqMean": 0.9419,
+      "verifyEquivRefFunctionsMissingNames": [
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_0NS_9allocatorIS9_EES6_ED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_0NS_9allocatorIS9_EES6_E7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_0NS_9allocatorIS9_EES6_E7__cloneEPNS0_6__baseIS6_EE",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_0NS_9allocatorIS9_EES6_E7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_0NS_9allocatorIS9_EES6_E18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_0NS_9allocatorIS9_EES6_EclEv",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_1NS_9allocatorIS9_EES6_ED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_1NS_9allocatorIS9_EES6_E7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_1NS_9allocatorIS9_EES6_E7__cloneEPNS0_6__baseIS6_EE",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_1NS_9allocatorIS9_EES6_E7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_1NS_9allocatorIS9_EES6_E18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEbRNS_8functionIF7KModErrvEEEE3$_1NS_9allocatorIS9_EES6_EclEv"
+      ],
+      "verifyEquivExtraNames": [
+        "_ZNSt6__ndk110unique_ptrIN12_GLOBAL__N_120MyAsmJitErrorHandlerENS_14default_deleteIS2_EEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN12_GLOBAL__N_113acquire_kpathERKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEERNS3_12scoped_kpathEE3$_0NS7_ISE_EEF7KModErrPN6asmjit5v1_163a649AssemblerEEEENS_22__allocator_destructorINS7_ISN_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_16InodeTimePatch16EE3$_0NS_9allocatorISA_EEF7KModErrvEED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_16InodeTimePatch16EE3$_0NS_9allocatorISA_EEF7KModErrvEE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_16InodeTimePatch16EE3$_0NS_9allocatorISA_EEF7KModErrvEE7__cloneEPNS0_6__baseISE_EE",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_16InodeTimePatch16EE3$_0NS_9allocatorISA_EEF7KModErrvEE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_16InodeTimePatch16EE3$_0NS_9allocatorISA_EEF7KModErrvEE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_16InodeTimePatch16EE3$_0NS_9allocatorISA_EEF7KModErrvEEclEv",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS4_16InodeTimePatch16EE3$_0NS_9allocatorISB_EEF7KModErrvEEENS_22__allocator_destructorINSC_ISG_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_15InodeTimePatch8ERA3_KNS3_15InodeTimePatch4EE3$_0NS_9allocatorISE_EEF7KModErrvEED0Ev",
+        "_ZNKSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_15InodeTimePatch8ERA3_KNS3_15InodeTimePatch4EE3$_0NS_9allocatorISE_EEF7KModErrvEE7__cloneEv",
+        "_ZNKSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_15InodeTimePatch8ERA3_KNS3_15InodeTimePatch4EE3$_0NS_9allocatorISE_EEF7KModErrvEE7__cloneEPNS0_6__baseISI_EE",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_15InodeTimePatch8ERA3_KNS3_15InodeTimePatch4EE3$_0NS_9allocatorISE_EEF7KModErrvEE7destroyEv",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_15InodeTimePatch8ERA3_KNS3_15InodeTimePatch4EE3$_0NS_9allocatorISE_EEF7KModErrvEE18destroy_deallocateEv",
+        "_ZNSt6__ndk110__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS3_15InodeTimePatch8ERA3_KNS3_15InodeTimePatch4EE3$_0NS_9allocatorISE_EEF7KModErrvEEclEv",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN15default_modules22module_tombstone_purgeL26make_kernel_patch_apply_fnEPKcmRA3_KNS4_15InodeTimePatch8ERA3_KNS4_15InodeTimePatch4EE3$_0NS_9allocatorISF_EEF7KModErrvEEENS_22__allocator_destructorINSG_ISK_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN12_GLOBAL__N_112scoped_kpath5resetEvEUlPN6asmjit5v1_163a649AssemblerEE_NS_9allocatorISA_EEF7KModErrS9_EEENS_22__allocator_destructorINSB_ISF_EEEEED2B7v170000Ev",
+        "_ZNSt6__ndk110unique_ptrINS_10__function6__funcI3$_0NS_9allocatorIS3_EEF7KModErrvEEENS_22__allocator_destructorINS4_IS8_EEEEED2B7v170000Ev",
+        "OUTLINED_FUNCTION_34",
+        "OUTLINED_FUNCTION_35"
+      ]
+    }
+  },
+  "notes": "EQUIVALENCE(measured, verify_equiv 0.95): fn 408/420 missing 12 extra 20 call_target_match 385/408 bag_min 0.0 bag_mean 0.9347 seq_mean 0.9419; recipe stages=1",
+  "blockedBy": [
+    "verify_equiv 函数清单不一致：missing 12、extra 20（残余名字见 selfCheck.measured）",
+    "verify_equiv call target 385/408：函数指令布局未逐条对齐（分支目标偏移随体积差漂移）",
+    "verify_equiv bag_min 0.0 < 0.95：OUTLINED_FUNCTION 片段切分/栈槽基址残余"
+  ]
+}

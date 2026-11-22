@@ -1,0 +1,196 @@
+/* Execute the production index functions with explicit native API seams. */
+#include <assert.h>
+#include <errno.h>
+#include <pthread.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef uint32_t u32;
+typedef uint64_t u64;
+static unsigned checks;
+#define CHECK(x) do { ++checks; if (!(x)) { fprintf(stderr, "%u: %s\n", __LINE__, #x); abort(); } } while (0)
+static _Thread_local u32 caller;
+static _Thread_local bool atomic_context, foreign_namespace, pause_lookup;
+static int init_user_ns, other_namespace;
+static bool in_atomic(void) { return atomic_context; }
+static bool irqs_disabled(void) { return false; }
+static void *current_user_ns(void) { return foreign_namespace ? &other_namespace : &init_user_ns; }
+static u32 current_uid(void) { return caller; }
+static u32 current_euid(void) { return caller; }
+#define __kuid_val(x) (x)
+#define EXPORT_SYMBOL_GPL(x)
+#define GFP_KERNEL 0
+static unsigned allocated;
+static bool allocation_error;
+static void *copy_fault;
+static void *kzalloc(size_t bytes, int flags) {
+    (void)flags;
+    if (allocation_error) return NULL;
+    void *value = calloc(1, bytes);
+    if (value) __atomic_add_fetch(&allocated, 1, __ATOMIC_RELAXED);
+    return value;
+}
+static void kfree(void *value) { if (value) { __atomic_sub_fetch(&allocated, 1, __ATOMIC_RELAXED); free(value); } }
+#define struct_size(ptr, field, count) (sizeof(*(ptr)) + sizeof((ptr)->field[0]) * (count))
+static int copy_from_kernel_nofault(void *dst, const void *src, size_t bytes) {
+    if (src == copy_fault) return -EFAULT;
+    memcpy(dst, src, bytes); return 0;
+}
+static pthread_rwlock_t read_side = PTHREAD_RWLOCK_INITIALIZER;
+static void rcu_read_lock(void) { assert(!pthread_rwlock_rdlock(&read_side)); }
+static void rcu_read_unlock(void) { assert(!pthread_rwlock_unlock(&read_side)); }
+static void synchronize_rcu(void) { assert(!pthread_rwlock_wrlock(&read_side)); assert(!pthread_rwlock_unlock(&read_side)); }
+#define DEFINE_MUTEX(name) pthread_mutex_t name = PTHREAD_MUTEX_INITIALIZER
+#define mutex_lock(name) assert(!pthread_mutex_lock(name))
+#define mutex_unlock(name) assert(!pthread_mutex_unlock(name))
+struct rcu_head { struct rcu_head *next; void *object; };
+static struct rcu_head *pending;
+static pthread_mutex_t pending_lock = PTHREAD_MUTEX_INITIALIZER;
+static void defer(void *object, struct rcu_head *head) {
+    mutex_lock(&pending_lock); head->object = object; head->next = pending; pending = head; mutex_unlock(&pending_lock);
+}
+#define kfree_rcu(object, member) defer((object), &(object)->member)
+static void flush_rcu(void) {
+    assert(!pthread_rwlock_wrlock(&read_side));
+    mutex_lock(&pending_lock);
+    while (pending) { struct rcu_head *head = pending; pending = head->next; kfree(head->object); }
+    mutex_unlock(&pending_lock);
+    assert(!pthread_rwlock_unlock(&read_side));
+}
+struct hlist_node { struct hlist_node *next, **previous; };
+#define DEFINE_HASHTABLE(name, bits) struct hlist_node *name[1U << (bits)]
+#define container_of(ptr, type, member) ((type *)((char *)(ptr) - offsetof(type, member)))
+#define hash_slot(table, key) ((((unsigned long)(key) >> 3) * 11400714819323198485UL) >> 58)
+#define hash_for_each_possible(table, object, member, key) \
+    for (struct hlist_node *node_ = __atomic_load_n(&(table)[hash_slot(table, key)], __ATOMIC_ACQUIRE); \
+         node_ && (((object) = container_of(node_, __typeof__(*(object)), member)), 1); \
+         node_ = __atomic_load_n(&node_->next, __ATOMIC_ACQUIRE))
+#define hash_for_each_possible_rcu hash_for_each_possible
+#define hash_add_rcu(table, node, key) do { \
+    struct hlist_node **head_ = &(table)[hash_slot(table, key)]; \
+    (node)->next = *head_; (node)->previous = head_; \
+    if (*head_) (*head_)->previous = &(node)->next; \
+    __atomic_store_n(head_, (node), __ATOMIC_RELEASE); \
+} while (0)
+static void hash_del_rcu(struct hlist_node *node) {
+    __atomic_store_n(node->previous, node->next, __ATOMIC_RELEASE);
+    if (node->next) node->next->previous = node->previous;
+}
+static pthread_mutex_t pause_lock = PTHREAD_MUTEX_INITIALIZER;
+static pthread_cond_t pause_event = PTHREAD_COND_INITIALIZER;
+static bool paused, resume;
+static u32 hash_32(u32 value, unsigned bits) {
+    if (pause_lookup) {
+        mutex_lock(&pause_lock); paused = true; pthread_cond_broadcast(&pause_event);
+        while (!resume) pthread_cond_wait(&pause_event, &pause_lock);
+        mutex_unlock(&pause_lock); pause_lookup = false;
+    }
+    return (value * UINT32_C(0x61c88647)) >> (32 - bits);
+}
+static unsigned long raw_reads;
+#define READ_ONCE(value) (__atomic_add_fetch(&raw_reads, 1, __ATOMIC_RELAXED), __atomic_load_n(&(value), __ATOMIC_ACQUIRE))
+#define smp_load_acquire(ptr) __atomic_load_n((ptr), __ATOMIC_ACQUIRE)
+
+/* ACTUAL_INDEX_FUNCTIONS */
+
+static unsigned long control;
+static bool flushing, flushed;
+static void *paused_reader(void *arg) {
+    (void)arg; caller = 10123; pause_lookup = true;
+    if (maplesu_legacy_uid_lookup((unsigned long)&control) != 1) abort();
+    return NULL;
+}
+static void *flusher(void *arg) {
+    (void)arg; __atomic_store_n(&flushing, true, __ATOMIC_RELEASE);
+    flush_rcu(); __atomic_store_n(&flushed, true, __ATOMIC_RELEASE); return NULL;
+}
+static bool running;
+static void *stress_reader(void *arg) {
+    (void)arg; caller = 10123;
+    while (__atomic_load_n(&running, __ATOMIC_ACQUIRE))
+        if (maplesu_legacy_uid_lookup((unsigned long)&control) != 1) abort();
+    return NULL;
+}
+static void store(unsigned long value) { __atomic_store_n(&control, value, __ATOMIC_RELEASE); }
+int main(void) {
+    u32 plain[] = { 20123, 10123, 0 }, one[] = { 10123, 0 };
+    CHECK(maplesu_legacy_uid_lookup(0) == 1);
+    store((unsigned long)plain); caller = 10123;
+    CHECK(maplesu_legacy_uid_lookup((unsigned long)&control) == 1);
+    caller = 110123; CHECK(!maplesu_legacy_uid_lookup((unsigned long)&control));
+    caller = 0;
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)one, 1) == 0);
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)one, 1) == 0 && allocated == 1);
+    one[0] = 10124;
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)one, 1) == -ESTALE && allocated == 1);
+    one[0] = 10123;
+    store((unsigned long)one); caller = 10123; raw_reads = 0;
+    CHECK(maplesu_legacy_uid_lookup((unsigned long)&control) == 1 && !raw_reads);
+    caller = 110123; CHECK(!maplesu_legacy_uid_lookup((unsigned long)&control) && !raw_reads);
+    CHECK(maplesu_legacy_uid_index_forget((unsigned long)one) == -EPERM);
+    caller = 0; atomic_context = true;
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)one, 1) == -EWOULDBLOCK);
+    atomic_context = false; foreign_namespace = true;
+    CHECK(maplesu_legacy_uid_index_forget((unsigned long)one) == -EPERM);
+    foreign_namespace = false;
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)one, 0) == -EINVAL);
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)one, 4096) == -EINVAL);
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)one + 1, 1) == -EINVAL);
+    allocation_error = true;
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)one, 1) == -ENOMEM);
+    allocation_error = false; copy_fault = one;
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)one, 1) == -EFAULT);
+    copy_fault = one + 1;
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)one, 1) == -EFAULT); copy_fault = NULL;
+    u32 invalid[] = { 10123, 10123, 0 };
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)invalid, 2) == -EINVAL);
+    invalid[1] = 10122; CHECK(maplesu_legacy_uid_index_prepare((unsigned long)invalid, 2) == -EINVAL);
+    invalid[1] = UINT32_MAX; CHECK(maplesu_legacy_uid_index_prepare((unsigned long)invalid, 2) == -EINVAL);
+    invalid[0] = 0; CHECK(maplesu_legacy_uid_index_prepare((unsigned long)invalid, 1) == -EINVAL);
+    invalid[0] = 10123; invalid[1] = 10124;
+    CHECK(maplesu_legacy_uid_index_prepare((unsigned long)invalid, 1) == -EINVAL);
+    CHECK(allocated == 1);
+
+    /* An index already acquired by a reader survives unlink until RCU grace. */
+    pthread_t reader, freeing;
+    CHECK(!pthread_create(&reader, NULL, paused_reader, NULL));
+    mutex_lock(&pause_lock); while (!paused) pthread_cond_wait(&pause_event, &pause_lock); mutex_unlock(&pause_lock);
+    store((unsigned long)plain);
+    CHECK(!maplesu_legacy_uid_index_forget((unsigned long)one) && allocated == 1);
+    CHECK(!pthread_create(&freeing, NULL, flusher, NULL));
+    while (!__atomic_load_n(&flushing, __ATOMIC_ACQUIRE)) { }
+    CHECK(!__atomic_load_n(&flushed, __ATOMIC_ACQUIRE) && allocated == 1);
+    mutex_lock(&pause_lock); resume = true; pthread_cond_broadcast(&pause_event); mutex_unlock(&pause_lock);
+    CHECK(!pthread_join(reader, NULL) && !pthread_join(freeing, NULL));
+    CHECK(!allocated && !maplesu_legacy_uid_index_forget((unsigned long)one));
+
+    u32 *large = calloc(4096, sizeof(u32)); CHECK(large);
+    for (u32 i = 0; i < 4095; ++i) large[i] = 10000U + i * 100000U;
+    CHECK(!maplesu_legacy_uid_index_prepare((unsigned long)large, 4095));
+    store((unsigned long)large); raw_reads = 0;
+    for (u32 i = 0; i < 4095; ++i) {
+        caller = large[i]; CHECK(maplesu_legacy_uid_lookup((unsigned long)&control) == 1);
+        ++caller; CHECK(!maplesu_legacy_uid_lookup((unsigned long)&control));
+    }
+    CHECK(!raw_reads); caller = 0; store(0); synchronize_rcu();
+    CHECK(!maplesu_legacy_uid_index_forget((unsigned long)large)); flush_rcu(); free(large);
+
+    /* Reused allocation addresses cannot retain an index from an old grant. */
+    u32 *live = calloc(3, sizeof(u32)); CHECK(live); live[0] = 10123; live[1] = 20123;
+    CHECK(!maplesu_legacy_uid_index_prepare((unsigned long)live, 2)); store((unsigned long)live);
+    running = true; CHECK(!pthread_create(&reader, NULL, stress_reader, NULL));
+    for (u32 i = 0; i < 500; ++i) {
+        u32 *next = calloc(3, sizeof(u32)); CHECK(next); next[0] = 10123; next[1] = 20124 + i;
+        CHECK(!maplesu_legacy_uid_index_prepare((unsigned long)next, 2));
+        store((unsigned long)next); synchronize_rcu();
+        CHECK(!maplesu_legacy_uid_index_forget((unsigned long)live)); flush_rcu(); free(live); live = next;
+    }
+    __atomic_store_n(&running, false, __ATOMIC_RELEASE); CHECK(!pthread_join(reader, NULL));
+    store(0); synchronize_rcu(); CHECK(!maplesu_legacy_uid_index_forget((unsigned long)live)); flush_rcu(); free(live);
+    CHECK(!allocated && !pending);
+    printf("legacy-index: %u assertions, 500 replacements, no raw list reads for indexed lookups\n", checks);
+    return 0;
+}

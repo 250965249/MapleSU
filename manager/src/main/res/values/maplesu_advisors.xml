@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 「关于 MapleSU」里的用户顾问计划卡片。与 values-zh-rCN/maplesu_advisors.xml 键一一对应。 -->
+<resources>
+    <!-- Picks role or role_en from assets/maplesu/advisors/members.json: "en" here, "zh" in Simplified Chinese. -->
+    <string name="advisors_language">en</string>
+    <string name="advisors_title">MapleSU User Advisor Program</string>
+    <string name="advisors_summary">%1$d members · Tap to expand</string>
+    <string name="advisors_hint">Drag to explore · Pinch to zoom · Tap an avatar</string>
+    <string name="advisors_back">All members</string>
+    <string name="advisors_author">Author</string>
+    <string name="advisors_thanks">Special thanks</string>
+    <string name="advisors_beta">Beta tester</string>
+    <string name="advisors_beta_thanks">Thank you for your invaluable contributions during the beta.</string>
+    <string name="advisors_view">View introduction</string>
+    <string name="advisors_open_link">Open link</string>
+    <string name="advisors_expanded">Expanded</string>
+    <string name="advisors_collapsed">Collapsed</string>
+</resources>

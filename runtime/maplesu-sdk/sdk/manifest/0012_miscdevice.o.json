@@ -1,0 +1,35 @@
+{
+  "idx": 12,
+  "name": "miscdevice.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/miscdevice.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "7b7ba5b3a4a2b4f6330c58c5f423546361dc9fd64e40bbb5e8df8b790c05cbef",
+    "bytes": 25452
+  },
+  "evidence": [
+    "notes/work/LAST14-A/proof/012/EQUIVALENCE.md",
+    "notes/work/LAST14-A/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "note": "Two-way raw symbol gate: T 1/1, U 27/27, raw diff empty both ways; zero gate-symbol-baseline entries consumed. verify_equiv: status=equivalent, functions 31/31, missing=0, extra=0, call_target_match=31, bag_min=1.0, bag_mean=1.0."
+  },
+  "notes": "get_miscdevice_offsets is a pure constant table (0/8/16/24): struct miscdevice layout is identical on every supported kernel, so this member does no probing at all."
+}

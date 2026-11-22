@@ -1,0 +1,297 @@
+{
+  "idx": 60,
+  "name": "maplesu_root.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu_core/maplesu_root.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 52,
+    "recovered": 52,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "a1277b4f981cec026ce71fb83c3a3cb6a2dedcc5c89c3c4dc50e7315adef9fd7",
+    "bytes": 55064
+  },
+  "evidence": [
+    "notes/work/AGENT116/STATUS.md",
+    "notes/work/AGENT116/final-EQUIVALENCE.md",
+    "notes/work/AGENT116/proof/060/equiv.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "T": {
+        "missing": [],
+        "extra": []
+      },
+      "U": {
+        "missing": [],
+        "extra": []
+      },
+      "TtWw": {
+        "missing": [
+          "_ZN10skroot_env17ModuleBannerGuard13print_featureEPKcb"
+        ],
+        "extra": []
+      },
+      "localT": {
+        "missing": [
+          "GCC_except_table16",
+          "GCC_except_table28",
+          "GCC_except_table31",
+          "GCC_except_table32",
+          "GCC_except_table45",
+          "GCC_except_table7"
+        ],
+        "extra": [
+          "GCC_except_table11",
+          "GCC_except_table14",
+          "GCC_except_table25",
+          "GCC_except_table26",
+          "GCC_except_table44",
+          "GCC_except_table8"
+        ]
+      }
+    },
+    "note": "MEASURED on the official archive produced by build.py --all: functions 52/52 (missing 0, extra 0); call-target sets equal 52/52; bag_min 0.5, bag_mean 0.9667, seq_mean 0.9772. NOT AT BAR: bag_min 0.5 < 0.95. Archive: build/ag116b/out/libkernel_module_kit_static.a sha256=8f6a6361ef69d50d09fde21258315fcf5ec39f91fe9696649746d1f9de667f40.",
+    "equivalence": {
+      "functions": "52/52",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "52/52",
+      "bag_min": 0.5,
+      "bag_mean": 0.9667,
+      "seq_mean": 0.9772
+    },
+    "adjustedDiff": [],
+    "baselineConsumed": 0
+  },
+  "notes": "verify_equiv: diverges - inventory 52/52, bag_mean 0.9663, bag_min 0.5000 (OUTLINED_FUNCTION_3/4 0.5, OUTLINED_FUNCTION_1 0.6, get_root 0.7429, ModuleBannerGuard::C2 0.9186), call targets 49/52. All 52 functions have identical relocated external call-target sets (the two apparent call diffs are a machine-outliner numbering swap of the same two fragments). Recovered shape this round: -fno-function-sections/-fno-data-sections, static noinline ModuleBannerGuard::print_feature (frozen object carries the weak symbol and calls it from the constructor). Residual hunks in notes/work/AGENT109/residual/0060_skroot_root.md; blocked by frozen-object codegen revision (frame layout: frozen addresses locals from sp, rebuild from x29 whenever inlined allocas are present).",
+  "privateHeaders": [
+    "include/maplesu_root_command_private.h",
+    "include/maplesu_root_private.h",
+    "src/maplesu/compat/root_legacy_abi.h"
+  ],
+  "p3p4RootProcessR11": {
+    "dateUtc": "2026-11-18",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/skroot_core/skroot_root.cpp",
+        "bytes": 17664,
+        "sha256": "36148f0b52237502136d57ffb87ebe9b0ab8f5b791d7b80e10d634994c03e350"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_root_command_private.h",
+        "bytes": 1476,
+        "sha256": "c5ec435997b90b7a239e885a2538523d26b683466c41bc1200c477af6e40eaa2"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r11/CONTRACT.md",
+    "publicSignaturesChanged": false,
+    "kernelWireChanged": false,
+    "transportProviderChanged": false,
+    "rootTransitionLayoutChanged": false,
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false,
+    "selectionCoordinatesPrecedeUnifiedNamingMigration": true,
+    "wholePhaseComplete": false
+  },
+  "p3p4RootReceiptR12": {
+    "dateUtc": "2026-11-18",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/skroot_core/skroot_root.cpp",
+        "bytes": 23413,
+        "sha256": "b6a251035c0cc7d2f94f2777f99967cca14cc24ab2763410a4de8166d7b0c0eb"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_root_command_private.h",
+        "bytes": 2014,
+        "sha256": "8ea7bc8263c6b139f94baed917181897e1dc5f6c8e1c620213f4fc9c694b215a"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_root_private.h",
+        "bytes": 1710,
+        "sha256": "2e1313e9b34a2ffc754b3298daad113f73255442a6c0ed1ac485a2593e0e3c60"
+      },
+      {
+        "path": "runtime/upstream-pro/sdk/include/maplesu_request_private.h",
+        "bytes": 9042,
+        "sha256": "8adaaf19644dc534c91c9da0b99f9fd951332a543bef0ec90b7c35dd25389445"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/r12/CONTRACT.md",
+    "publicSignaturesChanged": false,
+    "rootTransitionLayoutChanged": false,
+    "kernelWireChanged": false,
+    "m046ProviderChanged": false,
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false,
+    "sourceCoordinatesPrecedeUnifiedNamingMigration": true
+  },
+  "p3p4CurrentTaskState20261118": {
+    "dateUtc": "2026-11-18",
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/task-state-20261118/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu_core/maplesu_root.cpp",
+        "bytes": 25217,
+        "sha256": "67a160d83ae7b15f5afe3ff3126b85e2e192ec37a54af1e942823f59df3dc01c"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_root_private.h",
+        "bytes": 1873,
+        "sha256": "a71575e756ea235f5137a062633894203be01af8aa8a1a6b584f4d979b949d4e"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_root_command_private.h",
+        "bytes": 2334,
+        "sha256": "d5e5bc1ce0ce7938fab03bd1be1094dc5985f5ac53bf284ac17e0a5baadc5960"
+      }
+    ],
+    "canonicalRecipeChanged": false,
+    "privateRootTransitionLayoutChanged": true,
+    "publicSignaturesChanged": false,
+    "compiled": false,
+    "tested": false,
+    "targetValidated": false,
+    "deviceValidated": false,
+    "historicalEvidenceRetainsItsOriginalScope": true,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "p3p4NullableOwnerCommand20261119": {
+    "dateUtc": "2026-11-19",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu_core/maplesu_root.cpp",
+        "bytes": 31132,
+        "sha256": "be51aee4ca25f55f6f6a5ec7f2a6cfb9691dd7d26524724529f8dec697b2f362"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_root_command_private.h",
+        "bytes": 3199,
+        "sha256": "f9b51de97bc8cd32cb5ffc00f43e3bcc73b6a6bdd98a27f4b2edce6823031266"
+      }
+    ],
+    "selectedSource": "src/maplesu_core/maplesu_root.cpp",
+    "nullableIdentity": "nullptr-only-authenticated-ManagerOwner; explicit-Key-never-downgrades-an-Owner-thread",
+    "publicSignaturesChanged": false,
+    "kernelWireChanged": false,
+    "legacyCommandPipeShapeChanged": false,
+    "ownerOnlyCommandTail": "independent-SESSION_CLOSE-receipt-eight-scalars-after-original-root-block",
+    "privateCommandResultTailChanged": true,
+    "rootTransitionLayoutChanged": false,
+    "jniSourceChanged": false,
+    "jniConsumerMustRecompile": true,
+    "compiled": false,
+    "tested": false,
+    "targetValidated": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "p3p4InstallationHelperRootStatus20261119": {
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/CONTRACT.md",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu_core/maplesu_root.cpp",
+        "bytes": 31132,
+        "sha256": "be51aee4ca25f55f6f6a5ec7f2a6cfb9691dd7d26524724529f8dec697b2f362"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_root_command_private.h",
+        "bytes": 3199,
+        "sha256": "f9b51de97bc8cd32cb5ffc00f43e3bcc73b6a6bdd98a27f4b2edce6823031266"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_request_private.h",
+        "bytes": 13577,
+        "sha256": "4025fa4f3bda491061a243efa94f572d39089bcf7b99d8ff917d6bcc86fd525a"
+      }
+    ],
+    "canonicalRecipeChanged": false,
+    "publicSignaturesChanged": false,
+    "privateAbiRequiresSameHeaderConsumers": true,
+    "compiled": false,
+    "tested": false,
+    "targetQualified": false,
+    "deviceValidated": false,
+    "P3Complete": false,
+    "P4Complete": false
+  },
+  "coreInstallationRevision2_20261119": {
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu_core/maplesu_root_private.h",
+        "bytes": 7271,
+        "sha256": "d191bc24727ff30fee0fb4a9dd356603321424e9fde411a711d469569d144a51"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu_core/maplesu_root.cpp",
+        "bytes": 31132,
+        "sha256": "be51aee4ca25f55f6f6a5ec7f2a6cfb9691dd7d26524724529f8dec697b2f362"
+      }
+    ],
+    "contract": "docs/parallel/2026-11-17/a-p3-p4/installation-channel-20261119/CONTRACT.md",
+    "preserveHistoricalSnapshotSections": true,
+    "compiled": false,
+    "tested": false,
+    "deviceValidated": false,
+    "productionWritten": false,
+    "canonicalSourcesChange": "none"
+  },
+  "p7FailedRootOutput20261121": {
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu_core/maplesu_root.cpp",
+        "sha256": "d61619654e78e58037df8e02d3a95302efad455af0a3566d839886a166eacea7"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_root_command_private.h",
+        "sha256": "a625e3fd4f51769e6b7826f579f597b9f80509ee34a34543cc578285318ff844"
+      }
+    ],
+    "contract": "Fully received output from a started shell survives Read/Pclose/CLOSE/Wait failure; original error and phase remain; missing output frame leaves output unchanged; no replay.",
+    "publicAbiChanged": false,
+    "privateResultLayoutChanged": false,
+    "externalDefinitionsUnchanged": 57,
+    "hostChecks": 378,
+    "hostScenarios": 32,
+    "hostFailures": 0,
+    "evidenceDirectory": ".tmp/p7-development-20261121/root-receipts/validation",
+    "deviceValidated": false,
+    "formalAssetsPromoted": false
+  },
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu_core/maplesu_root.cpp",
+        "sha256": "d61619654e78e58037df8e02d3a95302efad455af0a3566d839886a166eacea7"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_root_command_private.h",
+        "sha256": "a625e3fd4f51769e6b7826f579f597b9f80509ee34a34543cc578285318ff844"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  }
+}

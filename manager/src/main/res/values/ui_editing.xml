@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_editing_discard_title">Discard changes?</string>
+    <string name="ui_editing_discard_content">Your template has unsaved changes. Save it before leaving to keep them.</string>
+    <string name="ui_editing_discard">Discard</string>
+    <string name="ui_editing_keep">Keep editing</string>
+    <string name="ui_editing_delete_content">Delete the template “%1$s”? Deletion is permanent.</string>
+    <string name="ui_editing_delete_failed">Template was not deleted. Try again.</string>
+    <string name="ui_editing_wait">Saving your changes. Please wait a moment.</string>
+    <string name="ui_editing_saving_authorization">Saving authorization…</string>
+</resources>

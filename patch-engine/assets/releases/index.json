@@ -1,0 +1,242 @@
+{
+  "order": [
+    "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+    "6.12.58-android16-6-g376529f3e739-ab15072794-4k",
+    "6.12.23-android16-5-g188c695beb6d-ab14367805-4k",
+    "6.1.25-android14-11-o-gf12b379cb280",
+    "5.10.226-android12-9-o-gb4f7990ee2d5"
+  ],
+  "releases": {
+    "5.10.226-android12-9-o-gb4f7990ee2d5": {
+      "assets": {
+        "ir2Spec": "5.10.226-android12-9-o-gb4f7990ee2d5.ir2.spec",
+        "ir2SpecSha256": "39df90e78dcd0b120906db13bc54316bf2ac209c261c7998c72c0cf82b0db147",
+        "irSpec": "5.10.226-android12-9-o-gb4f7990ee2d5.ir.spec",
+        "irSpecJson": "5.10.226-android12-9-o-gb4f7990ee2d5.ir.spec.json",
+        "irSpecSha256": "60fc8ac15fac4306fbd4a0a3fa1b59bedbf1a444d19700e6e43df0ca610dcc72",
+        "kernelSymbolOffset": "5.10.226-android12-9-o-gb4f7990ee2d5.KernelSymbolOffset.json",
+        "readback": "5.10.226-android12-9-o-gb4f7990ee2d5.readback.json"
+      },
+      "blocks": 12,
+      "byteIdenticalToReference": null,
+      "dryRun": true,
+      "engine": {
+        "changedBytes": 445,
+        "edits": 18,
+        "error": null,
+        "ok": true,
+        "plan": "PATCH_PLAN_OK edits=18 credentialInitialized=false flashableCandidate=false",
+        "replay": "PLAN_REPLAY_OK changedBytes=445",
+        "returncode": 0
+      },
+      "image": "kernel.bin",
+      "imageBytes": 48045172,
+      "imageSha256": "9465fbb7871eddc4d4115174e5e378caa7526123b9af989fab3f906b1ffea33b",
+      "label": "OnePlus10_Pro_5.10",
+      "release": "5.10.226-android12-9-o-gb4f7990ee2d5",
+      "ruleDetail": {
+        "R-audit": "audit_log_start returns NULL (callers treat NULL as auditing disabled)",
+        "R-cfi": "CFI v1: 3 check entry point(s) neutralised, landing pads preserved",
+        "R-execve": "do_execveat_common entry hooked, uid gate + commit_creds(prepare_kernel_cred(&init_task)) in the cave",
+        "R-filldir": "filldir64 5.10.226: name gate on b'MapleHid', skip value 0 (int return)"
+      },
+      "rules": {
+        "R-audit": "applied",
+        "R-cfi": "applied",
+        "R-execve": "applied",
+        "R-filldir": "applied"
+      },
+      "struct": {
+        "cred": 1920,
+        "cred_uid": 4,
+        "seccomp": 2120
+      },
+      "symbols": 143252
+    },
+    "6.1.25-android14-11-o-gf12b379cb280": {
+      "assets": {
+        "ir2Spec": "6.1.25-android14-11-o-gf12b379cb280.ir2.spec",
+        "ir2SpecSha256": "5f059e3577d08928e1402420bb0f397d59f2f98b84adace8bb2238d64869954f",
+        "irSpec": "6.1.25-android14-11-o-gf12b379cb280.ir.spec",
+        "irSpecJson": "6.1.25-android14-11-o-gf12b379cb280.ir.spec.json",
+        "irSpecSha256": "f30f77585a4adae21d979a6a90f4ddd38f1fd7381d74d8ca644f6091035e76f2",
+        "kernelSymbolOffset": "6.1.25-android14-11-o-gf12b379cb280.KernelSymbolOffset.json",
+        "readback": "6.1.25-android14-11-o-gf12b379cb280.readback.json"
+      },
+      "blocks": 9,
+      "byteIdenticalToReference": null,
+      "dryRun": true,
+      "engine": {
+        "changedBytes": 463,
+        "edits": 18,
+        "error": null,
+        "ok": true,
+        "plan": "PATCH_PLAN_OK edits=18 credentialInitialized=false flashableCandidate=false",
+        "replay": "PLAN_REPLAY_OK changedBytes=463",
+        "returncode": 0
+      },
+      "image": "kernel.bin",
+      "imageBytes": 34494976,
+      "imageSha256": "71c55accaab6932e073f46ed1877923c5edd165f7236813ee33aab92c7d3bc46",
+      "label": "OnePlus12_6.1",
+      "release": "6.1.25-android14-11-o-gf12b379cb280",
+      "ruleDetail": {
+        "R-audit": "audit_log_start returns NULL (callers treat NULL as auditing disabled)",
+        "R-cfi": "KCFI image (no __cfi_check symbol); 3 `brk #0x8222` trap sites live in the callees, so a hot patch that keeps every call target intact needs no CFI hook",
+        "R-execve": "do_execveat_common entry hooked, uid gate + commit_creds(prepare_kernel_cred(&init_task)) in the cave",
+        "R-filldir": "filldir64 6.1.25: name gate on b'MapleHid', skip value 1 (bool return)"
+      },
+      "rules": {
+        "R-audit": "applied",
+        "R-cfi": "not_applicable",
+        "R-execve": "applied",
+        "R-filldir": "applied"
+      },
+      "struct": {
+        "cred": 2104,
+        "cred_uid": 4,
+        "seccomp": 2304
+      },
+      "symbols": 92115
+    },
+    "6.12.23-android16-5-g188c695beb6d-ab14367805-4k": {
+      "assets": {
+        "ir2Spec": "6.12.23-android16-5-g188c695beb6d-ab14367805-4k.ir2.spec",
+        "ir2SpecSha256": "d21b411a7fcd46e5fe0ea3cb799cd5492dea76fdad61e52b352591f60325c4e3",
+        "irSpec": "6.12.23-android16-5-g188c695beb6d-ab14367805-4k.ir.spec",
+        "irSpecJson": "6.12.23-android16-5-g188c695beb6d-ab14367805-4k.ir.spec.json",
+        "irSpecSha256": "d141a3fab2b3368f5e767e837019278fefee83a3ce777ef769101ad3eb9dfb47",
+        "kernelSymbolOffset": "6.12.23-android16-5-g188c695beb6d-ab14367805-4k.KernelSymbolOffset.json",
+        "readback": "6.12.23-android16-5-g188c695beb6d-ab14367805-4k.readback.json"
+      },
+      "blocks": 9,
+      "byteIdenticalToReference": null,
+      "dryRun": true,
+      "engine": {
+        "changedBytes": 466,
+        "edits": 19,
+        "error": null,
+        "ok": true,
+        "plan": "PATCH_PLAN_OK edits=19 credentialInitialized=false flashableCandidate=false",
+        "replay": "PLAN_REPLAY_OK changedBytes=466",
+        "returncode": 0
+      },
+      "image": "kernel.bin",
+      "imageBytes": 39889408,
+      "imageSha256": "a1ff628251b745980e8fa4b8787030107405ead6ac703e99fa76daa4188b6351",
+      "label": "OnePlus15_6.12",
+      "release": "6.12.23-android16-5-g188c695beb6d-ab14367805-4k",
+      "ruleDetail": {
+        "R-audit": "audit_log_start returns NULL (callers treat NULL as auditing disabled)",
+        "R-cfi": "KCFI image (no __cfi_check symbol); 17 `brk #0x8222` trap sites live in the callees, so a hot patch that keeps every call target intact needs no CFI hook",
+        "R-execve": "do_execveat_common entry hooked, uid gate + commit_creds(prepare_kernel_cred(&init_task)) in the cave",
+        "R-filldir": "filldir64 6.12.23: name gate on b'MapleHid', skip value 1 (bool return)"
+      },
+      "rules": {
+        "R-audit": "applied",
+        "R-cfi": "not_applicable",
+        "R-execve": "applied",
+        "R-filldir": "applied"
+      },
+      "struct": {
+        "cred": 2304,
+        "cred_uid": 8,
+        "seccomp": 2504
+      },
+      "symbols": 116114
+    },
+    "6.12.58-android16-6-g376529f3e739-ab15072794-4k": {
+      "assets": {
+        "ir2Spec": "6.12.58-android16-6-g376529f3e739-ab15072794-4k.ir2.spec",
+        "ir2SpecSha256": "06d2b7c84d459078bc8b11f4395eed66d3e2cafc203c4c9e0e2e115ab135416b",
+        "irSpec": "6.12.58-android16-6-g376529f3e739-ab15072794-4k.ir.spec",
+        "irSpecJson": "6.12.58-android16-6-g376529f3e739-ab15072794-4k.ir.spec.json",
+        "irSpecSha256": "ec9e44addc4cab93cea30283814a81f5a49b833b27465504f2450d9336f6cf24",
+        "kernelSymbolOffset": "6.12.58-android16-6-g376529f3e739-ab15072794-4k.KernelSymbolOffset.json",
+        "readback": "6.12.58-android16-6-g376529f3e739-ab15072794-4k.readback.json"
+      },
+      "blocks": 9,
+      "byteIdenticalToReference": null,
+      "dryRun": true,
+      "engine": {
+        "changedBytes": 467,
+        "edits": 19,
+        "error": null,
+        "ok": true,
+        "plan": "PATCH_PLAN_OK edits=19 credentialInitialized=false flashableCandidate=false",
+        "replay": "PLAN_REPLAY_OK changedBytes=467",
+        "returncode": 0
+      },
+      "image": "kernel.bin",
+      "imageBytes": 41232896,
+      "imageSha256": "6679e3fbc59c802e22e35c4ef87eefe5c0e7d0e79e37e294ef58324d457e50fb",
+      "label": "Oneplus_Ace6_Plus_6.12",
+      "release": "6.12.58-android16-6-g376529f3e739-ab15072794-4k",
+      "ruleDetail": {
+        "R-audit": "audit_log_start returns NULL (callers treat NULL as auditing disabled)",
+        "R-cfi": "KCFI image (no __cfi_check symbol); 17 `brk #0x8222` trap sites live in the callees, so a hot patch that keeps every call target intact needs no CFI hook",
+        "R-execve": "do_execveat_common entry hooked, uid gate + commit_creds(prepare_kernel_cred(&init_task)) in the cave",
+        "R-filldir": "filldir64 6.12.58: name gate on b'MapleHid', skip value 1 (bool return)"
+      },
+      "rules": {
+        "R-audit": "applied",
+        "R-cfi": "not_applicable",
+        "R-execve": "applied",
+        "R-filldir": "applied"
+      },
+      "struct": {
+        "cred": 2304,
+        "cred_uid": 8,
+        "seccomp": 2504
+      },
+      "symbols": 117861
+    },
+    "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k": {
+      "assets": {
+        "ir2Spec": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k.ir2.spec",
+        "ir2SpecSha256": "2a7d584ffd5d3c7173622c2f7db77fd77f14ee2fb8cc1321825a92e64d9a3ebe",
+        "irSpec": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k.ir.spec",
+        "irSpecJson": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k.ir.spec.json",
+        "irSpecSha256": "ea9608499a482d13909bf98e54eef7f67bef7a0400249c6e23909274d11fbb76",
+        "kernelSymbolOffset": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k.KernelSymbolOffset.json",
+        "readback": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k.readback.json"
+      },
+      "blocks": 9,
+      "byteIdenticalToReference": true,
+      "dryRun": true,
+      "engine": {
+        "changedBytes": 463,
+        "edits": 19,
+        "error": null,
+        "ok": true,
+        "plan": "PATCH_PLAN_OK edits=19 credentialInitialized=false flashableCandidate=false",
+        "replay": "PLAN_REPLAY_OK changedBytes=463",
+        "returncode": 0
+      },
+      "image": "kernel.bin",
+      "imageBytes": 36661760,
+      "imageSha256": "346d51ea1f63413ffa5d99c5c426806291af3573f0a1d66a7621c388e835880e",
+      "label": "OnePlusAce6_6.6",
+      "release": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+      "ruleDetail": {
+        "R-audit": "audit_log_start returns NULL (callers treat NULL as auditing disabled)",
+        "R-cfi": "KCFI image (no __cfi_check symbol); 4 `brk #0x8222` trap sites live in the callees, so a hot patch that keeps every call target intact needs no CFI hook",
+        "R-execve": "do_execveat_common entry hooked, uid gate + commit_creds(prepare_kernel_cred(&init_task)) in the cave",
+        "R-filldir": "filldir64 6.6.89: name gate on b'MapleHid', skip value 1 (bool return)"
+      },
+      "rules": {
+        "R-audit": "applied",
+        "R-cfi": "not_applicable",
+        "R-execve": "applied",
+        "R-filldir": "applied"
+      },
+      "struct": {
+        "cred": 2080,
+        "cred_uid": 8,
+        "seccomp": 2280
+      },
+      "symbols": 102232
+    }
+  },
+  "schemaVersion": 1
+}

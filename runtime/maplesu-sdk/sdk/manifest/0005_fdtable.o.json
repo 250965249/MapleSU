@@ -1,0 +1,35 @@
+{
+  "idx": 5,
+  "name": "fdtable.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/fdtable.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "fd813cf5571dd47de180135bd48c80aeef453a215242699146283181ceb7dc64",
+    "bytes": 26804
+  },
+  "evidence": [
+    "notes/work/LAST14-A/proof/005/EQUIVALENCE.md",
+    "notes/work/LAST14-A/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "note": "Two-way raw symbol gate: T 1/1, U 32/32, raw diff empty both ways; zero gate-symbol-baseline entries consumed. verify_equiv: status=equivalent, functions 32/32, missing=0, extra=0, call_target_match=32, bag_min=1.0, bag_mean=1.0."
+  },
+  "notes": "get_fdtable_fd_offset: cache -> kallsyms(init_files) -> get_file_struct_fdtab_offset -> probe 32 bytes in 4-byte steps for a pointer into [init_files, init_files+300) -> put_offset_cache."
+}

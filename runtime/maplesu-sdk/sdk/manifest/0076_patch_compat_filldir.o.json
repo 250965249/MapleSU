@@ -1,0 +1,47 @@
+{
+  "idx": 76,
+  "name": "patch_compat_filldir.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/patch_compat_filldir.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 3,
+    "recovered": 3,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "59d77a33038cd0c3a2af280dfc21528c820d8b1d05f24c5702b279c78380fba8",
+    "bytes": 56880
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "tMissing": [],
+      "tExtra": [],
+      "uMissing": [],
+      "uExtra": []
+    },
+    "adjusted": {
+      "tMissing": [],
+      "tExtra": [],
+      "uMissing": [],
+      "uExtra": []
+    },
+    "allowancesConsumed": {
+      "uMissing": [],
+      "uExtra": []
+    },
+    "note": "Measured header 4243c0de. Compare all T/t/W/w by PROTOCOL section 5, including local and weak text. U baseline applies only to bitcode, native ELF has zero allowance. See stored symbol lists and exact compile argv; no symbol-forcing anchors."
+  },
+  "notes": ""
+}

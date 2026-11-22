@@ -1,0 +1,32 @@
+{
+  "idx": 114,
+  "name": "jitruntime.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/core/jitruntime.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "c85715b5f6b7fe9c4fe58c33bdeb536997fcdbf42b66f68d531721b4832d66a0",
+    "bytes": 11580
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-__gxx_personality_v0",
+      "-__memcpy_chk",
+      "-__memset_chk"
+    ],
+    "note": "import-set residual __gxx_personality_v0, __memcpy_chk, __memset_chk [cxxabi-runtime+libc-fortify-wrapper]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (3 missing / 0 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

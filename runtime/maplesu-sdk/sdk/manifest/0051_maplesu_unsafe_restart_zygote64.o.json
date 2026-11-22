@@ -1,0 +1,85 @@
+{
+  "idx": 51,
+  "name": "maplesu_unsafe_restart_zygote64.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/core/maplesu_unsafe_restart_zygote64.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 108,
+    "recovered": 108,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "b11278d02eee6e58d2514146684e5328a6022e153654b4166e40684f7b03b683",
+    "bytes": 63796
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "member_gate 口径（强导出 T + 强 U）：T 2/2（_ZN10skroot_env21safe_restart_zygote64Ev、_ZN10skroot_env23unsafe_restart_zygote64Ev）missing 0 extra 0；U 75/75 missing 0 extra 0。超出闸门的附加核对：llvm-nm -P --defined-only 的完整 defined 集合（含 100 个 W comdat、6 个 t 局部：两个 __thread_proxy 与两个 unique_ptr<tuple> 析构、_ZL8snprintf、_GLOBAL__sub_I）与 3 个 d 数据符号，共 111 条，符号名+kind 与冻结成员逐条 IDENTICAL；undefined 集合 75 条 IDENTICAL。新增 U 里没有任何 kit 符号。编译 flag 实测：官方 profile core-oz-bitcode-fexceptions + -D_FORTIFY_SOURCE=2，compile exit=0 且本文件零告警。",
+    "equivalence": {
+      "tool": "runtime/upstream-pro/sdk/tools/verify_equiv.py",
+      "reference": "freeze-maplesu-pro-5.2.0-su-uid-isolation-20261114-20261114",
+      "proof_archive": "build/a109/out/libkernel_module_kit_static.a",
+      "status": "equivalent",
+      "functions": "101/101",
+      "missing": [],
+      "extra": [],
+      "call_targets": "101/101",
+      "seq_mean": 0.9965,
+      "bag_mean": 0.9996,
+      "bag_min": 0.9584,
+      "threshold": 0.95,
+      "bar_met": true
+    }
+  },
+  "notes": "verify_equiv: equivalent (inventory, call-target set and bag_min all at the bar). 51/62/63 skeleton recovered: explicit-assignment fork_base_info ctor (call memset + tail reset, not __builtin_memset), helper chain get_kernel_file_dir_name -> get_system_file_dir_name -> get_system_file_dir_path -> get_module_list_dir_path, per-TU env_path_util::detail::trim_trailing_slashes, and destructor-before-return-value ordering in the snprintf path helpers.",
+  "privateHeaders": [
+    "src/maplesu/compat/install_zygote_exports_legacy_abi.h"
+  ],
+  "legacyBinaryExports": {
+    "status": "source-compiled-old-and-new-consumers-linked",
+    "compatibilityHeader": "src/maplesu/compat/install_zygote_exports_legacy_abi.h",
+    "symbolAliases": 2,
+    "scope": "Exact frozen skroot_env binary names alias the sole maintained maplesu::sdk function bodies; existing install behavior and error propagation preserved",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "validation": ".tmp/main-sdk-installer-abi-20261120/linked-abi-review-effective-m048/EXECUTION.json",
+    "rawGatePassed": false
+  },
+  "p7RemainingOwnerConsumers20261121": {
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/core/maplesu_unsafe_restart_zygote64.cpp",
+        "sha256": "d043d33de6ee0b93d8bcb870ad0d86198825551f28d2a13857c4b2f76a1148c4"
+      }
+    ],
+    "contract": "Actual restart child owns existing WorkerScope through exit; exact child wait, nonzero context/property failures and first error across checked close. Frozen ABI retained.",
+    "publicAbiChanged": false,
+    "evidenceDirectory": ".tmp/p7-development-20261121/keyless/validation/restart",
+    "deviceValidated": false,
+    "formalAssetsPromoted": false,
+    "historicRawGateUnchanged": true
+  },
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/core/maplesu_unsafe_restart_zygote64.cpp",
+        "sha256": "d043d33de6ee0b93d8bcb870ad0d86198825551f28d2a13857c4b2f76a1148c4"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "idx": 46,
+  "name": "maplesu_fork_helper.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/process/fork_pipe.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-flto=thin"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 97,
+    "recovered": 97,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "eed8fc12fff584dffb827f939a2958d2aae5db7c76f6e463ad6ad4993a41e27d",
+    "bytes": 62692
+  },
+  "evidence": [
+    "notes/work/AGENT112/STATUS.md",
+    "notes/work/AGENT112/proof/046/EQUIVALENCE.md",
+    "notes/work/AGENT116/STATUS.md",
+    "notes/work/AGENT116/final-EQUIVALENCE.md",
+    "notes/work/AGENT116/proof/046/equiv.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/WRITER-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/ACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/NDK-COMPILE.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/MEMBER-COMPILE.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/HANDOFF.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/MEMBER-046.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/HOST-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/GREEN-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/APPLY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05b/COMPARISON.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05b/HOST-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05b/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05b/RUNNERS.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05b/BUILD-SELECTION.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": 0,
+    "equivalence": {
+      "functions": "97/97",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "97/97",
+      "bag_min": 0.9608,
+      "bag_mean": 0.9986,
+      "seq_mean": 0.9938
+    },
+    "note": "P7 E2 2026-11-15: one explicit authorization result preserves primary and ordered recovery codes; m061 carries a 176-byte versioned body on the existing u64-prefixed pipe and m046 reads an exact bounded size. Actual writer/action/transaction/fork/pipe host tests and Android per-TU/manifest-profile member outputs are recorded under r7-e2. Old strong exports and scalar branch priority/-21001 are retained. Shared JNI/Manager consumption, formal SDK/APK, Android runtime and devices remain pending. Existing equivalence/function recovery statistics below are HISTORICAL and do not validate the new detail fields or changed pipe body.\nHISTORICAL: MEASURED on the official archive produced by build.py --all: functions 97/97 (missing 0, extra 0); call-target sets equal 97/97; bag_min 0.9608, bag_mean 0.9986, seq_mean 0.9938. Archive: build/ag116b/out/libkernel_module_kit_static.a sha256=8f6a6361ef69d50d09fde21258315fcf5ec39f91fe9696649746d1f9de667f40.",
+    "adjustedDiff": []
+  },
+  "notes": "",
+  "privateHeaders": [
+    "src/maplesu/compat/fork_legacy_abi.h",
+    "src/maplesu/compat/fork_exports_legacy_abi.h",
+    "src/maplesu_core/fixed_transfer_io.h"
+  ],
+  "forkLegacyAbi20261120": {
+    "status": "implemented-narrow-compile-link-verified-formal-build-pending",
+    "implementation": "src/maplesu/process/fork_pipe.cpp",
+    "compatibility": "src/maplesu/compat/fork_exports_legacy_abi.h",
+    "scope": "21 frozen skroot_env entry names restored as typed direct forwards to the unique MapleSU transport; all 22 current strong definitions retained; original descriptor is 24 bytes with alignment 4 and offsets 0/4/8/12/16/20.",
+    "sourceSha256": "26adcc36b9831e3b614399bbc025913f2c2974f354c026e0a66cafa35cac087d",
+    "compatibilitySha256": "3c09a7852d1142320e1c3a188849ad61064c4f402f6cdbf1f58b80acc8a50f0f",
+    "providerScan": ".tmp/main-sdk-fork-abi-20261120/PROVIDER-SCAN.json",
+    "validation": ".tmp/main-sdk-fork-abi-20261120/GREEN-COMPILE-LINK.json",
+    "gate": ".tmp/main-sdk-fork-abi-20261120/member-gate-after-utf8.json",
+    "frozenStrongMissingBefore": 21,
+    "frozenStrongMissingAfter": 0,
+    "currentStrongRetained": 22,
+    "undefinedImportsUnchanged": true,
+    "legacyCallerLinkBeforeExit": 1,
+    "legacyCallerLinkAfterExit": 0,
+    "memberCompileExit": 0,
+    "rawPartialGateExit": 7,
+    "rawPartialGateQualification": "T extra 22 remains: the MapleSU entry set and bounded fixed-transfer reader are preserved. This is not a full SDK gate result or a behavioral equivalence claim.",
+    "actualRuntimeExecuted": false,
+    "formalArtifactUpdated": false,
+    "deviceAcceptance": false
+  },
+  "maplesuRefactor": {
+    "batch": "P7-E2-A-B",
+    "status": "implemented-host-verified-device-pending",
+    "resultVersion": 1,
+    "bodyBytes": 176,
+    "existingTransferPrefixBytes": 8,
+    "recoveryCapacity": 6,
+    "sharedConsumerPending": true,
+    "formalArtifactPending": true,
+    "deviceAcceptance": false,
+    "detailsHeader": "src/module/su_redirect_tu/su_auth_result_private.h",
+    "fixedReaderHeader": "src/skroot_core/fixed_transfer_io.h",
+    "evidence": [
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/PRECHECK.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/NDK-COMPILE.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/MEMBER-COMPILE.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/DELIVERY.json"
+    ]
+  }
+}

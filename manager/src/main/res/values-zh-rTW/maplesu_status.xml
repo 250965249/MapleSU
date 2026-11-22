@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="maplesu_install_title">安裝 / 更新 MapleSU</string>
+    <string name="maplesu_install_summary">修補原廠 boot 映像，或直接安裝</string>
+    <string name="maplesu_upstream_sources"><![CDATA[<a href="https://github.com/FengQiuFQ/MapleSU">在 GitHub 查看原始碼</a><br/><a href="https://github.com/tiann/KernelSU">上游專案：KernelSU</a>]]></string>
+</resources>

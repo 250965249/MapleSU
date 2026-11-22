@@ -1,0 +1,28 @@
+{
+  "repository": "https://android.googlesource.com/kernel/common",
+  "commit": "745990bb615d19fb450877b6eb7050f085318f42",
+  "scope": "Call-contract review only. Not the exact vendor sample source and not bundled kernel code.",
+  "symbols": {
+    "panic": "include/linux/panic.h declares __noreturn",
+    "make_task_dead": "include/linux/sched/task.h declares __noreturn",
+    "__stack_chk_fail": "kernel/panic.c calls panic unconditionally"
+  },
+  "limitations": "Known Linux call contracts are assumptions for symbol-boundary analysis, not proof of vendor binary equivalence. Unknown and indirect targets are not inferred as noreturn.",
+  "files": [
+    {
+      "path": "include/linux/panic.h",
+      "url": "https://android.googlesource.com/kernel/common/+/745990bb615d19fb450877b6eb7050f085318f42/include/linux/panic.h?format=TEXT",
+      "sha256": "22476a30b628b088ba06042e10be559f2cda7510e51e04e5fc5d3695e04528f0"
+    },
+    {
+      "path": "include/linux/sched/task.h",
+      "url": "https://android.googlesource.com/kernel/common/+/745990bb615d19fb450877b6eb7050f085318f42/include/linux/sched/task.h?format=TEXT",
+      "sha256": "5af57b69d0cbd64c4e8a7a829025031a06dcce38fd7f14c64c40c20348609fb1"
+    },
+    {
+      "path": "kernel/panic.c",
+      "url": "https://android.googlesource.com/kernel/common/+/745990bb615d19fb450877b6eb7050f085318f42/kernel/panic.c?format=TEXT",
+      "sha256": "c4029f8ccd4b45bb1d750e8898e170d00c86e37f9c1821958010fbce20bbb206"
+    }
+  ]
+}

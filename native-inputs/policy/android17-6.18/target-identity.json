@@ -1,0 +1,143 @@
+{
+  "buildId": "b9dbf6abd06cd8832bc48a4ce5ac7a5caab58356",
+  "pageSize": 4096,
+  "hooks": [
+    {
+      "name": "sel_write_context",
+      "first16": "3f2303d5ff0301d1fd7b02a9f44f03a9"
+    },
+    {
+      "name": "sel_write_access",
+      "first16": "3f2303d5ffc301d1fd7b03a9f72300f9"
+    },
+    {
+      "name": "selinux_setprocattr",
+      "first16": "3f2303d5fd7bbea9f44f01a9fd030091"
+    },
+    {
+      "name": "sel_open_handle_status",
+      "first16": "3f2303d5fd7bbea9f30b00f9fd030091"
+    },
+    {
+      "name": "sel_read_handle_status",
+      "first16": "5f2403d5090c40f9090300b4e80303aa"
+    },
+    {
+      "name": "sel_mmap_handle_status",
+      "first16": "3f2303d5fd7bbea9f44f01a9fd030091"
+    },
+    {
+      "name": "sk_filter_trim_cap",
+      "first16": "3f2303d5fd7bbca9f70b00f9f65702a9"
+    },
+    {
+      "name": "commit_creds",
+      "first16": "3f2303d5fd7bbda9f50b00f9f44f02a9"
+    },
+    {
+      "name": "__skb_try_recv_datagram",
+      "first16": "3f2303d5fd7bbaa9fb0b00f9fa6702a9"
+    }
+  ],
+  "dynamicScs": true,
+  "cacheFunction": "caches_clean_inval_pou",
+  "alternativesReturnsStatus": true,
+  "nativeCodeAbi": [
+    {
+      "name": "caches_clean_inval_pou",
+      "first16": "5f2403d51f2003d51f2003d5e20300aa",
+      "runtimeFirst16": [
+        "5f2403d51f2003d51f2003d5e20300aa",
+        "5f2403d59f3a03d510000014e20300aa"
+      ]
+    },
+    {
+      "name": "memcpy",
+      "first16": "5f2403d574ffff17e30300aa4304011d",
+      "runtimeFirst16": [
+        "5f2403d51f2003d5e30300aa4304011d",
+        "5f2403d574ffff17e30300aa4304011d"
+      ]
+    },
+    {
+      "name": "memset",
+      "first16": "5f2403d59dffff17e80300aa4804c119",
+      "runtimeFirst16": [
+        "5f2403d51f2003d5e80300aa4804c119",
+        "5f2403d59dffff17e80300aa4804c119"
+      ]
+    },
+    {
+      "name": "strlen",
+      "first16": "5f2403d5040c4092e8c300b29f0000f1",
+      "runtimeFirst16": [
+        "5f2403d5040c4092e8c300b29f0000f1"
+      ]
+    },
+    {
+      "name": "strcmp",
+      "first16": "5f2403d52a0000cbe8c300b206084092",
+      "runtimeFirst16": [
+        "5f2403d52a0000cbe8c300b206084092"
+      ]
+    }
+  ],
+  "requiredLoaderSymbols": [
+    "sel_write_context",
+    "sel_write_access",
+    "selinux_setprocattr",
+    "sel_open_handle_status",
+    "sel_read_handle_status",
+    "sel_mmap_handle_status",
+    "sk_filter_trim_cap",
+    "commit_creds",
+    "__skb_try_recv_datagram",
+    "set_memory_nx",
+    "set_memory_rw",
+    "set_memory_ro",
+    "set_memory_x",
+    "caches_clean_inval_pou",
+    "apply_alternatives_module"
+  ],
+  "release": "6.18.21-android17-5-gf957accaf563-ab15926176-4k",
+  "configSha256": "ab3963438929b31f86c5a621d3cc2a00adc28fd8c2954c896033cea668db40ed",
+  "scope": "Exact image identity and hook bytes, not OEM image family or runtime capability acceptance",
+  "nativeScsReplay": {
+    "base": 18446743800983613440,
+    "entry": 18446743800983616112,
+    "bytes": 4096,
+    "sha256": "a9fbedc9e03213b2ea65299bc623ec6c9d55938e23f4e863815ba924b9170c1e",
+    "strlen": 18446743800981650912,
+    "rodata": [
+      {
+        "base": 18446743801006477312,
+        "file": "native-scs-rodata-0.bin",
+        "sha256": "076aede58d286d1597ef6ecaefe5bb61158fe5cba706517b075621b41b5135a8"
+      },
+      {
+        "base": 18446743800999809024,
+        "file": "native-scs-rodata-1.bin",
+        "sha256": "d7d9415ae824d636333652ec18e729617d2058f849fc4673f380bff1bbd5e0d3"
+      }
+    ],
+    "extraText": [
+      {
+        "base": 18446743800982073344,
+        "file": "native-scs-helper-0.bin",
+        "sha256": "a31a4e5edb704051eb5436196ab4f0a636641df08393a34363337d8f7101fcd9"
+      }
+    ],
+    "strcmp": 18446743800981762528
+  },
+  "scsFunction": "__pi_scs_patch",
+  "scsArguments": 3,
+  "rawImageReference": {
+    "path": "D:\\Maple_Workflow\\MapleSU\\.analysis\\ultra-boot-analysis2-2026-10-30\\out\\OnePlus16_6.18\\kernel.bin",
+    "sha256": "4f47635b6d2a3d8fbaa3d4ff363798f01baec57d75a322d4db0f8d648020d591",
+    "bytes": 43072000,
+    "contractSha256": "8365d529e025cdc0c5f6414e84553a6b7bee7bbcd024012ad62f96b2348c5556",
+    "symbolCount": 143444,
+    "symbolsOutsideImage": 6077,
+    "source": "Actual Image notes, embedded config, kallsyms and instruction bytes; synthetic ELF mapping for read-only capture only"
+  }
+}

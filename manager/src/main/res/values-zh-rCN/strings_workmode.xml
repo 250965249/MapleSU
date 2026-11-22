@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 双工作模式 UI 字符串 · 简体中文。与 values/strings_workmode.xml 键必须一一对应。 -->
+<!-- 产品名只出现在 work_mode_lite / work_mode_ksu 两个键里，其余文案一律用占位符。
+     内部标识（WorkMode.LITE/KSU、prefs 键、/data/adb 路径、模式存储 key "A"/"B"）保持不变。 -->
+<resources>
+    <!-- ══ 工作模式入口 ══ -->
+    <string name="work_mode">工作模式</string>
+    <string name="work_mode_entry_summary">当前：%1$s</string>
+    <string name="work_mode_lite" translatable="false">MapleSU_Ultra</string>
+    <string name="work_mode_ksu">MapleSU_Normal</string>
+    <string name="work_mode_open">查看工作模式</string>
+    <string name="work_mode_settings_row_summary">查看当前模式，或切换到另一种模式</string>
+    <string name="work_mode_install_entry_summary">查看或切换当前工作模式</string>
+    <string name="work_mode_current_mode">当前工作模式：%1$s</string>
+    <string name="work_mode_recheck">重新检查</string>
+    <string name="work_mode_retry">重试</string>
+    <string name="work_mode_open_install">前往安装页</string>
+    <string name="work_mode_reboot_now">重启</string>
+    <string name="work_mode_save_log">保存日志</string>
+    <string name="work_mode_back">返回</string>
+    <string name="work_mode_pending_banner">上次切换还没有完成，点此查看</string>
+    <string name="work_mode_journal_missing">暂时读取不到这次切换的记录</string>
+    <string name="work_mode_masked_summary">当前状态下不显示工作模式信息</string>
+    <string name="work_mode_not_available">暂时没有可切换的模式</string>
+    <string name="work_mode_switch_backend_missing">切换服务暂时不可用，请稍后再试</string>
+    <string name="work_mode_analyzing">正在确认当前模式…</string>
+
+    <!-- ══ 模式状态 ══ -->
+    <string name="work_mode_state_a_active_title">极致无痕模式运行中</string>
+    <string name="work_mode_state_a_active_summary">设备正在以极致无痕模式工作</string>
+    <string name="work_mode_state_b_active_title">玩机兼容模式运行中</string>
+    <string name="work_mode_state_b_active_summary">设备正在以玩机兼容模式工作</string>
+    <string name="work_mode_state_b_kernel_only_title">模式需要修复</string>
+    <string name="work_mode_state_b_kernel_only_summary">运行组件不完整，修复后才能切换</string>
+    <string name="work_mode_state_a_unbound_title">模式暂时不可用</string>
+    <string name="work_mode_state_a_unbound_summary">已经安装，但当前无法连接，重新安装即可恢复</string>
+    <string name="work_mode_state_foreign_title">检测到其他 Root 管理器</string>
+    <string name="work_mode_state_foreign_summary">可以迁移到 MapleSU 后继续使用</string>
+    <string name="work_mode_state_none_title">还没有安装</string>
+    <string name="work_mode_state_none_summary">安装完成后即可选择工作模式</string>
+    <string name="work_mode_state_indeterminate_title">暂时无法确认</string>
+    <string name="work_mode_state_indeterminate_summary">授予 Root 权限后重新检查，或重启设备后再试</string>
+
+    <!-- ══ 切换确认/进度/结果 ══ -->
+    <string name="work_mode_switch_to">切换到 %1$s</string>
+    <string name="work_mode_confirm_title">切换工作模式</string>
+    <string name="work_mode_confirm_body">切换时会保留当前数据，完成后需要重启，过程中请勿关机。</string>
+    <string name="work_mode_confirm_switch">切换</string>
+    <string name="work_mode_cancel">取消</string>
+    <string name="work_mode_blocker_title">暂时无法切换</string>
+    <string name="work_mode_warning_title">请注意</string>
+    <string name="work_mode_backup_summary">已备份：模块 %1$d 个 · 授权 %2$d 项 · 文件 %3$d 个</string>
+    <string name="work_mode_switch_running">正在切换，请勿关机</string>
+    <string name="work_mode_switch_done_reboot">切换完成</string>
+    <string name="work_mode_switch_failed">切换没有完成：%1$s</string>
+    <string name="work_mode_switch_rolled_back">已恢复到 %1$s</string>
+    <string name="work_mode_switch_needs_manual">这次切换没能自动恢复：%1$s</string>
+    <string name="work_mode_switch_stage">第 %1$d 步，共 %2$d 步</string>
+    <string name="work_mode_switch_page_title">切换工作模式</string>
+    <string name="work_mode_switch_attaching">正在读取切换进度…</string>
+    <string name="work_mode_switch_observe_missing">读取不到切换进度，这次切换可能已经结束</string>
+
+    <!-- ══ 门控提示 ══ -->
+    <string name="work_mode_blocked_undetermined">还没有确认当前模式，请稍后再试</string>
+
+    <!-- ══ 切换入口与阻断 ══ -->
+    <string name="work_mode_switch_button">切换工作模式</string>
+    <string name="work_mode_switch_current_lite">当前：Ultra</string>
+    <string name="work_mode_switch_current_ksu">当前：Normal</string>
+    <string name="work_mode_switch_not_ready">暂时无法开始切换</string>
+    <string name="work_mode_switch_failed_short">切换没有完成</string>
+    <string name="work_mode_switch_recovery_required">这次切换没能自动恢复，请按恢复页的提示操作。</string>
+    <string name="work_mode_reboot_apply">重启</string>
+    <string name="work_mode_reboot_marker_saved">已准备就绪，请重启设备完成切换</string>
+    <string name="work_mode_open_progress">查看进度</string>
+    <string name="work_mode_open_recovery">查看恢复方案</string>
+    <string name="work_mode_abort">取消切换</string>
+    <string name="work_mode_rollback">恢复到切换前</string>
+    <string name="work_mode_switch_log_pending">可以在恢复页或诊断页导出诊断信息</string>
+    <string name="work_mode_blocker_stealth">当前状态下无法切换工作模式</string>
+    <string name="work_mode_blocker_hidden">当前状态下无法切换工作模式</string>
+    <string name="work_mode_blocker_not_installed">还没有安装 MapleSU，请先完成安装</string>
+    <string name="work_mode_blocker_foreign">检测到其他 Root 管理器，请先迁移到 MapleSU</string>
+    <string name="work_mode_blocker_a_unbound">当前模式暂时不可用，请先重新安装</string>
+    <string name="work_mode_blocker_b_kernel_only">当前模式的运行组件不完整，请先修复</string>
+    <string name="work_mode_blocker_same_mode">暂时没有可切换的模式</string>
+    <string name="work_mode_blocker_pending_switch">上一次切换还没有结束，请先完成或恢复</string>
+    <string name="work_mode_blocker_backend">切换服务暂时不可用，请稍后再试</string>
+    <string name="work_mode_blocker_baseline">暂时无法确认原厂启动镜像，请准备与当前系统版本一致的原厂镜像后重试</string>
+    <string name="work_mode_blocker_generic">暂时无法切换，请稍后再试</string>
+    <string name="work_mode_blocker_pending_install">有尚未完成的安装，请先完成后再切换</string>
+    <string name="work_mode_blocker_w19">切换所需的还原资料不完整，暂时不能离开当前模式</string>
+    <string name="work_mode_failure_export">当前模式的设置或授权数据导出失败。本次尚未写入分区，请重试或查看诊断。</string>
+    <string name="work_mode_blocker_battery">电量过低，请充电到 20% 以上或接上电源</string>
+    <string name="work_mode_blocker_space">存储空间不足，请清理后再试</string>
+    <string name="work_mode_blocker_selinux">系统安全策略状态异常，暂时不能切换</string>
+    <string name="work_mode_blocker_pro_env_suspend">当前工作环境正在运行，暂时不支持直接切换</string>
+    <string name="work_mode_blocker_pro_env_restore">目标工作环境的恢复资料还没有准备好，暂时不能切换</string>
+    <string name="work_mode_blocker_pro_env_unknown">暂时无法确认工作环境状态，请稍后再试</string>
+    <string name="work_mode_blocker_ultra_env_suspend">当前工作环境正在运行，暂时不支持直接切换</string>
+    <string name="work_mode_blocker_ultra_env_restore">目标工作环境的恢复资料还没有准备好，暂时不能切换</string>
+    <string name="work_mode_blocker_ultra_env_unknown">暂时无法确认工作环境状态，请稍后再试</string>
+    <string name="work_mode_blocker_backend_blocked">切换前的检查没有通过，请稍后再试</string>
+
+    <!-- ══ 设置页功能卡 ══ -->
+    <string name="work_mode_stealth_title">隐身</string>
+    <string name="work_mode_stealth_summary">隐藏 Root 特征，关闭后界面恢复</string>
+    <string name="work_mode_stealth_unavailable">暂时读取不到隐身状态，或当前系统不支持</string>
+    <string name="work_mode_applock_title">应用锁</string>
+    <string name="work_mode_applock_unavailable">当前系统未启用应用锁</string>
+    <string name="work_mode_webadmin_title">网页管理器</string>
+    <string name="work_mode_webadmin_summary">在浏览器中管理本机</string>
+    <string name="work_mode_webadmin_unavailable">当前系统不支持网页管理器</string>
+    <string name="work_mode_webadmin_copy">复制访问链接</string>
+    <string name="work_mode_webadmin_open">在浏览器打开</string>
+    <string name="work_mode_webadmin_copied">访问链接已复制</string>
+    <string name="work_mode_webadmin_copy_failed">复制失败</string>
+    <string name="work_mode_webadmin_failed">网页管理器暂时不可用</string>
+    <string name="work_mode_superuser_unresolved">还没有确认当前模式，超级用户列表暂不可用</string>
+    <string name="work_mode_superuser_unavailable">当前模式下超级用户列表暂时不可用</string>
+
+    <!-- ══ 设置页状态行 ══ -->
+    <!-- 只有明确读到 ON 才允许用 settings_status_on；UNKNOWN 必须用 settings_status_unknown。 -->
+    <string name="settings_status_on">已开启</string>
+    <string name="settings_status_off">未开启</string>
+    <string name="settings_status_unknown">状态未知（读取失败）</string>
+    <string name="settings_kernel_mode">内核模式</string>
+    <string name="settings_kernel_mode_lkm">LKM（可加载模块）</string>
+    <string name="settings_kernel_mode_builtin">内置内核</string>
+
+    <!-- ══ 安装页目标模式 ══ -->
+    <!-- 行标签：中文 ≤15 字（目标工作模式 = 6 字）。 -->
+    <string name="install_target_mode">目标工作模式</string>
+    <!-- 一行说明「这一次会怎么装」；产品名只出现在 work_mode_lite / work_mode_ksu 里。 -->
+    <string name="install_target_mode_ultra_summary">无痕模式 · 修补 boot 内核</string>
+    <string name="install_target_mode_normal_summary">玩机兼容模式 · 使用 KernelSU 安装</string>
+    <string name="install_target_mode_current">目标：%1$s</string>
+    <string name="install_target_mode_locked">安装或切换进行中，暂时不能更改</string>
+    <string name="install_target_kernel_loading">正在读取内核信息，请稍候…</string>
+    <!-- 只说人话和下一步；错误码由代码写日志，不上屏。 -->
+    <string name="install_target_blocker_normal_requires_image">这个模式需要先选择一份启动镜像文件，请改用「选择文件并修补」。</string>
+    <string name="install_target_blocker_normal_download">下载的镜像不能用于这个模式，请改用「选择文件并修补」。</string>
+    <string name="install_target_blocker_kmi_unparseable">暂时无法识别本机内核版本，这个模式无法继续安装。</string>
+    <string name="install_target_blocker_kmi_not_in_matrix">这个模式暂不支持本机内核，请选择另一种模式。</string>
+    <string name="install_target_blocker_kmi_artifact_missing">这个版本的 MapleSU 没有适配本机内核，请更新后再试，或选择另一种模式。</string>
+    <string name="install_target_blocker_kmi_mismatch">设备内核与平台信息不一致，请确认当前内核适用于此设备。</string>
+</resources>

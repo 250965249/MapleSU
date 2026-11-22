@@ -1,0 +1,32 @@
+MapleSU
+Copyright (C) 2026 MapleSU contributors
+
+The MapleSU manager derives directly from 7kimisu (GPL-3.0-or-later).
+Normal mode uses KernelSU: GPL-3.0-or-later for manager/userspace and
+GPL-2.0-only for kernel code. Original copyright and license notices are retained.
+FinaSU is the primary reference for UI, interaction and the FPT theme format.
+
+MapleSU-owned code is offered under GPL-3.0-or-later unless a file states otherwise.
+Third-party code remains under its own license. See CREDITS.md,
+third_party/DEPENDENCIES.md, pinned source manifests and file-level notices.
+
+Ultra native component origins are acknowledged in CREDITS.md. The source
+manifests and SDK release identity identify the retained component inputs and
+MapleSU changes. Component notices accompany their respective sources.
+
+libsu service modifications retain Apache-2.0 terms and the upstream trampoline.
+Magisk-derived policy code retains GPL notices; libsepol retains LGPL notices.
+The independent Zygisk adapter and its ReZygisk dependencies are maintained and
+distributed through the module repository. They are not included in this source
+distribution or built into the MapleSU Manager. Their notices and release review
+are maintained with the corresponding module versions.
+
+The AVB test PEM files are public AOSP compatibility fixtures. Their provenance
+and hashes are documented beside the files; they are not MapleSU release keys.
+
+Documentation artwork under docs/assets/brand/ is rendered by
+tools/brand/render_brand_banners.py from the Manager's own banner code. Its text
+is set in Roboto and Droid Sans Mono (Apache-2.0) and Noto Sans CJK (OFL-1.1);
+no font files are included in this source distribution.
+Module packages, themes, artwork, fonts and trademarks retain their respective
+owners' terms. No endorsement by upstream projects is implied.

@@ -1,0 +1,56 @@
+{
+  "name": "webui_loader",
+  "asset": "webui_loader.bin",
+  "member": "maplesu_unsafe_webui_loader_install.o",
+  "symbol": "webui_loader_data",
+  "origin": "runtime/maplesu-sdk/sdk/src/payload/webui_loader/README.md",
+  "language": "c++",
+  "sources": [
+    "src/main.cpp",
+    "src/module_host.cpp",
+    "src/root_grant.cpp",
+    "src/parent_watch.cpp",
+    "src/webroot_server.cpp",
+    "third_party/civetweb/src/civetweb.c",
+    "third_party/civetweb/src/CivetServer.cpp"
+  ],
+  "include_dirs": [
+    "src",
+    "../common",
+    "third_party/civetweb/include",
+    "../../../../include"
+  ],
+  "defines": [
+    "NO_SSL",
+    "NO_CGI",
+    "NO_CACHING",
+    "NO_SSL_DL"
+  ],
+  "cflags": [
+    "-std=c++17",
+    "-fno-rtti"
+  ],
+  "ldflags": [
+    "-static-libstdc++",
+    "-Wl,--gc-sections",
+    "-Wl,--as-needed"
+  ],
+  "libs": [
+    "dl",
+    "m"
+  ],
+  "feature_token": "8ba9d457344d22b85d3e7f7263c3dd04d9effeb1becb41a806eaaa9926087fae49c43c1c3d64c98333e8017195c6ab7bfe7e72a99c4530b267705824e5d6e700",
+  "reference": {
+    "bytes": 766320,
+    "sha256": "9f6557d3e09a223ff82d2adb10b6f865afe5fd3aa71cc3f0d856c7c22ed39cd8",
+    "origin": "frozen archive member skroot_unsafe_webui_loader_install.o .data (skroot_env::webui_loader_data), extracted into sdk/assets/webui_loader.bin"
+  },
+  "ownerLaunch": {
+    "date": "2026-11-19",
+    "status": "source-only-unbuilt",
+    "privateContract": "src/startup_receipt.h: StartupReceipt v1 24 bytes unchanged; Owner argument --maplesu-webui-directory-v1 selects a 32-byte DeploymentDirectory v1 read descriptor and successful receipt appendix.",
+    "authority": "Owner uses inherited uid/euid0; directory facts do not grant Root and carry no session or Key. The installer-patched credential remains only at the existing external Legacy module callback boundary.",
+    "pairedMember": "manifest/0062_maplesu_module_webui_loader.o.json",
+    "delivery": "Payload regeneration, embedded bytes, SDK/helper/APK formal combination and devices are pending."
+  }
+}

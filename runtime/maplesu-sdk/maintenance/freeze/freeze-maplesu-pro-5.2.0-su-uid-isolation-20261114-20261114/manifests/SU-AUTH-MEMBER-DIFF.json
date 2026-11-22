@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "baselineArchiveSha256": "215cdd0c928f46f282b11a7be18e604eed2c96a668783071b82a2f2329148272",
+  "archiveSha256": "49df399288a2fc08d38c7c20e0632fbb21525fb05723a3443cb14fabd350b1e9",
+  "totalMembers": 260,
+  "changed": [
+    {
+      "ord": 1,
+      "name": "task_struct.o",
+      "baselineSha256": "9c18e06cbe5f21ed5a9302f16b377eafd30cc12059a4c70d21f4709e2b2fce95",
+      "candidateSha256": "63a23ef7380e662ab26323cbca5e5fa2532bf5e6ec8b446313f67948ffdbdb69",
+      "baselineSize": 248048,
+      "candidateSize": 354760
+    },
+    {
+      "ord": 23,
+      "name": "module_base_kernel_request.o",
+      "baselineSha256": "b56b668bd216bd612d9757bf49bf7424d538279eda7b571aae76997abf16170c",
+      "candidateSha256": "7216cfd8920a33f62b6e288f624903a12659b75829863c9102ed4e4862ba2dd8",
+      "baselineSize": 33224,
+      "candidateSize": 98352
+    },
+    {
+      "ord": 24,
+      "name": "module_base_kernel_mem.o",
+      "baselineSha256": "56e28f80c20549e170c8000088bbac2ba7438fdb9d47bec64215dd48b4fda591",
+      "candidateSha256": "8bddff1534197f80737db6b57f01714a155a6aa34d50879dbf19f1081db92448",
+      "baselineSize": 183720,
+      "candidateSize": 184576
+    },
+    {
+      "ord": 25,
+      "name": "module_base_kernel_func_executor.o",
+      "baselineSha256": "bee8b1f58bbff62daa20e27823e0a1ab4afd7213fa1480944f392d6bc6afd046",
+      "candidateSha256": "1c9a5b9a8ff0433dc17b75defccd90187652e566e5bab106653bcfbd432ff5be",
+      "baselineSize": 65412,
+      "candidateSize": 60288
+    },
+    {
+      "ord": 35,
+      "name": "module_base_disk_storage.o",
+      "baselineSha256": "26ec90de451316ddc852fb7b42019a2d4f4866cfe855f4581f426b42ccef449f",
+      "candidateSha256": "c6e19ab2e3208a75adbb0ecfb5e3d589a36526a120ceb3c52e89ca2d85e8bb35",
+      "baselineSize": 95716,
+      "candidateSize": 91128
+    },
+    {
+      "ord": 37,
+      "name": "module_base_change_status.o",
+      "baselineSha256": "7cb3952b489b2619f082a8637ba15b14fb7bab917281574293b841c952cf6e5b",
+      "candidateSha256": "b4b730262190cec2efd2b338efc327c2dee1cd3eb17453b10e7e4fb480db812f",
+      "baselineSize": 76668,
+      "candidateSize": 80216
+    },
+    {
+      "ord": 45,
+      "name": "skroot_test.o",
+      "baselineSha256": "b2a7bd3828e53a3262fe7860448d8678645393025f43f1030716603eeb65d69b",
+      "candidateSha256": "484586c2afcc30dc255479a8d78f9fc4849be610985dbe88e84e18a1e99695a3",
+      "baselineSize": 206524,
+      "candidateSize": 221000
+    },
+    {
+      "ord": 47,
+      "name": "skroot_unsafe_hide_dir.o",
+      "baselineSha256": "897bace0d3461cda3f699ae3748e8c9d152145dcc4e30b2b6c8b6c2d9c06f74e",
+      "candidateSha256": "12234afad83fb01144da171da95058a325daacaba998e6b499eb4659d076c050",
+      "baselineSize": 67540,
+      "candidateSize": 65892
+    },
+    {
+      "ord": 48,
+      "name": "skroot_unsafe_su_install.o",
+      "baselineSha256": "8ab3db4cbf680c93cfb85908e446a5287a3b97bc1fbeb9971d81497ce76d2811",
+      "candidateSha256": "857cf5f236d96663c4f805560d3e693a3dbf9a2b2c10ba65b6941aefc001ce06",
+      "baselineSize": 840672,
+      "candidateSize": 812136
+    },
+    {
+      "ord": 49,
+      "name": "skroot_unsafe_resetprop_install.o",
+      "baselineSha256": "c94be905e31509e434a8b772857f59fdbfb71cbf1c2c9285f681611ff121dc5d",
+      "candidateSha256": "8dbb9c7e025563be4e8492465025cc100c42419d927ef8f31e1ebfa6b1649e11",
+      "baselineSize": 482924,
+      "candidateSize": 439768
+    },
+    {
+      "ord": 50,
+      "name": "skroot_unsafe_webui_loader_install.o",
+      "baselineSha256": "de7962cc4f5d10c8140939c069c0c742bfa74df0861a7c302c666e78c25ab980",
+      "candidateSha256": "217f5e25bc1a8853688392bc2c2015af6dfef76021866d33ce2f3c7eef5cd735",
+      "baselineSize": 867156,
+      "candidateSize": 820288
+    },
+    {
+      "ord": 52,
+      "name": "skroot_autorun_bootstrap_install.o",
+      "baselineSha256": "1b24e85313e0ce21408780068e1d61243b0975e0cf48c864d8100bbebe8fee58",
+      "candidateSha256": "0c886040e4acd37e2c96bb4ecba842e92cd2db9bb00f9e57645c03b6abb72fca",
+      "baselineSize": 1337424,
+      "candidateSize": 1458976
+    },
+    {
+      "ord": 53,
+      "name": "skroot_installer.o",
+      "baselineSha256": "67913b64aefccc7774e8ff6d3ca24fc865a651da120cc244c37af96b15fb2e62",
+      "candidateSha256": "1521791a303d618ff9d6fc62fd85e44b55e87588a8d2c990b7fc95c1e73ce211",
+      "baselineSize": 123320,
+      "candidateSize": 158192
+    },
+    {
+      "ord": 55,
+      "name": "skroot_module_list.o",
+      "baselineSha256": "328751b7616b9ec6313ce9ffd5a37995f49f55868acc60cf96b16a5e1e5241be",
+      "candidateSha256": "56adf62c098f601986ea16cf49ed69ccbc5d8724243a0eb3571c882a8554581e",
+      "baselineSize": 162208,
+      "candidateSize": 172784
+    },
+    {
+      "ord": 56,
+      "name": "skroot_module_install.o",
+      "baselineSha256": "22f59e2f7a8fe5707e76a6c2742556a00f5a9d2ee53788de34626e8657cb9b72",
+      "candidateSha256": "ef9c6c548f90a3cedc1d617570d71b609f258631ac980d16ae57075cd9035698",
+      "baselineSize": 166416,
+      "candidateSize": 187032
+    },
+    {
+      "ord": 57,
+      "name": "skroot_module_parse_zip.o",
+      "baselineSha256": "820c44de10a7bdb3ce8a8438c1c8743bbf41f32968ae72ab382b88159e10d9b5",
+      "candidateSha256": "3fb3e1d5c2b72195422f91adf70fc23bee64a7819df2e020d3da6b8544cb04e6",
+      "baselineSize": 82252,
+      "candidateSize": 78992
+    },
+    {
+      "ord": 60,
+      "name": "skroot_root.o",
+      "baselineSha256": "e418b9fa815ee54ff73d5d46302781bb7838d8349ae62181b3127339bce7eb5d",
+      "candidateSha256": "a1277b4f981cec026ce71fb83c3a3cb6a2dedcc5c89c3c4dc50e7315adef9fd7",
+      "baselineSize": 58728,
+      "candidateSize": 55064
+    },
+    {
+      "ord": 66,
+      "name": "oneplus_bypass.o",
+      "baselineSha256": "8570a3e2120cc819a829f59fe6364451cca289fbab921d1d46421612cbc32f6c",
+      "candidateSha256": "dc511d377c0a4e178fdf55b7d174f18640f52734ce5a625d9734772789794fbc",
+      "baselineSize": 99532,
+      "candidateSize": 102944
+    },
+    {
+      "ord": 67,
+      "name": "module_bypass_mtk_mkp.o",
+      "baselineSha256": "f806834b56b44e03c936843924e1351577d52bfda6a31e120aaea583a7ea974a",
+      "candidateSha256": "616c9a36a1c155957db59353c5096df2986b9decefc442ed2d8c2aab1886284d",
+      "baselineSize": 77156,
+      "candidateSize": 74136
+    },
+    {
+      "ord": 68,
+      "name": "module_bypass_oplus_secure_guard.o",
+      "baselineSha256": "44dd7ca966749fa8c9bd9b28f6807f3523055a99b9be30a6130f6ecc65eeed9f",
+      "candidateSha256": "486da9a6fe84eca52b87bf097e0d43045d7e76a3323c07df8d6719fc9eb9169c",
+      "baselineSize": 128696,
+      "candidateSize": 130848
+    },
+    {
+      "ord": 69,
+      "name": "module_bypass_oplus_inte.o",
+      "baselineSha256": "4cd30ae3ae1a3abe6d950df3579263a8b8f30ec1c4de8ddbfa0523089cb896b4",
+      "candidateSha256": "d68a782524670cb73f177174fb0cbaeb3bd0f70f9bacc7a5cd5f8273f6d702b7",
+      "baselineSize": 83468,
+      "candidateSize": 81096
+    },
+    {
+      "ord": 70,
+      "name": "module_root.o",
+      "baselineSha256": "631f5ca33e04f576b647073500a3b81a438481b322ceb92fad77659a6f28d081",
+      "candidateSha256": "2fa20ab0258c0bd2aef27a9e224eb92feb4df385f4e98b902dd4df3f74db1ee2",
+      "baselineSize": 68612,
+      "candidateSize": 69240
+    },
+    {
+      "ord": 79,
+      "name": "module_proc_cmdline.o",
+      "baselineSha256": "23e5806b7df7b0ee80ec2db059de743411f21fe2e9d4f103ad404b7e80e272df",
+      "candidateSha256": "757e7090b0c448ec472639ded7b0f6fbcbb7c5191c278f3aa55c23fe4b4b5ce6",
+      "baselineSize": 173308,
+      "candidateSize": 180136
+    },
+    {
+      "ord": 80,
+      "name": "module_proc_bootconfig.o",
+      "baselineSha256": "9550c3e519fd3190870ecf37d21569228059c8dd8ae94776809989afec30f937",
+      "candidateSha256": "bab87329e13139b71da42db0c874016e4e5ad6d276528099ad0b348502bbb312",
+      "baselineSize": 87684,
+      "candidateSize": 83072
+    },
+    {
+      "ord": 81,
+      "name": "module_su_redirect.o",
+      "baselineSha256": "3ddfcc783f4854d8c43a253938229c2cbe7b159b0d2a6ffb66bd4be5805b8a78",
+      "candidateSha256": "79b2858fe36830d59017303194f01b3b9288a0d2287a62bc6a97de2c15dd04ea",
+      "baselineSize": 172844,
+      "candidateSize": 316184
+    },
+    {
+      "ord": 83,
+      "name": "patch_do_execve.o",
+      "baselineSha256": "ba82b0078739f47b321d15166eea14456e97ce87312c8942644f9b13372cd44e",
+      "candidateSha256": "1bada604b50ef69ca5c5e7eacf83a1afccb5c555f090ef9d7772f8516db95401",
+      "baselineSize": 68252,
+      "candidateSize": 81472
+    },
+    {
+      "ord": 84,
+      "name": "patch_sys_newfstatat.o",
+      "baselineSha256": "cd7c68f8648da9371c3919954bd310908555937ee1c4ba8a50548969fb93084e",
+      "candidateSha256": "a5cd6e72416fcff6e6a59cc7045e4b2430669324884e8d3a4e5d2806d66015f0",
+      "baselineSize": 145804,
+      "candidateSize": 248824
+    },
+    {
+      "ord": 85,
+      "name": "patch_sys_statx.o",
+      "baselineSha256": "818ea15015d853db62683b424f4a72d6f8e858994b4d17b6ac1e6061a083e7c9",
+      "candidateSha256": "fd0053413fa6631f01c708a5bb3e4162c5767d822bbf5cec71241ab4c88b33cd",
+      "baselineSize": 145748,
+      "candidateSize": 248784
+    },
+    {
+      "ord": 88,
+      "name": "su_allowlist.o",
+      "baselineSha256": "4e354a771388ccfdc3e4dbe41e53be3a85ad38d57eab1e0404bde20902bb21a5",
+      "candidateSha256": "b60f13b38f955d7cce171048f515031efc19cd76774548dd64ffa08556da30ee",
+      "baselineSize": 112592,
+      "candidateSize": 129076
+    },
+    {
+      "ord": 89,
+      "name": "module_selinux.o",
+      "baselineSha256": "17abbd5bed7b6d634ff6a548c7b3b2987d6791fe341e2b2bc4fffb8836d211e4",
+      "candidateSha256": "5a0dd305736faa8c4f870ee79df143a5a24d6812a3e692cf8f35f7bf4bf3451b",
+      "baselineSize": 217896,
+      "candidateSize": 235952
+    },
+    {
+      "ord": 93,
+      "name": "module_tombstone_purge.o",
+      "baselineSha256": "54220b01eeefe833cea8b36aebad53b5192dca523927f11eb0cd7b3db8e7b79f",
+      "candidateSha256": "cff0b8f43138092aed81a18435e1a283c7337c7ac5b621d1741d1bf2a739a8fe",
+      "baselineSize": 292300,
+      "candidateSize": 301032
+    }
+  ],
+  "added": [
+    {
+      "ord": 255,
+      "name": "maplesu_module_control.o",
+      "candidateSha256": "114d66a9cd4e0a3e03d44d743342c90bc21f475ce47491e0c430a5b43794b96f"
+    },
+    {
+      "ord": 256,
+      "name": "maplesu_parasite_sdk.o",
+      "candidateSha256": "08b0c9e6964792359b081c5bdbbb4661bd64f3d7aa48eaf2c3b3f3b6c14b4e2f"
+    },
+    {
+      "ord": 257,
+      "name": "maplesu_environment_state.o",
+      "candidateSha256": "5c12d6f60811dbaa38df604879077539357e1a407320195cefd58ad212d4a434"
+    },
+    {
+      "ord": 258,
+      "name": "maplesu_private_dac.o",
+      "candidateSha256": "5f84eec692e18a078b4ceb25b1e3354aa224d37f9892be41f53d9a2f47857b8f"
+    },
+    {
+      "ord": 259,
+      "name": "maplesu_private_allowlist.o",
+      "candidateSha256": "e2f65eb8a75c474c9439a411671646124343c20d220b7a54d07fb67bd6726d24"
+    }
+  ],
+  "removed": [],
+  "orderErrors": [],
+  "unchanged": 224
+}

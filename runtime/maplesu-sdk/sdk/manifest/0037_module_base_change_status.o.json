@@ -1,0 +1,90 @@
+{
+ "idx": 37,
+ "name": "module_base_change_status.o",
+ "group": "core",
+ "layout": "elf",
+ "kind": "SINGLE",
+ "sources": [
+  "src/module_base/module_base_change_status.cpp"
+ ],
+ "flagsProfile": "core-oz-elf-fexceptions",
+ "extraFlags": [
+  "-D_FORTIFY_SOURCE=2",
+  "-fno-function-sections",
+  "-fno-data-sections",
+  "-fvisibility=hidden",
+  "-fvisibility-inlines-hidden"
+ ],
+ "status": "complete",
+ "recovery": {
+  "functions": 3,
+  "recovered": 3,
+  "unrecovered": []
+ },
+ "original": {
+  "sha256": "b4b730262190cec2efd2b338efc327c2dee1cd3eb17453b10e7e4fb480db812f",
+  "bytes": 80216
+ },
+ "evidence": [
+  "notes/work/AGENT110/STATUS.md",
+  "notes/work/AGENT110/proof/037/equiv.json",
+  "notes/work/AGENT110/proof/037/gate.json"
+ ],
+ "selfCheck": {
+  "tDiff": [],
+  "uDiff": [],
+  "note": "private_skroot_paths.h get_system_file_dir_name rebuilt to the frozen IR shape (root_key as a std::string(...) temporary destroyed at the end of the substr full-expression); frozen IR evidence in the shipped bitcode member skroot_module_webui_loader.o / skroot_unsafe_hide_dir.o. Measured (with frozen per-TU visibility flags): inventory 95/95 + 4 extra outliner fragments, call-target 91/95, bag_mean 0.9672, bag_min 0.1429 => bar NOT met. Residual: set_current_module_run_state 0.5415, set_current_module_description_with_str 0.5334, get_system_file_dir_path 0.9483; exact path-composition shape experiments (named-vs-temporary path, out_path.c_str() reuse) were tried and recorded in notes/work/AGENT114/STATUS.md without reaching the bar.",
+  "measured": {
+   "origStrongT": 3,
+   "newStrongT": 3,
+   "strongTMissing": 0,
+   "strongTExtra": 0,
+   "origU": 85,
+   "newU": 85,
+   "uMissing": 0,
+   "uExtra": 0,
+   "baselineConsumed": [],
+   "refFunctions": 95,
+   "newFunctions": 99,
+   "matched": 95,
+   "missingCount": 0,
+   "extraCount": 4,
+   "callTargetMatch": 88,
+   "seqMean": 0.9623,
+   "bagMean": 0.9596,
+   "bagMin": 0.1429,
+   "gateStatus": "PASS",
+   "gateBaselineConsumed": [],
+   "verifyEquivCommand": "py tools/verify_equiv.py --reference <freeze>/archive/libkernel_module_kit_static.a --built notes/work/AGENT110/proof/037/built.a --members 37",
+   "verifyEquivStatus": "diverges",
+   "equivalenceBarMet": false
+  }
+ },
+ "notes": "native-ELF 成员：强导出 T 3/3、强 U 85/85 双向差集为空（零容忍口径 PASS）。§5 的 TtWw 口径下多 4 个 OUTLINED_FUNCTION_4..7：那是 AArch64 machine outliner 生成的**本地**符号（'t'，gate 定义明确排除 local/weak），不影响门禁；本条已在 selfCheck.note 记录。",
+ "privateHeaders": [
+  "src/maplesu/compat/module_status_exports_legacy_abi.h"
+ ],
+ "legacyBinaryExports": {
+  "status": "source-compiled-selected-old-consumers-linked",
+  "compatibilityHeader": "src/maplesu/compat/module_status_exports_legacy_abi.h",
+  "compatibilityHeaderSha256": "ca3e6ce2e7a884e789852e71130cbff801923da2d7382a26658c4feaba714817",
+  "sourceSha256": "7a0d8cc745185992bad8fca7bd0f814c0736f0e8c7f4f57d0d509ccac6da44d6",
+  "objectSha256": "f1603f64642a805f1773d0b857efecaaa422b7545beb1b76b492206fc8b84413",
+  "restoredStrongSymbols": [
+   "_ZN13kernel_module28set_current_module_run_stateEN10skroot_env14ModuleRunStateE"
+  ],
+  "currentStrongRetained": 3,
+  "undefinedImportsUnchanged": true,
+  "remainingFrozenStrongSymbols": [],
+  "memberCompileExit": 0,
+  "strictSelectedLegacyCallerLinkExit": 0,
+  "validation": ".tmp/main-sdk-legacy-status-control-20261120/NARROW-RESULTS.json",
+  "compileCommands": ".tmp/main-sdk-legacy-status-control-20261120/COMPILE-LINK-COMMANDS.json",
+  "inputVerification": ".tmp/main-sdk-legacy-status-control-20261120/metadata/INPUT-CHECK.json",
+  "scope": "Only 1 restored entry names were checked by the selected legacy caller. Prior selfCheck statistics are historical; this is no full gate or behavior-equivalence result.",
+  "formalDeliveryUpdated": false,
+  "deviceTested": false,
+  "nativeExecution": false,
+  "rawGateStatus": "not-rerun-by-metadata-closeout"
+ }
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "public_scope": "release-candidate",
+  "excluded_prefixes": [
+    ".handoff/",
+    ".private/",
+    "work/",
+    "evidence/",
+    "samples/",
+    ".research/",
+    ".analysis/",
+    "SKRoot_Reference/",
+    "Credit_Reference/",
+    "runtime/pro/reference/",
+    "maplesu-theme-market/",
+    "maplesu-module-market/",
+    "docs/development/",
+    "docs/dual-mode/",
+    "docs/research/",
+    "docs/opensource/",
+    "zygisk/",
+    "third_party/rezygisk/",
+    "runtime/ultra/reference/",
+    ".tmp/"
+  ],
+  "allowed_binaries": {
+    "gradle/wrapper/gradle-wrapper.jar": "7a9ce74cff467ca1bf60a4fcd9f05185acceda4d0f382434d393e17864262c5d",
+    "third_party/libsu-service/src/main/assets/main.jar": "ae7fdb8b70bd2c1cc2c27043e985f8dc5cfff2cb9142a1576dcdbc889763ef7b",
+    "third_party/libsu-service/upstream/service/src/main/assets/main.jar": "ae7fdb8b70bd2c1cc2c27043e985f8dc5cfff2cb9142a1576dcdbc889763ef7b",
+    "image-core/src/test/resources/lenovo-avb-fixtures.zip": "9be13e7e95d966dd5e7ef72cc2f52d2e987d52c0086b2b006af56f586e3468fd",
+    "manager/src/test/resources/parasite/libt2host.orig.so.bin": "2c1a26cccdd96275c78027a90b1d0ce27f3addc26c8970880c53db9d12e738b9",
+    "manager/src/test/resources/parasite/libt2host.patched.so.bin": "fe1be25deba3305a5a3d1795cc3440bc3557dce52ed111f7b2101640bf9fcb26",
+    "image-core/src/test/resources/ramdisk-codecs/stock-crc32.cpio.xz": "d232d824732ccee9c0e982c6e5a75e2fd576a9210f679d4c40726dcc5e1f8171",
+    "image-core/src/test/resources/ramdisk-codecs/stock-crc64.cpio.xz": "4bc2b69efee8f3afe2427d631360dae2ef8fc82696d78f341cdb2c5cff77a15f",
+    "image-core/src/test/resources/ramdisk-codecs/stock-sha256.cpio.xz": "6d0b36244d0fbca4e5526e2ea59a4cc9b3ca542ef2cafc4111a8416dc88319b4"
+  },
+  "public_test_keys": {
+    "manager/src/main/assets/maplesu/avb/testkey_rsa2048.pem": "f1d5765a2bdfb92fb08aee021107c7ac1a7a3f590dafd853771c85375ef0fbd7",
+    "manager/src/main/assets/maplesu/avb/testkey_rsa4096.pem": "88bd0278559c5f54b709560987f2f5dd67f1afe42b2c6576a2d5fdf5fe0c6d69"
+  },
+  "required_files": [
+    "LICENSE",
+    "NOTICE",
+    "CREDITS.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "README.md",
+    "README.en.md",
+    "docs/README.md",
+    "docs/RELEASING.md",
+    "docs/BUILD.md",
+    "docs/NATIVE_DEPENDENCIES.md",
+    "docs/MAINTENANCE.md",
+    "requirements-native.txt",
+    "docs/SDK.md",
+    "docs/ULTRA_MODULES.md",
+    "docs/THEME_REPOSITORY.md",
+    "docs/MODULE_REPOSITORY.md",
+    "tools/check_host.py",
+    "tools/check_architecture.py",
+    "tools/check_source_export.py",
+    "tools/release_audit.py",
+    "gradle/wrapper/gradle-wrapper.jar",
+    "release/native-inputs.json",
+    "native-inputs/README.md",
+    "native-inputs/policy/policy-bundles.json",
+    "runtime/maplesu-sdk/SDK-RELEASE.json",
+    "runtime/maplesu-sdk/SDK-IDENTITY.cmake",
+    "runtime/maplesu-sdk/lib/arm64-v8a/libkernel_module_kit_static.a",
+    "runtime/upstream/lib/libkernel_root_kit_static.a",
+    "patch-engine/upstream-sources.cmake"
+  ],
+  "release_blockers": [
+    {
+      "id": "complete-source-build",
+      "resolved": true,
+      "detail": "Complete Manager release, client AAR and consumer APK built from the source export with all 196 tasks executed. Native SDK, helper and paired backend match the development inputs; the client AAR matches the previous cloud release. Source archive input hashes and host suites verified."
+    },
+    {
+      "id": "maplesu-5.2.1-acceptance",
+      "resolved": false,
+      "detail": "MapleSU 5.2.1 has no accepted same-generation release. The latest complete SDK clean builds report 160 member-gate problems across 78 failed members (raw producer exit 7). Source-only review and stage completed with stageGranted=false. The matching signed APK, image and required device regressions remain unverified. Historical complete-source-build results do not resolve this blocker."
+    }
+  ],
+  "excluded_files": [
+    "tools/acceptance-pro-module.ps1",
+    "tools/package_development.py",
+    "tools/package_teesimulator_bundle.py",
+    "tools/tests/check-codec-interop.py",
+    "tools/tests/check_runtime_device.py",
+    "tools/tests/check_shared_boot_rebuild.py",
+    "tools/tests/check_skroot_module_samples.py",
+    "tools/tests/check_skroot_patch_equivalence.py",
+    "tools/tests/test_development_package.py",
+    "tools/tests/test_device_boot_observation.py",
+    "tools/tests/test_export_pro_contract.py",
+    "tools/tests/test_installer_evidence.py",
+    "tools/tests/test_installer_service_evidence.py",
+    "tools/tests/test_jailbreak_source_inventory.py",
+    "tools/tests/test_pro_build_inputs.py",
+    "tools/tests/test_pro_integration_snapshot.py",
+    "tools/tests/test_pro_ref_source_trees.py",
+    "tools/tests/test_pro_reference_pairing.py",
+    "tools/tests/test_pro_sdk_inventory.py",
+    "tools/tests/test_pro_sdk_providers.py",
+    "tools/tests/test_pro_source_availability.py",
+    "tools/tests/test_repack_boot_v4.py",
+    "tools/tests/test_runtime_evidence.py",
+    "tools/tests/test_runtime_provenance.py",
+    "tools/tests/test_skroot_patch_equivalence.py",
+    "tools/tests/test_skroot_pro_inspection.py",
+    "tools/tests/test_validation_results.py",
+    "tools/tests/test_verify_pro_sdk_505.py",
+    "tools/verify_development_package.py",
+    "tools/verify_dual_mode.py",
+    "tools/verify_packages.py"
+  ],
+  "independent_repositories": [
+    {
+      "kind": "modules",
+      "workspace": "maplesu-module-market/",
+      "release_check": "python tools/check_maintainers.py --release",
+      "implementation_excluded": [
+        "zygisk/",
+        "third_party/rezygisk/"
+      ]
+    },
+    {
+      "kind": "themes",
+      "workspace": "maplesu-theme-market/",
+      "release_check": "python tools/check_maintainers.py --release"
+    }
+  ],
+  "native_input_manifest": "release/native-inputs.json"
+}

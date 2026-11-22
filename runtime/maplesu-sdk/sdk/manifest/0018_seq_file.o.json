@@ -1,0 +1,31 @@
+{
+  "idx": 18,
+  "name": "seq_file.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/kernel_offsets/seq_file.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 3,
+    "recovered": 3,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "6d144ac955e70613d822a24bc951d3999e3f91a2a859760cf67b4a43561c024c",
+    "bytes": 170260
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "Two-way symbol gate clean: T 3/3 exported resolvers, U 85/85 imports, raw diff empty both ways, no allowance consumed. Rebuilt in the frozen member's container with the member's flagsProfile."
+  },
+  "notes": ""
+}

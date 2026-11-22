@@ -1,0 +1,756 @@
+{
+  "passed": true,
+  "expectedRed": false,
+  "failures": 0,
+  "image": "sha256:272ada1e61c525116032246df2a790d1ccec1804b7a9e0b09203c5e650dcb78e",
+  "productionOutputsWritten": false,
+  "deviceAccess": false,
+  "boundaries": "exact parser/helpers and exact pure msu_sdk_bind_key only; no external stubs",
+  "inputs": [
+    {
+      "path": "C:\\Temp\\maplesu-root-key-parser-proposal-20261115.cpp",
+      "sha256": "53a07fcb78cabd2e5a5106c9e6d93cf5b8c22ee7eb388d7febb912948f698456"
+    },
+    {
+      "path": "D:\\Maple_Workflow\\MapleSU\\jailbreak-providers\\root-loader\\module\\boot_sdk_protocol.h",
+      "sha256": "fc1c9df5bca4bd3e199c2a68f79b8a6713573249e0002493b0655ecf36960e02"
+    },
+    {
+      "path": "D:\\Maple_Workflow\\MapleSU\\runtime\\upstream-pro\\sdk\\tools\\tests\\root_key_parser\\fixture.cpp",
+      "sha256": "190063d5b6e3428de72578dbb47b93092c5a1324782101b25c0a455128ca95b2"
+    },
+    {
+      "path": "D:\\Maple_Workflow\\MapleSU\\runtime\\upstream-pro\\sdk\\tools\\tests\\root_key_parser\\run.py",
+      "sha256": "68a28d1ae7538d9e85ba20cc8390af02300e3ee176ec1873e4649531ca858395"
+    }
+  ],
+  "results": [
+    {
+      "name": "null",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "null",
+          "bytes": 0,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "empty",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "empty",
+          "bytes": 0,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "short_1",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "short_1",
+          "bytes": 1,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "short_15",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "short_15",
+          "bytes": 15,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "project_-134217728",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "project_-134217728",
+          "bytes": 48,
+          "expected": -134217728,
+          "actual": -134217728,
+          "escaped": false,
+          "projectGenerator": true,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "project_-4096",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "project_-4096",
+          "bytes": 48,
+          "expected": -4096,
+          "actual": -4096,
+          "escaped": false,
+          "projectGenerator": true,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "project_-4",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "project_-4",
+          "bytes": 48,
+          "expected": -4,
+          "actual": -4,
+          "escaped": false,
+          "projectGenerator": true,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "project_4",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "project_4",
+          "bytes": 48,
+          "expected": 4,
+          "actual": 4,
+          "escaped": false,
+          "projectGenerator": true,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "project_4096",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "project_4096",
+          "bytes": 48,
+          "expected": 4096,
+          "actual": 4096,
+          "escaped": false,
+          "projectGenerator": true,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "project_134217728",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "project_134217728",
+          "bytes": 48,
+          "expected": 134217728,
+          "actual": 134217728,
+          "escaped": false,
+          "projectGenerator": true,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "int_max",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "int_max",
+          "bytes": 48,
+          "expected": 2147483647,
+          "actual": 2147483647,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "int_min",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "int_min",
+          "bytes": 48,
+          "expected": -2147483648,
+          "actual": -2147483648,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "negative_int_max",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "negative_int_max",
+          "bytes": 48,
+          "expected": -2147483647,
+          "actual": -2147483647,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "positive_zero",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "positive_zero",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "negative_zero",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "negative_zero",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "leading_zero",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "leading_zero",
+          "bytes": 48,
+          "expected": 4321,
+          "actual": 4321,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "nonzero_sign",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "nonzero_sign",
+          "bytes": 48,
+          "expected": 4321,
+          "actual": 4321,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "length_253",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "length_253",
+          "bytes": 253,
+          "expected": 4,
+          "actual": 4,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "length_254",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "length_254",
+          "bytes": 254,
+          "expected": 4,
+          "actual": 4,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "length_255",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "length_255",
+          "bytes": 255,
+          "expected": 4,
+          "actual": 4,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "length_256",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "length_256",
+          "bytes": 256,
+          "expected": 4,
+          "actual": 4,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "length_4096",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "length_4096",
+          "bytes": 4096,
+          "expected": 4,
+          "actual": 4,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "length_65536",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "length_65536",
+          "bytes": 65536,
+          "expected": 4,
+          "actual": 4,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "prefix_0",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "prefix_0",
+          "bytes": 16,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "prefix_1",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "prefix_1",
+          "bytes": 16,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "prefix_2",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "prefix_2",
+          "bytes": 16,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "prefix_61",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "prefix_61",
+          "bytes": 16,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "invalid_at_0",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "invalid_at_0",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "invalid_at_1",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "invalid_at_1",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "invalid_at_15",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "invalid_at_15",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "invalid_at_2",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "invalid_at_2",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "invalid_at_45",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "invalid_at_45",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "invalid_at_46",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "invalid_at_46",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "ignored_character",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "ignored_character",
+          "bytes": 48,
+          "expected": 4321,
+          "actual": 4321,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "positive_int_overflow",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "positive_int_overflow",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "negative_int_overflow",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "negative_int_overflow",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "negative_i64_min",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "negative_i64_min",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "u64_max",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "u64_max",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "u64_max_negative",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "u64_max_negative",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "u64_overflow",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "u64_overflow",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "many_digits_overflow",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "many_digits_overflow",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    },
+    {
+      "name": "allocation_failure",
+      "exit": 0,
+      "rows": [
+        {
+          "case": "allocation_failure",
+          "bytes": 48,
+          "expected": 0,
+          "actual": 0,
+          "escaped": false,
+          "projectGenerator": false,
+          "passed": true
+        }
+      ],
+      "asan": false,
+      "ubsan": false
+    }
+  ],
+  "testedCodeHadFailures": false,
+  "receiptAmendment": "Added testedCodeHadFailures after run; commands, results and recorded input hashes unchanged",
+  "extractedSources": [
+    {
+      "path": "C:\\Temp\\maplesu-root-key-parser-proposal-green-20261115\\actual_parser.cpp",
+      "sha256": "a765ac777ca9cf1786dc230e815be3c42cc65d72ba3083d90278fa3f9e9a86c5"
+    },
+    {
+      "path": "C:\\Temp\\maplesu-root-key-parser-proposal-green-20261115\\actual_bind_key.cpp",
+      "sha256": "475badcf6bdd42c22f1a2f6fc49a705bc3276fde0680558e91dfe6a2203e596a"
+    }
+  ],
+  "fullReceipt": "C:\\Temp\\maplesu-root-key-parser-proposal-green-20261115\\RESULTS.json"
+}

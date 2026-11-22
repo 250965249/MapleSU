@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="manager_restore_confirm_title">确认管理器恢复</string>
+    <string name="manager_restore_confirm_message">管理器已打开，Ultra 根通道已通过验证。请确认管理功能正常；点击“确认恢复”后，将完成寄生清理并关闭网页恢复服务。选择稍后，网页将继续保留。</string>
+    <string name="manager_restore_confirm_later">稍后</string>
+    <string name="manager_restore_confirm_done">确认恢复</string>
+    <string name="manager_restore_confirm_success">恢复已确认，网页恢复服务即将关闭</string>
+    <string name="manager_restore_confirm_progress">确认中…</string>
+    <string name="manager_restore_confirm_retry_code">恢复尚未确认，网页服务继续保留。请重试。\n原因：%1$s</string>
+</resources>

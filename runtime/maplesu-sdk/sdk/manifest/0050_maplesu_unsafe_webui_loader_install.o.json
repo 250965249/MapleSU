@@ -1,0 +1,107 @@
+{
+  "idx": 50,
+  "name": "maplesu_unsafe_webui_loader_install.o",
+  "group": "maplesu",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-fno-function-sections",
+    "-fno-data-sections",
+    "-Wno-unused-command-line-argument"
+  ],
+  "sources": [
+    "src/maplesu/install/webui_loader_install.cpp"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 59,
+    "recovered": 59,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "217f5e25bc1a8853688392bc2c2015af6dfef76021866d33ce2f3c7eef5cd735",
+    "bytes": 820288
+  },
+  "evidence": [
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/STATUS.md",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/EQUIVALENCE.md",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/gate.json",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/equivalence-report.json",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/EQUIVALENCE.md",
+    "runtime/upstream-pro/sdk/build/p1-installer-4950/report.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p1/IR-EXIT-PLAN.md"
+  ],
+  "notes": "实际构建输入已切换为可维护 C++；生成头必须由 build.py 以 MAPLESU_PAYLOAD_ASSETS=1 和候选 assets-gen 路径接入，负载与生成头 hash 在 payload_inputs 记录。原 IR 保留为历史行为参照；C++ 与 IR 的同一 fixture 已核对返回码、调用顺序、完整文件字节、mode/xattr 和失败状态，设备验收仍待完成。",
+  "historicalIrSelfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "冻结构建输入已复原并落盘：本成员是单编译单元，构建输入是 runtime/pro/upgrade/sdk-m050.bc 经 scripts/repair-pro-environment-upgrade.py 的发布补丁（把旧的写文件流替换为可执行发布调用面）后的安装器代码；build.py 正式阶段（compile/pack）产物与冻结成员逐字节相同。清单 sources[] 是构建输入；src/skroot/skroot_unsafe_webui_loader_install.cpp 是可读 C++ 转写，只作文档，不参与构建。profile 叠加 -fno-function-sections/-fno-data-sections 与冻结配方 clang --target=aarch64-linux-android21 -Oz -fPIC -c <输入> 等价。",
+    "gate": "PASS: T 1/1, U 53/53, weak 66/66, local 26/26, raw diffs empty, same_bytes=true, zero gate-symbol-baseline entries consumed",
+    "bytes": 820288,
+    "sha256": "217f5e25bc1a8853688392bc2c2015af6dfef76021866d33ce2f3c7eef5cd735",
+    "verifyEquiv": {
+      "status": "equivalent",
+      "functions": "59/59",
+      "missing": 0,
+      "extra": 0,
+      "callTargetMatch": "59/59",
+      "seqMean": 1.0,
+      "bagMean": 1.0,
+      "bagMin": 1.0
+    },
+    "proof": [
+      "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/gate.json",
+      "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/equivalence-report.json",
+      "runtime/upstream-pro/sdk/notes/work/AGENT107/EQUIVALENCE.md"
+    ]
+  },
+  "historicalIrRecovery": {
+    "functions": 59,
+    "recovered": 59,
+    "unrecovered": []
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "C++ installer migrated after recorded host differential acceptance. Frozen IR byte equivalence is historical evidence only; current symbol/layout gate and device acceptance are separate checks.",
+    "proof": [
+      "runtime/upstream-pro/sdk/build/p1-installer-4950/report.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p1/IR-EXIT-PLAN.md"
+    ]
+  },
+  "sourceMigration": {
+    "from": "src/skroot/skroot_unsafe_webui_loader_install_patched.ll",
+    "to": "src/skroot/skroot_unsafe_webui_loader_install.cpp",
+    "acceptance": "host-behaviour-equivalent",
+    "deviceAcceptance": "pending",
+    "report": "runtime/upstream-pro/sdk/build/p1-installer-4950/report.json",
+    "cases": 8
+  },
+  "p7NativeWebuiLoaderInstaller": {
+    "status": "implemented-pending-integration-and-device-validation",
+    "report": "../../../docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n06b/HANDOFF.md",
+    "sourceBeforeSha256": "ca282b101308d571e788b8a1c273a87e221faa4c1f3e6d71242d3c08ac0a2de3",
+    "sourceAfterSha256": "8b9c030aa762863174227aa2f8660e736fcf9b3983871b6f98d5052335be3f74",
+    "actualPayloadBytes": 349000,
+    "actualPayloadSha256": "2183bdfa4c634e0a4deda6c8d01cc9ce4d8e43db306cbe03778857ac35eb49ee",
+    "hostScenariosEach": 9,
+    "externalSymbolsAndVisibilityUnchanged": true,
+    "sharedBuildSelectionCandidateRequired": true,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "privateHeaders": [
+    "src/maplesu/compat/install_webui_exports_legacy_abi.h"
+  ],
+  "legacyBinaryExports": {
+    "status": "source-compiled-old-and-new-consumers-linked",
+    "compatibilityHeader": "src/maplesu/compat/install_webui_exports_legacy_abi.h",
+    "symbolAliases": 1,
+    "scope": "Exact frozen skroot_env binary names alias the sole maintained maplesu::sdk function bodies; existing install behavior and error propagation preserved",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "validation": ".tmp/main-sdk-installer-abi-20261120/linked-abi-review-effective-m048/EXECUTION.json",
+    "rawGatePassed": false
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "resetprop",
+  "asset": "resetprop_file.bin",
+  "member": "maplesu_unsafe_resetprop_install.o",
+  "symbol": "resetprop_file_data",
+  "origin": "runtime/maplesu-sdk/sdk/src/payload/resetprop/README.md",
+  "language": "c++",
+  "sources": [
+    "src/main.cpp",
+    "src/prop_command.cpp",
+    "src/property_api.cpp",
+    "src/persist.cpp"
+  ],
+  "include_dirs": [
+    "src",
+    "../common"
+  ],
+  "defines": [],
+  "cflags": [
+    "-std=c++17",
+    "-fno-rtti",
+    "-fno-exceptions"
+  ],
+  "ldflags": [
+    "-static-libstdc++",
+    "-Wl,--gc-sections"
+  ],
+  "libs": [
+    "dl"
+  ],
+  "reference": {
+    "bytes": 400568,
+    "sha256": "70558e6d6199fa5a961b7bafeb8f96d8157cc63810db8df2a3cded1881763697",
+    "origin": "frozen archive member skroot_unsafe_resetprop_install.o .data (skroot_env::resetprop_file_data), extracted into sdk/assets/resetprop_file.bin"
+  }
+}

@@ -1,0 +1,4 @@
+[alias]
+deployer = "run -p hostutils --bin deployer --"
+push-resetprop = "run -p hostutils --bin resetprop-tester -- --target aarch64-linux-android"
+test-resetprop = "run -p hostutils --bin resetprop-tester -- --target aarch64-linux-android --run-test"

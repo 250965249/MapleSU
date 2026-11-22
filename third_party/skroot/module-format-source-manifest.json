@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/abcz316/SKRoot-linuxKernelRoot",
+  "commit": "388732b35fe0a6e77c097bf7b1c6b4869a0b3297",
+  "scope": "Static module entry and descriptor format identifiers only; no SDK archive or native implementation linked into the Manager.",
+  "reusePermission": "Project owner confirmed permission; evidence retained separately.",
+  "referenceHeaders": [
+    {
+      "path": "Pro(众测开放中)/src/testModule/kernel_module_kit/include/module_descriptor.h",
+      "sha256": "66bcea15fc65ebfa25f834f63f3b2c70fffa8b05392eef63cec47c7da3be693c",
+      "bytes": 3220,
+      "checkoutSha256": "8ae60e58c1297a5c076edf226a5ff2eb19991de1e9576b8eeea5b700cebf2fb0",
+      "checkoutLineEndingNormalizationVerified": true
+    },
+    {
+      "path": "Pro(众测开放中)/src/testModule/kernel_module_kit/include/third_party/____DO_NOT_EDIT____/private_desc_parser.h",
+      "sha256": "c0bfe1eeb67c90efd2a21311cc38ee2f77d1e2a22dd9d11fb92184abd8f44ff0",
+      "bytes": 13289,
+      "checkoutSha256": "1d50d88823a37cb84d9e328797e18b2dc4b12c7fbb63b6f357c0f7973c4457ac",
+      "checkoutLineEndingNormalizationVerified": true
+    }
+  ],
+  "officialSamples": [
+    {
+      "path": "Pro(众测开放中)/src/testModule/打包示例/module_fake_system_file.zip",
+      "sha256": "c4a4299bb62f8b12e51eab0382a18960e32acb46fe1e5090b6a625d6eada8a48",
+      "type": "SKROOT",
+      "id": "xhTxKsI5kHacgHJ04b5VhO4ffiOP4sdc",
+      "nativeEntry": "libmodule_fake_system_file.so",
+      "inputUnchanged": true
+    },
+    {
+      "path": "Pro(众测开放中)/src/testModule/打包示例/module_hello_world.zip",
+      "sha256": "d47ed93cc95d8f73a6c300131cb28fe7dae20021c354ab61eca1d565ffa3790d",
+      "type": "SKROOT",
+      "id": "3608c9af28db4dcfc05c32bbc584753e",
+      "nativeEntry": "libmodule_hello_world.so",
+      "inputUnchanged": true
+    },
+    {
+      "path": "Pro(众测开放中)/src/testModule/打包示例/module_hide_data_dir.zip",
+      "sha256": "9d1eea2ecb1dfd9ac187b7f5f66f7c794eb35ffb4a897293af81855e33ee00e4",
+      "type": "SKROOT",
+      "id": "ae12076c010ebabbb233affdd0239c14",
+      "nativeEntry": "libmodule_hide_data_dir.so",
+      "inputUnchanged": true
+    },
+    {
+      "path": "Pro(众测开放中)/src/testModule/打包示例/module_web_ui_example.zip",
+      "sha256": "7a61cbb7b3c453b4ad3f53a40f91cc2fc7d8f0b7e5e1dc4b88af9068fa2e7db5",
+      "type": "SKROOT",
+      "id": "6080b19fb2db26c534af3051103f541f",
+      "nativeEntry": "libmodule_web_ui_example.so",
+      "inputUnchanged": true
+    }
+  ]
+}

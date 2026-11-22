@@ -1,0 +1,144 @@
+/*
+ * Loader-facing glue for maplesu_l2.ko (change-set C1; design rev-3 3.1.2/C1-5).
+ *
+ * The L2 module is built the same way as maplesu_root: there is no kbuild on the
+ * host, so the five things the loader insists on are emitted here by hand, with
+ * the sizes taken from this kernel's own BTF (contract `thisModule` and
+ * `structOffsets.kernelParam`) and cross-checked by the build gates.
+ *
+ * What is different from root_glue.S.in, and why:
+ *
+ *   * `name` is maplesu_l2 (10 characters), so the name[] reservation is 11
+ *     bytes instead of 13. Everything else in `struct module` is identical --
+ *     same BTF type, same offsets, same 0x600 size;
+ *   * a `__param` row exists, because the control channel's cookie arrives as a
+ *     finit_module uargs module parameter. The row is one 0x28-byte
+ *     `struct kernel_param` whose offsets come from `structOffsets.kernelParam`
+ *     (name@0x00 mod@0x08 ops@0x10 perm@0x18 level@0x1a flags@0x1b arg@0x20),
+ *     and it is the reason `param_ops_ullong` is the module's seventh import;
+ *   * the cookie cell `l2_load_cookie` is *defined here* (a `.bss`-like section)
+ *     so that the row's `arg` can name a link-visible symbol; maplesu_l2.c only
+ *     declares it `extern`. The module therefore has exactly one non-static
+ *     datum, and its value is written by the kernel's own parameter parser
+ *     before init_module() runs;
+ *   * `.modinfo` carries `parm=cookie:ullong` (informational: modpost's tag,
+ *     which this build has no modpost to generate) and a different
+ *     description.
+ *
+ * `perm = 0` is load-bearing twice: it keeps the cookie out of
+ * /sys/module/maplesu_l2/parameters/, and it tells the kernel not to build a
+ * sysfs attribute at all -- so `mod` only has to point at this module object for
+ * the parameter to be *parsed*; no attribute is ever created.
+ *
+ * This file has exactly one substitution token, `@L2_VERMAGIC@` in `.modinfo`,
+ * replaced by build_root_module.py with the contract's exact vermagic; the
+ * builder refuses to assemble a file in which a token survived. Every other byte
+ * is copied verbatim because it describes a fixed offset.
+ */
+
+	/* ---- struct module (0x600), field offsets from this image's BTF ---- */
+	.section .gnu.linkonce.this_module,"aw",@progbits
+	.balign 64
+__this_module:
+	/* +0x000 state / list / list_lock / name[56] region: only name matters */
+	.zero	0x18
+	.asciz	"maplesu_l2"
+	.zero	0x38 - 0x18 - 11		/* name ends inside char[56] at +0x18 */
+	/* +0x038 .. +0x187: build_id, version, srcversion, syms, params, layouts... */
+	.zero	0x188 - 0x38
+	.quad	init_module			/* +0x188 init */
+	/* +0x190 .. +0x5b7: layouts, mem[], arch, taints, kallsyms state... */
+	.zero	0x5b8 - 0x190
+	.quad	cleanup_module			/* +0x5b8 exit: unregisters every probe */
+	/* +0x5c0 .. +0x5ff */
+	.zero	0x600 - 0x5c0
+
+	/*
+	 * ---- .modinfo: what modpost would have generated ----
+	 *
+	 *   license=GPL       register_kprobe/register_kretprobe are EXPORT_SYMBOL_GPL;
+	 *                     a non-GPL module cannot resolve them ("Unknown symbol");
+	 *   vermagic=...      check_modinfo() compares it; CONFIG_MODULE_FORCE_LOAD is
+	 *                     off, so a mismatch is -ENOEXEC with no printk;
+	 *   name=...          must equal this_module.name;
+	 *   depends=          empty is legal and correct: no module dependencies;
+	 *   parm=cookie:ullong  the parameter's type, for modinfo readers;
+	 *   description=...   asserted against the builder's constant.
+	 */
+	.section .modinfo,"a",@progbits
+	.balign	1
+	.asciz	"license=GPL"
+	.asciz	"description=MapleSU L2 window-scoped hook module"
+	.asciz	"name=maplesu_l2"
+	.asciz	"depends="
+	.asciz	"vermagic=@L2_VERMAGIC@"
+	.asciz	"parm=cookie:ullong"
+
+	/* ---- the four sections arm64's module finalizer requires ---- */
+	.section .plt,"ax",@progbits
+	.balign 1
+	.byte 0
+	.section .init.plt,"ax",@progbits
+	.balign 1
+	.byte 0
+	.section .text.ftrace_trampoline,"ax",@progbits
+	.balign 1
+	.byte 0
+
+	/*
+	 * ---- struct modversion_info[1], deliberately EMPTY-NAMED ----
+	 * Same reasoning as the root module: the section's presence is what makes
+	 * v6.6 check_version() return 1 with a one-time warning, so no CRC has to
+	 * match and no `module_layout` is pinned.
+	 */
+	.section __versions,"a",@progbits
+	.balign 8
+	.quad 0
+	.zero 56
+
+	/*
+	 * ---- the cookie cell the __param row points at ----
+	 *
+	 * Zero-initialised .bss, 8 bytes, naturally aligned: `param_ops_ullong`'s
+	 * setter stores an `unsigned long long` here while parse_args() runs, i.e.
+	 * before init_module() reads it. File scope + external linkage because the
+	 * __param row below has to relocate against it.
+	 */
+	.section .bss.l2_cookie,"aw",@nobits
+	.balign 8
+	.globl	l2_load_cookie
+l2_load_cookie:
+	.zero	8
+
+	/*
+	 * ---- one `struct kernel_param`: the cookie channel ----
+	 *
+	 * Offsets from `structOffsets.kernelParam` (BTF id 2062, size 0x28):
+	 *   +0x00 name = "cookie"
+	 *   +0x08 mod  = &__this_module           (local relocation)
+	 *   +0x10 ops  = &param_ops_ullong        (the seventh import)
+	 *   +0x18 perm = 0                        (no sysfs entry at all)
+	 *   +0x1a level = 0, +0x1b flags = 0
+	 *   +0x20 arg  = &l2_load_cookie          (local relocation)
+	 *
+	 * The section name and the record size are exactly what
+	 * `section_objs(info, "__param", sizeof(struct kernel_param), &num)` looks
+	 * for; a size that is not a multiple of 0x28 would be silently ignored.
+	 */
+	.section __param,"aw",@progbits
+	.balign 8
+	.quad	l2_cookie_name			/* +0x00 const char *name */
+	.quad	__this_module			/* +0x08 struct module *mod */
+	.quad	param_ops_ullong		/* +0x10 ops (import) */
+	.hword	0				/* +0x18 const u16 perm = 0 */
+	.byte	0				/* +0x1a s8 level */
+	.byte	0				/* +0x1b u8 flags */
+	.zero	4				/* +0x1c padding */
+	.quad	l2_load_cookie			/* +0x20 union { void *arg; } */
+
+	.section .rodata,"a",@progbits
+	.balign 1
+l2_cookie_name:
+	.asciz	"cookie"
+
+	.section .note.GNU-stack,"",@progbits

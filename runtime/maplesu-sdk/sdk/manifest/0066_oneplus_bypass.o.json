@@ -1,0 +1,82 @@
+{
+  "idx": 66,
+  "name": "oneplus_bypass.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/bypass/oneplus_bypass.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fno-function-sections",
+    "-fno-data-sections",
+    "-fvisibility=hidden",
+    "-fvisibility-inlines-hidden"
+  ],
+  "status": "partial",
+  "recovery": {
+    "functions": 121,
+    "recovered": 121,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "dc511d377c0a4e178fdf55b7d174f18640f52734ce5a625d9734772789794fbc",
+    "bytes": 102944
+  },
+  "evidence": [
+    "notes/work/AGENT112/proof/066/EQUIVALENCE.md",
+    "notes/work/AGENT112/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": [],
+    "equivalence": {
+      "functions": "121/121",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "118/121",
+      "bag_min": 0.8444,
+      "bag_mean": 0.9983,
+      "seq_mean": 0.9966
+    },
+    "note": "Measured against the frozen archive with the final green build (build/r5/out, member gate PASS 260/260). Two-way gate: T 2/2, U 93/93, raw diff empty, baseline consumed 0. verify_equiv: status=diverges, functions 121/121, missing=0, extra=0, call_target_match=118/121, bag_min=0.8444, bag_mean=0.9983, seq_mean=0.9966. NOT AT BAR: call-target sets equal in 118/121 functions; bag_min 0.8444 < 0.95. Partial: inventory identical (121/121), bag_min 0.8444 in oneplus_bypass_stage1_and_2 and call sets differ in 3 functions; frozen member is an ELF built with the unavailable r487747e clang and was already analysed in notes/work/ONEPLUS66."
+  },
+  "notes": "Pro 侧 oneplus bypass：stage1 通过 OnePlus 驱动的 generic netlink family（先试 sgtgki，再试 secure_guard）发送本进程 pid 并轮询驱动回传的 UPLOAD 消息；stage2 用 kallsyms 解析 oplus_secure_guard[:new]/oplus_security_guard 三处 g_boot_state，先 set_kernel_mem_protection(RW) 再写 1 字节 true，最后恢复 RO。两段都在 fork 出的子进程里执行，父进程只经 fork 管道取回错误码与子进程日志并在最后回调拼接后的 report；is_work_normal 走同样的 fork 通道取 module_bypass_oplus_secure_guard::is_work_normal()。T/U 符号面已与冻结成员完全一致，行为实现完整；仅栈槽基址造成的 3 个函数助记符差异使 bag_min 未达 0.95，按 partial 如实登记。",
+  "p7RemainingOwnerConsumers20261121": {
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/bypass/oneplus_bypass.cpp",
+        "sha256": "5b7eb27fe586b9f1b4f90dd0e740a86428c98494aa5b013f1f5a1b8347c5951d"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_status_query_private.h",
+        "sha256": "ea92df53ddf97164c8e4ee864f1d1108db2bfa2309d9e74836307f3d0d1bba8f"
+      }
+    ],
+    "contract": "Consume existing authenticated request context; null Owner accepted, explicit invalid Key never falls back; actual worker scopes/close and first failures retained; legacy public ABI preserved.",
+    "publicAbiChanged": false,
+    "evidenceDirectory": ".tmp/p7-development-20261121/keyless/validation",
+    "deviceValidated": false,
+    "formalAssetsPromoted": false,
+    "historicRawGateUnchanged": true
+  },
+  "privateHeaders": [
+    "include/maplesu_status_query_private.h"
+  ],
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/bypass/oneplus_bypass.cpp",
+        "sha256": "5b7eb27fe586b9f1b4f90dd0e740a86428c98494aa5b013f1f5a1b8347c5951d"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  }
+}

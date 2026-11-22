@@ -1,0 +1,231 @@
+{
+  "idx": 57,
+  "name": "maplesu_module_parse_zip.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/module/zip.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-mllvm",
+    "-enable-machine-outliner",
+    "-Ithird_party/libzip/1.0.1/lib",
+    "-Ithird_party/libzip/1.0.1/config",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 2,
+    "recovered": 2,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "3fb3e1d5c2b72195422f91adf70fc23bee64a7819df2e020d3da6b8544cb04e6",
+    "bytes": 78992
+  },
+  "evidence": [
+    "notes/work/AGENT113/STATUS.md",
+    "notes/work/AGENT113/out/final/built.a",
+    "notes/work/AGENT113/final-equiv.json",
+    "notes/work/AGENT113/final-gate.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/MEMBER-057.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/HOST-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/GREEN-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/TRANSACTION-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n05a/APPLY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b1/CONTRACT-BASELINE.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b1/CONTRACT-CURRENT.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b1/REAL-LIBZIP.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b1/NDK-TWO-STAGE.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b1/NDK-LINK-DEPENDENCY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b1/METADATA-PUBLIC-REGRESSION-03.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b1/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b2/PLAN.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b2/HELPER-FROZEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b2/CONTRACT-RED.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b2/CONTRACT-GREEN.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b2/NDK-TWO-STAGE.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b2/NDK-FIXED-LINK-02.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b2/EXTERNAL-REGRESSION-02.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03b2/DELIVERY.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03c/PLAN.md",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03c/COMPARISON.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03c/CONTRACT-BEFORE.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03c/CONTRACT-AFTER.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03c/EXTERNAL-REGRESSION.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03c/NDK-TWO-STAGE.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03c/NDK-FIXED-LINK.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03c/ALLOCATION-02.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/n03c/DELIVERY.json"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "T": {
+        "missing": [],
+        "extra": []
+      },
+      "U": {
+        "missing": [],
+        "extra": []
+      },
+      "TtWw": {
+        "orig": 98,
+        "new": 101,
+        "missing": [],
+        "extra": [
+          "OUTLINED_FUNCTION_16",
+          "OUTLINED_FUNCTION_17",
+          "_ZNSt6__ndk110unique_ptrINS_10__function6__funcIZN10skroot_env22find_module_elf_in_zipEPKcRNS3_11module_descERNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEE3$_0NSB_ISF_EEFbRKSD_ONS_6vectorIhNSB_IhEEEEEEENS_22__allocator_destructorINSB_ISO_EEEEED2B7v170000Ev"
+        ]
+      }
+    },
+    "note": "符号闸门 PASS（实测）：T 2/2、U 76/76，原始双向差集为空（缺 0 / 多 0 / 缺 0 / 多 0），基线消耗 0。行为等价实测未达 0.95 档：函数清单 98/98、missing 0、extra 2、call 93/98、bag_min 0.0、bag_mean 0.8829。构建配方 stages=2（见 recipe 字段；两阶段实测冻结对象确为 IR→ELF 两遍优化产物，逐函数字节一致 79/98）。",
+    "gate": {
+      "status": "PASS",
+      "t_missing": 0,
+      "t_extra": 0,
+      "u_missing": 0,
+      "u_extra": 0
+    },
+    "equivalence": {
+      "tool": "runtime/upstream-pro/sdk/tools/verify_equiv.py",
+      "reference": "libkernel_module_kit_static.a",
+      "proof_archive": "notes/work/AGENT113/out/final/built.a",
+      "status": "diverges",
+      "recipe_stages": 2,
+      "functions": "98/98",
+      "missing": [],
+      "extra": [
+        "OUTLINED_FUNCTION_16",
+        "OUTLINED_FUNCTION_17"
+      ],
+      "call_targets": "93/98",
+      "seq_mean": 0.8846,
+      "bag_mean": 0.8829,
+      "bag_min": 0,
+      "threshold": 0.95,
+      "bar_met": false,
+      "byte_identical_functions": "79/98",
+      "residual": "named functions whose bodies still differ (与冻结的源码形态差，非桩/死代码)；OUTLINED_FUNCTION 片段编号随体形漂移，bag_min 因此为 0"
+    },
+    "measured": {
+      "origT": 2,
+      "newT": 2,
+      "missingT": 0,
+      "extraT": 0,
+      "origU": 76,
+      "newU": 76,
+      "missingU": 0,
+      "extraU": 0,
+      "origWeak": 89,
+      "newWeak": 89,
+      "origLocal": 48,
+      "newLocal": 50,
+      "newObjectBytes": 79104,
+      "definedKinds": {
+        "V": 16,
+        "r": 21,
+        "t": 25,
+        "U": 76,
+        "W": 73,
+        "T": 2,
+        "b": 3,
+        "d": 1
+      },
+      "baselineConsumed": [],
+      "recipeStages": 2,
+      "verifyEquivRefFunctions": 98,
+      "verifyEquivNewFunctions": 100,
+      "verifyEquivMatched": 98,
+      "verifyEquivMissing": 0,
+      "verifyEquivExtra": 2,
+      "verifyEquivCallTargetMatch": 93,
+      "verifyEquivBagMin": 0,
+      "verifyEquivBagMean": 0.8829,
+      "verifyEquivSeqMean": 0.8846,
+      "verifyEquivRefFunctionsMissingNames": [],
+      "verifyEquivExtraNames": [
+        "OUTLINED_FUNCTION_16",
+        "OUTLINED_FUNCTION_17"
+      ],
+      "byteIdenticalFunctions": 79,
+      "byteComparableFunctions": 98,
+      "frozenTextBytes": 2380,
+      "rebuiltTextBytes": 2384
+    }
+  },
+  "notes": "verify_equiv: diverges - inventory 98/98 with 3 extra symbols (2 machine-outlined + one unique_ptr<__function>::~unique_ptr body the frozen member does not emit), call targets 79/98, bag_min 0. Recovered shape this round: -fno-function-sections/-fno-data-sections. Residual hunks in notes/work/AGENT109/residual/0057_skroot_module_parse_zip.md; blocked by frozen-object codegen revision. | EQUIVALENCE(measured, verify_equiv 0.95): fn 98/98 missing 0 extra 2 call_target_match 93/98 bag_min 0.0 bag_mean 0.8829 seq_mean 0.8846; recipe stages=2; byte-identical functions 79/98; frozen .text 0x94c vs rebuilt 0x950; bar_met=false",
+  "recipe": {
+    "stages": 2,
+    "description": "compile the TU to optimised IR (-Oz -emit-llvm), then compile that IR to ELF with the same flag set; the frozen ELF member carries this second optimisation pass (measured: 79/98 functions byte-identical for 0057, 212/280 for 0056)",
+    "stage1": "clang++ <profile+extra flags> -emit-llvm -c <src> -o tu.bc",
+    "stage2": "clang++ <profile+extra flags> -c tu.bc -o <member>.o",
+    "expressible_in_build_py": true,
+    "persist_proof": "notes/work/AGENT113/STATUS.md"
+  },
+  "privateHeaders": [
+    "src/maplesu/compat/module_zip_abi.h",
+    "src/maplesu/module/path_contract.h",
+    "src/maplesu/module/types.h",
+    "src/maplesu/module/operations.h",
+    "src/maplesu/compat/module_carrier_conversion.h",
+    "include/maplesu_storage_worker_private.h",
+    "include/maplesu_storage_private.h",
+    "include/maplesu_request_private.h",
+    "src/maplesu/compat/module_zip_exports_legacy_abi.h"
+  ],
+  "maplesuModuleWriterR19": {
+    "status": "source-implemented-pending-combined-validation",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/module-writer-r19/IMPLEMENTATION.md",
+    "scope": "single-component IDs, effective relative archive names, fd-anchored writer and delete; legacy module ABI retained",
+    "sourceBeforeSha256": "b269a3700ada7a3a7645fadb164565ccae127104293b05ce9cc090c30ce04ee7",
+    "sourceAfterSha256": "ee7eb312ed232f85039d5ae684936b84a2bb3ebad028dab8d816e55850302b3e",
+    "privateHeaderSha256": "3c919f8b6c36200141bcebd0f5d5248b4c4d4f6c99e5ee27250889ebc71f73b2",
+    "testsExecuted": false,
+    "ndkExecuted": false,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false
+  },
+  "maplesuNativeCarriersR21": {
+    "status": "source-frozen-validation-pending",
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/own-native-plan/native-carriers-r21/IMPLEMENTATION.md",
+    "scope": "MapleSU native descriptor, record and version in metadata/ZIP/list/install/API; legacy ABI and raw frames retained at explicit compatibility edges",
+    "sourceBeforeSha256": "ee7eb312ed232f85039d5ae684936b84a2bb3ebad028dab8d816e55850302b3e",
+    "sourceAfterSha256": "2d046440f1203643593aea0d7464e797e11430e14bd8852c2dedf7238cab6fff",
+    "testsExecuted": false,
+    "ndkExecuted": false,
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "compatibilityContracts": [
+      "Native ZIP selection parses each candidate once. Child error precedes the complete 9232-byte descriptor frame; only an exact successful child and complete transfer publish output.",
+      "Legacy ZIP wrappers write converted descriptors only on success, preserving caller output on failure."
+    ]
+  },
+  "ownerDeploymentWorker20261119": {
+    "status": "source-implemented-validation-pending",
+    "namespaceCommand": 27,
+    "newPublicAbi": false,
+    "workerSessionOwned": true,
+    "moduleIdFromCallerOrArchive": true,
+    "legacyKeyAbiPreserved": true,
+    "formalAssetsPromoted": false,
+    "deviceValidated": false
+  },
+  "legacyBinaryExports": {
+    "status": "source-compiled-old-and-new-consumers-linked",
+    "compatibilityHeader": "src/maplesu/compat/module_zip_exports_legacy_abi.h",
+    "symbolAliases": 2,
+    "scope": "Exact frozen skroot_env binary names alias the sole maintained maplesu::sdk function bodies; current 9232-byte descriptor ABI and partial writes preserved",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "validation": ".tmp/main-sdk-legacy-modules-20261120/VALIDATION.json",
+    "rawGatePassed": false
+  }
+}

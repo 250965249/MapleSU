@@ -1,0 +1,54 @@
+{
+  "idx": 258,
+  "name": "maplesu_private_dac.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "SINGLE",
+  "sources": [
+    "src/maplesu/maplesu_private_dac.c"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-fno-asynchronous-unwind-tables",
+    "-fno-function-sections",
+    "-fno-data-sections"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 6,
+    "recovered": 6,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "5f84eec692e18a078b4ceb25b1e3354aa224d37f9892be41f53d9a2f47857b8f",
+    "bytes": 2400
+  },
+  "evidence": [
+    "notes/work/AGENT112/proof/258/EQUIVALENCE.md",
+    "notes/work/AGENT112/STATUS.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "rawUMissing": [],
+    "baselineConsumed": [],
+    "equivalence": {
+      "functions": "6/6",
+      "missing": [],
+      "extra": [],
+      "call_target_match": "6/6",
+      "bag_min": 1.0,
+      "bag_mean": 1.0,
+      "seq_mean": 0.9788
+    },
+    "note": "Measured against the frozen archive with the final green build (build/r5/out, member gate PASS 260/260). Two-way gate: T 3/3, U 1/1, raw diff empty, baseline consumed 0. verify_equiv: status=equivalent, functions 6/6, missing=0, extra=0, call_target_match=6/6, bag_min=1.0, bag_mean=1.0, seq_mean=0.9788. Fixed: the frozen member is a C object (unmangled `owned` helper), so the shared private_dac.c is now compiled through a C translation unit (src/maplesu/maplesu_private_dac.c, clang driver, -std=c++17/-fno-exceptions dropped from extraFlags). Member now equivalent: inventory 6/6, call sets 6/6, bag_min 1.0000."
+  },
+  "notes": "Private DAC helper: symlink-safe open of SDK-owned paths, ownership/inode check before any permission tightening, and SELinux-labelled exclusive create for the allow-list file.",
+  "producer": {
+    "tool": "clang",
+    "profile": "core-oz-elf-fexceptions",
+    "container": "elf",
+    "kind": "SINGLE"
+  }
+}

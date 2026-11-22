@@ -1,0 +1,166 @@
+{
+  "idx": 48,
+  "name": "maplesu_unsafe_su_install.o",
+  "group": "maplesu",
+  "layout": "elf",
+  "kind": "COMPOSED",
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-Wno-unused-command-line-argument",
+    "-Wno-override-module"
+  ],
+  "sources": [
+    "src/maplesu_assets/maplesu_unsafe_su_install.cpp"
+  ],
+  "compose": [
+    {
+      "step": "compile-su-installer-tu",
+      "tool": "clang++",
+      "cwd": "<repo root>",
+      "input": "src/maplesu_assets/maplesu_unsafe_su_install.cpp",
+      "output": "runtime/maplesu-sdk/sdk/build/obj/compose-m048/tu1.o",
+      "argv": [
+        "--target=aarch64-linux-android21",
+        "-std=c++17",
+        "-Oz",
+        "-fPIC",
+        "-fexceptions",
+        "-fvisibility=hidden",
+        "-c",
+        "runtime/maplesu-sdk/sdk/src/maplesu_assets/maplesu_unsafe_su_install.cpp",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m048/tu1.o"
+      ]
+    },
+    {
+      "step": "compile-executable-publisher-tu",
+      "tool": "clang++",
+      "cwd": "<repo root>",
+      "input": "src/maplesu/install/executable_publish.cpp",
+      "output": "runtime/maplesu-sdk/sdk/build/obj/compose-m048/tu2.o",
+      "argv": [
+        "--target=aarch64-linux-android21",
+        "-std=c++17",
+        "-Oz",
+        "-fPIC",
+        "-fvisibility=hidden",
+        "-I",
+        "runtime/maplesu-sdk/include",
+        "-c",
+        "runtime/maplesu-sdk/sdk/src/maplesu/install/executable_publish.cpp",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m048/tu2.o"
+      ]
+    },
+    {
+      "step": "partial-link",
+      "tool": "ld.lld",
+      "cwd": "<repo root>",
+      "argv": [
+        "-r",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m048/tu1.o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m048/tu2.o",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/m0048/maplesu_unsafe_su_install.o"
+      ]
+    }
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 68,
+    "recovered": 68,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "857cf5f236d96663c4f805560d3e693a3dbf9a2b2c10ba65b6941aefc001ce06",
+    "bytes": 812136
+  },
+  "evidence": [
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/STATUS.md",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/EQUIVALENCE.md",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/gate.json",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/equivalence-report.json",
+    "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/EQUIVALENCE.md",
+    "runtime/upstream-pro/sdk/build/p1-installer-48/report.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p1/IR-EXIT-PLAN.md"
+  ],
+  "notes": "实际构建输入已切换为可维护 C++；生成头必须由 build.py 以 MAPLESU_PAYLOAD_ASSETS=1 和候选 assets-gen 路径接入，负载与生成头 hash 在 payload_inputs 记录。原 IR 保留为历史行为参照；C++ 与 IR 的同一 fixture 已核对返回码、调用顺序、完整文件字节、mode/xattr 和失败状态，设备验收仍待完成。 su分别发布到 system17 与 kernel16 目录，保留原子发布、0700 与两份副本契约；publisher仍为同一C++ TU，经ld.lld -r合成。",
+  "historicalIrSelfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "冻结构建输入已复原并落盘：本成员由两个编译单元经 ld.lld -r 合成（安装器 TU + 可执行发布 TU），与冻结成员的出厂形态一致。清单 compose[] 三步与出厂配方逐字一致，build.py 正式阶段（compile/compose/pack）产物与冻结成员逐字节相同。清单 sources[] 是构建输入；src/skroot/skroot_unsafe_su_install.cpp 与 src/skroot/skroot_executable_publish.cpp 是可读 C++ 转写，只作文档，不参与构建。uid 隔离契约把发布模式从出厂辅助档的 0777/0755 收紧到 0700，两个发布点都按该契约落成 0700。",
+    "gate": "PASS: T 2/2, U 71/71, weak 63/63, local 38/38, raw diffs empty, same_bytes=true, zero gate-symbol-baseline entries consumed",
+    "bytes": 812136,
+    "sha256": "857cf5f236d96663c4f805560d3e693a3dbf9a2b2c10ba65b6941aefc001ce06",
+    "verifyEquiv": {
+      "status": "equivalent",
+      "functions": "68/68",
+      "missing": 0,
+      "extra": 0,
+      "callTargetMatch": "68/68",
+      "seqMean": 1.0,
+      "bagMean": 1.0,
+      "bagMin": 1.0
+    },
+    "proof": [
+      "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/gate.json",
+      "runtime/upstream-pro/sdk/notes/work/AGENT107/proof/equivalence-report.json",
+      "runtime/upstream-pro/sdk/notes/work/AGENT107/EQUIVALENCE.md"
+    ]
+  },
+  "historicalIrRecovery": {
+    "functions": 68,
+    "recovered": 68,
+    "unrecovered": []
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "C++ installer migrated after recorded host differential acceptance. Frozen IR byte equivalence is historical evidence only; current symbol/layout gate and device acceptance are separate checks.",
+    "proof": [
+      "runtime/upstream-pro/sdk/build/p1-installer-48/report.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p1/IR-EXIT-PLAN.md"
+    ]
+  },
+  "sourceMigration": {
+    "from": "src/skroot/installer_ir/skroot_unsafe_su_install_patched.ll",
+    "to": "src/skroot/skroot_unsafe_su_install.cpp",
+    "acceptance": "host-behaviour-equivalent",
+    "deviceAcceptance": "pending",
+    "report": "runtime/upstream-pro/sdk/build/p1-installer-48/report.json",
+    "cases": 10
+  },
+  "privatePublishProjection20261119": {
+    "sourceOnly": true,
+    "publicAbiChanged": false,
+    "sourceSnapshot": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/executable_publish.h",
+        "bytes": 725,
+        "sha256": "9bdbb6bdb34decfce9c00c9238d41dc02d12ac0f633992b6360f12700b3b6967"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/maplesu/install/executable_publish.cpp",
+        "bytes": 7048,
+        "sha256": "05c0a112572efa7efeb5a2d72929676dab6294f7a00837c893f43c4e8d02c856"
+      }
+    ],
+    "originalErrorMappingPreserved": true,
+    "productionWritten": false,
+    "compiled": false,
+    "deviceValidated": false
+  },
+  "privateHeaders": [
+    "src/maplesu/compat/install_su_exports_legacy_abi.h"
+  ],
+  "legacyBinaryExports": {
+    "status": "source-compiled-old-and-new-consumers-linked",
+    "compatibilityHeader": "src/maplesu/compat/install_su_exports_legacy_abi.h",
+    "symbolAliases": 1,
+    "scope": "Exact frozen skroot_env binary names alias the sole maintained maplesu::sdk function bodies; existing install behavior and error propagation preserved",
+    "formalDeliveryUpdated": false,
+    "deviceTested": false,
+    "validation": ".tmp/main-sdk-installer-abi-20261120/linked-abi-review-effective-m048/EXECUTION.json",
+    "rawGatePassed": false
+  }
+}

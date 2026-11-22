@@ -1,0 +1,22 @@
+Lenovo AVB signing support
+
+The AVB rebuild flow in image-core/LenovoAvbSigner.java is adapted from
+Smart-Paocai/VioletToolBox, VioletToolBox/Avb/NativeAvbRebuilder.cs,
+commit 153a0d13a0ae855c3e682bf281940e691ef22f21.
+Upstream license: GPL-3.0-or-later. The full GPL text is in the repository LICENSE.
+Source: https://github.com/Smart-Paocai/VioletToolBox
+
+The bundled RSA PEM files are public Android AVB development/test keys,
+obtained from Violet's dependency archive and compared by RSA public identity
+with platform/external/avb/test/data/testkey_rsa{2048,4096}.pem in AOSP.
+They are intentionally public compatibility keys, not per-device credentials.
+Source: https://android.googlesource.com/platform/external/avb/
+
+SHA-256 of the exact bundled bytes:
+testkey_rsa2048.pem f1d5765a2bdfb92fb08aee021107c7ac1a7a3f590dafd853771c85375ef0fbd7
+testkey_rsa4096.pem 88bd0278559c5f54b709560987f2f5dd67f1afe42b2c6576a2d5fdf5fe0c6d69
+
+AOSP AVB tools are development references, not runtime dependencies of this
+signer. The AOSP per-file/repository licenses are recorded in
+third_party/aosp-avb/LICENSE. See docs/lenovo-avb-signing.md for provenance,
+parameter preservation, integration, interoperability checks and test scope.

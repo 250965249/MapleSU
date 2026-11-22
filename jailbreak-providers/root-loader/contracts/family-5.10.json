@@ -1,0 +1,226 @@
+{
+  "module": "maplesu_root",
+  "license": "GPL",
+  "kernelRelease": "5.10.226-android12-9-o-gb4f7990ee2d5",
+  "vermagic": "5.10.226-android12-9-o-gb4f7990ee2d5 SMP preempt mod_unload modversions aarch64",
+  "vermagicSuffix": " SMP preempt mod_unload modversions aarch64",
+  "imagePath": "native-inputs/kernels/android12-5.10-9465fbb7/Image",
+  "imageSha256": "9465fbb7871eddc4d4115174e5e378caa7526123b9af989fab3f906b1ffea33b",
+  "symbolsPath": "native-inputs/kernels/android12-5.10-9465fbb7/symbols.tsv",
+  "abiEvidence": {
+    "schema": "maplesu.legacy-510-instructions.v1",
+    "symbolsSha256": "b20da52c3497b6bcb69d2591967b39206ad06dc15cd05ed952658d370ff8a4d8",
+    "referenceModulePath": "jailbreak-providers/dirtyfrag/upstream/stock-artifacts/ko/dfroot-android12-5.10.ko",
+    "referenceModuleSha256": "31e937c1cd4993bc2015b36795bf933ead7eacb68a90c4363ee8f240867f95d5",
+    "note": "No BTF in this image. Field offsets and allocation sizes are decoded from pinned image instructions in legacy_510.py. struct module section size is from the reference module; its name/init slots are independently corroborated by the image. Device validation remains pending."
+  },
+  "thisModule": {
+    "size": 1024,
+    "sizeHex": "0x400",
+    "nameOffset": 24,
+    "initOffset": 400,
+    "exitOffset": 952,
+    "sizeSource": "reference .gnu.linkonce.this_module section; not image BTF"
+  },
+  "kprobe": {
+    "size": 136,
+    "sizeHex": "0x88",
+    "addrOffset": 40,
+    "symbolNameOffset": 48,
+    "source": "register_kprobe allocation and fields; aggr_pre/post_handler list-relative callback loads"
+  },
+  "selinuxState": {
+    "size": 88,
+    "sizeHex": "0x58",
+    "enforcingOffset": 0,
+    "initializedOffset": 2,
+    "symbol": "selinux_state",
+    "source": "selinux_init memset/enforcing store; security_load_policy initialized load"
+  },
+  "structOffsets": {
+    "subprocessInfo": {
+      "size": 112,
+      "path": 56,
+      "members": [
+        {
+          "name": "work",
+          "byteOffset": 0
+        },
+        {
+          "name": "complete",
+          "byteOffset": 48
+        },
+        {
+          "name": "path",
+          "byteOffset": 56
+        },
+        {
+          "name": "argv",
+          "byteOffset": 64
+        },
+        {
+          "name": "envp",
+          "byteOffset": 72
+        },
+        {
+          "name": "wait",
+          "byteOffset": 80
+        },
+        {
+          "name": "retval",
+          "byteOffset": 84
+        },
+        {
+          "name": "init",
+          "byteOffset": 88
+        },
+        {
+          "name": "cleanup",
+          "byteOffset": 96
+        },
+        {
+          "name": "data",
+          "byteOffset": 104
+        }
+      ],
+      "source": "call_usermodehelper_setup/exec allocation, paired stores and field accesses"
+    }
+  },
+  "printkSymbol": "printk",
+  "exportTable": {
+    "__ksymtab": {
+      "start": 37985760,
+      "stop": 38019864
+    },
+    "__ksymtab_gpl": {
+      "start": 38019864,
+      "stop": 38072316
+    }
+  },
+  "requiredSymbols": [
+    {
+      "name": "printk",
+      "imported": true,
+      "required": true
+    },
+    {
+      "name": "register_kprobe",
+      "imported": true,
+      "required": true
+    },
+    {
+      "name": "unregister_kprobe",
+      "imported": true,
+      "required": true
+    }
+  ],
+  "kcfiInitTypeId": null,
+  "kcfiProvenance": {
+    "status": "not-applicable",
+    "reason": "Legacy cross-DSO CFI uses the measured 64-bit IDs in cfi.sites; no KCFI prefix is emitted."
+  },
+  "modinfo": {
+    "required": [
+      "license=GPL",
+      "vermagic=5.10.226-android12-9-o-gb4f7990ee2d5 SMP preempt mod_unload modversions aarch64",
+      "name=maplesu_root",
+      "depends="
+    ],
+    "license": "GPL"
+  },
+  "config": {
+    "cfi": {
+      "config": "CONFIG_CFI_CLANG",
+      "value": "y"
+    },
+    "lto": {
+      "config": "CONFIG_LTO_CLANG_FULL",
+      "value": "y"
+    },
+    "shadowCallStack": {
+      "config": "CONFIG_SHADOW_CALL_STACK",
+      "value": "y"
+    },
+    "staticUsermodehelper": {
+      "config": "CONFIG_STATIC_USERMODEHELPER",
+      "value": "y",
+      "satisfied": true
+    },
+    "staticUsermodehelperPath": {
+      "config": "CONFIG_STATIC_USERMODEHELPER_PATH",
+      "value": "",
+      "satisfied": true
+    },
+    "btf": {
+      "config": "CONFIG_DEBUG_INFO_BTF",
+      "value": "n"
+    },
+    "modversions": {
+      "config": "CONFIG_MODVERSIONS",
+      "value": "y"
+    }
+  },
+  "helperPathPolicy": {
+    "policyPath": "/data/user/0/dev.maplesu.manager/bs",
+    "status": "aligned",
+    "source": "Existing DirtyFrag handover path, staged by Manager after user unlock."
+  },
+  "handover": {
+    "umhWaitMode": "UMH_WAIT_EXEC",
+    "umhWaitModeValue": 1,
+    "forbiddenWaitMode": "UMH_WAIT_PROC",
+    "primaryPath": {
+      "setup": "call_usermodehelper_setup",
+      "exec": "call_usermodehelper_exec",
+      "gfpKernel": 3264,
+      "pathOffset": 56,
+      "pathOffsetSource": "call_usermodehelper_setup paired store + call_usermodehelper_exec path read",
+      "sequence": [
+        "info = setup(helper, argv, envp, GFP_KERNEL, NULL, NULL, NULL)",
+        "info->path = helper",
+        "exec(info, UMH_WAIT_EXEC)"
+      ]
+    },
+    "cleanupModule": "Existing restore-on-unload implementation; no 5.10-specific handover branch."
+  },
+  "cfi": {
+    "mode": "clang-cfi",
+    "slowpath": "__cfi_slowpath",
+    "checkMemberOffset": 272,
+    "sites": {
+      "initCheckSite": {
+        "function": "do_one_initcall",
+        "callOffset": 540,
+        "typeId": "0x02b3a43e29242445"
+      },
+      "exitCheckSite": {
+        "function": "__do_sys_delete_module",
+        "callOffset": 1244,
+        "typeId": "0x7e04a0fb7ad8bcd5"
+      },
+      "preHandler": {
+        "function": "aggr_pre_handler",
+        "callOffset": 192,
+        "typeId": "0x6d27ac3c3f910100"
+      },
+      "postHandler": {
+        "function": "aggr_post_handler",
+        "callOffset": 180,
+        "typeId": "0xae77aa8d3946233d"
+      }
+    }
+  },
+  "l3": {
+    "schema": "maplesu-l3-family-v1",
+    "callbackPrefixPolicy": "clang-cfi-dispatcher",
+    "callbackAnchors": {
+      "preHandler": [
+        "aggr_pre_handler"
+      ],
+      "postHandler": [
+        "aggr_post_handler"
+      ]
+    },
+    "reason": "Measured Android12 5.10 instructions, full 0x88-byte probes and real compiler CFI dispatcher."
+  }
+}

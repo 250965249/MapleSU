@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "deviceFirmware": "PLQ110_16.0.7.201(CN01)",
+  "kernelRelease": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+  "note": "每个值都已固定。只有 spec 摘要、原厂基座内核摘要与产物内核摘要三者全部匹配才允许构建；当基座镜像就是已知原厂镜像时，成品 boot 还要与 knownBaseImageBootSha256 一致。任何一项摘要不符都会拒绝写入，不会降级为未校验写入。",
+  "variants": [
+    {
+      "id": "k22",
+      "label": "MapleSU 内核（推荐）",
+      "summary": "系统内核推荐档 · euid==0 放行（TEE 注入已验证）",
+      "status": "ready",
+      "debugOnly": false,
+      "default": true,
+      "specAsset": "ultra-kernels/k22-ultra-6.6.89.spec",
+      "specSha256": "5e3148c3baec9bfadf67a4b81a19662448afbf54bfd1f75cda82f0a3f34871c0",
+      "patches": 18,
+      "kernelRelease": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+      "baseKernelSha256": "346d51ea1f63413ffa5d99c5c426806291af3573f0a1d66a7621c388e835880e",
+      "expectedKernelSha256": "287fbdd08c14bf62488e624d60fd5c5fd4de783712fd17673dd1e7c8c5c00f80",
+      "knownBaseImageSha256": "c07fd486b563c370d2294f580be02fb5b24feaf4966932d3111d6a61b219f243",
+      "knownBaseImageBootSha256": "47aa147acbe3edf8e58ce60d334ad4c4b26cad26b5cb93aa6acb59a67fdd5f59",
+      "imageSizeBytes": 100663296,
+      "ramdiskSize": 0
+    },
+    {
+      "id": "k21",
+      "label": "兼容内核（回退）",
+      "summary": "系统内核回退档 · AVC 双 NOP + 54 B envelope",
+      "status": "ready",
+      "debugOnly": false,
+      "default": false,
+      "specAsset": "ultra-kernels/k21-ultra-6.6.89.spec",
+      "specSha256": "824788f53e6c6b3e6a365f2e4e2f7d24632f8a81fda8a6df9be4a11f8bbf9db9",
+      "patches": 17,
+      "kernelRelease": "6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k",
+      "baseKernelSha256": "346d51ea1f63413ffa5d99c5c426806291af3573f0a1d66a7621c388e835880e",
+      "expectedKernelSha256": "34463151eb2fc3915f9ae018f029cfd5be9571e298dda42a1ff163d01fadded5",
+      "knownBaseImageSha256": "c07fd486b563c370d2294f580be02fb5b24feaf4966932d3111d6a61b219f243",
+      "knownBaseImageBootSha256": "6c7a451d0f6675d358ac0bcca7979a83fb30051d30d301a22ecec8d6da9ff5c2",
+      "imageSizeBytes": 100663296,
+      "ramdiskSize": 0
+    }
+  ]
+}

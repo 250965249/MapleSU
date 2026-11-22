@@ -1,0 +1,69 @@
+{
+  "idx": 77,
+  "name": "patch_iterate_dir.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/patch/patch_iterate_dir.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 3,
+    "recovered": 3,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "a1941443f017f410523eccdc5fbc784746e207eea5514585b5fcde871c242cfc",
+    "bytes": 46124
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "orig.T=71 new.T=71, orig.U=58 new.U=58; both diffs empty (PASS). Compiling with core-oz-bitcode (no -fexceptions) leaves 24 T + 18 U symbols missing (all the __cxa_throw / _ZTVSt12length_error / __clang_call_terminate family), i.e. the factory recipe really is -fexceptions. Without -D_FORTIFY_SOURCE=2 the strlen() in private_desc_parser.h weak stubs is not fortified and skroot_web_ui_enable_flag_... (W) + __strlen_chk (U) disappear -> both flags are required. Module body of llvm-dis output is byte-identical to the pristine IR except source_filename (verified by diff after dropping metadata/summary lines)."
+  },
+  "notes": "",
+  "p5DevelopmentClosure20261119": {
+    "scope": "Current production P5 sources and focused compilation/regressions; formal SDK and target execution remain separate",
+    "requirements": [
+      "HOOK-01",
+      "HOOK-02",
+      "HOOK-03",
+      "RELOC-01"
+    ],
+    "inputs": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/patch/patch_iterate_dir.cpp",
+        "sha256": "e14b9a2674959be6510fa5927449568244442340ee9824ba1dc33da2efba57f1"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/maplesu_hook_private.h",
+        "sha256": "2636d9f3f98d6ffa40542179a1f1cd488cb4fb2f8a1f34a7c7190882f93b838c"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_hook_publication.h",
+        "sha256": "0a4510fc9b294fcedb737cd53abb88c36b62f2ca4d147705100feaa265a92ce3"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/legacy_hook_publication.h",
+        "sha256": "8003a8db4635363e2d04704e065fe3ea4d0d53de7b88fc579166fb20f8811215"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_hook_codegen.h",
+        "sha256": "ca3bbaf752c13a0315f627e673461c94fe560130defb4001d17f5fa331dd3363"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/func_hook/owner_publication_gate.h",
+        "sha256": "783e4b7a72384c48b96e5a134fe3ca070ed1ef5a10cc1865a1d2a5b3c0b55d8f"
+      }
+    ],
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/P5-DEVELOPMENT-CLOSEOUT-20261119.md",
+    "formalRelease": false,
+    "deviceValidated": false
+  }
+}

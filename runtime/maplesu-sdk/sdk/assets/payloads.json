@@ -1,0 +1,1215 @@
+{
+  "tool": "runtime/upstream-pro/sdk/tools/extract_payloads.py",
+  "archive": {
+    "path": "runtime/upstream-pro/maintenance/freeze/freeze-maplesu-pro-5.2.0-su-uid-isolation-20261114-20261114/archive/libkernel_module_kit_static.a",
+    "size": 18920256,
+    "sha256": "49df399288a2fc08d38c7c20e0632fbb21525fb05723a3443cb14fabd350b1e9",
+    "member_count": 258
+  },
+  "targets": [
+    {
+      "member": "skroot_unsafe_su_install.o",
+      "symbol": "_ZN10skroot_envL7su_dataE",
+      "short": "su",
+      "label": "su",
+      "member_offset_in_archive": 7895544,
+      "member_size": 812136,
+      "member_sha256": "857cf5f236d96663c4f805560d3e693a3dbf9a2b2c10ba65b6941aefc001ce06",
+      "object": {
+        "ei_class": 2,
+        "ei_data": 1,
+        "e_type": 1,
+        "e_type_name": "REL",
+        "e_machine": 183,
+        "e_machine_name": "AARCH64",
+        "e_entry": "0x0",
+        "e_flags": "0x0",
+        "section_count": 203,
+        "section_names": [
+          ".text",
+          ".rela.text",
+          ".group",
+          ".text._ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B7v170000IDnEEPKc",
+          ".rela.text._ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B7v170000IDnEEPKc",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".gcc_except_table._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".gcc_except_table._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".gcc_except_table",
+          ".group",
+          ".text._ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE20__throw_length_errorB7v170000Ev",
+          ".rela.text._ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE20__throw_length_errorB7v170000Ev",
+          ".group",
+          ".text._ZNSt6__ndk119__allocate_at_leastB7v170000INS_9allocatorIcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m",
+          ".rela.text._ZNSt6__ndk119__allocate_at_leastB7v170000INS_9allocatorIcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m",
+          ".group",
+          ".text._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".rela.text._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".gcc_except_table._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".group",
+          ".text._ZNSt12length_errorC2B7v170000EPKc",
+          ".rela.text._ZNSt12length_errorC2B7v170000EPKc",
+          ".group",
+          ".text._ZSt28__throw_bad_array_new_lengthB7v170000v",
+          ".rela.text._ZSt28__throw_bad_array_new_lengthB7v170000v",
+          ".group",
+          ".text.__clang_call_terminate",
+          ".rela.text.__clang_call_terminate",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE11__vallocateB7v170000Em",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE11__vallocateB7v170000Em",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE18__construct_at_endIPKS6_Li0EEEvT_SC_m",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE18__construct_at_endIPKS6_Li0EEEvT_SC_m",
+          ".gcc_except_table._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE18__construct_at_endIPKS6_Li0EEEvT_SC_m"
+        ],
+        "has_symtab": true,
+        "has_dynsym": false,
+        "phdr_count": 0,
+        "pt_load_count": 0,
+        "pt_load_total_filesz": 0,
+        "interpreter": false,
+        "dynamic": false,
+        "imported_symbol_count": null,
+        "dt_needed": [],
+        "rwx_segments": []
+      },
+      "object_rodata_note": [
+        {
+          "name": ".data",
+          "size": 741912,
+          "offset": 7552
+        },
+        {
+          "name": ".rodata",
+          "size": 4096,
+          "offset": 749520
+        }
+      ],
+      "feature_tokens": [
+        {
+          "symbol": "_ZL24static_inline_su_rootkey",
+          "section": ".rodata",
+          "offset_in_member": 749520,
+          "declared_size": 4096,
+          "text_len": 128,
+          "text": "ae40aa59c886d2c8762e849e9fa798155cd438a5faa748706084c6da3ca9add72a02c0128f6d56ba4a077a7bbd6ca8b6fa93b8c32e1ba5c2203e6e4c3cc24064",
+          "sha256": "8f31ab5ad95657e4a22b2c6f49aa14642e7fd26a27cedd895a694d0860c62ea6"
+        }
+      ],
+      "symbol_value": 0,
+      "symbol_size": 741912,
+      "symbol_shndx": 174,
+      "payload_size": 741912,
+      "symbol_section": ".data",
+      "symbol_section_size": 741912,
+      "symbol_section_offset": 7552,
+      "payload_fills_whole_section": true,
+      "payload_sha256": "7c6b48a392608252a03e2addcb21acc2bdd43afa981042ef102e0e95816569ed",
+      "payload_magic": "ELF",
+      "payload_head_hex": "7f454c460201010000000000000000000300b7000100000060e00300000000004000000000000000d84a0b000000000000000000400038000a0040001d001c00",
+      "magic_scan_in_member": [
+        {
+          "offset": 0,
+          "magic": "ELF"
+        },
+        {
+          "offset": 7552,
+          "magic": "ELF"
+        },
+        {
+          "offset": 697576,
+          "magic": "script"
+        },
+        {
+          "offset": 777144,
+          "magic": "script"
+        }
+      ],
+      "payload_elf": {
+        "ei_class": 2,
+        "ei_data": 1,
+        "e_type": 3,
+        "e_type_name": "DYN",
+        "e_machine": 183,
+        "e_machine_name": "AARCH64",
+        "e_entry": "0x3e060",
+        "e_flags": "0x0",
+        "section_count": 29,
+        "section_names": [
+          ".interp",
+          ".note.android.ident",
+          ".note.gnu.build-id",
+          ".dynsym",
+          ".gnu.version",
+          ".gnu.version_r",
+          ".gnu.hash",
+          ".hash",
+          ".dynstr",
+          ".rela.dyn",
+          ".rela.plt",
+          ".rodata",
+          ".gcc_except_table",
+          ".eh_frame_hdr",
+          ".eh_frame",
+          ".text",
+          ".plt",
+          ".preinit_array",
+          ".init_array",
+          ".fini_array",
+          ".data.rel.ro",
+          ".dynamic",
+          ".got",
+          ".got.plt",
+          ".data",
+          ".bss",
+          ".comment",
+          ".shstrtab"
+        ],
+        "has_symtab": false,
+        "has_dynsym": true,
+        "phdr_count": 10,
+        "pt_load_count": 3,
+        "pt_load_total_filesz": 739408,
+        "interpreter": true,
+        "dynamic": true,
+        "imported_symbol_count": 140,
+        "dt_needed": [
+          "libc.so",
+          "libm.so",
+          "libdl.so"
+        ],
+        "rwx_segments": [],
+        "imports_sample": [
+          "__assert2",
+          "__ctype_get_mb_cur_max",
+          "__cxa_atexit",
+          "__errno",
+          "__libc_init",
+          "__memcpy_chk",
+          "__open_2",
+          "__sF",
+          "__stack_chk_fail",
+          "__strcpy_chk",
+          "__strlen_chk",
+          "__strncpy_chk2",
+          "__system_property_get",
+          "__vsnprintf_chk",
+          "_exit",
+          "abort",
+          "access",
+          "android_set_abort_message",
+          "chdir",
+          "chmod",
+          "clock_gettime",
+          "close",
+          "closedir",
+          "closelog",
+          "dl_iterate_phdr",
+          "dup",
+          "dup2",
+          "execvp",
+          "exit",
+          "fclose",
+          "fdopendir",
+          "fflush",
+          "fgets",
+          "fopen",
+          "fork",
+          "fprintf",
+          "fputc",
+          "fread",
+          "free",
+          "freelocale",
+          "fseek",
+          "fseeko",
+          "ftello",
+          "fwrite",
+          "getauxval",
+          "getc",
+          "getcwd",
+          "getgid",
+          "getopt_long",
+          "getpid",
+          "getpwnam",
+          "getpwuid",
+          "getresgid",
+          "getresuid",
+          "isdigit_l",
+          "islower_l",
+          "isupper_l",
+          "iswlower_l",
+          "isxdigit_l",
+          "malloc"
+        ]
+      },
+      "string_count": 1108,
+      "identity_markers": {
+        "WEBUI": {
+          "count": 1,
+          "samples": [
+            "ERR_WRITE_WEBUI_LOADER_EXEC"
+          ]
+        },
+        "libc.so": {
+          "count": 1,
+          "samples": [
+            "libc.so"
+          ]
+        },
+        "linker64": {
+          "count": 1,
+          "samples": [
+            "/system/bin/linker64"
+          ]
+        },
+        "/system/bin/sh": {
+          "count": 2,
+          "samples": [
+            "  -s, --shell SHELL             use SHELL instead of the default /system/bin/sh",
+            "/system/bin/sh"
+          ]
+        }
+      },
+      "emitted": "runtime\\upstream-pro\\sdk\\assets\\bin\\su.bin"
+    },
+    {
+      "member": "skroot_unsafe_resetprop_install.o",
+      "symbol": "_ZN10skroot_envL19resetprop_file_dataE",
+      "short": "resetprop",
+      "label": "resetprop",
+      "member_offset_in_archive": 8707740,
+      "member_size": 439768,
+      "member_sha256": "8dbb9c7e025563be4e8492465025cc100c42419d927ef8f31e1ebfa6b1649e11",
+      "object": {
+        "ei_class": 2,
+        "ei_data": 1,
+        "e_type": 1,
+        "e_type_name": "REL",
+        "e_machine": 183,
+        "e_machine_name": "AARCH64",
+        "e_entry": "0x0",
+        "e_flags": "0x0",
+        "section_count": 167,
+        "section_names": [
+          ".strtab",
+          ".text",
+          ".rela.text",
+          ".group",
+          ".text._ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B7v170000IDnEEPKc",
+          ".rela.text._ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B7v170000IDnEEPKc",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".gcc_except_table._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".gcc_except_table._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".gcc_except_table",
+          ".group",
+          ".text._ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE20__throw_length_errorB7v170000Ev",
+          ".rela.text._ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE20__throw_length_errorB7v170000Ev",
+          ".group",
+          ".text._ZNSt6__ndk119__allocate_at_leastB7v170000INS_9allocatorIcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m",
+          ".rela.text._ZNSt6__ndk119__allocate_at_leastB7v170000INS_9allocatorIcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m",
+          ".group",
+          ".text._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".rela.text._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".gcc_except_table._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".group",
+          ".text._ZNSt12length_errorC2B7v170000EPKc",
+          ".rela.text._ZNSt12length_errorC2B7v170000EPKc",
+          ".group",
+          ".text._ZSt28__throw_bad_array_new_lengthB7v170000v",
+          ".rela.text._ZSt28__throw_bad_array_new_lengthB7v170000v",
+          ".group",
+          ".text.__clang_call_terminate",
+          ".rela.text.__clang_call_terminate",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE11__vallocateB7v170000Em",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE11__vallocateB7v170000Em",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE18__construct_at_endIPKS6_Li0EEEvT_SC_m",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE18__construct_at_endIPKS6_Li0EEEvT_SC_m"
+        ],
+        "has_symtab": true,
+        "has_dynsym": false,
+        "phdr_count": 0,
+        "pt_load_count": 0,
+        "pt_load_total_filesz": 0,
+        "interpreter": false,
+        "dynamic": false,
+        "imported_symbol_count": null,
+        "dt_needed": [],
+        "rwx_segments": []
+      },
+      "object_rodata_note": [
+        {
+          "name": ".data",
+          "size": 400568,
+          "offset": 4848
+        }
+      ],
+      "feature_tokens": [],
+      "symbol_value": 0,
+      "symbol_size": 400568,
+      "symbol_shndx": 153,
+      "payload_size": 400568,
+      "symbol_section": ".data",
+      "symbol_section_size": 400568,
+      "symbol_section_offset": 4848,
+      "payload_fills_whole_section": true,
+      "payload_sha256": "70558e6d6199fa5a961b7bafeb8f96d8157cc63810db8df2a3cded1881763697",
+      "payload_magic": "ELF",
+      "payload_head_hex": "7f454c460201010000000000000000000300b70001000000a00b0200000000004000000000000000f81506000000000000000000400038000a0040001b001a00",
+      "magic_scan_in_member": [
+        {
+          "offset": 0,
+          "magic": "ELF"
+        },
+        {
+          "offset": 4848,
+          "magic": "ELF"
+        }
+      ],
+      "payload_elf": {
+        "ei_class": 2,
+        "ei_data": 1,
+        "e_type": 3,
+        "e_type_name": "DYN",
+        "e_machine": 183,
+        "e_machine_name": "AARCH64",
+        "e_entry": "0x20ba0",
+        "e_flags": "0x0",
+        "section_count": 27,
+        "section_names": [
+          ".interp",
+          ".note.android.ident",
+          ".note.gnu.build-id",
+          ".dynsym",
+          ".gnu.version",
+          ".gnu.version_r",
+          ".gnu.hash",
+          ".dynstr",
+          ".rela.dyn",
+          ".rela.plt",
+          ".rodata",
+          ".eh_frame_hdr",
+          ".eh_frame",
+          ".text",
+          ".plt",
+          ".data.rel.ro",
+          ".init_array",
+          ".fini_array",
+          ".dynamic",
+          ".got",
+          ".got.plt",
+          ".relro_padding",
+          ".data",
+          ".bss",
+          ".comment",
+          ".shstrtab"
+        ],
+        "has_symtab": false,
+        "has_dynsym": true,
+        "phdr_count": 10,
+        "pt_load_count": 3,
+        "pt_load_total_filesz": 398096,
+        "interpreter": true,
+        "dynamic": true,
+        "imported_symbol_count": 224,
+        "dt_needed": [
+          "liblog.so",
+          "libc.so",
+          "libm.so",
+          "libdl.so"
+        ],
+        "rwx_segments": [],
+        "imports_sample": [
+          "__android_log_write",
+          "__cxa_atexit",
+          "__errno",
+          "__libc_init",
+          "__open_2",
+          "__openat_2",
+          "__register_atfork",
+          "__sF",
+          "__stack_chk_fail",
+          "__strlcpy_chk",
+          "__system_property_get",
+          "__umask_chk",
+          "__vsprintf_chk",
+          "_exit",
+          "abort",
+          "access",
+          "android_dlopen_ext",
+          "android_log_processLogBuffer",
+          "android_logger_list_alloc",
+          "android_logger_list_free",
+          "android_logger_list_read",
+          "android_logger_open",
+          "android_set_abort_message",
+          "basename",
+          "bind",
+          "calloc",
+          "capget",
+          "capset",
+          "cfmakeraw",
+          "chdir",
+          "chmod",
+          "chown",
+          "chroot",
+          "clearenv",
+          "clock_gettime",
+          "clock_nanosleep",
+          "close",
+          "closedir",
+          "closelog",
+          "connect",
+          "copy_file_range",
+          "dirfd",
+          "dl_iterate_phdr",
+          "dladdr",
+          "dlclose",
+          "dlerror",
+          "dlopen",
+          "dlsym",
+          "dup2",
+          "environ",
+          "execl",
+          "execve",
+          "execvp",
+          "exit",
+          "faccessat",
+          "fchmod",
+          "fchmodat",
+          "fchown",
+          "fclose",
+          "fcntl"
+        ]
+      },
+      "string_count": 867,
+      "identity_markers": {
+        "resetprop": {
+          "count": 4,
+          "samples": [
+            "resetprop: __system_properties_init error",
+            "resetprop",
+            "/system/bin/rebootsuresetprop, Magisk - Multi-purpose Utility",
+            "resetprop - System Property Manipulation Tool"
+          ]
+        },
+        "magisk": {
+          "count": 57,
+          "samples": [
+            "Usage: magisk --denylist [action [arguments...] ]",
+            "/watchdog/magisk",
+            "/data/adb/magisk/busybox",
+            "magisk",
+            "magisk32",
+            "/data/adb/magisk/util_functions.sh"
+          ]
+        },
+        "Magisk": {
+          "count": 14,
+          "samples": [
+            "MagiskSU",
+            "Incomplete Magisk install",
+            "Magisk",
+            "* Magisk environment incomplete, abort",
+            "magiskpolicy* Initializing Magisk environment",
+            "Magisk cgroup.procsDaemon error"
+          ]
+        },
+        "MAGISK": {
+          "count": 5,
+          "samples": [
+            "MAGISKTMP",
+            "30.6:MAGISKSU",
+            "MAGISKTMPMAKEDEVby-name/mnt/vendor/persist/metadata/cache/data",
+            "30.6:MAGISK:R",
+            ":MAGISK:R ("
+          ]
+        },
+        "KSU": {
+          "count": 1,
+          "samples": [
+            "30.6:MAGISKSU"
+          ]
+        },
+        "zygisk": {
+          "count": 23,
+          "samples": [
+            "zygisk",
+            "zygisk64: [%s] is on the denylist",
+            "zygisk_companion_entry",
+            "zygisk64: plt_hook failed",
+            "zygisk64: JNI_GetCreatedJavaVMs not found",
+            "zygisk64: Failed to restore plt_hook"
+          ]
+        },
+        "post-fs-data": {
+          "count": 7,
+          "samples": [
+            "post-fs-data",
+            "* post-fs-data scripts blocking phase timeout",
+            "-h--help-c-v-V--list--stop--post-fs-data--service--boot-complete--unlock-blocks--restorecon--clone-attr--clone--path--denylistsqlite3: root_accessmultiuser_modemnt_nszygiskkeyvaluesqltono subcommand matchedno subcommand namepolicyloggingnotification",
+            "post-fs-data",
+            "** post-fs-data mode running",
+            "/data/adb/post-fs-data.d"
+          ]
+        },
+        "service.d": {
+          "count": 1,
+          "samples": [
+            "/data/adb/service.d"
+          ]
+        },
+        "setprop": {
+          "count": 4,
+          "samples": [
+            "resetprop: __system_properties_init error",
+            "resetprop",
+            "/system/bin/rebootsuresetprop, Magisk - Multi-purpose Utility",
+            "resetprop - System Property Manipulation Tool"
+          ]
+        },
+        "persist.sys": {
+          "count": 1,
+          "samples": [
+            "persist.sys.safemode"
+          ]
+        },
+        "denylist": {
+          "count": 21,
+          "samples": [
+            "Target does not exist in denylist",
+            "Usage: magisk --denylist [action [arguments...] ]",
+            "   enable          Enable denylist enforcement",
+            "   disable         Disable denylist enforcement",
+            "   add PKG [PROC]  Add a new target to the denylist",
+            "   rm PKG [PROC]   Remove target(s) from the denylist"
+          ]
+        },
+        "libc.so": {
+          "count": 1,
+          "samples": [
+            "libc.so"
+          ]
+        },
+        "linker64": {
+          "count": 2,
+          "samples": [
+            "/system/bin/linker64",
+            "/system/bin/linker64"
+          ]
+        },
+        "/system/bin/sh": {
+          "count": 3,
+          "samples": [
+            "  -s, --shell SHELL             Use SHELL instead of the default /system/bin/sh",
+            "/system/bin/sh",
+            "/system/bin/shpidnotify.magisk/su_request_"
+          ]
+        },
+        "magiskpolicy": {
+          "count": 3,
+          "samples": [
+            "/data/adb/magisk/magiskpolicy",
+            "magiskpolicy* Initializing Magisk environment",
+            "./magiskpolicy"
+          ]
+        }
+      },
+      "emitted": "runtime\\upstream-pro\\sdk\\assets\\bin\\resetprop.bin"
+    },
+    {
+      "member": "skroot_unsafe_webui_loader_install.o",
+      "symbol": "_ZN10skroot_envL17webui_loader_dataE",
+      "short": "webui_loader",
+      "label": "webui_loader",
+      "member_offset_in_archive": 9147568,
+      "member_size": 820288,
+      "member_sha256": "217f5e25bc1a8853688392bc2c2015af6dfef76021866d33ce2f3c7eef5cd735",
+      "object": {
+        "ei_class": 2,
+        "ei_data": 1,
+        "e_type": 1,
+        "e_type_name": "REL",
+        "e_machine": 183,
+        "e_machine_name": "AARCH64",
+        "e_entry": "0x0",
+        "e_flags": "0x0",
+        "section_count": 211,
+        "section_names": [
+          ".strtab",
+          ".text",
+          ".rela.text",
+          ".group",
+          ".text._ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B7v170000IDnEEPKc",
+          ".rela.text._ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B7v170000IDnEEPKc",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".gcc_except_table._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".gcc_except_table._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".gcc_except_table",
+          ".group",
+          ".text._ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE20__throw_length_errorB7v170000Ev",
+          ".rela.text._ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE20__throw_length_errorB7v170000Ev",
+          ".group",
+          ".text._ZNSt6__ndk119__allocate_at_leastB7v170000INS_9allocatorIcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m",
+          ".rela.text._ZNSt6__ndk119__allocate_at_leastB7v170000INS_9allocatorIcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m",
+          ".group",
+          ".text._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".rela.text._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".gcc_except_table._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".group",
+          ".text._ZNSt12length_errorC2B7v170000EPKc",
+          ".rela.text._ZNSt12length_errorC2B7v170000EPKc",
+          ".group",
+          ".text._ZSt28__throw_bad_array_new_lengthB7v170000v",
+          ".rela.text._ZSt28__throw_bad_array_new_lengthB7v170000v",
+          ".group",
+          ".text.__clang_call_terminate",
+          ".rela.text.__clang_call_terminate",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE11__vallocateB7v170000Em",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE11__vallocateB7v170000Em",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE18__construct_at_endIPKS6_Li0EEEvT_SC_m",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEE18__construct_at_endIPKS6_Li0EEEvT_SC_m"
+        ],
+        "has_symtab": true,
+        "has_dynsym": false,
+        "phdr_count": 0,
+        "pt_load_count": 0,
+        "pt_load_total_filesz": 0,
+        "interpreter": false,
+        "dynamic": false,
+        "imported_symbol_count": null,
+        "dt_needed": [],
+        "rwx_segments": []
+      },
+      "object_rodata_note": [
+        {
+          "name": ".data",
+          "size": 766320,
+          "offset": 6088
+        },
+        {
+          "name": ".rodata",
+          "size": 4096,
+          "offset": 772464
+        }
+      ],
+      "feature_tokens": [
+        {
+          "symbol": "_ZL34static_inline_webui_loader_rootkey",
+          "section": ".rodata",
+          "offset_in_member": 772464,
+          "declared_size": 4096,
+          "text_len": 128,
+          "text": "8ba9d457344d22b85d3e7f7263c3dd04d9effeb1becb41a806eaaa9926087fae49c43c1c3d64c98333e8017195c6ab7bfe7e72a99c4530b267705824e5d6e700",
+          "sha256": "61cfcfee26156c41d9812d14c210ba24f4a59e574865c0c89de59f13722aa39e"
+        }
+      ],
+      "symbol_value": 0,
+      "symbol_size": 766320,
+      "symbol_shndx": 193,
+      "payload_size": 766320,
+      "symbol_section": ".data",
+      "symbol_section_size": 766320,
+      "symbol_section_offset": 6088,
+      "payload_fills_whole_section": true,
+      "payload_sha256": "9f6557d3e09a223ff82d2adb10b6f865afe5fd3aa71cc3f0d856c7c22ed39cd8",
+      "payload_magic": "ELF",
+      "payload_head_hex": "7f454c460201010000000000000000000300b700010000002005040000000000400000000000000030aa0b000000000000000000400038000a0040001d001c00",
+      "magic_scan_in_member": [
+        {
+          "offset": 0,
+          "magic": "ELF"
+        },
+        {
+          "offset": 6088,
+          "magic": "ELF"
+        },
+        {
+          "offset": 720532,
+          "magic": "script"
+        }
+      ],
+      "payload_elf": {
+        "ei_class": 2,
+        "ei_data": 1,
+        "e_type": 3,
+        "e_type_name": "DYN",
+        "e_machine": 183,
+        "e_machine_name": "AARCH64",
+        "e_entry": "0x40520",
+        "e_flags": "0x0",
+        "section_count": 29,
+        "section_names": [
+          ".interp",
+          ".note.android.ident",
+          ".note.gnu.build-id",
+          ".dynsym",
+          ".gnu.version",
+          ".gnu.version_r",
+          ".gnu.hash",
+          ".hash",
+          ".dynstr",
+          ".rela.dyn",
+          ".rela.plt",
+          ".gcc_except_table",
+          ".rodata",
+          ".eh_frame_hdr",
+          ".eh_frame",
+          ".text",
+          ".plt",
+          ".preinit_array",
+          ".init_array",
+          ".fini_array",
+          ".data.rel.ro",
+          ".dynamic",
+          ".got",
+          ".got.plt",
+          ".data",
+          ".bss",
+          ".comment",
+          ".shstrtab"
+        ],
+        "has_symtab": false,
+        "has_dynsym": true,
+        "phdr_count": 10,
+        "pt_load_count": 3,
+        "pt_load_total_filesz": 763818,
+        "interpreter": true,
+        "dynamic": true,
+        "imported_symbol_count": 144,
+        "dt_needed": [
+          "libc.so",
+          "libm.so",
+          "libdl.so"
+        ],
+        "rwx_segments": [],
+        "imports_sample": [
+          "__assert2",
+          "__ctype_get_mb_cur_max",
+          "__cxa_atexit",
+          "__errno",
+          "__libc_init",
+          "__memcpy_chk",
+          "__open_2",
+          "__sF",
+          "__stack_chk_fail",
+          "__strcpy_chk",
+          "__strlen_chk",
+          "__strncpy_chk2",
+          "__system_property_get",
+          "__vsnprintf_chk",
+          "_exit",
+          "abort",
+          "access",
+          "android_set_abort_message",
+          "atoi",
+          "chdir",
+          "chmod",
+          "clock_gettime",
+          "close",
+          "closedir",
+          "closelog",
+          "dl_iterate_phdr",
+          "dlclose",
+          "dlerror",
+          "dlopen",
+          "dlsym",
+          "dup",
+          "dup2",
+          "fclose",
+          "fdopendir",
+          "fflush",
+          "fopen",
+          "fork",
+          "fprintf",
+          "fputc",
+          "fread",
+          "free",
+          "freelocale",
+          "fseek",
+          "fseeko",
+          "ftello",
+          "fwrite",
+          "getauxval",
+          "getc",
+          "getenv",
+          "getgid",
+          "getpid",
+          "getppid",
+          "getresgid",
+          "getresuid",
+          "isdigit_l",
+          "islower_l",
+          "isupper_l",
+          "iswlower_l",
+          "isxdigit_l",
+          "kill"
+        ]
+      },
+      "string_count": 1117,
+      "identity_markers": {
+        "webui": {
+          "count": 10,
+          "samples": [
+            "[webui_loader] start open url: %s",
+            "[webui_loader] start_module_web_ui_server -> rc=%s",
+            "[webui_loader] the parent process has exited, bye bye!",
+            "[webui_loader] get before exit action: %d",
+            "[webui_loader] WebUI loader started, mod_id32: %s, port: %d, pid: %d, ppid: %d",
+            "[webui_loader] open_module_web_ui -> rc=%s"
+          ]
+        },
+        "WebUI": {
+          "count": 1,
+          "samples": [
+            "[webui_loader] WebUI loader started, mod_id32: %s, port: %d, pid: %d, ppid: %d"
+          ]
+        },
+        "WEBUI": {
+          "count": 1,
+          "samples": [
+            "ERR_WRITE_WEBUI_LOADER_EXEC"
+          ]
+        },
+        "skroot": {
+          "count": 3,
+          "samples": [
+            "__skroot_module_before_server_exit_action_81a98535f12c96a0b3e457727705e44c",
+            "__skroot_module_web_ui_main_ceb6f0bbebe5c8978eb2168799aa0ca4",
+            "__skroot_module_last_web_ui_server_port_db2a2bebe2b190482ad0ac73996c7b86"
+          ]
+        },
+        "libc.so": {
+          "count": 1,
+          "samples": [
+            "libc.so"
+          ]
+        },
+        "linker64": {
+          "count": 1,
+          "samples": [
+            "/system/bin/linker64"
+          ]
+        }
+      },
+      "emitted": "runtime\\upstream-pro\\sdk\\assets\\bin\\webui_loader.bin"
+    },
+    {
+      "member": "skroot_autorun_bootstrap_install.o",
+      "symbol": "_ZN10skroot_envL27autorun_bootstrap_file_dataE",
+      "short": "autorun_bootstrap",
+      "label": "autorun_bootstrap",
+      "member_offset_in_archive": 10031772,
+      "member_size": 1458976,
+      "member_sha256": "0c886040e4acd37e2c96bb4ecba842e92cd2db9bb00f9e57645c03b6abb72fca",
+      "object": {
+        "ei_class": 2,
+        "ei_data": 1,
+        "e_type": 1,
+        "e_type_name": "REL",
+        "e_machine": 183,
+        "e_machine_name": "AARCH64",
+        "e_entry": "0x0",
+        "e_flags": "0x0",
+        "section_count": 420,
+        "section_names": [
+          ".strtab",
+          ".text",
+          ".rela.text",
+          ".group",
+          ".text._ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B7v170000IDnEEPKc",
+          ".rela.text._ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B7v170000IDnEEPKc",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".gcc_except_table._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEEC2B7v170000ESt16initializer_listIS6_E",
+          ".group",
+          ".text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".rela.text._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".gcc_except_table._ZNSt6__ndk16vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS4_IS6_EEED2B7v170000Ev",
+          ".gcc_except_table",
+          ".group",
+          ".text._ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEC1B7v170000Ev",
+          ".rela.text._ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEC1B7v170000Ev",
+          ".gcc_except_table._ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEC1B7v170000Ev",
+          ".group",
+          ".text._ZNSt6__ndk1lsB7v170000INS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc",
+          ".rela.text._ZNSt6__ndk1lsB7v170000INS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc",
+          ".group",
+          ".text._ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEcvNS_17basic_string_viewIcS2_EEB7v170000Ev",
+          ".group",
+          ".text._ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev",
+          ".rela.text._ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev",
+          ".group",
+          ".text._ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE20__throw_length_errorB7v170000Ev",
+          ".rela.text._ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE20__throw_length_errorB7v170000Ev",
+          ".group",
+          ".text._ZNSt6__ndk119__allocate_at_leastB7v170000INS_9allocatorIcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m",
+          ".rela.text._ZNSt6__ndk119__allocate_at_leastB7v170000INS_9allocatorIcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m",
+          ".group",
+          ".text._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".rela.text._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".gcc_except_table._ZNSt6__ndk120__throw_length_errorB7v170000EPKc",
+          ".group",
+          ".text._ZNSt12length_errorC2B7v170000EPKc",
+          ".rela.text._ZNSt12length_errorC2B7v170000EPKc"
+        ],
+        "has_symtab": true,
+        "has_dynsym": false,
+        "phdr_count": 0,
+        "pt_load_count": 0,
+        "pt_load_total_filesz": 0,
+        "interpreter": false,
+        "dynamic": false,
+        "imported_symbol_count": null,
+        "dt_needed": [],
+        "rwx_segments": []
+      },
+      "object_rodata_note": [
+        {
+          "name": ".data",
+          "size": 1351120,
+          "offset": 15040
+        },
+        {
+          "name": ".rodata",
+          "size": 4096,
+          "offset": 1366216
+        }
+      ],
+      "feature_tokens": [
+        {
+          "symbol": "_ZL40autorun_bootstrap_static_inline_root_key",
+          "section": ".rodata",
+          "offset_in_member": 1366216,
+          "declared_size": 4096,
+          "text_len": 128,
+          "text": "5d31494d2e18e3fdef2afaf740b0febc19229cb292f57ebc3bc1c96c6d70b7098d2dc1f356b733e8c999e6ac85bdca24c8c74f03ae7d5b2a402e96804576e925",
+          "sha256": "780587722c09dc9415e86a818f777c3836e6072ecd94f6c3d29f3d5ee27702a9"
+        }
+      ],
+      "symbol_value": 0,
+      "symbol_size": 1351120,
+      "symbol_shndx": 384,
+      "payload_size": 1351120,
+      "symbol_section": ".data",
+      "symbol_section_size": 1351120,
+      "symbol_section_offset": 15040,
+      "payload_fills_whole_section": true,
+      "payload_sha256": "6d270d39bc65165c2dec54e8f6923b2a405325c5ffe63c958ce35e138bff7c31",
+      "payload_magic": "ELF",
+      "payload_head_hex": "7f454c460201010000000000000000000300b7000100000090c0050000000000400000000000000000b911000000000000000000400038000a0040001d001c00",
+      "magic_scan_in_member": [
+        {
+          "offset": 0,
+          "magic": "ELF"
+        },
+        {
+          "offset": 15040,
+          "magic": "ELF"
+        },
+        {
+          "offset": 1118900,
+          "magic": "script"
+        }
+      ],
+      "payload_elf": {
+        "ei_class": 2,
+        "ei_data": 1,
+        "e_type": 3,
+        "e_type_name": "DYN",
+        "e_machine": 183,
+        "e_machine_name": "AARCH64",
+        "e_entry": "0x5c090",
+        "e_flags": "0x0",
+        "section_count": 29,
+        "section_names": [
+          ".interp",
+          ".note.android.ident",
+          ".note.gnu.build-id",
+          ".dynsym",
+          ".gnu.version",
+          ".gnu.version_r",
+          ".gnu.hash",
+          ".hash",
+          ".dynstr",
+          ".rela.dyn",
+          ".rela.plt",
+          ".gcc_except_table",
+          ".rodata",
+          ".eh_frame_hdr",
+          ".eh_frame",
+          ".text",
+          ".plt",
+          ".preinit_array",
+          ".init_array",
+          ".fini_array",
+          ".data.rel.ro",
+          ".dynamic",
+          ".got",
+          ".got.plt",
+          ".data",
+          ".bss",
+          ".comment",
+          ".shstrtab"
+        ],
+        "has_symtab": false,
+        "has_dynsym": true,
+        "phdr_count": 10,
+        "pt_load_count": 4,
+        "pt_load_total_filesz": 1332296,
+        "interpreter": true,
+        "dynamic": true,
+        "imported_symbol_count": 169,
+        "dt_needed": [
+          "libc.so",
+          "libm.so",
+          "libdl.so"
+        ],
+        "rwx_segments": [],
+        "imports_sample": [
+          "__assert2",
+          "__ctype_get_mb_cur_max",
+          "__cxa_atexit",
+          "__cxa_thread_atexit_impl",
+          "__errno",
+          "__libc_init",
+          "__memcpy_chk",
+          "__open_2",
+          "__read_chk",
+          "__sF",
+          "__strcpy_chk",
+          "__strlen_chk",
+          "__strncpy_chk",
+          "__strncpy_chk2",
+          "__system_property_get",
+          "__system_property_set",
+          "__vsnprintf_chk",
+          "_exit",
+          "abort",
+          "access",
+          "android_set_abort_message",
+          "atoi",
+          "calloc",
+          "chdir",
+          "chmod",
+          "clock_gettime",
+          "close",
+          "closedir",
+          "closelog",
+          "dl_iterate_phdr",
+          "dlclose",
+          "dlerror",
+          "dlopen",
+          "dlsym",
+          "dup",
+          "dup2",
+          "environ",
+          "execl",
+          "execve",
+          "fclose",
+          "fcntl",
+          "fdopendir",
+          "fflush",
+          "fgets",
+          "flock",
+          "fopen",
+          "fork",
+          "fprintf",
+          "fputc",
+          "fread",
+          "free",
+          "freelocale",
+          "fseek",
+          "fseeko",
+          "fstat",
+          "fstatat",
+          "ftello",
+          "ftruncate",
+          "futimens",
+          "fwrite"
+        ]
+      },
+      "string_count": 1467,
+      "identity_markers": {
+        "resetprop": {
+          "count": 1,
+          "samples": [
+            "resetprop"
+          ]
+        },
+        "WEBUI": {
+          "count": 1,
+          "samples": [
+            "ERR_WRITE_WEBUI_LOADER_EXEC"
+          ]
+        },
+        "skroot": {
+          "count": 1,
+          "samples": [
+            "__skroot_module_main_18fdf393885363712349ef3de5411bd5"
+          ]
+        },
+        "post-fs-data": {
+          "count": 1,
+          "samples": [
+            "post-fs-data"
+          ]
+        },
+        "boot-completed": {
+          "count": 1,
+          "samples": [
+            "boot-completed"
+          ]
+        },
+        "setprop": {
+          "count": 1,
+          "samples": [
+            "resetprop"
+          ]
+        },
+        "libc.so": {
+          "count": 1,
+          "samples": [
+            "libc.so"
+          ]
+        },
+        "linker64": {
+          "count": 1,
+          "samples": [
+            "/system/bin/linker64"
+          ]
+        },
+        "/system/bin/sh": {
+          "count": 5,
+          "samples": [
+            "/system/bin/sh -c 'v=$(settings get global development_settings_enabled 2>/dev/null); [ \"$v\" = \"1\" ] && settings put global development_settings_enabled 0'",
+            "/system/bin/sh -c 'v=$(settings get global adb_enabled 2>/dev/null); [ \"$v\" = \"1\" ] && settings put global adb_enabled 0'",
+            "/system/bin/sh -c \"restorecon /dev/__properties__/u:object_r:shell_prop:s0\"",
+            "/system/bin/sh -c \"restorecon /dev/__properties__/u:object_r:adbd_config_prop:s0\"",
+            "/system/bin/sh"
+          ]
+        }
+      },
+      "emitted": "runtime\\upstream-pro\\sdk\\assets\\bin\\autorun_bootstrap.bin"
+    }
+  ]
+}

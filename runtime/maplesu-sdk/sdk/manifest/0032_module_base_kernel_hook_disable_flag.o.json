@@ -1,0 +1,72 @@
+{
+ "idx": 32,
+ "name": "module_base_kernel_hook_disable_flag.o",
+ "group": "core",
+ "layout": "bitcode",
+ "kind": "SINGLE",
+ "sources": [
+  "src/module_base/module_base_kernel_hook_disable_flag.cpp"
+ ],
+ "flagsProfile": "core-oz-bitcode-fexceptions",
+ "extraFlags": [
+  "-D_FORTIFY_SOURCE=2",
+  "-flto=thin"
+ ],
+ "status": "partial",
+ "recovery": {
+  "functions": 0,
+  "recovered": 0,
+  "unrecovered": [],
+  "sourceComplete": true,
+  "scope": "historical restoration counts preserved in notes/HISTORY-STORAGE-HISTORY.json; current device/delivery acceptance pending"
+ },
+ "original": {
+  "sha256": "cb1c395ee4c5a831bf0246e989ead93a6aed1c6512a99476bf9ca36fe4339c38",
+  "bytes": 82464
+ },
+ "evidence": [
+  "tests/test_history_storage.py",
+  "notes/HISTORY-STORAGE-HISTORY.json",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/HISTORY-STORAGE-ASSESSMENT.md",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/history-storage-focused-r1.json",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/history-storage-symbol-delta-r1.json",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/history-storage-reset-focused-r1.json",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/history-storage-reset-symbol-delta-r1.json",
+  "../../../docs/dual-mode/impl/_work/2026-11-15-p1/evidence/history-storage-reset-integration-r1.json"
+ ],
+ "selfCheck": {
+  "tDiff": [
+   "_ZN7maplesu18allocation_history16reset_hook_flagsEv"
+  ],
+  "uDiff": [],
+  "note": "Explicit close-error propagation and shared reset now verified by 34 actual-source host assertions and both NDK manifest-profile builds. Each member adds one hidden maplesu::allocation_history reset definition; strong U unchanged, one weak libc++ close definition added. Reset reuses the existing allocator history writer and preserves the first error. Historical claims retained; full delivery/device acceptance pending; no default gate/allow change."
+ },
+ "notes": "Fully maintainable source; partial tracks pending full delivery/kernel/device acceptance. Existing eight-byte history format, paths, tags and public API retained; helper reset shares storage implementation.",
+  "p5FlagHistoryStageClose": {
+    "schema": "maplesu-p5-flag-history-source-appendix/2",
+    "date": "2026-11-18",
+    "scope": "Root-owned descriptor-scoped m032 history I/O, zero-before-mode migration, fixed12288 ranges and unpublished-allocation cleanup only; no boot-owned producer claim",
+    "sourceSnapshot": {
+      "path": "runtime/upstream-pro/sdk/src/module_base/module_base_kernel_hook_disable_flag.cpp",
+      "sourcePath": "D:/Maple_Workflow/MapleSU/docs/dual-mode/impl/_work/2026-11-15-p5-p7/p5-stage-close-20261118/m032-revision2/candidate/runtime/upstream-pro/sdk/src/module_base/module_base_kernel_hook_disable_flag.cpp",
+      "sha256": "11fe27d8e1333e2dee1a66cd189a55de1e90dc295f6195ee38deb9c689792647",
+      "bytes": 9880
+    },
+    "preimageSourceSha256": "dc3c1569800fc9bcc144523fda41f0d034a26d42f6ff91c5cc242c5c5f0baf50",
+    "preimageManifestSha256": "ddb8aeca190a98bca2f397507485d9504242ae35b5568839927eb487a98dc8ba",
+    "canonicalSelectionUnchanged": true,
+    "externalHistoryFormat": "same three existing paths, native-endian exact uint64 words, same acquire/reset/error APIs",
+    "historyIo": "O_NOFOLLOW/CLOEXEC/NONBLOCK root-owned regular single-link O_RDWR reader; protected records exact8/full read/EOF; same-FD complete writes then truncate8; same-FD label preserved by normal writer",
+    "legacyModeMigration": "Original group/other-writable regular/root/single-link records are zeroed toexact8 before fchmod0600; success reports exists=false and does not expose their old value; failed clear/truncate does not narrow mode",
+    "publicationBoundary": "out_flag assigned onlyafter allthree sequential writes and closes succeed; attempted-write marker is conservative; no atomic multi-file, lock, boot provenance or boot-lifetime claim",
+    "validationStatus": "source-only-not-compiled-or-tested",
+    "formalAssetsPromoted": false,
+    "deviceValidated": false,
+    "revision": 2,
+    "historyRange": "Onlyall-zero initializes; nonzero tuple must have overflow-safe end=start+12288 and start<=next<=end; mixed zero/out-of-range rejected; valid exhausted next=end retains NOT_ENOUGH",
+    "arithmetic": "Explicit uint64 start+12288 and next+1 bounds before use",
+    "failureCleanup": "Onlycurrent fresh allocation and no history write attempted permit best-effort existing free API; first KModErr/errno preserved; every address write attempt retains allocation on later failures",
+    "firstRevisionCppSha256": "015de58e57257b02a7c84720cd2c9f420966051a6ab857ce60c118fbacd5af31",
+    "firstRevisionManifestSha256": "7c7e46ddf90a3b9de0ea1a88a673b75e17302e502add15061bcc3aa12e4dfa55"
+  }
+}

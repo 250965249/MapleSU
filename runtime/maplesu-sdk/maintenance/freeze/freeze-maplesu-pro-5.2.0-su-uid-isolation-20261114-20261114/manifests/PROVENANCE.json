@@ -1,0 +1,2058 @@
+{
+  "schemaVersion": 1,
+  "sdkVersion": "5.2.0",
+  "sdkBuildId": "maplesu-pro-5.2.0-su-uid-isolation-20261114",
+  "archive": {
+    "path": "runtime/upstream-pro/lib/arm64-v8a/libkernel_module_kit_static.a",
+    "sha256": "49df399288a2fc08d38c7c20e0632fbb21525fb05723a3443cb14fabd350b1e9",
+    "size": 18920256
+  },
+  "helper": {
+    "sha256": "6d270d39bc65165c2dec54e8f6923b2a405325c5ffe63c958ce35e138bff7c31",
+    "normalizedSha256": "463ab9801827199c472c806f2e395f6d9e03b004bc0b4d8b70c2b52d261d5eed",
+    "buildId": "a44d4c996ccbecbb686aeed706f1376ce93ceb6a",
+    "size": 1351120,
+    "changed": true,
+    "status": "selectively_patched_not_full_rebuild",
+    "keySlotOffset": 182886,
+    "path": "runtime/upstream-pro/helper/autorun_bootstrap"
+  },
+  "pairedPolicyBackend": {
+    "sha256": "004aaa7b7d71dd49785cbd7061d113077a8fd87c23dc41ea7423a55335521333",
+    "size": 13250632,
+    "buildId": "22e558594e63a829357cceae4db9fe3e17964c8e",
+    "fileName": "libmaplesu_policy_boot.004aaa7b7d71dd49785cbd7061d113077a8fd87c23dc41ea7423a55335521333.so",
+    "noteOffset": 720,
+    "noteHex": "040000001400000003000000474e550022e558594e63a829357cceae4db9fe3e17964c8e",
+    "path": "runtime/upstream-pro/backend/libmaplesu_policy_boot.004aaa7b7d71dd49785cbd7061d113077a8fd87c23dc41ea7423a55335521333.so"
+  },
+  "sourceRecords": "CREDITS.md#skroot",
+  "memberDiff": {
+    "path": "runtime/upstream-pro/SU-AUTH-MEMBER-DIFF.json",
+    "sha256": "dc56c44f5ba0ef8c0669ac8b4cb70b825b3af20c6eee574af6cf1ba83f3af3ab",
+    "baselineArchiveSha256": "215cdd0c928f46f282b11a7be18e604eed2c96a668783071b82a2f2329148272",
+    "changed": 31,
+    "added": 5,
+    "removed": 0
+  },
+  "maintenanceBaseline": "runtime/upstream-pro/maintenance/baseline/libkernel_module_kit_static.a",
+  "integration": "Pinned native SDK with MapleSU source repairs, authorization transactions, runtime adapters and paired policy backend.",
+  "credentialSnapshotRepair": {
+    "baselineArchiveSha256": "14c31352a34284b4b677e36725b5e20ee32ff24e006297611c133cf53c9bb307",
+    "archiveSha256": "cfcd59d9567bc7a6e22df12420c0e08e92dd9208608bc3d8d8f620ba87882083",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 1,
+          "name": "task_struct.o",
+          "baselineSha256": "9c18e06cbe5f21ed5a9302f16b377eafd30cc12059a4c70d21f4709e2b2fce95",
+          "candidateSha256": "3939fc09c9c7e75792224a73f7a9d088eb6387ef78031629442c79f06431882f",
+          "baselineSize": 248048,
+          "candidateSize": 333984
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 257
+    },
+    "requestIsolationPreserved": true,
+    "sources": {
+      "runtime/pro/authorization/credential_snapshot.cpp": "78735dd524701b6bf1692c6d09eb6fe0deb346dd0486b47244f17c13bcc171a4",
+      "scripts/update-pro-credential-snapshot.py": "e1f2dd48d78d6e2759edb05f2b7f88c4f8b8a531030c6460d9f502655064cb80"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657"
+  },
+  "helperCredentialSnapshotRepair": {
+    "status": "candidate",
+    "baselineSdkBuildId": "maplesu-pro-5.2.0-cred-snapshot-20261113",
+    "baselineArchiveSha256": "0f37d8ae64f868941ac9cf3d2f5472fdeb1db3d8d0461929fd8fc23cdac73cc3",
+    "archiveSha256": "09c475dfbeff7c13c85a1df9874ae7423244ac58f0f13bc87477caa02c5dddcc",
+    "baselineHelperSha256": "65d3bb2eafb660b399a63c854cab6d072201a1849b571672d5d0c54cd7b9271a",
+    "helperSha256": "525efe304aaf480e3dedbaa4e9d2c26d158ed8a837e99a7244b88c09fc490504",
+    "helperNormalizedSha256": "6741bd87e59570852c5ae72b916e81169d0805c94653a92bb8eb5f791d1aeed3",
+    "helperBuildId": "2668c913fe9b7a50963800a5d5bf1b0716bb9049",
+    "helperBytes": 1282312,
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "ca07bf26e379f1a39baed6cfbcc4f094f702a37442743cfe2fa422e7dcc0b7ec",
+          "candidateSha256": "879e6a229859e6ba029f0976004e0011dd10e174fdef624bb798dd596cb643bf",
+          "baselineSize": 1357984,
+          "candidateSize": 1390176
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "c9cc86f67fd237429fdec7078ec3031ef3efa6f0f2e402189f66ce9978984240",
+          "candidateSha256": "762e3e35dc2289fbf84b4911bc96f5c86b702cfe5140943a4a0f910b7f9b824f",
+          "baselineSize": 20552,
+          "candidateSize": 20552
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 256
+    },
+    "patchedGetterBytes": 4,
+    "keySlotPreserved": true,
+    "installerBaselineCodeAndAbiReproduced": true,
+    "gateBaselineCodeAndAbiReproduced": true,
+    "priorRepairsPreserved": true,
+    "backendRelinked": false,
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "kernelRuntimeMembersUnchanged": true,
+    "replayCases": 15,
+    "replayBoundary": "Original comm/config getters and execute_kernel_asm_func at 0xbdd00 are modeled. Candidate getter, PIE callback bridge, original synchronous generator/AsmJit/prologue/epilogue and emitted three-pointer comparison execute unchanged. Each final execution gets a new modeled credential; baseline per-byte reads receive 24 changing credentials.",
+    "replayIsMachineCodeSimulation": true,
+    "realKernelAcceptance": false,
+    "deviceVerification": false,
+    "entryManifest": {
+      "path": "work/pre-release-audit-20261113/continuation-20261113-r4/helper-snapshot-candidate/build.json",
+      "sha256": "68a0eb84d935690e13859d9c4e6d83f1acf211cdd54b6d1da5298e23545cec4e"
+    },
+    "replay": {
+      "path": "work/pre-release-audit-20261113/continuation-20261113-r4/helper-snapshot-candidate/replay.json",
+      "sha256": "277cc6320d504785ed9df35dd45990e8252f83320a00fe21177ea63a3c728767"
+    },
+    "buildScript": {
+      "path": "work/pre-release-audit-20261113/continuation-20261113-r5/helper-sdk/build_sdk_candidate.py",
+      "sha256": "5d347654523e336efa27a8b1a3c271697eb52f512faae71fb67edccf41de2b65"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778"
+  },
+  "requestContextRepair": {
+    "baselineArchiveSha256": "fc671f7374daff542eda47fa4c6c383b22cc6b03c9f8042dcedd6f815239fb5a",
+    "archiveSha256": "87df66155478772ca20cc3bb7798a60a1ee25a8b38bb46625c3683fb8b234005",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 23,
+          "name": "module_base_kernel_request.o",
+          "baselineSha256": "91586d97c4aa9c6a15e4462c5a93e905d593fd6cf533593780fa61c4511b26c4",
+          "candidateSha256": "91b710329a50636572b8844bc659efe0dc4c8ebeebfe3b53322881e763163af0",
+          "baselineSize": 36632,
+          "candidateSize": 45592
+        },
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "61ad774eed72e0a61f4875de10dc4866960a7042fe8c6392949cb1176105c9bd",
+          "candidateSha256": "b5c8db9fc5958675df376f077fd80a496ece7e6a66615f7c96d73b8b949e477c",
+          "baselineSize": 1326352,
+          "candidateSize": 1357984
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "4db24e523a955ced52924aadb543bae287792b386c233f3d8b58fb28abe2fd2a",
+          "candidateSha256": "c9cc86f67fd237429fdec7078ec3031ef3efa6f0f2e402189f66ce9978984240",
+          "baselineSize": 20552,
+          "candidateSize": 20552
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 255
+    },
+    "helperSha256": "e8ce493a490ccc496aac44d3a103e8b65e131f2b9ea2c723ed109f3383c3c4c1",
+    "helperNormalizedSha256": "37f7e6c9ae05b7e3f50eac78240955d3808a557498eea1858283a8c6250613b2",
+    "helperBuildId": "3e947a5a423549eda0e13a45cc1829044700238b",
+    "helperBytes": 1250128,
+    "credentialIsolation": "raw capget/capset before every kernel request, including after fork",
+    "inheritedCapabilitiesUnchanged": true,
+    "requestBaselineReproduced": true,
+    "installerBaselineReproduced": true,
+    "legacyRequestAbiPreserved": true,
+    "previousUnwindEntriesPreserved": 3930,
+    "newUnwindEntries": 1,
+    "deviceVerification": false,
+    "sources": {
+      "runtime/pro/authorization/request_context.cpp": "ac81d355ac2dfd77dedc54870a7c38ae8b88243488d4870a6b34303e248f5c55",
+      "scripts/repair-pro-request-context.py": "4c63793375b67249dae551739eb8c66aa8b0b3ad3d618adedd4714a5438dd35a",
+      "runtime/pro/authorization/bootstrap_request.S": "664fca0ffe25288f0ff2ffd9b129f7a9612311f1f5e1895c6269c1229a75b243",
+      "runtime/pro/panic/sdk-m023-r13.bc": "d2bff48076d915a97fd34dd9ea1bc00bea1532818ca00c4faa8c190fe24cb0e2",
+      "runtime/pro/upgrade/sdk-m052.bc": "342b920914ad62f700398482f8bfd403344e54cf36f032a77c51d0c1e306d3c2",
+      "runtime/pro/modules/module_control.cpp": "e827b1205df951a1d2157ee7491942f4adb344a087e281c4c44cf183e03677af",
+      "scripts/repair-pro-request-reply.py": "38573d2ea1665c503c8d293db3e276c04fd8de9ddb43fa285087bf17d4cb9c47",
+      "scripts/repair-pro-environment-upgrade.py": "b7e73a4a2191ff4341915d9249d5d6caa89009f6b75f755b840c1dd4873421e9",
+      "runtime/upstream-pro/include/module_err_def.h": "1815c33b84576df96fee6261c6d24a5b66c5c165fca0df810f6f0336138740ae"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "policyBackendUsesRepairedSdk": true
+  },
+  "kernelReadRepair": {
+    "passed": true,
+    "baselineArchiveSha256": "09c475dfbeff7c13c85a1df9874ae7423244ac58f0f13bc87477caa02c5dddcc",
+    "archiveSha256": "88a4a2f775b63d266dac0912946595d8be6ae1a14b87e60ad2acffc673bdc04d",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 23,
+          "name": "module_base_kernel_request.o",
+          "baselineSha256": "91b710329a50636572b8844bc659efe0dc4c8ebeebfe3b53322881e763163af0",
+          "candidateSha256": "7216cfd8920a33f62b6e288f624903a12659b75829863c9102ed4e4862ba2dd8",
+          "baselineSize": 45592,
+          "candidateSize": 98352
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 257
+    },
+    "canonicalSymbol": "_ZN13kernel_module23request_kernel_read_memEmPvj",
+    "legacySymbol": "maplesu_legacy_request_kernel_read_mem",
+    "wrappedSymbolAbsent": true,
+    "archiveSymbolCounts": {
+      "_ZN13kernel_module23request_kernel_read_memEmPvj": 1,
+      "maplesu_legacy_request_kernel_read_mem": 1,
+      "__wrap__ZN13kernel_module23request_kernel_read_memEmPvj": 0
+    },
+    "requestIsolationPreserved": true,
+    "originalRequestTextSha256": "c2fb22306fbdaed531fee7975b73b954b090433cfca01e08253d55adf1d01546",
+    "originalRequestRelocationsPreserved": true,
+    "helperMemberUnchanged": true,
+    "productionArchiveUnchanged": true,
+    "deviceAccess": false,
+    "sources": {
+      "runtime/pro/authorization/kernel_read.cpp": "8b6bb1f3556f916742dcd9107b6206ca56c6c8b0ae51c4b862bac43e29647060",
+      "scripts/update-pro-kernel-read.py": "9fe54bc125ef00511d4ece0ca353f91858cf953be38df23a5c1c32e60c5939ec",
+      "runtime/pro/authorization/kernel_read_metadata.h": "63c83954ae7da83183b08bd0860befb111d8c732a86f89ea5273c15720716c21",
+      "runtime/upstream-pro/include/module_err_def.h": "1815c33b84576df96fee6261c6d24a5b66c5c165fca0df810f6f0336138740ae",
+      "runtime/upstream-pro/include/aarch64_asm_helper.h": "d4d56017ce91c5b0ef75467ebde2dddd5f10137ed0d98321a37da469335d1018",
+      "runtime/upstream-pro/include/module_base_kernel_mem.h": "60bf587bb10735c6639ccbb68902f58497fa2767b7b596f5bb41f53cd397cab5",
+      "runtime/upstream-pro/include/module_base_kernel_symbol_kaddr.h": "17a41bc0a0e67254b10bb8c011a422b40b761ed3a028ad33b2926c586ad6431e"
+    },
+    "report": {
+      "path": "work/panic-kernel-read-20261114/delivery-v1/evidence/kernel-read-report.json",
+      "sha256": "f6d56409fcc1ceaefc241b0860c4684e1fb341702d95bc0e8a01bbedaf609af3"
+    },
+    "coldResolverReplay": {
+      "path": "work/panic-kernel-read-20261114/delivery-v1/evidence/sdk-cold-resolver.json",
+      "sha256": "42e9656f8b395020c6436b4a9e8339ce5a2b0e15994da46d54dae0ddb84ad7d6"
+    },
+    "validation": {
+      "path": "work/panic-kernel-read-20261114/delivery-v1/evidence/main-read-validation.json",
+      "sha256": "927c051a46b8bd21aad0756294c54374c9fa104a6541b7f397e267053f7584c4"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "status": "candidate",
+    "deviceVerification": false,
+    "realKernelAcceptance": false
+  },
+  "helperKernelReadRepair": {
+    "schemaVersion": 1,
+    "baselineHelperSha256": "525efe304aaf480e3dedbaa4e9d2c26d158ed8a837e99a7244b88c09fc490504",
+    "helperSha256": "49735acbfe501dbba6b8eb484e1b5d42a56939743236ee9413dcb25200acc233",
+    "helperNormalizedSha256": "481394de580e9406b60fdb96fad5226c266f44544b8843e49d25fbba09ecd23c",
+    "helperBuildId": "fdfb31998a1e8a9a2d805913891ebbd3d5aa13da",
+    "helperBytes": 1315928,
+    "entryPatch": {
+      "offset": 805096,
+      "baselineHex": "fd7bbda9",
+      "candidateHex": "0ae20114"
+    },
+    "extension": {
+      "address": 1298704,
+      "offset": 1282320,
+      "bytes": 1840,
+      "sha256": "0be1f9f008b47fdbf2085f16ecd90e3808091714aa2a5396aad0d4eb4ba71b7c"
+    },
+    "symbols": {
+      "maplesu_helper_kernel_read": 1298704,
+      "maplesu_metadata_template": 1299800,
+      "maplesu_metadata_template_end": 1300160,
+      "maplesu_metadata_source": 1300144,
+      "maplesu_metadata_size": 1300152,
+      "maplesu_read_template": 1300160,
+      "maplesu_read_size": 1300520,
+      "maplesu_read_nofault": 1300528,
+      "maplesu_read_usercopy": 1300536,
+      "maplesu_read_template_end": 1300544,
+      "maplesu_read_source": 1300504,
+      "maplesu_read_destination": 1300512
+    },
+    "apiBoundaries": {
+      "helper_append": {
+        "address": 785108,
+        "bytes": 48,
+        "sha256": "eafc7ed1b1d75e6e7820e9e47ea1ca4ef86068f0ade4f68cbe800ef70f3cb149"
+      },
+      "helper_lookup": {
+        "address": 765084,
+        "bytes": 88,
+        "sha256": "c176753032e4ca3c314903537214f26732058f40b2a8380d9a60d9ddc65bf737"
+      },
+      "helper_execute": {
+        "address": 809640,
+        "bytes": 732,
+        "sha256": "523207f924d88bf0b55699512818fdff7777aa92ba6419b6ca186547475c2887"
+      }
+    },
+    "keySlotPreserved": true,
+    "dynamicMetadataPreserved": true,
+    "oldExecutableRangesPreserved": true,
+    "requestCredentialIsolationPreserved": true,
+    "originalUnwindEntriesPreserved": 3934,
+    "addedUnwindEntries": 6,
+    "productionInputsModified": false,
+    "deviceRequests": false,
+    "sources": {
+      "runtime/pro/authorization/helper_kernel_read.cpp": "1cda3d033aa52d68920ec0e487ed49192a7362eba85561a737b86673fd1c07df",
+      "runtime/pro/authorization/helper_kernel_read.S": "0db667a3099792bb586b9c0472839c82eb71b8eeda354b861b7a74f783db86a5",
+      "runtime/pro/authorization/kernel_read_metadata.h": "63c83954ae7da83183b08bd0860befb111d8c732a86f89ea5273c15720716c21",
+      "scripts/update-pro-helper-kernel-read.py": "650a8f4869cd2badb5dad797aa26fd97238cfecb43a6ffb8f01a53b40f4ce14f",
+      "scripts/tests/test-pro-helper-kernel-read.py": "173834cbae872ae4b7713c54373e7b5457c417f780a4aaca0ae0f2a2e84f0e84"
+    },
+    "callbackReplay": {
+      "path": "work/panic-kernel-read-20261114/delivery-v1/evidence/helper-read-replay.json",
+      "sha256": "026b8fa15798062dcf7046f494006f378d703720ad1899617799fd0398adb773"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "status": "candidate",
+    "deviceVerification": false,
+    "realKernelAcceptance": false
+  },
+  "memoryProtectionRepair": {
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "sources": {
+      "scripts/package-pro-memory-protection.py": "9232b7df9f5299bb432e35f103ef0e1a3ddcfc454133939dffec7fc649d7ff5f",
+      "runtime/pro/upgrade/sdk-m052.bc": "342b920914ad62f700398482f8bfd403344e54cf36f032a77c51d0c1e306d3c2",
+      "runtime/pro/modules/module_control.cpp": "e827b1205df951a1d2157ee7491942f4adb344a087e281c4c44cf183e03677af",
+      "scripts/repair-pro-environment-upgrade.py": "b7e73a4a2191ff4341915d9249d5d6caa89009f6b75f755b840c1dd4873421e9",
+      "runtime/pro/boot/helper_memory_protection.S": "31e390bcaa8daad5a38a89d452b2e596921e8b7ff1107b0009d883d7396e24fc",
+      "scripts/update-pro-helper-memory-protection.py": "b8e20c6814373fd8960844d77f1f402257868fe511ab9da19ca3a99f022270bb",
+      "scripts/update-pro-memory-protection.py": "e34a5156614a20a9a9f13cc28ae32a67ef5dfff0a702c0cd73b453be683c3fac",
+      "work/panic-kernel-read-20261114/prepare_permission_delivery.py": "2f92b02a4821804df80624e1b6d34c89cd79c436d942b48845353eb5342301a7"
+    },
+    "candidateObjectSha256": "8bddff1534197f80737db6b57f01714a155a6aa34d50879dbf19f1081db92448",
+    "helper": {
+      "entryPatch": {
+        "offset": 787668,
+        "baselineHex": "2b8f0114",
+        "candidateHex": "e3130214"
+      },
+      "extension": {
+        "address": 1332320,
+        "offset": 1315936,
+        "bytes": 80,
+        "sha256": "3343493ad12c1862d3114d11f7214a68fc7ebf92af0143bd3ffb8d4408dcc03b"
+      }
+    },
+    "validationScope": [
+      "compile",
+      "baseline-contract",
+      "global-abi",
+      "archive-member-diff",
+      "helper-section-whitelist"
+    ],
+    "deviceAcceptance": false,
+    "realKernelAcceptance": false,
+    "compileEvidence": {
+      "helper-compile.json": {
+        "path": "work/panic-kernel-read-20261114/permission-delivery-v1/evidence/helper-compile.json",
+        "sha256": "064581140a110bf1e9ed47b1e4e3ce0aaa0cd163d2ac9afe7937d775e49b7311"
+      },
+      "memory-compile.json": {
+        "path": "work/panic-kernel-read-20261114/permission-delivery-v1/evidence/memory-compile.json",
+        "sha256": "7fb6c04e2bd12690274ef765b64487f38357cb3c76b77992527e1bcfdd2f4838"
+      },
+      "packaging.json": {
+        "path": "work/panic-kernel-read-20261114/permission-delivery-v1/evidence/packaging.json",
+        "sha256": "a9d466b1af2bf14dd3864c44a75c3f637643d0565cc079a683b6cdd105e9ba10"
+      }
+    }
+  },
+  "executorRestoreRepair": {
+    "baselineArchiveSha256": "2878603a67fcdf0bec0ee735fd3d96a9dfb2a91f3206807d49152c8c16f439a5",
+    "archiveSha256": "65cd1e2adb6622a4e0d8c99341a916aa8df7c04485c20378ac4abda211b159ea",
+    "baselineHelperSha256": "cd96f85a301cba191c5d07b2be8ec01a660721d4c64ec8b9de38bb41c2eae12c",
+    "helperSha256": "c8f6f61dd015a30ee35ef19226ed35549371d5e3d7c422b70859bcad47c07e94",
+    "helperNormalizedSha256": "e028dd649e190b203f5fd9957af900b9f6214cf7645fd4bbd7eeeb2a00d9b7a1",
+    "helperBuildId": "906f6a5503338368726d8d6de194a27b235fe8dc",
+    "helperBytes": 1347984,
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 25,
+          "name": "module_base_kernel_func_executor.o",
+          "baselineSha256": "3aee013bde5aa9140cccd9ad82d55f3c20212f5a6e2d302c243b9436e78fecb7",
+          "candidateSha256": "1c9a5b9a8ff0433dc17b75defccd90187652e566e5bab106653bcfbd432ff5be",
+          "baselineSize": 67120,
+          "candidateSize": 60288
+        },
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "c85f6bc9124987decee88ae25993df4c8bd0db084142e748858b3aa7d4ed24a2",
+          "candidateSha256": "0018e766a091c03891daa625edb5cdc787ed454e4163dfaae2c6f525941dd348",
+          "baselineSize": 1423872,
+          "candidateSize": 1455840
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "d9e82ba13fd7d711cd6f108f5efc4cd59fab43ba4e513bc2e0add9b13be5a610",
+          "candidateSha256": "07fb04afb5b9c7d6138265f4821802b8847186a8fa84e897cfdbc946cb9732c6",
+          "baselineSize": 20552,
+          "candidateSize": 20552
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 255
+    },
+    "helperEntry": {
+      "offset": 809848,
+      "before": "00e4006fc8008052ff9301b8ff1f00b9",
+      "after": "e00f40b94dfe0194f30300aa59000014"
+    },
+    "sources": {
+      "runtime/pro/authorization/executor_restore.cpp": "0e68105b1fc08199ac1977fb3961bfef3f0551fd9da6515d767a37a51ec4487f",
+      "scripts/update-pro-executor-restore.py": "092922163995f183e882f6eaf809b01b75a71d0efbe7fd149650bf1f650eb248"
+    },
+    "deviceAcceptance": false,
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "validation": {
+      "path": "work/panic-implementation-20261114/executor-candidate/restore-validation.json",
+      "sha256": "19f1a2ad240edbe0bcb10863dfb57c052ec16cabf0485a50a8b9b02ae5971837"
+    },
+    "method": "Restore full securebits in one no-result callback through its own reply slot; no cross-request cred pointer"
+  },
+  "authorizationRepair": {
+    "baselineArchiveSha256": "215cdd0c928f46f282b11a7be18e604eed2c96a668783071b82a2f2329148272",
+    "memberChanges": [
+      {
+        "ordinal": 81,
+        "name": "module_su_redirect.o",
+        "before": "3ddfcc783f4854d8c43a253938229c2cbe7b159b0d2a6ffb66bd4be5805b8a78",
+        "after": "b8da16c8434ee90edd7b4e98f6c6a625c1deb15120e1aeb6fe068f3fb45263a4"
+      }
+    ],
+    "rebuildScript": "scripts/repair-pro-su-authorization.py",
+    "bootRestoration": "ProIdentityBroker after boot_completed with deployed repaired SDK",
+    "deviceVerification": "not performed",
+    "writerSourceSha256": "73e90322838b22ee9248236009324e32d100508102f405d78db6aa94d93613bb",
+    "transactionSourceSha256": "009042afd5a819483fe3b619cc74c1a17a2a7cc8ae44fb29b24a1fd31b593d8e",
+    "lifetime": "Published arrays retained for boot lifetime; 16 MiB / 4096 reservation cap; unchanged refresh deduplicates",
+    "executionSourceSha256": "1af0fe4be238e094701e54da6fc4be27353e9c6cbb72f03e80e72bbad7b77819"
+  },
+  "panicRepair": {
+    "baselineArchiveSha256": "92e800cef1063f129c7f50f136079e37421d9f61c4e6276b39a24f9bec7a5a96",
+    "archiveSha256": "3b8c478d978ae3780f73f177d0b784e909dd04184546c97b84fab9e46ff10f87",
+    "memberChanges": [
+      {
+        "ord": 52,
+        "name": "skroot_autorun_bootstrap_install.o",
+        "baselineSha256": "e45771d2f3c8d3324d1df2d61c6b08dbf7b5bf6d40805e00c2ee97f5ca24fd08",
+        "candidateSha256": "18ac701fb844f2ff56893bcdb7f5f5ac79bcec3a343f6db4c728d83ac0fa9548",
+        "baselineSize": 1293976,
+        "candidateSize": 1327912
+      },
+      {
+        "ord": 255,
+        "name": "maplesu_module_control.o",
+        "baselineSha256": "058ffb3047cd8084aafe32ae05886559d418c805c21d71939ae1f216ca79d33f",
+        "candidateSha256": "f60434a04364ee2d03e355ec76c3acaddb8e979998c7a44318e454f5d357daff",
+        "baselineSize": 20544,
+        "candidateSize": 20544
+      }
+    ],
+    "buildScript": "scripts/build-pro-helper-panic.py",
+    "archiveScript": "scripts/repair-pro-helper-panic-sdk.py",
+    "evidence": "evidence/panic-closure-20261106",
+    "synchronizedRepairs": [
+      "cpu_affinity_and_cache_errors",
+      "kernel_text_w0",
+      "before_hook_publication"
+    ],
+    "aarch64ExceptionUnwindReplayed": true,
+    "offlineChecks": 105,
+    "deviceVerification": false,
+    "limitations": "Only the identified before-hook path is synchronized; hardware cache/TLB behavior requires device acceptance"
+  },
+  "suExecutionRepair": {
+    "archiveSha256": "d1082fcc787037c308ff9acf88006de5936f56cabb23c4d1d7916443765825b3",
+    "baselineArchiveSha256": "9008155e40c568eaa0edaa31eb514c41c066ea72bb04fe1a341df38ae5f615b3",
+    "sourceSha256": "1f1dd7aa2df507ca592f3b8acc90e1b02f607122fe17f8bb81758ca7d1a0fa1b",
+    "transactionSha256": "009042afd5a819483fe3b619cc74c1a17a2a7cc8ae44fb29b24a1fd31b593d8e",
+    "executionSourceSha256": "1af0fe4be238e094701e54da6fc4be27353e9c6cbb72f03e80e72bbad7b77819",
+    "memberChanges": [
+      {
+        "ordinal": 81,
+        "name": "module_su_redirect.o",
+        "before": "7f9fee60934596429aa3dd2c92f834ad084ed6661925c17f74ded3abe3b5c731",
+        "after": "4a0bfda23f5a8a1d6b5ab88a95f679a224b056c2c1f56ba4a801171d1ddb0bfe"
+      }
+    ],
+    "bootstrapMemberUnchanged": true,
+    "maplesuDisplay": true,
+    "deviceVerification": "not performed",
+    "behavior": "Validate root-owned system helper directory and su; repair and read back mode 0755 and system_file context before grant or boot refresh"
+  },
+  "helperPanicRepair": {
+    "baselineArchiveSha256": "92e800cef1063f129c7f50f136079e37421d9f61c4e6276b39a24f9bec7a5a96",
+    "archiveSha256": "3b8c478d978ae3780f73f177d0b784e909dd04184546c97b84fab9e46ff10f87",
+    "memberChanges": [
+      {
+        "ord": 52,
+        "name": "skroot_autorun_bootstrap_install.o",
+        "baselineSha256": "e45771d2f3c8d3324d1df2d61c6b08dbf7b5bf6d40805e00c2ee97f5ca24fd08",
+        "candidateSha256": "18ac701fb844f2ff56893bcdb7f5f5ac79bcec3a343f6db4c728d83ac0fa9548",
+        "baselineSize": 1293976,
+        "candidateSize": 1327912
+      },
+      {
+        "ord": 255,
+        "name": "maplesu_module_control.o",
+        "baselineSha256": "058ffb3047cd8084aafe32ae05886559d418c805c21d71939ae1f216ca79d33f",
+        "candidateSha256": "f60434a04364ee2d03e355ec76c3acaddb8e979998c7a44318e454f5d357daff",
+        "baselineSize": 20544,
+        "candidateSize": 20544
+      }
+    ],
+    "buildScript": "scripts/build-pro-helper-panic.py",
+    "archiveScript": "scripts/repair-pro-helper-panic-sdk.py",
+    "evidence": "evidence/panic-closure-20261106",
+    "synchronizedRepairs": [
+      "cpu_affinity_and_cache_errors",
+      "kernel_text_w0",
+      "before_hook_publication"
+    ],
+    "aarch64ExceptionUnwindReplayed": true,
+    "offlineChecks": 105,
+    "deviceVerification": false,
+    "limitations": "Only the identified before-hook path is synchronized; hardware cache/TLB behavior requires device acceptance"
+  },
+  "previousPanicRepair": {
+    "archiveSha256": "18883676a595108a32032fb6d4ea4fcc78ec7e99af289e98f43301cc3517165b",
+    "baselineArchiveSha256": "2357e7df86488c372ca3dbc9b599da6ce8fdf0313b3a821e021c5764e91f67fb",
+    "memberChanges": [
+      {
+        "ordinal": 23,
+        "name": "module_base_kernel_request.o",
+        "before": "b56b668bd216bd612d9757bf49bf7424d538279eda7b571aae76997abf16170c",
+        "after": "fd5798cd9170be967fe81fa02ca0d8c625def06e3fd9e56d83f77e4e6744fea5"
+      },
+      {
+        "ordinal": 25,
+        "name": "module_base_kernel_func_executor.o",
+        "before": "bee8b1f58bbff62daa20e27823e0a1ab4afd7213fa1480944f392d6bc6afd046",
+        "after": "3aee013bde5aa9140cccd9ad82d55f3c20212f5a6e2d302c243b9436e78fecb7"
+      },
+      {
+        "ordinal": 52,
+        "name": "skroot_autorun_bootstrap_install.o",
+        "before": "1b24e85313e0ce21408780068e1d61243b0975e0cf48c864d8100bbebe8fee58",
+        "after": "e59cc11c23ac2b15b6f8b02f0fbb66d3a25c3aafeac980c3ff453960cd8c609f"
+      }
+    ],
+    "embeddedBootstrapChanged": true,
+    "helperPatchKind": "selective binary patch; not a full TU rebuild",
+    "helperSha256": "6ce823025ae594a7d5fe854461ab5f40daf76d2134191ea7899b8dcb899cf49e",
+    "helperNormalizedSha256": "58b33b86b50fbfbbde7505123dbee6db13358fa7c3e0671bf8edd76fb4bbb180",
+    "helperBuildId": "14a637a326cc977c22d4b726ef1893c2e45db597",
+    "deviceVerification": "not performed"
+  },
+  "moduleGateAbiRepair": {
+    "baselineArchiveSha256": "3b8c478d978ae3780f73f177d0b784e909dd04184546c97b84fab9e46ff10f87",
+    "archiveSha256": "f7ab0885cb80170e118ab3ab3b1bc6f9bdf20d5ba1d9484fc7712e53a9db76ab",
+    "helperSha256": "38691adbc90e2e0bfc89943b15e2b64dc8d2fc61990dfc128b079bb09f1b95a3",
+    "helperNormalizedSha256": "4c7ed7849a592657f0587c71d415fbd6a3cb268c4e045cf1fa74e38072b4e049",
+    "helperBuildId": "6475225749418b4429e61107987bf33ad698963f",
+    "helperBytes": 1213912,
+    "gateFileOffset": 1179648,
+    "gateVirtualAddress": 1196032,
+    "gateBytes": 331,
+    "changedGateByteOffsets": [
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      171,
+      172,
+      174,
+      176,
+      178,
+      180,
+      184,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      199,
+      200,
+      201,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      222,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      243,
+      244,
+      246,
+      248,
+      250,
+      252,
+      256,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299,
+      300,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316,
+      317,
+      318,
+      319,
+      320,
+      321,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      329
+    ],
+    "memberChanges": [
+      {
+        "ord": 52,
+        "name": "skroot_autorun_bootstrap_install.o",
+        "baselineSha256": "18ac701fb844f2ff56893bcdb7f5f5ac79bcec3a343f6db4c728d83ac0fa9548",
+        "candidateSha256": "750760d9bd63ad5037b4fec6d03d8e3f6297dd219fffb92436c5c2e738237ab4",
+        "baselineSize": 1327912,
+        "candidateSize": 1327912
+      },
+      {
+        "ord": 255,
+        "name": "maplesu_module_control.o",
+        "baselineSha256": "f60434a04364ee2d03e355ec76c3acaddb8e979998c7a44318e454f5d357daff",
+        "candidateSha256": "3b0486b48cdc537ccd315e70c61f37744a05b19fb6953005546a51e485c8fd1c",
+        "baselineSize": 20544,
+        "candidateSize": 20552
+      }
+    ],
+    "sourceSha256": "f5d201f963e7fd293de3a7b5cc94f2d8cbf95ecb45a9685a5646516ea15908d3",
+    "deviceVerification": false,
+    "preservesPanicRepair": true,
+    "abiPreserved": true
+  },
+  "authorizationRestorationRepair": {
+    "archiveSha256": "ec0b483d9c041ed90a85188f9ad3e59bb65894e53ae6474630479dc4b3b13938",
+    "baselineArchiveSha256": "f7ab0885cb80170e118ab3ab3b1bc6f9bdf20d5ba1d9484fc7712e53a9db76ab",
+    "sourceSha256": "73e90322838b22ee9248236009324e32d100508102f405d78db6aa94d93613bb",
+    "transactionSha256": "009042afd5a819483fe3b619cc74c1a17a2a7cc8ae44fb29b24a1fd31b593d8e",
+    "executionSourceSha256": "1af0fe4be238e094701e54da6fc4be27353e9c6cbb72f03e80e72bbad7b77819",
+    "memberChanges": [
+      {
+        "ordinal": 81,
+        "name": "module_su_redirect.o",
+        "before": "4a0bfda23f5a8a1d6b5ab88a95f679a224b056c2c1f56ba4a801171d1ddb0bfe",
+        "after": "b8da16c8434ee90edd7b4e98f6c6a625c1deb15120e1aeb6fe068f3fb45263a4"
+      }
+    ],
+    "bootstrapMemberUnchanged": true,
+    "maplesuDisplay": true,
+    "behavior": "Failed incomplete UID resolution preserves the whole live table; bounded root-only refresh retries; upgrade predeploys the current SDK boot-restorer.",
+    "deviceVerification": "pending environment-upgrade/reboot acceptance"
+  },
+  "upgradePublicationRepair": {
+    "baselineArchiveSha256": "4e3f119ed9f1285eb3fc8e05b9b30476dacc7d903c44e920c9cd554008e8762e",
+    "archiveSha256": "cde6eb6f9889d8b57a40e1227fbe648312951f2021ce855d1afbf17e92e04661",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 48,
+          "name": "skroot_unsafe_su_install.o",
+          "baselineSha256": "81166cde24c93f68336f24dd459cbfa42ca9a7d650c3e9a6aff17d691f36843a",
+          "candidateSha256": "9b0e1cee67454f5dd2602fa42f0a406881295e2be375aa79c46282d357e7ffac",
+          "baselineSize": 819584,
+          "candidateSize": 812136
+        },
+        {
+          "ord": 49,
+          "name": "skroot_unsafe_resetprop_install.o",
+          "baselineSha256": "c94be905e31509e434a8b772857f59fdbfb71cbf1c2c9285f681611ff121dc5d",
+          "candidateSha256": "8dbb9c7e025563be4e8492465025cc100c42419d927ef8f31e1ebfa6b1649e11",
+          "baselineSize": 482924,
+          "candidateSize": 439768
+        },
+        {
+          "ord": 50,
+          "name": "skroot_unsafe_webui_loader_install.o",
+          "baselineSha256": "0e96c984a18c14395bb96cc3e6f6ffcea7d3403ba70867ec179227aa4c5ea225",
+          "candidateSha256": "217f5e25bc1a8853688392bc2c2015af6dfef76021866d33ce2f3c7eef5cd735",
+          "baselineSize": 846688,
+          "candidateSize": 820288
+        },
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "8890d91ad5b3a3fab160dc34706bcf1988faac51fa132f5e9018c8759c70f926",
+          "candidateSha256": "be7b96c8814dba84e6826676f43ae4c6ec628b173709e8ab3d1188e84f8573f9",
+          "baselineSize": 1329088,
+          "candidateSize": 1322944
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 253
+    },
+    "inputs": [
+      {
+        "ordinal": 48,
+        "source": "runtime/pro/upgrade/sdk-m048.bc",
+        "sourceSha256": "28b10f62f8837e1d28ca0e92fa7a60bb8cc928ad25960e576cf9f1d78c0d84d6",
+        "payloadSha256": "7c6b48a392608252a03e2addcb21acc2bdd43afa981042ef102e0e95816569ed",
+        "baselineCodeAndAbiVerified": true
+      },
+      {
+        "ordinal": 49,
+        "source": "runtime/pro/upgrade/sdk-m049.bc",
+        "sourceSha256": "4694875eca977ee268d07f4879af11169e7b38799423dd9fc23d344c107e4d5f",
+        "payloadSha256": "70558e6d6199fa5a961b7bafeb8f96d8157cc63810db8df2a3cded1881763697",
+        "baselineCodeAndAbiVerified": true
+      },
+      {
+        "ordinal": 50,
+        "source": "runtime/pro/upgrade/sdk-m050.bc",
+        "sourceSha256": "5743db31ae09dfe84086313154752ca80e0a679c705f78a46b259ee6a6775c50",
+        "payloadSha256": "9f6557d3e09a223ff82d2adb10b6f865afe5fd3aa71cc3f0d856c7c22ed39cd8",
+        "baselineCodeAndAbiVerified": true
+      },
+      {
+        "ordinal": 52,
+        "source": "runtime/pro/upgrade/sdk-m052.bc",
+        "sourceSha256": "342b920914ad62f700398482f8bfd403344e54cf36f032a77c51d0c1e306d3c2",
+        "payloadSha256": "9956d245a875a112315d05978e4f8cfdc4ba07497e7e537080e89472d48e424c",
+        "baselineCodeAndAbiVerified": true
+      }
+    ],
+    "sourceSha256": "e01f51cca80fbcc336a4f35e03a2a1122b77e5bf0d2a7843a8e61d2442846ea4",
+    "embeddedExecutablesChanged": false,
+    "baselineCodeAndAbiVerified": true,
+    "payloadSha256": {
+      "48": "7c6b48a392608252a03e2addcb21acc2bdd43afa981042ef102e0e95816569ed",
+      "49": "70558e6d6199fa5a961b7bafeb8f96d8157cc63810db8df2a3cded1881763697",
+      "50": "9f6557d3e09a223ff82d2adb10b6f865afe5fd3aa71cc3f0d856c7c22ed39cd8",
+      "52": "9956d245a875a112315d05978e4f8cfdc4ba07497e7e537080e89472d48e424c"
+    },
+    "deviceAcceptance": false,
+    "rebuildScript": "scripts/repair-pro-environment-upgrade.py",
+    "inputsManifest": {
+      "path": "runtime/pro/upgrade/sdk-inputs.json",
+      "sha256": "bcd6f8370d3641b24cb6a5042b7c3317629b45cde39309d65b12817b712a9b18"
+    },
+    "sources": {
+      "runtime/pro/upgrade/executable_publish.cpp": "e01f51cca80fbcc336a4f35e03a2a1122b77e5bf0d2a7843a8e61d2442846ea4",
+      "runtime/pro/upgrade/executable_publish.h": "e5737c7b7a6ab1bc5ddafa5758ed7aca7758b97476f0bc656b89f2e536bf44b1",
+      "scripts/repair-pro-environment-upgrade.py": "b7e73a4a2191ff4341915d9249d5d6caa89009f6b75f755b840c1dd4873421e9"
+    },
+    "evidence": "work/upgrade-validation-20261106/err-module-open-file-20261107",
+    "hostFilePublicationCases": 18,
+    "hostInstallerEntryCases": 9,
+    "prePublishFailureKeepsOldExecutable": true,
+    "bootstrapPreDeleteRemoved": true,
+    "directorySyncFailureAfterRename": "Returns ERR_MODULE_WRITE_FILE; replacement is already visible. Not a cross-file transaction or full rollback.",
+    "deviceVerification": false
+  },
+  "requestValidationRepair": {
+    "baselineArchiveSha256": "cde6eb6f9889d8b57a40e1227fbe648312951f2021ce855d1afbf17e92e04661",
+    "archiveSha256": "c4795e8a3d221017119cda62baa6a19050eee86710a13bcf8970ab0e34df220d",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 23,
+          "name": "module_base_kernel_request.o",
+          "baselineSha256": "fd5798cd9170be967fe81fa02ca0d8c625def06e3fd9e56d83f77e4e6744fea5",
+          "candidateSha256": "91586d97c4aa9c6a15e4462c5a93e905d593fd6cf533593780fa61c4511b26c4",
+          "baselineSize": 36576,
+          "candidateSize": 36632
+        },
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "be7b96c8814dba84e6826676f43ae4c6ec628b173709e8ab3d1188e84f8573f9",
+          "candidateSha256": "6c208299e544c0095f53cace5b25883cfd1a7404491978dfa8f5f0b1420c18a5",
+          "baselineSize": 1322944,
+          "candidateSize": 1322944
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 255
+    },
+    "helperSha256": "bcfbf38b532fae7631c863ef1e7dfa9e8880f779e6a663363335fa7d03437c75",
+    "helperNormalizedSha256": "31df4284ba1659802672ed101c0f862ea9688a03ab9b1b58c0685783ce7a19fc",
+    "helperBuildId": "fe4ed84dda4d9e7f2f79a68f30c9b1cd08ee5bd9",
+    "helperBytes": 1215088,
+    "abiPreserved": true,
+    "helperProgramHeadersUnchanged": true,
+    "installerCodeUnchanged": true,
+    "sourceReproducesR13Exactly": true,
+    "deviceVerification": false,
+    "requestUnwindRepair": {
+      "frameBytes": 176,
+      "savedRegisters": [
+        19,
+        20,
+        21,
+        22,
+        29,
+        30
+      ],
+      "fdeFileOffset": 365616,
+      "cfaByteFileOffset": 365643,
+      "originalFdeRangePreserved": true
+    },
+    "replyScope": "Legacy signed error and Android overflowgid=65534; nondefault overflowgid is not decoded",
+    "evidence": "work/xiaomi-panic-20261107/sdk-r14",
+    "sources": {
+      "runtime/pro/panic/sdk-m023-r13.bc": "d2bff48076d915a97fd34dd9ea1bc00bea1532818ca00c4faa8c190fe24cb0e2",
+      "runtime/pro/authorization/bootstrap_request.S": "664fca0ffe25288f0ff2ffd9b129f7a9612311f1f5e1895c6269c1229a75b243",
+      "scripts/repair-pro-request-reply.py": "1f82d1a7527b7cc3363a73e0296ba0561b45adefe721c569c876e96d827ccf70"
+    }
+  },
+  "bootLifecycleRepair": {
+    "baselineArchiveSha256": "c4795e8a3d221017119cda62baa6a19050eee86710a13bcf8970ab0e34df220d",
+    "archiveSha256": "e82179f4bc7ed5474a7d4e46169ae28cbb1a089a094a67f14abd49dec0efe4e4",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "6c208299e544c0095f53cace5b25883cfd1a7404491978dfa8f5f0b1420c18a5",
+          "candidateSha256": "0edb1e0c50412d499d2e9bf4bcdaa7e5bddd1c69c6a0c8535661c36d85598c3e",
+          "baselineSize": 1322944,
+          "candidateSize": 1323664
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "1b18120e3e0c6865e19323c400e8da2b1dcb06e80acd07d745932bc55e911a9a",
+          "candidateSha256": "f1ee04b2259e0f5aff4ea7dbd24cf151f2cae78a5de8b539005978d55e745e12",
+          "baselineSize": 20552,
+          "candidateSize": 20552
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 255
+    },
+    "helperSha256": "d4182dc7ec8f7628d1c6129d8ed70cd1dc08ac425dbefe338c505712746d6a33",
+    "helperNormalizedSha256": "2e685bf38152592210e6140b656aeca26e7bc46d43811c43c3e51a1de48d4063",
+    "helperBuildId": "5589311639985c022c4d7880d650f3f735e00f66",
+    "helperBytes": 1215800,
+    "extensionAddress": 1231472,
+    "extensionBytes": 712,
+    "finishEntry": 1231472,
+    "finishFunction": 1231528,
+    "abiPreserved": true,
+    "installerBaselineReproduced": true,
+    "protectionBranchUnchanged": true,
+    "duplicateGuardUnchanged": true,
+    "previousRepairsPreserved": true,
+    "completion": "Commit checked one-byte success synchronously before publishing Running; no delayed child",
+    "deviceVerification": false,
+    "sources": {
+      "runtime/pro/boot/bootstrap_finish.S": "f1a0f1457b37d87be2f09c24820691142251b8b2a38b0c090a6de0cefb0dbb85",
+      "runtime/pro/boot/bootstrap_finish.c": "4dfb1feb378f95aa7734b7c7c4f2b385e381c3f7803a98a27e0895ce5e9fdcaf",
+      "runtime/pro/upgrade/sdk-m052.bc": "342b920914ad62f700398482f8bfd403344e54cf36f032a77c51d0c1e306d3c2",
+      "scripts/repair-pro-boot-lifecycle.py": "7f8b27d6e2e1e5c7fd7ab85f73325f3f4e97e911eddb2f0d5ce6af26d54b099b"
+    }
+  },
+  "environmentStateRepair": {
+    "baselineArchiveSha256": "e82179f4bc7ed5474a7d4e46169ae28cbb1a089a094a67f14abd49dec0efe4e4",
+    "archiveSha256": "ccface9bbfbb162bb615ff20213b63eda213a0e0d9b758dcc3f77f3dd2bc4679",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 53,
+          "name": "skroot_installer.o",
+          "baselineSha256": "b6398070d6d97c0be4c318cf20eb748c1f6fe00784da9ee55866f4bd46630f51",
+          "candidateSha256": "28f5df8135612bf0b3e4ef7815f3ba93541f6a11611dd559b05b88baa410767d",
+          "baselineSize": 123320,
+          "candidateSize": 121200
+        }
+      ],
+      "added": [
+        {
+          "ord": 257,
+          "name": "maplesu_environment_state.o",
+          "candidateSha256": "299e82bae8ab37071dc7a28d017104553ee1b0038d1fb7996cba09b96995631c"
+        }
+      ],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 256
+    },
+    "baselineReproducedExactly": true,
+    "existingSdkExportsPreserved": true,
+    "helperUnchanged": true,
+    "faultCondition": "Current-boot duplicate receipt, safe_flag=3, enabled protection flag",
+    "runningCondition": "safe_flag=2 and a valid work receipt matching the current boot UUID",
+    "unknownCondition": "Startup/incomplete/read/root/IPC errors; no persistence mutation or capability grant",
+    "enumValues": {
+      "NotInstalled": 0,
+      "Running": 1,
+      "Fault": 2,
+      "Unknown": 3
+    },
+    "deviceVerification": false,
+    "sources": {
+      "runtime/pro/boot/sdk-m053.bc": "6928675234ac47e00471c193226be99c3601bd9b3da30f0d6bbde55c4d37683e",
+      "runtime/pro/boot/environment_state.cpp": "4cfed31065564a3ea1d3b98cbfc46a984a3a56815f1b9eb53e20c695fa23c3fa",
+      "scripts/repair-pro-environment-state.py": "c112b6b2d1eef5cc4b53cdf0e514fca12c233f530cc387f032d83f10372e3ba6",
+      "runtime/upstream-pro/include/skroot_env/skroot_installer.h": "732047ce738091a8ea084775963907b59aa8bb10c266cd280b57266dd173d38e"
+    }
+  },
+  "bootCompletionRepair": {
+    "receipt": "init.boot_session.completed",
+    "currentBootRequired": true,
+    "legacyModuleResetPreserved": true,
+    "helperProtectionUnchanged": true,
+    "deviceAcceptance": false
+  },
+  "helperAllowlistRepair": {
+    "schemaVersion": 1,
+    "baselineHelperSha256": "7a05bc7461413a1725606ee779e9c6b1618cd01cc87a10fb32315cb97801d6e0",
+    "helperSha256": "c7f6bf334221184446639dac8ecdbce979d00643e1fdc998f56b3df92d8f1781",
+    "helperNormalizedSha256": "bd0f3303880519bf9740a3b8bb3d53fca2132d41cca6156c3f4ef7a97cbe5254",
+    "helperBuildId": "0d84e934aa35b01e74fc5b5e0b8252eac7ed027c",
+    "helperBytes": 1348016,
+    "patches": [
+      {
+        "address": "0xf5130",
+        "offset": 1003824,
+        "baselineHex": "60f9ffd000fc3591eb040094c00000b4c62cff97f60300aaa01500b5e0031faade040094",
+        "candidateHex": "e0031faae5040094f60300aa001600b5050000141f2003d51f2003d51f2003d51f2003d5"
+      },
+      {
+        "address": "0xf517c",
+        "offset": 1003900,
+        "baselineHex": "e8c340f9",
+        "candidateHex": "09000014"
+      },
+      {
+        "address": "0xf5eec",
+        "offset": 1007340,
+        "baselineHex": "80f9ff90",
+        "candidateHex": "a95c0114"
+      }
+    ],
+    "extension": {
+      "address": "0x14d190",
+      "offset": 1347984,
+      "bytes": 32,
+      "sha256": "492d4e1e181bf94ffeb17d47ca3be0795547d08b6b80d24b2f9661eb0e69b815"
+    },
+    "keySlotPreserved": true,
+    "originalSectionsWhitelistVerified": true,
+    "dynamicMetadataPreserved": true,
+    "originalUnwindMetadataPreserved": true,
+    "existingFixesPreserved": true,
+    "productionInputsModified": false,
+    "callbackReplay": {
+      "path": "work/panic-implementation-20261114/native-audit/helper-candidate/allowlist-replay.json",
+      "sha256": "2bd1ff8a0b3279ad14bf1d7a89e5b6d37406102a9174a1577bcbf19190427cf9"
+    },
+    "causality": "Helper initialization clears old control and retirement keys before this writer. This fixes its stale writer lifecycle coverage, but does not establish the current NX panic cause.",
+    "sources": {
+      "scripts/update-pro-helper-allowlist.py": "50a0c373386206ba39bf67aaac254d29c73c33745b39c30be47cae04d46e9e89",
+      "scripts/tests/test-pro-helper-allowlist.py": "03a32de6e770a919cd8edacde3d06727f1e8eaea1e5c12564c13bc89e932a58c"
+    },
+    "baselineArchiveSha256": "d5c70619383f60a10798ed2373e06a7399339417bfff8858042f8a28892afd4f",
+    "archiveSha256": "525d398fab185a90d6fa32a5b63fa2a558096ede040499ff9f459fbea57f45e4",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "a0b1effe243833debd649c652a2e7ced92de89a04b5fc865669da5196010a205",
+          "candidateSha256": "6f881191d90bf58234fd2607d0be157be54c4a6317c432735b59060130904439",
+          "baselineSize": 1455840,
+          "candidateSize": 1455872
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "07fb04afb5b9c7d6138265f4821802b8847186a8fa84e897cfdbc946cb9732c6",
+          "candidateSha256": "c0c9d8586b395e21937f5aef4a29a9275db837178a98d4d7e023d700df6fc1a4",
+          "baselineSize": 20552,
+          "candidateSize": 20552
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 256
+    },
+    "installerBaselineReproduced": true,
+    "gateBaselineReproduced": true,
+    "kernelRuntimeMembersUnchanged": true,
+    "backendRelinked": false,
+    "loaderBytesUnchanged": true,
+    "retainedExecutorRestore": true,
+    "deviceVerification": false,
+    "realKernelAcceptance": false,
+    "preparedBy": {
+      "path": "work/panic-implementation-20261114/helper-delivery-tools/prepare_helper_delivery.py",
+      "sha256": "f41db82fe3f60efbacf287d6abe576ac1f6ef9b915fcc0ab9218bb6c2fb4c4bc"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657"
+  },
+  "helperMemoryRangeRepair": {
+    "schemaVersion": 1,
+    "baselineHelperSha256": "c7f6bf334221184446639dac8ecdbce979d00643e1fdc998f56b3df92d8f1781",
+    "helperSha256": "b9513d7e36178752293065c3891137cba5d83f4d6e867449ea756a36b8fdee1a",
+    "helperNormalizedSha256": "d1282c5c5a698fa52a1fb03aea1e35ee5b3ce4dd9ade3a44b08831b55566c910",
+    "helperBuildId": "3d14b9f4d4f643bc0d579787c3ddec0bbeda0e59",
+    "helperBytes": 1348192,
+    "patches": [
+      {
+        "address": "0xc09ac",
+        "offset": 788908,
+        "baselineHex": "14cc7492",
+        "candidateHex": "f40300aa"
+      },
+      {
+        "address": "0xc0938",
+        "offset": 788792,
+        "baselineHex": "b4ce7492",
+        "candidateHex": "f40315aa"
+      },
+      {
+        "address": "0xc0914",
+        "offset": 788756,
+        "baselineHex": "b4ce7492",
+        "candidateHex": "f40315aa"
+      },
+      {
+        "address": "0xc09b4",
+        "offset": 788916,
+        "baselineHex": "490d0094",
+        "candidateHex": "ff310214"
+      },
+      {
+        "address": "0xc0940",
+        "offset": 788800,
+        "baselineHex": "660d0094",
+        "candidateHex": "1e320214"
+      },
+      {
+        "address": "0xc091c",
+        "offset": 788764,
+        "baselineHex": "6f0d0094",
+        "candidateHex": "29320214"
+      }
+    ],
+    "extension": {
+      "address": "0x14d1b0",
+      "offset": 1348016,
+      "bytes": 172,
+      "sha256": "c17eef1c397b874f73db4f54876d3e0a6b31a20c0c846a5f86cfda8c1416e9b3"
+    },
+    "keySlotPreserved": true,
+    "originalSectionsWhitelistVerified": true,
+    "dynamicMetadataPreserved": true,
+    "originalUnwindMetadataPreserved": true,
+    "noNewCallsOrStackFrames": true,
+    "existingFixesPreserved": true,
+    "productionInputsModified": false,
+    "deviceRequests": false,
+    "scope": "Protection range validation and page arithmetic; current NX panic causality remains unestablished.",
+    "sources": {
+      "scripts/update-pro-helper-memory-protection-range.py": "9293207c6dee5dc4fd2ea8eb7469d26d683e8fb23d7689d42722ccc50c6ab856",
+      "runtime/pro/boot/helper_memory_protection_range.S": "a63899c988baae8a50e8f6236a0d28289f9b4178c7c9bf31a8eeb3f839cc9f94",
+      "scripts/tests/test-pro-helper-memory-protection-range.py": "e8b4aa0648fab1914aa189a902bbc75202156bd1532388528def212c3a0d6f6e"
+    },
+    "replays": {
+      "range-replay.json": "4ebf48f5f93cca4cd54d89c47c93627d8097dc2f8090a385ceb8931667b2399c",
+      "allowlist-replay.json": "dd48780d9b5625ce00d87a464a087784caf5c6f505ac5a8795e5657323e8ec20"
+    },
+    "baselineArchiveSha256": "525d398fab185a90d6fa32a5b63fa2a558096ede040499ff9f459fbea57f45e4",
+    "archiveSha256": "50d456afbe699b43a80a7276ae8a8e3e8d48b169683251c9402becec4388b186",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "6f881191d90bf58234fd2607d0be157be54c4a6317c432735b59060130904439",
+          "candidateSha256": "4146e309b2857f6665e99e53825c5fff2bc39ae0ad7a470f7bb69ae06c048e34",
+          "baselineSize": 1455872,
+          "candidateSize": 1456048
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "c0c9d8586b395e21937f5aef4a29a9275db837178a98d4d7e023d700df6fc1a4",
+          "candidateSha256": "766670ec397e0b9da18229598bc445654c9c433b4f8d5ea0f1583c4f4317b2dc",
+          "baselineSize": 20552,
+          "candidateSize": 20552
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 256
+    },
+    "installerBaselineReproduced": true,
+    "gateBaselineReproduced": true,
+    "kernelRuntimeMembersUnchanged": true,
+    "backendRelinked": false,
+    "loaderBytesUnchanged": true,
+    "retainedExecutorRestore": true,
+    "deviceVerification": false,
+    "realKernelAcceptance": false,
+    "preparedBy": {
+      "path": "work/panic-implementation-20261114/helper-range-delivery-tools/prepare_helper_delivery.py",
+      "sha256": "2c8709c23ce4f39e41760536f93ea33f4a092349e57787c41961edfba0e9054d"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657"
+  },
+  "memoryProtectionRangeRepair": {
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "schemaVersion": 1,
+    "baselineArchiveSha256": "50d456afbe699b43a80a7276ae8a8e3e8d48b169683251c9402becec4388b186",
+    "baselineHelperSha256": "b9513d7e36178752293065c3891137cba5d83f4d6e867449ea756a36b8fdee1a",
+    "baselineObjectSha256": "1449fde70c49d7e52c57be86ea2ff1f6ef8881d2ec07d1988d79f370a1bd1753",
+    "candidateObjectSha256": "8bddff1534197f80737db6b57f01714a155a6aa34d50879dbf19f1081db92448",
+    "helperCandidateSha256": "b9513d7e36178752293065c3891137cba5d83f4d6e867449ea756a36b8fdee1a",
+    "helperSha256": "42188c46112eea947e470efce8538c94d6f24d539608f402b76d49e0ff437c5a",
+    "helperNormalizedSha256": "3defe5f677fb190498ada2ed748f154917a27c629b26762893614f7f6937d32b",
+    "helperBuildId": "28850f669915c3250c1f574ab3e640ae8a8cffe1",
+    "helperBytes": 1348192,
+    "helperPatches": [
+      {
+        "address": "0xc09ac",
+        "offset": 788908,
+        "baselineHex": "14cc7492",
+        "candidateHex": "f40300aa"
+      },
+      {
+        "address": "0xc0938",
+        "offset": 788792,
+        "baselineHex": "b4ce7492",
+        "candidateHex": "f40315aa"
+      },
+      {
+        "address": "0xc0914",
+        "offset": 788756,
+        "baselineHex": "b4ce7492",
+        "candidateHex": "f40315aa"
+      },
+      {
+        "address": "0xc09b4",
+        "offset": 788916,
+        "baselineHex": "490d0094",
+        "candidateHex": "ff310214"
+      },
+      {
+        "address": "0xc0940",
+        "offset": 788800,
+        "baselineHex": "660d0094",
+        "candidateHex": "1e320214"
+      },
+      {
+        "address": "0xc091c",
+        "offset": 788764,
+        "baselineHex": "6f0d0094",
+        "candidateHex": "29320214"
+      }
+    ],
+    "helperExtension": {
+      "address": "0x14d1b0",
+      "offset": 1348016,
+      "bytes": 172,
+      "sha256": "c17eef1c397b874f73db4f54876d3e0a6b31a20c0c846a5f86cfda8c1416e9b3"
+    },
+    "pageSizes": [
+      4096,
+      16384,
+      65536
+    ],
+    "maxPageCount": 2147483647,
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 24,
+          "name": "module_base_kernel_mem.o",
+          "baselineSha256": "1449fde70c49d7e52c57be86ea2ff1f6ef8881d2ec07d1988d79f370a1bd1753",
+          "candidateSha256": "8bddff1534197f80737db6b57f01714a155a6aa34d50879dbf19f1081db92448",
+          "baselineSize": 184376,
+          "candidateSize": 184576
+        },
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "4146e309b2857f6665e99e53825c5fff2bc39ae0ad7a470f7bb69ae06c048e34",
+          "candidateSha256": "fca8f07f2aa44c9003b1dbf8e8250cb0a1f6c80ced60045f37b9028f8c71a18b",
+          "baselineSize": 1456048,
+          "candidateSize": 1456048
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 256
+    },
+    "sources": {
+      "work/panic-implementation-20261114/sdk-range-delivery-tools/import_range_delivery.py": "956ea000e44e1d94a5e26e011323f1081006307309da79346887a6d11dbcbfb3",
+      "work/panic-implementation-20261114/sdk-range-delivery-tools/prepare_range_delivery.py": "7fd99a1a4dc50339ea1efb2466ea5fe204e235d0338f2d5fc1af5b2f5c241c6d",
+      "work/panic-implementation-20261114/sdk-range-delivery-tools/verify_overlay.py": "bf7dee7e32e2ccca7c22e5f37f161f50afe868855c472bf73ca4643de0169afb",
+      "scripts/update-pro-memory-protection-range.py": "0fa535f8e7e0b03ae8efda8d5c0eae820a94eff29debb701ab3fb9fd456f2aec",
+      "runtime/pro/boot/memory_protection_range.ll": "10b9b84093b88e10bc88d5b06870c7910b573a98b7a5ff24a848df917038c741",
+      "scripts/tests/test-pro-memory-protection-range.py": "69b28353b4c189df09e99568ecf64c97001a82800cef6797f8171489cc7ba0d7",
+      "scripts/tests/test-pro-helper-allowlist.py": "03a32de6e770a919cd8edacde3d06727f1e8eaea1e5c12564c13bc89e932a58c",
+      "runtime/pro/upgrade/sdk-m052.bc": "342b920914ad62f700398482f8bfd403344e54cf36f032a77c51d0c1e306d3c2",
+      "runtime/pro/modules/module_control.cpp": "e827b1205df951a1d2157ee7491942f4adb344a087e281c4c44cf183e03677af",
+      "scripts/repair-pro-environment-upgrade.py": "b7e73a4a2191ff4341915d9249d5d6caa89009f6b75f755b840c1dd4873421e9",
+      "scripts/update-pro-helper-memory-protection-range.py": "9293207c6dee5dc4fd2ea8eb7469d26d683e8fb23d7689d42722ccc50c6ab856",
+      "runtime/pro/boot/helper_memory_protection_range.S": "a63899c988baae8a50e8f6236a0d28289f9b4178c7c9bf31a8eeb3f839cc9f94",
+      "scripts/tests/test-pro-helper-memory-protection-range.py": "e8b4aa0648fab1914aa189a902bbc75202156bd1532388528def212c3a0d6f6e"
+    },
+    "backendRelinked": true,
+    "backendReused": false,
+    "loaderBytesUnchanged": false,
+    "retainedPermissionReturnRepair": true,
+    "retainedHistoricalRepairMetadata": true,
+    "installerBaselineReproduced": true,
+    "gateBaselineReproduced": true,
+    "deviceVerification": false,
+    "realKernelAcceptance": false,
+    "panicCausalityEstablished": false,
+    "preparedBy": {
+      "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/prepare_range_delivery.py",
+      "sha256": "7fd99a1a4dc50339ea1efb2466ea5fe204e235d0338f2d5fc1af5b2f5c241c6d"
+    },
+    "evidence": {
+      "backend-rebind.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/backend-rebind.json",
+        "sha256": "cc876f0c9efa109d276c6b49dd4153c50a7da007de6d9dba1e41c6f705a26268"
+      },
+      "helper-allowlist-replay.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/helper-allowlist-replay.json",
+        "sha256": "cfe399c83939d8ac9ed0b8e3081e6ce0ca0ecb1f389d9c23a37ef5d4e1619a34"
+      },
+      "helper-range-compile.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/helper-range-compile.json",
+        "sha256": "60435b8d1833fe660559f4aa6a86cd9607f81d225896260d83cf8b01d485a215"
+      },
+      "helper-range-replay.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/helper-range-replay.json",
+        "sha256": "dbcc5b5aeaa25a6745d318a1fb75d4d4afb6b404089baa9bf1e4468f49f045ff"
+      },
+      "sdk-range-compile.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/sdk-range-compile.json",
+        "sha256": "74a6ab6b9aaf7d50fbd46c41f57b7b945570d075b77a492b2affcec489f88ac4"
+      },
+      "sdk-range-replay.json": {
+        "path": "work/panic-implementation-20261114/sdk-range-delivery-tools/delivery-v2/evidence/sdk-range-replay.json",
+        "sha256": "973637df53a97bb495155bd49b5e15822e0db950806c3a9655e1cd5affbaf236"
+      }
+    }
+  },
+  "taskCommScanRepair": {
+    "passed": true,
+    "deviceExecuted": false,
+    "productionArchiveUnchanged": true,
+    "baselineArchiveSha256": "cdeeec80f790c9c3891b8dab95e3c5419b486408230e087946808033a4d5a3b6",
+    "archiveSha256": "9054ef645f7824c998d3f905e4d4f5a41f23009804573dbee400b63784fe8a2d",
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 1,
+          "name": "task_struct.o",
+          "baselineSha256": "3939fc09c9c7e75792224a73f7a9d088eb6387ef78031629442c79f06431882f",
+          "candidateSha256": "63a23ef7380e662ab26323cbca5e5fa2532bf5e6ec8b446313f67948ffdbdb69",
+          "baselineSize": 333984,
+          "candidateSize": 354760
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 257
+    },
+    "originalM001TextPreserved": true,
+    "originalM001RelocationsPreserved": true,
+    "canonicalStrongDefinition": true,
+    "originalOtherGlobalDefinitionsPreserved": true,
+    "sources": {
+      "runtime/pro/authorization/task_comm_scan.cpp": "0065b3373804bc0dbb97de69809f15ce6a5ecc984f5b69ef0248056fdbd15786",
+      "runtime/pro/authorization/task_comm_scan.h": "31a72441a6575b56a04d3a8b90f7121d919208c3bd6df8f83af034dde351046c",
+      "scripts/update-pro-task-comm-scan.py": "a22aa4b227e02acce03d9c1f4d72b7411437cc9e8946df1b2c90c6bfa59fff3c",
+      "runtime/upstream-pro/include/module_err_def.h": "1815c33b84576df96fee6261c6d24a5b66c5c165fca0df810f6f0336138740ae",
+      "runtime/upstream-pro/include/aarch64_asm_helper.h": "d4d56017ce91c5b0ef75467ebde2dddd5f10137ed0d98321a37da469335d1018",
+      "runtime/upstream-pro/include/module_base_kernel_export_symbol.h": "a2f93607a9f6d242763093211eb95e49c21a0e0c42587f56761f09cf61e023bf",
+      "runtime/upstream-pro/include/module_base_kernel_export_symbol.inl": "c8ac54d7817687e34207246fbe46c927f97a41800b9f48e76ec0c0ff54516639",
+      "runtime/upstream-pro/include/module_base_kernel_func_executor.h": "a88b73aa9eba789f0e87069f635f6bf1d6b5bf9833c9e21e4cb351c7b548bf85",
+      "runtime/upstream-pro/include/module_base_kernel_mem.h": "60bf587bb10735c6639ccbb68902f58497fa2767b7b596f5bb41f53cd397cab5",
+      "runtime/upstream-pro/include/kernel_offsets/task_struct.h": "6932e29a13586a0216dfc2665e043f028cc0773411b8112fa83a74c5759626de"
+    },
+    "baselineCredentialSnapshotMemberSha256": "3939fc09c9c7e75792224a73f7a9d088eb6387ef78031629442c79f06431882f",
+    "requestIsolationPreserved": true,
+    "validationScope": [
+      "ndk-compile",
+      "m001-text-preserved",
+      "m001-relocations-preserved",
+      "canonical-strong-definition",
+      "archive-member-diff"
+    ],
+    "deviceAcceptance": false,
+    "schemaVersion": 1,
+    "deviceRootEntryTimingObserved": true,
+    "deviceRootEntryTimingEvidence": {
+      "path": "work/panic-implementation-20261114/task-comm-scan/device-timing-after.json",
+      "sha256": "665ffb1533211da3aaabd34a0dd2ca889920f693634cc8ecb21c3790431616cb"
+    },
+    "focusedValidation": {
+      "path": "work/panic-implementation-20261114/task-comm-scan/tests/verification.json",
+      "sha256": "89435c26bcadca0bc3ff6197ec8b53936c46280b4a6a024b92749ac397cf7ba7"
+    },
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "pairedEvidence": {
+      "backend-range.json": {
+        "path": "work/panic-implementation-20261114/task-comm-scan/delivery-v2/evidence/backend-range.json",
+        "sha256": "d4c08108999e3c31342d39ca7c3eff94fd57dfad4729f6359420578adf46e013"
+      },
+      "helper-allowlist.json": {
+        "path": "work/panic-implementation-20261114/task-comm-scan/delivery-v2/evidence/helper-allowlist.json",
+        "sha256": "a5be6755374f785134a96061f8b3608a6da52d789c216f8daf8f5d90df7b9acf"
+      },
+      "helper-range.json": {
+        "path": "work/panic-implementation-20261114/task-comm-scan/delivery-v2/evidence/helper-range.json",
+        "sha256": "c5aa33eff0cf02d3fe019cc5de8ae9d8c076e173a989d96b44018870fa2c8bd0"
+      },
+      "linked-functions.json": {
+        "path": "work/panic-implementation-20261114/task-comm-scan/delivery-v2/evidence/linked-functions.json",
+        "sha256": "33ea02249cc48aa4fca158720d0b17593a593c295f8e7a6421c2dcce1d95159a"
+      },
+      "rebind.json": {
+        "path": "work/panic-implementation-20261114/task-comm-scan/delivery-v2/evidence/rebind.json",
+        "sha256": "b5d092e9649058935ab0c18e5ee3eea83025f8d1ade32ba9d4a82945d0ea5ad5"
+      }
+    }
+  },
+  "moduleControl": {
+    "sdkVersion": "5.1.0",
+    "archiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "baselineArchiveSha256": "3b8c478d978ae3780f73f177d0b784e909dd04184546c97b84fab9e46ff10f87",
+    "helperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "helperNormalizedSha256": "0e91450d5dd1677a75f8f35691851e0984d6fac0a33c541d8cc3b4e1eae062fd",
+    "helperBuildId": "d8e9350c36c154d435ead88b8c7445e045413563",
+    "helperBytes": 1350064,
+    "gateFileOffset": 1179648,
+    "gateVirtualAddress": 1196032,
+    "gateBytes": 331,
+    "sourceSha256": "77eee7011fc86e21aa07f245bb3f9252911f24dae02b62b559576d5cd3f1ad28",
+    "deviceVerification": false,
+    "semantics": "Atomic desired boot state; installed-helper gate verified; legacy ABI retained; immediate stop unsupported.",
+    "previousBootstrapIrSha256": "93d884d249ab06e80af1eea9f7f4732c676cc455b9246ecfc560b32fe64f134c",
+    "memberOrdinal": 255,
+    "memberName": "maplesu_module_control.o",
+    "memberSha256": "1796b736f9d4eecd3979274e861e971359cdf1f6f3151d77bd62ffd8f2e21dea"
+  },
+  "moduleControlWaitRepair": {
+    "passed": true,
+    "deviceExecuted": false,
+    "baselineArchiveSha256": "73dd1058c87af45be602a438c14b0f5005083c7e5c7bac4e6677d9caba66c063",
+    "archiveSha256": "e1c4265b8a84e6fb21f047a8b9199a8106a8cf50654df3d9d22af7ec98a576cf",
+    "baselineHelperSha256": "4ba5868f757ef7afa7697605378c9001f5faf51dd3f42db2a470aa92065d0520",
+    "helperSha256": "4ba5868f757ef7afa7697605378c9001f5faf51dd3f42db2a470aa92065d0520",
+    "helperUnchanged": true,
+    "baselineExactReproduction": true,
+    "baselineSourceSha256": "e827b1205df951a1d2157ee7491942f4adb344a087e281c4c44cf183e03677af",
+    "baselineMemberSha256": "766670ec397e0b9da18229598bc445654c9c433b4f8d5ea0f1583c4f4317b2dc",
+    "baselineModuleControl": {
+      "sdkVersion": "5.1.0",
+      "archiveSha256": "73dd1058c87af45be602a438c14b0f5005083c7e5c7bac4e6677d9caba66c063",
+      "baselineArchiveSha256": "3b8c478d978ae3780f73f177d0b784e909dd04184546c97b84fab9e46ff10f87",
+      "helperSha256": "4ba5868f757ef7afa7697605378c9001f5faf51dd3f42db2a470aa92065d0520",
+      "helperNormalizedSha256": "ec7f939e3448b746d34bab41febe96315d622c2e989296bea8fc3fe670cb4275",
+      "helperBuildId": "67685b7d75f97121e95c68e62ebf307814c577f0",
+      "helperBytes": 1348192,
+      "gateFileOffset": 1179648,
+      "gateVirtualAddress": 1196032,
+      "gateBytes": 331,
+      "sourceSha256": "e827b1205df951a1d2157ee7491942f4adb344a087e281c4c44cf183e03677af",
+      "deviceVerification": false,
+      "semantics": "Atomic desired boot state; installed-helper gate verified; legacy ABI retained; immediate stop unsupported.",
+      "previousBootstrapIrSha256": "93d884d249ab06e80af1eea9f7f4732c676cc455b9246ecfc560b32fe64f134c",
+      "memberOrdinal": 255,
+      "memberName": "maplesu_module_control.o",
+      "memberSha256": "766670ec397e0b9da18229598bc445654c9c433b4f8d5ea0f1583c4f4317b2dc"
+    },
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "766670ec397e0b9da18229598bc445654c9c433b4f8d5ea0f1583c4f4317b2dc",
+          "candidateSha256": "5058455888b37b30221026b57eae02fd9870ade9926544c466f3a030044d556c",
+          "baselineSize": 20552,
+          "candidateSize": 20560
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 257
+    },
+    "globalAbiPreserved": true,
+    "sources": {
+      "runtime/pro/modules/module_control.cpp": "b6d1c2244ceeebded2de1d919567584e877786487aff60fe0550a5b173fd3aba",
+      "runtime/tests/module_control_wait_test.cpp": "22c4cf0e4b22b4d3570b600044ecff3e7227248a53809afff449e45c42a661f4",
+      "scripts/tests/test-module-control-wait.py": "0c517071369ab42345a0d7ba84de0f3dbf216c966dc569271ebbea5c8a607e0b",
+      "scripts/tests/test-module-control-wait-delivery.py": "3f58c94db3775d848448b6ae73237185f3b5e2fd1998f05a847c6f8d46d93283",
+      "scripts/policy_backend_delivery.py": "95e1fedca97be5b1088c89b063ca1fe85cb9eee46882e199a8daf3c632cee834",
+      "work/panic-implementation-20261114/module-control-wait/build_candidate.py": "4a5e7696b8ea92f4f2d2d02367bf061b53f8b83a3e43ac9283e10c27576ca833"
+    },
+    "waitTimeoutMilliseconds": 10000,
+    "validationScope": [
+      "exact-baseline-reproduction",
+      "global-abi",
+      "m255-only-member-diff"
+    ],
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "schemaVersion": 1,
+    "backendRelinked": true,
+    "backendUnchanged": true,
+    "backendUsesM255": false,
+    "allHistoricalRepairsRetained": true,
+    "regression": {
+      "before": {
+        "path": "work/panic-implementation-20261114/module-control-wait/tests-before/verification.json",
+        "sha256": "9531d89668b7dba8ead1935df0f9e131cb11b59ce011112e61ae70690c3abf15"
+      },
+      "after": {
+        "path": "work/panic-implementation-20261114/module-control-wait/tests-after/verification.json",
+        "sha256": "cf1f25b71a5417b50f20dadddfd548c07242b4c7d21f2dbf3750c8c96af4b40a"
+      },
+      "deliveryContract": {
+        "path": "work/panic-implementation-20261114/module-control-wait/delivery-contract.json",
+        "sha256": "7a858a2dd509e87ca80a5e42899c5746028a87b12b3cc98f6469a5d5215f74f3"
+      }
+    }
+  },
+  "zeroModuleQuietRepair": {
+    "schemaVersion": 1,
+    "candidateOnly": false,
+    "complete": false,
+    "deviceAcceptance": false,
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "baselineHelperSha256": "4ba5868f757ef7afa7697605378c9001f5faf51dd3f42db2a470aa92065d0520",
+    "baselineArchiveSha256": "e1c4265b8a84e6fb21f047a8b9199a8106a8cf50654df3d9d22af7ec98a576cf",
+    "helperBuildId": "ea8af9a40bab3e14a3253aba004156ba113abd10",
+    "quietSlot": 1184396,
+    "patchSites": [
+      {
+        "address": 693952,
+        "offset": 693952,
+        "baselineHex": "3e0e0294",
+        "candidateHex": "ab8f0294"
+      },
+      {
+        "address": 1040468,
+        "offset": 1040468,
+        "baselineHex": "ff7f0da9",
+        "candidateHex": "613d0114"
+      },
+      {
+        "address": 1043232,
+        "offset": 1043232,
+        "baselineHex": "c6ffff97",
+        "candidateHex": "bd3a0194"
+      }
+    ],
+    "gateRebindReceipt": {
+      "path": "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/delivery/gate-rebind-receipt.json",
+      "sha256": "4a738e1d38faad3d8d0e430556bae4ac751f6546000b27ab7adaa25d8af987e7"
+    },
+    "finalMetadataValidation": true,
+    "baselineArchive": {
+      "path": "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/delivery/backup/runtime/upstream-pro/lib/arm64-v8a/libkernel_module_kit_static.a",
+      "sha256": "e1c4265b8a84e6fb21f047a8b9199a8106a8cf50654df3d9d22af7ec98a576cf"
+    },
+    "sources": {
+      "scripts/policy_backend_delivery.py": "cd7fd91e68df8b7593f6235daf47c096d324006a1fefc194c79efc6d2a1b2c09",
+      "scripts/zero_module_quiet_delivery.py": "7bc7334654d34f9e53b4b0b600fca1ca0047d173d71c1f09eb767a0739c66889",
+      "scripts/tests/test-zero-module-quiet-delivery.py": "3a6924b21d9259f15fbf1458e84fb908d3124ded24277e8e7c40718afc12c848",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/quiet_boot.c": "b1ff79897ee05cd4f029c7c15c43dea54b7b9cfc3ac7b0e2ab9a9144e8be7b27",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/quiet_boot.S": "cc2aa4f3f9e8525ba1da5f446977193fc74b5bc2d4b364ff4181c44715c682f1",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/build_quiet_candidate.py": "05d85dd864d3bc0e145dff14c7d7e898c785af95076a4fd2ad99397ec2b7d79c",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/verify_quiet_candidate.py": "10a1e77eebc425e1e36b9b32b8bf79aae5e649825bd7a5d0b1e0fcfcd9c0f1fe",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/prepare_delivery.py": "ef1d9fe984ce5d80fc50b7343fa4a17a7eb26cfa1b5d52686429315d5a41c1ec",
+      "work/panic-implementation-20261114/native-audit/zero-module-selinux-audit/adb-split-generation/import_delivery.py": "564fac1a9d73c5ffdfa3da9cf4dac5e2a66b730f48dc2ac8ba3178be5997715a"
+    }
+  },
+  "privateDacRepair": {
+    "schemaVersion": 1,
+    "deviceAcceptance": false,
+    "baselineArchiveSha256": "84d6b5a35bfdf822768d6005bae478982eabc84158f3a6f85728455657c48843",
+    "baselineHelperSha256": "a121b912bcc68efeafc3cba8c5077950f5768bef5e8dee2a22ada5e47ba9f7c0",
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "deliveredHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "policyBackendSha256": "740f53cf0cb00cfab9e0ced982b2a3aa8ba93ef1baf56e3dd165221444c91657",
+    "historicalFreeze": {
+      "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/baseline-root/freeze.json",
+      "sha256": "fedbf177c654d19b14a705efa2918b3c7213184b970cff5fe3f458432fb87714"
+    },
+    "batchArchive": {
+      "path": "work/panic-implementation-20261114/module-list-batch/aarch64-candidate/module-list-batch-sdk.a",
+      "sha256": "330399d3ae5cb4afb9cd694c85a8ce4067712d07f9025dfb0019da08d036fd5b"
+    },
+    "sources": {
+      "runtime/pro/identity/private_dac.c": "d7add16778d6cb4266b3c1d2ebe0c7d3529c02bac29ce033b2077749366fa643",
+      "runtime/pro/identity/private_dac.h": "5f9856fc8c846cf7f24aedc864f7f3c6ba7df834f9b075800c92287c3d45e304",
+      "runtime/pro/identity/private_dac.S": "1a0cfb4b9d7e77f7b55db0e9ab71fd5a886a5f1006c74433e40bf37ca411d878",
+      "runtime/pro/identity/private_allowlist.cpp": "3dfcfb0e3c0d5a1a786f0feabbeabf4d23879502eb8fb49333a9982b0c6a23e1",
+      "runtime/pro/authorization/su_exec_context.cpp": "a2c96c10f8e8739b6c01a814197954af086a2567697b57c73d47452c164037ea",
+      "work/panic-implementation-20261114/native-audit/private-dac/build_candidate.py": "b2aaa3a438e038e8d0d71c37236597a2119d73690a1087f7d3ab4809d4ae5c3a",
+      "runtime/pro/modules/module_control.cpp": "77eee7011fc86e21aa07f245bb3f9252911f24dae02b62b559576d5cd3f1ad28",
+      "runtime/upstream-pro/include/maplesu_module_control.h": "a6767cc874f953dfbecc6999526e4bc2bfb7ca42d6a677718856b9a0819df9fa",
+      "runtime/pro/bridge/native_lib_pro.cpp": "a77b373c31bd348b883e01019557dff7eaa86d5e502015507cfcce0d074a6005"
+    },
+    "sourceRebindings": [],
+    "dacContract": {
+      "ownerRoot": 457,
+      "initRoot": 448,
+      "privateChildren": 448,
+      "suExecContext": 457,
+      "allowlist": 384,
+      "authorizationRecord": 384
+    },
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 35,
+          "name": "module_base_disk_storage.o",
+          "baselineSha256": "26ec90de451316ddc852fb7b42019a2d4f4866cfe855f4581f426b42ccef449f",
+          "candidateSha256": "c6e19ab2e3208a75adbb0ecfb5e3d589a36526a120ceb3c52e89ca2d85e8bb35",
+          "baselineSize": 95716,
+          "candidateSize": 91128
+        },
+        {
+          "ord": 47,
+          "name": "skroot_unsafe_hide_dir.o",
+          "baselineSha256": "897bace0d3461cda3f699ae3748e8c9d152145dcc4e30b2b6c8b6c2d9c06f74e",
+          "candidateSha256": "12234afad83fb01144da171da95058a325daacaba998e6b499eb4659d076c050",
+          "baselineSize": 67540,
+          "candidateSize": 65892
+        },
+        {
+          "ord": 48,
+          "name": "skroot_unsafe_su_install.o",
+          "baselineSha256": "9b0e1cee67454f5dd2602fa42f0a406881295e2be375aa79c46282d357e7ffac",
+          "candidateSha256": "5ff401193406c9d5e02c65f9051ded2079fff6be0c9ddeb9eaca9e0547a22d8f",
+          "baselineSize": 812136,
+          "candidateSize": 812136
+        },
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "13759eb99c3b7a1cb14b552521e5b0cd7ec6015c3345f2c9f14ad2c6c1239284",
+          "candidateSha256": "57b8610a18f0464fcca0d394bd89115b05850da278f45eee4972542b90bcfac7",
+          "baselineSize": 1457264,
+          "candidateSize": 1457920
+        },
+        {
+          "ord": 81,
+          "name": "module_su_redirect.o",
+          "baselineSha256": "b8da16c8434ee90edd7b4e98f6c6a625c1deb15120e1aeb6fe068f3fb45263a4",
+          "candidateSha256": "0392cea9b9057d9ab4d18ea3979f25c559e9af48e472a07e472718100c0a16dd",
+          "baselineSize": 289816,
+          "candidateSize": 289816
+        },
+        {
+          "ord": 88,
+          "name": "su_allowlist.o",
+          "baselineSha256": "4e354a771388ccfdc3e4dbe41e53be3a85ad38d57eab1e0404bde20902bb21a5",
+          "candidateSha256": "b60f13b38f955d7cce171048f515031efc19cd76774548dd64ffa08556da30ee",
+          "baselineSize": 112592,
+          "candidateSize": 129076
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "8acc0a75e3d94b3e6b760f8de7fba94d3081d29718c76705be97adb7c4a17f87",
+          "candidateSha256": "1796b736f9d4eecd3979274e861e971359cdf1f6f3151d77bd62ffd8f2e21dea",
+          "baselineSize": 20560,
+          "candidateSize": 37248
+        }
+      ],
+      "added": [
+        {
+          "ord": 258,
+          "name": "maplesu_private_dac.o",
+          "candidateSha256": "5f84eec692e18a078b4ceb25b1e3354aa224d37f9892be41f53d9a2f47857b8f",
+          "candidateSize": 2400
+        },
+        {
+          "ord": 259,
+          "name": "maplesu_private_allowlist.o",
+          "candidateSha256": "e2f65eb8a75c474c9439a411671646124343c20d220b7a54d07fb67bd6726d24",
+          "candidateSize": 7240
+        }
+      ],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 251
+    },
+    "helperDelta": {
+      "baselineSha256": "a121b912bcc68efeafc3cba8c5077950f5768bef5e8dee2a22ada5e47ba9f7c0",
+      "candidateSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+      "patches": [
+        {
+          "address": 739264,
+          "offset": 739264,
+          "baselineHex": "e13f8052",
+          "candidateHex": "68640214"
+        },
+        {
+          "address": 739288,
+          "offset": 739288,
+          "baselineHex": "0e7a0194",
+          "candidateHex": "d2630294"
+        },
+        {
+          "address": 1038352,
+          "offset": 1038352,
+          "baselineHex": "e13f8052",
+          "candidateHex": "01308052"
+        },
+        {
+          "address": 1038356,
+          "offset": 1038356,
+          "baselineHex": "ff550094",
+          "candidateHex": "c33f0194"
+        },
+        {
+          "address": 1038372,
+          "offset": 1038372,
+          "baselineHex": "e0830091",
+          "candidateHex": "54400114"
+        },
+        {
+          "address": 1014672,
+          "offset": 1014672,
+          "baselineHex": "e13f8052",
+          "candidateHex": "e1031f2a"
+        },
+        {
+          "address": 1014680,
+          "offset": 1014680,
+          "baselineHex": "1e6d0094",
+          "candidateHex": "e2560194"
+        },
+        {
+          "address": 1012752,
+          "offset": 1012752,
+          "baselineHex": "06000014",
+          "candidateHex": "03000014"
+        },
+        {
+          "offset": 600,
+          "baselineHex": "20970200000000002097020000000000",
+          "candidateHex": "b099020000000000b099020000000000"
+        },
+        {
+          "offset": 816,
+          "baselineHex": "ea8af9a40bab3e14a3253aba004156ba113abd10",
+          "candidateHex": "d8e9350c36c154d435ead88b8c7445e045413563"
+        }
+      ],
+      "append": {
+        "offset": 1349408,
+        "bytes": 656,
+        "sha256": "67fcfcd90649ba70572acb4925feafe021252adf6e7be604e9d5cd257c200c75"
+      }
+    },
+    "evidence": {
+      "m255IdentityRebind": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/candidate-reports/m255IdentityRebind.json",
+        "sha256": "3679a4be37f6e28a8829f2b1393836eebf56bd981d093f8582c19c4b1da87e97"
+      },
+      "writerReplay": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/candidate-reports/writerReplay.json",
+        "sha256": "922cb0ef714dca8d1882c3dc3d4639a74342b6b50f851068876d95ca1b023f8b"
+      },
+      "archiveBuild": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/candidate-reports/archiveBuild.json",
+        "sha256": "1dc8199f0903b13e12f39a57e3774819474b121c2f3b37ba6340153d79511ad9"
+      },
+      "oldHelperRepairs": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/candidate-reports/oldHelperRepairs.json",
+        "sha256": "f0d4f2e1e0366eb148656d20560328d2489cb90c5ff8e2b3a0d3d35a81a8b2fd"
+      }
+    }
+  },
+  "suRetentionPersistenceRepair": {
+    "schemaVersion": 1,
+    "deviceAcceptance": false,
+    "baselineManifest": {
+      "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/retention-baseline/manifest.json",
+      "sha256": "d5b4d0fa11bc50096b2846a255ba63eb888916062d0e48f6a1aee60d192f0275"
+    },
+    "baselineArchive": {
+      "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/retention-baseline/libkernel_module_kit_static.a",
+      "sha256": "2c6bc470af5ac72054b9e1f0ea239ff84908619d8e2347e09104a9a243ac8489"
+    },
+    "baselineArchiveSha256": "2c6bc470af5ac72054b9e1f0ea239ff84908619d8e2347e09104a9a243ac8489",
+    "deliveredArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "helperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "baselineMemberSha256": "0392cea9b9057d9ab4d18ea3979f25c559e9af48e472a07e472718100c0a16dd",
+    "candidateMemberSha256": "a607e83942a4f577037eb0f6e5089b9c2e047696bfde00ede4202c872fdb642e",
+    "sources": {
+      "runtime/pro/authorization/su_allowlist_writer.cpp": "1596ac994912744c3d3e985567ce52f8becbee4d9242bbd5a5d4929370c7fed2",
+      "runtime/pro/authorization/su_retention_store.cpp": "f1b4f13cd8d487b4f6ba9526343204733a2a619629c948c4b13c5f378d664742",
+      "runtime/pro/authorization/su_retention_store.h": "bf17e1022ab10e9ba54a7f8c79f01b1cf74514a6df3f9e679effe061cd799e19",
+      "scripts/repair-pro-su-authorization.py": "63584941c8dad3b7f395bcb273cf477a8f128a805f592077f56b0444c47cf2a1"
+    },
+    "evidence": {
+      "archiveBuild": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/retention-reports/retention-build.json",
+        "sha256": "1993026c3dc44c1b7c0445b78da3c083c0f99bf8c449c06ef3da5948eda6cbc1"
+      },
+      "durability": {
+        "path": "work/panic-implementation-20261114/module-list-batch/private-dac-validator/retention-reports/retention-durability.json",
+        "sha256": "bca5457200b23b474f3212fdfd6251ac42012c3c71bb0ca037993e02bfaa147c"
+      }
+    }
+  },
+  "suUidIsolationRepair": {
+    "schemaVersion": 1,
+    "deviceAcceptance": false,
+    "baselineArchiveSha256": "f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5",
+    "baselineHelperSha256": "02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778",
+    "deliveredArchiveSha256": "49df399288a2fc08d38c7c20e0632fbb21525fb05723a3443cb14fabd350b1e9",
+    "deliveredHelperSha256": "6d270d39bc65165c2dec54e8f6923b2a405325c5ffe63c958ce35e138bff7c31",
+    "policyBackendSha256": "004aaa7b7d71dd49785cbd7061d113077a8fd87c23dc41ea7423a55335521333",
+    "sources": {
+      "runtime/pro/authorization/su-isolation/build_candidate.py": "cf56cb11980157b8da0599febbfb03f60bb10da1cf5e3a4a8be38919295eac68",
+      "runtime/upstream-pro/sdk/src/patch/patch_do_execve.cpp": "6cad27a7568e29576da16e76d0f16a27727f98b270a1e85eaf6c7a5f80306e3c",
+      "runtime/pro/authorization/su_allowlist_writer.cpp": "7b39f5d16f4fd06f5c8f0468a73351c007b54612880ee3149a834413bc2af409",
+      "runtime/upstream-pro/sdk/src/module/su_redirect_tu/su_allowlist_writer.cpp": "7b39f5d16f4fd06f5c8f0468a73351c007b54612880ee3149a834413bc2af409",
+      "runtime/pro/authorization/su_auth_transaction.cpp": "b44a784c2998c3fc264a46439d12bfe9220b3930c3f96a0c64139e7ff974272a",
+      "runtime/upstream-pro/sdk/src/module/su_redirect_tu/su_auth_transaction.cpp": "b44a784c2998c3fc264a46439d12bfe9220b3930c3f96a0c64139e7ff974272a",
+      "runtime/pro/authorization/su_exec_context.cpp": "a3b3a9a68a5198f4552031db07a675eb57f0e8d0d63c225b279936f877c60b4d",
+      "runtime/upstream-pro/sdk/src/module/su_redirect_tu/su_exec_context.cpp": "a3b3a9a68a5198f4552031db07a675eb57f0e8d0d63c225b279936f877c60b4d",
+      "runtime/pro/authorization/su_retention_store.cpp": "f1b4f13cd8d487b4f6ba9526343204733a2a619629c948c4b13c5f378d664742",
+      "runtime/upstream-pro/sdk/src/module/su_redirect_tu/su_retention_store.cpp": "f1b4f13cd8d487b4f6ba9526343204733a2a619629c948c4b13c5f378d664742",
+      "runtime/pro/authorization/su_retention_store.h": "bf17e1022ab10e9ba54a7f8c79f01b1cf74514a6df3f9e679effe061cd799e19",
+      "runtime/upstream-pro/sdk/src/module/su_redirect_tu/su_retention_store.h": "bf17e1022ab10e9ba54a7f8c79f01b1cf74514a6df3f9e679effe061cd799e19",
+      "runtime/pro/authorization/su_uid_copies.cpp": "42332f72116509bd4637206594b873b526d66f17b0a2e88c5b614d0e0b5abf47",
+      "runtime/upstream-pro/sdk/src/module/su_redirect_tu/su_uid_copies.cpp": "42332f72116509bd4637206594b873b526d66f17b0a2e88c5b614d0e0b5abf47",
+      "runtime/pro/authorization/su_uid_copies.h": "255926d9d94aab3fd7e0f1f6ca2a6f8c82c2a795792ba01e114bb3231952093e",
+      "runtime/upstream-pro/sdk/src/module/su_redirect_tu/su_uid_copies.h": "255926d9d94aab3fd7e0f1f6ca2a6f8c82c2a795792ba01e114bb3231952093e",
+      "runtime/pro/boot/su-isolation/helper_su_backend.cpp": "8e5f712f10d657bccd30efc508e45c1087754053c3e2df09cc96a9db068decc7",
+      "runtime/pro/boot/su-isolation/helper_su_loader.c": "7a192135353c17b3974b766157a78e79b64c3ce6e34f74bef090e7a7fd85474c",
+      "runtime/pro/boot/su-isolation/helper_su_entry.S": "3188e90926121c882ba6358be48a841a06bdf7153375b131ad501dc68a373731",
+      "runtime/pro/boot/su-isolation/build_helper.py": "5230c6572839ec409e971c3e4ac2d2ab9b0916924e7acfc3f8f9a6fe3b52cf85",
+      "runtime/pro/boot/su-isolation/CMakeLists.txt": "cf9d755f019064ffda47350d724afbdfba5ba2955ee29394f8aec09c39219c94",
+      "runtime/pro/authorization/su-isolation/host-test/test.cpp": "6c3c4ab5f0cc229a5bb8e38a32dea5b14cd414531396c15ebbae91717abca1e3",
+      "runtime/pro/authorization/su-isolation/host-test/run.py": "91b692db5f2dac174fef804f063e3eaa72bd9dc371d158b113ad9f7b97e45639",
+      "runtime/pro/boot/bootstrap-readiness/build_v2.py": "4016cbb6f4909c5796f7c6ec42b7d69769f7bab09aa627520f5339a586e92465",
+      "runtime/pro/boot/bootstrap-readiness/result_channel.c": "3faf137791906ec6453ab4b0970dfddfd972f91868092c3f81d16915c07f18a3",
+      "runtime/pro/boot/bootstrap-readiness/skroot_installer.candidate.cpp": "8e11010846536203fe203685dc573d5f3233c7282ff06d2b2600219be49e64d0",
+      "runtime/pro/boot/bootstrap-readiness/skroot_installer.source.diff": "6e34ce1f6a93a35ca2698122e7d3f597a862cd3a2e3c4f633e0881c32a12b9d1",
+      "runtime/pro/boot/bootstrap-readiness/m053.patched.ll": "7876faab55a70ecbb247e5d05b4188bd536dc2aed0d520f30069a6b5247638ed",
+      "runtime/pro/boot/bootstrap-readiness/REVIEW.md": "8c1bf3c459efa3756e39b70d47afda86cb203598ecef0dea79c3a3a988c120cf",
+      "runtime/pro/boot/bootstrap-readiness/test_v2.py": "b98ea0f3d678ce4668f5c487551a12e2f504855e7e8d596054108a5e6565ad72",
+      "runtime/pro/boot/bootstrap-readiness/result_test.c": "a2d03ffc1a75e77c85ee288dbb8981d38c1d75dd6778333a83eebb78baacb63a",
+      "runtime/pro/authorization/su-isolation/stat-access/stat_uid_path.cpp": "996774a4108b2dd5967a35622cf9b90171cd449e5a14b0a3fb8953397294f6c0",
+      "runtime/pro/authorization/su-isolation/stat-access/build_stat.py": "0623c8d44ff7726397ccf48f050167c61a8d9070ab6c42c1747ac340e7485c15",
+      "runtime/pro/authorization/su-isolation/stat-access/m084.patched.ll": "6d5dfab0be8dfbfa0306124a36e7fa4ae077771bbf3785beac7a66eb07cb8ae1",
+      "runtime/pro/authorization/su-isolation/stat-access/m085.patched.ll": "ef195a242a8f76d95d7b1c52edcd42db26ee6af789812b37c4f51581889aeea3",
+      "runtime/pro/authorization/su-isolation/stat-access/replay_codegen.py": "fea8e52d239ec3284bfecdd7f2baccc7935ec4d887c87c52caf4fe0d7e45431a",
+      "runtime/pro/authorization/su-isolation/stat-access/test_codegen.cpp": "b9501c24d3d303da0275ab0d3f357d981f0d7acf9be3cb53d21d3a3bd94d7d50",
+      "runtime/pro/modules/module_control.cpp": "77eee7011fc86e21aa07f245bb3f9252911f24dae02b62b559576d5cd3f1ad28",
+      "runtime/pro/upgrade/sdk-m052.bc": "342b920914ad62f700398482f8bfd403344e54cf36f032a77c51d0c1e306d3c2",
+      "scripts/repair-pro-environment-upgrade.py": "b7e73a4a2191ff4341915d9249d5d6caa89009f6b75f755b840c1dd4873421e9",
+      "scripts/sync-pro-sdk-identity.py": "047125b957b0b3b9b65c85ca14b74edc9e53c3d383c38fd3316bceb8309cbc09",
+      "runtime/pro/modules/module_gate_identity.h": "241781d43f02153708a1c653bdff93e3e7f4a7afcc6bb447b8c5ce243117e1a6",
+      "runtime/upstream-pro/include/module_err_def.h": "c3f4a61fc9a80de7e85b4a46764d348ce953dd326e2b48266ec2c35ca6bf6de9",
+      "runtime/pro/authorization/su-isolation/integrate_sdk.py": "2e9db29f079587743eac66445d13e5cf48e7f63ffe6477460178b4c9e4f21d55",
+      "runtime/pro/authorization/su-isolation/integration-inputs.json": "6154f16a016f4d50483840d938e4d0f49d83b08cc9799d2ff7e7f2714fa83d72"
+    },
+    "memberDiff": {
+      "changed": [
+        {
+          "ord": 48,
+          "name": "skroot_unsafe_su_install.o",
+          "baselineSha256": "5ff401193406c9d5e02c65f9051ded2079fff6be0c9ddeb9eaca9e0547a22d8f",
+          "candidateSha256": "857cf5f236d96663c4f805560d3e693a3dbf9a2b2c10ba65b6941aefc001ce06",
+          "baselineSize": 812136,
+          "candidateSize": 812136
+        },
+        {
+          "ord": 52,
+          "name": "skroot_autorun_bootstrap_install.o",
+          "baselineSha256": "57b8610a18f0464fcca0d394bd89115b05850da278f45eee4972542b90bcfac7",
+          "candidateSha256": "0c886040e4acd37e2c96bb4ecba842e92cd2db9bb00f9e57645c03b6abb72fca",
+          "baselineSize": 1457920,
+          "candidateSize": 1458976
+        },
+        {
+          "ord": 53,
+          "name": "skroot_installer.o",
+          "baselineSha256": "4d40df9536c7cfc14c94c806df79cdf200c9e4a65a50e4929383870557b83edd",
+          "candidateSha256": "1521791a303d618ff9d6fc62fd85e44b55e87588a8d2c990b7fc95c1e73ce211",
+          "baselineSize": 121200,
+          "candidateSize": 158192
+        },
+        {
+          "ord": 81,
+          "name": "module_su_redirect.o",
+          "baselineSha256": "a607e83942a4f577037eb0f6e5089b9c2e047696bfde00ede4202c872fdb642e",
+          "candidateSha256": "79b2858fe36830d59017303194f01b3b9288a0d2287a62bc6a97de2c15dd04ea",
+          "baselineSize": 294000,
+          "candidateSize": 316184
+        },
+        {
+          "ord": 83,
+          "name": "patch_do_execve.o",
+          "baselineSha256": "ba82b0078739f47b321d15166eea14456e97ce87312c8942644f9b13372cd44e",
+          "candidateSha256": "1bada604b50ef69ca5c5e7eacf83a1afccb5c555f090ef9d7772f8516db95401",
+          "baselineSize": 68252,
+          "candidateSize": 81472
+        },
+        {
+          "ord": 84,
+          "name": "patch_sys_newfstatat.o",
+          "baselineSha256": "cd7c68f8648da9371c3919954bd310908555937ee1c4ba8a50548969fb93084e",
+          "candidateSha256": "a5cd6e72416fcff6e6a59cc7045e4b2430669324884e8d3a4e5d2806d66015f0",
+          "baselineSize": 145804,
+          "candidateSize": 248824
+        },
+        {
+          "ord": 85,
+          "name": "patch_sys_statx.o",
+          "baselineSha256": "818ea15015d853db62683b424f4a72d6f8e858994b4d17b6ac1e6061a083e7c9",
+          "candidateSha256": "fd0053413fa6631f01c708a5bb3e4162c5767d822bbf5cec71241ab4c88b33cd",
+          "baselineSize": 145748,
+          "candidateSize": 248784
+        },
+        {
+          "ord": 255,
+          "name": "maplesu_module_control.o",
+          "baselineSha256": "1796b736f9d4eecd3979274e861e971359cdf1f6f3151d77bd62ffd8f2e21dea",
+          "candidateSha256": "114d66a9cd4e0a3e03d44d743342c90bc21f475ce47491e0c430a5b43794b96f",
+          "baselineSize": 37248,
+          "candidateSize": 37248
+        }
+      ],
+      "added": [],
+      "removed": [],
+      "orderErrors": [],
+      "unchanged": 252
+    },
+    "m52EmbeddedHelperSha256": "6d270d39bc65165c2dec54e8f6923b2a405325c5ffe63c958ce35e138bff7c31",
+    "baselinePhysicalReceipt": {
+      "path": "work/panic-implementation-20261114/final-build/retention-physical-baseline-r25.json",
+      "sha256": "1e3c88a193ded58bbdc617fa4ee9ce011aa703d84e46d3ad0472c6ca4b2c6753"
+    },
+    "dacContract": {
+      "canonicalSu": "u-00000000/su root:root 0700",
+      "canonicalDirectory": "root:root 0700",
+      "ownerRoot": "root:root 0711",
+      "uidDirectory": "root:uid 0710",
+      "uidSu": "uid:uid 0700",
+      "duringGrantMutation": "root:uid 0700",
+      "newCredentialHooks": false
+    },
+    "hostExecution": {
+      "path": "work/panic-implementation-20261114/final-build/su-isolation-host-r25.json",
+      "sha256": "775383384d404c06cc9b800dbc6c6b0d557fc22d734433241ac4103a3772583f"
+    }
+  },
+  "bootstrapReadinessRepair": {
+    "schemaVersion": 1,
+    "deviceAcceptance": false,
+    "memberOrdinal": 53,
+    "candidateSha256": "1521791a303d618ff9d6fc62fd85e44b55e87588a8d2c990b7fc95c1e73ce211",
+    "actualHostCases": 23,
+    "hostResultPath": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\result-test.json",
+    "hostResultSha256": "1bcffb9c63e041bb652d6623e5e5c90d7791130cbc47aa8f1ab4b99d8bf2ad2d",
+    "beforeRestartResultRequired": true,
+    "completedAndSafeReceiptRequired": true,
+    "memberSha256": "1521791a303d618ff9d6fc62fd85e44b55e87588a8d2c990b7fc95c1e73ce211",
+    "errorName": "ERR_BOOTSTRAP_NOT_READY",
+    "errorCode": -21002
+  }
+}

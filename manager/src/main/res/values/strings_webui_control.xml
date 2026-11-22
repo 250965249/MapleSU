@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="webui_control_title">Web manager</string>
+    <string name="webui_control_checking">Checking service…</string>
+    <string name="webui_control_running">WebUI is running</string>
+    <string name="webui_control_stopped">WebUI is stopped</string>
+    <string name="webui_control_unknown">WebUI status is not available yet</string>
+    <string name="webui_control_stop">Stop WebUI</string>
+    <string name="webui_control_stopping">Stopping…</string>
+    <string name="webui_control_retry">Check again</string>
+    <string name="webui_control_restart_hint">To use WebUI again, tap Prepare recovery link above.</string>
+    <string name="webui_control_confirm_title">Stop the web manager?</string>
+    <string name="webui_control_confirm_body">Current web connections will close and saved links will be temporarily offline. Hidden mode, host integration, modules and grants are kept. Prepare the recovery link again to restart WebUI.</string>
+    <string name="webui_control_stop_failed">The service has not been confirmed stopped. Check again and retry.</string>
+</resources>

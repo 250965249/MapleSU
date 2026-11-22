@@ -1,0 +1,33 @@
+{
+  "idx": 138,
+  "name": "a64instapi.o",
+  "group": "asmjit",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "third_party/asmjit/1.16.0/src/asmjit/arm/a64instapi.cpp"
+  ],
+  "flagsProfile": "vendor-cxx-bitcode",
+  "status": "complete",
+  "recovery": {
+    "functions": 1,
+    "recovered": 1,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "1e63a05d1a5c6d096dca629e05b3c1073c8bbcbc17925f548cd4be16f4e7c0fa",
+    "bytes": 9692
+  },
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [
+      "-_ZSt9terminatev",
+      "-__cxa_begin_catch",
+      "-__strlen_chk",
+      "+strlen"
+    ],
+    "note": "import-set residual _ZSt9terminatev, __cxa_begin_catch, __strlen_chk, strlen [cxxabi-runtime+libc-fortify-wrapper+libcxx-template]; sysroot/toolchain artifact, not a library symbol"
+  },
+  "notes": "source=vendored; version=1.16.0; equivalence=symbol-set (export T exact: True)\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (3 missing / 1 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.\n\nGate: exported symbol set is exactly equal; the remaining undefined-symbol delta (0 missing / 1 extra) contains no kit API symbol and is attributed to the pinned toolchain / bionic sysroot difference, listed in gate.residual_symbols.",
+  "evidence": []
+}

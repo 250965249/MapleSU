@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_install_pending_title">Installation pending confirmation</string>
+    <string name="module_install_pending_message">The installation result is not yet known. Its status remains pending.</string>
+</resources>

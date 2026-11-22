@@ -1,0 +1,472 @@
+{
+  "idx": 81,
+  "name": "module_su_redirect.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "COMPOSED",
+  "sources": [
+    "src/module/su_redirect_tu/module_su_redirect_part1.cpp",
+    "src/module/su_redirect_tu/su_allowlist_writer.cpp",
+    "src/module/su_redirect_tu/su_auth_transaction.cpp",
+    "src/module/su_redirect_tu/su_exec_context.cpp",
+    "src/module/su_redirect_tu/su_retention_store.cpp",
+    "src/module/su_redirect_tu/su_uid_copies.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "status": "partial",
+  "recovery": {
+    "functions": 300,
+    "recovered": 298,
+    "unrecovered": [
+      "_ZN15default_modules18module_su_redirectL15write_allowlistERKNSt6__ndk16vectorINS1_12basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEENS6_IS8_EEEE",
+      "_GLOBAL__sub_I_module_su_redirect.cpp"
+    ]
+  },
+  "original": {
+    "sha256": "79b2858fe36830d59017303194f01b3b9288a0d2287a62bc6a97de2c15dd04ea",
+    "bytes": 316184
+  },
+  "evidence": [
+    "notes/work/AGENT116/STATUS.md",
+    "notes/work/AGENT116/final-EQUIVALENCE.md",
+    "notes/work/AGENT116/proof/081/equiv.json",
+    "notes/work/M081/STATUS.md",
+    "notes/work/PKG-C/STATUS.md"
+  ],
+  "compose": [
+    {
+      "step": "compile-tu1",
+      "tool": "clang++",
+      "cwd": "<repo root>",
+      "input": "src/module/su_redirect_tu/module_su_redirect_part1.cpp",
+      "output": "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu1.o",
+      "argv": [
+        "--target=aarch64-linux-android21",
+        "-std=c++20",
+        "-Oz",
+        "-fPIC",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-fno-rtti",
+        "-fvisibility=hidden",
+        "-fexceptions",
+        "-DNDEBUG",
+        "-D_FORTIFY_SOURCE=2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "runtime/maplesu-sdk/include",
+        "-c",
+        "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/module_su_redirect_part1.cpp",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu1.o"
+      ]
+    },
+    {
+      "step": "compile-tu2",
+      "tool": "clang++",
+      "cwd": "<repo root>",
+      "input": "src/module/su_redirect_tu/su_allowlist_writer.cpp",
+      "output": "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu2.o",
+      "argv": [
+        "--target=aarch64-linux-android21",
+        "-std=c++17",
+        "-Oz",
+        "-fPIC",
+        "-fno-rtti",
+        "-fvisibility=hidden",
+        "-fexceptions",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "runtime/maplesu-sdk/include",
+        "-c",
+        "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_allowlist_writer.cpp",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu2.o"
+      ]
+    },
+    {
+      "step": "compile-tu3",
+      "tool": "clang++",
+      "cwd": "<repo root>",
+      "input": "src/module/su_redirect_tu/su_auth_transaction.cpp",
+      "output": "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu3.o",
+      "argv": [
+        "--target=aarch64-linux-android21",
+        "-std=c++17",
+        "-Oz",
+        "-fPIC",
+        "-fno-rtti",
+        "-fvisibility=hidden",
+        "-fexceptions",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "runtime/maplesu-sdk/include",
+        "-c",
+        "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_auth_transaction.cpp",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu3.o"
+      ]
+    },
+    {
+      "step": "compile-tu4",
+      "tool": "clang++",
+      "cwd": "<repo root>",
+      "input": "src/module/su_redirect_tu/su_exec_context.cpp",
+      "output": "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu4.o",
+      "argv": [
+        "--target=aarch64-linux-android21",
+        "-std=c++17",
+        "-Oz",
+        "-fPIC",
+        "-fno-rtti",
+        "-fvisibility=hidden",
+        "-fexceptions",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "runtime/maplesu-sdk/include",
+        "-c",
+        "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_exec_context.cpp",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu4.o"
+      ]
+    },
+    {
+      "step": "compile-tu5",
+      "tool": "clang++",
+      "cwd": "<repo root>",
+      "input": "src/module/su_redirect_tu/su_retention_store.cpp",
+      "output": "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu5.o",
+      "argv": [
+        "--target=aarch64-linux-android21",
+        "-std=c++17",
+        "-Oz",
+        "-fPIC",
+        "-fno-rtti",
+        "-fvisibility=hidden",
+        "-fexceptions",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "runtime/maplesu-sdk/include",
+        "-c",
+        "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_retention_store.cpp",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu5.o"
+      ]
+    },
+    {
+      "step": "compile-tu6",
+      "tool": "clang++",
+      "cwd": "<repo root>",
+      "input": "src/module/su_redirect_tu/su_uid_copies.cpp",
+      "output": "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu6.o",
+      "argv": [
+        "--target=aarch64-linux-android21",
+        "-std=c++17",
+        "-Oz",
+        "-fPIC",
+        "-fno-rtti",
+        "-fvisibility=hidden",
+        "-fexceptions",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "runtime/maplesu-sdk/include",
+        "-c",
+        "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_uid_copies.cpp",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu6.o"
+      ]
+    },
+    {
+      "step": "partial-link",
+      "tool": "ld.lld",
+      "cwd": "<repo root>",
+      "argv": [
+        "-r",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu1.o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu2.o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu3.o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu4.o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu5.o",
+        "runtime/maplesu-sdk/sdk/build/obj/compose-m081/tu6.o",
+        "-o",
+        "runtime/maplesu-sdk/sdk/build/obj/m0081/module_su_redirect.o"
+      ],
+      "output": "runtime/maplesu-sdk/sdk/build/obj/m0081/module_su_redirect.o"
+    }
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "note": "MEASURED on the official archive produced by build.py --all: functions 298/300 (missing 2, extra 2); call-target sets equal 290/298; bag_min 0.0, bag_mean 0.9637, seq_mean 0.9666. NOT AT BAR: function inventory 298/300; call-target sets 290/298; bag_min 0.0 < 0.95. Archive: build/ag116b/out/libkernel_module_kit_static.a sha256=8f6a6361ef69d50d09fde21258315fcf5ec39f91fe9696649746d1f9de667f40.",
+    "adjustedDiff": [],
+    "baselineConsumed": 0,
+    "equivalence": {
+      "functions": "298/300",
+      "missing": [
+        "_ZN15default_modules18module_su_redirectL15write_allowlistERKNSt6__ndk16vectorINS1_12basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEENS6_IS8_EEEE",
+        "_GLOBAL__sub_I_module_su_redirect.cpp"
+      ],
+      "extra": [
+        "_ZZN15default_modules18module_su_redirect4initEPKcbENK3$_0clE7KModErr",
+        "_GLOBAL__sub_I_module_su_redirect_part1.cpp"
+      ],
+      "call_target_match": "290/298",
+      "bag_min": 0.0,
+      "bag_mean": 0.9637,
+      "seq_mean": 0.9666
+    }
+  },
+  "notes": "COMPOSED：6 个 TU。tu1 = module_su_redirect_part1.cpp（init / 模块名 / 四个 SDK allowlist 入口 / 包名解析 / SuAllowList 表体与 g_suAllowList，第一方 C++）；tu2 = 表写入器；tu3 = 授权事务；tu4 = su 执行上下文；tu5 = 保留额度账本写入器；tu6 = su 副本目录维护（freeze/thaw/sync/open）。tu2-tu6 统一用 -std=c++17 配方（与冻结成员一致），tu1 用 -std=c++20 + fortify 配方以复现其导出/导入集合。",
+  "blockedBy": [],
+  "maplesuRefactor": {
+    "batch": "TRUST-02-AUTH-RESULT-SOURCE-CLOSURE-20261117",
+    "status": "implemented-source-only-validation-pending",
+    "previousBatch": "TRUST-02-SU-FREEZE-RECOVERY-R32",
+    "latestSourceChange": {
+      "source": "src/module/su_redirect_tu/su_auth_transaction.cpp",
+      "sourceSha256": "5bc2067fba9151fbf77325333aed67da092a6ee3e6dce9f3d1439bb33615db46",
+      "purpose": "Record the initial freeze failure, skip its action, and reuse the existing control observation/copy recovery tail; successful transaction order and typed result ABI stay unchanged.",
+      "testsRun": false,
+      "compilerExecuted": false,
+      "formalArtifactPending": true,
+      "deviceAcceptance": false,
+      "plan": "D:\\Maple_Workflow\\MapleSU\\docs\\dual-mode\\impl\\_work\\2026-11-15-p5-p7\\trust02-mainline-20261116\\authorization-runtime-r32\\PLAN.md",
+      "dateUtc": "2026-11-17"
+    },
+    "resultVersion": 1,
+    "bodyBytes": 176,
+    "existingTransferPrefixBytes": 8,
+    "recoveryCapacity": 6,
+    "sharedConsumerPending": true,
+    "formalArtifactPending": true,
+    "deviceAcceptance": false,
+    "detailsHeader": "src/module/su_redirect_tu/su_auth_result_private.h",
+    "fixedReaderHeader": "src/skroot_core/fixed_transfer_io.h",
+    "evidence": [
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/PRECHECK.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/NDK-COMPILE.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/MEMBER-COMPILE.json",
+      "docs/dual-mode/impl/_work/2026-11-15-p5-p7/p7/remaining/r7-e2/DELIVERY.json"
+    ],
+    "currentSourceIntegration": {
+      "sourceManifestSha256": "523c504b3040656d584f829b1d16cf413aa83fc79fbc7ed70346a500a082ceee",
+      "scope": "typed same-operation authorization result; existing policy and legacy ABI retained",
+      "part1Selection": "authorization result hunks only; current init/hooks/layout/parser retained",
+      "sourceFiles": [
+        {
+          "path": "src/skroot_core/skroot_su_auth.cpp",
+          "bytes": 8745,
+          "sha256": "8ccf465f2e1dcfd6eeb234800146417083f4a20031b99f104a909fbdc99da131"
+        },
+        {
+          "path": "src/module/su_redirect_tu/module_su_redirect_part1.cpp",
+          "bytes": 13310,
+          "sha256": "00d824b900da9a10ef41d4fdba88beff9afe4df94251c059b3bd186c2b9b7c5a"
+        },
+        {
+          "path": "src/module/su_redirect_tu/module_su_redirect_private.h",
+          "bytes": 8982,
+          "sha256": "90be99d3a602e99c265c7ae13c422170040ad0d40b75c0e2f8920ecd817fa509"
+        },
+        {
+          "path": "src/module/su_redirect_tu/su_allowlist_writer.cpp",
+          "bytes": 11768,
+          "sha256": "cb4fb99fe3a3b91cf4eed191ea700e338f73fdf950f6cf8dafb8dba3b610d0fd"
+        },
+        {
+          "path": "src/module/su_redirect_tu/su_auth_result_private.h",
+          "bytes": 10031,
+          "sha256": "b2f4d2d487e2a81cf351815f990cad388e586695a44513e6e0ded811cb40eef9"
+        },
+        {
+          "path": "src/module/su_redirect_tu/su_auth_transaction.cpp",
+          "bytes": 8695,
+          "sha256": "5bc2067fba9151fbf77325333aed67da092a6ee3e6dce9f3d1439bb33615db46"
+        }
+      ],
+      "proAndSdkCopiesSynchronized": true,
+      "testsRun": false,
+      "compilerExecuted": false,
+      "formalArtifactPending": true,
+      "deviceAcceptance": false
+    }
+  },
+  "suRegistryCloseout20261118": {
+    "status": "implemented-source-only-real-providers-missing",
+    "selectedAndroidSourcesUnchanged": true,
+    "legacyControlAbiUnchanged": true,
+    "ownerLegacyPublicationRejected": true,
+    "sdkChangedSources": [
+      "src/module/su_redirect_tu/module_su_redirect_part1.cpp",
+      "src/module/su_redirect_tu/su_allowlist_writer.cpp",
+      "src/module/su_redirect_tu/su_auth_transaction.cpp"
+    ],
+    "nativeSource": "src/module/su_redirect_tu/kernel/su_install_registry.c",
+    "nativeSourceDomain": "P2 resident kernel only; not an Android m081 TU",
+    "readerAbi": "src/module/su_redirect_tu/su_native_reader_abi.h",
+    "nativeSelectedByBuilder": false,
+    "factoryBindingSourcePresent": false,
+    "synchronousPmsProviderPresent": false,
+    "durableVerifiedGrantProviderPresent": false,
+    "fullProfileApplyPresent": false,
+    "credentialConsumer": "msu_su_apply_current -> existing msu_credential_replace_current; explicit supported subset only",
+    "validation": "tests/su_registry_closeout/run.py",
+    "formalArtifactPromoted": false,
+    "deviceAcceptance": false
+  },
+  "typedSuRuntimeConsumer20261119": {
+    "source": "src/module/su_redirect_tu/module_su_redirect_part1.cpp",
+    "sourceBytes": 22222,
+    "sourceSha256": "c1d5b8f547b46094de5cb58efdb23e0516c608b84c271df38e58803f5cfe9d86",
+    "coreApi": "kernel_module::maplesu_request_owner_su_runtime(RequestSuRuntimeStatus&)",
+    "coreHeaderSha256": "4025fa4f3bda491061a243efa94f572d39089bcf7b99d8ff917d6bcc86fd525a",
+    "behavior": "Owner/helper init consumes one typed runtime status and same-operation RequestOwnerBinding; original transport error/errno and receipt pass through, invalid binding/status/target qualification fail closed. This is factory-state observation, not per-app authorization or device SU proof.",
+    "productionSourceMatchesCandidate": true,
+    "productionManifestMember": true,
+    "hostProviderConsumer": "manager_su_runtime_factory.c:msu_su_runtime_before -> msu_su_read_current / msu_su_apply_current_detailed",
+    "hostComponentSelection": "Only the five native SU/profile TUs are selected by the P2 SU component builder; SDK 0081 is outside that component selection.",
+    "targetQualified": false,
+    "fullTypedProfileExecutionReceipt": false
+  },
+  "p7Compat20261121": {
+    "sourceDependencies": [
+      {
+        "path": "src/module/su_redirect_tu/module_su_redirect_part1.cpp",
+        "sha256": "e4c26742f6ea3e41a8ae3ae8262d32c80747bd3f51e3dee68c5ea036b413ddcc"
+      },
+      {
+        "path": "src/module/su_redirect_tu/su_compat_hooks.h",
+        "sha256": "27619c5f7a8ce826f22dbf8c7b92e337caa1df2c2484a4073cfb7f116d0eb8b3"
+      },
+      {
+        "path": "include/private_module_su_patch.h",
+        "sha256": "ec74e57c8f091f70499f7c1265fe848af15e89c2a89c1da316294f1a8db74c99"
+      }
+    ],
+    "behavior": [
+      "All native/compat targets resolve before UID control reset or Hook publication",
+      "ARM EABI stat/lstat/stat64/lstat64/fstatat64/faccessat/statx/faccessat2; shape-aware target dedup",
+      "Every Hook payload generated before publication; same-call reverse rollback preserves primary error",
+      "Bootstrap failure delegates to shared checked single-shot teardown only after truthful P5 retirement; ownership, disk readback and native grace failures preserve primary receipt/errno"
+    ],
+    "historicalEquivalenceOnly": true,
+    "validationRoot": ".tmp/p7-development-20261121/compat",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  },
+  "p7Development20261121": {
+    "sourceDependencies": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/module_su_redirect_part1.cpp",
+        "sha256": "e4c26742f6ea3e41a8ae3ae8262d32c80747bd3f51e3dee68c5ea036b413ddcc"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_allowlist_writer.cpp",
+        "sha256": "14cf7536f0323fcd77e854dd709237dcd631a3dadfa12df1a49db2488a21c9a8"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_auth_transaction.cpp",
+        "sha256": "29a94e2d9a88da6df965c084ccbbbf78a8a559cb15b18243e09aca2f4d54489e"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_retention_store.cpp",
+        "sha256": "b9f0ff6d0f345466801eef75ee9271469bfb913f07e861e6a0b082b273198df7"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_exec_context.cpp",
+        "sha256": "a3b3a9a68a5198f4552031db07a675eb57f0e8d0d63c225b279936f877c60b4d"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_uid_copies.cpp",
+        "sha256": "8cbd3262fc2d8f96a6cb8182a43bfeaaf8fc82ad8555b05bb51e5340dca0f60f"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_compat_hooks.h",
+        "sha256": "27619c5f7a8ce826f22dbf8c7b92e337caa1df2c2484a4073cfb7f116d0eb8b3"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/su_uid_lifetime_private.h",
+        "sha256": "8ca77a5bfbbaf0d45a3988e20cb9be3255638ed57e50b8687116f59347b7b471"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/default_module/module_su_redirect/patch_base.h",
+        "sha256": "627a0e1328c52a92ceb26caedbdbcdc0073a0c1009a28e4301bc351a886c0ae0"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/core01/patch_base_su_redirect.h",
+        "sha256": "15a0ded57d388057d7b8c5eb2842f1b9b7dcb74293a8cb4816c337b86e0d97bb"
+      },
+      {
+        "path": "runtime/maplesu-sdk/sdk/include/private_module_su_patch.h",
+        "sha256": "ec74e57c8f091f70499f7c1265fe848af15e89c2a89c1da316294f1a8db74c99"
+      }
+    ],
+    "validationRoot": ".tmp/p7-development-20261121",
+    "scope": "Actual selected P7 source/compatibility dependency successor; historical archive equivalence and formal asset identity remain separate.",
+    "formalArtifactsProduced": false,
+    "deviceAcceptance": false
+  },
+  "p7UidIndex20261121": {
+    "status": "sdk-private-no-image-exports-focused-verified",
+    "nativeProvider": null,
+    "newNativeExports": [],
+    "legacyControlAndArrayAbiUnchanged": true,
+    "uidComparison": "full u32 UID; SDK-private two-slot immutable hash indexes; unregistered plain-list compatibility scan is not constant-time",
+    "lifetime": "index prepared and read back before release-publishing its slot/control; actual native RCU readers; slot removal then second grace before index/table free",
+    "resultPhase43": "WriterIndexPrepare; decoder accepts additive phase",
+    "affectedSdkMembers": [
+      81,
+      82
+    ],
+    "unchangedConsumerClosureMembers": [
+      83,
+      84,
+      85,
+      86,
+      87
+    ],
+    "formalAssetsPromoted": false,
+    "deviceAcceptance": false,
+    "implementationCarrier": "Existing Legacy SDK raw kernel allocations and inline Hook payload; no claim/bridge or Image update required for this index",
+    "currentTargetRcu": "Existing __rcu_read_lock/__rcu_read_unlock/synchronize_rcu pair; 6.6.89 PREEMPT_RCU target; other RCU configurations not claimed"
+  },
+  "privateHeaders": [
+    "src/module/su_redirect_tu/su_uid_lifetime_private.h",
+    "src/module/su_redirect_tu/su_uid_index_private.h"
+  ],
+  "noImageUidIndex20261121": {
+    "sourceDependencies": [
+      {
+        "path": "src/module/su_redirect_tu/su_retention_store.cpp",
+        "sha256": "b9f0ff6d0f345466801eef75ee9271469bfb913f07e861e6a0b082b273198df7"
+      },
+      {
+        "path": "src/module/su_redirect_tu/su_allowlist_writer.cpp",
+        "sha256": "14cf7536f0323fcd77e854dd709237dcd631a3dadfa12df1a49db2488a21c9a8"
+      },
+      {
+        "path": "src/module/su_redirect_tu/su_uid_lifetime_private.h",
+        "sha256": "8ca77a5bfbbaf0d45a3988e20cb9be3255638ed57e50b8687116f59347b7b471"
+      },
+      {
+        "path": "src/module/su_redirect_tu/su_uid_index_private.h",
+        "sha256": "cc2b34d4ecbeac575836c56eecf11be2f419ebad5fe1dd8a411de26da1219541"
+      }
+    ],
+    "validationRoot": ".tmp/main-rootpanic-resume-20261121/panic/no-image",
+    "newSystemVisibleInterface": false,
+    "deviceAcceptance": false
+  }
+}

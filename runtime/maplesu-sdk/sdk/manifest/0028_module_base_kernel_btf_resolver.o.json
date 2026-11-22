@@ -1,0 +1,110 @@
+{
+  "idx": 28,
+  "name": "module_base_kernel_btf_resolver.o",
+  "group": "core",
+  "layout": "elf",
+  "kind": "COMPOSED",
+  "sources": [
+    "src/module_base/module_base_kernel_btf_resolver.cpp",
+    "../../ultra/policy/kernel_layout.cpp"
+  ],
+  "flagsProfile": "core-oz-elf-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2",
+    "-I../../ultra/policy"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 13,
+    "recovered": 13,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "92e3dedd8a47074e082bee4837990f45385b425e7776cf89571473816b1fb60b",
+    "bytes": 166680,
+    "layout": "bitcode"
+  },
+  "evidence": [
+    "docs/dual-mode/impl/_work/2026-11-15-p2/evidence/sdk-layout-build-link-r1/member-build-report.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p2/evidence/sdk-layout-build-link-r1/candidate-PROVENANCE.json",
+    "docs/dual-mode/impl/_work/2026-11-15-p2/MANIFEST-LAYOUT-PROVENANCE.md"
+  ],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "tMissing": [],
+      "tExtra": [],
+      "uMissing": [],
+      "uExtra": []
+    },
+    "adjusted": {
+      "tMissing": [],
+      "tExtra": [],
+      "uMissing": [],
+      "uExtra": []
+    },
+    "allowancesConsumed": {
+      "uMissing": [],
+      "uExtra": []
+    },
+    "note": "Measured header 4243c0de. Compare all T/t/W/w by PROTOCOL section 5, including local and weak text. U baseline applies only to bitcode, native ELF has zero allowance. See stored symbol lists and exact compile argv; no symbol-forcing anchors."
+  },
+  "notes": "P2 layout consumer: composes the same runtime/pro/policy/kernel_layout.cpp used by the native layout reader. Original/recovery/selfCheck fields describe the prior restoration baseline, not equivalence of this refactored member. Current-source build and behavior require their own P2 receipts. Explicit original.layout=bitcode records the frozen header; current layout=elf is the measured P2 ld.lld-r output (545744 bytes, sha256 8da90f888a4e78e71160cdaeb766a75a8e5e50b65e071a3e1a4ebfabc9739df4). P2 ran compile/compose/pack only; current raw symbol/layout member-gate verification and full SDK publication remain pending.",
+  "developmentRefactor": {
+    "schema": "maplesu-sdk-development-refactor/1",
+    "date": "2026-11-15",
+    "scope": "P2 current development sources; declared member TUs and shared header, not a complete dependency closure",
+    "change": "Validate effective BTF integer bits and internal offset only for matched fields; distinguish legacy INT and modern member bitfields; validate enum storage, owner bounds and offset arithmetic.",
+    "sourceSnapshot": [
+      {
+        "path": "runtime/upstream-pro/sdk/src/module_base/module_base_kernel_btf_resolver.cpp",
+        "sha256": "45be86414b0026b1a353619b43cb88361684964560dad026a3f03f2fa5266b72"
+      },
+      {
+        "path": "runtime/pro/policy/kernel_layout.cpp",
+        "sha256": "25b2344c788da9786e6a4ed4ebc41c09c9d8e67c563c277fe1bc046f1b7a6bc1"
+      },
+      {
+        "path": "runtime/pro/policy/kernel_layout.h",
+        "sha256": "d8a8b4621e6835f7246a4e910b522e55061d872126be28db023cb3b10b70d1f2"
+      }
+    ],
+    "validation": [
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p2/BTF-INTEGER-FIELD-EVALUATION.md",
+        "receipt": "docs/dual-mode/impl/_work/2026-11-15-p2/evidence/btf-integer-fields-r1/PUBLICATION.json",
+        "scope": "Shared kernel_layout.cpp: 178 host ASan/UBSan assertions and Android NDK syntax-only check. No rebuilt m028 object, SDK archive or device execution is claimed."
+      },
+      {
+        "report": "docs/dual-mode/impl/_work/2026-11-15-p2/M028-CURRENT-GATE-AUDIT.md",
+        "scope": "Historical current-member gate exited 7 before this BTF change. Its frozen inputs and raw differences are retained; the object does not contain this newer source."
+      }
+    ],
+    "formalDeliveryUpdated": false,
+    "deviceValidated": false,
+    "historicalFields": "original/recovery/selfCheck/status are retained historical restoration metadata; current source and publication acceptance are scoped by explicit receipts"
+  },
+  "p5DevelopmentClosure20261119": {
+    "scope": "Current production P5 sources and focused compilation/regressions; formal SDK and target execution remain separate",
+    "requirements": [
+      "HOOK-01",
+      "HOOK-02",
+      "HOOK-03",
+      "RELOC-01"
+    ],
+    "inputs": [
+      {
+        "path": "runtime/maplesu-sdk/sdk/src/module_base/module_base_kernel_btf_resolver.cpp",
+        "sha256": "ccb379643f5026716605cccb16ac7673a412f42c4d45ee768c41ecc3d69d2a24"
+      },
+      {
+        "path": "runtime/ultra/policy/kernel_layout.cpp",
+        "sha256": "7e4ad5890441cddc76e74f271b6ee5b92d809b08af99e1252633622ff6db6fa6"
+      }
+    ],
+    "report": "docs/dual-mode/impl/_work/2026-11-15-p5-p7/P5-DEVELOPMENT-CLOSEOUT-20261119.md",
+    "formalRelease": false,
+    "deviceValidated": false
+  }
+}

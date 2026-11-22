@@ -1,0 +1,39 @@
+{
+  "idx": 38,
+  "name": "module_base_offset_cache.o",
+  "group": "core",
+  "layout": "bitcode",
+  "kind": "SINGLE",
+  "sources": [
+    "src/module_base/module_base_offset_cache.cpp"
+  ],
+  "flagsProfile": "core-oz-bitcode-fexceptions",
+  "extraFlags": [
+    "-D_FORTIFY_SOURCE=2"
+  ],
+  "status": "complete",
+  "recovery": {
+    "functions": 7,
+    "recovered": 7,
+    "unrecovered": []
+  },
+  "original": {
+    "sha256": "b25ead34abac0762bb2d51860f6657433986441c3530dc4ef469764e74639096",
+    "bytes": 107804
+  },
+  "evidence": [],
+  "selfCheck": {
+    "tDiff": [],
+    "uDiff": [],
+    "raw": {
+      "tDiff": [],
+      "uDiff": []
+    },
+    "adjusted": {
+      "tDiff": [],
+      "uDiff": []
+    },
+    "note": "llvm-nm 双向差集全空：orig T=177 / new T=177，orig U=96 / new U=96。raw 残差 0，adjusted 也是 0（未踩中央基线那 2 个工具链点版本残留）。layout 由成员头 4 字节实测 4243c0de 判定。"
+  },
+  "notes": ""
+}

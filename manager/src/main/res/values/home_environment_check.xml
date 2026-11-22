@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_environment_check_failed">Environment check did not complete</string>
+    <string name="home_environment_check_timeout_summary">The environment probe timed out. Tap to retry or export diagnostic logs.</string>
+    <string name="home_environment_check_failed_summary">The environment probe failed. Tap to retry or export diagnostic logs.</string>
+    <string name="home_environment_check_unconfirmed_summary">The runtime could not be confirmed. Tap to retry or export diagnostic logs.</string>
+    <string name="home_environment_check_busy_summary">The previous environment probe is still stopping. Please retry shortly.</string>
+    <string name="home_environment_refresh_warning">Environment refresh: %1$s</string>
+</resources>
