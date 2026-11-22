@@ -18,7 +18,11 @@
     },
     {
       "name": "佐佐鱼",
-      "github": "Yutou04-sa"
+      "github": "Yutou04-sa",
+      "acknowledgedIn": [
+        "README.md",
+        "CREDITS.md"
+      ]
     },
     {
       "name": "知秋",
