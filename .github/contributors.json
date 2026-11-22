@@ -10,7 +10,11 @@
     },
     {
       "name": "有希",
-      "github": "matsuzaka-yuki"
+      "github": "matsuzaka-yuki",
+      "acknowledgedIn": [
+        "README.md",
+        "CREDITS.md"
+      ]
     },
     {
       "name": "佐佐鱼",
