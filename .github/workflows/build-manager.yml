@@ -88,6 +88,8 @@ jobs:
           }
           python tools/check_source_export.py
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python jailbreak-providers/ghostlock/build_extractor.py --verify-only
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
           python tools/prepare_native_inputs.py --check
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           python scripts/sync-ultra-sdk-identity.py --check

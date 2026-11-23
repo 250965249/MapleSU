@@ -81,7 +81,13 @@ def build(ndk, output):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ndk", required=True, type=Path)
-    parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--verify-only", action="store_true")
+    parser.add_argument("--ndk", type=Path)
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    build(args.ndk.resolve(), args.output.resolve())
+    if args.verify_only:
+        verify_dependencies()
+    else:
+        if args.ndk is None or args.output is None:
+            parser.error("--ndk and --output are required for a build")
+        build(args.ndk.resolve(), args.output.resolve())
