@@ -7,6 +7,9 @@ import dev.maplesu.manager.modules.UltraRootKeyStore
 
 internal const val SU_DELIVERY_INCOMPLETE = "ERR_SU_DELIVERY_INCOMPLETE"
 
+/** `KModErr::ERR_MODULE_STORAGE_NOT_FOUND`; a fresh environment has no uid-profile blob yet. */
+internal const val ERR_MODULE_STORAGE_NOT_FOUND = -19964
+
 /**
  * `su_auth` 读写的窄端口：生产实现是 [UltraRuntimeClient]，主机测试注入 fake。
  *
@@ -230,9 +233,21 @@ object UltraSelfWhitelist {
         override fun uidProfileReadError(): String? = profileReadError
         override fun uidProfiles(): List<SuUidProfile>? {
             val snapshot = client.suUidProfiles()
-            profileReadError = if (snapshot.ok) null else
+            if (snapshot.ok) {
+                profileReadError = null
+                return snapshot.profiles
+            }
+            // ERR_MODULE_STORAGE_NOT_FOUND (-19964) means the Ultra storage has no uid-profile
+            // blob yet, which is the state of a freshly installed environment. Upstream treats it
+            // as "nothing recorded" (runtime/ultra/authorization/su_allowlist_writer.cpp:57), so an
+            // empty list is reported instead of failing the whole allowlist refresh.
+            if (snapshot.receipt.sdkErrorCode == ERR_MODULE_STORAGE_NOT_FOUND) {
+                profileReadError = null
+                return emptyList()
+            }
+            profileReadError =
                 "SDK_UID_READ:${suAuthLogCode(snapshot.receipt.sdkError)}:${snapshot.receipt.sdkErrorCode}"
-            return snapshot.takeIf { it.ok }?.profiles
+            return null
         }
         override fun setUidProfile(uid: Int, packageName: String, allow: Boolean): NativeReceipt =
             client.setSuUidProfile(uid, packageName, allow)

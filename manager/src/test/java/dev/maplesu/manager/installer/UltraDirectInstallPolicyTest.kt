@@ -92,6 +92,21 @@ class UltraDirectInstallPolicyTest {
         assertEquals(1, checks)
     }
 
+    @Test fun confirmedFreshKernelUsesCheckedRepairAndRetainsAllWriteGuards() {
+        val fresh = UltraEnvFacts(bundledVersion = "5.2.1", freshKernelInstall = true)
+        assertEquals("CHECKED_REPAIR", UltraDirectInstallPolicy.dispatch(direct, { fresh },
+            { "CHECKED_REPAIR" }, { "UNAVAILABLE" }, { error("live kernel already selected") }))
+        assertEquals("BOOT", UltraDirectInstallPolicy.dispatch(direct, { fresh },
+            { error("retired kernel requires replacement") }, { "UNAVAILABLE" }, { "BOOT" },
+            requiresKernelUpdate = { true }))
+        for (facts in listOf(fresh.copy(readUnknown = true), fresh.copy(submittedThisBoot = true),
+            fresh.copy(suspended = true), fresh.copy(quiescing = true))) {
+            assertEquals("UNAVAILABLE", UltraDirectInstallPolicy.dispatch(direct, { facts },
+                { error("blocked repair") }, { "UNAVAILABLE" }, { error("blocked boot write") },
+                requiresKernelUpdate = { error("blocked kernel-update read") }))
+        }
+    }
+
     @Test fun verifiedRetiredKernelMustActuallyUpdateBoot() {
         assertEquals("BOOT", UltraDirectInstallPolicy.dispatch(direct, { update },
             { error("An SDK-only update would leave the kernel unchanged") }, { "UNAVAILABLE" },

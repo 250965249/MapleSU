@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 package dev.maplesu.manager.workmode.detect
 
+import android.util.Log
 import dev.maplesu.manager.workmode.WorkMode
+import java.util.concurrent.CancellationException
 
 /**
  * T14：**降级探测**的端口（用户给定顺序；每一步都是不启动 root shell 的低成本检查）。
@@ -46,6 +48,18 @@ interface EnvironmentProbes {
     fun ksuNormal(): Boolean?
 
     /**
+     * d) 是否存在**正在响应**的 KSU 内核（不区分认谁做主）。
+     *
+     * 与 [ksuNormal] 的区别是问题更弱、但不能被 JNI 加载状态影响：`ksuNormal()` 答 null
+     * （JNI 没加载 / 内核不认本管理器）时，本端口用 APK 自带 ksud 的 `debug info` 回答
+     * "内核在不在"。true ⇒ 已确定「有 root 内核，但不是 MapleSU_Normal」，
+     * 足以给出终态（未安装），不必停在未确认。
+     *
+     * null = 这次读不到（起不来/被拦/超时），调用方仍走 UNKNOWN。
+     */
+    fun foreignKsuKernel(): Boolean? = null
+
+    /**
      * 保留端口：慢路径（起 root shell）才允许调用。
      *
      * 当前策略**恒不调用**它（用户要求：8 秒内拿不到结论就如实 UNKNOWN，不靠 root 硬猜）。
@@ -80,6 +94,11 @@ object EnvironmentCheckDetail {
     const val KSU_PROBE_CONFIRMED = "KSU_PROBE_CONFIRMED"
     const val KSU_PROBE_NEGATIVE = "KSU_PROBE_NEGATIVE"
     const val KSU_PROBE_UNAVAILABLE = "KSU_PROBE_UNAVAILABLE"
+    /**
+     * 有一个在响应的 KSU 内核，但它没认本管理器做主（第三方 KernelSU / 未装 MapleSU）。
+     * 这是**终态**（未安装），不是"读不到"。
+     */
+    const val KSU_PROBE_FOREIGN = "KSU_PROBE_FOREIGN"
     /** 真探针起不来/超时 → UNKNOWN；保留上次状态，不落盘。 */
     const val SU_PROBE_UNKNOWN = "SU_PROBE_UNKNOWN"
     const val DEADLINE_EXCEEDED = "PROBE_DEADLINE_EXCEEDED"
@@ -140,7 +159,9 @@ class EnvironmentResolver(
         var trigger = inheritanceTrigger ?: EnvironmentCheckTrigger.SU_RECHECK
         val calls = mutableListOf<String>()
         calls += PROBE_KSU
-        if (runCatching { probes.ksuNormal() }.getOrNull() == true) {
+        val firstKsu = probeResult { probes.ksuNormal() }.getOrNull()
+        trace("start boot=$currentBootId previous=${previous?.mode} trigger=$trigger ksu=$firstKsu")
+        if (firstKsu == true) {
             return persist(
                 verdict = EnvironmentVerdict.KSU_NORMAL,
                 mode = WorkMode.KSU,
@@ -157,7 +178,8 @@ class EnvironmentResolver(
         // Identify the current channel before ordinary SU or credential recovery can
         // occupy the SDK. Mode evidence alone does not grant an untested SU capability.
         calls += PROBE_CURRENT_ULTRA
-        val currentUltra = runCatching { probes.currentUltraFingerprint() }.getOrNull()
+        val currentUltra = probeResult { probes.currentUltraFingerprint() }.getOrNull()
+        Log.i(TAG, "ultraCurrent=$currentUltra after=${clock.nowMillis() - startedAt}ms")
         if (currentUltra != null) {
             return persist(
                 verdict = EnvironmentVerdict.ULTRA,
@@ -177,19 +199,23 @@ class EnvironmentResolver(
         val readiness: SuReadiness
         var ultra: String? = null
         var ultraChecked = false
+        var ultraFailure: Throwable? = null
         var ksu: Boolean? = null
         var ksuChecked = false
         try {
             // Ordinary SU failure does not invalidate independent kernel/key evidence.
-            readiness = runCatching { probes.suReadiness() }.getOrDefault(SuReadiness.UNKNOWN)
+            readiness = probeResult { probes.suReadiness() }.getOrDefault(SuReadiness.UNKNOWN)
+            Log.i(TAG, "suReadiness=$readiness after=${clock.nowMillis() - startedAt}ms")
             if (inheritanceTrigger == null && previous?.mode == WorkMode.KSU) {
                 calls += PROBE_KSU
-                ksu = runCatching { probes.ksuNormal() }.getOrNull()
+                ksu = probeResult { probes.ksuNormal() }.getOrNull()
                 ksuChecked = true
             }
             if (inheritanceTrigger == null && previous?.mode == WorkMode.LITE) {
                 calls += PROBE_ULTRA
-                ultra = probes.ultraFingerprint()
+                ultra = probeResult { probes.ultraFingerprint() }
+                    .onFailure { ultraFailure = it; EnvDiag.log("ultraFingerprint(prev LITE) failed: ${it.message}") }
+                    .getOrNull()
                 ultraChecked = true
             }
             if (inheritanceTrigger == null && readiness != SuReadiness.NOT_USABLE &&
@@ -209,8 +235,19 @@ class EnvironmentResolver(
             if (inheritanceTrigger == null) trigger = EnvironmentCheckTrigger.SU_MISSING
             if (!ultraChecked) {
                 calls += PROBE_ULTRA
-                ultra = probes.ultraFingerprint()
+                // 没有 Ultra 凭据的设备，恢复探针会抛错（ULTRA_RECOVERY_PROBE_UNKNOWN）。
+                // "没有 Ultra 环境" ≠ "读不到"：这一路失败不得作废整次判定，否则永远停在
+                // 「环境检查未完成」——这正是首页互锁的另一半。
+                ultra = probeResult { probes.ultraFingerprint() }
+                    .onFailure { ultraFailure = it; EnvDiag.log("ultraFingerprint failed: ${it.message}") }
+                    .getOrNull()
+                Log.i(TAG, "ultraFingerprint=$ultra after=${clock.nowMillis() - startedAt}ms")
             }
+        } catch (error: CancellationException) {
+            throw error
+        } catch (error: InterruptedException) {
+            Thread.currentThread().interrupt()
+            throw error
         } catch (error: Throwable) {
             return unknown(
                 previous = previous,
@@ -242,7 +279,7 @@ class EnvironmentResolver(
         // c) 无 Ultra → 再确认是不是 MapleSU_Normal（KSU）；UNKNOWN 也要问，别把读不到当没有。
         if (!ksuChecked) {
             calls += PROBE_KSU
-            ksu = runCatching { probes.ksuNormal() }.getOrNull()
+            ksu = probeResult { probes.ksuNormal() }.getOrNull()
         }
         if (ksu == true) {
             return persist(
@@ -257,6 +294,14 @@ class EnvironmentResolver(
                 startedAt = startedAt,
                 calls = calls,
             )
+        }
+        // A positive Normal identity can survive an unrelated recovery error;
+        // an unobserved Ultra identity cannot establish a negative installation verdict.
+        val failedUltra = ultraFailure
+        if (failedUltra != null) {
+            return unknown(previous, trigger, currentBootId, startedAt, calls,
+                EnvironmentCheckDetail.PROBE_FAILED + ":" +
+                    (failedUltra.message ?: failedUltra.javaClass.simpleName))
         }
         // d) Ultra 与 Normal 自身身份均已排除：普通 su 的成功/超时都不是模式证据。
         //    任一身份探针读不到仍走 UNKNOWN，只有明确的阴性才覆盖旧 Ultra 缓存。
@@ -274,6 +319,29 @@ class EnvironmentResolver(
                 startedAt = startedAt,
                 calls = calls,
             )
+        }
+        // e) KSU 探针答 null（JNI 未加载 / 内核不认主）不等于"没有内核"。
+        //    用只读的 `ksud debug info` 再问一次"内核在不在"：在、但没认主 ⇒ 明确未安装。
+        //    这解开"装了第三方 KernelSU 的机器永远停在环境检查未完成"的互锁
+        //    （只问内核在不在，不读凭据、不起 root、不冒充认主）。
+        if (ksu == null) {
+            calls += PROBE_FOREIGN_KSU
+            val foreign = probeResult { probes.foreignKsuKernel() }.getOrNull()
+            Log.i(TAG, "foreignKsu=$foreign after=${clock.nowMillis() - startedAt}ms")
+            if (foreign == true) {
+                return persist(
+                    verdict = EnvironmentVerdict.NOT_INSTALLED,
+                    mode = null,
+                    su = su,
+                    ultra = null,
+                    trigger = trigger,
+                    detail = EnvironmentCheckDetail.KSU_PROBE_FOREIGN,
+                    mayPersist = mayPersist,
+                    bootId = currentBootId,
+                    startedAt = startedAt,
+                    calls = calls,
+                )
+            }
         }
         // 读不到 / 未确认：**如实 UNKNOWN**，且不写磁盘（保留上次状态）。
         return unknown(
@@ -308,7 +376,28 @@ class EnvironmentResolver(
         bootId = bootId,
         elapsedMillis = clock.nowMillis() - startedAt,
         probes = calls,
-    )
+    ).also {
+        trace("unknown detail=$detail elapsed=${clock.nowMillis() - startedAt}ms probes=$calls")
+    }
+
+    /** 调试版：同时写 logd 与 app 私有诊断文件（本机 untrusted_app 日志读不到）。 */
+    private fun trace(message: String) {
+        Log.i(TAG, message)
+        EnvDiag.log(message)
+    }
+
+    private inline fun <T> probeResult(block: () -> T): Result<T> = runCatching {
+        if (Thread.currentThread().isInterrupted) throw InterruptedException("ENVIRONMENT_PROBE_INTERRUPTED")
+        block().also {
+            if (Thread.currentThread().isInterrupted) throw InterruptedException("ENVIRONMENT_PROBE_INTERRUPTED")
+        }
+    }.onFailure { error ->
+        if (error is CancellationException) throw error
+        if (error is InterruptedException) {
+            Thread.currentThread().interrupt()
+            throw error
+        }
+    }
 
     private fun persist(
         verdict: EnvironmentVerdict,
@@ -332,7 +421,12 @@ class EnvironmentResolver(
         )
         // 只有给出**终态**才落盘；UNKNOWN 路径不经过这里（保留上次状态）。
         // 预算用尽后才跑完的探测同样不落盘 —— 否则"超时保留上次状态"会被迟到的结果覆盖。
-        if (mayPersist()) store.save(snapshot)
+        val allowed = mayPersist()
+        if (allowed) store.save(snapshot)
+        trace(
+            "verdict=$verdict mode=$mode detail=$detail mayPersist=$allowed " +
+                "elapsed=${clock.nowMillis() - startedAt}ms probes=$calls",
+        )
         return EnvironmentCheckOutcome(
             verdict = verdict,
             mode = mode,
@@ -346,9 +440,11 @@ class EnvironmentResolver(
     }
 
     private companion object {
+        const val TAG = "MapleSUEnv"
         const val PROBE_CURRENT_ULTRA = "ultraCurrent"
         const val PROBE_SU = "su"
         const val PROBE_ULTRA = "ultra"
         const val PROBE_KSU = "ksu"
+        const val PROBE_FOREIGN_KSU = "foreignKsu"
     }
 }

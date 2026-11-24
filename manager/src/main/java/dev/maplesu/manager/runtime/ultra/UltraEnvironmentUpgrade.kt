@@ -89,21 +89,22 @@ object UltraEnvironmentUpgrade {
         val client = UltraSdkCredentials.client(app)
         val key = UltraSdkCredentials.read(app)
         val owner = if (key == null) client.queryManagerOwnerIdentity().identity else null
-        val installedVersion = versionOf { client.installedEnvironmentVersion() }
+        val installedReceipt = runCatching { client.installedEnvironmentVersion() }.getOrNull()
+        val installedVersion = versionOf(installedReceipt)
         onInstalledVersion(installedVersion)
         // 身份回读失败不是致命错误：Unknown 照样进 facts，由策略判「待确认」，不猜。
         val identity = runCatching { UltraInstalledIdentityProbe.read(app, client) }
             .onFailure { Log.w(TAG, "identity read failed ${it.javaClass.simpleName}") }
             .getOrElse { InstalledIdentity.unknown() }
             .takeIf { it.source == Source.Readback }
-        val bundledVersion = versionOf { client.sdkVersion() }
-        val facts = UltraEnvFacts(
+        val bundledReceipt = runCatching { client.sdkVersion() }.getOrNull()
+        val versions = versionFacts(state.name, installedReceipt, bundledReceipt,
+            kernelRootVerified = UltraEnvironmentProbe.isKernelRootVerified(app))
+        val facts = versions.copy(
             running = state == UltraEnvironmentProbe.State.Running,
             // 读不到暂停标记时按"已暂停"处理：宁可不提示，也不在不确定时写环境。
             suspended = runCatching { UltraRootKeyStore.isSuspended(app) }.getOrDefault(true),
             quiescing = LiteImplantQuiesceGate.isBlocked() || WorkModeSwitchSession.executing,
-            installedVersion = installedVersion,
-            bundledVersion = bundledVersion,
             submittedThisBoot = submittedThisBoot(app),
             installedBuildId = identity?.buildId,
             bundledBuildId = UltraInstalledIdentityProbe.bundledBuildId(),
@@ -113,8 +114,8 @@ object UltraEnvironmentUpgrade {
             identityKnown = true,
             installedAppVersion = UltraInstalledIdentityProbe.persistedAppVersion(app),
             bundledAppVersion = UltraSdkBuild.APP_VERSION,
-            readUnknown = state == UltraEnvironmentProbe.State.Unknown || installedVersion == null || bundledVersion == null,
             observationScope = scope,
+            freshKernelInstall = versions.freshKernelInstall && identity?.known != true,
         )
         val checked = if (scope != null && scope == observationScope(app) &&
             (key != null || owner != null && owner == UltraEnvironmentProbe.currentSnapshot(app).managerOwnerIdentity &&
@@ -179,7 +180,8 @@ object UltraEnvironmentUpgrade {
             // quiescing / 暂停 / 未运行 / 管理器降级 一律拒绝，不产生任何写调用。
             if (repairFault) {
                 val state = UltraEnvironmentProbe.refresh(app, force = true)
-                if (state != UltraEnvironmentProbe.State.Fault && state != UltraEnvironmentProbe.State.Unknown) {
+                if (state != UltraEnvironmentProbe.State.Fault && state != UltraEnvironmentProbe.State.Unknown &&
+                    state != UltraEnvironmentProbe.State.NotInstalled) {
                     recordStatus(app, phase, "REPAIR_STATE_${state.name}")
                     return Result.REFUSED
                 }
@@ -191,7 +193,8 @@ object UltraEnvironmentUpgrade {
                     completedBootRepairEvidence(app, client)
                 if (!faultRepairAllowed(state.name, facts, completedBoot,
                         identity, UltraInstalledIdentityProbe.installedHelperPath(installKey)
-                            ?: identity?.helperPath?.takeIf { installOwner != null }, installBoot)) {
+                            ?: identity?.helperPath?.takeIf { installOwner != null }, installBoot,
+                        kernelRootVerified = UltraEnvironmentProbe.isKernelRootVerified(app))) {
                     val reason = "REPAIR_FACTS_STATE_${state.name}:running=${facts.running}" +
                         ";suspended=${facts.suspended};quiescing=${facts.quiescing}" +
                         ";submitted=${facts.submittedThisBoot};completedBoot=$completedBoot" +
@@ -303,14 +306,25 @@ object UltraEnvironmentUpgrade {
 
     internal fun faultRepairAllowed(state: String?, facts: UltraEnvFacts,
                                     completedBoot: Boolean = false, identity: InstalledIdentity? = null,
-                                    expectedHelperPath: String? = null, expectedBootId: String? = null): Boolean {
-        if (state != "Fault" && !(state == "Unknown" && completedBoot &&
+                                    expectedHelperPath: String? = null, expectedBootId: String? = null,
+                                    kernelRootVerified: Boolean = false): Boolean {
+        // A fresh device whose boot already carries the Ultra kernel proves the channel is live
+        // even though no helper has completed a boot yet: repair is the only way to install that
+        // helper, so refusing it here would be a deadlock. The kernel proof replaces the
+        // completed-boot receipt in exactly that case, and every later fact check still applies.
+        if (state != "Fault" && !((state == "Unknown" || state == "NotInstalled") && kernelRootVerified) &&
+            !(state == "Unknown" && completedBoot &&
                 UltraInstalledIdentityProbe.normalizeSha(facts.installedHelperSha256) != null)) return false
         if (facts.running || facts.suspended ||
             facts.quiescing || facts.submittedThisBoot) return false
         val bundled = EnvVersion.parse(facts.bundledVersion) ?: return false
         val installed = EnvVersion.parse(facts.installedVersion)
-        if (installed == null) {
+        val freshKernelInstall = (state == "Unknown" || state == "NotInstalled") && kernelRootVerified &&
+            facts.freshKernelInstall && !facts.readUnknown &&
+            facts.installedVersion == null && facts.installedHelperSha256 == null && identity?.known != true &&
+            UltraInstalledIdentityProbe.normalizeSha(facts.bundledHelperSha256) != null
+        if (state == "NotInstalled" && !freshKernelInstall) return false
+        if (installed == null && !freshKernelInstall) {
             val observed = UltraInstalledIdentityProbe.normalizeSha(facts.installedHelperSha256) ?: return false
             val expected = UltraInstalledIdentityProbe.normalizeSha(facts.bundledHelperSha256) ?: return false
             if (observed != expected && (identity == null || identity.source != Source.Readback ||
@@ -318,7 +332,7 @@ object UltraEnvironmentUpgrade {
                     identity.helperPath != expectedHelperPath || identity.bootId != expectedBootId ||
                     identity.helperSize?.let { it > 0L } != true ||
                     UltraInstalledIdentityProbe.normalizeSha(identity.helperSha256) != observed)) return false
-        } else if (installed > bundled) return false
+        } else if (installed != null && installed > bundled) return false
         val installedApp = EnvVersion.parse(facts.installedAppVersion)
         val bundledApp = EnvVersion.parse(facts.bundledAppVersion)
         if (facts.installedAppVersion != null && installedApp == null ||
@@ -479,9 +493,24 @@ object UltraEnvironmentUpgrade {
         return false
     }
 
-    private inline fun versionOf(read: () -> NativeReceipt): String? =
-        runCatching(read).getOrNull()
-            ?.takeIf { it.succeeded }
+    /** Only the SDK's explicit absence result distinguishes a fresh helper from a failed version read. */
+    internal fun versionFacts(state: String, installed: NativeReceipt?, bundled: NativeReceipt?,
+                              kernelRootVerified: Boolean = false): UltraEnvFacts {
+        val installedVersion = versionOf(installed)
+        val bundledVersion = versionOf(bundled)
+        val helperAbsent = installed?.operation == "get_installed_maplesu_environment_version" &&
+            installed.schemaVersion == 1 && installed.bridgeVersion == 1 &&
+            installed.backend == UltraRuntimeClient.BACKEND && !installed.ok &&
+            installed.sdkError == "ERR_MAPLESU_ENV_UNPREPARED" && installed.sdkErrorCode == -19916
+        val freshAbsence = (state == "Unknown" || state == "NotInstalled") && helperAbsent
+        return UltraEnvFacts(installedVersion = installedVersion, bundledVersion = bundledVersion,
+            readUnknown = state == "Unknown" && !freshAbsence ||
+                installedVersion == null && !freshAbsence || bundledVersion == null,
+            freshKernelInstall = freshAbsence && kernelRootVerified)
+    }
+
+    private fun versionOf(receipt: NativeReceipt?): String? =
+        receipt?.takeIf { it.succeeded }
             ?.string("version")
             ?.trim()
             ?.takeIf { it.isNotEmpty() }

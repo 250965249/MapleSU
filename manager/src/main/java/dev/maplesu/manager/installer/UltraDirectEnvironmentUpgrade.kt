@@ -15,7 +15,8 @@ internal object UltraDirectEnvironmentUpgrade {
     fun install(context: Context, taskId: String?): FlashResult {
         record(context, taskId, "STARTED")
         val outcome = when (UltraEnvironmentProbe.refresh(context, force = true)) {
-            UltraEnvironmentProbe.State.Unknown, UltraEnvironmentProbe.State.Fault ->
+            UltraEnvironmentProbe.State.Unknown, UltraEnvironmentProbe.State.Fault,
+            UltraEnvironmentProbe.State.NotInstalled ->
                 UltraEnvironmentUpgrade.repairEnvironment(context)
             else -> UltraEnvironmentUpgrade.upgrade(context)
         }

@@ -34,7 +34,8 @@ internal object UltraDirectInstallPolicy {
                      requiresKernelUpdate: () -> Boolean = { false }): T {
         if (eligible(request)) {
             val current = facts()
-            if ((current.running || current.installedVersion != null) &&
+            if ((current.running || current.installedVersion != null ||
+                    current.freshKernelInstall && !current.readUnknown) &&
                 !current.suspended && !current.quiescing && !current.submittedThisBoot &&
                 requiresKernelUpdate()) return patchBoot()
             when (val decision = UltraEnvUpgradePolicy.decide(current)) {
@@ -42,6 +43,10 @@ internal object UltraDirectInstallPolicy {
                 is UltraEnvUpgrade.Rebooting -> return unavailable(decision)
                 UltraEnvUpgrade.None -> {
                     if (current.suspended || current.quiescing) return unavailable(decision)
+                    if (current.freshKernelInstall) {
+                        if (current.readUnknown || current.submittedThisBoot) return unavailable(decision)
+                        return upgrade()
+                    }
                     // The installer performs a fresh channel/boot/identity check before repairing
                     // an idle helper. Never reinterpret Unknown as Running or patch over it.
                     if (!current.running && current.installedVersion != null &&

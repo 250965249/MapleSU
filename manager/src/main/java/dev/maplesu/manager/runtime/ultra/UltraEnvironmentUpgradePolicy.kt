@@ -93,6 +93,8 @@ data class UltraEnvFacts(
     /** A missing read is not a confirmed negative or authority to write. */
     val readUnknown: Boolean = false,
     val observationScope: String? = null,
+    /** Current SDK absence receipt plus a live kernel channel; empty facts never establish this. */
+    val freshKernelInstall: Boolean = false,
 )
 
 /** A display observation; retained facts never replace the upgrade's fresh preflight. */
