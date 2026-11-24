@@ -11709,6 +11709,11 @@
       "sha256": "dc56c44f5ba0ef8c0669ac8b4cb70b825b3af20c6eee574af6cf1ba83f3af3ab"
     },
     {
+      "path": "runtime/maplesu-sdk/backend/libmaplesu_policy_boot.273c730d625fbb4575d19c07f43aad88a4eae85d4a9b564645c9ff9b038f30f3.so",
+      "bytes": 4033216,
+      "sha256": "273c730d625fbb4575d19c07f43aad88a4eae85d4a9b564645c9ff9b038f30f3"
+    },
+    {
       "path": "runtime/maplesu-sdk/backend/libmaplesu_policy_boot.4728060da7028ab28d8e1faa11932eff195760a27784ad756d8660f5c4ab2263.so",
       "bytes": 4188216,
       "sha256": "4728060da7028ab28d8e1faa11932eff195760a27784ad756d8660f5c4ab2263"
@@ -13632,8 +13637,8 @@
     },
     {
       "path": "runtime/maplesu-sdk/sdk/manifest.jsonl",
-      "bytes": 368332,
-      "sha256": "5f65eba97745af6ca906f0298517829f1752cd481b7a0f87b2a9daac712117b0"
+      "bytes": 324017,
+      "sha256": "706f6ce1f47f85ed3a1d3271669bdeb3787b2f10b43559f71095cc96eb239147"
     },
     {
       "path": "runtime/maplesu-sdk/sdk/manifest/0000_cred.o.json",

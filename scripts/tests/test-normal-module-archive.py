@@ -33,7 +33,7 @@ def main():
     compiler = cached_jar("org.jetbrains.kotlin", "kotlin-compiler-embeddable", "2.4.20")
     coroutines = cached_jar("org.jetbrains.kotlinx", "kotlinx-coroutines-core-jvm", "1.11.0")
     sources = [ROOT / "manager/src/main/java/dev/maplesu/manager" / (name + ".java")
-               for name in ["ModuleArchiveInspector", "MapleSuModuleMetadata"]]
+               for name in ["ModuleArchiveInspector", "MapleSuModuleMetadata", "compat/NativeModuleAbi"]]
     test = ROOT / "manager/src/test/java/dev/maplesu/manager/ModuleArchiveInspectorTest.kt"
     sources.append(test)
     digests = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
