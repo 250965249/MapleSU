@@ -4,8 +4,10 @@ package dev.maplesu.manager.workmode.detect.probes
 import dev.maplesu.manager.compat.ultraPreferences
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import dev.maplesu.manager.runtime.HookRootExecutor
 import dev.maplesu.manager.runtime.ultra.UltraEnvironmentProbe
+import dev.maplesu.manager.workmode.detect.EnvDiag
 import dev.maplesu.manager.workmode.detect.EnvironmentCheckRunner
 import dev.maplesu.manager.workmode.detect.EnvironmentInvalidation
 import dev.maplesu.manager.workmode.detect.EnvironmentProbes
@@ -15,6 +17,7 @@ import dev.maplesu.manager.workmode.detect.EnvironmentSnapshotCodec
 import dev.maplesu.manager.workmode.detect.EnvironmentStatePersistence
 import dev.maplesu.manager.workmode.detect.EnvironmentStateStore
 import dev.maplesu.manager.workmode.detect.SuReadiness
+import java.io.File
 
 /**
  * T14 生产探针：先读当前 Ultra 通道，再执行未确认身份的恢复链。
@@ -39,8 +42,23 @@ class EnvironmentProbesAdapter(private val context: Context) : EnvironmentProbes
 
     private val readinessProbe = SuReadinessProbeAdapter(context)
 
+    /** 「有内核在响应」的只读探针（APK 自带 ksud `debug info`，不解互锁的 root 通道）。 */
+    private val foreignKsuProbe = ForeignKsuProbe(context)
+
+    init {
+        // 调试版才落盘诊断；正式包不安装 = 不产生任何文件。
+        val debuggable = (context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
+        if (debuggable) {
+            EnvDiag.install(File(context.cacheDir, "env-diag.log"), System.currentTimeMillis())
+        }
+    }
+
     /** 真子进程探针（默认 ≤1500ms；进程级缓存 2s，一次刷新只跑一轮）。 */
-    override fun suReadiness(): SuReadiness = readinessProbe.probe().readiness
+    override fun suReadiness(): SuReadiness {
+        val readiness = readinessProbe.probe().readiness
+        EnvDiag.log("suReadiness=$readiness")
+        return readiness
+    }
 
     /**
      * 旧布尔端口：`suReadiness() == USABLE`。
@@ -51,6 +69,12 @@ class EnvironmentProbesAdapter(private val context: Context) : EnvironmentProbes
     override fun suPresent(): Boolean = suReadiness() == SuReadiness.USABLE
 
     override fun currentUltraFingerprint(): String? {
+        val result = runCatching { computeCurrentUltraFingerprint() }
+        EnvDiag.log("currentUltra=${result.getOrNull()} err=${result.exceptionOrNull()?.message}")
+        return result.getOrThrow()
+    }
+
+    private fun computeCurrentUltraFingerprint(): String? {
         // 与完整判定一致：当前认主的 Normal 内核优先于另一模式留下的缓存。
         if (ksuNormal() == true) return null
         // A live Hook supersedes cached SDK identity without starting competing IPC.
@@ -76,6 +100,12 @@ class EnvironmentProbesAdapter(private val context: Context) : EnvironmentProbes
     }
 
     override fun ultraFingerprint(): String? {
+        val result = runCatching { computeUltraFingerprint() }
+        EnvDiag.log("ultraFingerprint=${result.getOrNull()} err=${result.exceptionOrNull()?.message}")
+        return result.getOrThrow()
+    }
+
+    private fun computeUltraFingerprint(): String? {
         if (ksuNormal() == true) return null
         if (HookRootExecutor.production(context.applicationContext).available()) return "hook:ready"
         // Last chance before the resolver publishes NotInstalled. A reinstall may
@@ -94,7 +124,24 @@ class EnvironmentProbesAdapter(private val context: Context) : EnvironmentProbes
     override fun ksuNormal(): Boolean? {
         val snapshot = KsuKernelProbeAdapter.currentSnapshot()
         // native 没加载 = 这次读不到（unknown），不是"没有 KSU"。
-        return KsuProbeMapping.normalStatus(snapshot)
+        val normal = KsuProbeMapping.normalStatus(snapshot)
+        EnvDiag.log(
+            "ksuNormal=$normal available=${snapshot.available} version=${snapshot.version} " +
+                "isManager=${snapshot.isManager} isLkm=${snapshot.isLkm}",
+        )
+        return normal
+    }
+
+    /**
+     * 只读地确认"有没有内核在响应"。
+     *
+     * 与 [ksuNormal] 互补：后者回答"是不是 MapleSU_Normal"，依赖 JNI；本端口回答
+     * "这台机器上有没有 KSU 内核"，走 APK 自带 ksud。二者都为 null 才允许落到 UNKNOWN。
+     */
+    override fun foreignKsuKernel(): Boolean? {
+        val answer = foreignKsuProbe.kernelResponds()
+        EnvDiag.log("foreignKsu=$answer")
+        return answer
     }
 
     private fun ultraJudges(): List<Pair<String, () -> Boolean>> = listOf(
