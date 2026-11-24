@@ -191,7 +191,8 @@ object UltraEnvironmentUpgrade {
                     completedBootRepairEvidence(app, client)
                 if (!faultRepairAllowed(state.name, facts, completedBoot,
                         identity, UltraInstalledIdentityProbe.installedHelperPath(installKey)
-                            ?: identity?.helperPath?.takeIf { installOwner != null }, installBoot)) {
+                            ?: identity?.helperPath?.takeIf { installOwner != null }, installBoot,
+                        kernelRootVerified = UltraEnvironmentProbe.isKernelRootVerified(app))) {
                     val reason = "REPAIR_FACTS_STATE_${state.name}:running=${facts.running}" +
                         ";suspended=${facts.suspended};quiescing=${facts.quiescing}" +
                         ";submitted=${facts.submittedThisBoot};completedBoot=$completedBoot" +
@@ -303,9 +304,14 @@ object UltraEnvironmentUpgrade {
 
     internal fun faultRepairAllowed(state: String?, facts: UltraEnvFacts,
                                     completedBoot: Boolean = false, identity: InstalledIdentity? = null,
-                                    expectedHelperPath: String? = null, expectedBootId: String? = null): Boolean {
-        if (state != "Fault" && !(state == "Unknown" && completedBoot &&
-                UltraInstalledIdentityProbe.normalizeSha(facts.installedHelperSha256) != null)) return false
+                                    expectedHelperPath: String? = null, expectedBootId: String? = null,
+                                    kernelRootVerified: Boolean = false): Boolean {
+        // A fresh device whose boot already carries the Ultra kernel proves the channel is live
+        // even though no helper has completed a boot yet: repair is the only way to install that
+        // helper, so refusing it here would be a deadlock. The kernel proof replaces the
+        // completed-boot receipt in exactly that case, and every later fact check still applies.
+        if (state != "Fault" && !(state == "Unknown" && (kernelRootVerified || (completedBoot &&
+                UltraInstalledIdentityProbe.normalizeSha(facts.installedHelperSha256) != null)))) return false
         if (facts.running || facts.suspended ||
             facts.quiescing || facts.submittedThisBoot) return false
         val bundled = EnvVersion.parse(facts.bundledVersion) ?: return false
@@ -446,6 +452,23 @@ object UltraEnvironmentUpgrade {
      */
     fun upgradeAllowed(decision: UltraEnvUpgrade): Boolean =
         decision is UltraEnvUpgrade.Available || decision is UltraEnvUpgrade.Unverified
+
+    /**
+     * The installed environment already reports the bundled build, versions and helper digest.
+     *
+     * This proves nothing about liveness - the probe can still answer Unknown when the running
+     * host cannot be queried - but it does prove there is nothing to upgrade. A refusal to
+     * reinstall the very same build must therefore not block the boot patch that follows it.
+     */
+    fun alreadyAtBundledBuild(context: Context): Boolean = runCatching {
+        val facts = readFacts(context)
+        val installed = EnvVersion.parse(facts.installedVersion)
+        val bundled = EnvVersion.parse(facts.bundledVersion)
+        val installedHelper = UltraInstalledIdentityProbe.normalizeSha(facts.installedHelperSha256)
+        installed != null && bundled != null && installed == bundled && installedHelper != null &&
+            installedHelper == UltraInstalledIdentityProbe.normalizeSha(facts.bundledHelperSha256) &&
+            (facts.installedAppVersion == null || facts.installedAppVersion == facts.bundledAppVersion)
+    }.getOrDefault(false)
 
     /**
      * 安装回执 → 升级结论。**只有 ok 且 verified 才算提交成功**：
