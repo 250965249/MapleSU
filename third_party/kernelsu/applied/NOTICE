@@ -30,9 +30,11 @@ f4603d14bd7f3bf21206d6f7c622ddf1c049ade3）逐字节复制后，按 `patches/7k/
   - 0023-boot-backup-optional.patch  (sha256 f0c1c75caf98de1769d4e6b325b13ee569288b27f835006c7dc06e338be07b42)
   - 0024-boot-empty-origin-restore.patch  (sha256 3a5594285d8b718e46842b95e00da21fe8094cff67430e82b5ed6fc39cc3709c)
   - 0025-target-kernel-kmi.patch  (sha256 8bfd88fd26dd9b2a883edff01b792f90733e744fd3313e9cba3e060b84128c41)
+  - 0026-module-install-transaction.patch  (sha256 23545696208d6ed5bf77324406f5bde7e96e0f11e83b8519938fed6db5fce334)
+  - 0027-module-removal-transaction.patch  (sha256 1e691c3e162b8d422484380fa4f525cd92d8ce59bdc620d174d3d594c600678d)
 
-补丁序列聚合哈希：abe46d6c8f86d11e9bd844af68241f2af184aff5d75fe6eb22d7950fd20cfb4c
-补丁序列文件哈希：467f4bc2768a67857d2bf26a0c42ff7c66b395768f802d4e2959317de488a6fa
+补丁序列聚合哈希：8c4378727233580fa58b33ddc9de76df8e8fd2bdaa199144a97f498bf73735ed
+补丁序列文件哈希：b33042f04e7e19b2f85c305bc82eaa63589bf74ceb5094d27dc84e0599fcd9e3
 upstream 快照树哈希：见 third_party/kernelsu/manifest.json（upstream.treeSha256）
 
 许可证
