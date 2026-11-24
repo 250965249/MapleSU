@@ -205,15 +205,6 @@ class CheckArchitectureTest(unittest.TestCase):
         problems = ca.rule_directory_readmes(self.repo()).problems
         self.assertEqual(["client/README.md: link target does not exist: ../docs/GONE.md"], problems)
 
-    def test_documented_renamed_paths_require_their_current_target(self):
-        old = "runtime/pro/bridge/NativeBridge.java"
-        target = ca.DOCUMENTED_PATH_ALIASES[old]
-        self.write("docs/ARCHITECTURE.md", f"`docs/` `manager/` `{old}`\n")
-        self.write(target, "class NativeBridge {}\n")
-        self.assertTrue(ca.rule_docs_paths(self.repo()).passed)
-        (self.root / target).unlink()
-        self.assertTrue(any(old in item for item in ca.rule_docs_paths(self.repo()).problems))
-
     def test_regression_tests_belong_in_scripts_tests(self):
         self.write("scripts/test-a.py", "")
         self.write("scripts/tests/test-b.py", "")

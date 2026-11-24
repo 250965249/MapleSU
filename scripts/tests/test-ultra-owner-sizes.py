@@ -6,8 +6,6 @@ import os
 from pathlib import Path
 import subprocess
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
-from native_toolchain import android_jar, jdk_tool
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools/specgen"))
@@ -20,7 +18,7 @@ def main():
     args = parser.parse_args()
     out = args.out.resolve()
     out.mkdir(parents=True, exist_ok=False)
-    java = jdk_tool("java")
+    java = Path("C:/Program Files/Microsoft/jdk-21.0.12.101-hotspot/bin/java.exe")
     compiler = cached_jar("org.jetbrains.kotlin", "kotlin-compiler-embeddable", "2.4.20")
     stdlib = cached_jar("org.jetbrains.kotlin", "kotlin-stdlib", "2.4.20")
     annotations = cached_jar("org.jetbrains", "annotations", "13.0")
@@ -30,7 +28,7 @@ def main():
         cached_jar("org.jetbrains.kotlinx", "kotlinx-serialization-json-jvm", "1.11.0"),
         cached_jar("org.jetbrains.kotlinx", "kotlinx-serialization-core-jvm", "1.11.0"),
         ROOT / ".tmp/p1-delivery-r7/gradle-build/image-core/libs/image-core.jar",
-        android_jar(),
+        Path("D:/Maple_Env/Android/Sdk/platforms/android-37.0/android.jar"),
         cached_jar("junit", "junit", "4.13.2"), cached_jar("org.hamcrest", "hamcrest-core", "1.3")]
     source_dir = ROOT / "manager/src/main/java/dev/maplesu/manager/ultrakernel"
     sources = [source_dir / name for name in ("UltraKernelShellcode.kt", "UltraKernelBtf.kt", "UltraKernelA64.kt", "UltraKernelKallsyms.kt", "UltraKernelRequestV2.kt", "UltraKernelRecipe.kt")]

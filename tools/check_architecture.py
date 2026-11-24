@@ -407,15 +407,6 @@ def rule_third_party_records(repo: Repo) -> Result:
 
 CODE_SPAN = re.compile(r"`([^`\n]+)`")
 PATH_TOKEN = re.compile(r"^\.?/?[A-Za-z0-9_.\-]+(?:/[A-Za-z0-9_.\-]+)+/?$")
-DOCUMENTED_PATH_ALIASES = {
-    "runtime/pro/bridge/NativeBridge.java": "manager/src/main/java/dev/maplesu/manager/runtime/ultra/bridge/NativeBridge.java",
-    "runtime/upstream-pro/SDK-RELEASE.json": "runtime/maplesu-sdk/SDK-RELEASE.json",
-    "runtime/upstream-pro/maintenance/": "runtime/maplesu-sdk/maintenance/",
-    "runtime/pro/ProRuntimeClient.kt": "manager/src/main/java/dev/maplesu/manager/runtime/ultra/UltraRuntimeClient.kt",
-    "modules/compat/ProModuleCompatibilityRegistry.kt": "manager/src/main/java/dev/maplesu/manager/modules/compat/UltraModuleCompatibilityRegistry.kt",
-    "prokernel/ProKernelFlow.kt": "manager/src/main/java/dev/maplesu/manager/ultrakernel/UltraKernelFlow.kt",
-    "prokernel/KernelSeries.kt": "manager/src/main/java/dev/maplesu/manager/ultrakernel/KernelSeries.kt",
-}
 
 
 def rule_docs_paths(repo: Repo) -> Result:
@@ -431,8 +422,6 @@ def rule_docs_paths(repo: Repo) -> Result:
         checked.add(token)
         relative = token[2:] if token.startswith("./") else token.lstrip("/")
         candidates = [root + relative for root in DOC_PATH_ROOTS]
-        if relative in DOCUMENTED_PATH_ALIASES:
-            candidates.append(DOCUMENTED_PATH_ALIASES[relative])
         if any(repo.has(c) for c in candidates):
             continue
         if any(repo.is_excluded(c) for c in candidates):

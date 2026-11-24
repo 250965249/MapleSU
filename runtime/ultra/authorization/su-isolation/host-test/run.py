@@ -5,7 +5,7 @@ import subprocess
 
 HERE = Path(__file__).resolve().parent
 BASE = HERE.parent
-REPO = Path(__file__).resolve().parents[5]
+REPO = Path('D:/Maple_Workflow/MapleSU')
 command = ['docker', 'run', '--rm', '--pull=never', '--network', 'none',
            '--tmpfs', '/data:exec', '--tmpfs', '/tmp:exec',
            '-v', f'{BASE.as_posix()}:/work:ro',

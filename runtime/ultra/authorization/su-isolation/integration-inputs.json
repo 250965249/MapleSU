@@ -1,0 +1,46 @@
+{
+  "coreArchive": "C:/MapleSU-Work/helper-su-isolation/stat-access/libkernel_module_kit_static.a",
+  "coreArchiveSha256": "4d26ba311afca62cd2fe43e0ae10e0a28ef64bb750fb7c637ffa9ee121d07e03",
+  "helperCandidate": "C:/MapleSU-Work/helper-su-isolation/candidate-v4",
+  "expectedChangedOrdinals": [
+    48,
+    52,
+    53,
+    81,
+    83,
+    84,
+    85,
+    255
+  ],
+  "extraMembers": {
+    "53": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\skroot_installer.o"
+  },
+  "errorHeader": "C:\\MapleSU-Work\\su-auth-isolation\\module_err_def.h",
+  "extraSources": {
+    "runtime/pro/boot/bootstrap-readiness/build_v2.py": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\build_v2.py",
+    "runtime/pro/boot/bootstrap-readiness/result_channel.c": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\result_channel.c",
+    "runtime/pro/boot/bootstrap-readiness/skroot_installer.candidate.cpp": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\skroot_installer.candidate.cpp",
+    "runtime/pro/boot/bootstrap-readiness/skroot_installer.source.diff": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\skroot_installer.source.diff",
+    "runtime/pro/boot/bootstrap-readiness/m053.patched.ll": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\m053.patched.ll",
+    "runtime/pro/boot/bootstrap-readiness/REVIEW.md": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\REVIEW.md",
+    "runtime/pro/boot/bootstrap-readiness/test_v2.py": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\test_v2.py",
+    "runtime/pro/boot/bootstrap-readiness/result_test.c": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\result_test.c",
+    "runtime/pro/authorization/su-isolation/stat-access/stat_uid_path.cpp": "C:\\MapleSU-Work\\helper-su-isolation\\stat-access\\stat_uid_path.cpp",
+    "runtime/pro/authorization/su-isolation/stat-access/build_stat.py": "C:\\MapleSU-Work\\helper-su-isolation\\stat-access\\build_stat.py",
+    "runtime/pro/authorization/su-isolation/stat-access/m084.patched.ll": "C:\\MapleSU-Work\\helper-su-isolation\\stat-access\\m084.patched.ll",
+    "runtime/pro/authorization/su-isolation/stat-access/m085.patched.ll": "C:\\MapleSU-Work\\helper-su-isolation\\stat-access\\m085.patched.ll",
+    "runtime/pro/authorization/su-isolation/stat-access/replay_codegen.py": "C:\\MapleSU-Work\\helper-su-isolation\\stat-access\\replay_codegen.py",
+    "runtime/pro/authorization/su-isolation/stat-access/test_codegen.cpp": "C:\\MapleSU-Work\\helper-su-isolation\\stat-access\\test_codegen.cpp"
+  },
+  "hotloadRepair": {
+    "schemaVersion": 1,
+    "deviceAcceptance": false,
+    "memberOrdinal": 53,
+    "candidateSha256": "1521791a303d618ff9d6fc62fd85e44b55e87588a8d2c990b7fc95c1e73ce211",
+    "actualHostCases": 23,
+    "hostResultPath": "D:\\Maple_Workflow\\MapleSU\\work\\su-entry-vivo-20261114-live\\helper-launch-candidate\\candidate-v2\\result-test.json",
+    "hostResultSha256": "1bcffb9c63e041bb652d6623e5e5c90d7791130cbc47aa8f1ab4b99d8bf2ad2d",
+    "beforeRestartResultRequired": true,
+    "completedAndSafeReceiptRequired": true
+  }
+}

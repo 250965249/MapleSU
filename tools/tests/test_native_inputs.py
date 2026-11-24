@@ -93,7 +93,6 @@ class NativeInputsTest(unittest.TestCase):
         project = self.root / "host"
         (project / "src").mkdir(parents=True)
         (project / "src/main.rs").write_text("", encoding="utf-8")
-        (project / "src/module_sync.rs").write_text("", encoding="utf-8")
         with patch.object(module_tools, "PROJECT", project), patch.object(module_tools, "ROOT", TOOLS.parent):
             with self.assertRaisesRegex(SystemExit, "dispatch"):
                 module_tools.verify_contract({})

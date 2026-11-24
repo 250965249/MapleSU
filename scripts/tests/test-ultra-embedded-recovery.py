@@ -5,7 +5,6 @@ import hashlib
 import json
 import os
 import subprocess
-import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -29,8 +28,8 @@ def main():
     java = Path(runtime['java']['path'])
     javac = java.with_name('javac.exe')
     host = Path(runtime['jar']['path'])
-    junit = list((Path(os.environ.get("GRADLE_USER_HOME", str(Path.home() / ".gradle"))) / "caches/modules-2/files-2.1").glob('junit/junit/4.13.2/*/*.jar'))
-    hamcrest = list((Path(os.environ.get("GRADLE_USER_HOME", str(Path.home() / ".gradle"))) / "caches/modules-2/files-2.1").glob('org.hamcrest/hamcrest-core/1.3/*/*.jar'))
+    junit = list(Path('C:/Users/Maple/.gradle/caches/modules-2/files-2.1').glob('junit/junit/4.13.2/*/*.jar'))
+    hamcrest = list(Path('C:/Users/Maple/.gradle/caches/modules-2/files-2.1').glob('org.hamcrest/hamcrest-core/1.3/*/*.jar'))
     assert len(junit) == len(hamcrest) == 1
     dependencies.extend([identity(junit[0]), identity(hamcrest[0])])
     compiler = next(Path(rec['path']) for rec in runtime['buildDependencies'] if 'kotlin-compiler-embeddable' in rec['path'])

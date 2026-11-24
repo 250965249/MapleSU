@@ -17,6 +17,7 @@
 | 阅读架构、依赖规则与代码来源构成 | [架构说明](ARCHITECTURE.md) · `python tools/check_architecture.py` |
 | 接入联想设备的 AVB 签名 | [联想 AVB 镜像签名](LENOVO_AVB_SIGNING.md) |
 | 维护原生后端与构建输入 | [后端依赖与维护](NATIVE_DEPENDENCIES.md) |
+| 接入源码 SDK 与重构后端 | [总需求与逐项验收](SDK-REFACTOR-REQUIREMENTS.md) · [Ultra init_boot 与 KMI 评估](ULTRA-INIT-BOOT-KMI-ASSESSMENT-2026-11-24.md) |
 | 运行自动检查 | [测试说明](TESTING.md) · 脚本与检查入口：[tools/](../tools/README.md) · [scripts/](../scripts/README.md) |
 | 准备一个发行版本 | [发布流程](RELEASING.md) |
 | 了解维护范围与接受条件 | [维护说明](MAINTENANCE.md) |

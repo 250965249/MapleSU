@@ -96,7 +96,7 @@ def main():
     assert all(identity(item['path']) == item for item in dependencies)
     compiler = next(item['path'] for item in runtime['buildDependencies'] if 'kotlin-compiler-embeddable' in item['path'])
     coroutines = next(item['path'] for item in runtime['buildDependencies'] if 'kotlinx-coroutines-core-jvm' in item['path'])
-    cache = (Path(os.environ.get("GRADLE_USER_HOME", str(Path.home() / ".gradle"))) / "caches/modules-2/files-2.1")
+    cache = Path('C:/Users/Maple/.gradle/caches/modules-2/files-2.1')
     junit = next(cache.glob('junit/junit/4.13.2/*/*.jar'))
     hamcrest = next(cache.glob('org.hamcrest/hamcrest-core/1.3/*/*.jar'))
     dependencies.extend([identity(junit), identity(hamcrest)])

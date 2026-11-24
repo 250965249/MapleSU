@@ -6,8 +6,6 @@ import os
 from pathlib import Path
 import subprocess
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
-from native_toolchain import android_jar, jdk_tool
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools/specgen"))
@@ -90,7 +88,7 @@ def main():
             base / "javac/debug/compileDebugJavaWithJavac/classes",
             base / "../../image-core/libs/image-core.jar",
             base / "../../installer-core/libs/installer-core.jar",
-            android_jar(),
+            Path("D:/Maple_Env/Android/Sdk/platforms/android-37.0/android.jar"),
             *map(Path, inputs["libraries"]),
             cached_jar("junit", "junit", "4.13.2"),
             cached_jar("org.hamcrest", "hamcrest-core", "1.3")]
@@ -100,7 +98,7 @@ def main():
         ("org.jetbrains", "annotations", "13.0"),
         ("org.jetbrains.kotlinx", "kotlinx-coroutines-core-jvm", "1.11.0")]]
     plugin = cached_jar("org.jetbrains.kotlin", "kotlin-serialization-compiler-plugin-embeddable", "2.4.20")
-    java_root = jdk_tool("java").parent
+    java_root = Path("C:/Program Files/Microsoft/jdk-21.0.12.101-hotspot/bin")
     classes, seam_classes, temp = out / "classes", out / "bundle-seam", out / "temp"
     for path in [classes, seam_classes, temp]:
         path.mkdir()

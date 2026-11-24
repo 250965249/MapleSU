@@ -9,8 +9,6 @@ import os
 from pathlib import Path
 import subprocess
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
-from native_toolchain import android_jar, jdk_tool
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -32,7 +30,7 @@ def main() -> int:
     product = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(product)
     jar = product.cached_jar
-    java = jdk_tool("java")
+    java = Path("C:/Program Files/Microsoft/jdk-21.0.12.101-hotspot/bin/java.exe")
     compiler = jar("org.jetbrains.kotlin", "kotlin-compiler-embeddable", "2.4.20")
     stdlib = jar("org.jetbrains.kotlin", "kotlin-stdlib", "2.4.20")
     annotations = jar("org.jetbrains", "annotations", "13.0")
@@ -41,7 +39,7 @@ def main() -> int:
         jar("org.jetbrains.kotlinx", "kotlinx-serialization-json-jvm", "1.11.0"),
         jar("org.jetbrains.kotlinx", "kotlinx-serialization-core-jvm", "1.11.0"),
         ROOT / ".tmp/p1-delivery-r7/gradle-build/image-core/libs/image-core.jar",
-        android_jar(),
+        Path("D:/Maple_Env/Android/Sdk/platforms/android-37.0/android.jar"),
         jar("junit", "junit", "4.13.2"), jar("org.hamcrest", "hamcrest-core", "1.3")]
     sources = sorted((ROOT / "manager/src/main/java/dev/maplesu/manager/ultrakernel").glob("*.kt"))
     sources += [ROOT / "manager/src/test/java/dev/maplesu/manager/ultrakernel" / (c + ".kt") for c in CLASSES]

@@ -6,10 +6,6 @@ import json
 import shutil
 import subprocess
 import time
-import os
-import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
-from native_toolchain import jdk_tool
 
 ROOT = Path(__file__).resolve().parents[2]
 OLD = ROOT / 'docs/dual-mode/impl/_work/2026-11-15-p2/evidence/embedded-real-lifecycle-r2/lifecycle/LIFECYCLE.json'
@@ -33,7 +29,7 @@ def main():
     args = parser.parse_args()
     args.out = args.out.resolve()
     args.out.mkdir(parents=True, exist_ok=False)
-    java = jdk_tool("java")
+    java = Path('C:/Program Files/Eclipse Adoptium/jdk-17.0.10.7-hotspot/bin/java.exe')
     harness = ROOT / 'scripts/tests/fixtures/InvalidAvbRealContainerMain.java'
     overlay = identity(WRITER)
     assert overlay['sha256'] == EXPECTED_WRITER and overlay['bytes'] == 169133

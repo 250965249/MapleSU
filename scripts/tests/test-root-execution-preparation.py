@@ -8,8 +8,6 @@ from pathlib import Path
 import re
 import subprocess
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
-from native_toolchain import jdk_tool
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools/specgen"))
@@ -318,7 +316,7 @@ class ModuleBootRootPreparationTest {
         ("org.jetbrains", "annotations", "13.0"), ("org.jetbrains.kotlinx", "kotlinx-coroutines-core-jvm", "1.11.0"),
         ("org.json", "json", "20240303"), ("junit", "junit", "4.13.2"), ("org.hamcrest", "hamcrest-core", "1.3")]]
     compiler = cached_jar("org.jetbrains.kotlin", "kotlin-compiler-embeddable", "2.4.20")
-    jdk = jdk_tool("java").parent
+    jdk = Path("C:/Program Files/Microsoft/jdk-21.0.12.101-hotspot/bin")
     classes = out / "classes"
     classes.mkdir(exist_ok=True)
     existing_java = ROOT / "manager/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes"

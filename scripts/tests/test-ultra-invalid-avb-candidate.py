@@ -5,10 +5,6 @@ import hashlib
 import json
 import shutil
 import subprocess
-import os
-import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
-from native_toolchain import jdk_tool
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -25,7 +21,7 @@ def main():
     parser.add_argument('--regressions', action='store_true', help='Run existing small component/metadata contracts too')
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=False)
-    java = jdk_tool("java")
+    java = Path('C:/Program Files/Eclipse Adoptium/jdk-17.0.10.7-hotspot/bin/java.exe')
     javac = java.with_name('javac.exe')
     names = ['AvbFooter', 'BootImageInspector', 'BootImageEquivalence', 'BootImageRebuilder', 'KernelIdentity']
     paths = [ROOT / 'image-core/src/main/java/dev/maplesu/image' / (name + '.java') for name in names]

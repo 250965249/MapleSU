@@ -6,9 +6,6 @@ import os
 from pathlib import Path
 import re
 import subprocess
-import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
-from native_toolchain import jdk_tool
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -21,7 +18,8 @@ def identity(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
-    parser.add_argument('--java', type=Path, default=jdk_tool("java"))
+    parser.add_argument('--java', type=Path, default=Path(
+        'C:/Program Files/Eclipse Adoptium/jdk-17.0.10.7-hotspot/bin/java.exe'))
     parser.add_argument('--suite', action='append')
     parser.add_argument('--sample', type=Path, action='append', default=[])
     args = parser.parse_args()

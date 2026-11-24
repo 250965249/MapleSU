@@ -95,7 +95,9 @@ The Normal backend has its own machine-checked boundary: `manager/src/ksu/java` 
 
 ### Two Kotlin namespaces
 
-- `com.sevenk.core` is the application shell inherited from 7kimisu: most Compose screens and components, navigation, themes, settings and data. MapleSU modifies and extends it.
+- `com.maplesu.core` is the application shell inherited from 7kimisu: most Compose screens and components, navigation, themes, settings and data. MapleSU modifies and extends it.
+
+  The manager's namespace, AIDL and JNI profile lookups use `com.maplesu.core`; its installed package stays `dev.maplesu.manager`. Legacy kernel data paths, external manager package names and foreign ramdisk markers keep their original values so upgrades and migration detection continue to work.
 - `dev.maplesu.manager` holds MapleSU's domain packages and its work-mode screens.
 
 Imports run in both directions today, so treat the split as origin, not as layering.
@@ -123,7 +125,7 @@ The smaller packages (`soter/`, `litehidden/`, `parasite/`, `pro/`) are describe
 - **Domain logic and orchestration** goes in `dev.maplesu.manager`. If it needs no Android API and no Manager state, put it in `image-core` or `installer-core`, where `python tools/check_host.py` can test it on a bare JDK.
 - **Native calls** extend an existing site: `manager/src/ksu/java` for Normal, `runtime/pro/bridge/NativeBridge.java` for the Ultra SDK, and the runtime JNI for SU execution. Do not add a library loader elsewhere; `native-boundary` fails if you do.
 - **App-facing API** goes in `client/`. Mirror any AIDL change in `manager/src/main/aidl`; `aidl-parity` fails otherwise.
-- **Screens** follow the screen they extend in `com.sevenk.core.ui`, or the work-mode screens in `workmode/`. Add Material and Miuix variants together, with English default strings and Simplified Chinese strings.
+- **Screens** follow the screen they extend in `com.maplesu.core.ui`, or the work-mode screens in `workmode/`. Add Material and Miuix variants together, with English default strings and Simplified Chinese strings.
 - **Third-party code** never gets copied into first-party packages. Add a pinned input with a record under `third_party/` and reach it through an existing adapter.
 - **Scripts and tools.** A repository-wide entry point or generator goes in `tools/` and gets a line in its README. Build, identity and regression work for the Ultra backend goes in `scripts/`, with tests in `scripts/tests/`. Do not rename, move or reformat a script that the SDK record pins; `pinned-scripts` fails if you do, and the pinned list is in `tools/check_architecture.py`.
 - **A new top-level directory** gets its own `README.md`, a row in the repository map above, and, if it is a Gradle module, a row in the module table.

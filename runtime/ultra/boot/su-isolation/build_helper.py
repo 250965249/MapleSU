@@ -2,14 +2,11 @@
 from pathlib import Path
 import argparse, hashlib, io, json, struct, subprocess, sys
 from elftools.elf.elffile import ELFFile
-import os
-sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "tools"))
-from native_toolchain import ndk_bin, ndk_home
 
-ROOT = Path(__file__).resolve().parents[4]
+ROOT = Path('D:/Maple_Workflow/MapleSU')
 HERE = Path(__file__).resolve().parent
 PIN = '02cf4ae01842dd34685c1300cc6316488a0304197faa1ff29e990cb50c611778'
-TOOLS = ndk_bin(ndk_home())
+TOOLS = Path('D:/Maple_Env/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin')
 sys.path.insert(0, str(ROOT/'scripts'))
 from policy_backend_identity import describe_backend, write_identity
 sha=lambda b:hashlib.sha256(b).hexdigest()
@@ -48,7 +45,7 @@ def main():
         assert name in exports and exports[name]['st_other']['visibility']=='STV_DEFAULT'
     commands=[]
     def run(name,*args):
-        argv=[str(TOOLS/(name + ('.exe' if os.name == 'nt' else ''))),*map(str,args)]
+        argv=[str(TOOLS/(name+'.exe')),*map(str,args)]
         result=subprocess.run(argv,capture_output=True,text=True,timeout=60)
         commands.append(dict(command=argv,exitCode=result.returncode,stderr=result.stderr))
         (out/'commands.json').write_text(json.dumps(commands,indent=2)+'\n')
