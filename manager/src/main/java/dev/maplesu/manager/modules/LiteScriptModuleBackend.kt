@@ -429,7 +429,7 @@ class LiteScriptModuleBackend @JvmOverloads constructor(
                 require(it.report.type == ModuleType.KERNEL_SU && snapshot(it.report).enabled && !state(it.report).remove) {
                     "The script module is disabled or pending removal."
                 }
-                check(owns(it.report)) { "MODULE_TREE_OWNER_CHANGED" }
+                check(canRun(it.report)) { "MODULE_TREE_OWNER_CHANGED" }
                 check(regular(File(tree(it.report), "action.sh"))) { "This module has no action script." }
                 check(taskKey(it.report, "action") !in scheduled) { "The module action is already running." }
                 scheduled.add(taskKey(it.report, "action"))
@@ -713,7 +713,7 @@ class LiteScriptModuleBackend @JvmOverloads constructor(
                 check(identityKey(report) !in installing) { "Module installation is running." }
                 check(current.report.sha256 == report.sha256) { "The module revision changed." }
                 check(sameTree(report, expectedTree)) { "MODULE_TREE_OWNER_CHANGED" }
-                check(if (stage == "uninstall") canRemove(report, state(report)) else owns(report)) {
+                check(if (stage == "uninstall") canRemove(report, state(report)) else canRun(report)) {
                     "MODULE_TREE_OWNER_CHANGED"
                 }
                 check(if (stage == "uninstall") state(report).remove else snapshot(report).enabled && !state(report).remove) {
@@ -1143,7 +1143,11 @@ class LiteScriptModuleBackend @JvmOverloads constructor(
     }
 
     private fun state(report: Report): LiteModuleRuntimeState {
-        val saved = LiteModuleRuntimeState.read(receipt(report))
+        // A module present on disk under /data/adb/modules (installed by another manager or
+        // before this backend ran) has no receipt yet. Treat that as a fresh state instead of
+        // failing the whole action with "Invalid module runtime receipt".
+        val saved = if (receipt(report).isFile) LiteModuleRuntimeState.read(receipt(report))
+        else LiteModuleRuntimeState(bootId())
         val removed = snapshot(report).removed
         return saved.copy(remove = removed,
             removeRequestedBootId = if (removed) saved.removeRequestedBootId ?: saved.installedBootId else null)
@@ -1293,12 +1297,27 @@ class LiteScriptModuleBackend @JvmOverloads constructor(
         (snapshot(report).revision.matches(Regex("[0-9a-f]{64}")) &&
             diskEntries[report.id]?.report?.sha256 == report.sha256)
     /** Marker edits are explicit user actions, not permission to replay retained scripts. */
-    private fun canManage(entry: ScriptEntry): Boolean = owns(entry.report) ||
-        (entry.disk && snapshot(entry.report).revision.isEmpty() && snapshot(entry.report).legacyTarget.isEmpty() &&
-            snapshot(entry.report).identity.matches(Regex("[0-9]+:[0-9]+")))
+    private fun canManage(entry: ScriptEntry): Boolean = owns(entry.report) || (entry.disk && foreignDisk(entry.report))
+    /**
+     * A tree this backend did not install.
+     *
+     * A module that already lives under /data/adb/modules - installed by KernelSU, by another
+     * manager, or before this backend ever ran - carries no MapleSU owner revision and no legacy
+     * target. Its tree identity (device:inode) is the only durable proof that the tree is still
+     * the one the user picked, and it is absent when the snapshot was taken by id only, so an
+     * empty identity is accepted while a present one must be well formed.
+     */
+    private fun foreignDisk(report: Report): Boolean {
+        val snap = snapshot(report)
+        return diskEntries[report.id]?.disk == true && snap.revision.isEmpty() && snap.legacyTarget.isEmpty() &&
+            (snap.identity.isEmpty() || snap.identity.matches(Regex("[0-9]+:[0-9]+")))
+    }
+    /** Running a module stage (including `action.sh`) is allowed for foreign disk trees too. */
+    private fun canRun(report: Report): Boolean = owns(report) || foreignDisk(report)
     private fun canRemove(report: Report, state: LiteModuleRuntimeState): Boolean = owns(report) ||
-        (state.remove && state.removalIdentity != null && state.removalIdentity == snapshot(report).identity &&
-            snapshot(report).revision.isEmpty() && snapshot(report).legacyTarget.isEmpty())
+        (state.remove && (state.removalIdentity == null || state.removalIdentity == snapshot(report).identity) &&
+            snapshot(report).revision.isEmpty() && snapshot(report).legacyTarget.isEmpty() &&
+            (snapshot(report).identity.isEmpty() || snapshot(report).identity.matches(Regex("[0-9]+:[0-9]+"))))
     private fun hasZygisk(report: Report) = snapshot(report).zygisk || hasZygiskPayload(report, emptyList())
     private fun tree(report: Report) = File(rootTrees.path(report.id))
     private fun legacyPaths(report: Report) = listOf(File(earlyRevisions, moduleKey(report)).absolutePath,
