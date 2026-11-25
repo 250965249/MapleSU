@@ -1,20 +1,42 @@
 """Prepare a reversible SU UID isolation integration overlay; never apply it."""
 from pathlib import Path
-import copy, hashlib, importlib.util, io, json, re, shutil, struct, subprocess, sys
+import argparse, copy, hashlib, importlib.util, io, json, re, shutil, struct, subprocess, sys
 from datetime import datetime, timezone
 from elftools.elf.elffile import ELFFile
-ROOT = Path('D:/Maple_Workflow/MapleSU')
-HERE = Path(__file__).resolve().parent
+REPO = Path(__file__).resolve().parents[4]
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--historical-root', type=Path, required=True, help='Frozen repository with runtime/pro and runtime/upstream-pro')
+parser.add_argument('--input-root', type=Path, required=True, help='Relocated historical external inputs named by the recipe')
+parser.add_argument('--inputs', type=Path, default=Path(__file__).resolve().parent, help='SU isolation stage with source-frozen-1449 and host results')
+parser.add_argument('--configuration', type=Path, default=Path(__file__).with_name('integration-inputs.json'))
+parser.add_argument('--helper-dir', type=Path)
+parser.add_argument('--ndk', type=Path)
+args = parser.parse_args()
+ROOT = args.historical_root.resolve()
+HERE = args.inputs.resolve()
+input_root = args.input_root.resolve()
+def input_path(value):
+    path = Path(value)
+    return path.resolve() if path.is_absolute() else (input_root / path).resolve()
 OUT = HERE / 'integration-final'
 OVERLAY = OUT / 'overlay'
 WRITTEN = set()
-HELPER_DIR = Path('C:/MapleSU-Work/helper-su-isolation')
-TOOLS = Path('D:/Maple_Env/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin')
-sys.path.insert(0, str(ROOT / 'scripts'))
+HELPER_DIR = args.helper_dir.resolve() if args.helper_dir else input_root / 'helper-su-isolation'
+sys.path.insert(0, str(REPO / 'tools'))
+from native_toolchain import ndk_home, ndk_bin, tool
+TOOLS = ndk_bin(ndk_home(args.ndk))
+SUFFIX = '.exe' if sys.platform == 'win32' else ''
+sys.path.insert(0, str(REPO / 'scripts'))
 from verify_sdk_member_diff import parse_ar, compare_members
 from policy_backend_identity import describe_backend
 sha = lambda b: hashlib.sha256(b).hexdigest()
 digest = lambda p: sha(p.read_bytes())
+configuration=json.loads(args.configuration.read_bytes())
+for named,expected in configuration.get('inputSha256',{}).items():
+    actual=input_path(named)
+    assert actual.is_file(), 'Missing historical input: '+str(actual)
+    assert digest(actual)==expected, 'Historical input SHA-256 mismatch: '+str(actual)
+
 def put(name, data):
     p = OVERLAY / name
     p.parent.mkdir(parents=True, exist_ok=True)
@@ -22,8 +44,8 @@ def put(name, data):
     WRITTEN.add(p)
     return p
 def jsonput(name, value): return put(name, (json.dumps(value, indent=2) + '\n').encode())
-def run(tool, *args):
-    r = subprocess.run([str(TOOLS/(tool+'.exe')), *map(str,args)],capture_output=True,text=True,timeout=60)
+def run(name, *args):
+    r = subprocess.run([str(tool(TOOLS,name+SUFFIX)), *map(str,args)],capture_output=True,text=True,timeout=60)
     assert r.returncode == 0, r.stdout + r.stderr
 spec=importlib.util.spec_from_file_location('upgrade',ROOT/'scripts/repair-pro-environment-upgrade.py')
 upgrade=importlib.util.module_from_spec(spec); spec.loader.exec_module(upgrade)
@@ -33,14 +55,13 @@ manifest=json.loads((prod/'SDK-RELEASE.json').read_bytes())
 basepath=prod/'lib/arm64-v8a/libkernel_module_kit_static.a'
 base=basepath.read_bytes()
 assert sha(base)=='f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5'
-configuration=json.loads((HERE/'integration-inputs.json').read_bytes()) if (HERE/'integration-inputs.json').is_file() else {}
-core=Path(configuration.get('coreArchive',HERE/'candidate/libkernel_module_kit_static.a'))
+core=input_path(configuration.get('coreArchive',HERE/'candidate/libkernel_module_kit_static.a'))
 assert digest(core)==configuration.get('coreArchiveSha256','5d36cbad542f588999e52d292e96c028d977ad8a65c6e25ecdb1052e7e61b825')
-helper_candidate=Path(configuration.get('helperCandidate',HELPER_DIR/'candidate-v2'))
+helper_candidate=input_path(configuration.get('helperCandidate',HELPER_DIR/'candidate-v2'))
 entry=json.loads((helper_candidate/'build.json').read_bytes())
 helper=(helper_candidate/'candidate-helper.elf').read_bytes()
 assert sha(helper)==entry['helperSha256']
-backendpath=Path(entry['backend']['path']); backend=backendpath.read_bytes()
+backendpath=input_path(configuration.get('backend',entry['backend']['path'])); backend=backendpath.read_bytes()
 assert digest(backendpath)==entry['backend']['sha256']
 before=parse_ar(str(basepath)); row=before['members'][52]
 oldobj=base[row['body_offset']:row['body_offset']+row['size']]
@@ -73,7 +94,7 @@ run('clang++','--target=aarch64-linux-android21','-std=c++17','-Oz','-fPIC','-fe
 archive=put('runtime/upstream-pro/lib/arm64-v8a/libkernel_module_kit_static.a',core.read_bytes())
 run('llvm-ar','rD',archive,member52,member255);run('llvm-ar','sD',archive)
 for ordinal,path in configuration.get('extraMembers',{}).items():
-    source=Path(path); target=OUT/before['members'][int(ordinal)]['name']
+    source=input_path(path); target=OUT/before['members'][int(ordinal)]['name']
     shutil.copyfile(source,target);run('llvm-ar','rD',archive,target)
 if configuration.get('extraMembers'): run('llvm-ar','sD',archive)
 after=parse_ar(str(archive)); delta=compare_members(before,after)
@@ -98,18 +119,18 @@ for name in ('test.cpp','run.py'):
     dest='runtime/pro/authorization/su-isolation/host-test/'+name
     put(dest,(HERE/'host-test'/name).read_bytes());sources[dest]=digest(HERE/'host-test'/name)
 for dest,path in configuration.get('extraSources',{}).items():
-    p=Path(path);put(dest,p.read_bytes());sources[dest]=digest(p)
+    p=input_path(path);put(dest,p.read_bytes());sources[dest]=digest(p)
 for name in ('runtime/pro/modules/module_control.cpp','runtime/pro/upgrade/sdk-m052.bc',
              'scripts/repair-pro-environment-upgrade.py','scripts/sync-pro-sdk-identity.py'):
     sources[name]=digest(ROOT/name)
 put('runtime/pro/modules/module_gate_identity.h',header.encode());sources['runtime/pro/modules/module_gate_identity.h']=sha(header.encode())
-err_header=Path(configuration.get('errorHeader',prod/'include/module_err_def.h'))
+err_header=input_path(configuration.get('errorHeader',prod/'include/module_err_def.h'))
 sources['runtime/upstream-pro/include/module_err_def.h']=digest(err_header)
 put('runtime/upstream-pro/include/module_err_def.h',err_header.read_bytes())
 dest='runtime/pro/authorization/su-isolation/integrate_sdk.py';put(dest,Path(__file__).read_bytes());sources[dest]=digest(Path(__file__))
-if (HERE/'integration-inputs.json').is_file():
+if args.configuration.is_file():
     dest='runtime/pro/authorization/su-isolation/integration-inputs.json'
-    put(dest,(HERE/'integration-inputs.json').read_bytes());sources[dest]=digest(HERE/'integration-inputs.json')
+    put(dest,args.configuration.read_bytes());sources[dest]=digest(args.configuration)
 earliest=parse_ar(str(prod/'maintenance/baseline/libkernel_module_kit_static.a')); count=earliest['member_count']
 full=compare_members(earliest,dict(after,members=after['members'][:count],member_count=count))
 full['added']=[dict(ord=m['ord'],name=m['name'],candidateSha256=m['sha256']) for m in after['members'][count:]]
@@ -128,7 +149,9 @@ release['moduleControl'].update(helperSha256=sha(helper),helperNormalizedSha256=
 for r in release['repairs']:
     if r['memberOrdinal'] in {x['ord'] for x in delta['changed']}: r['sha256']=after['members'][r['memberOrdinal']]['sha256']
 if configuration.get('hotloadRepair'):
-    release['bootstrapReadinessRepair']=configuration['hotloadRepair']
+    host_result=input_path(configuration['hotloadRepair']['hostResultPath'])
+    assert digest(host_result)==configuration['hotloadRepair']['hostResultSha256']
+    release['bootstrapReadinessRepair']=dict(configuration['hotloadRepair'],hostResultPath=str(host_result))
     release['bootstrapReadinessRepair']['memberSha256']=after['members'][53]['sha256']
     release['bootstrapReadinessRepair']['errorName']='ERR_BOOTSTRAP_NOT_READY'
     release['bootstrapReadinessRepair']['errorCode']=-21002

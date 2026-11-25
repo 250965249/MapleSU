@@ -1,5 +1,7 @@
 ## 2026-11-21 原机源码回放与限定完整链接增量（2026-11-21T18:36:00.548204+00:00）
 
+公开快照约定：`WORKSPACE` 为源码工作区占位，`WORKSPACE_BUILD_PRESERVE` 为独立构建证据目录占位，`SERIAL` 为测试设备序列号占位；私有证据按原路径后缀定位。
+
 新源码已在原设备UID2000完成8原包两模式16次解析：旧源码14/16，新源码16/16，三个中文路径实际提取通过，原包SHA及前后boot `7ff19abb-1fa2-4552-b844-147eedef0e28`保持。Root、真实模块安装、脚本和生产控制写入均0。该证据为真实Java parser及extract逐字函数端口；已安装r23产品尚未变化，其实际parser14/16失败记录继续保留，不结算产品或模块生命周期通过。首轮系统Killed/exit137原因未定、空列表夹具断言纠正及原失败收据均保留。
 
 主线已核前像采用resident条件下的 `native_imports.c/h`，采用收据为 `provider-registry-intake-main7/TYPED-IMPORT-ADOPTED.json`。新限定完整模块链接通过：44个r6冻结对象加两个新目标TU，实际模块链接、严格modpost、`.mod.o`、`.ko`及ARM64 postlink均通过；baseline裸 `__module_address` 被严格modpost准确拒绝，最终get/put为真实T定义、五个wait CRC与目标匹配。最终ko SHA `729ac2b6f8379598deeae36adde474ab809e3428ae01bc49d922bd8ca155c018`。这不是全源clean或产品Release；运行时binder、PUBLISH及原机发布未验，PUBLISH gate仍0。
@@ -116,7 +118,7 @@ r21续建114 tasks（21执行/93复用）成功，首次磁盘失败及损坏exe
 
 ## 2026-11-21 14:32 UTC 原机ART回归32/0
 
-恢复迁移相关32项测试已在原机a261972a的Android ART执行，32/0、UID10524、Root调用0；覆盖确切归档优先于旧嵌入inverse、额外kernel改动拒绝、未知镜像继续严格失败、元数据损坏拒绝、原输入不变及现有恢复/升级识别。此为当前生产源码编译的源测试APK，不冒充已安装Manager或完整内核写入/Ready验收。r20原生产恢复方法也在同机直接复现CURRENT_MISMATCH，设备红例保留。
+恢复迁移相关32项测试已在原机SERIAL的Android ART执行，32/0、UID10524、Root调用0；覆盖确切归档优先于旧嵌入inverse、额外kernel改动拒绝、未知镜像继续严格失败、元数据损坏拒绝、原输入不变及现有恢复/升级识别。此为当前生产源码编译的源测试APK，不冒充已安装Manager或完整内核写入/Ready验收。r20原生产恢复方法也在同机直接复现CURRENT_MISMATCH，设备红例保留。
 
 初轮r21 release在Gradle持久缓存写入遇D盘空间耗尽，原raw失败及wrapper收据写入errno28（空文件）保留；未通过产物不安装。空间已回升，复用已编译输出继续同源构建，内核更新将继续走生产事务。新JUnit用例首轮有目标输出预先存在的测试接线错误，已定向修正；独立当前源码主机32/0及旧排序红例通过。源绑定与首次失败均单独记账。
 
@@ -181,7 +183,7 @@ Root accessor 与 caps 偏移复用已进入真实 r12 同代 SDK/helper/backend
 已按固定基线精确采用 Root accessor 候选，生产 resolver SHA256 `447cbc52384964b58945492c4a6ace8f6f8d2d021ab3d21e91ff709afaa5ca23`。受限 sysfs 的五字段 Root 入口不先搬运完整内核 BTF；可读 sysfs、已有有效内存 BTF 及通用消费者的权威/错误语义保留。当前生产源码重新编译的16场景 ASan/UBSan 通过，见 `.tmp/main-rootpanic-resume-20261121/generation-r11/direct-validation/RESULT.json`。
 
 - 源码/产品：resolver 已采用；r11 SDK `maplesu-ultra-source-cbff87f0b5ab5332` 已由完整 producer/review/stage 产出，helper/backend/payload 同代；APK 正在既有生产 Gradle release 构建。原 raw member 比较 exit7 与25 partial仍保原边界，未记成正式全部通过。
-- 设备：原机 a261972a/6.6.89/4KB/_a 保原数据。单成员隔离诊断首次仍302220us超时；定向共享函数计数一次297802us完整回读、UID/EUID0，READ高层请求29次/354B。该诊断有边界计数，不作为最终时延验收。
+- 设备：原机 SERIAL/6.6.89/4KB/_a 保原数据。单成员隔离诊断首次仍302220us超时；定向共享函数计数一次297802us完整回读、UID/EUID0，READ高层请求29次/354B。该诊断有边界计数，不作为最终时延验收。
 - 后继修复：定位到 `PatchCurrent::set_current_caps` 重复获取已由 PatchBase 携带的 cap_inheritable 偏移，重新进入通用BTF解析。隔离候选复用该输入，真实 m072 的35检查原像5失败/后像全过，NDK通过；两成员隔离无计数实测219556us完整回读1586520B、rootVerified/receiptComplete/streamEof为true、childStatus0。候选尚未进入r11 APK，不把隔离结果算Manager完整Ready或目标应用SU通过。
 - 现场/备份：六镜像位于 `[private-evidence]/maplesu-rootpanic-resume-product-20261121/device-pre-191c120f/`，压缩与解压摘要/长度均重验；原授权/设置备份沿 `device-r8/AUTH-BACKUP.json` 重新验证，未输出内容。此次boot仍30145d80，未发重启/分区写。旧9490完整dump与07:38仅日志现场分开，Panic未修复结算。
 
@@ -197,7 +199,7 @@ Root accessor 与 caps 偏移复用已进入真实 r12 同代 SDK/helper/backend
 
 最终六 family native 编译及三份 support 构建成功；6.6/6.12 reference ABI、目标布局/函数及 KCFI 有相应证据，其他 family 的 BTF/ABI/legacy CFI/6.18 reference 缺口继续阻止资格提升。最终组合使用 resident v2 专用 bootstrap1452B、permissions788B、materializer1968B；旧正式 v1 assets 与 Key/v2 wire 保留。15/15 受影响镜像实际通过生成、独立完整 kernel 回读、同版幂等、自有记录恢复及 BlockDeviceTransaction commit→readback→restore（14 个 Boot_Research boot 加 1 个匹配设备历史 base）。26 行总账中的 11 个前置失败明确复用上一轮收据：4 个 reference 不完整、6 个独立 init_boot 缺 bridge producer、1 个 NGKI family 缺 producer；不是本次新增通过。源码与全部输入前后相同。
 
-设备 a261972a 重连后的固定只读采集成功，Manager 摘要前后一致、独立 probe 已恢复；该机未提供 kernel_page_tables/PTDUMP，未刷入或启动新 resident kernel。本机基线候选已生成不等于 OEM 原厂真实性、AVB 启动资格或硬件救援已证。完整发布还需页权限/生命周期/安装撤销实机证据、同代 SDK/helper/APK、三模式真实 SU 和 150ms/300ms 验收；PMS 内存提交早于 VFS 事件的撤销窗口及资格迁移仍留账。当前正式 Pro assets 未提升，TRUST-02 不新增完整勾选。用户已撤销旧停止记录作为本轮停止依据；历史事件保留，本轮没有新增工具拒绝。
+设备 SERIAL 重连后的固定只读采集成功，Manager 摘要前后一致、独立 probe 已恢复；该机未提供 kernel_page_tables/PTDUMP，未刷入或启动新 resident kernel。本机基线候选已生成不等于 OEM 原厂真实性、AVB 启动资格或硬件救援已证。完整发布还需页权限/生命周期/安装撤销实机证据、同代 SDK/helper/APK、三模式真实 SU 和 150ms/300ms 验收；PMS 内存提交早于 VFS 事件的撤销窗口及资格迁移仍留账。当前正式 Pro assets 未提升，TRUST-02 不新增完整勾选。用户已撤销旧停止记录作为本轮停止依据；历史事件保留，本轮没有新增工具拒绝。
 
 本轮精确源码、实际选源及验证收据见 `持久交付账`（开发证据未随公开快照分发：`parallel/2026-11-17/evidence/mainline-integration/trust02-p2-resident-20261118/DELIVERY.json`）；P5–P7 据此继续消费者、完整免 Key 和兼容资格迁移。以下各时点记录保留其原范围。
 
@@ -488,9 +490,9 @@ Normal run44074782699的source与package成功，原run44069942181的八组LKM�
 | [ ] | CASE-17 | 指定KSU模块安装/运行/卸载失败，Zygisk-Next安装遇nsfs策略错误 | 以补充评估中的7个用户原包及3张截图为固定回归材料，同原包/目标策略/参数对照选定官方KSU实际实现，覆盖ZIP结构、安装环境、脚本阶段、SELinux规则解析/应用、完整回执、开机运行、禁用、更新、卸载与开机收尾。截图中的Zygisk Next 1.5.3原包另行取得并核对版本/哈希，定制包不替代；追踪target type nsfs does not exist与validation_failed的首个因果分支，不伪造类型、全局放宽策略或强改非零结果。脚本退出137需实际终止证据，不预设原因。关联MOD-02/03/05/06/07/09、CASE-11/12、OWN-04、FINAL-09。 | 存在阻塞：七原包/截图、策略/pending/结果修复主线；指定Zygisk原包缺失及真实nsfs首因/修复尚未闭合。 验收缺口：指定Zygisk Next1.5.3原包/SHA；目标nsfs/validation_failed首个因果分支及对应修复；137真实终止证据，不预设OOM；七原包完整开机/更新/禁卸设备。 |
 | [ ] | CASE-18 | 月虹等模块在Ultra打开WebUI闪退，部分设备兼容性差 | 固定月虹一键隐藏v5.5.7与月虹游戏助手v1.4.7原包，针对截图LocalNavigator not provided保留APK/R8映射与完整栈，验证主题/导航上下文、Activity与WebView生命周期及实际模块路由，再修对应源码。允许在保持UI布局、模块资源/JS/命令桥/origin/生命周期契约的前提下采用可靠宿主；脚本AssetLoader与原生HTTP路径分别验收。覆盖目标设备/System WebView、主题、冷/暖打开、返回、旋转、进程重建和模块更新/卸载，不以页面出现或HTTP探活单独判通过。除两个月虹故障外，所有WebUI形式、内联打开与KSU完整调用方式另按MOD-10逐项验收，不将单宿主或单模块通过扩大为全部兼容。关联CASE-13、MOD-04/10、API-03、FINAL-09。 | 已实现待设备验证：LocalNavigator/打开回收候选、两宿主/身份/回调/HTTP Insets已主线。 验收缺口：两个月虹固定原包在vivoV2507A/Android15/对应WebView；失败APK/R8/fullstack和主题导航根因匹配；冷暖返回旋转重建/更新卸载与资源命令交互；MOD-10全部宿主另验。 |
 | [ ] | CASE-19 | iQOO 15越狱模式SU入口未就绪，需验证根因修复能扩展至其他设备 | 明确iQOO 15为待实测目标，记录设备/固件/内核/ABI与实际APK/SDK身份，复现provider→gate→carrier/lease→SDK→UID/SU与模块操作；验收首次进入、冷启动、Manager关闭/重建、授权/撤权和真实32/64位应用传统su执行。修复通用通道根因后按其他设备/内核组合复核，不硬编码机型、不强置Ready，不把用户期望或其他设备结果当作iQOO 15已通过。关联JB-01/02/03、CASE-10g/14、SU-01/03/04、FINAL-09。 | 存在阻塞：通用越狱provider/lease/SU入口已有实现；iQOO15是具体待实测目标，专属根因/扩展效果未闭环；本轮仅源码事实，不继承PLQ110或其他设备结果为iQOO15成功；无iQOO15实际UID/传统su/模块收据；未完成：iQOO15设备/固件/kernel/ABI及真实APK/SDK身份；同次provider→gate→lease/carrier→SDK→UID/SU/模块复现；首次进入/冷启动/Manager关闭重建/授权撤权；真实32/64app su命令与交互；通用修复后其它设备组合 |
-| [ ] | CASE-20 | Tenc🎮 游戏优化助手-C版_Log测试版在Ultra模式完全不生效 | 固定用户原包D:/Maple_Workflow/MapleSU/Log_Reference/11.14/Module/Tenc🎮 游戏优化助手-C版_Log测试版.zip，module.prop id=Tenc-ano_tmp，SHA-256=d60a337bac49c7b74f1d81d5f0f5f6285c9f68f44a9c54f56263ddb1222c319c。从ZIP安装/目标目录、post-fs-data/service与Manager未打开时的开机执行，追踪真实UID/能力、配置读取、ABI/子进程、文件访问、声明的策略规则、SDK/bridge回执及WebUI操作到实际结果，复现并修复首个功能分歧；按原包配置逐项核验实际效果，覆盖目标多用户/分身及已声明支持范围。记录模块日志原始错误，不把安装成功、脚本返回0或后台进程存在当作生效。验证冷启动、重启、更新/启禁、内联/独立WebUI与设置持久化、卸载及开机收尾；保留UI、原模块契约与Ultra环境边界，不以额外全局策略放宽、盲重试或假成功替代修复。关联MOD-02/04/05/06/09/10、CASE-11/12/15/17/18、FINAL-09；原包静态盘点见补充评估M08，当前无设备生效证据。 | 尚未实施：M08精确原包/配置/ARM64能力已盘点；真实功能分歧根因/对应实现尚未实施。 验收缺口：固定原包开机UID/能力/配置/ABI/子进程/文件策略首错与修复；真实配置各项效果/多用户分身支持；无Manager冷启动/重启/更新启禁/WebUI设置/卸载收尾。 |
+| [ ] | CASE-20 | Tenc🎮 游戏优化助手-C版_Log测试版在Ultra模式完全不生效 | 固定用户原包WORKSPACE/Log_Reference/11.14/Module/Tenc🎮 游戏优化助手-C版_Log测试版.zip，module.prop id=Tenc-ano_tmp，SHA-256=d60a337bac49c7b74f1d81d5f0f5f6285c9f68f44a9c54f56263ddb1222c319c。从ZIP安装/目标目录、post-fs-data/service与Manager未打开时的开机执行，追踪真实UID/能力、配置读取、ABI/子进程、文件访问、声明的策略规则、SDK/bridge回执及WebUI操作到实际结果，复现并修复首个功能分歧；按原包配置逐项核验实际效果，覆盖目标多用户/分身及已声明支持范围。记录模块日志原始错误，不把安装成功、脚本返回0或后台进程存在当作生效。验证冷启动、重启、更新/启禁、内联/独立WebUI与设置持久化、卸载及开机收尾；保留UI、原模块契约与Ultra环境边界，不以额外全局策略放宽、盲重试或假成功替代修复。关联MOD-02/04/05/06/09/10、CASE-11/12/15/17/18、FINAL-09；原包静态盘点见补充评估M08，当前无设备生效证据。 | 尚未实施：M08精确原包/配置/ARM64能力已盘点；真实功能分歧根因/对应实现尚未实施。 验收缺口：固定原包开机UID/能力/配置/ABI/子进程/文件策略首错与修复；真实配置各项效果/多用户分身支持；无Manager冷启动/重启/更新启禁/WebUI设置/卸载收尾。 |
 
-2026-11-15追加回归材料与可行性：详见`模块、WebUI、Busy、安全模式及镜像支持补充评估`（开发证据未随公开快照分发：`D:/Maple_Workflow/MapleSU/docs/SDK-REFACTOR-REGRESSION-SUPPLEMENT.md`），含7个原包、3张截图的SHA-256、源码核对点、init_boot与Linux 4.x的条件及设备缺口。原包已盘点、截图已保存；仅取得静态证据，不构成功能修复或实机通过。
+2026-11-15追加回归材料与可行性：详见`模块、WebUI、Busy、安全模式及镜像支持补充评估`（开发证据未随公开快照分发：`WORKSPACE/docs/SDK-REFACTOR-REGRESSION-SUPPLEMENT.md`），含7个原包、3张截图的SHA-256、源码核对点、init_boot与Linux 4.x的条件及设备缺口。原包已盘点、截图已保存；仅取得静态证据，不构成功能修复或实机通过。
 
 2026-11-15追加案例证据：用户截图中“伪装DrmID v1.0.0”模块划线并显示“将在下次重启时卸载”；截图仅证明当时的待卸载界面状态。重启后持续残留、Ultra卸载失败和WebUI打不开为用户报告，待按失败原包取得对应SDK/交付物/设备证据后确认根因。
 

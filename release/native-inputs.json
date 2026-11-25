@@ -19037,8 +19037,8 @@
     },
     {
       "path": "runtime/ultra/authorization/su-isolation/host-test/run.py",
-      "bytes": 2248,
-      "sha256": "cfad7fa91844edb88430679533e518e03e0981694941e4fd7c871b7b056b1504"
+      "bytes": 2588,
+      "sha256": "d69b4ae2123a157a48b65b14d208aab7af9a745be5045c12c22f1b421fd430fd"
     },
     {
       "path": "runtime/ultra/authorization/su-isolation/host-test/test.cpp",
@@ -19142,13 +19142,13 @@
     },
     {
       "path": "runtime/ultra/boot/su-isolation/CMakeLists.txt",
-      "bytes": 248,
-      "sha256": "cf9d755f019064ffda47350d724afbdfba5ba2955ee29394f8aec09c39219c94"
+      "bytes": 249,
+      "sha256": "b75baf04932f8267adb3df99dd24fd299ef899b1038ad8996a4f97df4045e516"
     },
     {
       "path": "runtime/ultra/boot/su-isolation/build_helper.py",
-      "bytes": 9229,
-      "sha256": "c9725e083bbb70936327201ef9dcc267e241b793b16c7dec568f82bb7b05ca7c"
+      "bytes": 9483,
+      "sha256": "39d85635052ac59274418afacbc89c245146177781e9948b4499c312701263c4"
     },
     {
       "path": "runtime/ultra/boot/su-isolation/helper_su_backend.cpp",
@@ -19496,6 +19496,11 @@
       "sha256": "9855da8d30f8173a1dea8ba84052a74524d6f3b6656ee8a5033d238146ee950a"
     },
     {
+      "path": "scripts/build-ultra-policy-entry.py",
+      "bytes": 10232,
+      "sha256": "d168e546e24cdbb22607da85208b533dba5d01727d91c9b4cd7edbfbfa4ba024"
+    },
+    {
       "path": "scripts/package-ultra-memory-protection.py",
       "bytes": 10471,
       "sha256": "b771ac2c8859b947c1c0523191cb5e5f5539bf5d57c2062a47723bea22ea3be7"
@@ -19504,6 +19509,11 @@
       "path": "scripts/policy_backend_delivery.py",
       "bytes": 25380,
       "sha256": "b5fd5966999c0d4c8a944b8943cf93e4e18de0ac2f4af15eed26d605a5b2ef0f"
+    },
+    {
+      "path": "scripts/policy_backend_identity.py",
+      "bytes": 2251,
+      "sha256": "f66a5cf85169d738920d0c9def8006d265a62952a47292e1e588b028a0fc1d6c"
     },
     {
       "path": "scripts/policy_config_declarations.py",
@@ -19521,9 +19531,34 @@
       "sha256": "bd6a4a6e261907817c03a39f8d53ee2731e088e792cb9090e0aca3cfd79a010e"
     },
     {
+      "path": "scripts/rebind-ultra-policy-backend.py",
+      "bytes": 11292,
+      "sha256": "b242bb9ac8cd1a6d67bf82e31129b5147a603996159e10ac5a6dee03c8173382"
+    },
+    {
+      "path": "scripts/repair-ultra-boot-lifecycle.py",
+      "bytes": 12924,
+      "sha256": "ed2384e28881d85ea47875b6ceac5a6bcdd26292a4af22ca982110c28d9e3392"
+    },
+    {
+      "path": "scripts/repair-ultra-environment-state.py",
+      "bytes": 9576,
+      "sha256": "16fa72929fced0e2540ff71890abbc5e16b457f822cfae970e95eb97871ede57"
+    },
+    {
       "path": "scripts/repair-ultra-environment-upgrade.py",
       "bytes": 9767,
       "sha256": "cf5e1fb977be655321363b10f77b2b20903917cf79a9d7ed9ebff1defeabba95"
+    },
+    {
+      "path": "scripts/repair-ultra-request-context.py",
+      "bytes": 16061,
+      "sha256": "6bc78b10f82bea84c1b4ecf74a44af27557d53ca72da5e37e53095f014bccd14"
+    },
+    {
+      "path": "scripts/repair-ultra-request-reply.py",
+      "bytes": 11884,
+      "sha256": "b405b978a9509ad0034e99f65c831bf5387572cb9fa370153e8c705a892f46e3"
     },
     {
       "path": "scripts/repair-ultra-su-authorization.py",

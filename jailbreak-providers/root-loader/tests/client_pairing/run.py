@@ -15,6 +15,9 @@ import sys
 from unicorn import Uc, UC_ARCH_ARM64, UC_MODE_ARM, UC_HOOK_CODE, UC_HOOK_MEM_WRITE
 from unicorn import arm64_const as R
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "tools"))
+from native_toolchain import ndk_bin, ndk_home
+
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
@@ -221,12 +224,11 @@ class Target:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--ndk-compiler", type=Path, default=Path(
-        "D:/Maple_Env/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe"))
+    parser.add_argument("--ndk-compiler", type=Path, default=None)
     args = parser.parse_args()
+    if args.ndk_compiler is None:
+        args.ndk_compiler = ndk_bin(ndk_home()) / ("clang.exe" if os.name == "nt" else "clang")
     out = args.out.resolve()
-    if out.drive.upper() != "C:":
-        parser.error("generated files must be on C:")
     out.mkdir(parents=True, exist_ok=True)
     source_root, build = out / "source", out / "build"
     source_root.mkdir(exist_ok=True)

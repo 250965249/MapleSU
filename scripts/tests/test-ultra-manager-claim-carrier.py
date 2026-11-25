@@ -10,7 +10,7 @@ import subprocess
 import sys
 import zlib
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 WORK = ROOT / 'work/ultra-native-manager-claim-20261113'
 SERIES = {'5.10': 'android12-5.10', '5.15': 'android13-5.15', '6.1': 'android14-6.1',
           '6.6': 'android15-6.6', '6.12': 'android16-6.12', '6.18': 'android17-6.18'}

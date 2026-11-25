@@ -1,21 +1,33 @@
 """Add a HotLoad result channel to the frozen isolated v1 installer IR."""
 from pathlib import Path
+import argparse
 import difflib
 import hashlib
 import io
 import json
 import subprocess
+import sys
 from elftools.elf.elffile import ELFFile
 
+REPO = Path(__file__).resolve().parents[4]
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--root', type=Path, default=REPO)
+parser.add_argument('--v1', type=Path, required=True, help='Frozen isolated v1 installer directory')
+parser.add_argument('--ndk', type=Path)
+args = parser.parse_args()
 OUT = Path(__file__).resolve().parent
-V1 = OUT.parent
-ROOT = V1.parents[2]
-TOOLS = Path('D:/Maple_Env/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin')
+V1 = args.v1.resolve()
+ROOT = args.root.resolve()
+sys.path.insert(0, str(REPO / 'tools'))
+from native_toolchain import ndk_home, ndk_bin, tool
+TOOLS = ndk_bin(ndk_home(args.ndk))
+SUFFIX = '.exe' if sys.platform == 'win32' else ''
+
 commands = []
 sha = lambda b: hashlib.sha256(b).hexdigest()
 
 def run(name, *args):
-    command = [str(TOOLS / (name + '.exe')), *map(str, args)]
+    command = [str(tool(TOOLS, name + SUFFIX)), *map(str, args)]
     r = subprocess.run(command, capture_output=True, text=True)
     commands.append(dict(command=command, exitCode=r.returncode, stdout=r.stdout, stderr=r.stderr))
     (OUT / 'commands.json').write_text(json.dumps(commands, indent=2) + '\n')

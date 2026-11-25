@@ -10,12 +10,12 @@ import zlib
 import subprocess
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 SOURCES = [
     "runtime/ultra/identity/kernel/manager_claim_loader.c",
     "runtime/ultra/identity/kernel/manager_claim_loader.h",
     "runtime/tests/ultra_manager_claim_loader_test.c",
-    "scripts/test-ultra-manager-claim-loader.py",
+    "scripts/tests/test-ultra-manager-claim-loader.py",
 ]
 
 
@@ -266,7 +266,7 @@ ld.lld -shared --entry=msu_manager_claim_materialize -Bsymbolic --strip-debug -z
 llvm-objcopy -O binary --only-section=.text /case/loader.so /case/loader.text.bin
 llvm-objdump -d /case/loader.so > /case/loader.disasm.txt
 clang -Os -ffreestanding -fno-builtin -fno-stack-protector -fPIC -shared -Wall -Wextra -Werror "$P" -o /case/loader-host.so
-python3 /repo/scripts/test-ultra-manager-claim-loader.py --inside --build /case CARRIERS
+python3 /repo/scripts/tests/test-ultra-manager-claim-loader.py --inside --build /case CARRIERS
 clang -std=c11 -O1 -g -Wall -Wextra -Werror -fno-omit-frame-pointer -fsanitize=address,undefined -fno-sanitize-recover=all "$P" /repo/runtime/tests/ultra_manager_claim_loader_test.c -o /case/loader-sanitized.test
 /case/loader-sanitized.test /case/compact-replay.tsv
 FULL_REPLAY

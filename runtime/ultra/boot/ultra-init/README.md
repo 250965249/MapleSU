@@ -7,7 +7,7 @@
 `build.py` 使用显式指定的现有 NDK、CMake 和 Ninja，在新建的独立输出目录编译本目录实际 C 源并生成 `ULTRA-INIT-BUILD.json`；已存在目录保持原样并报错，避免失败后遗留旧成功回执。输出仍是静态第一阶段入口，不包含内核桥或设备资格。
 
 ```powershell
-python runtime/ultra/boot/ultra-init/build.py --ndk D:/Maple_Env/Android/Sdk/ndk/26.1.10909125 --cmake D:/Maple_Env/Android/Sdk/cmake/3.22.1/bin/cmake.exe --ninja D:/Maple_Env/Android/Sdk/cmake/3.22.1/bin/ninja.exe --build-dir .tmp/ultra-init-build
+python runtime/ultra/boot/ultra-init/build.py --ndk "$env:ANDROID_HOME/ndk/26.1.10909125" --cmake "$env:ANDROID_HOME/cmake/3.22.1/bin/cmake.exe" --ninja "$env:ANDROID_HOME/cmake/3.22.1/bin/ninja.exe" --build-dir .tmp/ultra-init-build
 ```
 
 产物 `maplesu-ultra-init` 经同一入口检查 ELF64/AArch64、静态依赖、文件/内存边界、入口、不可执行栈、W^X 及 4K/16K/64K 映射；这些检查不执行目标程序。主 runtime CMake 显式提供同名 `EXCLUDE_FROM_ALL` 子目标，默认 SDK/APK 构建不自动打包它。ramdisk producer 必须同时取得正常加载的同代桥与真实目标合同，才可使用该入口。
@@ -24,12 +24,14 @@ rename 失败时备份与 `/init` 仍同处根目录，原 symlink 的 parent �
 
 ## 历史 R23 验证范围
 
+`WORKSPACE/` 链接指向开发者保留的历史证据目录，未随公开源码分发。
+
 以下只记录 R23 当时的源与产物，当前修改另取本轮验证结果。
 
 Android ARM64 的独立 CMake 项目提供 `EXCLUDE_FROM_ALL` 目标 `maplesu-ultra-init`，链接选项为 `-static -Wl,--no-undefined -Wl,-z,max-page-size=65536`。R23 使用 CMake 3.22.1、NDK 26.1.10909125、API31 构建过该独立目标。初代 16K/64K 对齐缺陷经 linker flag 修正后仅重链接，两份 C 对象未变；最终 ELF 无 PT_INTERP/DT_NEEDED，四个 PT_LOAD 均为 65536 对齐，三种页大小的同余、映射区间和 W^X 检查通过。这是静态格式证据，实际 loader 和各页大小设备启动仍待验证。未 strip 产物 3,179,928 B，strip-only 参考产物 436,064 B；后者未进入 ramdisk，不代表最终压缩占用。R23 时主 runtime、Manager、ksud 和镜像 producer 均未接入此目录，配套桥、打包和冷启动尚未闭合。
 
 最少 Linux host seam 已提供，可显式设置 `MAPLESU_ULTRA_INIT_HOST_TESTS=ON` 后构建并运行 `maplesu-ultra-init-handoff-test`。R23 实际使用对应选项的直接 cc 命令编译/运行一次，没有执行 host CMake 目标。十个场景覆盖正常、模块缺失、加载错误、close 错误、双错 errno/诊断顺序、rename 失败、exec EINTR、两条路径的永久 exec 失败和非 PID1，验证 argv/envp 原指针与内容。所有生产 OS 调用由 wrapper 接管，没有实际改 `/init`、加载模块或执行程序；CMake 页对齐修正后没有重复 host 测试。
 
-已归档证据：[R23 验证报告](/D:/Maple_Workflow/MapleSU/docs/dual-mode/impl/_work/2026-11-16/evidence/source-continuation-r23/REPORT.md)、[最终摘要](/D:/Maple_Workflow/MapleSU/docs/dual-mode/impl/_work/2026-11-16/evidence/source-continuation-r23/FINAL-SUMMARY.json)。静态运行库/头输入记录不是每个归档成员的完整 link map。当前桥来源、目标正常加载合同和 producer 集成缺口见 [R26 闭包评估](/D:/Maple_Workflow/MapleSU/docs/dual-mode/impl/_work/2026-11-16/evidence/source-continuation-r25-r26/ultra-init-closure/REPORT.md)；R26 只更新文档，没有追加编测或设备证据。
+已归档证据：[R23 验证报告](WORKSPACE/docs/dual-mode/impl/_work/2026-11-16/evidence/source-continuation-r23/REPORT.md)、[最终摘要](WORKSPACE/docs/dual-mode/impl/_work/2026-11-16/evidence/source-continuation-r23/FINAL-SUMMARY.json)。静态运行库/头输入记录不是每个归档成员的完整 link map。当前桥来源、目标正常加载合同和 producer 集成缺口见 [R26 闭包评估](WORKSPACE/docs/dual-mode/impl/_work/2026-11-16/evidence/source-continuation-r25-r26/ultra-init-closure/REPORT.md)；R26 只更新文档，没有追加编测或设备证据。
 
-参考材料与方案：[R23 计划](/D:/Maple_Workflow/MapleSU/.tmp/p2-ultra-init-entry-r23/PLAN.md)。仅复用固定 ksuinit 的同进程交接模型，未修改或链接它的通用模块加载器。
+参考材料与方案：[R23 计划](WORKSPACE/.tmp/p2-ultra-init-entry-r23/PLAN.md)。仅复用固定 ksuinit 的同进程交接模型，未修改或链接它的通用模块加载器。

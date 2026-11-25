@@ -7,6 +7,9 @@ from pathlib import Path
 import subprocess
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from native_toolchain import android_jar, jdk_tool
+
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools/specgen"))
 from specgen.product import cached_jar
@@ -88,7 +91,7 @@ def main():
             base / "javac/debug/compileDebugJavaWithJavac/classes",
             base / "../../image-core/libs/image-core.jar",
             base / "../../installer-core/libs/installer-core.jar",
-            Path("D:/Maple_Env/Android/Sdk/platforms/android-37.0/android.jar"),
+            android_jar(),
             *map(Path, inputs["libraries"]),
             cached_jar("junit", "junit", "4.13.2"),
             cached_jar("org.hamcrest", "hamcrest-core", "1.3")]
@@ -98,7 +101,7 @@ def main():
         ("org.jetbrains", "annotations", "13.0"),
         ("org.jetbrains.kotlinx", "kotlinx-coroutines-core-jvm", "1.11.0")]]
     plugin = cached_jar("org.jetbrains.kotlin", "kotlin-serialization-compiler-plugin-embeddable", "2.4.20")
-    java_root = Path("C:/Program Files/Microsoft/jdk-21.0.12.101-hotspot/bin")
+    java, javac = jdk_tool(), jdk_tool("javac")
     classes, seam_classes, temp = out / "classes", out / "bundle-seam", out / "temp"
     for path in [classes, seam_classes, temp]:
         path.mkdir()
@@ -118,21 +121,21 @@ public class Bundle {
     classpath = os.pathsep.join(map(str, [classes, *deps]))
     compiler_cp = os.pathsep.join(map(str, compiler))
     commands = [
-        ("compile", [java_root / "java.exe", "-Djava.io.tmpdir=" + str(temp), "-Xmx768m", "-cp", compiler_cp,
+        ("compile", [java, "-Djava.io.tmpdir=" + str(temp), "-Xmx768m", "-cp", compiler_cp,
                      "org.jetbrains.kotlin.cli.jvm.K2JVMCompiler", "-no-stdlib", "-no-reflect",
                      "-jvm-target", "21", "-Xfriend-paths=" + ",".join(map(str, [cached, product,
                          Path(recovery["overlay"]["path"])])), "-Xplugin=" + str(plugin),
                      "-classpath", classpath, "-d", classes, *snapshots]),
-        ("junit", [java_root / "java.exe", "-Djava.io.tmpdir=" + str(temp), "-Xmx768m", "-cp", classpath,
+        ("junit", [java, "-Djava.io.tmpdir=" + str(temp), "-Xmx768m", "-cp", classpath,
                     "org.junit.runner.JUnitCore", *TESTS]),
-        ("bundle-seam", [java_root / "javac.exe", "-J-Djava.io.tmpdir=" + str(temp), "-d", seam_classes, seam]),
-        ("codec", [java_root / "java.exe", "-Djava.io.tmpdir=" + str(temp), "-Xmx512m", "-cp",
+        ("bundle-seam", [javac, "-J-Djava.io.tmpdir=" + str(temp), "-d", seam_classes, seam]),
+        ("codec", [java, "-Djava.io.tmpdir=" + str(temp), "-Xmx512m", "-cp",
                     os.pathsep.join(map(str, [seam_classes, classes, *deps])),
                     "dev.maplesu.manager.workmode.service.ModeSwitchPlanCodecMainKt"]),
     ]
     receipt = {"schema": "maplesu-mode-switch-source-batch/1", "sources": source_records,
                "dependencies": [identity(path) for path in dependency_files([*deps, *compiler, plugin,
-                   java_root / "java.exe", java_root / "javac.exe"])],
+                   java, javac])],
                "commands": [], "tests": TESTS, "compileInputs": identity(inputs_path),
                "classpath": list(map(str, deps)), "verifiedRecoveryInputs": verified,
                "recoveryReceipt": identity(recovery_path),

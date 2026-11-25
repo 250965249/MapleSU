@@ -1,10 +1,20 @@
 from pathlib import Path
-import subprocess,sys,hashlib,json
-ROOT=Path('D:/Maple_Workflow/MapleSU'); P=Path(__file__).resolve().parent
-TOOLS=Path('D:/Maple_Env/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin')
-sys.path.insert(0,str(ROOT/'scripts'))
+import argparse,subprocess,sys,hashlib,json
+REPO=Path(__file__).resolve().parents[5]
+parser=argparse.ArgumentParser(description='Replay the pinned historical stat members; no installation.')
+parser.add_argument('--root',type=Path,default=REPO)
+parser.add_argument('--inputs',type=Path,default=Path(__file__).resolve().parent)
+parser.add_argument('--base',type=Path,required=True,help='Pinned SU isolation candidate archive')
+parser.add_argument('--ndk',type=Path)
+args=parser.parse_args()
+ROOT=args.root.resolve();P=args.inputs.resolve()
+sys.path.insert(0,str(REPO/'tools'))
+from native_toolchain import ndk_home,ndk_bin,tool
+TOOLS=ndk_bin(ndk_home(args.ndk))
+SUFFIX='.exe' if sys.platform=='win32' else ''
+sys.path.insert(0,str(REPO/'scripts'))
 from verify_sdk_member_diff import parse_ar
-def run(tool,*args):subprocess.run([str(TOOLS/(tool+'.exe')),*map(str,args)],check=True)
+def run(name,*args):subprocess.run([str(tool(TOOLS,name+SUFFIX)),*map(str,args)],check=True)
 original=ROOT/'runtime/maplesu-sdk/lib/arm64-v8a/libkernel_module_kit_static.a'
 rows=parse_ar(str(original))['members']; data=original.read_bytes()
 old='@_ZN15default_modules18module_su_redirect9PatchBase16get_fake_su_pathEv'
@@ -38,7 +48,7 @@ flags=['--target=aarch64-linux-android21','-std=c++17','-Oz','-fPIC','-fvisibili
 for n in [84,85]:
  run('clang++',*flags,f'-Dmaplesu_stat_uid_template=maplesu_stat_uid_template_{n}',f'-Dmaplesu_emit_uid_stat_copy=maplesu_emit_uid_stat_copy_{n}','-c',P/'stat_uid_path.cpp','-o',P/f'stat_uid_path_{n}.o')
  run('ld.lld','-r',P/f'm{n:03}.ir.o',P/f'stat_uid_path_{n}.o','-o',P/rows[n]['name'])
-base=Path('C:/MapleSU-Work/su-auth-isolation/candidate/libkernel_module_kit_static.a')
+base=args.base.resolve()
 assert hashlib.sha256(base.read_bytes()).hexdigest()=='5d36cbad542f588999e52d292e96c028d977ad8a65c6e25ecdb1052e7e61b825'
 out=P/'libkernel_module_kit_static.a';out.write_bytes(base.read_bytes())
 run('llvm-ar','rD',out,P/rows[84]['name'],P/rows[85]['name']);run('llvm-ar','sD',out)

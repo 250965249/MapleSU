@@ -8,7 +8,10 @@ import subprocess
 import sys
 import zipfile
 
-ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from native_toolchain import android_jar, jdk_tool
+
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools/specgen"))
 from specgen.product import cached_jar
 
@@ -20,7 +23,7 @@ def main():
     out = args.out.resolve()
     out.mkdir(parents=True, exist_ok=True)
     classes = ROOT / "manager/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes"
-    java = Path("C:/Program Files/Microsoft/jdk-21.0.12.101-hotspot/bin/java.exe")
+    java = jdk_tool()
     dependencies = [cached_jar(*item) for item in [
         ("org.jetbrains.kotlin", "kotlin-stdlib", "2.4.20"), ("org.jetbrains", "annotations", "13.0"),
         ("org.jetbrains.kotlinx", "kotlinx-coroutines-core-jvm", "1.11.0"),
@@ -39,7 +42,7 @@ def main():
         with zipfile.ZipFile(archive) as aar:
             target.write_bytes(aar.read("classes.jar"))
         dependencies.append(target)
-    dependencies += [Path("D:/Maple_Env/Android/Sdk/platforms/android-37.0/android.jar"),
+    dependencies += [android_jar(),
                      ROOT / "manager/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar",
                      ROOT / "image-core/build/libs/image-core.jar", ROOT / "installer-core/build/libs/installer-core.jar"]
     main = ROOT / "manager/src/main/java"

@@ -6,6 +6,10 @@ import json
 import shutil
 import subprocess
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from native_toolchain import jdk_tool
+
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -21,8 +25,8 @@ def main():
     parser.add_argument('--regressions', action='store_true', help='Run existing small component/metadata contracts too')
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=False)
-    java = Path('C:/Program Files/Eclipse Adoptium/jdk-17.0.10.7-hotspot/bin/java.exe')
-    javac = java.with_name('javac.exe')
+    java = jdk_tool()
+    javac = java.with_name('javac' + ('.exe' if os.name == 'nt' else ''))
     names = ['AvbFooter', 'BootImageInspector', 'BootImageEquivalence', 'BootImageRebuilder', 'KernelIdentity']
     paths = [ROOT / 'image-core/src/main/java/dev/maplesu/image' / (name + '.java') for name in names]
     paths.append(ROOT / 'image-core/src/test/java/dev/maplesu/image/BootImageInvalidAvbCandidateTest.java')
@@ -45,7 +49,7 @@ def main():
     classes = args.out / 'classes'
     classes.mkdir()
     receipt = {'schema': 'maplesu-invalid-avb-candidate/1', 'sources': sources,
-               'runner': identity(__file__), 'runtime': [identity(java), identity(javac), identity(java.with_name('jar.exe'))], 'commands': [],
+               'runner': identity(__file__), 'runtime': [identity(java), identity(javac), identity(java.with_name('jar' + ('.exe' if os.name == 'nt' else '')))], 'commands': [],
                'SDKOrAPKBuild': False, 'deviceOperations': False, 'productionInputModified': False}
 
     def run(label, argv):
@@ -73,7 +77,7 @@ def main():
                 break
     if result == 0:
         overlay = args.out / 'writer-overlay.jar'
-        result = run('jar', [java.with_name('jar.exe'), '--create', '--file', overlay, '-C', classes, '.'])
+        result = run('jar', [java.with_name('jar' + ('.exe' if os.name == 'nt' else '')), '--create', '--file', overlay, '-C', classes, '.'])
         if result == 0:
             receipt['writerOverlay'] = identity(overlay)
     receipt['exitCode'] = result

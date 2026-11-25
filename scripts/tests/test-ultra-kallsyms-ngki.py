@@ -8,6 +8,9 @@ from pathlib import Path
 import subprocess
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from native_toolchain import jdk_tool
+
 ROOT = Path(__file__).resolve().parents[2]
 sys.dont_write_bytecode = True
 
@@ -29,7 +32,7 @@ def main():
     product = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(product)
     jar = product.cached_jar
-    java = Path('C:/Program Files/Eclipse Adoptium/jdk-17.0.10.7-hotspot/bin/java.exe')
+    java = jdk_tool()
     compiler = jar('org.jetbrains.kotlin', 'kotlin-compiler-embeddable', '2.4.20')
     stdlib = jar('org.jetbrains.kotlin', 'kotlin-stdlib', '2.4.20')
     annotations = jar('org.jetbrains', 'annotations', '13.0')

@@ -8,7 +8,7 @@ import shutil
 import subprocess
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 HOST = Path("runtime/ultra/identity/kernel")
 REGISTRY = Path("runtime/maplesu-sdk/sdk/src/module/su_redirect_tu/kernel/su_install_registry.c")
 FIXTURE = Path("scripts/fixtures/ksu-compat")
@@ -127,7 +127,7 @@ def main():
         "--memory-swap", "256m", "--cap-drop", "ALL", "--security-opt", "no-new-privileges",
         "--mount", "type=bind,source=" + str(ROOT) + ",target=/repo,readonly",
         "--mount", "type=bind,source=" + str(output) + ",target=/out", "--entrypoint", "python3", IMAGE,
-        "-B", "/repo/scripts/test-ultra-ksu-compat.py", "--inside", "--output", "/out"]
+        "-B", "/repo/scripts/tests/test-ultra-ksu-compat.py", "--inside", "--output", "/out"]
     (output / "COMMAND.json").write_text(json.dumps(argv, indent=2) + "\n")
     run = subprocess.run(argv, capture_output=True)
     (output / "docker.log").write_bytes(run.stdout + run.stderr)

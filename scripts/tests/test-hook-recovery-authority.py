@@ -7,7 +7,10 @@ import os
 import subprocess
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from native_toolchain import android_jar, jdk_tool, sdk_dir
+
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'tools/specgen'))
 from specgen.product import cached_jar
 
@@ -77,9 +80,11 @@ deps = [cached_jar(*x) for x in [('org.jetbrains.kotlin', 'kotlin-stdlib', '2.4.
     ('org.jetbrains.kotlinx', 'kotlinx-serialization-json-jvm', '1.11.0'),
     ('org.jetbrains.kotlinx', 'kotlinx-serialization-core-jvm', '1.11.0'),
     ('org.json', 'json', '20240303'), ('junit', 'junit', '4.13.2'), ('org.hamcrest', 'hamcrest-core', '1.3')]]
-android = Path('D:/Maple_Env/Android/Sdk/platforms/android-37.0/android.jar')
-if not android.is_file(): android = next(Path('D:/Maple_Env/Android/Sdk/platforms').glob('android-*/android.jar'))
-java = Path('C:/Program Files/Microsoft/jdk-21.0.12.101-hotspot/bin/java.exe')
+android = android_jar()
+if not android.is_file():
+    sdk = sdk_dir()
+    if sdk is not None: android = next((sdk / 'platforms').glob('android-*/android.jar'))
+java = jdk_tool()
 compiler = cached_jar('org.jetbrains.kotlin', 'kotlin-compiler-embeddable', '2.4.20')
 classes = a.out / 'classes'
 cp = os.pathsep.join(map(str, [classes, *deps, android]))

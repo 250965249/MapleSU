@@ -2,7 +2,7 @@
 
 Retained official Java SDK for the manager's T3 account integration.
 
-- Primary source: user-supplied `C:/Users/Maple/Downloads/T3SDK_Java.zip`, entry `T3SDK_Java/t3sdk/T3Verify.java`, supplied 2026-11-14.
+- Primary source: user-supplied `T3SDK_Java.zip`, entry `T3SDK_Java/t3sdk/T3Verify.java`, supplied 2026-11-14.
 - ZIP SHA-256: `daff80b513a109c75b54097948b9b2f41a46c56fdb8cf8f471a8185898ae96bd`
 - Original ZIP `T3Verify.java` SHA-256: `df25f88d662c4a986f129b55bcb2403d66295a081fe6df5bfabccf5ce120152f`
 - Preserved package: `t3sdk`.

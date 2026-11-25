@@ -1,3 +1,4 @@
+import argparse
 import hashlib
 import io
 import json
@@ -6,18 +7,26 @@ import struct
 import subprocess
 import sys
 
-ROOT = Path('D:/Maple_Workflow/MapleSU')
-HERE = Path(__file__).resolve().parent
+REPO = Path(__file__).resolve().parents[4]
+parser = argparse.ArgumentParser(description='Replay the pinned historical SU isolation candidate; no installation.')
+parser.add_argument('--root', type=Path, default=REPO, help='Repository containing the pinned historical SDK')
+parser.add_argument('--inputs', type=Path, default=Path(__file__).resolve().parent)
+parser.add_argument('--ndk', type=Path)
+args = parser.parse_args()
+ROOT = args.root.resolve()
+HERE = args.inputs.resolve()
 OUT = HERE / 'candidate'
 SOURCE = HERE / 'source'
-OUT.mkdir(exist_ok=True)
-sys.path.insert(0, str(ROOT / 'scripts'))
+sys.path.insert(0, str(REPO / 'tools'))
+from native_toolchain import ndk_home, ndk_bin, tool as required_tool
+sys.path.insert(0, str(REPO / 'scripts'))
 from verify_sdk_member_diff import parse_ar
 from elftools.elf.elffile import ELFFile
-TOOLS = Path('D:/Maple_Env/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin')
+TOOLS = ndk_bin(ndk_home(args.ndk))
+SUFFIX = '.exe' if sys.platform == 'win32' else ''
 
 def run(tool, *args):
-    subprocess.run([str(TOOLS / (tool + '.exe')), *map(str, args)], check=True)
+    subprocess.run([str(required_tool(TOOLS, tool + SUFFIX)), *map(str, args)], check=True)
 
 def sha(data): return hashlib.sha256(data).hexdigest()
 
@@ -25,6 +34,7 @@ archive = ROOT / 'runtime/maplesu-sdk/lib/arm64-v8a/libkernel_module_kit_static.
 original = archive.read_bytes()
 assert sha(original) == 'f015f15ceb91e81f09c0a3b70c4a1c09042c2926ad91380499692a3733c2b4c5'
 before = parse_ar(str(archive))
+OUT.mkdir(exist_ok=True)
 flags = ['--target=aarch64-linux-android21', '-std=c++17', '-Oz', '-fPIC', '-fvisibility=hidden',
          '-fexceptions', '-fno-rtti', '-Wall', '-Wextra', '-Werror',
          '-I', ROOT / 'runtime/maplesu-sdk/include', '-I', SOURCE]

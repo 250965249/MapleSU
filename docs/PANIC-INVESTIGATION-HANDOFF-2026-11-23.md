@@ -1,6 +1,8 @@
 # MapleSU 空闲 Panic：调查、修复及交付交接
 
-更新时间：2026-11-23 UTC。工作区：`D:/Maple_Workflow/MapleSU`。
+公开快照约定：`WORKSPACE` 为源码工作区占位，`WORKSPACE_BUILD_PRESERVE` 为独立构建证据目录占位，`SERIAL` 为测试设备序列号占位；私有证据按原路径后缀定位。
+
+更新时间：2026-11-23 UTC。工作区：`WORKSPACE`。
 
 ## 1. 接手结论与任务边界
 
@@ -14,7 +16,7 @@
 
 ## 2. 必须保留的项目合同
 
-- 先读 `D:/Maple_Workflow/MapleSU/AGENTS.md`，依据固定 KernelSU 实现与本项目真实调用链，不凭 README 增加架构前提。
+- 先读 `WORKSPACE/AGENTS.md`，依据固定 KernelSU 实现与本项目真实调用链，不凭 README 增加架构前提。
 - 保留真正启动保护、真实错误、Root Key、授权/fullUID、模块、分区备份与故障原件。清标记、假 Ready、隐藏错误、增加等待时间或关闭功能不算根因修复。
 - 未请求/未授权普通应用路径不新增全局 SELinux、挂载/命名空间、系统属性或额外常驻判定进程。
 - 不把修改 ROM/framework、PMS 事务屏障等新增为 SU、模块、免 Key 或无 Manager 冷启前置。
@@ -28,10 +30,10 @@
 
 | 项 | 已观察值 |
 |---|---|
-| ADB serial / 机型 | `a261972a` / `PLQ110` |
+| ADB serial / 机型 | `SERIAL` / `PLQ110` |
 | 实际内核 | `6.6.89-android15-8-g7e1f3c083cc6-abogki467167594-4k` |
 | 活动槽 / SELinux | 历史采集为 `_a` / Enforcing；操作前重新读当前值 |
-| 最新完整 dump | `D:/Maple_Workflow/MapleSU/evidence/device-panic-20261123T1041Z/current-20261123T112010Z/minidump.bin` |
+| 最新完整 dump | `WORKSPACE/evidence/device-panic-20261123T1041Z/current-20261123T112010Z/minidump.bin` |
 | dump 大小 / SHA256 | `268435456` bytes / `7902280fce38f9304218cf03aa9a913abafe86efeeacb6eeddf2827d5677408b` |
 | 致死时刻 | 本次启动 uptime `168.016315` 秒，不把采集目录时刻当作精确崩溃墙钟 |
 | CPU / PID / TGID | CPU5 / `18634` / `18634` |
@@ -55,8 +57,8 @@
 - 该文件实读大小 `11598544` bytes，SHA256：`700152c6c0bf1f3f52cd10b64198f1879ee4f8ef3d043492f080b6bb0e61d745`。
 - ELF load bias `0x7e02878000`；保存用户 LR 对应 ELF VA `0x4d2894`，吻合实际 `dispatch_kernel_request` 的 syscall 返回点。
 - 注意 ELF VA 与文件偏移不同：该 maps 中对应文件偏移 `0x4ce894`；不要直接把 VA 当文件 offset。
-- 独立副本：`D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-resume4/panic-evidence/installed-700152c6.so`。
-- 已有 IDA 函数分析：`D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-resume4/panic-evidence/IDA-FOCUS.json`。反编译类型可能失真，调用参数最终以原指令和 ABI 核对。
+- 独立副本：`WORKSPACE/.tmp/supervision-20261123-resume4/panic-evidence/installed-700152c6.so`。
+- 已有 IDA 函数分析：`WORKSPACE/.tmp/supervision-20261123-resume4/panic-evidence/IDA-FOCUS.json`。反编译类型可能失真，调用参数最终以原指令和 ABI 核对。
 
 **尚待补齐：** 4144 的哪次上层操作创建了这两级 child，最终哪一个真实 emitter 提交了失败 EXEC。`get_root`、授权刷新等是需验证的候选入口，不是当前根因结论。
 
@@ -65,7 +67,7 @@
 - 已装历史 APK：5.2.1 / 50201，SHA256 `5e0971c267c339124bafc2b8bc3071a10bb0f3caad3eaf60bfd74ce1ab6b6474`。
 - APK SDK10 identity：`maplesu-ultra-source-7af6f0d42a440ac7`；archive SHA256 `7af6f0d42a440ac7616d555ab788d90f728dc0fc89df46e7976c5634cf3749e4`。
 - 历史运行 boot_a SHA256：`73c956c597827c6bf70f2b536c12d56de55c5663f2f6013cf39de7684fb9662d`；最早明确产品写入为 r21，不把后来的相同 boot 校验称作新修复。
-- 最新只读 boot：`D:/Maple_Workflow/MapleSU/evidence/device-panic-20261123T1041Z/boot-readback-20261123T113323Z/boot_a.img`。
+- 最新只读 boot：`WORKSPACE/evidence/device-panic-20261123T1041Z/boot-readback-20261123T113323Z/boot_a.img`。
 - 实际 kernel/网关反汇编：同目录 `analysis/Image`、`analysis/MANIFEST.json`、`analysis/gateway.txt`、`analysis/native_permission.txt`。
 - 当前累计源码修复尚未由这份旧 APK/boot 执行。**代差只能解释测试覆盖边界，不能单独证明 Panic 原因或修复有效。**
 
@@ -83,14 +85,14 @@
 
 旧精确分析入口：
 
-- `D:/Maple_Workflow/MapleSU/.tmp/main-rootpanic-resume-20261121/panic/offline-7e08-review-20261121/REPORT.md`
-- `D:/Maple_Workflow/MapleSU/.tmp/main-rootpanic-resume-20261121/panic/offline-7e08-review-20261121/tlbi-current-gateway/REPORT.md`
+- `WORKSPACE/.tmp/main-rootpanic-resume-20261121/panic/offline-7e08-review-20261121/REPORT.md`
+- `WORKSPACE/.tmp/main-rootpanic-resume-20261121/panic/offline-7e08-review-20261121/tlbi-current-gateway/REPORT.md`
 
 ## 5. 调查与实施步骤
 
 ### A. 接管及身份基线（先只读）
 
-1. 核主线当前工作、构建输入窗口、进程与设备唯一执行者，声明精确写集。Agent 的 isolated 输出放 `D:/Maple_Workflow/MapleSU/.tmp/panic-agent-20261123/`；目录已存在则使用明确的新子目录，不覆盖旧证据。
+1. 核主线当前工作、构建输入窗口、进程与设备唯一执行者，声明精确写集。Agent 的 isolated 输出放 `WORKSPACE/.tmp/panic-agent-20261123/`；目录已存在则使用明确的新子目录，不覆盖旧证据。
 2. 对 dump、boot、native、源码和已有收据重新核 SHA；原件保持。记录当前 APK/SDK/helper/generation/boot/boot_id，区分当前状态与历史现场。
 3. 精读下节列出的 analysis，不重新全盘收集或扫描无关目录。已有分析能回答的先复用。
 4. 从 dump 的寄存器、栈上下文与确切 ELF 反汇编证明 `ALLOC → WRITE → EXEC` 当前走哪条分支，特别核对 LegacyKey / Owner / EarlyHelper，而不是只搜源码函数名。
@@ -110,9 +112,9 @@
 
 已有最小诊断实现可参考但不是可直接装的同代最终包：
 
-- `D:/Maple_Workflow/MapleSU/.tmp/main-rootpanic-resume-20261121/panic/exec-lifecycle-observation/SOURCE.patch`
+- `WORKSPACE/.tmp/main-rootpanic-resume-20261121/panic/exec-lifecycle-observation/SOURCE.patch`
 - 同目录 `README.md`、`RESULT.json`、`parse-boundaries.py`。
-- `D:/Maple_Workflow/MapleSU/.tmp/main-rootpanic-resume-20261121/panic/DELIVERY.md` 记录较早 trace-root 的具体代际与行为。
+- `WORKSPACE/.tmp/main-rootpanic-resume-20261121/panic/DELIVERY.md` 记录较早 trace-root 的具体代际与行为。
 
 **这些诊断件绑定旧 SDK/native。接当前 generation 前重新核身份/调用 ABI，不直接混装或以旧 through 收据充当新结果。** 优先复用已编译对象和现有 parser，避免为观测重建整个库。
 
@@ -142,14 +144,14 @@
 
 | 入口 | 路径与核查点 |
 |---|---|
-| Image 网关生成 | `D:/Maple_Workflow/MapleSU/manager/src/main/java/dev/maplesu/manager/ultrakernel/UltraKernelShellcode.kt`：`UltraKernelBodies.printfn0`、分配dispatch、`drmPrintk0`；BLR/LR偏移与metadata locator有合同 |
-| SDK请求/地址登记 | `D:/Maple_Workflow/MapleSU/runtime/maplesu-sdk/sdk/src/kernel_request/module_base_kernel_request.cpp`：`dispatch_kernel_request`、`send_kernel_request`、`legacy_alloc`、`unsafe_request_kernel_exec_mem`、fork/reset、地址范围 |
-| SDK执行器 | `D:/Maple_Workflow/MapleSU/runtime/maplesu-sdk/sdk/src/module_base/module_base_kernel_func_executor.cpp`：`__exec_kernel_asm_func`、standard/legacy adapter、securebits及回执恢复 |
-| idle长期映射/权限 | `D:/Maple_Workflow/MapleSU/runtime/maplesu-sdk/sdk/src/module_base/module_base_kernel_idle_mem.cpp`：临时页和长期alias、权限切换、失败保留/释放，不与staging生命周期混淆 |
-| 管理协议执行 | `D:/Maple_Workflow/MapleSU/runtime/ultra/identity/kernel/manager_management.c` 与其实际include：按真实请求模式追踪，不先假设本次使用Owner |
-| 常驻generation调用 | `D:/Maple_Workflow/MapleSU/manager/src/main/java/dev/maplesu/manager/runtime/ultra/UltraIdentityBroker.kt` 与实际native入口/child创建；先对齐故障进程 |
-| Root命名线索 | `D:/Maple_Workflow/MapleSU/runtime/maplesu-sdk/sdk/src/module/idx070/module_root.cpp`：F0命名来源，不据此唯一定位emitter |
-| 发布静态窄回归 | `D:/Maple_Workflow/MapleSU/scripts/tests/test-ultra-executor-publication.py`：17项cache发布模型；脚本自身明确不是硬件Panic验收 |
+| Image 网关生成 | `WORKSPACE/manager/src/main/java/dev/maplesu/manager/ultrakernel/UltraKernelShellcode.kt`：`UltraKernelBodies.printfn0`、分配dispatch、`drmPrintk0`；BLR/LR偏移与metadata locator有合同 |
+| SDK请求/地址登记 | `WORKSPACE/runtime/maplesu-sdk/sdk/src/kernel_request/module_base_kernel_request.cpp`：`dispatch_kernel_request`、`send_kernel_request`、`legacy_alloc`、`unsafe_request_kernel_exec_mem`、fork/reset、地址范围 |
+| SDK执行器 | `WORKSPACE/runtime/maplesu-sdk/sdk/src/module_base/module_base_kernel_func_executor.cpp`：`__exec_kernel_asm_func`、standard/legacy adapter、securebits及回执恢复 |
+| idle长期映射/权限 | `WORKSPACE/runtime/maplesu-sdk/sdk/src/module_base/module_base_kernel_idle_mem.cpp`：临时页和长期alias、权限切换、失败保留/释放，不与staging生命周期混淆 |
+| 管理协议执行 | `WORKSPACE/runtime/ultra/identity/kernel/manager_management.c` 与其实际include：按真实请求模式追踪，不先假设本次使用Owner |
+| 常驻generation调用 | `WORKSPACE/manager/src/main/java/dev/maplesu/manager/runtime/ultra/UltraIdentityBroker.kt` 与实际native入口/child创建；先对齐故障进程 |
+| Root命名线索 | `WORKSPACE/runtime/maplesu-sdk/sdk/src/module/idx070/module_root.cpp`：F0命名来源，不据此唯一定位emitter |
+| 发布静态窄回归 | `WORKSPACE/scripts/tests/test-ultra-executor-publication.py`：17项cache发布模型；脚本自身明确不是硬件Panic验收 |
 
 ## 7. 前置条件与设备操作规约
 
@@ -188,7 +190,7 @@
 
 ## 9. 交付方式（给主线一个目录，不只发结论）
 
-推荐目录：`D:/Maple_Workflow/MapleSU/.tmp/panic-agent-20261123/delivery/`。
+推荐目录：`WORKSPACE/.tmp/panic-agent-20261123/delivery/`。
 
 1. `REPORT.md`：结论、首错、证据、排除项、根因、最小修复及覆盖边界；未闭环项显式写出。
 2. `PATCH.diff`：仅本任务改动；`FILES.json` 列绝对路径、before/after SHA、大小、新增文件及实际采用状态。
@@ -204,14 +206,14 @@
 
 先读以下文件即可接续，不必重新审计全部需求：
 
-- `D:/Maple_Workflow/MapleSU/evidence/device-panic-20261123T1041Z/current-20261123T112010Z/MANIFEST.json`
+- `WORKSPACE/evidence/device-panic-20261123T1041Z/current-20261123T112010Z/MANIFEST.json`
 - 同目录 `analysis/FATAL-ANALYSIS.json`、`analysis/FATAL-THREAD.txt`、`analysis/KERNEL-STACK-CONTEXT.json`、`analysis/OBSERVED-CORRELATION.json`、`analysis/NATIVE-CALLCHAIN.json`。
-- `D:/Maple_Workflow/MapleSU/evidence/device-panic-20261123T1041Z/read-20261123T114030Z-active-identity-library/stdout.txt`
-- `D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-continuation/requirements/DEVICE-PANIC-ARTIFACT-BINDINGS.md` 及同名JSON。
-- `D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-continuation/requirements/CURRENT-SOURCE-VS-INSTALLED-FREEZE.json`
+- `WORKSPACE/evidence/device-panic-20261123T1041Z/read-20261123T114030Z-active-identity-library/stdout.txt`
+- `WORKSPACE/.tmp/supervision-20261123-continuation/requirements/DEVICE-PANIC-ARTIFACT-BINDINGS.md` 及同名JSON。
+- `WORKSPACE/.tmp/supervision-20261123-continuation/requirements/CURRENT-SOURCE-VS-INSTALLED-FREEZE.json`
 
 ```powershell
-$root = 'D:\Maple_Workflow\MapleSU'
+$root = 'WORKSPACE'
 Get-FileHash -Algorithm SHA256 -LiteralPath "$root\evidence\device-panic-20261123T1041Z\current-20261123T112010Z\minidump.bin"
 Get-FileHash -Algorithm SHA256 -LiteralPath "$root\.tmp\supervision-20261123-resume4\panic-evidence\installed-700152c6.so"
 Get-Content -LiteralPath "$root\evidence\device-panic-20261123T1041Z\current-20261123T112010Z\analysis\FATAL-ANALYSIS.json"
@@ -224,4 +226,4 @@ Get-Content -LiteralPath "$root\evidence\device-panic-20261123T1041Z\boot-readba
 
 ### 可直接转交给修复 Agent 的任务
 
-> 接手 `D:/Maple_Workflow/MapleSU` 的独立 Panic 专项。完整阅读本文和所列最新原件，先确认写集与唯一设备执行者。定位空闲重启现场中动态执行页首次取指权限异常的首个错误转移，交付证据支持的最小源码修复、红绿回归、同代产物接线与原机验证。现有直接致死点已明确，但根因未证实；不要重复已存在的TLBI/IALLUIS、凭旧包代差宣布修复或关闭功能。主线正在构建与验收其他功能，保留并发修改，冻结前协调。按本文第9节提交完整delivery目录及真实未完成项。
+> 接手 `WORKSPACE` 的独立 Panic 专项。完整阅读本文和所列最新原件，先确认写集与唯一设备执行者。定位空闲重启现场中动态执行页首次取指权限异常的首个错误转移，交付证据支持的最小源码修复、红绿回归、同代产物接线与原机验证。现有直接致死点已明确，但根因未证实；不要重复已存在的TLBI/IALLUIS、凭旧包代差宣布修复或关闭功能。主线正在构建与验收其他功能，保留并发修改，冻结前协调。按本文第9节提交完整delivery目录及真实未完成项。

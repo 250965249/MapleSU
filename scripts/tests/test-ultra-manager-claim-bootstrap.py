@@ -21,7 +21,7 @@ from unicorn.arm64_const import UC_ARM64_REG_X22, UC_ARM64_REG_X23, UC_ARM64_REG
 from unicorn.arm64_const import UC_ARM64_REG_X25, UC_ARM64_REG_X26, UC_ARM64_REG_X27
 from unicorn.arm64_const import UC_ARM64_REG_X28, UC_ARM64_REG_X29
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 IMAGE, DEST, INPUT, STACK, STOP = (0x100000000, 0xffffffe57c770000, 0x300000000,
                                   0x400000000, 0x500000000)
 IMAGE_BYTES, ANCHOR, DESCRIPTOR, CREDENTIAL, TABLE = 0x10000, 0x400, 0x800, 0x900, 0xA00

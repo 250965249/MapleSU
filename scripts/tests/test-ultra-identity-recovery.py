@@ -4,10 +4,12 @@ import hashlib
 import json
 import os
 from pathlib import Path
-import shutil
 import subprocess
 import sys
 
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from native_toolchain import android_jar, jdk_tool
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -15,7 +17,7 @@ def main():
     parser.add_argument("--product-classes", type=Path, required=True)
     parser.add_argument("--image", type=Path, required=True)
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[1]
+    root = Path(__file__).resolve().parents[2]
     sys.path.insert(0, str(root / "tools/specgen"))
     from specgen.product import cached_jar
     build = args.build.resolve()
@@ -42,14 +44,14 @@ def main():
         ("org.jetbrains.kotlinx", "kotlinx-coroutines-core-jvm", "1.11.0"),
         ("junit", "junit", "4.13.2"), ("org.hamcrest", "hamcrest-core", "1.3")]]
     compiler = cached_jar("org.jetbrains.kotlin", "kotlin-compiler-embeddable", "2.4.20")
-    android = Path("D:/Maple_Env/Android/Sdk/platforms/android-37.0/android.jar")
+    android = android_jar()
     cp = os.pathsep.join(map(str, [classes, product, android, *dependencies]))
     commands = [
-        [shutil.which("javac"), "--release", "17", "-d", str(classes), *map(str, java_sources)],
-        [shutil.which("java"), "-Xmx768m", "-cp", os.pathsep.join(map(str, [compiler, *dependencies])),
+        [str(jdk_tool("javac")), "--release", "17", "-d", str(classes), *map(str, java_sources)],
+        [str(jdk_tool()), "-Xmx768m", "-cp", os.pathsep.join(map(str, [compiler, *dependencies])),
          "org.jetbrains.kotlin.cli.jvm.K2JVMCompiler", "-no-stdlib", "-no-reflect", "-jvm-target", "21",
          f"-Xfriend-paths={product}", "-classpath", cp, "-d", str(classes), *map(str, sources)],
-        [shutil.which("java"), "-Xmx768m", f"-Dmaplesu.test.recovery.image={args.image.resolve()}", "-cp", cp,
+        [str(jdk_tool()), "-Xmx768m", f"-Dmaplesu.test.recovery.image={args.image.resolve()}", "-cp", cp,
          "org.junit.runner.JUnitCore", *[f"dev.maplesu.manager.runtime.ultra.{name}" for name in tests]]]
     product_hash = hashlib.sha256()
     for file in sorted(product.rglob("*.class")):

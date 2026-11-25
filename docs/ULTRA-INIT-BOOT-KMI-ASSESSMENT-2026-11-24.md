@@ -1,5 +1,7 @@
 # Ultra 单文件 init_boot、KMI 选型与 5.10–6.18 开发评估
 
+公开快照约定：`WORKSPACE` 为源码工作区占位，`WORKSPACE_BUILD_PRESERVE` 为独立构建证据目录占位，`SERIAL` 为测试设备序列号占位；私有证据按原路径后缀定位。
+
 日期：2026-11-24 UTC。范围：固定 KernelSU 源码、当前 Ultra 生产调用链、工作区原始 init_boot、原需求和本代构建收据。本文是开发评估与实施验收合同；源码审查、主机测试、正式产物、设备效果分别记账。
 
 ## 1. 评估结论
@@ -35,13 +37,13 @@
 | init_boot 与 boot 的全部功能等价 | 582–587，尤其 584 | 要覆盖标准 su、持久授权、隐藏、SELinux、两类模块全部开机阶段、升级、切换、卸载还原。 |
 | 原 20 组问题及追加体验、SDK 性能问题 | 463–491 及本次会话 | 完整保留；本轮进行需求映射和镜像链深审，未把它们全部重新实测为通过。 |
 
-当前执行账保留 20 组、29 个原子 CASE 与 12 个追加项，共 41 项。逐原子项的本轮覆盖记录见 `CASES.md`（开发证据未随公开快照分发：`D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1/requirements/CASES.md`）。其余 119 项总需求也未被此专项缩减。
+当前执行账保留 20 组、29 个原子 CASE 与 12 个追加项，共 41 项。逐原子项的本轮覆盖记录见 `CASES.md`（开发证据未随公开快照分发：`WORKSPACE/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1/requirements/CASES.md`）。其余 119 项总需求也未被此专项缩减。
 
 ## 3. 固定 KSU 的真实修补和启动环节
 
 参照提交：`f4603d14bd7f3bf21206d6f7c622ddf1c049ade3`。27 份选定文件从 `.research/KernelSU` 的不可变 git 对象导出，并核对上游记录 SHA；没有把可变 upstream / applied 工作树混称未修改的官方基线。
 
-以下 KSU 路径相对证据目录的 `ksu/fixed-baseline/`，精确行号与身份见 `固定基线分析`（开发证据未随公开快照分发：`D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1/ksu/ANALYSIS.md`） 和 `模块运行时补充`（开发证据未随公开快照分发：`D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1/ksu/BTF-MODULE-SUPPLEMENT.md`）。
+以下 KSU 路径相对证据目录的 `ksu/fixed-baseline/`，精确行号与身份见 `固定基线分析`（开发证据未随公开快照分发：`WORKSPACE/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1/ksu/ANALYSIS.md`） 和 `模块运行时补充`（开发证据未随公开快照分发：`WORKSPACE/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1/ksu/BTF-MODULE-SUPPLEMENT.md`）。
 
 | 环节 | 固定 KSU 实际行为 | 对 Ultra 的含义 |
 |---|---|---|
@@ -101,7 +103,7 @@ flowchart TD
 
 ## 6. 工作区 init_boot 实物评估
 
-本次范围为 `D:/Maple_Workflow/MapleSU/Boot_Research` 原始语料中的七个路径、六个内容唯一的 init_boot，不包含 `.tmp` 历史生成件，也不外推全盘。本次已逐图重读头部、核 SHA，并在内存解压和解析 CPIO：六份文件长度均为 8 MiB、Android boot header v4、kernelSize=0、LZ4 legacy ramdisk；此处不是设备实际分区容量测量。
+本次范围为 `WORKSPACE/Boot_Research` 原始语料中的七个路径、六个内容唯一的 init_boot，不包含 `.tmp` 历史生成件，也不外推全盘。本次已逐图重读头部、核 SHA，并在内存解压和解析 CPIO：六份文件长度均为 8 MiB、Android boot header v4、kernelSize=0、LZ4 legacy ramdisk；此处不是设备实际分区容量测量。
 
 | 原始路径（相对 Boot_Research） | SHA256 前 12 位 | ramdisk 字节 | 解压 CPIO 字节 / 条目数 | 保留当前恢复 / AVB 时新压缩 ramdisk 上限 | 现有目标 kernel 证据 |
 |---|---|---:|---:|---:|---|
@@ -120,7 +122,7 @@ flowchart TD
 
 六份都有 AVB footer，vbmeta 832 B、algorithmType=0、bootSignatureSize=0，头部与 footer 边界有效；这不是 OEM 验签或实际可启动证明。不得把原图 Android OS version / fingerprint 当成 kernel KMI。
 
-已有主机证据对六份仅确认容器解析、同 ramdisk 重建和回读；`currentPositiveLifecycleAcceptance=false`，没有本代自有 bridge 部署和完整启动结果。本次解压与内容核查未生成新候选。完整逐条目 metadata、SHA 和旧收据绑定见 `SAMPLES.json`（开发证据未随公开快照分发：`D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1/init-boot-samples/SAMPLES.json`）。
+已有主机证据对六份仅确认容器解析、同 ramdisk 重建和回读；`currentPositiveLifecycleAcceptance=false`，没有本代自有 bridge 部署和完整启动结果。本次解压与内容核查未生成新候选。完整逐条目 metadata、SHA 和旧收据绑定见 `SAMPLES.json`（开发证据未随公开快照分发：`WORKSPACE/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1/init-boot-samples/SAMPLES.json`）。
 
 8 MiB 是供应文件长度，不是可直接使用的全部 ramdisk 空间，也不替代设备分区容量回执。本代失败封包运行留下的 bridge 为 5,084,800 B、handoff 为 3,239,608 B，均只是该次编译输出；它们的原始和为 8,324,408 B，接近 8 MiB，但实际载体放入的是含原 init 的重新压缩 CPIO，不应以该原始和断定装不下。
 
@@ -128,7 +130,7 @@ flowchart TD
 
 容量必须同时核 `新压缩 CPIO + 原压缩 ramdisk + snapshot + 内外恢复头 + 对齐 + vbmeta/footer`。当前六图 footer 都存在，[BootImageRebuilder.java:660](../image-core/src/main/java/dev/maplesu/image/BootImageRebuilder.java) 会在恢复区后的布局侵占原文件 vbmeta/footer 空间时报 `AVB_PARTITION_SIZE_LIMIT`，不直接扩成更大的可刷文件。原图头部 4096 B 是容器页，不证明运行 kernel 的页大小。
 
-按当前 snapshot 编码及实际 gap 分块算法逐图核算，`init_boot/ACE5U/init_boot.img` 的 snapshot 为 11,416 B，其余五图为 12,768 B；内外恢复区域合计 `Q = 原压缩 ramdisk + snapshotBytes + 152`。令新压缩 ramdisk 长度为 `R`，该批 kernel=0 / v4 的组件末尾为 `C = 4096 + align4096(R)`，恢复后为 `P = align4096(C + Q)`；最终须满足 `align4096(P) + 832 <= 8388608 - 64`。上表的新 ramdisk 上限由此得出，范围为 5,095,424–6,057,984 B。它是本批保留当前恢复记录与 AVB 布局的容量边界，不是正式组件压缩后已经达标的结果。公式及每图输入见 `CAPACITY.json`（开发证据未随公开快照分发：`D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1/init-boot-samples/CAPACITY.json`）。
+按当前 snapshot 编码及实际 gap 分块算法逐图核算，`init_boot/ACE5U/init_boot.img` 的 snapshot 为 11,416 B，其余五图为 12,768 B；内外恢复区域合计 `Q = 原压缩 ramdisk + snapshotBytes + 152`。令新压缩 ramdisk 长度为 `R`，该批 kernel=0 / v4 的组件末尾为 `C = 4096 + align4096(R)`，恢复后为 `P = align4096(C + Q)`；最终须满足 `align4096(P) + 832 <= 8388608 - 64`。上表的新 ramdisk 上限由此得出，范围为 5,095,424–6,057,984 B。它是本批保留当前恢复记录与 AVB 布局的容量边界，不是正式组件压缩后已经达标的结果。公式及每图输入见 `CAPACITY.json`（开发证据未随公开快照分发：`WORKSPACE/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1/init-boot-samples/CAPACITY.json`）。
 
 正式容量验收须用最终同代、实际发布组件逐图生成候选，再记录压缩后长度、全部恢复区和签名区域。当前这一步仍待执行；原 ramdisk 只有 2–3 MiB 以及历史同 ramdisk 回包通过均不证明装入本代组件后仍适配 8 MiB。
 
@@ -147,7 +149,7 @@ flowchart TD
 | 6.12 | android16-6.12 | raw4 对应 claim 构建 exit 0 | 待完整 init_bridge 对应组件、单文件和必要设备 |
 | 6.18 | android17-6.18 | raw4 对应 claim 构建 exit 0 | 待完整 init_bridge 对应组件、真实目标样本和必要设备 |
 
-该表描述现有收据，不把 claim 产物与可启动 bridge.ko 混为一物。证据：`NATIVE-EXECUTION.json`（开发证据未随公开快照分发：`D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-build-acceptance/source-repairs-current/root-build-20261124-r6/NATIVE-EXECUTION.json`）、`modern EXECUTION.json`（开发记录：`C:/MapleSU_Build_Preserve/20261124/bridge-current-r2/EXECUTION.json`）。
+该表描述现有收据，不把 claim 产物与可启动 bridge.ko 混为一物。证据：`NATIVE-EXECUTION.json`（开发证据未随公开快照分发：`WORKSPACE/.tmp/supervision-20261123-build-acceptance/source-repairs-current/root-build-20261124-r6/NATIVE-EXECUTION.json`）、`modern EXECUTION.json`（开发记录：`WORKSPACE_BUILD_PRESERVE/20261124/bridge-current-r2/EXECUTION.json`）。
 
 目标边界继续包括真实 BTF / 无 BTF、4K / 16K / 64K、CFI 变体、厂商模块与实际 loader 条件。32 位应用兼容和 32 位内核支持分账。NGKI、no-modversions 及另行提出的 Linux 4.x 评估保留独立状态，不由上述 GKI basename 自动覆盖。
 
@@ -251,7 +253,7 @@ boot→init_boot 迁移内部恢复本产品旧 boot 修改，准备 init_boot �
 
 **发布判断：继续保留 5.10–6.18 和独立 init_boot 全功能目标；当前不将它们标为全部支持，也不将稳定性标为与 KSU 已等同。先完成第 8–9 节的实际单文件与启动适配闭合，再以第 10 节证据决定每个支持格，最后交付 5.2.1 Release。**
 
-证据总目录：`kmi-requirements-reanalysis-20261124-r1`（开发证据未随公开快照分发：`D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1`）。本文新增，不覆盖原需求、旧源冻结、构建失败或设备收据。
+证据总目录：`kmi-requirements-reanalysis-20261124-r1`（开发证据未随公开快照分发：`WORKSPACE/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-requirements-reanalysis-20261124-r1`）。本文新增，不覆盖原需求、旧源冻结、构建失败或设备收据。
 
 ## 12. 去配对实施进展（2026-11-24）
 
@@ -273,4 +275,4 @@ boot→init_boot 迁移内部恢复本产品旧 boot 修改，准备 init_boot �
 
 无 BTF 全范围仍有私有动态字段来源缺口；本设备走已经核对的 BTF 路径。三组 source stage、同 KMI 名称和主机测试分别证明对应入口，仍不代表 5.10–6.18 所有配置、所有 init_boot 或与 KSU 等同稳定性已验收。下一步由主线统一冻结实际选源、构建组件与原签名 5.2.1/50201 R8 Release，再按第 10 节进行镜像及同代设备验收。
 
-本节交付索引：`kmi-implementation-20261124`（开发证据未随公开快照分发：`D:/Maple_Workflow/MapleSU/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-implementation-20261124`）。SDK 已构建代的 1330 个输入与当前源逐项比较无变化；组件和 Manager 的新改动继续单独构建、核对来源，不复用旧桥的成功资格。
+本节交付索引：`kmi-implementation-20261124`（开发证据未随公开快照分发：`WORKSPACE/.tmp/supervision-20261123-build-acceptance/source-repairs-current/kmi-implementation-20261124`）。SDK 已构建代的 1330 个输入与当前源逐项比较无变化；组件和 Manager 的新改动继续单独构建、核对来源，不复用旧桥的成功资格。
