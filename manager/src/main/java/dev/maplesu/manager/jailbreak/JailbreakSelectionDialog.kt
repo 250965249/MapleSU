@@ -581,7 +581,7 @@ internal fun JailbreakSelectionDialogContent(
                             JailbreakMethod.GHOSTSAM -> R.string.maplesu_jailbreak_ghostlock_summary
                         }),
                         selected = ui.method == option,
-                        enabled = !ui.running && (option != JailbreakMethod.GHOSTSAM || ghostsamReadiness.ready),
+                        enabled = !ui.running && (option != JailbreakMethod.GHOSTSAM || ui.ghostsamReady),
                         onClick = { onMethodSelected(option) },
                     )
                 }
