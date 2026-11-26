@@ -176,15 +176,17 @@ jobs:
       - name: Stage 16 embedded ko into bin/aarch64 (+ lkm placeholder)
         run: |
           set -euo pipefail
-          bin=applied/userspace/ksud/bin/aarch64
+          # 真实 RustEmbed folder：assets.rs:45 #[folder="bin/aarch64"] 相对 crate 目录，
+          # crate 在 third_party/kernelsu/applied/userspace/ksud
+          # （T2 日志 target_directory 已证 applied 位于 third_party/kernelsu/ 下）。
+          bin=third_party/kernelsu/applied/userspace/ksud/bin/aarch64
           mkdir -p "$bin" third_party/kernelsu/lkm
-          n=0
           for ko in $(find download -type f -name '*_kernelsu.ko' | sort); do
             cp -f "$ko" "$bin/"
-            n=$((n + 1))
           done
-          echo "staged $n ko into $bin"
-          [ "$n" -eq 16 ] || { echo "::error::expected 16 ko (8 normal + 8 exynos), got $n"; find download -type f -name '*.ko'; exit 1; }
+          staged=$(find "$bin" -maxdepth 1 -name '*_kernelsu.ko' | wc -l | tr -d ' ')
+          echo "staged $staged ko into $bin"
+          [ "$staged" -eq 16 ] || { echo "::error::expected 16 ko (8 normal + 8 exynos) in $bin, got $staged"; find download -type f -name '*.ko'; exit 1; }
           # build_ksud.sh step2 需要 third_party/kernelsu/lkm/<kmi>_kernelsu.ko 作占位（会再复制进 bin）。
           cp -f "$bin/android16-6.12_kernelsu.ko" third_party/kernelsu/lkm/android16-6.12_kernelsu.ko
           ls -1 "$bin"
@@ -206,6 +208,13 @@ jobs:
           [ -f "$ksud" ] || { echo "::error::ksud product missing: $ksud"; exit 1; }
           mkdir -p out
           cp "$ksud" "out/ksud-maplesu-aarch64"
+          # 版本戳自证（实证：build.rs VERSION_CODE = 30000 + `git rev-list --count HEAD`，
+          # 已由 build_ksud.sh 合成 git 历史钉到 32650）。与 profile 检测口径一致：只认 5 位戳。
+          strings -a out/ksud-maplesu-aarch64 | grep -q 'KSU_NO_NEW_PRIVS32650' \
+            || { echo "::error::ksud binary lacks KSU_NO_NEW_PRIVS32650"; strings -a out/ksud-maplesu-aarch64 | grep -oE 'KSU_NO_NEW_PRIVS[0-9]{5}' | sort -u; exit 1; }
+          codes=$(strings -a out/ksud-maplesu-aarch64 | grep -oE 'KSU_NO_NEW_PRIVS[0-9]{5}' | sed 's/^KSU_NO_NEW_PRIVS//' | sort -u | tr '\n' ',')
+          echo "ksud 5-digit stamps: [$codes]（须唯一 32650，与 sidecar kernel_version_code=32650 一致）"
+          [ "$codes" = "32650," ] || { echo "::error::ksud stamps [$codes] != [32650,]"; exit 1; }
           # 复用矩阵 Packaging 步骤的 sidecar 块（字段保持一致）。
           {
             echo 'variant=maplesu'

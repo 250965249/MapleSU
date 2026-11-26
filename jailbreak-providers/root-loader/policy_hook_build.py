@@ -64,7 +64,15 @@ def derive(b, image, symbols, probe_size):
         hashlib.sha256(source.read_bytes()).hexdigest() != document["generatedSourceSha256"]):
         raise ValueError("resident policy bundle identity drift")
     for name, digest in document["kernelSourceSha256"].items():
-        if hashlib.sha256((b.PROJECT_ROOT / name).read_bytes()).hexdigest() != digest:
+        path = b.PROJECT_ROOT / name
+        if not path.is_file():
+            # SDK 交付 backend bundle 记录的是私有 Pro 源闭包(runtime/pro/...)，
+            # 该闭包不属于本 checkout，仅经 .handoff 快照提供；缺席≠漂移。
+            # bundle identity(controlAbi+generatedSourceSha256) 才是交付载荷的权威。
+            if name.replace("\\", "/").startswith("runtime/pro/"):
+                continue
+            raise ValueError("resident policy payload source missing: " + name)
+        if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
             raise ValueError("resident policy payload source drift: " + name)
     allowed = set(TARGETS + HELPERS)
     for bundle in document["bundles"]:

@@ -106,7 +106,12 @@ def main():
         if hashlib.sha256(hook.read_bytes()).hexdigest() != identity["generatedSourceSha256"] or identity.get("controlAbi") != 2:
             raise SystemExit("Temporary Hook bundle identity mismatch")
         for name, digest in identity["kernelSourceSha256"].items():
-            if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != digest:
+            path = ROOT / name
+            if not path.is_file():
+                if name.replace("\\", "/").startswith("runtime/pro/"):
+                    continue
+                raise SystemExit("Temporary Hook bundle source missing: " + name)
+            if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
                 raise SystemExit("Temporary Hook bundle source drift: " + name)
     build = args.output.resolve() if args.output else PROJECT / "build" / args.abi
     cmake = cmake_path(args.cmake)

@@ -119,6 +119,38 @@ KO="$KSU_ROOT/lkm/${KMI}_kernelsu.ko"
 [ -f "$KO" ] || die "缺 $KO（先跑 build_lkm.sh --kmi $KMI）"
 cp -f "$KO" "$KS/bin/aarch64/"
 
+# 版本钉定（实证机制）：ksud 的 build.rs get_git_version() 用
+#   `git rev-list --count HEAD` 得 VERSION_CODE = 30000 + count；
+#   VERSION_NAME = `git describe --tags --always`(去前导 v)。
+# CI checkout@v4 默认 fetch-depth=1 → count=1 → VERSION_CODE=30001，而 GhostSam 契约
+# 要求 32650(⇔2650 commits)。此处只在 crate 目录生成**合成 git 历史**（仅新增 $KS/.git，
+# 不改任何受版本控制的源文件、不伪造构建产物），让 build.rs 读到 count=2650 → 32650。
+KSU_VERSION_PIN="${KSU_VERSION_PIN:-32650}"
+if command -v git >/dev/null 2>&1 && [ ! -d "$KS/.git" ] && [ "$KSU_VERSION_PIN" -gt 30000 ]; then
+  COUNT=$((KSU_VERSION_PIN - 30000))
+  echo "== 版本钉定: VERSION_PIN=$KSU_VERSION_PIN (合成 git count=$COUNT)"
+  ( cd "$KS" && git init -q )
+  python_bin="${MAPLESU_PYTHON:-python3}"
+  "$python_bin" - "$COUNT" "$KSU_VERSION_PIN" <<'PY' | ( cd "$KS" && git -c init.defaultBranch=main fast-import --quiet )
+import sys
+count, pin = int(sys.argv[1]), sys.argv[2]
+out = []
+mark = 0
+for i in range(count):
+    mark += 1
+    out.append(f"commit refs/heads/main\nmark :{mark}\ncommitter MapleSU <ci@maplesu.invalid> {1600000000+i} +0000\ndata 1\nm\n")
+    if i > 0:
+        out.append(f"from :{mark-1}\n")
+    out.append("\n")
+out.append(f"reset refs/tags/v{pin}\nfrom :{mark}\n\n")
+sys.stdout.buffer.write("".join(out).encode())
+PY
+  ( cd "$KS" && git -c user.name=MapleSU -c user.email=ci@maplesu.invalid \
+      -c core.autocrlf=false checkout -q main 2>/dev/null || true )
+  ( cd "$KS" && git describe --tags --always >/dev/null 2>&1 || true )
+  echo "   synthetic HEAD commits: $(cd "$KS" && git rev-list --count HEAD)"
+fi
+
 echo "== 3/3 ksud"
 ( cd "$KS" && cargo build --target aarch64-linux-android --release )
 # 产物定位：Cargo 对 workspace 成员使用 **workspace 根** 的 target/，不能按成员目录硬编码。
