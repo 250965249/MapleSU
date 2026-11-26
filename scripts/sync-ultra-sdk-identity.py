@@ -49,8 +49,18 @@ if __name__ == "__main__":
         manifest_path = args.manifest or ROOT / "runtime/maplesu-sdk/SDK-RELEASE.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8-sig"))
         if "sourceBuild" in manifest:
-            from source_sdk_delivery import verify_source_delivery
-            verify_source_delivery(manifest, ROOT)
+            # sourceBuild 的构建 receipt(buildReport/memberManifest/retainedRelease 等)属私有
+            # source-build 闭包（.tmp/、runtime/upstream-pro/ 均在 public-export 排除前缀下），
+            # fork/公开导出不含；缺席≠漂移，且 workflow 的 generate 步(不带 --check)本就绕开
+            # verify_source_delivery。此处仅在 receipt 文件缺席时跳过深验并提示；已提交产物身份
+            # 仍由上方 generated_identity()(archive size+sha256、helper slot) 严格校验，不弱化。
+            private_report = (ROOT / manifest["sourceBuild"]["buildReport"]["path"]).resolve()
+            if private_report.is_file():
+                from source_sdk_delivery import verify_source_delivery
+                verify_source_delivery(manifest, ROOT)
+            else:
+                print("SOURCE_SDK_PRIVATE_BUILD_ABSENT: skip deep source-build provenance ("
+                      + str(private_report) + "); committed SDK identity still verified")
         elif "environmentPolicyBoot" in manifest:
             from policy_backend_delivery import verify_delivery
             verify_delivery(manifest, ROOT)
