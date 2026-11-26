@@ -87,6 +87,7 @@ internal fun JailbreakLogPanel(
                     JailbreakMethod.GHOSTLOCK -> R.string.maplesu_jailbreak_ghostlock
                     JailbreakMethod.DIRTYFRAG -> R.string.maplesu_jailbreak_dirtyfrag
                     JailbreakMethod.MAPLESU_93260 -> R.string.maplesu_jailbreak_93260
+                    JailbreakMethod.GHOSTSAM -> R.string.maplesu_jailbreak_ghostlock
                 })
                 val mode = stringResource(if (ui.rootTarget == JailbreakRequest.BACKEND_HOOK)
                     R.string.maplesu_jailbreak_target_ultra else R.string.maplesu_jailbreak_target_normal)

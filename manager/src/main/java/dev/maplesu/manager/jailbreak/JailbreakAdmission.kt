@@ -8,7 +8,7 @@ import me.yuki.fina.adbroot.core.Payload
 import java.io.IOException
 
 enum class JailbreakMethod(val wireName: String) {
-    GHOSTLOCK("ghostlock"), DIRTYFRAG("dirtyfrag"), MAPLESU_93260("maplesu_93260")
+    GHOSTLOCK("ghostlock"), DIRTYFRAG("dirtyfrag"), MAPLESU_93260("maplesu_93260"), GHOSTSAM("ghostsam")
 }
 
 data class JailbreakTarget(
@@ -72,6 +72,8 @@ data class JailbreakAssessment(
 object JailbreakAdmission {
     const val GHOSTLOCK_COMMIT = "b67359641c8663e5184abba73ecdf2c456dce3e7"
     const val DIRTYFRAG_COMMIT = "ccd61e7c516df1469d335e41638e881328136dbc"
+    // GhostSam provider (MapleSU-side V2 adapter). Local source label, not an upstream pin.
+    const val GHOSTSAM_COMMIT = "ghostsam-v2-local"
 
     fun assess(
         method: JailbreakMethod,
@@ -87,7 +89,7 @@ object JailbreakAdmission {
         // an ordinary App is not allowed to read selinuxfs on this platform, and
         // its absence must not read as a target mismatch.
         val identity = listOf(target.kernelRelease, target.abi, target.bootId) +
-            if (method == JailbreakMethod.GHOSTLOCK) listOf(target.androidRelease,
+            if (method == JailbreakMethod.GHOSTLOCK || method == JailbreakMethod.GHOSTSAM) listOf(target.androidRelease,
                 target.manufacturer, target.soc, target.fingerprint) else emptyList()
         /*
          * Only the owner may start a provider. The executor refused this late; the UI
@@ -152,6 +154,12 @@ object JailbreakAdmission {
                     notes += "profile-missing:" + target.kernelRelease
                 }
             }
+            JailbreakMethod.GHOSTSAM -> {
+                // Same admission surface as other providers: target identity above,
+                // artifact presence in verifyArtifacts(), capability gate in the adapter.
+                notes += "provider:ghostsam"
+                notes += "capability:RAW_ROOT_LEASE"
+            }
             JailbreakMethod.DIRTYFRAG -> {
                 kmi = try {
                     DirtyfragAttempt.exactKmi(target.kernelRelease)
@@ -173,6 +181,7 @@ object JailbreakAdmission {
             JailbreakMethod.MAPLESU_93260 -> "source-package-3.8.10"
             JailbreakMethod.GHOSTLOCK -> GHOSTLOCK_COMMIT
             JailbreakMethod.DIRTYFRAG -> DIRTYFRAG_COMMIT
+            JailbreakMethod.GHOSTSAM -> GHOSTSAM_COMMIT
         }
         return JailbreakAssessment(
             method = method,
@@ -228,6 +237,7 @@ object JailbreakAdmission {
                 "libmaplesu_root_consumer.so")
             JailbreakMethod.DIRTYFRAG -> listOf("libdfroot.so",
                 "libmaplesu_dirtyfrag_bootstrap.so", "libmaplesu_root_consumer.so")
+            JailbreakMethod.GHOSTSAM -> listOf("libmaplesu_ghostsam_consumer.so")
         }
         return try {
             names.forEach { JailbreakArtifacts.require(context, it) }

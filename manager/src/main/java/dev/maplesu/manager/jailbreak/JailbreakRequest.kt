@@ -60,6 +60,9 @@ data class JailbreakRequest(
          */
         const val BACKEND_KSU = "ksu"
 
+        /** GhostSam provider route (MapleSU-side V2 adapter, RAW_ROOT_LEASE only). */
+        const val BACKEND_GHOSTSAM = "ghostsam"
+
         /**
          * Every backend this build knows. An unknown value must fail closed: before
          * this set existed, `rootBackend = "anything"` silently fell through to the
@@ -67,7 +70,7 @@ data class JailbreakRequest(
          * and still report success. `null` is *not* a member here: it means "decide
          * from what is packaged", which is a deliberate choice, not an unknown value.
          */
-        val KNOWN_BACKENDS: Set<String> = setOf(BACKEND_IR, BACKEND_HOOK, BACKEND_KSU)
+        val KNOWN_BACKENDS: Set<String> = setOf(BACKEND_IR, BACKEND_HOOK, BACKEND_KSU, BACKEND_GHOSTSAM)
 
         /**
          * Backends this build can actually route *today*.
@@ -81,7 +84,7 @@ data class JailbreakRequest(
          * [BACKEND_KSU] into this set.
          */
         val ROUTABLE_BACKENDS: Set<String> =
-            setOf(BACKEND_IR, BACKEND_HOOK, BACKEND_KSU)
+            setOf(BACKEND_IR, BACKEND_HOOK, BACKEND_KSU, BACKEND_GHOSTSAM)
 
         /**
          * Returns the stable failure token for a target this build cannot deliver, or

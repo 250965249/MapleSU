@@ -113,6 +113,7 @@ internal object JailbreakExecutor {
                 JailbreakMethod.DIRTYFRAG.wireName -> escalateDirtyFrag(context, request, publish)
                 JailbreakMethod.GHOSTLOCK.wireName -> escalateGhostlock(context, request, publish)
                 JailbreakMethod.MAPLESU_93260.wireName -> escalateMapleSu93260(context, request, publish)
+                JailbreakMethod.GHOSTSAM.wireName -> escalateGhostsam(context, request, publish)
                 else -> fail(publish, "JAILBREAK_METHOD_UNKNOWN", request.method)
             }
         } catch (error: IOException) {
@@ -931,6 +932,21 @@ internal object JailbreakExecutor {
         }
         val markers = ATTEMPT_MARKERS.filter { File(it).exists() }
         return Cleanup(exited, failures, markers)
+    }
+
+    /**
+     * GhostSam V2 route: the only product entry point for the MapleSU-side adapter.
+     * All lease construction is MapleSU-owned; argv carries no nonce and the TLV travels
+     * on the same 'C' connection. Any failure is a named, fail-closed token.
+     */
+    private fun escalateGhostsam(context: Context, request: JailbreakRequest,
+                                 publish: (JailbreakStatus) -> JailbreakStatus): JailbreakStatus {
+        val result = dev.maplesu.manager.jailbreak.ghostsam.GhostsamAttempt.run(context)
+        if (!result.ok) return fail(publish, result.token ?: "GHOSTSAM_ADAPTER_FAILURE", "")
+        return publish(JailbreakStatus(
+            method = request.method, stage = JailbreakStatus.STAGE_DAEMON_READY,
+            message = "ghostsam RAW_ROOT_LEASE", startedAtMillis = 0, updatedAtMillis = 0,
+            bootId = request.bootId, attemptId = request.attemptId))
     }
 
     private fun fail(

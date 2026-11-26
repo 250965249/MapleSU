@@ -20,5 +20,6 @@ internal data class JailbreakSelectionUi(
             JailbreakMethod.DIRTYFRAG -> true
             JailbreakMethod.GHOSTLOCK -> ghostlockReady && !awaitingOverwrite
             JailbreakMethod.MAPLESU_93260 -> shizukuReady
+            JailbreakMethod.GHOSTSAM -> true // admission + artifact + capability gate decide
         }
 }

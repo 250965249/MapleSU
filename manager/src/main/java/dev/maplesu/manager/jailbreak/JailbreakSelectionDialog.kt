@@ -561,17 +561,19 @@ internal fun JailbreakSelectionDialogContent(
             modifier = Modifier.fillMaxWidth(), onClick = { showLogs = true })
         JailbreakSection(stringResource(R.string.maplesu_jailbreak_method_title)) {
             Column(Modifier.selectableGroup()) {
-                listOf(JailbreakMethod.DIRTYFRAG, JailbreakMethod.GHOSTLOCK, JailbreakMethod.MAPLESU_93260).forEach { option ->
+                listOf(JailbreakMethod.DIRTYFRAG, JailbreakMethod.GHOSTLOCK, JailbreakMethod.MAPLESU_93260, JailbreakMethod.GHOSTSAM).forEach { option ->
                     JailbreakChoice(
                         title = stringResource(when (option) {
                             JailbreakMethod.GHOSTLOCK -> R.string.maplesu_jailbreak_ghostlock
                             JailbreakMethod.DIRTYFRAG -> R.string.maplesu_jailbreak_dirtyfrag
                             JailbreakMethod.MAPLESU_93260 -> R.string.maplesu_jailbreak_93260
+                            JailbreakMethod.GHOSTSAM -> R.string.maplesu_jailbreak_ghostlock
                         }),
                         summary = stringResource(when (option) {
                             JailbreakMethod.GHOSTLOCK -> R.string.maplesu_jailbreak_ghostlock_summary
                             JailbreakMethod.DIRTYFRAG -> R.string.maplesu_jailbreak_dirtyfrag_summary
                             JailbreakMethod.MAPLESU_93260 -> R.string.maplesu_jailbreak_93260_summary
+                            JailbreakMethod.GHOSTSAM -> R.string.maplesu_jailbreak_ghostlock_summary
                         }),
                         selected = ui.method == option,
                         enabled = !ui.running,
