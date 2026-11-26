@@ -93,6 +93,22 @@ jobs:
           DDK_IMAGE="ghcr.io/ylarod/ddk-min:${{ matrix.kmi }}-${DDK_RELEASE}"
           docker pull "$DDK_IMAGE"
           bash third_party/kernelsu/scripts/build_lkm.sh --kmi "${{ matrix.kmi }}" --ddk-image "$DDK_IMAGE"
+          # Permanent symbol gate: fail loud if the Samsung delta was silently compiled
+          # out of the release ko (device-panic root cause: RKP early-return stripped ->
+          # bare ko with 0 samsung symbols). Guards the KDP / DEFEX / RKP paths.
+          ko="third_party/kernelsu/lkm/${{ matrix.kmi }}_kernelsu.ko"
+          test -f "$ko" || { echo "::error::missing LKM output $ko"; exit 1; }
+          check_sym() {
+            local pat="$1" label="$2" n
+            n=$(strings -a "$ko" | grep -cE "$pat" || true)
+            echo "symbol gate: $label ($pat) = $n"
+            if [ "${n:-0}" -le 0 ]; then
+              echo "::error::Samsung delta missing '$label' in $ko — silent bare ko"; exit 1
+            fi
+          }
+          check_sym 'samsung_kdp' 'KDP'
+          check_sym 'defex_enforce' 'DEFEX'
+          check_sym 'MAPLESU_RKP|patch_text disabled for this Samsung target' 'RKP'
       - name: Rebuild ksud (ksud-maplesu) embedding KMI ko
         run: |
           set -euo pipefail

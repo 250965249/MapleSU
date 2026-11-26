@@ -69,6 +69,8 @@ SAMSUNG_TARGET_PREFIXES = (
     "kernel/feature/",
     "kernel/hook/",
     "kernel/core/",
+    "kernel/include/",
+    "kernel/policy/",
     "kernel/Kbuild",
     "userspace/ksud/src/late_load.rs",
 )
@@ -256,18 +258,85 @@ def samsung_apply_dry_run(kroot: Path) -> dict:
                 raise DryRunError(f"late_load.rs missing exynos token {token!r} after extension apply")
         kdp = (dst / "kernel/compat/samsung_kdp.c").read_text(encoding="utf-8")
         defex = (dst / "kernel/compat/samsung_defex.c").read_text(encoding="utf-8")
-        selinux = (dst / "kernel/feature/samsung_selinux_hide.c").read_text(encoding="utf-8")
+        kdph = (dst / "kernel/include/ksu_samsung_kdp.h").read_text(encoding="utf-8")
+        # 0031 overwrites the base selinux_hide.c with the reference RKP-kprobe version;
+        # the old fake kernel/feature/samsung_selinux_hide.c must NOT exist any more.
+        selinux = (dst / "kernel/feature/selinux_hide.c").read_text(encoding="utf-8")
         initc = (dst / "kernel/core/init.c").read_text(encoding="utf-8")
-        if "CONFIG_KSU_SAMSUNG_KDP" not in kdp or "CONFIG_KSU_SAMSUNG_DEFEX" not in defex:
-            raise DryRunError("samsung macro gating missing after apply")
-        if "CONFIG_KSU_RKP_NO_PATCH_TEXT" not in selinux:
-            raise DryRunError("selinux_hide missing RKP no-patch-text guard")
-        for probe in ("samsung_context_kprobe", "samsung_access_kprobe", "samsung_setprocattr_kprobe",
-                      "samsung_status_kprobe", "samsung_inode_setxattr_kprobe"):
-            if probe not in selinux:
-                raise DryRunError(f"selinux_hide missing probe {probe}")
-        if "ORDER (MapleSU Samsung)" not in initc:
-            raise DryRunError("init.c missing documented Samsung order")
+        shm = (dst / "kernel/hook/syscall_hook_manager.c").read_text(encoding="utf-8")
+        kbuild = (dst / "kernel/Kbuild").read_text(encoding="utf-8")
+        appp = (dst / "kernel/policy/app_profile.c").read_text(encoding="utf-8")
+        tpm = (dst / "kernel/hook/tp_marker.c").read_text(encoding="utf-8")
+
+        # --- KDP: real symbol-resolution + static_key gated cred suite ---
+        for tok in ("prepare_ro_creds", "kdp_assign_pgd",
+                    "DEFINE_STATIC_KEY_FALSE(ksu_samsung_kdp_key)",
+                    "ksu_resolve_symbol_for_functable_hook", "CONFIG_KSU_SAMSUNG_KDP"):
+            if tok not in kdp:
+                raise DryRunError(f"samsung_kdp.c missing real-implementation token {tok!r}")
+        for tok in ("ksu_commit_creds", "ksu_put_cred", "CONFIG_KSU_SAMSUNG_KDP"):
+            if tok not in kdph:
+                raise DryRunError(f"ksu_samsung_kdp.h missing cred-wrapper token {tok!r}")
+
+        # --- DEFEX: task_defex_enforce kprobe + cred sync ---
+        for tok in ("task_defex_enforce", "ksu_samsung_defex_sync_current", "CONFIG_KSU_SAMSUNG_DEFEX"):
+            if tok not in defex:
+                raise DryRunError(f"samsung_defex.c missing real-implementation token {tok!r}")
+
+        # --- SELinux hide: RKP kprobe trampolines under CONFIG_KSU_RKP_NO_PATCH_TEXT ---
+        for tok in ("CONFIG_KSU_RKP_NO_PATCH_TEXT", "sel_hide_context_write_kprobe",
+                    "sel_hide_register_probe", "sel_hide_status_open_tramp"):
+            if tok not in selinux:
+                raise DryRunError(f"selinux_hide.c missing RKP-only token {tok!r}")
+
+        # --- syscall hook manager: RKP fallback wired when the dispatcher slot is absent,
+        #     while MapleSU's own init_module_filter wiring MUST be preserved ---
+        for tok in ("rkp_sucompat_hook_init", "rkp_setresuid_hook_init",
+                    "ksu_dispatcher_nr < 0", "syscall_hook_manager_initialized"):
+            if tok not in shm:
+                raise DryRunError(f"syscall_hook_manager.c missing RKP-fallback token {tok!r}")
+        if "ksu_init_module_filter_init" not in shm or "ksu_init_module_filter_exit" not in shm:
+            raise DryRunError("syscall_hook_manager.c lost MapleSU init_module_filter wiring")
+
+        # --- init.c order: symbol_resolver -> kdp -> prepare_creds -> defex -> selinux_inode ---
+        try:
+            i_sym = initc.index("ksu_init_symbol_resolver()")
+            i_kdp = initc.index("ksu_samsung_kdp_init()")
+            i_cred = initc.index("ksu_cred = prepare_creds()")
+            i_def = initc.index("ksu_samsung_defex_init()")
+            i_sel = initc.index("ksu_selinux_inode_init()")
+        except ValueError as exc:
+            raise DryRunError(f"init.c missing Samsung init-sequence anchor: {exc}")
+        if not (i_sym < i_kdp < i_cred < i_def < i_sel):
+            raise DryRunError(
+                "init.c Samsung init order wrong: expected resolver<kdp<prepare_creds<defex<selinux_inode, "
+                f"got {i_sym},{i_kdp},{i_cred},{i_def},{i_sel}")
+        if "ksu_put_cred" not in initc:
+            raise DryRunError("init.c not using ksu_put_cred for the Samsung KDP cred path")
+
+        # --- cred wrapping ports (device-proven: policy/app_profile.c + hook/tp_marker.c) ---
+        if "ksu_commit_creds(cred)" not in appp:
+            raise DryRunError("app_profile.c not routed through ksu_commit_creds")
+        if "ksu_put_cred(cred)" not in tpm:
+            raise DryRunError("tp_marker.c not routed through ksu_put_cred")
+
+        # --- Kbuild: unconditional objs + only three ccflags ifeq gates ---
+        for tok in ("kernelsu-objs += compat/samsung_kdp.o",
+                    "kernelsu-objs += compat/samsung_defex.o",
+                    "kernelsu-objs += feature/selinux_hide.o",
+                    "ccflags-y += -DCONFIG_KSU_RKP_NO_PATCH_TEXT=1",
+                    "ccflags-y += -DCONFIG_KSU_SAMSUNG_KDP=1",
+                    "ccflags-y += -DCONFIG_KSU_SAMSUNG_DEFEX=1"):
+            if tok not in kbuild:
+                raise DryRunError(f"Kbuild missing Samsung build wiring {tok!r}")
+        if "samsung_selinux_hide.o" in kbuild or "samsung_rkp_guard.o" in kbuild:
+            raise DryRunError("Kbuild still references the removed fake Samsung objects")
+
+        # --- fake files from the old delta must be gone ---
+        for fake in ("kernel/feature/samsung_selinux_hide.c", "kernel/hook/samsung_rkp_guard.c"):
+            if (dst / fake).exists():
+                raise DryRunError(f"obsolete fake file still present after apply: {fake}")
+
         return {"appliedEntries": applied, "appliedCount": len(applied)}
     finally:
         shutil.rmtree(work, ignore_errors=True)

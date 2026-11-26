@@ -87,6 +87,9 @@ fi
 
 mkdir -p "$OUT_DIR"
 DDK_CMD=(ddk build "$KMI" "ODIR=$OUT_DIR/out-$KMI" -e CONFIG_KSU=m
+  -e CONFIG_KSU_RKP_NO_PATCH_TEXT=y
+  -e CONFIG_KSU_SAMSUNG_KDP=y
+  -e CONFIG_KSU_SAMSUNG_DEFEX=y
   -e "KSU_PACKAGE_NAME=$KSU_PACKAGE_NAME"
   -e "KSU_EXPECTED_SIZE=$KSU_EXPECTED_SIZE"
   -e "KSU_EXPECTED_HASH=$KSU_EXPECTED_HASH"
@@ -136,7 +139,7 @@ MSYS_NO_PATHCONV=1 docker run --rm \
      android17-6.18) set -- MO=/out "$@" ;;
      *) set -- src=/out "$@" ;;
    esac
-   make -C "$KDIR" M=/out CONFIG_KSU=m "$@" modules -j2
+   make -C "$KDIR" M=/out CONFIG_KSU=m CONFIG_KSU_RKP_NO_PATCH_TEXT=y CONFIG_KSU_SAMSUNG_KDP=y CONFIG_KSU_SAMSUNG_DEFEX=y "$@" modules -j2
    cc /out/tools/check_symbol.c -o /out/check_symbol
    for ko in /out/*.ko; do /out/check_symbol "$ko" "$KDIR/vmlinux"; done' sh \
   "MAPLESU_VR_ONLY=$VR_ONLY" "KSU_PACKAGE_NAME=$KSU_PACKAGE_NAME" \

@@ -142,29 +142,29 @@
     "patches": [
       {
         "name": "0029-samsung-kdp.patch",
-        "sha256": "248919a877152f064e515ff5162ec8cf0278812c93a09c9de30e07aa7e7968e4"
+        "sha256": "af4ad181f97542886c0b866595ca710f17e27983d17defea848670bdb3464108"
       },
       {
         "name": "0030-samsung-defex.patch",
-        "sha256": "7f99900de5c438ed1cd2414cf7023762360da39574425b339b4b9e425623ef0a"
+        "sha256": "f9d788aae860c39a14a5a0f1c7d519282ecdac0fa04e8df479cc86abe6e2f1e9"
       },
       {
         "name": "0031-samsung-selinux-hide.patch",
-        "sha256": "7e649d1eeda2f76aa39e9258c6419a1ba6f48de82bf5b947cda15c3457f44330"
+        "sha256": "b38f0701734b77657f7c7194cd6417abc286c6db79fd171e9545bc422d5db5ab"
       },
       {
         "name": "0032-samsung-rkp-no-patch-text.patch",
-        "sha256": "e0ececbd8eeb1a0a5e450b831f687ce912eecc655aa717be63def27eba3bab4e"
+        "sha256": "6c8bb502e5dde6ab63a1ec8fb66fdee397ab801c6fd48ad5e7ca60582d28680b"
       },
       {
         "name": "0033-samsung-kbuild-init-order.patch",
-        "sha256": "11b3f70da6d842fa4c06b738898359251f93977e1fc4abd05f68d7ae0ef9f090"
+        "sha256": "e4b694ab6e6b8c48b31b0ada94e7b00b330974f84aabc39e5364227bb0cb0b41"
       },
       {
         "name": "0034-samsung-exynos-double-name.patch",
         "sha256": "354da8c2a1781e5d1b7832fbd9e6238481417672e1c547edfc5b0ceef9b74d17"
       }
     ],
-    "note": "Samsung KDP/DEFEX/selinux_hide five-point/RKP_NO_PATCH_TEXT/init order/exynos double-name; registered after 0028."
+    "note": "Samsung KDP (real symbol-resolved cred suite) / DEFEX (task_defex_enforce kprobe) / selinux_hide RKP kprobe trampolines / RKP_NO_PATCH_TEXT early-return / init order with rollback / exynos double-name; device-proven port from 250965249/KernelSU@samsung, registered after 0028."
   }
 }

@@ -58,27 +58,35 @@ class SamsungDeltaTests(unittest.TestCase):
         rkp = (P7K / "0032-samsung-rkp-no-patch-text.patch").read_text(encoding="utf-8")
         kbuild = (P7K / "0033-samsung-kbuild-init-order.patch").read_text(encoding="utf-8")
         self.assertIn("CONFIG_KSU_SAMSUNG_KDP", kdp)
-        self.assertIn("MAPLESU_SAMSUNG_KDP_PROBE", kdp)
+        self.assertIn("prepare_ro_creds", kdp)
+        self.assertIn("ksu_samsung_kdp_init", kdp)
         self.assertIn("CONFIG_KSU_SAMSUNG_DEFEX", defex)
+        self.assertIn("task_defex_enforce", defex)
         self.assertIn("CONFIG_KSU_RKP_NO_PATCH_TEXT", sel)
         self.assertIn("CONFIG_KSU_RKP_NO_PATCH_TEXT", rkp)
         self.assertIn("ccflags-y += -DCONFIG_KSU_SAMSUNG_KDP=1", kbuild)
         self.assertIn("ccflags-y += -DCONFIG_KSU_SAMSUNG_DEFEX=1", kbuild)
         self.assertIn("ccflags-y += -DCONFIG_KSU_RKP_NO_PATCH_TEXT=1", kbuild)
 
-    def test_selinux_five_points_and_single_point_degrade(self):
+    def test_selinux_rkp_kprobe_trampolines(self):
+        # 0031 overwrites the base selinux_hide.c with the device-proven RKP version:
+        # RKP stage-2 write protection forbids text patching, so selinux_hide diverts
+        # the original handlers via address-based kprobes + instruction_pointer_set.
         sel = (P7K / "0031-samsung-selinux-hide.patch").read_text(encoding="utf-8")
-        for probe in ("samsung_context_kprobe", "samsung_access_kprobe", "samsung_setprocattr_kprobe",
-                      "samsung_status_kprobe", "samsung_inode_setxattr_kprobe"):
-            self.assertIn(probe, sel)
-        self.assertIn("continue", sel)          # degrade only this point
-        self.assertIn("pr_err", sel)
-        self.assertNotIn("unregister", sel.split("int ksu_maplesu_samsung_selinux_hide_init")[1].split("}")[0])
+        for tok in ("CONFIG_KSU_RKP_NO_PATCH_TEXT", "sel_hide_context_write_kprobe",
+                    "sel_hide_access_write_kprobe", "sel_hide_setprocattr_kprobe",
+                    "sel_hide_status_open_kprobe", "sel_hide_register_probe",
+                    "instruction_pointer_set"):
+            self.assertIn(tok, sel)
+        self.assertIn("sel_hide_guard_enter", sel)   # per-task recursion guard
+        self.assertIn("unregister_kprobe", sel)      # clean unhook path
+        # no leftover fake five-point probe names
+        self.assertNotIn("samsung_context_kprobe", sel)
 
     def test_init_order_documented_and_called(self):
         patch = (P7K / "0033-samsung-kbuild-init-order.patch").read_text(encoding="utf-8")
         order = ["ksu_init_symbol_resolver", "ksu_samsung_kdp_init", "prepare_creds",
-                 "ksu_samsung_defex_init", "ksu_selinux_inode_init", "ksu_selinux_hide_init"]
+                 "ksu_samsung_defex_init", "ksu_selinux_inode_init"]
         pos = [patch.index(tok) for tok in order]
         self.assertEqual(pos, sorted(pos), "init.c Samsung order is not monotonic")
         self.assertIn("ksu_samsung_kdp_exit", patch)  # kdp failure rollback
