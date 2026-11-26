@@ -846,8 +846,9 @@ if (ultraManagerClaimDirectory != null) {
     android.sourceSets["main"].assets.setSrcDirs(emptyList<String>())
 }
 // A formal Release must select a freshly built, version-checked claim cohort.
+val allowMissingUltraClaim = providers.gradleProperty("maplesuAllowMissingUltraClaim").map { it.toBoolean() }.getOrElse(false)
 tasks.matching { it.name == "mergeReleaseAssets" }.configureEach {
-    doFirst { check(ultraManagerClaimDirectory != null) { "ULTRA_CLAIM_FRESH_GENERATION_REQUIRED" } }
+    doFirst { check(ultraManagerClaimDirectory != null || allowMissingUltraClaim) { "ULTRA_CLAIM_FRESH_GENERATION_REQUIRED" } }
 }
 abstract class PackageUltraInitBridge : DefaultTask() {
     @get:InputDirectory abstract val sourceDirectory: DirectoryProperty

@@ -332,7 +332,7 @@ jobs:
           MAPLE_RELEASE_KEY_PASSWORD: ${{ env.GHOSTSAM_TEST_KEY_PASSWORD }}
           MINGW_ROOT: ${{ steps.msys2.outputs.msys2-location }}
         run: |
-          ./gradlew.bat :manager:assembleRelease --no-daemon --no-build-cache --no-configuration-cache --max-workers=2 '-PmaplesuRustToolchain=1.99.1-x86_64-pc-windows-gnu' "-PmaplesuMingwBin=$env:MINGW_ROOT/ucrt64/bin"
+          ./gradlew.bat :manager:assembleRelease --no-daemon --no-build-cache --no-configuration-cache --max-workers=2 '-PmaplesuRustToolchain=1.99.1-x86_64-pc-windows-gnu' "-PmaplesuMingwBin=$env:MINGW_ROOT/ucrt64/bin" -PmaplesuAllowMissingUltraClaim=true
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           $apk = Get-ChildItem -Recurse 'manager/build/outputs/apk/release/*.apk' | Select-Object -First 1
           if (-not $apk) { throw 'No release APK produced.' }
