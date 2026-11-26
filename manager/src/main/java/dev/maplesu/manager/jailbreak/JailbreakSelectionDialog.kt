@@ -118,6 +118,9 @@ fun JailbreakSelectionDialog(onDismiss: () -> Unit, onActivated: () -> Unit = {}
     var pendingOverwrite by remember { mutableStateOf<List<GeneratedProfile>?>(null) }
     val method = JailbreakMethod.valueOf(selected)
     val context = LocalContext.current.applicationContext
+    val ghostsamReadiness = androidx.compose.runtime.remember(context, method) {
+        dev.maplesu.manager.jailbreak.ghostsam.GhostsamBackend.readiness(context)
+    }
     var shizuku by remember { mutableStateOf(ShizukuAccess.State()) }
     val scope = rememberCoroutineScope()
     val onReboot = rememberRebootAction(lateLoad = true)
@@ -363,6 +366,7 @@ fun JailbreakSelectionDialog(onDismiss: () -> Unit, onActivated: () -> Unit = {}
         method = method,
         shizuku = shizuku,
         ghostlockReady = ghostlockEnabled,
+        ghostsamReady = ghostsamReadiness.ready,
         ghostlockDecided = ghostlockDecided,
         setupReason = (ghostlockGate as? GhostlockProfileGate.Decision.Unsupported)?.reason,
         otaUrl = otaUrl,
@@ -477,6 +481,7 @@ internal data class JailbreakSelectionState(
     val method: JailbreakMethod = JailbreakMethod.DIRTYFRAG,
     val shizuku: ShizukuAccess.State = ShizukuAccess.State(),
     val ghostlockReady: Boolean = false,
+    val ghostsamReady: Boolean = false,
     val ghostlockDecided: Boolean = false,
     val setupReason: GhostlockProfileGate.Reason? = null,
     val otaUrl: String = "",
@@ -503,7 +508,7 @@ internal data class JailbreakSelectionState(
     val succeeded: Boolean
         get() = outcome?.let { it.failure == null && it.stage == JailbreakStatus.STAGE_DAEMON_READY } == true
 
-    val selection: JailbreakSelectionUi get() = JailbreakSelectionUi(method, ghostlockReady, shizuku.ready)
+    val selection: JailbreakSelectionUi get() = JailbreakSelectionUi(method, ghostlockReady, shizuku.ready, ghostsamReady)
     val parsing: Boolean get() = otaState is OtaParseState.Parsing
     /** C5/T4 gate removed by user directive 2026-11-02: Start is never blocked. */
     val sessionActive: Boolean get() = false
@@ -563,20 +568,20 @@ internal fun JailbreakSelectionDialogContent(
             Column(Modifier.selectableGroup()) {
                 listOf(JailbreakMethod.DIRTYFRAG, JailbreakMethod.GHOSTLOCK, JailbreakMethod.MAPLESU_93260, JailbreakMethod.GHOSTSAM).forEach { option ->
                     JailbreakChoice(
-                        title = stringResource(when (option) {
+                        title = if (option == JailbreakMethod.GHOSTSAM) "GhostSam" else stringResource(when (option) {
                             JailbreakMethod.GHOSTLOCK -> R.string.maplesu_jailbreak_ghostlock
                             JailbreakMethod.DIRTYFRAG -> R.string.maplesu_jailbreak_dirtyfrag
                             JailbreakMethod.MAPLESU_93260 -> R.string.maplesu_jailbreak_93260
                             JailbreakMethod.GHOSTSAM -> R.string.maplesu_jailbreak_ghostlock
                         }),
-                        summary = stringResource(when (option) {
+                        summary = if (option == JailbreakMethod.GHOSTSAM) "GhostSam RAW_ROOT_LEASE (MapleSU 自有 SU 服务)" else stringResource(when (option) {
                             JailbreakMethod.GHOSTLOCK -> R.string.maplesu_jailbreak_ghostlock_summary
                             JailbreakMethod.DIRTYFRAG -> R.string.maplesu_jailbreak_dirtyfrag_summary
                             JailbreakMethod.MAPLESU_93260 -> R.string.maplesu_jailbreak_93260_summary
                             JailbreakMethod.GHOSTSAM -> R.string.maplesu_jailbreak_ghostlock_summary
                         }),
                         selected = ui.method == option,
-                        enabled = !ui.running,
+                        enabled = !ui.running && (option != JailbreakMethod.GHOSTSAM || ghostsamReadiness.ready),
                         onClick = { onMethodSelected(option) },
                     )
                 }

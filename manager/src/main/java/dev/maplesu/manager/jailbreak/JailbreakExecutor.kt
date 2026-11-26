@@ -941,11 +941,15 @@ internal object JailbreakExecutor {
      */
     private fun escalateGhostsam(context: Context, request: JailbreakRequest,
                                  publish: (JailbreakStatus) -> JailbreakStatus): JailbreakStatus {
-        val result = dev.maplesu.manager.jailbreak.ghostsam.GhostsamAttempt.run(context)
+        val started = System.currentTimeMillis()
+        val result = dev.maplesu.manager.jailbreak.ghostsam.GhostsamAttempt.run(
+            context, request,
+            dev.maplesu.manager.jailbreak.ghostsam.GhostsamBackend.ghostsamFacts())
         if (!result.ok) return fail(publish, result.token ?: "GHOSTSAM_ADAPTER_FAILURE", "")
+        val now = System.currentTimeMillis()
         return publish(JailbreakStatus(
             method = request.method, stage = JailbreakStatus.STAGE_DAEMON_READY,
-            message = "ghostsam RAW_ROOT_LEASE", startedAtMillis = 0, updatedAtMillis = 0,
+            message = "ghostsam RAW_ROOT_LEASE", startedAtMillis = started, updatedAtMillis = now,
             bootId = request.bootId, attemptId = request.attemptId))
     }
 

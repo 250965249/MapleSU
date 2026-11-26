@@ -309,10 +309,10 @@ class IAdmissionWiringTests(unittest.TestCase):
         self.assertIn("BACKEND_KSU, BACKEND_GHOSTSAM", request)  # ROUTABLE_BACKENDS membership
         executor = self._src("JailbreakExecutor.kt")
         self.assertIn("JailbreakMethod.GHOSTSAM.wireName -> escalateGhostsam", executor)
-        self.assertIn("GhostsamAttempt.run(context)", executor)
+        self.assertIn("GhostsamAttempt.run(", executor)
         attempt = self._src("ghostsam/GhostsamAttempt.kt")
         self.assertIn("LeaseBinder(", attempt)
-        self.assertIn("DefaultLeaseTransport(lease.server).awaitIdentity", attempt)
+        self.assertIn("DefaultLeaseTransport(lease.server)", attempt)
 
     def test_missing_primitive_and_artifact_fail_closed(self):
         self.assertEqual(W.GhostsamAdmission.blockers(), [])
@@ -359,6 +359,131 @@ class JN1N2Tests(unittest.TestCase):
         lease2 = W.GhostsamLeaseFactory.create(manager_uid=10000, boot_id=BOOT,
                                                endpoint="maplesu-jb-b", nonce=NONCE)
         self.assertIsNot(lease2.server, lease.server)
+
+
+class KRepairT30Tests(unittest.TestCase):
+    def _read(self, rel):
+        return (ROOT / "manager/src/main/java/dev/maplesu/manager/jailbreak" / rel).read_text(encoding="utf-8")
+
+    def test_f1_default_transport_maps_closed_listener(self):
+        src = self._read("ghostsam/DefaultLeaseTransport.kt")
+        self.assertIn("GHOSTSAM_SERVER_CLOSED", src)
+        self.assertIn("catch (e: IOException)", src)
+        self.assertIn("catch (e: IllegalStateException)", src)
+
+    def test_f2_f3_single_entry_via_adapter_provider(self):
+        attempt = self._read("ghostsam/GhostsamAttempt.kt")
+        self.assertIn("AdapterProvider(", attempt)
+        self.assertIn("GhostsamBackend.ghostsamFacts()", attempt)
+        self.assertIn("transportFactory", self._read("ghostsam/AdapterProvider.kt"))
+        # capability gate still reachable via AdapterProvider.run
+        ap = self._read("ghostsam/AdapterProvider.kt")
+        self.assertIn("CapabilityGate.assertNoUltra(request.facts)", ap)
+
+    def test_f4_ghostsam_label_and_readiness_gate(self):
+        dlg = self._read("JailbreakSelectionDialog.kt")
+        self.assertIn('"GhostSam"', dlg)
+        self.assertIn("ghostsamReadiness.ready", dlg)
+        backend = self._read("ghostsam/GhostsamBackend.kt")
+        self.assertIn("fun readiness(", backend)
+        self.assertIn("fun ultraFacts(", backend)
+        self.assertIn("ghostsamReady", self._read("JailbreakSelectionUi.kt"))
+        self.assertIn("JailbreakMethod.GHOSTSAM -> ghostsamReady", self._read("JailbreakSelectionUi.kt"))
+        self.assertIn('"GhostSam"', self._read("JailbreakLogPanel.kt"))
+
+    def test_f6_real_timestamps_and_attempt_link(self):
+        ex = self._read("JailbreakExecutor.kt")
+        idx = ex.index("private fun escalateGhostsam")
+        section = ex[idx: idx + 900]
+        self.assertIn("System.currentTimeMillis()", section)
+        self.assertIn("request.attemptId", section)
+        self.assertNotIn("startedAtMillis = 0", section)
+
+
+class LGateDefaultFactsTests(unittest.TestCase):
+    # Product default facts carry ONLY lease fields (no Ultra keys at all).
+    DEFAULT = {"jailbreakLeaseValid": True, "leaseCapability": "RAW_ROOT_LEASE", "r7": "A_JAILBREAK"}
+
+    def test_default_ultra_facts_pass_gate(self):
+        W.CapabilityGate.assert_no_ultra(self.DEFAULT)  # lease-only facts pass
+        for state in ("ABSENT", "NONE"):
+            facts = dict(self.DEFAULT, ultraState=state)  # explicit absence sentinels pass
+            W.CapabilityGate.assert_no_ultra(facts)
+
+    def test_unknown_ultra_state_rejected(self):
+        # UNKNOWN means "unverified", not absence: it must stay fail-closed (no fail-open).
+        facts = dict(self.DEFAULT, ultraState="UNKNOWN")
+        with self.assertRaises(W.WireError) as ctx:
+            W.CapabilityGate.assert_no_ultra(facts)
+        self.assertEqual(ctx.exception.token, "CAPABILITY_OUT_OF_SCOPE:ultraState=UNKNOWN")
+        W.CapabilityGate.assert_no_ultra({})
+        W.CapabilityGate.assert_no_ultra(self.DEFAULT)
+
+    def test_any_truthy_ultra_field_rejected(self):
+        cases = [
+            ("ultraState", "RUNNING", "CAPABILITY_OUT_OF_SCOPE:ultraState"),
+            ("ultraKeyPresent", True, "CAPABILITY_OUT_OF_SCOPE:ultraKeyPresent"),
+            ("ultraKernelRootVerified", True, "CAPABILITY_OUT_OF_SCOPE:ultraKernelRootVerified"),
+            ("IRootManagementService", "binder", "CAPABILITY_OUT_OF_SCOPE:IRootManagementService"),
+        ]
+        for field, value, token in cases:
+            with self.subTest(field=field):
+                with self.assertRaises(W.WireError) as ctx:
+                    W.CapabilityGate.assert_no_ultra(dict(self.DEFAULT, **{field: value}))
+                self.assertEqual(ctx.exception.token, token)
+
+    def test_gate_runs_before_provisioner_in_mirror(self):
+        res = W.AdapterProvider().run(
+            consumer_present=False, consumer_digest_ok=False, primitive_available=False,
+            pending=None, peer_uid=0, peer_pid=1, starttime=1, domain="", enforcing=1, seccomp=0,
+            facts={"ultraState": "RUNNING"})
+        self.assertFalse(res["ok"])
+        self.assertEqual(res["token"], "CAPABILITY_OUT_OF_SCOPE:ultraState")  # not CONSUMER_MISSING
+
+    def test_correct_facts_reach_raw_root_lease(self):
+        res = W.AdapterProvider().run(
+            consumer_present=True, consumer_digest_ok=True, primitive_available=True,
+            pending=pending(), peer_uid=0, peer_pid=4242, starttime=0x0000000100000002,
+            domain="u:r:shell:s0", enforcing=1, seccomp=2, facts=dict(self.DEFAULT))
+        self.assertTrue(res["ok"], res)
+        self.assertEqual(res["capability"], ["RAW_ROOT_LEASE"])
+
+    def test_static_order_gate_before_binder(self):
+        src = (ROOT / "manager/src/main/java/dev/maplesu/manager/jailbreak/ghostsam/AdapterProvider.kt").read_text(encoding="utf-8")
+        gate = src.index("CapabilityGate.assertNoUltra(request.facts)")
+        self.assertLess(gate, src.index("provisioner.resolve()"))
+        self.assertLess(gate, src.index("binder.prepare()"))
+        self.assertLess(gate, src.index("binder.awaitOnce()"))
+        backend = (ROOT / "manager/src/main/java/dev/maplesu/manager/jailbreak/ghostsam/GhostsamBackend.kt").read_text(encoding="utf-8")
+        self.assertIn("fun ghostsamFacts(", backend)
+        self.assertNotIn("ultraState", backend.split("fun ghostsamFacts(")[1].split("}")[0])
+
+
+def _selection_can_start(method, *, ghostsam_ready=False, running=False, checks_ready=True,
+                         blockers_present=False, parsing=False):
+    if running or not checks_ready or blockers_present or parsing:
+        return False
+    return ghostsam_ready if method == "ghostsam" else True
+
+class MUiGateT35Tests(unittest.TestCase):
+    def test_ghostsam_canstart_positive_and_negative(self):
+        self.assertTrue(_selection_can_start("ghostsam", ghostsam_ready=True))
+        self.assertFalse(_selection_can_start("ghostsam", ghostsam_ready=False))
+        # other gates still dominate
+        self.assertFalse(_selection_can_start("ghostsam", ghostsam_ready=True, running=True))
+        self.assertFalse(_selection_can_start("ghostsam", ghostsam_ready=True, blockers_present=True))
+        self.assertFalse(_selection_can_start("ghostsam", ghostsam_ready=True, checks_ready=False))
+
+    def test_dialog_passes_ghostsam_ready_and_refresh_key(self):
+        dlg = (ROOT / "manager/src/main/java/dev/maplesu/manager/jailbreak/JailbreakSelectionDialog.kt").read_text(encoding="utf-8")
+        self.assertIn("ghostsamReady = ghostsamReadiness.ready", dlg)
+        self.assertIn("remember(context, method)", dlg)
+
+    def test_backend_facts_drop_unused_context(self):
+        backend = (ROOT / "manager/src/main/java/dev/maplesu/manager/jailbreak/ghostsam/GhostsamBackend.kt").read_text(encoding="utf-8")
+        self.assertIn("fun ghostsamFacts():", backend)
+        self.assertNotIn("fun ghostsamFacts(context", backend)
+        self.assertIn("fun ultraFacts():", backend)
 
 
 if __name__ == "__main__":

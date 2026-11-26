@@ -1,0 +1,175 @@
+name: GhostSam fork build matrix (MapleSU Samsung delta + test-signed Manager)
+
+# Fork branch CI. Requires the owner to Enable Actions on the fork (web UI) once.
+# 触发：workflow_dispatch（任意分支手动） + 分支 push（maple-su-samsung / ghostsam/**）。
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - maple-su-samsung
+      - 'ghostsam/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ghostsam-build-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  MAPLESU_PYTHON: python3
+  DDK_RELEASE: '20260828'
+  KSUD_PRODUCT_NAME: ksud-maplesu
+  # ---------------------------------------------------------------------------
+  # GhostSam fork TEST-ONLY signing pins (public keystore: keystore/ghostsam-test.keystore).
+  # Kernel expected manager-cert fingerprint, consumed by build_lkm.sh via the
+  # KSU_EXPECTED_SIZE / KSU_EXPECTED_HASH env channel (does NOT edit applied/ or manifest.json).
+  #   DER bytes = 911 ; sha256(cert.der) = cd0c477b…db90 (see keystore/README.md).
+  # The SAME test cert signs the Manager APK below, so Manager APK / LKM / ksud stay consistent.
+  # ⚠ PUBLIC TEST SIGNATURE — replace with private signing before any real distribution.
+  # ---------------------------------------------------------------------------
+  KSU_EXPECTED_SIZE: '911'
+  KSU_EXPECTED_HASH: 'cd0c477bcacc58c694367cb9a2f696d3bfd5de3e0ee8a0e25451cecbf312db90'
+  GHOSTSAM_TEST_KEYSTORE: keystore/ghostsam-test.keystore
+  GHOSTSAM_TEST_KEY_ALIAS: ghostsam-test
+  GHOSTSAM_TEST_STORE_PASSWORD: GhostSamTest2026
+  GHOSTSAM_TEST_KEY_PASSWORD: GhostSamTest2026
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # ===========================================================================
+  # Job A: LKM (DDK) + ksud-maplesu, one per Normal KMI. Uses KSU_EXPECTED_* env.
+  # ===========================================================================
+  matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        kmi:
+          - android12-5.10
+          - android13-5.10
+          - android13-5.15
+          - android14-5.15
+          - android14-6.1
+          - android15-6.6
+          - android16-6.12
+          - android17-6.18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply MapleSU base series + GhostSam/Samsung extension
+        run: |
+          set -euo pipefail
+          python3 third_party/kernelsu/scripts/apply_patches.py --clean --extension-series patches/7k/series-ghostsam
+          python3 scripts/ghostsam_patch_dryrun.py
+      - name: Build LKM via DDK (Normal KMI, test-cert pin via env)
+        # KSU_EXPECTED_SIZE / KSU_EXPECTED_HASH inherited from workflow env above
+        run: |
+          set -euo pipefail
+          echo "expected size=$KSU_EXPECTED_SIZE hash=$KSU_EXPECTED_HASH"
+          bash third_party/kernelsu/scripts/build_lkm.sh --kmi "${{ matrix.kmi }}"
+      - name: Rebuild ksud (ksud-maplesu) embedding KMI ko
+        run: |
+          set -euo pipefail
+          KSUD_TREE=exynos bash third_party/kernelsu/scripts/build_ksud.sh --kmi "${{ matrix.kmi }}" || \
+            bash third_party/kernelsu/scripts/build_ksud.sh --kmi "${{ matrix.kmi }}"
+      - name: Package ksud-maplesu[-exynos] assets
+        run: |
+          set -euo pipefail
+          name="ksud-maplesu/${{ matrix.kmi }}_kernelsu.ko"
+          exynos="ksud-maplesu-exynos/${{ matrix.kmi }}-exynos_kernelsu.ko"
+          mkdir -p "out/$(dirname "$name")" "out/$(dirname "$exynos")"
+          src="third_party/kernelsu/artifacts/lkm/${{ matrix.kmi }}_kernelsu.ko"
+          [ -f "$src" ] && cp "$src" "out/$name" && cp "$src" "out/$exynos" || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ksud-maplesu-${{ matrix.kmi }}
+          path: out/
+          if-no-files-found: warn
+
+  # ===========================================================================
+  # Job B: test-signed Manager APK (windows-latest, mirrors build-manager.yml toolchain).
+  # Signs :manager:assembleRelease with the committed public test keystore and
+  # publishes a fixed-name artifact: MapleSU-Manager-ghostsam-test.apk
+  # ===========================================================================
+  manager:
+    runs-on: windows-latest
+    timeout-minutes: 90
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Set up MinGW
+        id: msys2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          install: mingw-w64-ucrt-x86_64-gcc
+      - name: Install build inputs
+        run: |
+          & "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager.bat" 'cmdline-tools;latest'
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          & "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager.bat" 'platforms;android-37.0' 'build-tools;37.0.0' 'cmake;3.22.1' 'ndk;26.1.10909125' 'ndk;28.2.13676358' 'ndk;29.0.14206865'
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          rustup toolchain install 1.99.1-x86_64-pc-windows-gnu --profile minimal --target aarch64-linux-android
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python -m pip install -r requirements-native.txt
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          "MAPLESU_PYTHON=$((Get-Command python).Source)" >> $env:GITHUB_ENV
+          "ANDROID_SDK_ROOT=$env:ANDROID_HOME" >> $env:GITHUB_ENV
+      - name: Fetch locked extractor dependencies
+        run: |
+          cargo +1.99.1-x86_64-pc-windows-gnu fetch --locked --target aarch64-linux-android --manifest-path jailbreak-providers/ghostlock/extractor-native/Cargo.toml
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Build SDK and consumer
+        run: |
+          ./gradlew.bat :maplesu-client:assembleRelease :maplesu-consumer:assembleDebug --no-daemon --no-build-cache --no-configuration-cache --max-workers=2
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Assert test keystore present
+        run: |
+          if (-not (Test-Path "$env:GITHUB_WORKSPACE/$env:GHOSTSAM_TEST_KEYSTORE")) {
+            throw "Missing test keystore: $env:GHOSTSAM_TEST_KEYSTORE (see keystore/README.md)"
+          }
+      - name: Build signed test Manager APK (keystore/ghostsam-test.keystore)
+        env:
+          MAPLE_RELEASE_STORE_FILE: ${{ github.workspace }}/keystore/ghostsam-test.keystore
+          MAPLE_RELEASE_STORE_PASSWORD: ${{ env.GHOSTSAM_TEST_STORE_PASSWORD }}
+          MAPLE_RELEASE_KEY_ALIAS: ${{ env.GHOSTSAM_TEST_KEY_ALIAS }}
+          MAPLE_RELEASE_KEY_PASSWORD: ${{ env.GHOSTSAM_TEST_KEY_PASSWORD }}
+          MINGW_ROOT: ${{ steps.msys2.outputs.msys2-location }}
+        run: |
+          ./gradlew.bat :manager:assembleRelease --no-daemon --no-build-cache --no-configuration-cache --max-workers=2 '-PmaplesuRustToolchain=1.99.1-x86_64-pc-windows-gnu' "-PmaplesuMingwBin=$env:MINGW_ROOT/ucrt64/bin"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $apk = Get-ChildItem -Recurse 'manager/build/outputs/apk/release/*.apk' | Select-Object -First 1
+          if (-not $apk) { throw 'No release APK produced.' }
+          New-Item -ItemType Directory -Force out | Out-Null
+          Copy-Item $apk.FullName 'out/MapleSU-Manager-ghostsam-test.apk' -Force
+          Write-Host "Built: $($apk.FullName)"
+      - name: Verify APK signing cert == test keystore (public test-only)
+        run: |
+          $apksigner = Join-Path $env:ANDROID_HOME 'build-tools/37.0.0/apksigner.bat'
+          & $apksigner verify --print-certs 'out/MapleSU-Manager-ghostsam-test.apk'
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MapleSU-Manager-ghostsam-test
+          path: out/MapleSU-Manager-ghostsam-test.apk
+          if-no-files-found: error

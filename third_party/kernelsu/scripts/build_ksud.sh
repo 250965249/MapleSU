@@ -26,6 +26,13 @@ KSIUNIT_OUT="$KS/bin/aarch64/ksuinit"
 
 DRY_RUN=0
 KMI="android15-6.6"
+# MapleSU Samsung delta: product/asset naming for the fork build matrix.
+# ksud-maplesu[-exynos]/<kmi>_kernelsu.ko ; KSUD_TREE=exynos prefers {kmi}-exynos_kernelsu.ko
+KSUD_PRODUCT_NAME="${KSUD_PRODUCT_NAME:-ksud-maplesu}"
+KSUD_TREE="${KSUD_TREE:-}"
+EXYNOS_SUFFIX=""
+[ "$KSUD_TREE" = "exynos" ] && EXYNOS_SUFFIX="-exynos"
+KSUD_ARTIFACT_DIR="${KSUD_PRODUCT_NAME}${EXYNOS_SUFFIX}"
 while [ $# -gt 0 ]; do
   case "$1" in
     --dry-run) DRY_RUN=1; shift ;;

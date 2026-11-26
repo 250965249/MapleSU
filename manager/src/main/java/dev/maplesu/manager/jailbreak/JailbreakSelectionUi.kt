@@ -5,6 +5,7 @@ internal data class JailbreakSelectionUi(
     val method: JailbreakMethod,
     val ghostlockReady: Boolean,
     val shizukuReady: Boolean = false,
+    val ghostsamReady: Boolean = false,
 ) {
     val showGhostlockConfiguration: Boolean
         get() = method == JailbreakMethod.GHOSTLOCK && !ghostlockReady
@@ -20,6 +21,6 @@ internal data class JailbreakSelectionUi(
             JailbreakMethod.DIRTYFRAG -> true
             JailbreakMethod.GHOSTLOCK -> ghostlockReady && !awaitingOverwrite
             JailbreakMethod.MAPLESU_93260 -> shizukuReady
-            JailbreakMethod.GHOSTSAM -> true // admission + artifact + capability gate decide
+            JailbreakMethod.GHOSTSAM -> ghostsamReady // artifact/primitive readiness (fail-closed default false)
         }
 }

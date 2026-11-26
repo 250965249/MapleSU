@@ -1,0 +1,48 @@
+diff --git a/kernel/feature/samsung_selinux_hide.c b/kernel/feature/samsung_selinux_hide.c
+new file mode 100644
+index 0000000..192c075
+--- /dev/null
++++ b/kernel/feature/samsung_selinux_hide.c
+@@ -0,0 +1,42 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* MapleSU Samsung selinux_hide: FIVE kprobe points, per-point degradation only.
++ * Lesson 41179: a failing fifth point must NOT unhook the four already-installed
++ * points. Each failure logs pr_err and continues; no rollback of other points. */
++#include <linux/kprobes.h>
++#include <linux/module.h>
++#include "klog.h"
++
++#ifdef CONFIG_KSU_RKP_NO_PATCH_TEXT
++#define MAPLESU_SELINUX_HIDE_POINTS 5
++static struct kprobe maplesu_selinux_probes[MAPLESU_SELINUX_HIDE_POINTS] = {
++    { .symbol_name = "samsung_context_kprobe" },
++    { .symbol_name = "samsung_access_kprobe" },
++    { .symbol_name = "samsung_setprocattr_kprobe" },
++    { .symbol_name = "samsung_status_kprobe" },
++    { .symbol_name = "samsung_inode_setxattr_kprobe" },
++};
++
++int ksu_maplesu_samsung_selinux_hide_init(void)
++{
++    int i, degraded = 0;
++    for (i = 0; i < MAPLESU_SELINUX_HIDE_POINTS; ++i) {
++        int ret = register_kprobe(&maplesu_selinux_probes[i]);
++        if (ret) {
++            pr_err("MAPLESU_SELINUX_HIDE: point %s degraded (ret=%d), other points stay armed\n",
++                   maplesu_selinux_probes[i].symbol_name, ret);
++            ++degraded;
++            continue; /* single-point failure degrades only this point */
++        }
++    }
++    pr_info("MAPLESU_SELINUX_HIDE: %d/%d points armed (degraded=%d)\n",
++            MAPLESU_SELINUX_HIDE_POINTS - degraded, MAPLESU_SELINUX_HIDE_POINTS, degraded);
++    return 0;
++}
++
++void ksu_maplesu_samsung_selinux_hide_exit(void)
++{
++    int i;
++    for (i = 0; i < MAPLESU_SELINUX_HIDE_POINTS; ++i)
++        unregister_kprobe(&maplesu_selinux_probes[i]);
++}
++#endif

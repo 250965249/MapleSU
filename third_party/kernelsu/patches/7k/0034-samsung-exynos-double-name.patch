@@ -1,0 +1,36 @@
+diff --git a/userspace/ksud/src/late_load.rs b/userspace/ksud/src/late_load.rs
+index dd59a4e..d2f951d 100644
+--- a/userspace/ksud/src/late_load.rs
++++ b/userspace/ksud/src/late_load.rs
+@@ -66,10 +66,27 @@ pub fn run(package_name: &String, kmi: Option<String>, allow_shell: bool) -> Res
+         )?;
+         info!("Detected KMI: {kmi}");
+ 
+-        // 3. Get kernelsu.ko from embedded assets
+-        let ko_name = format!("{kmi}_kernelsu.ko");
+-        let ko_data = assets::get_asset_data(&ko_name)
+-            .with_context(|| format!("Failed to get {ko_name} from assets"))?;
++        // 3. Get kernelsu.ko from embedded assets.
++        // MapleSU Samsung delta: exynos builds publish a second asset name; KSUD_TREE=exynos
++        // prefers `{kmi}-exynos_kernelsu.ko` and falls back to `{kmi}_kernelsu.ko`.
++        let prefer_exynos = std::env::var("KSUD_TREE").map(|v| v == "exynos").unwrap_or(false);
++        let ko_name = if prefer_exynos {
++            format!("{kmi}-exynos_kernelsu.ko")
++        } else {
++            format!("{kmi}_kernelsu.ko")
++        };
++        let ko_data = match assets::get_asset_data(&ko_name) {
++            Ok(data) => data,
++            Err(primary) if prefer_exynos => {
++                let fallback = format!("{kmi}_kernelsu.ko");
++                assets::get_asset_data(&fallback).with_context(|| {
++                    format!("Failed to get {ko_name} or {fallback} from assets: {primary}")
++                })?
++            }
++            Err(error) => {
++                return Err(error).with_context(|| format!("Failed to get {ko_name} from assets"))?
++            }
++        };
+ 
+         // 4. Load kernelsu.ko from memory with manual relocation
+         info!("Loading kernelsu.ko for KMI {kmi}...");

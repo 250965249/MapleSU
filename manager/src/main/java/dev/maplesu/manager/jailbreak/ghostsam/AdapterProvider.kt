@@ -8,7 +8,7 @@ package dev.maplesu.manager.jailbreak.ghostsam
 class AdapterProvider(
     private val provisioner: ConsumerProvisioner,
     private val binder: LeaseBinder,
-    private val transport: LeaseTransport,
+    private val transportFactory: (GhostsamLeaseFactory.Lease) -> LeaseTransport,
     private val admission: () -> String? = { null }, // non-null = blocker token
 ) {
     data class Request(val facts: Map<String, Any?> = emptyMap())
@@ -20,13 +20,15 @@ class AdapterProvider(
     }
 
     fun run(request: Request): Result {
-        admission()?.let { return Result(false, it) }
         return try {
+            // t32: capability gate runs BEFORE any provisioner/binder work (no side effects on a
+            // request that asks for an out-of-scope capability).
+            CapabilityGate.assertNoUltra(request.facts)
+            admission()?.let { return Result(false, it) }
             provisioner.resolve()
             binder.prepare()
             val pending = binder.awaitOnce()
-            CapabilityGate.assertNoUltra(request.facts)
-            transport.awaitIdentity(pending)
+            transportFactory(pending).awaitIdentity(pending)
             Result(true, "DAEMON_READY", CapabilityGate.allowed)
         } catch (e: LeaseWireException) {
             binder.close()

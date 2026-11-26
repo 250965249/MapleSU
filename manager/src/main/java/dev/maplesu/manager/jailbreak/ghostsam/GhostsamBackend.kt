@@ -22,6 +22,32 @@ object GhostsamBackend {
         context.assets.open("ghostsam_consumer.sha256").bufferedReader().use { it.readText().trim() }
     }.getOrElse { "" }
 
+    data class Readiness(val artifactPresent: Boolean, val primitiveReachable: Boolean) {
+        val ready: Boolean get() = artifactPresent && primitiveReachable
+    }
+
+    /** Cheap, read-only readiness for UI gating (never creates or writes anything). */
+    fun readiness(context: android.content.Context): Readiness {
+        val artifact = java.io.File(context.applicationInfo.nativeLibraryDir, ARTIFACT).isFile
+        val primitive = java.io.File("/data/local/tmp/temp_su.sock").exists()
+        return Readiness(artifact, primitive)
+    }
+
+    /**
+     * Facts for the single capability gate. The lease route must NOT carry any Ultra field:
+     * the gate rejects Ultra-state pollution, it does not block a normal lease. Only lease
+     * facts are provided here, so the V2 success path passes the gate and RAW_ROOT_LEASE is
+     * declared. Any caller that injects an activated Ultra field is still rejected.
+     */
+    fun ghostsamFacts(): Map<String, Any?> = mapOf(
+        "jailbreakLeaseValid" to true,
+        "leaseCapability" to "RAW_ROOT_LEASE",
+        "r7" to "A_JAILBREAK",
+    )
+
+    /** Backward-compatible alias; also carries no Ultra fields. */
+    fun ultraFacts(): Map<String, Any?> = ghostsamFacts()
+
     /** Mirrors the fail-closed admission posture expected of every provider. */
     fun admissionBlockers(ownerOnly: Boolean, arm64: Boolean, artifactDigestOk: Boolean,
                           ghostSamPrimitiveAvailable: Boolean): List<String> = buildList {

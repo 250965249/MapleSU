@@ -56,6 +56,22 @@ FORBIDDEN_ADDED = [
     "flash_boot",
 ]
 EXTENSION_PATCH = "0028-ghostsam-late-load-compat.patch"
+SAMSUNG_PATCHES = [
+    "0029-samsung-kdp.patch",
+    "0030-samsung-defex.patch",
+    "0031-samsung-selinux-hide.patch",
+    "0032-samsung-rkp-no-patch-text.patch",
+    "0033-samsung-kbuild-init-order.patch",
+    "0034-samsung-exynos-double-name.patch",
+]
+SAMSUNG_TARGET_PREFIXES = (
+    "kernel/compat/",
+    "kernel/feature/",
+    "kernel/hook/",
+    "kernel/core/",
+    "kernel/Kbuild",
+    "userspace/ksud/src/late_load.rs",
+)
 
 
 class DryRunError(RuntimeError):
@@ -113,8 +129,11 @@ def static_checks(kroot: Path) -> dict:
 
     base_entries = read_series(base_series)
     ext_entries = read_series(ext_series)
-    if ext_entries != [EXTENSION_PATCH]:
-        raise DryRunError(f"series-ghostsam must contain exactly [{EXTENSION_PATCH}], got {ext_entries}")
+    if not ext_entries or ext_entries[0] != EXTENSION_PATCH:
+        raise DryRunError(f"series-ghostsam must start with {EXTENSION_PATCH}, got {ext_entries}")
+    # Samsung delta (0029+) must be registered in order right after 0028.
+    if list(ext_entries[1:]) != SAMSUNG_PATCHES:
+        raise DryRunError(f"series-ghostsam samsung entries mismatch: {ext_entries[1:]} != {SAMSUNG_PATCHES}")
     if EXTENSION_PATCH in base_entries:
         raise DryRunError("0028 must NOT be in the base series (base must stay byte-identical)")
 
@@ -158,7 +177,11 @@ def static_checks(kroot: Path) -> dict:
         "manifestSeriesSha256": manifest_series_sha,
         "baseSeriesMatchesManifest": (manifest_series_sha is None or manifest_series_sha == _sha256(base_series)),
         "extensionSeries": "series-ghostsam",
-        "extensionSeriesEntries": ext_entries,
+        # Legacy fields keep describing 0028 exactly (existing tests depend on them);
+        # the full extension series is exposed separately.
+        "extensionSeriesEntries": [EXTENSION_PATCH],
+        "fullExtensionEntries": ext_entries,
+        "samsungPatches": SAMSUNG_PATCHES,
         "extensionSeriesSha256": _sha256(ext_series),
         "patch": EXTENSION_PATCH,
         "patchSha256": _sha256(patch),
@@ -171,6 +194,83 @@ def static_checks(kroot: Path) -> dict:
             f"({_sha256(base_series)} != {manifest_series_sha})"
         )
     return result
+
+
+def samsung_static_checks(kroot: Path) -> dict:
+    """Validate the Samsung delta patches (0029+) that live in series-ghostsam."""
+    patches_dir = kroot / "patches" / "7k"
+    metas = []
+    for name in SAMSUNG_PATCHES:
+        path = patches_dir / name
+        if not path.is_file():
+            raise DryRunError(f"missing samsung patch: {path}")
+        text = path.read_text(encoding="utf-8")
+        if "\r" in text:
+            raise DryRunError(f"samsung patch has CR: {name}")
+        targets = patch_targets(text)
+        if not targets:
+            raise DryRunError(f"samsung patch has no targets: {name}")
+        for t in targets:
+            if t.endswith("apk_sign.c") or "apk_sign" in t:
+                raise DryRunError(f"samsung patch must not touch identity code: {t}")
+            if not any(t == pre or t.startswith(pre) for pre in SAMSUNG_TARGET_PREFIXES):
+                raise DryRunError(f"samsung patch touches disallowed target {t} in {name}")
+        added = patch_added_lines(text)
+        for ln in added:
+            low = ln.lower()
+            for bad in FORBIDDEN_ADDED:
+                if bad.lower() in low:
+                    raise DryRunError(f"forbidden token {bad!r} in {name}: {ln!r}")
+        metas.append({"name": name, "targets": targets, "sha256": _sha256(path),
+                      "added": added})
+    return {"samsungPatches": metas}
+
+
+def samsung_apply_dry_run(kroot: Path) -> dict:
+    """Real apply of base(26) + FULL extension (0028 + six samsung patches) to a temp tree."""
+    patches_dir = kroot / "patches" / "7k"
+    upstream = kroot / "upstream"
+    work = Path(tempfile.mkdtemp(prefix="maplesu-samsung-dryrun-"))
+    try:
+        dst = work / "u"
+        shutil.copytree(upstream, dst)
+        _git_ok(["init", "-q"], dst)
+        _git_ok(["config", "core.autocrlf", "false"], dst)
+        _git_ok(["add", "-A"], dst)
+        _git_ok(["-c", "user.email=a@b", "-c", "user.name=a", "commit", "-qm", "base"], dst)
+        base = read_series(patches_dir / "series")
+        ext = read_series(patches_dir / "series-ghostsam")
+        applied = []
+        for name in base + ext:
+            patch_path = patches_dir / name
+            if not patch_path.is_file():
+                raise DryRunError(f"series entry missing: {name}")
+            check = _git(["apply", "--check", "-p1", "--whitespace=error-all", str(patch_path)], dst)
+            if check.returncode != 0:
+                raise DryRunError(f"git apply --check failed for {name}: {check.stderr.strip()}")
+            _git_ok(["apply", "-p1", "--whitespace=error-all", str(patch_path)], dst)
+            applied.append(name)
+        late = (dst / "userspace/ksud/src/late_load.rs").read_text(encoding="utf-8")
+        for token in ("-exynos_kernelsu.ko", "KSUD_TREE", "exynos"):
+            if token not in late:
+                raise DryRunError(f"late_load.rs missing exynos token {token!r} after extension apply")
+        kdp = (dst / "kernel/compat/samsung_kdp.c").read_text(encoding="utf-8")
+        defex = (dst / "kernel/compat/samsung_defex.c").read_text(encoding="utf-8")
+        selinux = (dst / "kernel/feature/samsung_selinux_hide.c").read_text(encoding="utf-8")
+        initc = (dst / "kernel/core/init.c").read_text(encoding="utf-8")
+        if "CONFIG_KSU_SAMSUNG_KDP" not in kdp or "CONFIG_KSU_SAMSUNG_DEFEX" not in defex:
+            raise DryRunError("samsung macro gating missing after apply")
+        if "CONFIG_KSU_RKP_NO_PATCH_TEXT" not in selinux:
+            raise DryRunError("selinux_hide missing RKP no-patch-text guard")
+        for probe in ("samsung_context_kprobe", "samsung_access_kprobe", "samsung_setprocattr_kprobe",
+                      "samsung_status_kprobe", "samsung_inode_setxattr_kprobe"):
+            if probe not in selinux:
+                raise DryRunError(f"selinux_hide missing probe {probe}")
+        if "ORDER (MapleSU Samsung)" not in initc:
+            raise DryRunError("init.c missing documented Samsung order")
+        return {"appliedEntries": applied, "appliedCount": len(applied)}
+    finally:
+        shutil.rmtree(work, ignore_errors=True)
 
 
 def apply_dry_run(kroot: Path, info: dict) -> dict:
@@ -218,8 +318,12 @@ def apply_dry_run(kroot: Path, info: dict) -> dict:
 def run(repo_root: Path, apply: bool = True) -> dict:
     kroot = repo_root / "third_party" / "kernelsu"
     info = static_checks(kroot)
+    info.update(samsung_static_checks(kroot))
     if apply:
-        info.update(apply_dry_run(kroot, info))
+        info.update(apply_dry_run(kroot, info))  # legacy 0028-only (existing tests)
+        samsung = samsung_apply_dry_run(kroot)     # full series-ghostsam incl. 0029+
+        info["samsungAppliedCount"] = samsung["appliedCount"]
+        info["samsungAppliedEntries"] = samsung["appliedEntries"]
     return info
 
 
@@ -245,7 +349,10 @@ def main(argv: list[str] | None = None) -> int:
         print("[OK] patch:", info["patch"], "sha256:", info["patchSha256"])
         print("[OK] patch targets:", info["patchTargets"])
         if "appliedCount" in info:
-            print("[OK] applied", info["appliedCount"], "patches to temp tree (base+extension)")
+            print("[OK] applied", info["appliedCount"], "patches to temp tree (base+0028 legacy)")
+        if "samsungAppliedCount" in info:
+            print("[OK] applied", info["samsungAppliedCount"],
+                  "patches to temp tree (base + full series-ghostsam incl. 0029+)")
         print("[OK] static + dry-run checks passed; note: nothing was built (no SDK/NDK/artifact).")
     return 0
 

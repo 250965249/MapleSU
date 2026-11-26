@@ -412,8 +412,13 @@ class CapabilityGate:
     @classmethod
     def assert_no_ultra(cls, facts: dict) -> None:
         for name in cls.ULTRA_FIELDS:
-            if facts.get(name):
-                raise WireError("CAPABILITY_OUT_OF_SCOPE:" + name)
+            v = facts.get(name)
+            if v is None or v is False or v in ("NONE", "ABSENT"):
+                continue
+            # UNKNOWN = unverified, NOT absence: keep it fail-closed with a distinct token.
+            if v == "UNKNOWN":
+                raise WireError("CAPABILITY_OUT_OF_SCOPE:" + name + "=UNKNOWN")
+            raise WireError("CAPABILITY_OUT_OF_SCOPE:" + name)
 
 
 # --------------------------------------------------------------------------- consumer (V2)
@@ -484,14 +489,15 @@ class AdapterProvider:
             primitive_available: bool, pending: PendingLease | None,
             peer_uid: int, peer_pid: int, starttime: int, domain: str,
             enforcing: int, seccomp: int, facts: dict | None = None) -> dict:
-        if not consumer_present:
-            return {"ok": False, "token": "CONSUMER_MISSING"}
-        if not consumer_digest_ok:
-            return {"ok": False, "token": "DIGEST_MISMATCH"}
+        # t32: capability gate before any provisioner/binder work.
         try:
             CapabilityGate.assert_no_ultra(facts or {})
         except WireError as exc:
             return {"ok": False, "token": exc.token}
+        if not consumer_present:
+            return {"ok": False, "token": "CONSUMER_MISSING"}
+        if not consumer_digest_ok:
+            return {"ok": False, "token": "DIGEST_MISMATCH"}
         if pending is None:
             return {"ok": False, "token": "LEASE_PENDING_MISSING"}
         self.binder.open()

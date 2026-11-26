@@ -1,0 +1,70 @@
+diff --git a/kernel/Kbuild b/kernel/Kbuild
+index 3e05ba1..0ebb98e 100644
+--- a/kernel/Kbuild
++++ b/kernel/Kbuild
+@@ -244,3 +244,18 @@ ccflags-y += -Wno-strict-prototypes -Wno-int-conversion -Wno-gcc-compat -Wno-mis
+ ccflags-y += -Wno-declaration-after-statement -Wno-unused-function
+ 
+ # Keep a new line here!! Because someone may append config
++
++# MapleSU Samsung delta gating (tree-local macro names; never copy foreign tree macros).
++ifeq ($(CONFIG_KSU_SAMSUNG_KDP),y)
++kernelsu-objs += compat/samsung_kdp.o
++ccflags-y += -DCONFIG_KSU_SAMSUNG_KDP=1
++endif
++ifeq ($(CONFIG_KSU_SAMSUNG_DEFEX),y)
++kernelsu-objs += compat/samsung_defex.o
++ccflags-y += -DCONFIG_KSU_SAMSUNG_DEFEX=1
++endif
++ifeq ($(CONFIG_KSU_RKP_NO_PATCH_TEXT),y)
++kernelsu-objs += feature/samsung_selinux_hide.o
++kernelsu-objs += hook/samsung_rkp_guard.o
++ccflags-y += -DCONFIG_KSU_RKP_NO_PATCH_TEXT=1
++endif
+diff --git a/kernel/core/init.c b/kernel/core/init.c
+index 81f3b65..23b5f6c 100644
+--- a/kernel/core/init.c
++++ b/kernel/core/init.c
+@@ -29,6 +29,8 @@
+ #include "feature/shell_su_adb_only.h"
+ #include "infra/symbol_resolver.h"
+ #include "preinit/preinit.h"
++#include "compat/samsung_kdp.h"
++#include "compat/samsung_defex.h"
+ 
+ #if defined(__x86_64__) && !defined(CONFIG_KSU_X86_PATCH_SYSCALL_DISPATCHER)
+ #include <asm/cpufeature.h>
+@@ -131,14 +133,23 @@ int __init kernelsu_init(void)
+         pr_alert("shell is allowed at init!");
+     }
+ 
++    ksu_init_symbol_resolver();
++    /* ORDER (MapleSU Samsung): ksu_init_symbol_resolver -> ksu_samsung_kdp_init -> prepare_creds
++     * -> ksu_samsung_defex_init -> ksu_selinux_inode_init -> ksu_selinux_hide_init; exit is symmetric. */
++    if (ksu_samsung_kdp_init() != 0) {
++        pr_err("MAPLESU_SAMSUNG_KDP: init failed, rolling back\n");
++        ksu_samsung_kdp_exit();
++        return -ENODEV;
++    }
+     ksu_cred = prepare_creds();
+     if (!ksu_cred) {
+         pr_err("prepare cred failed!\n");
+         return -ENOSYS;
+     }
++    ksu_samsung_defex_init();
+ 
+     pr_info("initializing symbol resolver\n");
+-    ksu_init_symbol_resolver();
++
+ 
+     ret = ksu_selinux_inode_init();
+     if (ret) {
+@@ -239,6 +250,8 @@ void __exit kernelsu_exit(void)
+ 
+     ksu_shell_su_adb_only_exit();
+     ksu_selinux_hide_exit();
++    ksu_samsung_defex_exit();
++    ksu_samsung_kdp_exit();
+     ksu_lsm_hook_exit();
+     ksu_adb_root_exit();
+     ksu_sulog_exit();

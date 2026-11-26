@@ -53,6 +53,7 @@ class LeaseBinder(
     fun close() {
         transportOpen = false
         runCatching { lease?.server?.close() }
+        lease?.let { java.util.Arrays.fill(it.nonce, 0) }
         lease = null
     }
 

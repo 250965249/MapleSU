@@ -38,9 +38,15 @@
   "extensionSeries": {
     "file": "patches/7k/series-ghostsam",
     "entries": [
-      "0028-ghostsam-late-load-compat.patch"
+      "0028-ghostsam-late-load-compat.patch",
+      "0029-samsung-kdp.patch",
+      "0030-samsung-defex.patch",
+      "0031-samsung-selinux-hide.patch",
+      "0032-samsung-rkp-no-patch-text.patch",
+      "0033-samsung-kbuild-init-order.patch",
+      "0034-samsung-exynos-double-name.patch"
     ],
-    "sha256": "ef2c66cf0c00426e0d5f8446eedbb0b760a9f056e966f1e2a7c447f4f61f6d92"
+    "sha256": "0f58dae0bf4ebf7e7263b3779d5cefba7f32aa16600bd75f33ec3d597afa9170"
   },
   "patches": [
     {
@@ -130,5 +136,35 @@
     "difference": "功能性差异（非安全）：不再触发 post-fs-data/服务重启",
     "explicitPath": "真实语义仍可用现有 `ksud soft-reboot` 子命令显式调用；0028 的 no-op 在 stderr/stdout 明确记录，不静默丢弃",
     "decision": "按 t17 指示只查证不改行为；若后续确需在 late-load 内触发，应显式调用 soft_reboot 或加 opt-in 开关，当前未实现"
+  },
+  "samsungDelta": {
+    "seriesFile": "patches/7k/series-ghostsam",
+    "patches": [
+      {
+        "name": "0029-samsung-kdp.patch",
+        "sha256": "248919a877152f064e515ff5162ec8cf0278812c93a09c9de30e07aa7e7968e4"
+      },
+      {
+        "name": "0030-samsung-defex.patch",
+        "sha256": "7f99900de5c438ed1cd2414cf7023762360da39574425b339b4b9e425623ef0a"
+      },
+      {
+        "name": "0031-samsung-selinux-hide.patch",
+        "sha256": "7e649d1eeda2f76aa39e9258c6419a1ba6f48de82bf5b947cda15c3457f44330"
+      },
+      {
+        "name": "0032-samsung-rkp-no-patch-text.patch",
+        "sha256": "e0ececbd8eeb1a0a5e450b831f687ce912eecc655aa717be63def27eba3bab4e"
+      },
+      {
+        "name": "0033-samsung-kbuild-init-order.patch",
+        "sha256": "11b3f70da6d842fa4c06b738898359251f93977e1fc4abd05f68d7ae0ef9f090"
+      },
+      {
+        "name": "0034-samsung-exynos-double-name.patch",
+        "sha256": "354da8c2a1781e5d1b7832fbd9e6238481417672e1c547edfc5b0ceef9b74d17"
+      }
+    ],
+    "note": "Samsung KDP/DEFEX/selinux_hide five-point/RKP_NO_PATCH_TEXT/init order/exynos double-name; registered after 0028."
   }
 }

@@ -8,7 +8,10 @@ object CapabilityGate {
     fun assertNoUltra(facts: Map<String, Any?>) {
         for (name in ULTRA_FIELDS) {
             val v = facts[name]
-            if (v != null && v != false && v != "NONE" && v != "ABSENT") throw LeaseWireException("CAPABILITY_OUT_OF_SCOPE:$name")
+            if (v == null || v == false || v == "NONE" || v == "ABSENT") continue
+            // Do NOT exempt "UNKNOWN": unverified Ultra state is not absence of Ultra state.
+            if (v == "UNKNOWN") throw LeaseWireException("CAPABILITY_OUT_OF_SCOPE:$name=UNKNOWN")
+            throw LeaseWireException("CAPABILITY_OUT_OF_SCOPE:$name")
         }
     }
 }

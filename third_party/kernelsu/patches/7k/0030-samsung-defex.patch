@@ -1,0 +1,53 @@
+diff --git a/kernel/compat/samsung_defex.c b/kernel/compat/samsung_defex.c
+new file mode 100644
+index 0000000..ec649b2
+--- /dev/null
++++ b/kernel/compat/samsung_defex.c
+@@ -0,0 +1,30 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* MapleSU Samsung DEFEX handoff support (tree-local macro CONFIG_KSU_SAMSUNG_DEFEX). */
++#include <linux/kprobes.h>
++#include <linux/module.h>
++#include "samsung_defex.h"
++#include "klog.h"
++
++#ifdef CONFIG_KSU_SAMSUNG_DEFEX
++#define MAPLESU_SAMSUNG_DEFEX_PROBE "defex_work_guard"
++static struct kprobe maplesu_samsung_defex_probe = {
++    .symbol_name = MAPLESU_SAMSUNG_DEFEX_PROBE,
++};
++
++int ksu_samsung_defex_init(void)
++{
++    int ret = register_kprobe(&maplesu_samsung_defex_probe);
++    if (ret) {
++        pr_err("MAPLESU_SAMSUNG_DEFEX: probe %s registration failed: %d\n",
++               MAPLESU_SAMSUNG_DEFEX_PROBE, ret);
++        return ret;
++    }
++    pr_info("MAPLESU_SAMSUNG_DEFEX: work_struct handoff probe ready\n");
++    return 0;
++}
++
++void ksu_samsung_defex_exit(void)
++{
++    unregister_kprobe(&maplesu_samsung_defex_probe);
++}
++#endif
+diff --git a/kernel/compat/samsung_defex.h b/kernel/compat/samsung_defex.h
+new file mode 100644
+index 0000000..dcd65d7
+--- /dev/null
++++ b/kernel/compat/samsung_defex.h
+@@ -0,0 +1,11 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef MAPLESU_SAMSUNG_DEFEX_H
++#define MAPLESU_SAMSUNG_DEFEX_H
++#ifdef CONFIG_KSU_SAMSUNG_DEFEX
++int ksu_samsung_defex_init(void);
++void ksu_samsung_defex_exit(void);
++#else
++static inline int ksu_samsung_defex_init(void) { return 0; }
++static inline void ksu_samsung_defex_exit(void) { }
++#endif
++#endif

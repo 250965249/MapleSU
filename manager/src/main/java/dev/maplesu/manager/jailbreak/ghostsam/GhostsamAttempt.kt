@@ -2,6 +2,7 @@ package dev.maplesu.manager.jailbreak.ghostsam
 
 import android.content.Context
 import dev.maplesu.manager.jailbreak.JailbreakArtifacts
+import dev.maplesu.manager.jailbreak.JailbreakRequest
 import java.io.File
 import java.io.IOException
 
@@ -16,33 +17,29 @@ import java.io.IOException
 object GhostsamAttempt {
     data class Result(val ok: Boolean, val token: String? = null)
 
-    fun run(context: Context): Result {
-        // Artifact presence is the same check admission performs for every provider.
-        try {
-            JailbreakArtifacts.require(context, GhostsamBackend.ARTIFACT)
-        } catch (_: IOException) {
-            return Result(false, "ARTIFACT_UNVERIFIED")
-        }
-        return try {
-            val nativeDir = File(context.applicationInfo.nativeLibraryDir)
-            val provisioner = ConsumerProvisioner(nativeDir, GhostsamBackend.expectedConsumerSha256(context))
-            val consumer = provisioner.resolve()
-            val factory = GhostsamLeaseFactory()
-            val lease = factory.create()
-            try {
-                val binder = LeaseBinder(GhostsamPrimitiveClient(), consumer.path, factory).also { it.bind(lease) }
-                val bound = binder.awaitOnce()
-                // N2: reuse the factory-owned listener; do not create a second socket here.
-                DefaultLeaseTransport(lease.server).awaitIdentity(bound)
-                CapabilityGate.assertNoUltra(emptyMap())
-                Result(true)
-            } finally {
-                factory.close(lease)
-            }
-        } catch (e: LeaseWireException) {
-            Result(false, e.token)
-        } catch (t: Throwable) {
-            Result(false, "GHOSTSAM_ADAPTER_FAILURE")
-        }
+    fun run(context: Context, request: JailbreakRequest,
+            facts: Map<String, Any?> = GhostsamBackend.ghostsamFacts()): Result {
+        val nativeDir = File(context.applicationInfo.nativeLibraryDir)
+        val provisioner = ConsumerProvisioner(nativeDir, GhostsamBackend.expectedConsumerSha256(context))
+        val factory = GhostsamLeaseFactory()
+        val consumerPath = File(nativeDir, GhostsamBackend.ARTIFACT).absolutePath
+        val binder = LeaseBinder(GhostsamPrimitiveClient(), consumerPath, factory)
+        // F2/F3: single production entry through AdapterProvider (one capability gate, one failure map).
+        val provider = AdapterProvider(
+            provisioner = provisioner,
+            binder = binder,
+            transportFactory = { lease -> DefaultLeaseTransport(lease.server) },
+            admission = {
+                try {
+                    JailbreakArtifacts.require(context, GhostsamBackend.ARTIFACT)
+                    null
+                } catch (_: IOException) {
+                    "ARTIFACT_UNVERIFIED"
+                }
+            },
+        )
+        val result = provider.run(AdapterProvider.Request(facts))
+        binder.close()
+        return if (result.ok) Result(true) else Result(false, result.token)
     }
 }

@@ -2,3 +2,9 @@
 # 在 patches/7k/series（基础 26 项，byte-identical，勿改）全部应用之后，按本文件顺序继续应用。
 # 目的：仅新增 GhostSam 外部 payload / late-load 兼容面；不改内核身份三重校验（证书+世代+包名）。
 0028-ghostsam-late-load-compat.patch
+0029-samsung-kdp.patch
+0030-samsung-defex.patch
+0031-samsung-selinux-hide.patch
+0032-samsung-rkp-no-patch-text.patch
+0033-samsung-kbuild-init-order.patch
+0034-samsung-exynos-double-name.patch

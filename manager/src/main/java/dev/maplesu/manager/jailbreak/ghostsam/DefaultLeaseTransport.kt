@@ -3,6 +3,7 @@ package dev.maplesu.manager.jailbreak.ghostsam
 import android.net.LocalServerSocket
 import android.net.LocalSocket
 import dev.maplesu.manager.jailbreak.LeaseProtocol
+import java.io.IOException
 import java.io.InputStream
 
 /**
@@ -16,7 +17,14 @@ class DefaultLeaseTransport(
     private val provider: LeaseProtocol.Provider = LeaseProtocol.Provider.GHOSTLOCK,
 ) : AdapterProvider.LeaseTransport {
     override fun awaitIdentity(lease: GhostsamLeaseFactory.Lease): MjblV2.Identity {
-        val socket: LocalSocket = serverSocket.accept()
+        val socket: LocalSocket = try {
+            serverSocket.accept()
+        } catch (e: IOException) {
+            // F1: a closed/aborted listener must surface a named token, never a bare IOException.
+            throw LeaseWireException("GHOSTSAM_SERVER_CLOSED")
+        } catch (e: IllegalStateException) {
+            throw LeaseWireException("GHOSTSAM_SERVER_CLOSED")
+        }
         try {
             socket.soTimeout = 20_000
             val cred = socket.peerCredentials

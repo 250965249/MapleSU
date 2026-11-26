@@ -1,0 +1,35 @@
+diff --git a/kernel/hook/arm64/patch_memory.c b/kernel/hook/arm64/patch_memory.c
+index fdbb5de..3302d42 100644
+--- a/kernel/hook/arm64/patch_memory.c
++++ b/kernel/hook/arm64/patch_memory.c
+@@ -176,6 +176,11 @@ static int ksu_patch_text_cb(void *arg)
+ 
+ int ksu_patch_text(void *dst, void *src, size_t len, int flags)
+ {
++#ifdef CONFIG_KSU_RKP_NO_PATCH_TEXT
++    // MapleSU Samsung RKP: never patch kernel text on RKP-protected builds.
++    pr_warn("MAPLESU_RKP_NO_PATCH_TEXT: ksu_patch_text early return\n");
++    return -EOPNOTSUPP;
++#endif
+     int ret;
+     struct patch_text_info info = {
+         .dst = dst,
+diff --git a/kernel/hook/samsung_rkp_guard.c b/kernel/hook/samsung_rkp_guard.c
+new file mode 100644
+index 0000000..019d4a9
+--- /dev/null
++++ b/kernel/hook/samsung_rkp_guard.c
+@@ -0,0 +1,13 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* MapleSU Samsung RKP guard: when CONFIG_KSU_RKP_NO_PATCH_TEXT is set, every kernel
++ * text patch call site must early-return instead of touching read-only text (RKP would panic). */
++#include <linux/kprobes.h>
++#include "klog.h"
++
++#ifdef CONFIG_KSU_RKP_NO_PATCH_TEXT
++int maplesu_rkp_no_patch_text(void)
++{
++    pr_warn("MAPLESU_RKP_NO_PATCH_TEXT: kernel text patching disabled for this build\n");
++    return -EOPNOTSUPP;
++}
++#endif

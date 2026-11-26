@@ -39,6 +39,14 @@ ARTIFACTS="$KSU_ROOT/artifacts"
 JNI_DIR="$REPO_ROOT/manager/src/main/jniLibs/arm64-v8a"
 CARGO_CONFIG="$KSU_ROOT/.cargo-build/config.toml"
 KMI="all"
+# MapleSU Samsung delta: ksud-maplesu product line and exynos asset alias.
+KSUD_PRODUCT_NAME="${KSUD_PRODUCT_NAME:-ksud-maplesu}"
+KSUD_TREE="${KSUD_TREE:-}"
+EXYNOS_SUFFIX=""
+[ "$KSUD_TREE" = "exynos" ] && EXYNOS_SUFFIX="-exynos"
+# Every KMI is packaged as "<kmi>_kernelsu.ko"; exynos builds additionally publish
+# "<kmi>-exynos_kernelsu.ko" for late_load's KSUD_TREE=exynos preference.
+SAMSUNG_EXYNOS_ASSET_FORMAT="{kmi}-exynos_kernelsu.ko"
 VERSION_PIN=32650
 DRY_RUN=0
 SKIP_KSUINIT=0

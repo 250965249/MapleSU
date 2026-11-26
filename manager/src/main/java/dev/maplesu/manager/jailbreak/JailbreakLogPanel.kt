@@ -83,7 +83,7 @@ internal fun JailbreakLogPanel(
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                val method = stringResource(when (ui.method) {
+                val method = if (ui.method == JailbreakMethod.GHOSTSAM) "GhostSam" else stringResource(when (ui.method) {
                     JailbreakMethod.GHOSTLOCK -> R.string.maplesu_jailbreak_ghostlock
                     JailbreakMethod.DIRTYFRAG -> R.string.maplesu_jailbreak_dirtyfrag
                     JailbreakMethod.MAPLESU_93260 -> R.string.maplesu_jailbreak_93260
