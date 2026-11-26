@@ -143,6 +143,35 @@ def main() -> int:
     else:
         fail("workflow missing build_lkm.sh / build_ksud.sh invocation")
 
+    # 6) F1/F2/F3 defects fixed (CI run 45770781379)
+    if "--extension-series third_party/kernelsu/patches/7k/series-ghostsam" in text:
+        ok("F1: --extension-series uses repo-root relative third_party/kernelsu/patches/7k/series-ghostsam")
+    else:
+        fail("F1: --extension-series path is not repo-root relative third_party/kernelsu/patches/7k/series-ghostsam")
+    if "--extension-series patches/7k/series-ghostsam" in text:
+        fail("F1: stale CWD-relative --extension-series path still present")
+    if "docker pull" in text and "ghcr.io/ylarod/ddk-min:${{ matrix.kmi }}-${DDK_RELEASE}" in text \
+            and "--ddk-image \"$DDK_IMAGE\"" in text:
+        ok("F2: per-KMI docker pull ghcr.io/ylarod/ddk-min:<kmi>-<DDK_RELEASE> + --ddk-image passed")
+    else:
+        fail("F2: missing docker pull / --ddk-image wiring for the per-KMI DDK image")
+    try:
+        kmis = data["jobs"]["matrix"]["strategy"]["matrix"]["kmi"]
+        if isinstance(kmis, list) and len(kmis) == 8:
+            ok(f"F2: matrix has 8 Normal KMI entries ({kmis[0]}..{kmis[-1]})")
+        else:
+            fail(f"F2: matrix KMI count != 8: {kmis!r}")
+    except Exception:
+        fail("F2: matrix.kmi list missing")
+    if "ksud-maplesu-aarch64.version" in text and "cp \"$ksud\" \"out/ksud-maplesu-aarch64\"" in text:
+        ok("F3: exports ksud-maplesu-aarch64 + .version sidecar")
+    else:
+        fail("F3: missing ksud-maplesu-aarch64 / .version export")
+    if "libksud_ksu.so" in text:
+        ok("F3: ksud product is sourced from libksud_ksu.so")
+    else:
+        fail("F3: ksud product source libksud_ksu.so missing")
+
     print("-" * 60)
     if failures:
         print(f"RESULT: FAIL ({failures} check(s) failed)")

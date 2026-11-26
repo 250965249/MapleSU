@@ -68,14 +68,17 @@ jobs:
       - name: Apply MapleSU base series + GhostSam/Samsung extension
         run: |
           set -euo pipefail
-          python3 third_party/kernelsu/scripts/apply_patches.py --clean --extension-series patches/7k/series-ghostsam
+          python3 third_party/kernelsu/scripts/apply_patches.py --clean --extension-series third_party/kernelsu/patches/7k/series-ghostsam
           python3 scripts/ghostsam_patch_dryrun.py
       - name: Build LKM via DDK (Normal KMI, test-cert pin via env)
         # KSU_EXPECTED_SIZE / KSU_EXPECTED_HASH inherited from workflow env above
         run: |
           set -euo pipefail
           echo "expected size=$KSU_EXPECTED_SIZE hash=$KSU_EXPECTED_HASH"
-          bash third_party/kernelsu/scripts/build_lkm.sh --kmi "${{ matrix.kmi }}"
+          # F2: the DDK image is not preloaded on the runner; pull the per-KMI tag and pass it.
+          DDK_IMAGE="ghcr.io/ylarod/ddk-min:${{ matrix.kmi }}-${DDK_RELEASE}"
+          docker pull "$DDK_IMAGE"
+          bash third_party/kernelsu/scripts/build_lkm.sh --kmi "${{ matrix.kmi }}" --ddk-image "$DDK_IMAGE"
       - name: Rebuild ksud (ksud-maplesu) embedding KMI ko
         run: |
           set -euo pipefail
@@ -89,6 +92,24 @@ jobs:
           mkdir -p "out/$(dirname "$name")" "out/$(dirname "$exynos")"
           src="third_party/kernelsu/artifacts/lkm/${{ matrix.kmi }}_kernelsu.ko"
           [ -f "$src" ] && cp "$src" "out/$name" && cp "$src" "out/$exynos" || true
+          # F3: export the recompiled ksud product + sidecar under the exact names GhostSam fetches.
+          ksud="manager/src/main/jniLibs/arm64-v8a/libksud_ksu.so"
+          if [ -f "$ksud" ]; then
+            cp "$ksud" "out/ksud-maplesu-aarch64"
+            {
+              echo 'variant=maplesu'
+              echo 'build_kind=samsung-ci'
+              echo 'kernel_version_code=32650'
+              echo 'kernel_uapi_version=7'
+              echo 'version_name=5.2.1'
+              echo 'source=FengQiuFQ/MapleSU'
+              echo "test_cert_sha256=${KSU_EXPECTED_HASH}"
+              echo "test_cert_size=${KSU_EXPECTED_SIZE}"
+            } > "out/ksud-maplesu-aarch64.version"
+          else
+            echo "::error::ksud product missing: $ksud"
+            exit 1
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: ksud-maplesu-${{ matrix.kmi }}
