@@ -42,27 +42,39 @@ class LeaseContractTest(unittest.TestCase):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ndk", required=True, type=Path)
-    parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--ndk", required=False, type=Path,
+                        help="NDK root; when omitted (or no compiler) run the pure-Python contract mirror")
+    parser.add_argument("--output", required=False, type=Path)
     args = parser.parse_args()
-    args.output.mkdir(parents=True, exist_ok=True)
-    compiler = args.ndk / "toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe"
-    linker = compiler.with_name("ld.lld.exe")
+    output = args.output or (ROOT / "build" / "lease-contract")
+    output.mkdir(parents=True, exist_ok=True)
     source = ROOT / "lease/src/lease_contract.c"
-    obj = args.output / "lease_contract.obj"
-    dll = args.output / "lease_contract.dll"
-    commands = [[str(compiler), "--target=x86_64-pc-windows-msvc", "-ffreestanding", "-fno-stack-protector", "-Wall", "-Wextra", "-Werror", "-c", str(source), "-o", str(obj)],
-                [str(linker), "-flavor", "link", "/dll", "/noentry", "/out:" + str(dll), *["/export:maplesu_lease_" + name for name in ("endpoint", "nonce", "boot_id", "decimal")], str(obj)]]
-    for command in commands:
-        subprocess.run(command, check=True)
-    DLL = ctypes.CDLL(str(dll.resolve()))
-    DLL.maplesu_lease_endpoint.argtypes = [ctypes.c_char_p]
-    DLL.maplesu_lease_boot_id.argtypes = [ctypes.c_char_p]
-    DLL.maplesu_lease_nonce.argtypes = [ctypes.c_char_p, ctypes.POINTER(ctypes.c_ubyte)]
-    DLL.maplesu_lease_decimal.argtypes = [ctypes.c_char_p, ctypes.c_int, ctypes.POINTER(ctypes.c_int)]
+    commands = []
+    mode = "python-mirror"
+    note = "No --ndk supplied (or no compiler): executed pure-Python mirror of lease_contract.c; production C NOT executed on host."
+    if args.ndk is not None:
+        compiler = args.ndk / "toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe"
+        linker = compiler.with_name("ld.lld.exe")
+        obj = output / "lease_contract.obj"
+        dll = output / "lease_contract.dll"
+        commands = [[str(compiler), "--target=x86_64-pc-windows-msvc", "-ffreestanding", "-fno-stack-protector", "-Wall", "-Wextra", "-Werror", "-c", str(source), "-o", str(obj)],
+                    [str(linker), "-flavor", "link", "/dll", "/noentry", "/out:" + str(dll), *["/export:maplesu_lease_" + name for name in ("endpoint", "nonce", "boot_id", "decimal")], str(obj)]]
+        for command in commands:
+            subprocess.run(command, check=True)
+        DLL = ctypes.CDLL(str(dll.resolve()))
+        DLL.maplesu_lease_endpoint.argtypes = [ctypes.c_char_p]
+        DLL.maplesu_lease_boot_id.argtypes = [ctypes.c_char_p]
+        DLL.maplesu_lease_nonce.argtypes = [ctypes.c_char_p, ctypes.POINTER(ctypes.c_ubyte)]
+        DLL.maplesu_lease_decimal.argtypes = [ctypes.c_char_p, ctypes.c_int, ctypes.POINTER(ctypes.c_int)]
+        mode = "c-ndk"
+        note = "Production C validators compiled with NDK clang and executed on Windows; Android IPC/device lifecycle not exercised"
+    else:
+        import lease_contract_ref
+        DLL = lease_contract_ref.MirrorDLL()
     result = unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(LeaseContractTest))
     report = {"tests": result.testsRun, "failures": len(result.failures), "errors": len(result.errors),
-              "sourceSha256": hashlib.sha256(source.read_bytes()).hexdigest(), "commands": commands,
-              "scope": "Production C validators executed on Windows; Android IPC and device lifecycle not exercised"}
-    (args.output / "results.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+              "mode": mode, "note": note, "sourceSha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+              "commands": commands,
+              "scope": "argv contract validators; Android IPC and device lifecycle not exercised"}
+    (output / "results.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     raise SystemExit(0 if result.wasSuccessful() else 1)

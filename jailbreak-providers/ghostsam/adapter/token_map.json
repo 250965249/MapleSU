@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "note": "Machine-auditable token map: upstream LeaseProtocol.java (product reader) vs GhostSam adapter reference (lease_wire.py / MjblV2.kt). Fail-closed semantics identical; names differ. Negative tests assert the reference token, mapping to upstream shown here.",
+  "tokens": [
+    {"upstream": "LEASE_MAGIC_INVALID", "reference": ["LEASE_MAGIC_INVALID"], "meaning": "frame magic != 0x4d4a424c"},
+    {"upstream": "LEASE_VERSION_INVALID", "reference": ["LEASE_VERSION_INVALID"], "meaning": "version not 1/2"},
+    {"upstream": "LEASE_PROVIDER_MISMATCH", "reference": ["LEASE_PROVIDER_INVALID"], "meaning": "provider id mismatch"},
+    {"upstream": "LEASE_PEER_IDENTITY_MISMATCH", "reference": ["LEASE_SHELL_PID_INVALID", "LEASE_UID_MISMATCH"], "meaning": "pid<=1 or pid/uid != SO_PEERCRED"},
+    {"upstream": "LEASE_ROOT_PEER_REQUIRED", "reference": ["LEASE_ROOT_PEER_REQUIRED"], "meaning": "peer uid != 0"},
+    {"upstream": "LEASE_WORKER_STARTTIME_INVALID", "reference": ["LEASE_WORKER_STARTTIME_INVALID"], "meaning": "v2 starttime == 0 (or unobservable/mismatch fails)"},
+    {"upstream": "LEASE_WORKER_STARTTIME_MISMATCH", "reference": ["LEASE_WORKER_STARTTIME_INVALID"], "meaning": "observed starttime differs (pid reuse)"},
+    {"upstream": "LEASE_CAPABILITY_MISSING", "reference": ["LEASE_CAPABILITY_MISSING"], "meaning": "capability flag != 1"},
+    {"upstream": "LEASE_NONCE_MISMATCH", "reference": ["LEASE_NONCE_MISMATCH"], "meaning": "nonce differs (constant-time)"},
+    {"upstream": "LEASE_BOOT_MISMATCH", "reference": ["LEASE_BOOT_ID_MISMATCH"], "meaning": "boot id differs"},
+    {"upstream": "LEASE_DOMAIN_INVALID", "reference": ["LEASE_DOMAIN_INVALID"], "meaning": "domain length > 256 / malformed"},
+    {"upstream": "LEASE_ENFORCING_INVALID", "reference": ["LEASE_ENFORCING_INVALID"], "meaning": "enforcing not 0/1"},
+    {"upstream": "LEASE_SECCOMP_UNAVAILABLE", "reference": ["LEASE_SECCOMP_UNAVAILABLE"], "meaning": "seccomp not 0..2"},
+    {"upstream": "LEASE_RESTORE_FRAME_INVALID", "reference": ["LEASE_RESTORE_FRAME_INVALID"], "meaning": "'P' not exactly 10 bytes"},
+    {"upstream": "LEASE_RESTORE_ORIGIN_INVALID", "reference": ["LEASE_RESTORE_ORIGIN_INVALID"], "meaning": "origin out of range"},
+    {"upstream": "(no upstream X/D reader)", "reference": ["LEASE_RESULT_TRAILING", "LEASE_D_PAYLOAD_NONEMPTY", "LEASE_RESULT_TAG_INVALID"], "meaning": "reference-only strict X/D reader (LeaseProtocol.readExit handles X)"}
+  ]
+}
