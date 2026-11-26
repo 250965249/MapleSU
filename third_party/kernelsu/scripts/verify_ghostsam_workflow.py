@@ -172,6 +172,25 @@ def main() -> int:
     else:
         fail("F3: ksud product source libksud_ksu.so missing")
 
+    # 7) F6 Rust target + libclang; F7 manager inputs/diagnostics
+    try:
+        matrix_text = yaml.safe_dump(jobs["matrix"], allow_unicode=True)
+    except Exception:
+        matrix_text = ""
+    if "aarch64-linux-android" in matrix_text and "libclang-dev" in matrix_text:
+        ok("F6: matrix job installs Rust aarch64-linux-android target + libclang-dev")
+    else:
+        fail("F6: matrix job missing Rust aarch64-linux-android target / libclang-dev setup")
+    mgr_flat = (yaml.safe_dump(mgr, allow_unicode=True) if isinstance(mgr, dict) else "")
+    if "prepare_native_inputs.py" in mgr_flat and "--check" in mgr_flat:
+        ok("F7: manager job runs retained-native-input preparation (prepare_native_inputs.py --check)")
+    else:
+        fail("F7: manager job missing prepare_native_inputs.py --check")
+    if "manager-failure-logs" in text:
+        ok("F7: manager failure diagnostics artifact configured")
+    else:
+        fail("F7: manager failure diagnostics artifact missing")
+
     print("-" * 60)
     if failures:
         print(f"RESULT: FAIL ({failures} check(s) failed)")

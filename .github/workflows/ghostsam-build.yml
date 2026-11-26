@@ -65,6 +65,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install Rust target + libclang (F6)
+        # Mirrors build-normal.yml: build_ksud needs the aarch64-linux-android target;
+        # NDK 27.3.13750724 is auto-discovered, no extra NDK env is required.
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y libclang-dev
+          rustup toolchain install 1.99.1 --profile minimal --target aarch64-linux-android || \
+            rustup target add aarch64-linux-android
       - name: Apply MapleSU base series + GhostSam/Samsung extension
         run: |
           set -euo pipefail
@@ -156,6 +165,22 @@ jobs:
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           "MAPLESU_PYTHON=$((Get-Command python).Source)" >> $env:GITHUB_ENV
           "ANDROID_SDK_ROOT=$env:ANDROID_HOME" >> $env:GITHUB_ENV
+      - name: Verify retained native inputs (F7; mirror build-manager.yml)
+        run: |
+          if (Test-Path .handoff/source-files.json) {
+            python .handoff/source_snapshot.py verify --repair
+            if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          }
+          python tools/check_source_export.py
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python jailbreak-providers/ghostlock/build_extractor.py --verify-only
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python tools/prepare_native_inputs.py --check
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python scripts/sync-ultra-sdk-identity.py --check
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python tools/build_module_policy.py --prepare-only --offline
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
       - name: Fetch locked extractor dependencies
         run: |
           cargo +1.99.1-x86_64-pc-windows-gnu fetch --locked --target aarch64-linux-android --manifest-path jailbreak-providers/ghostlock/extractor-native/Cargo.toml
@@ -194,3 +219,12 @@ jobs:
           name: MapleSU-Manager-ghostsam-test
           path: out/MapleSU-Manager-ghostsam-test.apk
           if-no-files-found: error
+      - name: Upload manager failure diagnostics (F7)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manager-failure-logs
+          path: |
+            **/build/reports/**
+            **/*.log
+          if-no-files-found: warn
