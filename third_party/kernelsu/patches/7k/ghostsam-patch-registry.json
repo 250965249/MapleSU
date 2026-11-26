@@ -154,7 +154,7 @@
       },
       {
         "name": "0032-samsung-rkp-no-patch-text.patch",
-        "sha256": "6c8bb502e5dde6ab63a1ec8fb66fdee397ab801c6fd48ad5e7ca60582d28680b"
+        "sha256": "0881d15d0517629414d08c69262832ae3015f0ce1d374ff9f7af5dec891b321d"
       },
       {
         "name": "0033-samsung-kbuild-init-order.patch",

@@ -267,6 +267,7 @@ def samsung_apply_dry_run(kroot: Path) -> dict:
         kbuild = (dst / "kernel/Kbuild").read_text(encoding="utf-8")
         appp = (dst / "kernel/policy/app_profile.c").read_text(encoding="utf-8")
         tpm = (dst / "kernel/hook/tp_marker.c").read_text(encoding="utf-8")
+        sup = (dst / "kernel/feature/sucompat.c").read_text(encoding="utf-8")
 
         # --- KDP: real symbol-resolution + static_key gated cred suite ---
         for tok in ("prepare_ro_creds", "kdp_assign_pgd",
@@ -336,6 +337,17 @@ def samsung_apply_dry_run(kroot: Path) -> dict:
         for fake in ("kernel/feature/samsung_selinux_hide.c", "kernel/hook/samsung_rkp_guard.c"):
             if (dst / fake).exists():
                 raise DryRunError(f"obsolete fake file still present after apply: {fake}")
+
+        # --- __exit alignment (modpost section mismatch on 6.1+) ---
+        # No .exit.text function may be referenced from .init.text. ksu_syscall_hook_manager_init
+        # -> rkp_sucompat_hook_init -> ksu_sucompat_exit() runs in init context, so
+        # ksu_sucompat_exit must NOT carry __exit (matches KernelSU@samsung reference tree).
+        if "void __exit ksu_sucompat_exit" in sup or "void ksu_sucompat_exit" not in sup:
+            raise DryRunError("sucompat.c: ksu_sucompat_exit still __exit (.exit.text) — init.text caller mismatch")
+        if "void __exit ksu_samsung_kdp_exit" in kdp or "void ksu_samsung_kdp_exit(void)" not in kdp:
+            raise DryRunError("samsung_kdp.c: ksu_samsung_kdp_exit wrongly marked __exit")
+        if "void __exit ksu_samsung_defex_exit" in defex or "void ksu_samsung_defex_exit(void)" not in defex:
+            raise DryRunError("samsung_defex.c: ksu_samsung_defex_exit wrongly marked __exit")
 
         return {"appliedEntries": applied, "appliedCount": len(applied)}
     finally:
