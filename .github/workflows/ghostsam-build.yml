@@ -318,6 +318,12 @@ jobs:
           if (-not (Test-Path "$env:GITHUB_WORKSPACE/$env:GHOSTSAM_TEST_KEYSTORE")) {
             throw "Missing test keystore: $env:GHOSTSAM_TEST_KEYSTORE (see keystore/README.md)"
           }
+      - name: Prefetch manager host JVM deps for specgen (seed Gradle module cache)
+        env:
+          MINGW_ROOT: ${{ steps.msys2.outputs.msys2-location }}
+        run: |
+          ./gradlew.bat :manager:compileReleaseKotlin --no-daemon --no-build-cache --no-configuration-cache --max-workers=2 '-PmaplesuRustToolchain=1.99.1-x86_64-pc-windows-gnu' "-PmaplesuMingwBin=$env:MINGW_ROOT/ucrt64/bin"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
       - name: Build signed test Manager APK (keystore/ghostsam-test.keystore)
         env:
           MAPLE_RELEASE_STORE_FILE: ${{ github.workspace }}/keystore/ghostsam-test.keystore
