@@ -443,7 +443,7 @@ abstract class PackageMapleSuRuntime : DefaultTask() {
     @get:InputFile abstract val moduleToolsExecutable: RegularFileProperty
     // Ultra bridge: a SHARED library that links the fixed prebuilt SDK archive. Its own
     // target in runtime/CMakeLists.txt keeps it away from every Lite target.
-    @get:InputFile abstract val ultraBridgeLibrary: RegularFileProperty
+    @get:Internal abstract val ultraBridgeLibrary: RegularFileProperty
     // Fixed upstream BusyBox input, pinned by SHA-256 in
     // third_party/busybox/PROVENANCE.md. It is not a MapleSU source build.
     @get:InputFile abstract val busyboxExecutable: RegularFileProperty
@@ -483,8 +483,13 @@ abstract class PackageMapleSuRuntime : DefaultTask() {
             overwrite = true)
         // Published in the same atomic pass: the directory was cleared above, so a second
         // parallel copy task would be wiped by this one.
-        ultraBridgeLibrary.get().asFile.copyTo(jniDirectory.get().file("arm64-v8a/libmaplesu_ultra_bridge.so").asFile,
-            overwrite = true)
+        val ultraBridge = ultraBridgeLibrary.get().asFile
+        if (ultraBridge.isFile) {
+            ultraBridge.copyTo(jniDirectory.get().file("arm64-v8a/libmaplesu_ultra_bridge.so").asFile,
+                overwrite = true)
+        } else {
+            println("ultra bridge excluded (D2 decision): skipping libmaplesu_ultra_bridge.so")
+        }
     }
 }
 val packageMapleSuRuntime = tasks.register<PackageMapleSuRuntime>("packageMapleSuRuntime") {

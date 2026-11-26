@@ -148,7 +148,7 @@ if(NOT DEFINED MAPLESU_APP_VERSION)
     set(MAPLESU_APP_VERSION "unknown")
 endif()
 
-add_library(maplesu_ultra_bridge SHARED
+add_library(maplesu_ultra_bridge SHARED EXCLUDE_FROM_ALL
     ultra/bridge/native_lib_ultra.cpp
     ultra/bridge/module_environment_capture.cpp
     ultra/policy/module_policy_config.cpp
@@ -224,7 +224,7 @@ target_compile_options(maplesu-ultra-webui-test PRIVATE -Wall -Wextra -Werror -f
 
 # Read-only device probe: prints the SDK's self-declared version and the host's
 # SELinux/seccomp state. Activates nothing, needs no root key.
-add_executable(maplesu-ultra-version ultra/probe/ultra_version_probe.cpp)
+add_executable(maplesu-ultra-version EXCLUDE_FROM_ALL ultra/probe/ultra_version_probe.cpp)
 target_compile_features(maplesu-ultra-version PRIVATE cxx_std_20)
 target_compile_options(maplesu-ultra-version PRIVATE -ffunction-sections -fdata-sections "$<$<CONFIG:Release>:-g0>")
 target_link_options(maplesu-ultra-version PRIVATE
@@ -233,7 +233,7 @@ target_link_libraries(maplesu-ultra-version PRIVATE maplesu_ultra_sdk z log dl)
 
 # Read-only module archive probe: asks the real SDK to parse a module ZIP's descriptor.
 # Activates nothing and installs nothing; reports the SDK's exact error when it refuses.
-add_executable(maplesu-ultra-module ultra/probe/ultra_module_probe.cpp)
+add_executable(maplesu-ultra-module EXCLUDE_FROM_ALL ultra/probe/ultra_module_probe.cpp)
 target_compile_features(maplesu-ultra-module PRIVATE cxx_std_20)
 target_compile_options(maplesu-ultra-module PRIVATE -ffunction-sections -fdata-sections "$<$<CONFIG:Release>:-g0>")
 target_link_options(maplesu-ultra-module PRIVATE
