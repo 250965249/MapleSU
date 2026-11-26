@@ -90,11 +90,18 @@ rustup target list --installed 2>/dev/null | grep -q aarch64-linux-android || \
 [ -d "$ANDROID_NDK_HOME" ] || die "ANDROID_NDK_HOME 不存在: $ANDROID_NDK_HOME"
 
 # 真实构建才需要 toolchain 探测（dry-run 时 NDK 可以不存在）
-export CLANG_PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/$HOST_TAG/bin"
-export AR="$CLANG_PATH/llvm-ar"
-export CC_aarch64_linux_android="$CLANG_PATH/aarch64-linux-android31-clang"
+# 目录前缀单独放进 CLANG_BIN（工具链 bin 目录）；CLANG_PATH 必须是**可执行文件全路径**，
+# 因为 clang-sys/bindgen 会把它当 clang 可执行文件校验，设成目录会报
+# "CLANG_PATH env var set but is not a full path to an executable"（run 45777330482）。
+CLANG_BIN="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/$HOST_TAG/bin"
+export CLANG_PATH="$CLANG_BIN/clang"
+export AR="$CLANG_BIN/llvm-ar"
+export CC_aarch64_linux_android="$CLANG_BIN/aarch64-linux-android31-clang"
 export CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER="${CC_aarch64_linux_android}"
-BUILTINS="$("$CLANG_PATH/clang" --print-resource-dir)/lib/linux/libclang_rt.builtins-aarch64-android.a"
+# bindgen 需要 NDK sysroot + android target + arch 专属 include，否则回落宿主 /usr/include，
+# 找不到 asm/ioctl.h → ../../applied/userspace/ksud/build.rs:57 configure_bindgen().expect() panic。
+export BINDGEN_EXTRA_CLANG_ARGS_aarch64_linux_android="--sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/$HOST_TAG/sysroot -I$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/$HOST_TAG/sysroot/usr/include/aarch64-linux-android -target aarch64-linux-android"
+BUILTINS="$("$CLANG_PATH" --print-resource-dir)/lib/linux/libclang_rt.builtins-aarch64-android.a"
 KSUINIT_RUSTFLAGS="-C target-feature=+crt-static -C link-arg=-Wl,-z,max-page-size=16384 \
 -C link-arg=-Wno-unused-command-line-argument -C link-arg=$BUILTINS"
 
@@ -114,8 +121,23 @@ cp -f "$KO" "$KS/bin/aarch64/"
 
 echo "== 3/3 ksud"
 ( cd "$KS" && cargo build --target aarch64-linux-android --release )
-BIN="$KS/target/aarch64-linux-android/release/ksud"
-[ -f "$BIN" ] || die "ksud 构建产物缺失: $BIN"
+# 产物定位：Cargo 对 workspace 成员使用 **workspace 根** 的 target/，不能按成员目录硬编码。
+# applied/Cargo.toml 是 [workspace]（members: userspace/ksud、userspace/ksuinit），
+# 因此 ksud 产物落在 $APPLIED/target，而不是 $KS/target。用 cargo metadata 的
+# target_directory 优先解析，找不到再回退旧路径，两者都缺才报错（报告 §2「产物定位假设」）。
+PYBIN="${MAPLESU_PYTHON:-python3}"
+TARGET_DIR="$( cd "$KS" && cargo metadata --no-deps --format-version 1 2>/dev/null \
+  | "$PYBIN" -c 'import json,sys; print(json.load(sys.stdin)["target_directory"])' 2>/dev/null || true )"
+BIN=""
+if [ -n "${TARGET_DIR:-}" ] && [ -f "$TARGET_DIR/aarch64-linux-android/release/ksud" ]; then
+  BIN="$TARGET_DIR/aarch64-linux-android/release/ksud"
+elif [ -f "$KS/target/aarch64-linux-android/release/ksud" ]; then
+  BIN="$KS/target/aarch64-linux-android/release/ksud"
+else
+  die "ksud 构建产物缺失: target_directory=${TARGET_DIR:-<unset>} fallback=$KS/target/aarch64-linux-android/release/ksud"
+fi
+echo "   target_directory: ${TARGET_DIR:-<unset>}"
+echo "   ksud bin:         $BIN"
 mkdir -p "$JNI_DIR"
 cp -f "$BIN" "$JNI_DIR/libksud_ksu.so"
 

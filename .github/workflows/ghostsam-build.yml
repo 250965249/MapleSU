@@ -96,6 +96,14 @@ jobs:
       - name: Rebuild ksud (ksud-maplesu) embedding KMI ko
         run: |
           set -euo pipefail
+          # NDK 兜底（runner 通常已设 ANDROID_NDK_HOME；缺失时回落到 SDK 内置 27.3）。
+          : "${ANDROID_NDK_HOME:=$ANDROID_HOME/ndk/27.3.13750724}"
+          export ANDROID_NDK_HOME
+          # CI 内置探针（分析报告 §3.1，本轮 CI 证据）：证明 NDK clang 可执行且目标 sysroot 头可解析。
+          llvm="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64"
+          test -x "$llvm/bin/clang"
+          test -d "$llvm/sysroot/usr/include"
+          printf '#include <stdint.h>\nuint32_t ci_probe(void);\n' | "$llvm/bin/clang" --target=aarch64-linux-android24 --sysroot="$llvm/sysroot" -fsyntax-only -x c -
           KSUD_TREE=exynos bash third_party/kernelsu/scripts/build_ksud.sh --kmi "${{ matrix.kmi }}" || \
             bash third_party/kernelsu/scripts/build_ksud.sh --kmi "${{ matrix.kmi }}"
       - name: Package ksud-maplesu[-exynos] assets
@@ -104,7 +112,7 @@ jobs:
           name="ksud-maplesu/${{ matrix.kmi }}_kernelsu.ko"
           exynos="ksud-maplesu-exynos/${{ matrix.kmi }}-exynos_kernelsu.ko"
           mkdir -p "out/$(dirname "$name")" "out/$(dirname "$exynos")"
-          src="third_party/kernelsu/artifacts/lkm/${{ matrix.kmi }}_kernelsu.ko"
+          src="third_party/kernelsu/lkm/${{ matrix.kmi }}_kernelsu.ko"
           [ -f "$src" ] && cp "$src" "out/$name" && cp "$src" "out/$exynos" || true
           # F3: export the recompiled ksud product + sidecar under the exact names GhostSam fetches.
           ksud="manager/src/main/jniLibs/arm64-v8a/libksud_ksu.so"
@@ -129,6 +137,92 @@ jobs:
           name: ksud-maplesu-${{ matrix.kmi }}
           path: out/
           if-no-files-found: warn
+
+  # ===========================================================================
+  # Job A2: release-ksud 组装（8 个 KMI 的 LKM ko 全量内嵌成单一 ksud-maplesu）。
+  #   理由：GhostSam 全设备只捆绑一个 ksud-maplesu；late_load.rs:55 从内嵌 assets 按
+  #   {kmi}_kernelsu.ko 解析 ko，单 ko ksud 无法同时服务 s22(android12-5.10) 与
+  #   s26/zf8(android16-6.12)。本作业把矩阵 8×2 个 ko 全部放进 RustEmbed folder
+  #   applied/userspace/ksud/bin/aarch64/（assets.rs:45）后重编 ksud。
+  # ===========================================================================
+  release-ksud:
+    needs: matrix
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Rust target + libclang (同 matrix)
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y libclang-dev
+          rustup target add aarch64-linux-android
+          rustup target list --installed | grep -q aarch64-linux-android
+      - name: Apply MapleSU base series + GhostSam/Samsung extension
+        run: |
+          set -euo pipefail
+          python3 third_party/kernelsu/scripts/apply_patches.py --clean --extension-series third_party/kernelsu/patches/7k/series-ghostsam
+      - name: Download matrix ksud artifacts (8 KMI)
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ksud-maplesu-*
+          path: download
+          merge-multiple: false
+      - name: Stage 16 embedded ko into bin/aarch64 (+ lkm placeholder)
+        run: |
+          set -euo pipefail
+          bin=applied/userspace/ksud/bin/aarch64
+          mkdir -p "$bin" third_party/kernelsu/lkm
+          n=0
+          for ko in $(find download -type f -name '*_kernelsu.ko' | sort); do
+            cp -f "$ko" "$bin/"
+            n=$((n + 1))
+          done
+          echo "staged $n ko into $bin"
+          [ "$n" -eq 16 ] || { echo "::error::expected 16 ko (8 normal + 8 exynos), got $n"; find download -type f -name '*.ko'; exit 1; }
+          # build_ksud.sh step2 需要 third_party/kernelsu/lkm/<kmi>_kernelsu.ko 作占位（会再复制进 bin）。
+          cp -f "$bin/android16-6.12_kernelsu.ko" third_party/kernelsu/lkm/android16-6.12_kernelsu.ko
+          ls -1 "$bin"
+      - name: Build release ksud (embed all 16 ko)
+        run: |
+          set -euo pipefail
+          : "${ANDROID_NDK_HOME:=$ANDROID_HOME/ndk/27.3.13750724}"
+          export ANDROID_NDK_HOME
+          [ -d "$ANDROID_NDK_HOME" ] || { echo "::error::ANDROID_NDK_HOME not found: $ANDROID_NDK_HOME"; exit 1; }
+          llvm="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64"
+          test -x "$llvm/bin/clang"
+          test -d "$llvm/sysroot/usr/include"
+          printf '#include <stdint.h>\nuint32_t ci_probe(void);\n' | "$llvm/bin/clang" --target=aarch64-linux-android24 --sysroot="$llvm/sysroot" -fsyntax-only -x c -
+          bash third_party/kernelsu/scripts/build_ksud.sh --kmi android16-6.12
+      - name: Package ksud-maplesu-release (product + version sidecar)
+        run: |
+          set -euo pipefail
+          ksud="manager/src/main/jniLibs/arm64-v8a/libksud_ksu.so"
+          [ -f "$ksud" ] || { echo "::error::ksud product missing: $ksud"; exit 1; }
+          mkdir -p out
+          cp "$ksud" "out/ksud-maplesu-aarch64"
+          # 复用矩阵 Packaging 步骤的 sidecar 块（字段保持一致）。
+          {
+            echo 'variant=maplesu'
+            echo 'build_kind=samsung-ci'
+            echo 'kernel_version_code=32650'
+            echo 'kernel_uapi_version=7'
+            echo 'version_name=5.2.1'
+            echo 'source=FengQiuFQ/MapleSU'
+            echo "test_cert_sha256=${KSU_EXPECTED_HASH}"
+            echo "test_cert_size=${KSU_EXPECTED_SIZE}"
+          } > "out/ksud-maplesu-aarch64.version"
+          echo "OK: out/ksud-maplesu-aarch64"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ksud-maplesu-release
+          path: out/
+          if-no-files-found: error
 
   # ===========================================================================
   # Job B: test-signed Manager APK (windows-latest, mirrors build-manager.yml toolchain).
@@ -201,6 +295,10 @@ jobs:
       - name: Fetch locked extractor dependencies
         run: |
           cargo +1.99.1-x86_64-pc-windows-gnu fetch --locked --target aarch64-linux-android --manifest-path jailbreak-providers/ghostlock/extractor-native/Cargo.toml
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          # build_extractor.py:64 以 --offline 构建，android-target fetch 漏拉宿主(windows)依赖；
+          # 追加同一工具链的 windows-gnu host-target fetch（run 45777330482: failed to download 'anstyle-wincon v3.0.11'）。
+          cargo +1.99.1-x86_64-pc-windows-gnu fetch --locked --target x86_64-pc-windows-gnu --manifest-path jailbreak-providers/ghostlock/extractor-native/Cargo.toml
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
       - name: Build SDK and consumer
         run: |
