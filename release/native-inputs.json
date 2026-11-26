@@ -11680,8 +11680,8 @@
     },
     {
       "path": "runtime/CMakeLists.txt",
-      "bytes": 15262,
-      "sha256": "19b487e065c142475518de114ce6728334c9661a8bc1d08370adf54843c8dd8c"
+      "bytes": 15310,
+      "sha256": "97d0816dc6661eab44c63ebadc87c1d46cb5a01d37c4a7b99eae4162f75e0665"
     },
     {
       "path": "runtime/maplesu-sdk/PROVENANCE.json",
