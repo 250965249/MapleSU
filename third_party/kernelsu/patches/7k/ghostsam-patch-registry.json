@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-11-26T05:20:00Z",
+  "baseSeries": {
+    "file": "patches/7k/series",
+    "entries": [
+      "0001-manager-identity.patch",
+      "0002-uapi-v7.patch",
+      "0003-stealth.patch",
+      "0004-app-lock.patch",
+      "0005-manager-generation-gate.patch",
+      "0006-webadmin.patch",
+      "0007-boot-patch-safety.patch",
+      "0008-restore-user-data.patch",
+      "0009-install-staging-label.patch",
+      "0010-manager-jni-facade.patch",
+      "0011-webadmin-api-surface.patch",
+      "0012-boot-patch-safety-wiring.patch",
+      "0013-restore-user-data-wiring.patch",
+      "0014-manager-package-triple-check.patch",
+      "0015-normal-recovery.patch",
+      "0016-ksud-build-identity.patch",
+      "0018-vivo-vr-compatibility.patch",
+      "0019-maplesu-93260-symbol-input.patch",
+      "0020-jailbreak-selinux-session.patch",
+      "0021-maplesu-manager-namespace.patch",
+      "0022-boot-copy-rebuild.patch",
+      "0023-boot-backup-optional.patch",
+      "0024-boot-empty-origin-restore.patch",
+      "0025-target-kernel-kmi.patch",
+      "0026-module-install-transaction.patch",
+      "0027-module-removal-transaction.patch"
+    ],
+    "count": 26,
+    "sha256": "b33042f04e7e19b2f85c305bc82eaa63589bf74ceb5094d27dc84e0599fcd9e3"
+  },
+  "manifestSeriesSha256": "b33042f04e7e19b2f85c305bc82eaa63589bf74ceb5094d27dc84e0599fcd9e3",
+  "extensionSeries": {
+    "file": "patches/7k/series-ghostsam",
+    "entries": [
+      "0028-ghostsam-late-load-compat.patch"
+    ],
+    "sha256": "ef2c66cf0c00426e0d5f8446eedbb0b760a9f056e966f1e2a7c447f4f61f6d92"
+  },
+  "patches": [
+    {
+      "name": "0028-ghostsam-late-load-compat.patch",
+      "sha256": "86ed6d40a012220938c69b7366f3acad293980bf7112c0911474faf56aefaf91",
+      "targets": [
+        "userspace/ksud/src/cli.rs",
+        "userspace/ksud/src/late_load.rs"
+      ],
+      "purpose": "GhostSam 外部 payload/late-load 兼容面（不改内核身份三重校验）",
+      "lateLoadArgv": [
+        "late-load",
+        "--allow-shell",
+        "--kmi",
+        "--package-name",
+        "--soft-reboot"
+      ],
+      "softRebootHandling": "safe no-op: 接受 --soft-reboot，打印兼容信息，绝不触发 in-process soft reboot（真动作仍走 `ksud soft-reboot`）",
+      "managerRestart": {
+        "package": "dev.maplesu.manager",
+        "packageSource": "defs::DEFAULT_PACKAGE_NAME (env KSU_PACKAGE_NAME via 0001)",
+        "activity": "dev.maplesu.manager.ui.MainActivity",
+        "component": "dev.maplesu.manager/dev.maplesu.manager.ui.MainActivity",
+        "manifest": "manager/src/main/AndroidManifest.xml:42-43"
+      },
+      "identityPreserved": true
+    }
+  ],
+  "identity": {
+    "expectedSize": 772,
+    "expectedHash": "30bafb57e3604afe93da13a1285516e043feb82b56a861a157b53ccaa27c3506",
+    "checks": [
+      "certificate(DER size+sha256)",
+      "generation(assets/ksu_manager_gen2, KSU_MANAGER_MIN_GEN=2)",
+      "package(KSU_MANAGER_PACKAGE=dev.maplesu.manager)"
+    ],
+    "untouchedFiles": [
+      "kernel/manager/apk_sign.c",
+      "kernel/manager/throne_tracker.c",
+      "kernel/Kbuild"
+    ]
+  },
+  "generation": {
+    "method": "git diff on a temp copy of upstream after applying all 26 base patches (post-base tree)",
+    "baseAppliedCount": 26,
+    "handEdited": [],
+    "forbiddenToHandEdit": [
+      "applied/",
+      "manifest.json"
+    ],
+    "generationMethodVerified": false,
+    "verificationNote": "generation.method 为自述（git diff on temp tree），未由工件独立复核；仅凭本 registry 不能证明生成方式。"
+  },
+  "buildArtifacts": {
+    "built": false,
+    "reason": "本机无 Android SDK/NDK，且缺真实签名 APK/公开证书；applied/ 与 manifest.json 由 apply_patches.py/gen_manifest.py 在构建环境生成"
+  },
+  "forbiddenTokenScan": [
+    "/dev/block",
+    "boot-patch",
+    "boot-restore",
+    "InstallerPartitionService",
+    "metadata",
+    "modules.rc",
+    "set_active",
+    "flash"
+  ],
+  "verifyCommand": "py -3 scripts/ghostsam_patch_dryrun.py --self-test",
+  "buildPipeline": {
+    "extensionConsumedByDefaultBuild": false,
+    "howToConsume": "python third_party/kernelsu/scripts/apply_patches.py --clean --extension-series patches/7k/series-ghostsam",
+    "genManifest": "gen_manifest.py 读取 patches/7k/series-ghostsam 并记录 extensionSeries（不改 base seriesSha256）；consumedByBuild 由 applied/.applied.json 决定",
+    "status": "已在 scripts/apply_patches.py 与 scripts/gen_manifest.py 实现消费路径；默认/当前 CI 未传 --extension-series，故静默忽略（必须显式接入构建阶段）",
+    "buildAssertion": "apply_patches.py 在应用扩展序列后断言 cli.rs 含 'GhostSam compat: --soft-reboot ignored' 且 late_load.rs 含 'MapleSU Manager'，否则 exit 5"
+  },
+  "softRebootSemantics": {
+    "ghostsamSoftRebootFlag": "GhostSam dfr_lkm (soft_reboot=1) 追加 --soft-reboot 给 ksud late-load",
+    "mapleSURealSoftReboot": "ksud soft-reboot 子命令 -> soft_reboot.rs: reset sys.boot_completed -> run_stage(emulated-soft-reboot) -> stop -> on_post_fs_data() -> start -> on_services -> on_boot_completed",
+    "mapleSULateLoadStages": [
+      "late-load",
+      "post-mount",
+      "service",
+      "boot-completed"
+    ],
+    "dependsOnPostFsData": true,
+    "0028Behavior": "接受 --soft-reboot 但为显式 no-op（info! 日志），不执行 post-fs-data，也不 stop/start services",
+    "difference": "功能性差异（非安全）：不再触发 post-fs-data/服务重启",
+    "explicitPath": "真实语义仍可用现有 `ksud soft-reboot` 子命令显式调用；0028 的 no-op 在 stderr/stdout 明确记录，不静默丢弃",
+    "decision": "按 t17 指示只查证不改行为；若后续确需在 late-load 内触发，应显式调用 soft_reboot 或加 opt-in 开关，当前未实现"
+  }
+}

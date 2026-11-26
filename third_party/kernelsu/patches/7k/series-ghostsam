@@ -1,0 +1,4 @@
+# MapleSU × GhostSam 兼容扩展补丁序列
+# 在 patches/7k/series（基础 26 项，byte-identical，勿改）全部应用之后，按本文件顺序继续应用。
+# 目的：仅新增 GhostSam 外部 payload / late-load 兼容面；不改内核身份三重校验（证书+世代+包名）。
+0028-ghostsam-late-load-compat.patch

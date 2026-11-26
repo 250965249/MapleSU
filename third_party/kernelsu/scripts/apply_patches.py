@@ -35,6 +35,9 @@ EXIT_SYNC = 8
 
 UAPI_COPIES = ("kernel/include/uapi", "manager/app/src/main/cpp/uapi")
 
+# GhostSam compatibility extension patch (additive; base series is unchanged).
+EXTENSION_PATCH_NAME = "0028-ghostsam-late-load-compat.patch"
+
 
 def fail(code: int, msg: str) -> "NoReturn":  # type: ignore[name-defined]
     print(f"ERROR({code}): {msg}", file=sys.stderr)
@@ -102,17 +105,34 @@ def validate(applied: Path) -> dict:
     return {"uapiVersion": 7, "ioctlNumbers": sorted(numbers)}
 
 
-def build(root: Path, clean: bool, check_only: bool) -> int:
+def build(root: Path, clean: bool, check_only: bool, extension_series: str | None = None) -> int:
     upstream = root / "upstream"
     applied = root / "applied"
+    patch_dir = root / "patches" / "7k"
     if not upstream.is_dir():
         fail(EXIT_UPSTREAM, f"缺 upstream/：先跑 scripts/export_snapshot.py --which upstream")
     try:
-        series = C.read_series(root / "patches" / "7k" / "series")
+        series = C.read_series(patch_dir / "series")
     except C.KsuError as exc:
         fail(EXIT_INPUT, str(exc))
     if series != [spec["name"] for spec in PATCHES]:
         fail(EXIT_INPUT, "patch series differs from gen_patches.py; regenerate the patch series")
+
+    # Additive extension series (GhostSam compatibility). Base `series` stays byte-identical;
+    # the extension is applied strictly AFTER the base pass and is explicitly opt-in.
+    ext_path = Path(extension_series) if extension_series else None
+    ext_series: list[str] = []
+    if ext_path is not None:
+        if not ext_path.is_file():
+            fail(EXIT_INPUT, f"extension series not found: {ext_path}")
+        try:
+            ext_series = C.read_series(ext_path)
+        except C.KsuError as exc:
+            fail(EXIT_INPUT, str(exc))
+        dup = sorted(set(ext_series) & set(series))
+        if dup:
+            fail(EXIT_INPUT, f"extension series duplicates base entries: {dup}")
+    all_series = series + ext_series
 
     if check_only:
         if not applied.is_dir():
@@ -123,7 +143,8 @@ def build(root: Path, clean: bool, check_only: bool) -> int:
         tmp = C.isolated_apply_root("maplesu-apply-check-")
         try:
             copy_upstream(upstream, tmp)
-            _apply_series(tmp, root / "patches" / "7k", series)
+            _apply_series(tmp, patch_dir, all_series)
+            _assert_extension_applied(tmp, ext_series)
             sync_uapi_copies(tmp)
             got = C.tree_sha256(tmp)
             want = C.tree_sha256(applied)
@@ -154,8 +175,9 @@ def build(root: Path, clean: bool, check_only: bool) -> int:
     copy_upstream(upstream, applied)
     if preserved_evidence is not None:
         C.write_bytes(applied / "BUILD-EVIDENCE.md", preserved_evidence)
-    print(f"[2/3] apply {len(series)} patches")
-    _apply_series(applied, root / "patches" / "7k", series)
+    print(f"[2/3] apply {len(all_series)} patches (base {len(series)} + extension {len(ext_series)})")
+    _apply_series(applied, patch_dir, all_series)
+    _assert_extension_applied(applied, ext_series)
     print("[3/3] sync uapi copies + validate")
     copies = sync_uapi_copies(applied)
     try:
@@ -179,6 +201,8 @@ def build(root: Path, clean: bool, check_only: bool) -> int:
         "uapiSyncTargets": copies,
         "treeSha256": C.tree_sha256(applied),
         "fileCount": len(C.iter_tree_files(applied)),
+        "extensionSeries": (_extension_meta(root, ext_path, ext_series) if ext_series else None),
+        "appliedPatchCount": len(all_series),
     })
     tree = C.tree_sha256(applied)
     print(f"OK applied: files={len(C.iter_tree_files(applied))} treeSha256={tree} "
@@ -200,6 +224,43 @@ def _apply_series(tree: Path, patch_dir: Path, series: list[str]) -> None:
             fail(EXIT_PATCH, str(exc))
         print(f"  + {name}")
 
+
+
+def _extension_meta(root: Path, ext_path: Path, ext_series: list[str]) -> dict:
+    """Record the extension series (additive) without touching the base seriesSha256."""
+    patch_dir = root / "patches" / "7k"
+    entries = []
+    for name in ext_series:
+        p = patch_dir / name
+        if not p.is_file():
+            raise C.KsuError(f"extension series patch missing: {p}")
+        entries.append({"name": name, "sha256": C.sha256_file(p), "size": p.stat().st_size})
+    aggregate = C.sha256_bytes("".join(e["sha256"] for e in entries).encode("utf-8"))
+    try:
+        rel = str(ext_path.resolve().relative_to(root.resolve())).replace("\\", "/")
+    except ValueError:
+        rel = str(ext_path)
+    return {
+        "file": rel,
+        "order": ext_series,
+        "seriesSha256": C.sha256_file(ext_path),
+        "aggregateSha256": aggregate,
+        "entries": entries,
+        "appliedInThisBuild": True,
+    }
+
+
+def _assert_extension_applied(tree: Path, ext_series: list[str]) -> None:
+    """Build-time assertion: if the GhostSam compat patch is in the extension, its effects
+    must be visible in the built tree (fail rather than silently ignore)."""
+    if EXTENSION_PATCH_NAME not in ext_series:
+        return
+    cli = tree / "userspace" / "ksud" / "src" / "cli.rs"
+    late = tree / "userspace" / "ksud" / "src" / "late_load.rs"
+    if not cli.is_file() or "GhostSam compat: --soft-reboot ignored" not in C.read_text(cli):
+        fail(EXIT_PATCH, "build assertion failed: 0028 not applied (cli.rs missing soft-reboot compat)")
+    if not late.is_file() or "MapleSU Manager" not in C.read_text(late):
+        fail(EXIT_PATCH, "build assertion failed: 0028 not applied (late_load.rs missing MapleSU manager restart)")
 
 
 def _write_notice(applied: Path, hashes: dict) -> None:
@@ -247,9 +308,12 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--root", default=str(C.KSU_ROOT))
     ap.add_argument("--clean", action="store_true", help="删除已有 applied/ 后重建")
     ap.add_argument("--check-only", action="store_true", help="只校验 applied/ 是否与重建一致")
+    ap.add_argument("--extension-series", default=None,
+                    help="additive extension series applied after the base series, "
+                         "e.g. patches/7k/series-ghostsam (base series bytes unchanged)")
     args = ap.parse_args(argv)
     try:
-        return build(Path(args.root), args.clean, args.check_only)
+        return build(Path(args.root), args.clean, args.check_only, args.extension_series)
     except C.KsuError as exc:
         fail(EXIT_PATCH, str(exc))
 

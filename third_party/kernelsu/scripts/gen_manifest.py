@@ -26,6 +26,39 @@ MANIFEST_GENERATOR = "third_party/kernelsu/scripts/gen_manifest.py@1"
 VOLATILE_KEYS = ("generatedAt", "verifiedAt")
 
 
+def extension_series_meta(root: Path, applied_json: dict) -> dict | None:
+    """Record the additive GhostSam extension series if present.
+
+    Does NOT alter the base `patchSeries.seriesSha256` (base `series` is untouched). The
+    `consumedByBuild` flag reflects whether apply_patches.py was actually run with
+    --extension-series (read from applied/.applied.json); otherwise it stayed un-applied.
+    """
+    patch_dir = root / "patches" / "7k"
+    ext = patch_dir / "series-ghostsam"
+    if not ext.is_file():
+        return None
+    names = C.read_series(ext)
+    entries = []
+    for name in names:
+        p = patch_dir / name
+        if not p.is_file():
+            raise C.KsuError(f"extension series patch missing: {p}")
+        entries.append({"name": name, "sha256": C.sha256_file(p), "size": p.stat().st_size})
+    aggregate = C.sha256_bytes("".join(e["sha256"] for e in entries).encode("utf-8"))
+    applied_ext = applied_json.get("extensionSeries") or {}
+    return {
+        "file": "patches/7k/series-ghostsam",
+        "order": names,
+        "seriesSha256": C.sha256_file(ext),
+        "aggregateSha256": aggregate,
+        "entries": entries,
+        "baseSeriesSha256Unaffected": True,
+        "consumedByBuild": bool(applied_ext.get("appliedInThisBuild")),
+        "note": "additive extension; only applied when apply_patches.py --extension-series is "
+                "passed. Default build ignores it (must be wired explicitly at build stage).",
+    }
+
+
 def extract_uapi(text: str) -> dict:
     version = int(re.search(r"KERNEL_SU_UAPI_VERSION\s*=\s*(\d+)\s*;", text).group(1))
     ioctls = {}
@@ -151,6 +184,7 @@ def build_manifest(root: Path) -> dict:
             "superseded": patches_meta.get("superseded", []),
             "todo": patches_meta["todos"],
         },
+        "extensionSeries": extension_series_meta(root, applied_json),
         "applied": {
             "treeSha256": applied_tree,
             "fileCount": len(applied_entries),
