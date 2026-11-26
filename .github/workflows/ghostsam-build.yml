@@ -66,14 +66,19 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install Rust target + libclang (F6)
-        # Mirrors build-normal.yml: build_ksud needs the aarch64-linux-android target;
+        # F6 precise fix (run 45774114076): the previous `rustup toolchain install 1.99.1
+        # --target aarch64-linux-android` succeeded but installed the target into the
+        # 1.99.1 toolchain, while build_ksud.sh runs on the runner DEFAULT toolchain
+        # (rustc 1.100.0), so build_ksud.sh:88-89 still saw the target as missing.
+        # Install the aarch64 target UNCONDITIONALLY into the default toolchain here.
         # NDK 27.3.13750724 is auto-discovered, no extra NDK env is required.
         run: |
           set -euo pipefail
           sudo apt-get update
           sudo apt-get install -y libclang-dev
-          rustup toolchain install 1.99.1 --profile minimal --target aarch64-linux-android || \
-            rustup target add aarch64-linux-android
+          rustup target add aarch64-linux-android
+          # Prove the default toolchain now has the target build_ksud.sh checks for.
+          rustup target list --installed | grep -q aarch64-linux-android
       - name: Apply MapleSU base series + GhostSam/Samsung extension
         run: |
           set -euo pipefail
@@ -165,7 +170,7 @@ jobs:
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           "MAPLESU_PYTHON=$((Get-Command python).Source)" >> $env:GITHUB_ENV
           "ANDROID_SDK_ROOT=$env:ANDROID_HOME" >> $env:GITHUB_ENV
-      - name: Verify retained native inputs (F7; mirror build-manager.yml)
+      - name: Prepare retained native inputs (F7c; mirror build-manager.yml)
         run: |
           if (Test-Path .handoff/source-files.json) {
             python .handoff/source_snapshot.py verify --repair
@@ -175,9 +180,21 @@ jobs:
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           python jailbreak-providers/ghostlock/build_extractor.py --verify-only
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
-          python tools/prepare_native_inputs.py --check
+          # F7c: DOWNLOAD+verify the pinned public native inputs (busybox, the eight
+          # DirtyFrag stock .ko) from their fixed GitHub raw sources when a fork
+          # checkout does not carry them. Every byte is re-checked against
+          # release/source-policy.json (size + sha256); a present input is only
+          # re-verified, so the green path stays network-free. This is the
+          # "prepare in CI" half of the native-input chain.
+          python tools/prepare_native_inputs.py
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
-          python scripts/sync-ultra-sdk-identity.py --check
+          # F7c: regenerate the Ultra SDK build identity from the committed
+          # SDK-RELEASE.json + libkernel_module_kit_static.a. The upstream `--check`
+          # form is NOT usable on a fork (nor on upstream CI): it calls
+          # verify_source_delivery(), which asserts on the private source-build report
+          # `.tmp/p1-source-r9-build/report/build-report.json` (10.9 MB) that no
+          # checkout contains. Generate mode needs only the committed manifest+archive.
+          python scripts/sync-ultra-sdk-identity.py
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           python tools/build_module_policy.py --prepare-only --offline
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
@@ -219,12 +236,18 @@ jobs:
           name: MapleSU-Manager-ghostsam-test
           path: out/MapleSU-Manager-ghostsam-test.apk
           if-no-files-found: error
-      - name: Upload manager failure diagnostics (F7)
+      - name: Upload manager failure diagnostics (F7/F7c)
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: manager-failure-logs
+          # F7c: mirror build-manager.yml's "Upload native build diagnostics" so the
+          # exact :manager:buildJailbreakProviders native error is captured (build.py
+          # writes it to manager/build/jailbreakProviders/build.log, never to stdout).
           path: |
+            manager/build/jailbreakProviders/**/build.json
+            manager/build/jailbreakProviders/**/build.log
+            manager/build/jailbreakProviders/**/verify-build.txt
             **/build/reports/**
             **/*.log
           if-no-files-found: warn

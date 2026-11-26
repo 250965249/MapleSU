@@ -172,20 +172,53 @@ def main() -> int:
     else:
         fail("F3: ksud product source libksud_ksu.so missing")
 
-    # 7) F6 Rust target + libclang; F7 manager inputs/diagnostics
+    # 7) F6 Rust target on DEFAULT toolchain; F7 manager inputs/diagnostics
     try:
         matrix_text = yaml.safe_dump(jobs["matrix"], allow_unicode=True)
     except Exception:
         matrix_text = ""
-    if "aarch64-linux-android" in matrix_text and "libclang-dev" in matrix_text:
-        ok("F6: matrix job installs Rust aarch64-linux-android target + libclang-dev")
+    if "libclang-dev" in matrix_text:
+        ok("F6: matrix job installs libclang-dev")
     else:
-        fail("F6: matrix job missing Rust aarch64-linux-android target / libclang-dev setup")
+        fail("F6: matrix job missing libclang-dev install")
+    # F6 precise fix (run 45774114076): the target must be installed on the runner
+    # DEFAULT toolchain via unconditional `rustup target add`, NOT into a separate
+    # 1.99.1 toolchain that build_ksud.sh (default rustc) never uses.
+    if "rustup target add aarch64-linux-android" in matrix_text:
+        ok("F6: matrix job runs unconditional `rustup target add aarch64-linux-android` (default toolchain)")
+    else:
+        fail("F6: matrix job missing unconditional `rustup target add aarch64-linux-android`")
+    if "rustup toolchain install 1.99.1" in matrix_text:
+        fail("F6: stale `rustup toolchain install 1.99.1` still present in matrix job (target lands in wrong toolchain)")
+    else:
+        ok("F6: no stale `rustup toolchain install 1.99.1` in matrix job")
     mgr_flat = (yaml.safe_dump(mgr, allow_unicode=True) if isinstance(mgr, dict) else "")
-    if "prepare_native_inputs.py" in mgr_flat and "--check" in mgr_flat:
-        ok("F7: manager job runs retained-native-input preparation (prepare_native_inputs.py --check)")
+    # F7c: the fork manager job PREPARES (downloads+verifies) the pinned public native
+    # inputs in CI instead of only --check; a fork checkout may not carry a pinned binary.
+    if "tools/prepare_native_inputs.py" in mgr_flat:
+        ok("F7c: manager job prepares pinned native inputs (tools/prepare_native_inputs.py, download-capable)")
     else:
-        fail("F7: manager job missing prepare_native_inputs.py --check")
+        fail("F7c: manager job missing tools/prepare_native_inputs.py preparation")
+    if "prepare_native_inputs.py --check" in mgr_flat:
+        fail("F7c: stale verify-only `prepare_native_inputs.py --check` present (no download self-heal)")
+    else:
+        ok("F7c: no verify-only prepare_native_inputs.py --check (CI downloads missing pinned inputs)")
+    # F7c: `sync-ultra-sdk-identity.py --check` is unusable (it asserts on the private
+    # source-build report .tmp/p1-source-r9-build/report/build-report.json); the fork must
+    # regenerate the identity from committed artifacts via GENERATE mode instead.
+    if "sync-ultra-sdk-identity.py --check" in mgr_flat:
+        fail("F7c: stale `sync-ultra-sdk-identity.py --check` present (private build-report input)")
+    else:
+        ok("F7c: no sync-ultra-sdk-identity.py --check (private .tmp build-report input removed)")
+    if "sync-ultra-sdk-identity.py" in mgr_flat:
+        ok("F7c: manager job regenerates Ultra SDK identity from committed manifest (generate mode)")
+    else:
+        fail("F7c: manager job does not regenerate the Ultra SDK identity (scripts/sync-ultra-sdk-identity.py)")
+    # F7c: failure diagnostics must capture the exact native build error (build.py -> build.log).
+    if ("manager/build/jailbreakProviders" in text and "build.log" in text and "build.json" in text):
+        ok("F7c: manager failure diagnostics capture buildJailbreakProviders build.log/build.json")
+    else:
+        fail("F7c: manager failure diagnostics missing manager/build/jailbreakProviders build.log/build.json")
     if "manager-failure-logs" in text:
         ok("F7: manager failure diagnostics artifact configured")
     else:
