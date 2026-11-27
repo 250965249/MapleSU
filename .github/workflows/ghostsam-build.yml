@@ -186,7 +186,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 third_party/kernelsu/scripts/apply_patches.py --clean --extension-series third_party/kernelsu/patches/7k/series-ghostsam
-      - name: Download matrix ksud artifacts (trimmed: 12-5.10 + 16-6.12)
+      - name: Download matrix ksud artifacts (trimmed 12-5.10 + 16-6.12)
         uses: actions/download-artifact@v4
         with:
           pattern: ksud-maplesu-*
