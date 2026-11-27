@@ -50,14 +50,17 @@ jobs:
       fail-fast: false
       matrix:
         kmi:
+          # --- BUDGET-TRIM PROFILE (branch ghostsam/adapter-trim) -----------------
+          # 2026-11-27: account-level Actions enforcement (422 "Actions has been
+          # disabled") after heavy multi-round builds. This branch trims the
+          # matrix to the two KMI the owner's devices actually run, so the first
+          # post-unblock run stays small and cannot re-trigger enforcement:
+          #   android12-5.10  (S22)   android16-6.12  (S26 / zf8)
+          # release-ksud gate below expects 4 ko (2 normal + 2 exynos).
+          # Restore the full matrix by reverting this commit (also reverts the
+          # staged==4 gate back to 16). CI-only diff vs 13d1ccc (P1 fix).
           - android12-5.10
-          - android13-5.10
-          - android13-5.15
-          - android14-5.15
-          - android14-6.1
-          - android15-6.6
           - android16-6.12
-          - android17-6.18
     steps:
       - uses: actions/checkout@v4
         with:
@@ -155,10 +158,10 @@ jobs:
           if-no-files-found: warn
 
   # ===========================================================================
-  # Job A2: release-ksud 组装（8 个 KMI 的 LKM ko 全量内嵌成单一 ksud-maplesu）。
+  # Job A2: release-ksud 组装（矩阵产出的 LKM ko 全量内嵌成单一 ksud-maplesu）。
   #   理由：GhostSam 全设备只捆绑一个 ksud-maplesu；late_load.rs:55 从内嵌 assets 按
   #   {kmi}_kernelsu.ko 解析 ko，单 ko ksud 无法同时服务 s22(android12-5.10) 与
-  #   s26/zf8(android16-6.12)。本作业把矩阵 8×2 个 ko 全部放进 RustEmbed folder
+  #   s26/zf8(android16-6.12)。本作业把矩阵 2×2 个 ko 全部放进 RustEmbed folder
   #   applied/userspace/ksud/bin/aarch64/（assets.rs:45）后重编 ksud。
   # ===========================================================================
   release-ksud:
@@ -183,13 +186,13 @@ jobs:
         run: |
           set -euo pipefail
           python3 third_party/kernelsu/scripts/apply_patches.py --clean --extension-series third_party/kernelsu/patches/7k/series-ghostsam
-      - name: Download matrix ksud artifacts (8 KMI)
+      - name: Download matrix ksud artifacts (trimmed: 12-5.10 + 16-6.12)
         uses: actions/download-artifact@v4
         with:
           pattern: ksud-maplesu-*
           path: download
           merge-multiple: false
-      - name: Stage 16 embedded ko into bin/aarch64 (+ lkm placeholder)
+      - name: Stage 4 embedded ko into bin/aarch64 (+ lkm placeholder)
         run: |
           set -euo pipefail
           # 真实 RustEmbed folder：assets.rs:45 #[folder="bin/aarch64"] 相对 crate 目录，
@@ -202,11 +205,11 @@ jobs:
           done
           staged=$(find "$bin" -maxdepth 1 -name '*_kernelsu.ko' | wc -l | tr -d ' ')
           echo "staged $staged ko into $bin"
-          [ "$staged" -eq 16 ] || { echo "::error::expected 16 ko (8 normal + 8 exynos) in $bin, got $staged"; find download -type f -name '*.ko'; exit 1; }
+          [ "$staged" -eq 4 ] || { echo "::error::expected 4 ko (2 normal + 2 exynos, budget-trim profile) in $bin, got $staged"; find download -type f -name '*.ko'; exit 1; }
           # build_ksud.sh step2 需要 third_party/kernelsu/lkm/<kmi>_kernelsu.ko 作占位（会再复制进 bin）。
           cp -f "$bin/android16-6.12_kernelsu.ko" third_party/kernelsu/lkm/android16-6.12_kernelsu.ko
           ls -1 "$bin"
-      - name: Build release ksud (embed all 16 ko)
+      - name: Build release ksud (embed all 4 ko)
         run: |
           set -euo pipefail
           : "${ANDROID_NDK_HOME:=$ANDROID_HOME/ndk/27.3.13750724}"
