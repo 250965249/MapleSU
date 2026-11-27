@@ -1,5 +1,5 @@
 diff --git a/kernel/feature/selinux_hide.c b/kernel/feature/selinux_hide.c
-index 1e4ee63..e4321cb 100644
+index 1e4ee63..9a1ee3d 100644
 --- a/kernel/feature/selinux_hide.c
 +++ b/kernel/feature/selinux_hide.c
 @@ -19,8 +19,14 @@
@@ -33,7 +33,7 @@ index 1e4ee63..e4321cb 100644
 
  static DEFINE_STATIC_KEY_FALSE(fake_status_initialize_key);
  static struct page *fake_status = NULL;
-@@ -511,6 +519,134 @@ static int my_sel_open_handle_status(struct inode *inode, struct file *filp)
+@@ -511,6 +519,145 @@ static int my_sel_open_handle_status(struct inode *inode, struct file *filp)
      return ret;
  }
 
@@ -54,8 +54,16 @@ index 1e4ee63..e4321cb 100644
 +
 +    if (xa_load(&sel_hide_guard_xa, (unsigned long)current))
 +        return false;
-+    old = xa_store(&sel_hide_guard_xa, (unsigned long)current, current, GFP_KERNEL);
-+    return !IS_ERR(old);
++    /* kprobe pre-handlers run in a non-sleepable context: GFP_KERNEL can
++     * sleep/reclaim ("sleeping function called from invalid context"). Use
++     * GFP_ATOMIC. A failed store degrades only THIS hit - log and fall through
++     * to the original handler; never panic or unhook the other probe points. */
++    old = xa_store(&sel_hide_guard_xa, (unsigned long)current, current, GFP_ATOMIC);
++    if (IS_ERR(old)) {
++        pr_err("selinux_hide: guard xa_store failed (%ld), skipping guard for this hit\n", PTR_ERR(old));
++        return false;
++    }
++    return true;
 +}
 +
 +static void sel_hide_guard_exit(void)
@@ -93,7 +101,10 @@ index 1e4ee63..e4321cb 100644
 +
 +static int sel_hide_status_open_pre(struct kprobe *p, struct pt_regs *regs)
 +{
-+    if (!sel_hide_guard_enter())
++    /* Respect the live hide switch: when the feature is off, do nothing and let
++     * the original open() run (previously this probe redirected unconditionally,
++     * so it affected every task, not just the manager). */
++    if (!ksu_selinux_hide_enabled || !sel_hide_guard_enter())
 +        return 0;
 +    instruction_pointer_set(regs, (unsigned long)sel_hide_status_open_tramp);
 +    return 1;
@@ -168,7 +179,7 @@ index 1e4ee63..e4321cb 100644
  static void hook_selinux_status_open();
  static void ksu_selinux_hide_unhook();
  static int ksu_selinux_hide_enable()
-@@ -521,11 +657,13 @@ static int ksu_selinux_hide_enable()
+@@ -521,11 +668,13 @@ static int ksu_selinux_hide_enable()
          pr_err("no backup sepolicy available, please save feature and reboot to retry!\n");
          return -EAGAIN;
      }
@@ -182,7 +193,7 @@ index 1e4ee63..e4321cb 100644
      selinux_write_op = find_kernel_symbol_exact("write_op");
      if (!selinux_write_op) {
          pr_err("selinux_hide: no write_op found!\n");
-@@ -544,6 +682,50 @@ static int ksu_selinux_hide_enable()
+@@ -544,6 +693,50 @@ static int ksu_selinux_hide_enable()
 
      context_write = &selinux_write_op[SEL_CONTEXT];
      pr_info("selinux_hide: context_write: 0x%lx [%pSb]\n", (unsigned long)*context_write, *context_write);
@@ -233,7 +244,7 @@ index 1e4ee63..e4321cb 100644
      write_op_fn my = my_write_context;
      orig_context_write = *context_write;
      // Keep backup once hooks may run, including failed enable attempts
-@@ -551,66 +733,83 @@ static int ksu_selinux_hide_enable()
+@@ -551,66 +744,83 @@ static int ksu_selinux_hide_enable()
      ret = ksu_patch_text(context_write, &my, sizeof(my), KSU_PATCH_TEXT_FLUSH_DCACHE);
      if (ret) {
          pr_err("selinux_hide: init: patch_text context_write err: %d\n", ret);
@@ -333,7 +344,7 @@ index 1e4ee63..e4321cb 100644
  }
 
  static void ksu_selinux_hide_disable()
-@@ -677,6 +876,8 @@ void ksu_selinux_hide_handle_post_fs_data()
+@@ -677,6 +887,8 @@ void ksu_selinux_hide_handle_post_fs_data()
 
  static void hook_selinux_status_open()
  {
@@ -342,7 +353,7 @@ index 1e4ee63..e4321cb 100644
      if (orig_sel_open_handle_status)
          return;
      if (!sel_open_handle_status_slot) {
-@@ -687,14 +888,28 @@ static void hook_selinux_status_open()
+@@ -687,14 +899,28 @@ static void hook_selinux_status_open()
          }
          sel_open_handle_status_slot = &ops->open;
      }

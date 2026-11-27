@@ -290,6 +290,23 @@ def samsung_apply_dry_run(kroot: Path) -> dict:
             if tok not in selinux:
                 raise DryRunError(f"selinux_hide.c missing RKP-only token {tok!r}")
 
+        # --- P1 (route b): non-sleeping guard allocation + hide-state aware status probe ---
+        guard = re.search(r"static bool sel_hide_guard_enter\(void\)\s*\{(.*?)\n\}", selinux, re.S)
+        if not guard:
+            raise DryRunError("selinux_hide.c: sel_hide_guard_enter not found")
+        gbody = guard.group(1)
+        gcode = "\n".join(
+            ln for ln in gbody.splitlines()
+            if not ln.strip().startswith(("*", "/*", "//"))
+        )
+        if "GFP_KERNEL" in gcode or "GFP_ATOMIC" not in gcode:
+            raise DryRunError("selinux_hide.c: guard_enter uses a sleeping alloc (need GFP_ATOMIC, no GFP_KERNEL)")
+        status_pre = re.search(
+            r"static int sel_hide_status_open_pre\(struct kprobe \*p, struct pt_regs \*regs\)\s*\{(.*?)\n\}",
+            selinux, re.S)
+        if not status_pre or "ksu_selinux_hide_enabled" not in status_pre.group(1):
+            raise DryRunError("selinux_hide.c: status_open_pre does not gate on the live hide switch")
+
         # --- syscall hook manager: RKP fallback wired when the dispatcher slot is absent,
         #     while MapleSU's own init_module_filter wiring MUST be preserved ---
         for tok in ("rkp_sucompat_hook_init", "rkp_setresuid_hook_init",

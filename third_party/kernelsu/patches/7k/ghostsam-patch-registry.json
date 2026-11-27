@@ -150,7 +150,7 @@
       },
       {
         "name": "0031-samsung-selinux-hide.patch",
-        "sha256": "b38f0701734b77657f7c7194cd6417abc286c6db79fd171e9545bc422d5db5ab"
+        "sha256": "3a0eccf0ca3ddc5bb406aa90767d92ec71cf1c63f96470500ab06827c86ad762"
       },
       {
         "name": "0032-samsung-rkp-no-patch-text.patch",
